@@ -4,18 +4,19 @@ from zope.component import adapts
 from zope.interface import implements, alsoProvides
 from zope import schema
 
-from plone.directives import form
-
+from plone.supermodel import model
+from plone.autoform import directives
+from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.contenttypes.interfaces import ILink
 
 from genweb5.core import _
 
 
-class IOpenLinkInNewWindow(form.Schema):
+class IOpenLinkInNewWindow(model.Schema):
     """Add open in new window field to link content
     """
 
-    form.order_after(open_link_in_new_window='remoteUrl')
+    directives.order_after(open_link_in_new_window='remoteUrl')
     open_link_in_new_window = schema.Bool(
         title=_(u"open_link_in_new_window"),
         description=_(u"help_open_link_in_new_window"),
@@ -24,7 +25,7 @@ class IOpenLinkInNewWindow(form.Schema):
     )
 
 
-alsoProvides(IOpenLinkInNewWindow, form.IFormFieldProvider)
+alsoProvides(IOpenLinkInNewWindow, IFormFieldProvider)
 
 
 class OpenLinkInNewWindow(object):
