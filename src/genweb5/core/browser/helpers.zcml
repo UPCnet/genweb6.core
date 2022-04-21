@@ -1,0 +1,178 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="debug"
+        for="zope.interface.Interface"
+        class=".helpers.debug"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="ping"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.monitoringView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="protectContent"
+        for="zope.interface.Interface"
+        class=".helpers.protectContent"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="instanceindevelmode"
+        for="zope.interface.Interface"
+        class=".helpers.instanceindevelmode"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="getZEO"
+        for="zope.interface.Interface"
+        class=".helpers.getZEO"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_zope"
+        for="zope.interface.Interface"
+        class=".helpers.getZOPE"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        template="browser/templates/plone-addsite.pt"
+        />
+
+    <browser:page
+        name="list_plone_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.listPloneSitesView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_flavour_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.getFlavourSitesView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_flavour_site"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.getFlavourSiteView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_languages_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.getLanguagesSitesView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_default_language_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.getDefaultLanguageSitesView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_default_wfsites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.getDefaultWFSitesView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="configuraSiteCache"
+        for="zope.interface.Interface"
+        class=".helpers.configuraSiteCache"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="configure_site_cache"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.configureSiteCache"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="refresh_uids"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.refreshUIDs"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        template="browser/templates/refreshuids.pt"
+        />
+
+    <browser:page
+        name="mirror_uids"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.mirrorUIDs"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="mirror_states"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.mirrorStates"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        template="browser/templates/mirroruids.pt"
+        />
+
+    <browser:page
+        name="bulk_action"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.bulkExecuteScriptView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="nsp_bulk_action"
+        for="OFS.interfaces.IApplication"
+        class=".helpers.notSubProcessedBulkExecuteScriptView"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="fix_record"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.fixRecord"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="add_packet_in_default_page_types"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.addPacketInDefaultPageTypes"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+</configure>

@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb">
+
+<body>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+    <h1 class="documentFirstHeading">Refresh UIDs</h1>
+
+    <form tal:attributes="action request/URL" method="post">
+
+        <div class="field">
+            <div class="error"
+                tal:condition="view/errors/email|nothing"
+                tal:content="view/errors/email|nothing" />
+            <label for="email">Origin Path</label>
+            <input type="text" id="origin_root_path" name="origin_root_path" />
+        </div>
+
+        <div class="formControls">
+          <input id="form-buttons-run"
+                 name="form.buttons.run"
+                 class="submit-widget button-field context"
+                 value="Run" type="submit">
+        </div>
+
+    </form>
+
+    <p tal:condition="view/output" tal:content='structure view/output'>
+      The output
+    </p>
+
+    </tal:main-macro>
+</metal:main>
+
+</body>
+</html>

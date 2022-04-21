@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    i18n:domain="genweb"
+    style="height:100%; display: table; margin:auto">
+
+    <body style="height:100%; display: table-cell; vertical-align: middle">
+
+        <h2 style="font-family: sans-serif; font-size: 25vw;
+        text-align: center;margin: 0;" tal:content="structure view/dorsal"></h2>
+
+    </body>
+
+</html>

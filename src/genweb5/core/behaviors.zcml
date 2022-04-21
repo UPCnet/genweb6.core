@@ -3,14 +3,14 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:grok="http://namespaces.zope.org/grok"
-    i18n_domain="genweb5.core">
+    i18n_domain="genweb">
 
-  <plone:behavior
-      title="Optional open link in a new window"
-      description="Add field to mark a link to open in a new window when clicked."
-      provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
-      factory=".behaviors.openlinkin.OpenLinkInNewWindow"
-      for="plone.dexterity.interfaces.IDexterityContent"
-      />
+    <plone:behavior
+        title="Optional open link in a new window"
+        description="Add field to mark a link to open in a new window when clicked."
+        provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
+        factory=".behaviors.openlinkin.OpenLinkInNewWindow"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
 
 </configure>

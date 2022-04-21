@@ -1,13 +1,10 @@
-from plone.indexer import indexer
-
-from zope.component import adapts
-from zope.interface import implements, alsoProvides
-from zope import schema
-
+# -*- coding: utf-8 -*-
 from plone.supermodel import model
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.contenttypes.interfaces import ILink
+from zope.component import adapts
+from zope.interface import alsoProvides, implements
 
 from genweb5.core import _
 
@@ -47,4 +44,3 @@ class OpenLinkInNewWindow(object):
 @indexer(ILink)
 def open_link_in_new_window(obj):
     return obj.open_link_in_new_window
-

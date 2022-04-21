@@ -5,7 +5,7 @@ import pkg_resources
 import subprocess
 
 
-domain = 'genweb5.core'
+domain = 'genweb'
 os.chdir(pkg_resources.resource_filename(domain, ''))
 os.chdir('../../../')
 target_path = 'src/genweb5/core/'

@@ -1,12 +1,11 @@
+# -*- coding: utf-8 -*-
+from plone.indexer import indexer
+from plone.dexterity.interfaces import IDexterityContent
 from zope import schema
+from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts
 from zope.interface import implementer
 from zope.interface import Interface
-from zope.annotation.interfaces import IAnnotations
-
-from plone.indexer import indexer
-
-from plone.dexterity.interfaces import IDexterityContent
 
 from genweb5.core import GenwebMessageFactory as _
 
@@ -21,6 +20,7 @@ class IImportant(Interface):
         title=_(u"Tells if an object is marked as important"),
         default=False
     )
+
 
 @implementer(IImportant)
 class ImportantMarker(object):
