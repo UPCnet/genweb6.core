@@ -1,0 +1,4 @@
+graft src/genweb5
+graft docs
+include *.rst
+global-exclude *.pyc
