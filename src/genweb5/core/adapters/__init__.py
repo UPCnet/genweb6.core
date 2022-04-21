@@ -1,2 +1,2 @@
-
+from important import IImportant
 

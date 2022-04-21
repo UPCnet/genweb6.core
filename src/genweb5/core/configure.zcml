@@ -42,4 +42,12 @@
 
   <!-- -*- extra stuff goes here -*- -->
 
+  <adapter
+        for="zope.interface.Interface"
+        provides=".adapters.important.IImportant"
+        factory=".adapters.important.ImportantMarker"
+        />
+  <adapter factory=".adapters.important.importantIndexer" name="is_important" />
+
+
 </configure>
