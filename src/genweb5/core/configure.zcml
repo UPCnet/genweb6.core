@@ -15,6 +15,7 @@
 
   <include package=".browser" />
 
+  <include file="behaviors.zcml" />
   <include file="permissions.zcml" />
 
   <genericsetup:registerProfile
@@ -48,6 +49,13 @@
         factory=".adapters.important.ImportantMarker"
         />
   <adapter factory=".adapters.important.importantIndexer" name="is_important" />
+
+  <adapter
+        for="plone.app.contenttypes.interfaces.ILink"
+        provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
+        factory=".behaviors.openlinkin.OpenLinkInNewWindow"
+        />
+    <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
 
 
 </configure>
