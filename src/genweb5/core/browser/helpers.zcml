@@ -52,7 +52,7 @@
         class=".helpers.getZOPE"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
-        template="browser/templates/plone-addsite.pt"
+        template="browser/helpers_templates/plone-addsite.pt"
         />
 
     <browser:page
@@ -125,7 +125,7 @@
         class=".helpers.refreshUIDs"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
-        template="browser/templates/refreshuids.pt"
+        template="browser/helpers_templates/refreshuids.pt"
         />
 
     <browser:page
@@ -142,7 +142,7 @@
         class=".helpers.mirrorStates"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
-        template="browser/templates/mirroruids.pt"
+        template="browser/helpers_templates/mirroruids.pt"
         />
 
     <browser:page
