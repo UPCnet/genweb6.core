@@ -419,4 +419,86 @@
         permission="cmf.ManagePortal"
         />
 
+    <!-- helpers_getters.py -->
+
+    <browser:page
+        name="list_ldap_info"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_getters.listLDAPInfo"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="listLastLogin"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.listLastLogin"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="genweb.webmaster"
+        />
+
+    <browser:page
+        name="get_rendered_stylesheets"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.getRenderedStylesheets"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="check_cache_settings"
+        for="zope.interface.Interface"
+        class=".helpers_getters.checkCacheSettings"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="list_domains_cache"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.listDomaninsCache"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="get_contact_data"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.getContactData"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="get_controlpanel_settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.getConfigGenwebControlPanelSettings"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="get_used_groups"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.getUsedGroups"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="get_collection_default_pages"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_getters.getCollectionDefaultPages"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="export_dexterity"
+        for="plone.app.contenttypes.interfaces.IFolder"
+        class=".helpers_getters.ExportDexterity"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
