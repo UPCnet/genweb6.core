@@ -59,4 +59,13 @@
 
   <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
 
+  <!-- The utilities browser view (can't be a grok view) -->
+  <browser:page
+      for="*"
+      name="genweb.utils"
+      class=".utils.genwebUtils"
+      permission="zope2.Public"
+      allowed_interface=".interfaces.IGenweb5CoreLayer"
+      />
+
 </configure>
