@@ -54,6 +54,7 @@ setup(
         'plone.restapi < 8.0.0',
         'plone.app.dexterity',
         'ipdb',
+        'souper.plone',
     ],
     extras_require={
         'test': [

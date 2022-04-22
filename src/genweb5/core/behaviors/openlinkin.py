@@ -3,8 +3,10 @@ from plone.supermodel import model
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.contenttypes.interfaces import ILink
+from plone.indexer import indexer
+from zope import schema
 from zope.component import adapts
-from zope.interface import alsoProvides, implements
+from zope.interface import alsoProvides, implementer
 
 from genweb5.core import _
 
@@ -21,12 +23,11 @@ class IOpenLinkInNewWindow(model.Schema):
         default=False
     )
 
-
 alsoProvides(IOpenLinkInNewWindow, IFormFieldProvider)
 
 
+@implementer(IOpenLinkInNewWindow)
 class OpenLinkInNewWindow(object):
-    implements(IOpenLinkInNewWindow)
     adapts(ILink)
 
     def __init__(self, context):

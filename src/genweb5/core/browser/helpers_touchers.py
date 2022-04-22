@@ -32,9 +32,7 @@ from genweb5.core.browser.helpers import listPloneSites
 from genweb5.core.browser.helpers import setupInstallProfile
 from genweb5.core.browser.plantilles import get_plantilles
 from genweb5.core.interfaces import IHomePage
-from genweb5.core.utils import add_user_to_catalog
 from genweb5.core.utils import json_response
-from genweb5.core.utils import reset_user_catalog
 
 import pkg_resources
 import transaction

@@ -258,7 +258,7 @@ class refreshUIDs(BrowserView):
                 setattr(obj, '_gw.uuid', generator())
                 obj.reindexObject()
                 self.output.append(obj.absolute_url())
-                print obj.absolute_url()
+                print(obj.absolute_url())
             self.output = '<br/>'.join(self.output)
 
 
@@ -285,7 +285,7 @@ class mirrorUIDs(BrowserView):
                     IMutableUUID(destination_obj).set(str(origin_uuid))
                     destination_obj.reindexObject()
                     self.output.append('{0} -> {1}'.format(destination_obj.absolute_url(), origin_uuid))
-                    print '{0} -> {1}'.format(destination_obj.absolute_url(), origin_uuid)
+                    print('{0} -> {1}'.format(destination_obj.absolute_url(), origin_uuid))
             self.output = '<br/>'.join(self.output)
 
 
@@ -319,10 +319,10 @@ class mirrorStates(BrowserView):
                     try:
                         destination_obj.reindexObject()
                     except:
-                        print "##### Not able to reindex %s" % obj.getURL()
+                        print("##### Not able to reindex %s" % obj.getURL())
 
                     self.output.append('{0} -> {1}'.format(destination_obj.absolute_url(), origin_state))
-                    print '{0} -> {1}'.format(destination_obj.absolute_url(), origin_state)
+                    print('{0} -> {1}'.format(destination_obj.absolute_url(), origin_state))
             self.output = '<br/>'.join(self.output)
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
-from Products.ATContentTypes.interface.folder import IATFolder
+#from Products.ATContentTypes.interface.folder import IATFolder
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser import BrowserView
@@ -33,7 +33,7 @@ import json
 import logging
 import requests
 import unicodedata
-import urllib2
+import urllib.request as urllib2
 
 logger = logging.getLogger(__name__)
 
