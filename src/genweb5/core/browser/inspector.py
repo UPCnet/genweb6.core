@@ -7,11 +7,9 @@ from zope.component.hooks import getSite
 import importlib
 import inspect
 
-MODULES_TO_INSPECT = ['genweb.core.browser.setup',
-                      'genweb.core.browser.migracio',
-                      'genweb.core.browser.helpers',
-                      'genweb.core.browser.helpers_getters',
-                      'genweb.core.browser.helpers_touchers', ]
+MODULES_TO_INSPECT = ['genweb5.core.browser.setup',
+                      'genweb5.core.browser.helpers',
+                      'genweb5.core.browser.helpers_touchers']
 
 
 class clouseau(BrowserView):
@@ -20,18 +18,36 @@ class clouseau(BrowserView):
         portal = getSite()
         app = portal.restrictedTraverse('/')
 
-        plone_site = []
+        setup = []
+
+        bulk = []
+        products = []
+        cache = []
+
         application = []
+        plone = []
 
         for module in MODULES_TO_INSPECT:
             themodule = importlib.import_module(module)
             members = inspect.getmembers(themodule, inspect.isclass)
+            # import ipdb; ipdb.set_trace()
+            pass
 
-            # for name, klass in members:
+            for name, klass in members:
+                if name != 'BrowserView':
+                    if module == 'genweb5.core.browser.setup':
+                        setup.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                    elif 'bulk' in name.lower():
+                        pass
+                    elif 'product' in name.lower():
+                        pass
+                    elif 'cache' in name.lower():
+                        pass
+
             #     if grok.View in klass.__bases__:
             #         if getattr(klass, 'grokcore.component.directive.context').getName() == 'IApplication':
             #             application.append(dict(url='{}/{}'.format(app.absolute_url(), getattr(klass, 'grokcore.component.directive.name', name.lower())), description=klass.__doc__))
             #         else:
             #             plone_site.append(dict(url='{}/{}'.format(portal.absolute_url(), getattr(klass, 'grokcore.component.directive.name', name.lower())), description=klass.__doc__))
 
-        return (plone_site, application)
+        return (plone, application)
