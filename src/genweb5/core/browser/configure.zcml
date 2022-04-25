@@ -15,4 +15,28 @@
         template="./inspector_templates/clouseau.pt"
         />
 
+    <browser:page
+        name="genweb.get.dxdocument.text"
+        for="plone.app.contenttypes.interfaces.IDocument"
+        class=".views.GetDXDocumentText"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="collective.tinymcetemplates.templatelist"
+        for="zope.interface.Interface"
+        class=".views.TemplateList"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="toggle_important"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        class=".views.gwToggleIsImportant"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
 </configure>
