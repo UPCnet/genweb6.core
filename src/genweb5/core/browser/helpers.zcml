@@ -493,12 +493,4 @@
         permission="cmf.ManagePortal"
         />
 
-    <browser:page
-        name="export_dexterity"
-        for="plone.app.contenttypes.interfaces.IFolder"
-        class=".helpers_getters.ExportDexterity"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
 </configure>

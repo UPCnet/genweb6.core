@@ -222,7 +222,7 @@ class configureSiteCache(BrowserView):
         context = aq_inner(self.context)
         from Products.GenericSetup.tests.common import DummyImportContext
         from plone.app.registry.exportimport.handler import RegistryImporter
-        from genweb.core.browser.cachesettings import cacheprofile
+        from genweb5.core.browser.cachesettings import cacheprofile
         from plone.cachepurging.interfaces import ICachePurgingSettings
         contextImport = DummyImportContext(context, purge=False)
         registry = queryUtility(IRegistry)

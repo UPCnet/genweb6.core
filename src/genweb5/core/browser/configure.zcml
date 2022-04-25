@@ -6,4 +6,13 @@
 
     <include file="helpers.zcml" />
 
+    <browser:page
+        name="clouseau"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".inspector.clouseau"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        template="./inspector_templates/clouseau.pt"
+        />
+
 </configure>
