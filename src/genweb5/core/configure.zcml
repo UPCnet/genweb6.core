@@ -13,11 +13,10 @@
     Better import explicit packages or configurations ;)
   -->
   <!--<includeDependencies package="." />-->
+  <include file="permissions.zcml" />
+  <include file="behaviors.zcml" />
 
   <include package=".browser" />
-
-  <include file="behaviors.zcml" />
-  <include file="permissions.zcml" />
 
   <include package="souper.plone" />
 

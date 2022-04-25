@@ -1,7 +1,25 @@
 <?xml version="1.0"?>
 <rolemap>
-  <permissions>
-  <!-- -*- extra stuff goes here -*- -->
+    <permissions>
 
-  </permissions>
+        <permission name="Genweb: Authenticated Users"
+                    acquire="True">
+
+            <role name="Authenticated"/>
+        </permission>
+
+        <permission name="Genweb: Member Users"
+                    acquire="True">
+
+            <role name="Member"/>
+        </permission>
+
+        <permission name="Genweb: Webmaster Users"
+                    acquire="True">
+
+            <role name="WebMaster"/>
+            <role name="Manager"/>
+        </permission>
+
+    </permissions>
 </rolemap>

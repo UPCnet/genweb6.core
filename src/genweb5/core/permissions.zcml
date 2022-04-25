@@ -3,10 +3,24 @@
   xmlns:zcml="http://namespaces.zope.org/zcml"
   i18n_domain="plone">
 
-  <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
+    <configure zcml:condition="installed AccessControl.security">
+        <!-- -*- extra stuff goes here -*- -->
 
+        <permission
+            id="genweb.authenticated"
+            title="Genweb: Authenticated Users"
+            />
 
-  </configure>
+        <permission
+            id="genweb.member"
+            title="Genweb: Member Users"
+            />
+
+        <permission
+            id="genweb.webmaster"
+            title="Genweb: Webmaster Users"
+            />
+
+    </configure>
 
 </configure>
