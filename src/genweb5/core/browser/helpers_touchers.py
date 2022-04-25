@@ -28,8 +28,6 @@ from zope.interface import alsoProvides
 
 from genweb5.core import HAS_DXCT
 from genweb5.core import HAS_PAM
-from genweb5.core.browser.helpers import listPloneSites
-from genweb5.core.browser.helpers import setupInstallProfile
 from genweb5.core.browser.plantilles import get_plantilles
 from genweb5.core.interfaces import IHomePage
 from genweb5.core.utils import json_response
@@ -400,7 +398,7 @@ class changeNewsEventsPortlets(BrowserView):
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
 
     def assign_news_events_listing_portlet(self, portal, obj_type):
-        from genweb.theme.portlets.news_events_listing import Assignment as news_events_Assignment
+        from genweb5.core.portlets.news_events_listing import Assignment as news_events_Assignment
 
         target_manager_left = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal)
         target_manager_assignments_left = getMultiAdapter((portal, target_manager_left), IPortletAssignmentMapping)
@@ -449,7 +447,7 @@ class reinstallGenwebUPCWithLanguages(BrowserView):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
         defaultLanguage = api.portal.get_default_language()
-        languages = api.portal.get_registry_record(name='genweb.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats')
+        languages = api.portal.get_registry_record(name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats')
         context = aq_inner(self.context)
         output = []
         qi = getToolByName(context, 'portal_quickinstaller')
@@ -460,7 +458,7 @@ class reinstallGenwebUPCWithLanguages(BrowserView):
             pl = api.portal.get_tool('portal_languages')
             pl.setDefaultLanguage(defaultLanguage)
             pl.supported_langs = ['ca', 'es', 'en']
-            api.portal.set_registry_record(name='genweb.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats', value=languages)
+            api.portal.set_registry_record(name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats', value=languages)
             output.append('{}: Successfully reinstalled genweb upc'.format(context))
         return '\n'.join(output)
 
@@ -763,3 +761,98 @@ class rebuildUUIDs(BrowserView):
                     logger.warning('Set UUID per {}'.format(result.getPath()))
                 except:
                     logger.warning('Can\'t set UUID for {}'.format(result.getPath()))
+
+
+class configuraSiteCache(BrowserView):
+    """ [DEPRECATED] Redirect to configure_site_cache """
+
+    def __call__(self):
+        self.request.response.redirect('configure_site_cache')
+
+
+class configureSiteCache(BrowserView):
+    """ Vista que configura la caché del site corresponent. """
+
+    def __call__(self):
+        context = aq_inner(self.context)
+        from Products.GenericSetup.tests.common import DummyImportContext
+        from plone.app.registry.exportimport.handler import RegistryImporter
+        from genweb5.core.browser.cachesettings import cacheprofile
+        from plone.cachepurging.interfaces import ICachePurgingSettings
+        contextImport = DummyImportContext(context, purge=False)
+        registry = queryUtility(IRegistry)
+        importer = RegistryImporter(registry, contextImport)
+        importer.importDocument(cacheprofile)
+
+        cachepurginsettings = registry.forInterface(ICachePurgingSettings)
+
+        varnish_url = os.environ.get('varnish_url', False)
+        logger = logging.getLogger('Genweb: Executing configure cache on site -')
+        logger.info('%s' % self.context.id)
+        if varnish_url:
+            cachepurginsettings.cachingProxies = (varnish_url,)
+            logger.info('Successfully set caching for this site')
+            return 'Successfully set caching for this site.'
+        else:
+            logger.info('There are not any varnish_url in the environment. No caching proxy could be configured.')
+            return 'There are not any varnish_url in the environment. No caching proxy could be configured.'
+
+
+class refreshUIDs(BrowserView):
+
+    def __call__(self):
+        form = self.request.form
+        self.output = []
+        if self.request['method'] == 'POST' and form.get('origin_root_path', False):
+            generator = getUtility(IUUIDGenerator)
+            origin_root_path = form.get('origin_root_path')
+            all_objects = api.content.find(path=origin_root_path)
+            for obj in all_objects:
+                obj = obj.getObject()
+                setattr(obj, interfaces.ATTRIBUTE_NAME, generator())
+                setattr(obj, '_gw.uuid', generator())
+                obj.reindexObject()
+                self.output.append(obj.absolute_url())
+                print(obj.absolute_url())
+            self.output = '<br/>'.join(self.output)
+
+
+class fixRecord(BrowserView):
+    """ Fix KeyError problem when plonesite is moved from the original Zeo"""
+
+    def __call__(self, portal=None):
+        from zope.component import getUtility
+        if CSRF:
+            alsoProvides(self.request, IDisableCSRFProtection)
+        output = []
+        site = self.context.portal_registry
+        registry = getUtility(IRegistry)
+        rec = registry.records
+        keys = [a for a in rec.keys()]
+        for k in keys:
+            try:
+                rec[k]
+            except:
+                output.append('{}, '.format(k))
+                del site.portal_registry.records._values[k]
+                del site.portal_registry.records._fields[k]
+        return "S'han purgat les entrades del registre: {}".format(output)
+
+
+class addPacketInDefaultPageTypes(BrowserView):
+    """ Add type packet in default_page_types > site_properties"""
+
+    def __call__(self):
+        propsTool = getToolByName(self, 'portal_properties')
+        siteProperties = getattr(propsTool, 'site_properties')
+        defaultPageTypes = siteProperties.getProperty('default_page_types')
+        try:
+            types = [typ for typ in defaultPageTypes]
+            if 'packet' not in types:
+                types.append('packet')
+                siteProperties.default_page_types = tuple(types)
+                transaction.commit()
+                return 'OK'
+            return 'KO'
+        except:
+            return 'KO'
