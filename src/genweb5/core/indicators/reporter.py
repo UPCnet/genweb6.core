@@ -1,10 +1,14 @@
+# -*- coding: utf-8 -*-
 """
 Reports indicators to the Indicators Web Service.
 """
 
-from .model import Indicator, Category, CalculatorException
-from .registry import Registry
-from .client import Client, ClientException
+from genweb5.core.indicators.client import Client
+from genweb5.core.indicators.client import ClientException
+from genweb5.core.indicators.model import Category
+from genweb5.core.indicators.model import CalculatorException
+from genweb5.core.indicators.model import Indicator
+from genweb5.core.indicators.registry import Registry
 
 
 class ReporterException(Exception):

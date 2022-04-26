@@ -1,14 +1,18 @@
+# -*- coding: utf-8 -*-
 """
 Web client for the API specified on
 https://indicadorstic.upc.edu/indicadorstic/
 """
 
+from datetime import datetime
+from requests.exceptions import ConnectionError
+from requests.exceptions import InvalidSchema
+from requests.exceptions import MissingSchema
+from requests.exceptions import ReadTimeout
+from simplejson.decoder import JSONDecodeError
+
 import requests
 import json
-from requests.exceptions import (
-    ConnectionError, ReadTimeout, MissingSchema, InvalidSchema)
-from simplejson.decoder import JSONDecodeError
-from datetime import datetime
 
 
 class ClientException(Exception):

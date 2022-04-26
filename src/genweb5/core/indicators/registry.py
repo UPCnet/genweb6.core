@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Indicator registry that loads and stores indicators from a path containing yaml
 files.
@@ -5,11 +6,13 @@ files.
 
 from collections import defaultdict
 from os import listdir
-from os.path import isfile, join
-import yaml
+from os.path import isfile
+from os.path import join
 from yaml.scanner import ScannerError
 
-from .model import Indicator
+from genweb5.core.indicators.model import Indicator
+
+import yaml
 
 
 class RegistryException(Exception):
