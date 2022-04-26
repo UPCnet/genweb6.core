@@ -39,4 +39,12 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:view
+        name="folder_delete"
+        for="*"
+        class=".confirmation.FolderDelete"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.DeleteObjects"
+        />
+
 </configure>
