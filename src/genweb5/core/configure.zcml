@@ -70,4 +70,22 @@
       allowed_interface=".interfaces.IGenweb5CoreLayer"
       />
 
+  <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
+
+  <subscriber
+      for="plone.uuid.interfaces.IAttributeUUID
+           zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+      handler=".gwuuid.addAttributeUUID"
+      />
+
+  <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
+
+  <browser:page
+      name="gwuuid"
+      for="zope.interface.Interface"
+      class=".gwuuid.GWUUIDView"
+      layer="genweb5.core.interfaces.IGenweb5CoreLayer"
+      permission="zope2.View"
+      />
+
 </configure>

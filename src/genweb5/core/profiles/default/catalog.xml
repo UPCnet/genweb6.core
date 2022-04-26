@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 <object name="portal_catalog">
-  <!--<column value="my_meta_column"/>-->
+    <column value="open_link_in_new_window"/>
+    <column value="news_image_filename"/>
+    <column value="is_important"/>
+    <column value="gwuuid"/>
 </object>
