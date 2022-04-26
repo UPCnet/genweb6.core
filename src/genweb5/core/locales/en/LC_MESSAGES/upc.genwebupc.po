@@ -1,0 +1,153 @@
+# Gettext Message File for GenWeb.
+# Victor Fernandez de Alba (UPCnet)
+msgid ""
+msgstr ""
+"Project-Id-Version: GenWebUPC\n"
+"POT-Creation-Date: 2007-08-21 09:05\n"
+"PO-Revision-Date: 2010-06-04 11:35+0100\n"
+"Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
+"Language-Team: Plone Team@UPCnet <>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: upc.genwebupc\n"
+
+#: browser/capsaleraSuperior.pt
+msgid "identificat"
+msgstr "Log In"
+
+#: browser/capsaleraSuperior.pt
+msgid "cercaavancada"
+msgstr "Advanced search"
+
+#: browser/calendar.pt
+msgid "calendari_title"
+msgstr "Calendar"
+
+#: browser/calendar.pt
+msgid "esdeveniments_reunions"
+msgstr "Events and meetings."
+
+#: browser/calendar.pt
+msgid "avui"
+msgstr "Today"
+
+#: browser/calendar.pt
+msgid "inici"
+msgstr "Home"
+
+msgid "nom_usuari"
+msgstr "User"
+
+msgid "genweb-logout"
+msgstr "Log out"
+
+msgid "master_curso"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "genweb-sobre_aquest_web"
+msgstr "About this web"
+
+msgid "genweb-rss"
+msgstr "RSS"
+
+msgid "genweb-accessibility"
+msgstr "Accessibility"
+
+msgid "genweb-actualitat"
+msgstr "UPC Today <i class=\"icon-news large-icon pull-right\"></i>"
+
+msgid "genweb-noticies"
+msgstr "News"
+
+msgid "genweb-agenda"
+msgstr "Agenda"
+
+msgid "cerca"
+msgstr "Search..."
+
+msgid "cerca_google"
+msgstr "Search..."
+
+msgid "cerca_intranet"
+msgstr "Intranet Search"
+
+msgid "label_text_seccio"
+msgstr "Label section"
+
+msgid "descripcio_text_seccio"
+msgstr "Label section display"
+
+msgid "Top_of_page"
+msgstr "Top of page"
+
+msgid "Planol_UPC"
+msgstr "Access map to UPC"
+
+msgid "sendto_accio"
+msgstr "Send"
+
+msgid "print_accio"
+msgstr "Print"
+
+msgid "permalink_accio"
+msgstr "Permalink"
+
+msgid "rss_accio"
+msgstr "Rss"
+
+msgid "submitGo"
+msgstr "Search"
+
+#. "genweb-accesarrel"
+msgid "genweb-accesarrel"
+msgstr "Root folder"
+
+#. "genweb-preferencies"
+msgid "genweb-preferencies"
+msgstr "Preferences"
+
+#. "genweb-ajuda"
+msgid "genweb-ajuda"
+msgstr "Help"
+
+msgid "obrir_link_finestra_nova"
+msgstr "(open link in a new window)"
+
+#: ."genweb-actualitatPDIPAS"
+msgid "genweb-actualitatPDIPAS"
+msgstr "PDI/PAS Today"
+
+#: ./browser/addthis.pt
+msgid "Comparteix"
+msgstr "Share"
+
+#: ./browser/addthis.pt
+msgid "comparteix_facebook"
+msgstr "Share on Facebook"
+
+#: ./browser/addthis.pt
+msgid "comparteix_linkedin"
+msgstr "Share on Linkedin"
+
+#: ./browser/addthis.pt
+msgid "send_mail"
+msgstr "Send by mail"
+
+#: ./browser/addthis.pt
+msgid "Print"
+msgstr "Print"
+
+#: ./browser/addthis.pt
+msgid "comparteix_twitter"
+msgstr "Share on Twitter"
+
+msgid "genweb_info_gral"
+msgstr "General Information"

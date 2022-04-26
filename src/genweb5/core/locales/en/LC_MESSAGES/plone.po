@@ -1,0 +1,153 @@
+# Gettext Message File for GenWeb.
+# Victor Fernandez de Alba (UPCnet)
+msgid ""
+msgstr ""
+"Project-Id-Version: GenWebUPC\n"
+"POT-Creation-Date: 2008-11-20 09:40\n"
+"PO-Revision-Date: 2015-03-09 11:36+0100\n"
+"Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+# desc_type_collage
+msgid "desc_type_collage"
+msgstr "A structural container which can display its elements in various layouts."
+
+msgid "retiraaesborrany"
+msgstr "Retract to draft"
+
+msgid "Type the code"
+msgstr "Type the code:"
+
+msgid "Type the code from the picture shown below"
+msgstr "Type the code from the picture shown below"
+
+msgid "Send"
+msgstr "send"
+
+msgid "more_news_link"
+msgstr "More news"
+
+msgid "FullNews"
+msgstr "News with image"
+
+msgid "NoticiesPropi"
+msgstr "News"
+
+msgid "GridEvents"
+msgstr "Grid events"
+
+msgid "AgendaGW"
+msgstr "Agenda"
+
+msgid "label_full_size"
+msgstr "Full-size image:"
+
+msgid "portlet_homepage_title"
+msgstr "Wellcome"
+
+############
+# portlets #
+############
+
+msgid "portlet_calendar_title"
+msgstr "Calendar"
+
+msgid "portlet_collection_title"
+msgstr "Collection"
+
+msgid "portlet_multiviewcollection_title"
+msgstr "Multi-view Collection"
+
+msgid "portlet_login_title"
+msgstr "Login"
+
+msgid "portlet_navigation_title"
+msgstr "Navigation menu"
+
+msgid "portlet_rss_title"
+msgstr "RSS"
+
+#: plone/app/event/portlets/portlet_calendar.py:218
+msgid "This portlet displays events in a calendar."
+msgstr ""
+
+#. Default: "Select search base folder to search for events. This folder will also be used to link to in calendar searches. If empty, the whole site will be searched and the event listing view will be called on the site root."
+#: plone/app/event/portlets/portlet_calendar.py:42
+#: plone/app/event/portlets/portlet_events.py:43
+msgid "portlet_help_search_base"
+msgstr ""
+
+#: plone.portlet.collection/plone/portlet/collection/collection.py:71
+msgid "Exclude the Current Context"
+msgstr ""
+
+#: plone.portlet.collection/plone/portlet/collection/collection.py:72
+msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
+msgstr ""
+
+msgid "portlet_poll_title"
+msgstr "Poll"
+
+msgid "UPCNews"
+msgstr "UPC Today"
+
+#: CMFPlone/skins/plone_login/insufficient_privileges.pt:25
+msgid "label_return_to_page"
+msgstr "Back to previous page"
+
+msgid "portlet_static_title"
+msgstr "Static portlet"
+
+############
+# Contacte #
+############
+
+msgid "genweb_sender_fullname"
+msgstr "Name"
+
+msgid "genweb_sender_from_address"
+msgstr "Email address"
+
+msgid "genweb_subject"
+msgstr "Subject"
+
+msgid "genweb_message"
+msgstr "Message"
+
+msgid "genweb_help_message"
+msgstr "Write the massage"
+
+#. Default: "Recipient"
+#: genweb.theme/genweb/theme/browser/contact.py:92
+msgid "to_address"
+msgstr "Contact with"
+
+msgid "upc_heading_send_feedback_confirm"
+msgstr "Your email has been sent"
+
+msgid "upc_message_send_feedback_confirm"
+msgstr "A mail has now been sent regarding your questions and/or comments. "
+
+msgid "Album view"
+msgstr "Album view"
+
+################
+# Subhome type #
+################
+
+msgid "Subhome"
+msgstr "Portlet grid"
+
+msgid "Subhome Description"
+msgstr "Element for display a page with various contents from the web"
+
+msgid "Nou Contingut existent"
+msgstr "New Existing content"

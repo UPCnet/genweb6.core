@@ -1,12 +1,15 @@
-#!/bin/bash
-# i18ndude should be available in current $PATH (eg by running
-# ``export PATH=$PATH:$BUILDOUT_DIR/bin`` when i18ndude is located in your buildout's bin directory)
-#
-# For every language you want to translate into you need a
-# locales/[language]/LC_MESSAGES/genweb5.core.po
-# (e.g. locales/de/LC_MESSAGES/genweb5.core.po)
+#! /bin/bash
 
-domain=genweb
+cd ../../../../../
+./bin/i18ndude rebuild-pot \
+  --pot src/genweb.core/genweb/core/locales/genweb.pot \
+  --create genweb \
+  src/genweb.banners/ src/genweb.controlpanel src/genweb.core \
+  src/genweb.jsonify  src/genweb.logosfooter  src/genweb.migrations \
+  src/genweb.packets  src/genweb.portlets     src/genweb.smartportlet \
+  src/genweb.stack    src/genweb.theme        src/genweb.upc/
 
-i18ndude rebuild-pot --pot $domain.pot --create $domain ../
-i18ndude sync --pot $domain.pot */LC_MESSAGES/$domain.po
+cd src/genweb.core/genweb/core/locales/
+../../../../../bin/i18ndude sync --pot genweb.pot ca/LC_MESSAGES/genweb.po
+../../../../../bin/i18ndude sync --pot genweb.pot es/LC_MESSAGES/genweb.po
+../../../../../bin/i18ndude sync --pot genweb.pot en/LC_MESSAGES/genweb.po

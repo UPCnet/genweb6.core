@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.tinymce\n"
+"POT-Creation-Date: 2014-10-29 12:22+0000\n"
+"PO-Revision-Date: 2012-04-23 15:47+0100\n"
+"Last-Translator: Mikel Larreategi <mlarreategi@codesyntax.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: es\n"
+"Language-Name: Spanish, Castilian\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone.tinymce\n"
+
+msgid "Arxiu DOC"
+msgstr "Archivo DOC"
+
+msgid "Arxiu PDF"
+msgstr "Archivo PDF"
+
+msgid "Arxiu PPT"
+msgstr "Archivo PPT"
+
+msgid "Arxiu TXT"
+msgstr "Archivo TXT"
+
+msgid "Arxiu XLS"
+msgstr "Archivo XLS"
+
+msgid "Arxiu video"
+msgstr "Archivo video"
+
+msgid "Arxiu imatge"
+msgstr "Archivo imatge"
+
+msgid "Cadenat HTTPS"
+msgstr "Candado HTTPS"
+
+msgid "Descarrega fitxer"
+msgstr "Descarga fichero"
+
+msgid "H2 línia dalt"
+msgstr "H2 línea arriba"
+
+msgid "H2 línia baix"
+msgstr "H2 línea baja"
+
+msgid "H3 línia dalt"
+msgstr "H3 línea arriba"
+
+msgid "H3 línia baix"
+msgstr "H3 línea baja"
+
+msgid "H4 línia dalt"
+msgstr "H4 línea arriba"
+
+msgid "H4 línia baix"
+msgstr "H4 línea baja"
+
+msgid "Text XXXL"
+msgstr "Texto XXXL"
+
+msgid "Text XXL"
+msgstr "Texto XXL"
+
+msgid "Text XL"
+msgstr "Texto XL"
+
+msgid "Text L"
+msgstr "Texto L"
+
+msgid "Text M"
+msgstr "Texto M"
+
+msgid "Text S"
+msgstr "Texto S"
+
+msgid "Text XS"
+msgstr "Texto XS"
+
+msgid "Text XXS"
+msgstr "Texto XXS"
+
+msgid "Text XXXS"
+msgstr "Texto XXXS"
+
+msgid "Llista ul hover"
+msgstr "Listado ul hover"
+
+msgid "Llista ul ratllada"
+msgstr "Listado ul rayada"
+
+msgid "Llista ul comprimida"
+msgstr "Listado ul comprimida"
+
+msgid "Llista ul amb vores"
+msgstr "Listado ul con bordes"
+
+msgid "Imatge dreta"
+msgstr "Imagen derecha"
+
+msgid "Imatge esquerra"
+msgstr "Imagen izquierda"
+
+msgid "Fons color info"
+msgstr "Fondo color info"
+
+msgid "Fons color success"
+msgstr "Fondo color success"
+
+msgid "Fons color warning"
+msgstr "Fondo color warning"
+
+msgid "Fons color error"
+msgstr "Fondo color error"
+
+msgid "Taula bàsica"
+msgstr "Tabla básica"
+
+msgid "Taula ratllada"
+msgstr "Tabla rayada"
+
+msgid "Taula amb vora"
+msgstr "Tabla con borde"
+
+msgid "Taula amb hover"
+msgstr "Tabla con hover"
+
+msgid "Taula comprimida"
+msgstr "Tabla comprimida"
+

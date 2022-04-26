@@ -1,0 +1,57 @@
+# Translations template for plone.dexterity.
+# Copyright (C) 2013 Plone foundation
+# This file is distributed under the same license as the plone.dexterity
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.dexterity 2.1.1.dev0\n"
+"Report-Msgid-Bugs-To: dexterity-development@googlegroups.com\n"
+"POT-Creation-Date: 2013-01-02 11:53+0100\n"
+"PO-Revision-Date: 2014-12-10 13:22+0100\n"
+"Last-Translator: Víctor Fernández de Alba <sneridagh@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.6\n"
+"X-Generator: Poedit 1.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ca\n"
+
+#: plone/dexterity/browser/add.py:130
+msgid "Add ${name}"
+msgstr "Afegeix ${name}"
+
+#: plone/dexterity/browser/add.py:107
+msgid "Add New Item operation cancelled"
+msgstr "L'operació d'afegir un element ha estat cancel·lada"
+
+#: plone/dexterity/browser/add.py:105 plone/dexterity/browser/edit.py:32
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: plone/dexterity/browser/edit.py:28
+msgid "Changes saved"
+msgstr "Canvis desats"
+
+#: plone/dexterity/browser/base.py:14
+msgid "Content"
+msgstr "﻿Contingut"
+
+#: plone/dexterity/browser/edit.py:74
+msgid "Edit ${name}"
+msgstr "﻿Edita ${name}"
+
+#: plone/dexterity/browser/edit.py:34
+msgid "Edit cancelled"
+msgstr "Edició cancel·lada"
+
+#: plone/dexterity/browser/add.py:103
+msgid "Item created"
+msgstr "Element creat"
+
+#: plone/dexterity/browser/add.py:93 plone/dexterity/browser/edit.py:21
+msgid "Save"
+msgstr "Desa"

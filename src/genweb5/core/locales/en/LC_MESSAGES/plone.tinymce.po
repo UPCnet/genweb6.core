@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-10-29 12:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+msgid "Arxiu DOC"
+msgstr "File DOC"
+
+msgid "Arxiu PDF"
+msgstr "File PDF"
+
+msgid "Arxiu PPT"
+msgstr "File PPT"
+
+msgid "Arxiu TXT"
+msgstr "File TXT"
+
+msgid "Arxiu XLS"
+msgstr "File XLS"
+
+msgid "Arxiu video"
+msgstr "File Video"
+
+msgid "Arxiu imatge"
+msgstr "File Image"
+
+msgid "Cadenat HTTPS"
+msgstr "padlock HTTPS"
+
+msgid "Descarrega fitxer"
+msgstr "download file"
+
+msgid "H2 línia dalt"
+msgstr "H2 line up"
+
+msgid "H2 línia baix"
+msgstr "H2 base line"
+
+msgid "H3 línia dalt"
+msgstr "H3 line up"
+
+msgid "H3 línia baix"
+msgstr "H3 base line"
+
+msgid "H4 línia dalt"
+msgstr "H4 line up"
+
+msgid "H4 línia baix"
+msgstr "H4 base line"
+
+msgid "Text XXXL"
+msgstr "Texto XXXL"
+
+msgid "Text XXL"
+msgstr "Text XXL"
+
+msgid "Text XL"
+msgstr "Text XL"
+
+msgid "Text L"
+msgstr "Text L"
+
+msgid "Text M"
+msgstr "Text M"
+
+msgid "Text S"
+msgstr "Text S"
+
+msgid "Text XS"
+msgstr "Text XS"
+
+msgid "Text XXS"
+msgstr "Text XXS"
+
+msgid "Text XXXS"
+msgstr "Text XXXS"
+
+msgid "Llista ul hover"
+msgstr "List ul hover"
+
+msgid "Llista ul ratllada"
+msgstr "List ul striped"
+
+msgid "Llista ul comprimida"
+msgstr "List ul compressed"
+
+msgid "Llista ul amb vores"
+msgstr "Lisc ul with edges"
+
+msgid "Imatge dreta"
+msgstr "Image right"
+
+msgid "Imatge esquerra"
+msgstr "Image left"
+
+msgid "Fons color info"
+msgstr "Background color info"
+
+msgid "Fons color success"
+msgstr "Background color success"
+
+msgid "Fons color warning"
+msgstr "Background color warning"
+
+msgid "Fons color error"
+msgstr "Background color error"
+
+msgid "Taula bàsica"
+msgstr "Table basic"
+
+msgid "Taula ratllada"
+msgstr "Table striped"
+
+msgid "Taula amb vora"
+msgstr "Table with edges"
+
+msgid "Taula amb hover"
+msgstr "Table with hover"
+
+msgid "Taula comprimida"
+msgstr "Table compressed"
+

@@ -1,0 +1,253 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: plone.formwidget.recurrence\n"
+"POT-Creation-Date: 2011-02-24 16:56+0000\n"
+"PO-Revision-Date: 2006-01-29 23:00+0000\n"
+"Last-Translator: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: es\n"
+"Language-Name: Español\n"
+"Preferred-Encodings: utf-8\n"
+"Domain: plone.formwidget.recurrence\n"
+
+msgid "add_rules"
+msgstr "Añadir"
+
+msgid "edit_rules"
+msgstr "Editar"
+
+msgid "delete_rules"
+msgstr "Borrar"
+
+msgid "add"
+msgstr "Añadir"
+
+msgid "add_date"
+msgstr "Añadir fecha"
+
+msgid "additional_date"
+msgstr "Fecha adicional"
+
+msgid "already_added"
+msgstr "Esta fecha ya se agregó"
+
+msgid "bysetpos"
+msgstr "BYSETPOS no es compatible"
+
+msgid "cancel"
+msgstr "Cancelar"
+
+msgid "daily_interval_1"
+msgstr "Repetir cada:"
+
+msgid "daily_interval_2"
+msgstr "días"
+
+msgid "display_activate"
+msgstr "Repetir cada:"
+
+msgid "display_unactivate"
+msgstr "No repetir"
+
+msgid "except"
+msgstr ", excepto por"
+
+msgid "exclude"
+msgstr "Excluir"
+
+msgid "include"
+msgstr "Incluir"
+
+msgid "including"
+msgstr ", y también "
+
+msgid "long_date_format"
+msgstr "dddd mmmm dd, yyyy"
+
+msgid "monthly_day_of_month_1"
+msgstr "Día"
+
+msgid "monthly_day_of_month_1_human"
+msgstr "en el día"
+
+msgid "monthly_day_of_month_2"
+msgstr "en el mes"
+
+msgid "monthly_day_of_month_3"
+msgstr "mes(es)"
+
+msgid "monthly_interval_1"
+msgstr "Repetir cada:"
+
+msgid "monthly_interval_2"
+msgstr "mes(es)"
+
+msgid "monthly_repeat_on"
+msgstr "Repetir en:"
+
+msgid "monthly_weekday_of_month_1"
+msgstr "El"
+
+msgid "monthly_weekday_of_month_1_human"
+msgstr "en el"
+
+msgid "monthly_weekday_of_month_2"
+msgstr " "
+
+msgid "monthly_weekday_of_month_3"
+msgstr "del mes"
+
+msgid "multiple_day_of_month"
+msgstr "Este widget no admite varios días en la recurrencia mensual o anual"
+
+msgid "no_end_after_n_occurrences"
+msgstr "Error: El campo debe estar entre 1 y 1000"
+
+msgid "no_end_date"
+msgstr "Error: La fecha de finalización no está establecida. Por favor, establece un valor correcto"
+
+msgid "no_repeat_every"
+msgstr "Error: El campo debe estar entre 1 y 1000"
+
+msgid "no_repeat_on"
+msgstr "Error: valor debe ser seleccionado"
+
+msgid "no_rule"
+msgstr "No RRULE en datos RRULE"
+
+msgid "no_template_match"
+msgstr "No plantilla recurrencia"
+
+msgid "order_indexes_first"
+msgstr "primer"
+
+msgid "order_indexes_fourth"
+msgstr "cuarto"
+
+msgid "order_indexes_last"
+msgstr "último"
+
+msgid "order_indexes_second"
+msgstr "segundo"
+
+msgid "order_indexes_third"
+msgstr "tercer"
+
+msgid "past_end_date"
+msgstr "Error: La fecha de finalización no puede ser anterior a la fecha de inicio"
+
+msgid "preview"
+msgstr "Fechas seleccionadas"
+
+msgid "range"
+msgstr "Fin recurrencia:"
+
+msgid "range_by_end_date"
+msgstr "Hasta "
+
+msgid "range_by_end_date_human"
+msgstr "finaliza el "
+
+msgid "range_by_occurrences_1"
+msgstr "Terminar después"
+
+msgid "range_by_occurrences_1_human"
+msgstr "termina después"
+
+msgid "range_by_occurrences_2"
+msgstr "evento(s)"
+
+msgid "range_no_end"
+msgstr "Nunca"
+
+msgid "recurrence_start"
+msgstr "Comienzo de la recurrencia"
+
+msgid "recurrence_type"
+msgstr "Repeticiones:"
+
+msgid "refresh"
+msgstr "Actualizar"
+
+msgid "remove"
+msgstr "Borrar"
+
+msgid "save"
+msgstr "Guardar"
+
+msgid "template_daily"
+msgstr "Diariamente"
+
+msgid "template_mondayfriday"
+msgstr "Lunes y Viernes"
+
+msgid "template_monthly"
+msgstr "Mensualmente"
+
+msgid "template_weekdays"
+msgstr "Día de la semana"
+
+msgid "template_weekly"
+msgstr "Semanalmente"
+
+msgid "template_yearly"
+msgstr "Anualmente"
+
+msgid "title"
+msgstr "Repetir"
+
+msgid "unsupported_features"
+msgstr "Advertencia: Este evento usa características de recurrencia no compatibles con este widget. Salvar la recurrencia puede cambiar la recurrencia de maneras imprevistas: "
+
+msgid "weekly_interval_1"
+msgstr "Repetir cada:"
+
+msgid "weekly_interval_2"
+msgstr "semana(s)"
+
+msgid "weekly_weekdays"
+msgstr "Repetir en:"
+
+msgid "weekly_weekdays_human"
+msgstr "en: "
+
+msgid "yearly_day_of_month_1"
+msgstr "Cada"
+
+msgid "yearly_day_of_month_1_human"
+msgstr "en"
+
+msgid "yearly_day_of_month_2"
+msgstr " "
+
+msgid "yearly_day_of_month_3"
+msgstr " "
+
+msgid "yearly_interval_1"
+msgstr "Repetir cada:"
+
+msgid "yearly_interval_2"
+msgstr "año(s)"
+
+msgid "yearly_repeat_on"
+msgstr "Repetir entre:"
+
+msgid "yearly_weekday_of_month_1"
+msgstr "el"
+
+msgid "yearly_weekday_of_month_1_human"
+msgstr "en el"
+
+msgid "yearly_weekday_of_month_2"
+msgstr " "
+
+msgid "yearly_weekday_of_month_3"
+msgstr "de"
+
+msgid "yearly_weekday_of_month_4"
+msgstr " "
+

@@ -1,0 +1,467 @@
+# Gettext Message File for GenWeb.
+# Victor Fernandez de Alba (UPCnet)
+msgid ""
+msgstr ""
+"Project-Id-Version: GenWebUPC\n"
+"POT-Creation-Date: 2008-11-20 09:40\n"
+"PO-Revision-Date: 2010-06-04 11:35+0100\n"
+"Last-Translator: Roberto Diaz <roberto.diaz@upcnet.es>\n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: ca\n"
+"Language-Name: Catalan\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+
+#. Default: "You are here:"
+msgid "genweb-you_are_here"
+msgstr "Sou a:"
+
+# (Transferred to domain genweb)
+msgid "Extended view"
+msgstr "Vista estesa"
+
+# String del formulari del configlet
+msgid "genWeb UPC settings"
+msgstr "Configuració del Genweb"
+
+###### Workflows (Transferred to domain genweb)
+#. Default: "Draft"
+msgid "Draft"
+msgstr "Esborrany"
+
+msgid "Make draft"
+msgstr "Fes esborrany"
+
+#. Default: "retracttointranet"
+#: workflow state defined in folder_workflow - title Published
+#: workflow state defined in plone_workflow - title Published
+msgid "Retract To Intranet"
+msgstr "Retira a la intranet"
+
+#. Default: "Publish To Intranet"
+#: workflow state defined in folder_workflow - title Published
+#: workflow state defined in plone_workflow - title Published
+msgid "Publish To Intranet"
+msgstr "Publica a la intranet"
+
+# genweb_review workflow
+msgid "publicaalaintranet"
+msgstr "Publica a la intranet"
+
+msgid "retiraaesborrany"
+msgstr "Retira a esborrany"
+
+msgid "retiraalaintranet"
+msgstr "Publica a la intranet"
+
+msgid "enviaarevisar"
+msgstr "Envia a revisió"
+
+msgid "Send the item back to draft."
+msgstr "Envia el contingut a l'estat de esborrany."
+
+msgid "Making an item private means that it will not be visible to anyone but the owner and the site administrator."
+msgstr "Fer un element privat significa que no serà visible per ninguna persona excepte el propietari."
+
+msgid "Promotes your private item to a draft."
+msgstr "Fer un element esborrany significa que només serà visible pels editors i pel seu propietari."
+
+msgid "Making an item published to intranet means that it will be visible to the members (readers)."
+msgstr "Fer un element publicat a la intranet significa que serà visible per tots els membres (lectors)."
+
+msgid "Publishing the item makes it visible to other users."
+msgstr "Publica el element i el fa visible per tothom."
+
+####### Sobre aquest web
+#: ."genweb-titol_accessibilitat"
+msgid "genweb-titol_accessibilitat"
+msgstr "Accessibilitat"
+
+msgid "scp_titol"
+msgstr "Servei de Comunicació i Promoció"
+
+#. Default: "This website has been generated with <strong>Genweb UPC v3</strong>, a tool that allows to the creation and management of web pages according to theUPC institutional style guide. <br/> <br/> Genweb UPC v3 is a project developed with free software: the <em>Open Source Content Management System Plone</em>. This site has been designed to be completely accessible and usable, working in accordance with the Web Content Accessibility Guidelines. If there is anything on this site accessibility or validation related that is not according to this standard, please contact the ${site_admin}."
+#: accessibility-info.pt
+msgid "description_accessibility_info1"
+msgstr "Aquest lloc web ha estat generat amb el "
+
+msgid "description_accessibility_info2"
+msgstr ", una eina que permet la creació i gestió de webs segons el llibre d'estil institucional de la UPC.<br /><br />El "
+
+msgid "description_accessibility_info3"
+msgstr "ha estat desenvolupat conjuntament pel "
+
+msgid "description_accessibility_info4"
+msgstr "de la UPC i "
+
+msgid "description_accessibility_info5"
+msgstr "utilitzant com a base el sistema de gestió de continguts de programari lliure "
+
+msgid "description_accessibility_info6"
+msgstr "S'ha dissenyat perquè sigui completament accessible i usable, funcionant d'acord amb les guies d'accessibilitat W3C de contingut web. Si hi ha alguna cosa en aquest lloc, relacionada amb l'accessibilitat o la validació, que no està d'acord amb els estàndards, contacteu amb l'"
+
+msgid "genweb-webmaster"
+msgstr "administrador del lloc web"
+
+#. Default: "Access keys"
+#: accessibility-info.pt
+msgid "genweb-heading_access_keys"
+msgstr "Tecles d'accés"
+
+#. Default: "In-depth information about access keys can be found at ${wcag}."
+#: accessibility-info.pt
+msgid "genweb-description_access_keys_more_info"
+msgstr "Podeu trobar més informació sobre les tecles d'accés a les ${wcag}"
+
+#. Default: "Accessibility statement"
+#: accessibility-info.pt
+msgid "genweb-heading_accessibility_statement"
+msgstr "Declaració d'accessibilitat"
+
+#. Default: "We have undertaken to use our knowledge and understanding of the ways in which different people access the Internet, to develop a web site that is clear and simple for everybody to use."
+#: accessibility-info.pt
+msgid "genweb-description_accessibility_statement"
+msgstr "Ens hem compromès a fer servir el nostre coneixement i la comprensió de la manera en què les diferents persones accedeixen a Internet, per tal de desenvolupar un lloc web que sigui clar i senzill d'utilitzar per a tothom."
+
+#. Default: "We have used XHTML 1.0 and CSS that conforms to specification, as laid out by the W3C because we believe that usability and accessibility must have a solid foundation. If anything on this web site does not validate correctly, please contact the ${site_admin}."
+#: accessibility-info.pt
+msgid "genweb-description_validation"
+msgstr "Hem utilitzat XHTML 1.0 i CSS de conformitat amb les especificacions, com dictamina el W3C, perquè creiem que la usabilitat i l'accessibilitat han de tenir una base sòlida. Si hi ha res en aquest lloc web que no es valida correctament, si us plau, poseu-vos en contacte amb l'${site_admin}."
+
+#. Default: "We have also endeavoured to achieve AA accessibility as measured against version 1.0 of the WCAG. We are aware however, that a number of the checkpoints of the WCAG are subjective and although we are sure that we have met them squarely, there may be instances where interpretation may vary. <br/> This Web site has been optimized for a minimum resolution of1024 x768 pixels píxels."
+#: accessibility-info.pt
+msgid "genweb-description_wcag_aa_rating"
+msgstr "També hem procurat aconseguir l'accessibilitat AA versió 1.0 de WCAG. No obstant això, tenim en compte que el nombre de regles del WCAG són subjectives i, tot i que pensem que les hem acomplert, la seva interpretació pot variar en alguns casos.<br>Aquest web s'ha optimitzat per ser visualitzat a una resolució mínima de 1024 x 768 píxels i per assegurar la màxima compatibilitat del vostre espai, hem testejat acuradament el comportament del Genweb amb els principals navegadors d'Internet."
+
+#. Default: "W3C Accessibility Guidelines"
+#: accessibility-info.pt
+msgid "genweb-guies_Accessibilitat"
+msgstr "Guies d'accessibilitat W3C."
+
+#. Default: "The texts, images, sounds, animation, software and other content included in this website are the exclusive property of the Technical University of Catalonia, or UPC.The UPC is suitably authorised to use the material published. Total or partial dissemination, distribution, concession, reproduction, commercialisation, storage, public communication or modification is dependent upon the explicit written authorisation of UPC."
+#: accessibility-info.pt
+msgid "genweb-info_drets"
+msgstr "Els textos, imatges, sons, animacions, programari i la resta de continguts inclosos en aquest web són propietat exclusiva de la Universitat Politècnica de Catalunya (UPC) o, si escau, la UPC està degudament autoritzada per utilitzar el material publicat. Qualsevol acte de transmissió, distribució, cessió, reproducció, comercialització, emmagatzematge, comunicació pública o transformació, total o parcial, necessita el consentiment exprés i escrit de la UPC."
+
+#. Default: "In accordance with legislation 15/1999 (13 <sup>th</sup> December) concerning personal data protection, any personal data that is collected by means of the online forms on this website will be treated in a confidential manner and will be incorporated into the databases of the Technical University of Catalonia for the purposes of administration and to respond to the queries or suggestions that users might include in these forms. <br/> Users may exercise their right to access, rectify, cancel and oppose this data through the ${site_admin}."
+#: accessibility-info.pt
+msgid "genweb-info_proteccio"
+msgstr "En compliment del que estableixen la Llei orgànica 15/1999, de 13 de desembre, sobre protecció de dades de caràcter personal i el Reial Decret que aprova el Reglament de desenvolupament de la Llei Orgànica de Protecció de dades de  caràcter personal, us informem que les vostres dades personals recollides per mitjà dels formularis d’aquest web, seran tractades de forma confidencial. Quedaran incorporades als fitxers de la Universitat Politècnica de Catalunya per dur a terme una gestió correcta i respondre les consultes o suggeriments que proposeu en els formularis.<br/>Tanmateix, us informem que podeu exercir els drets d'accés, rectificació, cancel·lació i oposició contactant amb l'${site_admin}."
+
+#. Default: "The RSS (abbreviation for <em><span>Really Simple Syndication</span></em> ) is a news distribution channel that facilitates access to the latest news of a Web site. It is a family of web feed formats used to publish frequently updated digital content, such as blogs, news feeds or podcasts. <br/> Users of RSS content use programs called feed \"readers\" or \"aggregators\": the user subscribes to a feed by supplying to his or her reader a link to the feed; the reader can then check the user's subscribed feeds to see if any of those feeds have new content since the last time it was checked, and if so, retrieve that content and present it to the user. <br/> This site incorporates this service in all the pages wherethis icon appears <img alt=\"rss\" src=\"rss.gif\"/>."
+#: accessibility-info.pt
+msgid "genweb-info_rss"
+msgstr "L'RSS (sigles de <em>Really Simple Syndication</em>) és un canal de distribució de notícies que facilita l'accés a les darreres notícies d'un web. Gràcies a aquesta tecnologia, els usuaris ja no s'han de preocupar de comprovar si hi ha novetats que els interessin en un determinat espai digital, sinó que poden rebre i organitzar els nous titulars d'un espai digital en el mateix moment que es publiquen. Aquest web incorpora aquest servei en totes les pàgines on apareix la icona <img src=\"rss.gif\" alt=\"rss\" />."
+
+#. Default: "Intellectual property rights of this website"
+#: accessibility-info.pt
+msgid "genweb-titol_drets"
+msgstr "Drets d'autor d'aquest web"
+
+#. Default: "Legal warning regarding personal data protection"
+#: accessibility-info.pt
+msgid "genweb-titol_proteccio"
+msgstr "Avís legal sobre protecció de dades de caràcter personal"
+
+#. Default: "RSS headlines"
+#: accessibility-info.pt
+msgid "genweb-titol_rss"
+msgstr "Titulars en RSS"
+
+######Contrasenya perduda
+#. Default: "Change of password"
+#: canvi-contrasenya.pt
+msgid "genweb-canvi_de_contrasenya"
+msgstr "Canvi de contrasenya"
+
+#. Default: "To enter…"
+#: canvi-contrasenya.pt
+msgid "genweb-canvi_de_contrasenya1"
+msgstr "Per entrar..."
+
+#. Default: "Put your UPC intranet username with a dot <strong>(name.surname)</strong> and <a href='https://gauss.upc.edu/gauss/canvicontrasenya/index.jsp' target='_blank'>change your password</a> if you haven’t already done so since 01/04/06."
+#: canvi-contrasenya.pt
+msgid "genweb-canvi_de_contrasenya2"
+msgstr "Escriviu el vostre nom d'usuari de la intranet UPC amb un punt <strong>(nom.cognom)</strong> i <a href='https://gauss.upc.edu/gauss/canvicontrasenya/index.jsp' target='_blank'>canvieu la contrasenya</a> si no ho heu fet des de l'01/04/06."
+
+#. Default: "If you have forgotten your password..."
+#: canvi-contrasenya.pt
+msgid "genweb-contrasenya_oblidada"
+msgstr "Si heu oblidat la contrasenya..."
+
+#. Default: "Enter to <a href='https://gauss.upc.edu/gauss/canvicontrasenya/contrasenyaOblidada.jsp' target='_blank'>the password management page</a> to remember or modify it."
+#: canvi-contrasenya.pt
+msgid "genweb-contrasenya_oblidada1"
+msgstr "Entreu a la <a href='https://gauss.upc.edu/gauss/canvicontrasenya/contrasenyaOblidada.jsp' target='_blank'>gestió de contrasenyes</a> per recordar-la o modificar-la."
+
+#. Default: "If you are a new user..."
+#: canvi-contrasenya.pt
+msgid "genweb-contrasenya_nouusuari"
+msgstr "Si sou un usuari nou..."
+
+#. Default: "And you belong to PDI/PAS or associated staff with the universtiy, <a href='https://gauss.upc.edu/gauss/canvicontrasenya/registreIntranet.jsp' target='_blank'>register</a> on the UPC intranet."
+#: canvi-contrasenya.pt
+msgid "genweb-contrasenya_nouusuari1"
+msgstr "I pertanyeu al PDI/PAS o personal vinculat de la universitat, <a href='https://gauss.upc.edu/gauss/canvicontrasenya/registreIntranet.jsp' target='_blank'>enregistreu-vos</a> a la intranet UPC."
+
+#. "login_form_detalls_del_compte"
+msgid "login_form_detalls_del_compte"
+msgstr "Detalls del compte"
+
+#. "genweb-ampliar_agenda"
+msgid "genweb-ampliar_agenda"
+msgstr "ampliar agenda"
+
+#. "genweb-mes_noticies"
+msgid "genweb-mes_noticies"
+msgstr "més notícies"
+
+#. "genweb-sobre_aquest_web"
+msgid "genweb-sobre_aquest_web"
+msgstr "Sobre aquest web"
+
+#. "genweb-si_heu_oblidat_la_contrasenya"
+msgid "genweb-si_heu_oblidat_la_contrasenya"
+msgstr "Si heu oblidat la contrasenya, cliqueu "
+
+#. "genweb-aqui"
+msgid "genweb-aqui"
+msgstr "aquí"
+
+#. "genweb-per_recuperarla"
+msgid "genweb-per_recuperarla"
+msgstr " per recuperar-la."
+
+#: ."faltava"
+msgid "go_to_home"
+msgstr "Torna a l'inici"
+
+#: ."genweb-no_puc_entrar"
+msgid "genweb-no_puc_entrar"
+msgstr "No puc entrar"
+
+# Des d'aqui, les traduccions dels CT que falten, a extingir...
+# Default: Survey
+#: ../content/Survey.py
+msgid "Survey"
+msgstr "Qüestionari"
+
+# Default: You can add questions to surveys.
+#: ../content/Survey.py
+msgid "You can add questions to surveys."
+msgstr "Un qüestionari en el que es poden afegir preguntes."
+
+msgid "Message Board"
+msgstr "Espai de fòrums"
+
+msgid "Ploneboard is the outmost board object, what shows up in your site."
+msgstr "Un contenidor de converses i debats ordenats per temes."
+
+msgid "Collage"
+msgstr "Collage"
+
+msgid "desc_type_collage"
+msgstr "Un element estructural que pot mostrar elements existents en diferents parts del lloc web ordenats de varies maneres."
+
+#. Default: "Form Folder"
+#: content/form.py
+msgid "Form Folder"
+msgstr "Formulari"
+
+#. Default: "A folder which can contain form fields."
+#: content/form.py
+msgid "A folder which can contain form fields."
+msgstr "Una carpeta que pot contenir camps que conformen un formulari."
+
+msgid "A Window is a content type that shows one URL inside an iFrame in a page of the site."
+msgstr "Un Window és un tipus en el que es visualitza el contingut d'una URL externa."
+
+msgid "Type the code"
+msgstr "Escriu les dues paraules:"
+
+msgid "Type the code from the picture shown below"
+msgstr "Si us plau, escriviu el text mostrat a la imatge inferior"
+
+msgid "Send"
+msgstr "Envia"
+
+msgid "A folder which can contain other items."
+msgstr "Una carpeta que pot contenir altres elements."
+
+msgid "An automatically updated stored search that can be used to display items matching criteria you specify."
+msgstr "Una cerca emmagatzemada actualitzada automàticament que es pot usar per mostrar elements que coincideixin amb els criteris que especifiqueu."
+
+msgid "A page in the site. Can contain rich text."
+msgstr "Una pàgina en el portal que pot contenir text enriquit."
+
+############
+# Contacte #
+############
+
+msgid "genweb_sender_fullname"
+msgstr "Nom"
+
+msgid "genweb_sender_from_address"
+msgstr "Adreça electrònica"
+
+msgid "genweb_subject"
+msgstr "Assumpte"
+
+msgid "genweb_message"
+msgstr "Missatge"
+
+msgid "genweb_help_message"
+msgstr "Escriviu el missatge que voleu enviar"
+
+msgid "genweb_type_the_code"
+msgstr "Codi de control"
+
+msgid "genweb_help_type_the_code"
+msgstr "Selecciona l'opció de sota per fer l'enviament"
+
+#. Default: "Recipient"
+#: genweb.theme/genweb/theme/browser/contact.py:92
+msgid "to_address"
+msgstr "Contacta amb"
+
+msgid "upc_heading_send_feedback_confirm"
+msgstr "El missatge s'ha enviat correctament."
+
+msgid "upc_message_send_feedback_confirm"
+msgstr "S'ha enviat un missatge de correu electrònic amb les seves preguntes i/o comentaris."
+
+#########
+# Types #
+#########
+
+msgid "Document"
+msgstr "Document"
+
+############
+# portlets #
+############
+
+msgid "FullNews"
+msgstr "Notícies amb foto"
+
+msgid "NoticiesPropi"
+msgstr "Notícies"
+
+msgid "GridEvents"
+msgstr "Grid agenda"
+
+msgid "AgendaGW"
+msgstr "Agenda"
+
+msgid "portlet_homepage_title"
+msgstr "Benvinguda"
+
+msgid "portlet_calendar_title"
+msgstr "Calendari"
+
+msgid "portlet_collection_title"
+msgstr "Col·lecció"
+
+msgid "portlet_multiviewcollection_title"
+msgstr "Col·lecció multi-vista"
+
+msgid "portlet_login_title"
+msgstr "Identificació"
+
+msgid "portlet_navigation_title"
+msgstr "Menú de navegació"
+
+msgid "portlet_rss_title"
+msgstr "RSS"
+
+msgid "portlet_static_title"
+msgstr "Portlet estàtic"
+
+msgid "portlet_static"
+msgstr "Portlet estàtic"
+
+msgid "portlet_poll_title"
+msgstr "Enquesta"
+
+msgid "UPCNews"
+msgstr "Actualitat UPC"
+
+msgid "more_news_link"
+msgstr "Més notícies"
+
+msgid "heading_not_found_suggestions"
+msgstr "Segurament estàveu buscant…"
+
+msgid "label_full_size"
+msgstr "Mida original imatge:"
+
+#: plone/app/event/portlets/portlet_calendar.py:218
+msgid "This portlet displays events in a calendar."
+msgstr "Aquest portlet mostra els esdeveniments del calendari"
+
+#. Default: "Select search base folder to search for events. This folder will also be used to link to in calendar searches. If empty, the whole site will be searched and the event listing view will be called on the site root."
+#: plone/app/event/portlets/portlet_calendar.py:42
+#: plone/app/event/portlets/portlet_events.py:43
+msgid "portlet_help_search_base"
+msgstr ""
+"Selecciona la carpeta on cerca els esdeveniments. Aquesta carpeta es farà "
+"servir per enllaçar en les cerques del calendari. Si no s'especifica, es "
+"cercaran a tot el lloc i la llista serà cridada des de l'arrel."
+
+#: plone.portlet.collection/plone/portlet/collection/collection.py:71
+msgid "Exclude the Current Context"
+msgstr "Excloure el context actual"
+
+#: plone.portlet.collection/plone/portlet/collection/collection.py:72
+msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
+msgstr "Si s'activa, la llista no inclourà l'element actual. El portlet es renderitza per si en cas contrari es mostra."
+
+### portlets assigned
+
+#: CMFPlone/skins/plone_login/registered.pt:92
+msgid "label_log_in"
+msgstr "Identificació"
+
+msgid "serveistic_view"
+msgstr "Vista ServeisTIC"
+
+#: CMFPlone/skins/plone_login/insufficient_privileges.pt:25
+msgid "label_return_to_page"
+msgstr "Tornar a la pàgina anterior"
+
+#: ./behaviors/leadimage.py:17
+msgid "Lead Image"
+msgstr "Imatge"
+
+#: ./behaviors/leadimage.py:23
+msgid "Lead Image Caption"
+msgstr "Peu de foto"
+
+msgid "Define the search terms for the items you want to list by choosing what to match on. The list of results will be dynamically updated"
+msgstr "Definir els termes de cerca dels elements que vulgueu a la llista. La llista de resultats s'actualitza de forma dinàmica"
+
+msgid "Number of items that will show up in one batch."
+msgstr "Nombre d'elements per pàgina."
+
+msgid "Album view"
+msgstr "Album"
+
+################
+# Subhome type #
+################
+
+msgid "Subhome"
+msgstr "Graella de portlets"
+
+msgid "Subhome Description"
+msgstr "Element que permet afegir una pàgina amb continguts de diferents parts de la web"
+
+msgid "ModificationDate"
+msgstr "Modificat"
+
+msgid "label_item_count"
+msgstr "Paginació"
