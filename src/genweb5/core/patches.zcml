@@ -1,0 +1,107 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey"
+    i18n_domain="genweb">
+
+    <include package="collective.monkeypatcher" />
+
+    <monkey:patch
+        description="Force the creation of users to lowercase"
+        class="plone.app.users.browser.register.BaseRegistrationForm"
+        original="generate_user_id"
+        replacement=".patches.generate_user_id"
+        />
+
+    <monkey:patch
+        description="Enable event of update user member data properties"
+        class="Products.PlonePAS.tools.memberdata.MemberData"
+        original="setMemberProperties"
+        replacement=".patches.setMemberProperties"
+        />
+
+    <monkey:patch
+        description="pas_member view override to user the user local catalog"
+        class="Products.PlonePAS.browser.member.PASMemberView"
+        original="info"
+        replacement=".patches.info"
+        />
+
+    <monkey:patch
+        description="DocumentByLine method override to user the user local catalog"
+        class="plone.app.layout.viewlets.content.DocumentBylineViewlet"
+        original="author"
+        replacement=".patches.author"
+        />
+
+    <monkey:patch
+        description="Add subjects to searchableText"
+        module="plone.app.contenttypes.indexers"
+        original="SearchableText"
+        replacement=".patches.SearchableText"
+        />
+
+    <monkey:patch
+        description="Force to all dexterity types to hide the right portlet on the add form"
+        module="plone.dexterity.browser.add.DefaultAddForm"
+        original="update"
+        replacement=".browser.dxforms.update"
+        />
+
+     <monkey:patch
+        description="Force to the comments portlet to show comments in descending order from most newest to the most older"
+        module="plone.app.discussion.conversation.Conversation"
+        original="getThreads"
+        replacement=".patches.getThreads"
+        />
+
+     <monkey:patch
+        description="Patch to extend the features of the changeMemberPortrait"
+        class="Products.PlonePAS.tools.membership.MembershipTool"
+        original="changeMemberPortrait"
+        replacement=".patches.changeMemberPortrait"
+        />
+
+      <monkey:patch
+         description="Patch to extend the features of the deletePersonalPortrait"
+         class="Products.PlonePAS.tools.membership.MembershipTool"
+         original="deletePersonalPortrait"
+         replacement=".patches.deletePersonalPortrait"
+         />
+
+     <!-- LDAP and user objects related patches -->
+     <monkey:patch
+        description="Force LDAP plugin authenticate to normalize userids and usernames to lowercase"
+        module="Products.LDAPUserFolder.LDAPUserFolder.LDAPUserFolder"
+        original="getUserByAttr"
+        replacement=".patches.getUserByAttr"
+        />
+
+     <monkey:patch
+        description="Force LDAP plugin enumerate to normalize userids and usernames to lowercase"
+        module="Products.LDAPMultiPlugins.LDAPMultiPlugin.LDAPMultiPlugin"
+        original="enumerateUsers"
+        replacement=".patches.enumerateUsers"
+        />
+
+    <monkey:patch
+        description="Avoid error with names beginning with _"
+        module="plone.app.content.namechooser.NormalizingNameChooser"
+        original="chooseName"
+        replacement=".patches.chooseName"
+        />
+
+    <monkey:patch
+        description="Collection previwer the number of elements choosed"
+        module="plone.app.querystring.querybuilder.QueryBuilder"
+        original="html_results"
+        replacement=".patches.html_results"
+        />
+
+    <monkey:patch
+        description="Fix sitemap.xml.gz"
+        class="plone.app.layout.sitemap.sitemap.SiteMapView"
+        original="objects"
+        replacement=".patches.sitemapObjects"
+        />
+
+</configure>
