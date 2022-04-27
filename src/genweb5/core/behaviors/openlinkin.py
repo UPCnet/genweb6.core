@@ -23,6 +23,7 @@ class IOpenLinkInNewWindow(model.Schema):
         default=False
     )
 
+
 alsoProvides(IOpenLinkInNewWindow, IFormFieldProvider)
 
 
@@ -39,7 +40,8 @@ class OpenLinkInNewWindow(object):
     def _get_open_link_in_new_window(self):
         return getattr(self.context, 'open_link_in_new_window', None)
 
-    open_link_in_new_window = property(_get_open_link_in_new_window, _set_open_link_in_new_window)
+    open_link_in_new_window = property(
+        _get_open_link_in_new_window, _set_open_link_in_new_window)
 
 
 @indexer(ILink)

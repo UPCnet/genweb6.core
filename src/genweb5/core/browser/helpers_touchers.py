@@ -80,7 +80,8 @@ class resetLanguage(BrowserView):
         from plone.app.multilingual.interfaces import ILanguage
         context = aq_inner(self.context)
         pc = api.portal.get_tool('portal_catalog')
-        results = pc.unrestrictedSearchResults(path='/'.join(context.getPhysicalPath()))
+        results = pc.unrestrictedSearchResults(
+            path='/'.join(context.getPhysicalPath()))
 
         for brain in results:
             ob = brain._unrestrictedGetObject()
@@ -108,7 +109,8 @@ class updateFolderViews(BrowserView):
             portal = api.portal.get()
 
         output = []
-        portal.portal_types['Folder'].view_methods = ('listing_view', 'folder_extended', 'album_view', 'summary_view', 'tabular_view', 'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
+        portal.portal_types['Folder'].view_methods = ('listing_view', 'folder_extended', 'album_view', 'summary_view',
+                                                      'tabular_view', 'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
         import transaction
         transaction.commit()
         output.append('{}: Successfully reinstalled'.format(portal.id))
@@ -134,7 +136,8 @@ class addFolderView(BrowserView):
             output.append('{}: Successfully added view'.format(portal.id))
             return '\n'.join(output)
 
-        output.append('{}: Error added view, not defined view'.format(portal.id))
+        output.append(
+            '{}: Error added view, not defined view'.format(portal.id))
         return '\n'.join(output)
 
 
@@ -157,7 +160,8 @@ class removeFolderView(BrowserView):
             output.append('{}: Successfully removed view'.format(portal.id))
             return '\n'.join(output)
 
-        output.append('{}: Error removed view, not defined view'.format(portal.id))
+        output.append(
+            '{}: Error removed view, not defined view'.format(portal.id))
         return '\n'.join(output)
 
 
@@ -189,7 +193,8 @@ class reinstallPloneProduct(BrowserView):
         if qi.isProductInstalled(product_name):
             qi.uninstallProducts([product_name, ], reinstall=True)
             qi.installProducts([product_name], reinstall=True)
-            output.append('{}: Successfully reinstalled {}'.format(portal.id, product_name))
+            output.append('{}: Successfully reinstalled {}'.format(
+                portal.id, product_name))
         return '\n'.join(output)
 
 
@@ -206,7 +211,8 @@ class uninstallPloneProduct(BrowserView):
 
         if qi.isProductInstalled(product_name):
             qi.uninstallProducts([product_name, ], reinstall=False)
-            output.append('{}: Successfully uninstalled {}'.format(portal.id, product_name))
+            output.append('{}: Successfully uninstalled {}'.format(
+                portal.id, product_name))
         return '\n'.join(output)
 
 
@@ -248,8 +254,10 @@ class deleteNavPortletFromRoot(BrowserView):
             portal = api.portal.get()
 
         # Delete default Navigation portlet on root
-        target_manager_root = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal)
-        target_manager_root_assignments = getMultiAdapter((portal, target_manager_root), IPortletAssignmentMapping)
+        target_manager_root = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal)
+        target_manager_root_assignments = getMultiAdapter(
+            (portal, target_manager_root), IPortletAssignmentMapping)
         if 'navigation' in target_manager_root_assignments:
             del target_manager_root_assignments['navigation']
 
@@ -267,7 +275,8 @@ class reinstallGWTinyTemplates(BrowserView):
         if templates:
             self.delete_templates(templates)
             for plt in get_plantilles():
-                plantilla = self.create_content(templates, 'Document', normalizeString(plt['titol']), title=plt['titol'], description=plt['resum'])
+                plantilla = self.create_content(templates, 'Document', normalizeString(
+                    plt['titol']), title=plt['titol'], description=plt['resum'])
                 plantilla.text = IRichText['text'].fromUnicode(plt['cos'])
                 plantilla.reindexObject()
 
@@ -277,7 +286,8 @@ class reinstallGWTinyTemplates(BrowserView):
 
     def create_content(self, container, portal_type, id, publish=True, **kwargs):
         if not getattr(container, id, False):
-            obj = createContentInContainer(container, portal_type, checkConstraints=False, **kwargs)
+            obj = createContentInContainer(
+                container, portal_type, checkConstraints=False, **kwargs)
             if publish:
                 self.publish_content(obj)
         return getattr(container, id)
@@ -290,7 +300,8 @@ class reinstallGWTinyTemplates(BrowserView):
         object_workflow = pw.getWorkflowsFor(context)[0].id
         object_status = pw.getStatusOf(object_workflow, context)
         if object_status:
-            api.content.transition(obj=context, transition={'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
+            api.content.transition(obj=context, transition={
+                                   'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
 
 
 class removeDuplicatedGenwebSettings(BrowserView):
@@ -357,7 +368,8 @@ class changeNewsEventsPortlets(BrowserView):
         self.disinherit_from_parent(portal_ca, portal_es, portal_en)
 
         self.assign_news_events_listing_portlet(portal_ca['noticies'], 'News')
-        self.assign_news_events_listing_portlet(portal_ca['esdeveniments'], 'Events')
+        self.assign_news_events_listing_portlet(
+            portal_ca['esdeveniments'], 'Events')
         self.assign_news_events_listing_portlet(portal_es['noticias'], 'News')
         self.assign_news_events_listing_portlet(portal_es['eventos'], 'Events')
         self.assign_news_events_listing_portlet(portal_en['news'], 'News')
@@ -376,7 +388,8 @@ class changeNewsEventsPortlets(BrowserView):
         import transaction
         transaction.commit()
 
-        output.append('{}: Successfully replaced news_events_listing portlet'.format(portal.id))
+        output.append(
+            '{}: Successfully replaced news_events_listing portlet'.format(portal.id))
         return '\n'.join(output)
 
     def disinherit_from_parent(self, portal_ca, portal_es, portal_en):
@@ -384,28 +397,37 @@ class changeNewsEventsPortlets(BrowserView):
         # portal_es['noticias'] and portal_es['eventos'],
         # portal_en['news'] and portal_en['events']
         left_manager = queryUtility(IPortletManager, name=u'plone.leftcolumn')
-        blacklist_ca = getMultiAdapter((portal_ca['noticies'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_ca = getMultiAdapter(
+            (portal_ca['noticies'], left_manager), ILocalPortletAssignmentManager)
         blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_ca = getMultiAdapter((portal_ca['esdeveniments'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_ca = getMultiAdapter(
+            (portal_ca['esdeveniments'], left_manager), ILocalPortletAssignmentManager)
         blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter((portal_es['noticias'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_es = getMultiAdapter(
+            (portal_es['noticias'], left_manager), ILocalPortletAssignmentManager)
         blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter((portal_es['eventos'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_es = getMultiAdapter(
+            (portal_es['eventos'], left_manager), ILocalPortletAssignmentManager)
         blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter((portal_en['news'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_en = getMultiAdapter(
+            (portal_en['news'], left_manager), ILocalPortletAssignmentManager)
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter((portal_en['events'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_en = getMultiAdapter(
+            (portal_en['events'], left_manager), ILocalPortletAssignmentManager)
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
 
     def assign_news_events_listing_portlet(self, portal, obj_type):
         from genweb5.core.portlets.news_events_listing import Assignment as news_events_Assignment
 
-        target_manager_left = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal)
-        target_manager_assignments_left = getMultiAdapter((portal, target_manager_left), IPortletAssignmentMapping)
+        target_manager_left = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal)
+        target_manager_assignments_left = getMultiAdapter(
+            (portal, target_manager_left), IPortletAssignmentMapping)
         for portlet in target_manager_assignments_left:
             del target_manager_assignments_left[portlet]
         if 'news_events_listing' not in target_manager_assignments_left:
-            target_manager_assignments_left['news_events_listing'] = news_events_Assignment([], obj_type)
+            target_manager_assignments_left['news_events_listing'] = news_events_Assignment([
+            ], obj_type)
 
 
 class setSitemapDepth(BrowserView):
@@ -418,7 +440,8 @@ class setSitemapDepth(BrowserView):
         navtree_props.sitemapDepth = 4
         import transaction
         transaction.commit()
-        output.append('{}: Successfully setted 3 levels in sitemap'.format(portal.id))
+        output.append(
+            '{}: Successfully setted 3 levels in sitemap'.format(portal.id))
         return '\n'.join(output)
 
 
@@ -430,9 +453,11 @@ class updateLIF_LRF(BrowserView):
             portal = api.portal.get()
 
         output = []
-        portal.portal_types['LIF'].view_methods = ('listing_view', 'summary_view', 'tabular_view', 'full_view', 'album_view')
+        portal.portal_types['LIF'].view_methods = (
+            'listing_view', 'summary_view', 'tabular_view', 'full_view', 'album_view')
         portal.portal_types['LIF'].default_view = 'tabular_view'
-        portal.portal_types['LRF'].view_methods = ('listing_view', 'summary_view', 'tabular_view', 'full_view', 'album_view')
+        portal.portal_types['LRF'].view_methods = (
+            'listing_view', 'summary_view', 'tabular_view', 'full_view', 'album_view')
         portal.portal_types['LRF'].default_view = 'tabular_view'
         import transaction
         transaction.commit()
@@ -447,7 +472,8 @@ class reinstallGenwebUPCWithLanguages(BrowserView):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
         defaultLanguage = api.portal.get_default_language()
-        languages = api.portal.get_registry_record(name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats')
+        languages = api.portal.get_registry_record(
+            name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats')
         context = aq_inner(self.context)
         output = []
         qi = getToolByName(context, 'portal_quickinstaller')
@@ -458,8 +484,10 @@ class reinstallGenwebUPCWithLanguages(BrowserView):
             pl = api.portal.get_tool('portal_languages')
             pl.setDefaultLanguage(defaultLanguage)
             pl.supported_langs = ['ca', 'es', 'en']
-            api.portal.set_registry_record(name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats', value=languages)
-            output.append('{}: Successfully reinstalled genweb upc'.format(context))
+            api.portal.set_registry_record(
+                name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats', value=languages)
+            output.append(
+                '{}: Successfully reinstalled genweb upc'.format(context))
         return '\n'.join(output)
 
 
@@ -491,14 +519,18 @@ class addPermissionsContributor(BrowserView):
         portal = api.portal.get()
         roles_of_permission = portal.rolesOfPermission('List folder contents')
         portlets = portal.rolesOfPermission('Portlets: Manage portlets')
-        output.append('PREVIOUS (List folder contents): name = {}, selected = {}'.format(roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
-        output.append('PREVIOUS (Portlets: Manage portlets): name = {}, selected = {}'.format(portlets[2]['name'], portlets[2]['selected']))
+        output.append('PREVIOUS (List folder contents): name = {}, selected = {}'.format(
+            roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
+        output.append('PREVIOUS (Portlets: Manage portlets): name = {}, selected = {}'.format(
+            portlets[2]['name'], portlets[2]['selected']))
         ps = getToolByName(portal, 'portal_setup')
         ps.runImportStepFromProfile('profile-genweb.core:default', 'rolemap')
         roles_of_permission = portal.rolesOfPermission('List folder contents')
         portlets = portal.rolesOfPermission('Portlets: Manage portlets')
-        output.append('AFTER (List folder contents): name = {}, selected = {}'.format(roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
-        output.append('AFTER (Portlets: Manage portlets): name = {}, selected = {}'.format(portlets[2]['name'], portlets[2]['selected']))
+        output.append('AFTER (List folder contents): name = {}, selected = {}'.format(
+            roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
+        output.append('AFTER (Portlets: Manage portlets): name = {}, selected = {}'.format(
+            portlets[2]['name'], portlets[2]['selected']))
         output.append('{}: Permissions added'.format(portal.id))
         return '\n'.join(output)
 
@@ -518,7 +550,8 @@ class setFolderIndexViewasDefault(BrowserView):
                 obj.setLayout(view_method)
         import transaction
         transaction.commit()
-        output.append('{}: Folder view successfully changed'.format(api.portal.get().id))
+        output.append('{}: Folder view successfully changed'.format(
+            api.portal.get().id))
         return '\n'.join(output)
 
 
@@ -534,19 +567,26 @@ class addLinkIntoFolderNews(BrowserView):
         from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
         behavior = ISelectableConstrainTypes(noticies)
         behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setLocallyAllowedTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setImmediatelyAddableTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
         behavior = ISelectableConstrainTypes(noticias)
         behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setLocallyAllowedTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setImmediatelyAddableTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
         behavior = ISelectableConstrainTypes(news)
         behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setLocallyAllowedTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
+        behavior.setImmediatelyAddableTypes(
+            ('News Item', 'Folder', 'Image', 'Link'))
         import transaction
         transaction.commit()
-        output.append('{}: Link type added successfully to news folder in'.format(portal.id))
+        output.append(
+            '{}: Link type added successfully to news folder in'.format(portal.id))
         return '\n'.join(output)
 
 
@@ -556,7 +596,8 @@ class refactorAggregatorNewsCollection(BrowserView):
     def __call__(self, portal=None):
         output = []
         NEWS_QUERY = [{'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.is', 'v': [u'News Item', u'Link']},
-                      {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.is', 'v': [u'published']},
+                      {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.is', 'v': [
+                          u'published']},
                       {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath', 'v': u'..'}]
         portal = api.portal.get()
         noticies = portal['ca']['noticies']['aggregator']
@@ -567,7 +608,8 @@ class refactorAggregatorNewsCollection(BrowserView):
         news.query = NEWS_QUERY
         import transaction
         transaction.commit()
-        output.append('{}: Aggregator News collection successfully updated in'.format(portal.id))
+        output.append(
+            '{}: Aggregator News collection successfully updated in'.format(portal.id))
         return '\n'.join(output)
 
 
@@ -718,9 +760,12 @@ class addPermissionsPlantilles(BrowserView):
         try:
             portal = api.portal.get()
             plantilles = portal['plantilles']
-            plantilles.manage_permission('Add portal content', ['Contributor', 'Manager', 'Owner', 'WebMaster', 'Editor'], acquire=0)
-            plantilles.manage_permission('plone.app.contenttypes: Add Document', ['Contributor', 'Manager', 'Owner', 'Site Administrator', 'WebMaster', 'Editor'], acquire=0)
-            plantilles.manage_permission('plone.app.contenttypes: Add Folder', ['Contributor', 'Manager', 'Owner', 'Site Administrator', 'WebMaster', 'Editor'], acquire=0)
+            plantilles.manage_permission('Add portal content', [
+                                         'Contributor', 'Manager', 'Owner', 'WebMaster', 'Editor'], acquire=0)
+            plantilles.manage_permission('plone.app.contenttypes: Add Document', [
+                                         'Contributor', 'Manager', 'Owner', 'Site Administrator', 'WebMaster', 'Editor'], acquire=0)
+            plantilles.manage_permission('plone.app.contenttypes: Add Folder', [
+                                         'Contributor', 'Manager', 'Owner', 'Site Administrator', 'WebMaster', 'Editor'], acquire=0)
             transaction.commit()
             return 'OK'
         except:
@@ -740,7 +785,8 @@ class preserveUUIDs(BrowserView):
             record.attrs['uuid'] = result.UID
             record.attrs['path'] = result.getPath()
             soup.add(record)
-            logger.warning('Preserving {}: {}'.format(result.getPath(), result.UID))
+            logger.warning('Preserving {}: {}'.format(
+                result.getPath(), result.UID))
 
 
 class rebuildUUIDs(BrowserView):
@@ -760,7 +806,8 @@ class rebuildUUIDs(BrowserView):
                     realobj.reindexObject(idxs=['UID'])
                     logger.warning('Set UUID per {}'.format(result.getPath()))
                 except:
-                    logger.warning('Can\'t set UUID for {}'.format(result.getPath()))
+                    logger.warning(
+                        'Can\'t set UUID for {}'.format(result.getPath()))
 
 
 class configuraSiteCache(BrowserView):
@@ -787,14 +834,16 @@ class configureSiteCache(BrowserView):
         cachepurginsettings = registry.forInterface(ICachePurgingSettings)
 
         varnish_url = os.environ.get('varnish_url', False)
-        logger = logging.getLogger('Genweb: Executing configure cache on site -')
+        logger = logging.getLogger(
+            'Genweb: Executing configure cache on site -')
         logger.info('%s' % self.context.id)
         if varnish_url:
             cachepurginsettings.cachingProxies = (varnish_url,)
             logger.info('Successfully set caching for this site')
             return 'Successfully set caching for this site.'
         else:
-            logger.info('There are not any varnish_url in the environment. No caching proxy could be configured.')
+            logger.info(
+                'There are not any varnish_url in the environment. No caching proxy could be configured.')
             return 'There are not any varnish_url in the environment. No caching proxy could be configured.'
 
 

@@ -53,7 +53,8 @@ class TestOmega13(unittest.TestCase):
                                         telefon='44002, 54390'))
         portal = api.portal.get()
         user = api.user.get(username='testdirectory')
-        user.setMemberProperties(mapping={'location': 'Barcelona', 'telefon': '654321'})
+        user.setMemberProperties(
+            mapping={'location': 'Barcelona', 'telefon': '654321'})
         soup = get_soup('user_properties', portal)
         exist = [r for r in soup.query(Eq('username', 'testdirectory'))]
         self.assertEqual('654321', exist[0].attrs['telefon'])
@@ -71,7 +72,8 @@ class TestOmega13(unittest.TestCase):
                                         ubicacio='NX',
                                         telefon='44002, 54390'))
 
-        view = getMultiAdapter((self.portal, self.request), name='rebuild_user_catalog')
+        view = getMultiAdapter((self.portal, self.request),
+                               name='rebuild_user_catalog')
         view.render()
 
     def test_directory_self_updates_on_user_creation_with_unicode(self):

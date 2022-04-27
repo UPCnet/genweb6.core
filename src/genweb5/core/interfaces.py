@@ -26,6 +26,7 @@ class IGenwebUtils(Interface):
     """ Marker describing the functionality of the convenience methods
         placeholder genweb.utils view.
     """
+
     def portal(self):
         """ Returns the portal object """
 
@@ -48,6 +49,7 @@ class IGenwebUtils(Interface):
         """ For use only in the menus to calculate the correct class value of
             some f*cking elements
         """
+
     def get_state_label_class_mapping(self):
         """"""
 

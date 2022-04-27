@@ -160,4 +160,3 @@ class TestReporter(unittest.TestCase):
                    side_effect=ClientException):
             with self.assertRaises(ReporterException):
                 reporter._report_category(Mock())
-

@@ -26,7 +26,7 @@ class TestRegistry(unittest.TestCase):
         registry = Registry('context')
         with self.assertRaises(RegistryException) as context:
             path = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                         'indicators', 'definitions', 'empty.txt')
+                                'indicators', 'definitions', 'empty.txt')
             registry.load_from_path(path)
         self.assertEqual(
             "[Errno 20] Not a directory: '{0}'".format(path),
@@ -68,7 +68,7 @@ class TestRegistry(unittest.TestCase):
             registry._load_from_file_path(
                 os.path.join(
                     os.path.dirname(os.path.realpath(__file__)),
-                   'indicators', 'definitions', 'invalid.yaml'))
+                    'indicators', 'definitions', 'invalid.yaml'))
 
     def test_load_from_file_path_should_not_add_from_dict_if_empty_file(self):
         registry = Registry('context')

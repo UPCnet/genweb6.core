@@ -52,7 +52,7 @@ class TestRegistry(unittest.TestCase):
         registry.load_from_path(
             os.path.join(
                 os.path.dirname(os.path.realpath(__file__)),
-               'indicators', 'empty'))
+                'indicators', 'empty'))
         self.assertEqual(0, len(registry._indicators))
 
     def test_load_from_path_with_invalid_files_should_not_add_indicators(
@@ -62,7 +62,7 @@ class TestRegistry(unittest.TestCase):
             registry.load_from_path(
                 os.path.join(
                     os.path.dirname(os.path.realpath(__file__)),
-                   'indicators', '2-services.4-indicators.2-invalid'))
+                    'indicators', '2-services.4-indicators.2-invalid'))
         self.assertEqual(0, len(registry._indicators))
 
     def test_load_from_non_empty_path_should_add_indicators(self):
@@ -70,12 +70,13 @@ class TestRegistry(unittest.TestCase):
         registry.load_from_path(
             os.path.join(
                 os.path.dirname(os.path.realpath(__file__)),
-               'indicators', '2-services.3-indicators'))
+                'indicators', '2-services.3-indicators'))
         self.assertEqual(2, len(registry._indicators))
         self.assertEqual(1, len(registry._indicators['service-1']))
         self.assertEqual(2, len(registry._indicators['service-2']))
 
-        self.assertEqual('indicator-1', registry['service-1']['indicator-1'].id)
+        self.assertEqual(
+            'indicator-1', registry['service-1']['indicator-1'].id)
         self.assertEqual(
             'Indicator 1', registry['service-1']['indicator-1'].description)
         self.assertEqual(
@@ -109,7 +110,8 @@ class TestRegistry(unittest.TestCase):
             112,
             registry['service-1']['indicator-1']['category-1.2'].value)
 
-        self.assertEqual('indicator-1', registry['service-2']['indicator-1'].id)
+        self.assertEqual(
+            'indicator-1', registry['service-2']['indicator-1'].id)
         self.assertEqual(
             'Indicator 1', registry['service-2']['indicator-1'].description)
         self.assertEqual(
@@ -131,7 +133,8 @@ class TestRegistry(unittest.TestCase):
             212,
             registry['service-2']['indicator-1']['category-1.2'].value)
 
-        self.assertEqual('indicator-2', registry['service-2']['indicator-2'].id)
+        self.assertEqual(
+            'indicator-2', registry['service-2']['indicator-2'].id)
         self.assertEqual(
             'Indicator 2', registry['service-2']['indicator-2'].description)
         self.assertEqual(
@@ -152,4 +155,3 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(
             222,
             registry['service-2']['indicator-2']['category-2.2'].value)
-

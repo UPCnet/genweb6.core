@@ -36,7 +36,8 @@ class IntegrationTest(unittest.TestCase):
         portal_allowed_types = ['Folder', 'File', 'Image', 'Document']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
-        self.assertEqual(sorted([ct.id for ct in self.portal.allowedContentTypes()]), sorted(portal_allowed_types))
+        self.assertEqual(sorted(
+            [ct.id for ct in self.portal.allowedContentTypes()]), sorted(portal_allowed_types))
 
     def testLinkBehavior(self):
         """Test for Link behavior and related index and metadata"""
@@ -67,7 +68,8 @@ class IntegrationTest(unittest.TestCase):
     def testAdapters(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
-        self.portal.invokeFactory('Document', 'test_adapter', title=u"Soc una pagina")
+        self.portal.invokeFactory(
+            'Document', 'test_adapter', title=u"Soc una pagina")
         from genweb5.core.adapters import IImportant
         obj = IImportant(self.portal.test_adapter)
         self.assertEqual(obj.is_important, False)
@@ -91,15 +93,18 @@ class IntegrationTest(unittest.TestCase):
     def test_protected_content(self):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
-        self.portal.invokeFactory('Folder', 'test_folder', title=u"Soc una carpeta")
-        self.portal.test_folder.invokeFactory('Document', 'test_document', title=u"Soc un document")
+        self.portal.invokeFactory(
+            'Folder', 'test_folder', title=u"Soc una carpeta")
+        self.portal.test_folder.invokeFactory(
+            'Document', 'test_document', title=u"Soc un document")
         from genweb5.core.interfaces import IProtectedContent
         alsoProvides(self.portal.test_folder, IProtectedContent)
         setRoles(self.portal, TEST_USER_ID, ['Reader', 'Editor'])
 
         self.portal.test_folder.manage_delObjects('test_document')
 
-        self.assertRaises(Unauthorized, self.portal.manage_delObjects, 'test_folder')
+        self.assertRaises(
+            Unauthorized, self.portal.manage_delObjects, 'test_folder')
 
 
 # class FunctionalTest(unittest.TestCase):

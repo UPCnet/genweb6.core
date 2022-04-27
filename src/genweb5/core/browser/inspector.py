@@ -36,7 +36,8 @@ class clouseau(BrowserView):
             for name, klass in members:
                 if name != 'BrowserView':
                     if module == 'genweb5.core.browser.setup':
-                        setup.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                        setup.append(
+                            dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
                     elif 'bulk' in name.lower():
                         pass
                     elif 'product' in name.lower():

@@ -194,4 +194,3 @@ class TestIndicator(unittest.TestCase):
             "context", indicator.categories['category-id-2'].context)
         self.assertEqual(
             indicator, indicator.categories['category-id-2'].indicator)
-

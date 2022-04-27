@@ -133,6 +133,7 @@ def get_safe_member_by_id(username):
                 'home_page': '', 'name_or_id': username, 'location': '',
                 'fullname': ''}
 
+
 def json_response(func):
     """ Decorator to transform the result of the decorated function to json.
         Expect a list (collection) that it's returned as is with response 200 or
@@ -187,7 +188,8 @@ class genwebUtils(BrowserView):
     @ram.cache(_contact_ws_cachekey)
     def _queryInfoUnitatWS(self, unitat):
         try:
-            r = requests.get('https://bus-soa.upc.edu/SCP/InfoUnitatv1?id=%s' % unitat, timeout=10)
+            r = requests.get(
+                'https://bus-soa.upc.edu/SCP/InfoUnitatv1?id=%s' % unitat, timeout=10)
             return r.json()
         except:
             return {}
@@ -260,7 +262,8 @@ class genwebUtils(BrowserView):
     #         return ""
 
     def getContentClass(self, view=None):
-        plone_view = getMultiAdapter((self.context, self.request), name=u'plone')
+        plone_view = getMultiAdapter(
+            (self.context, self.request), name=u'plone')
         sl = plone_view.have_portlets('plone.leftcolumn', view=view)
         sr = plone_view.have_portlets('plone.rightcolumn', view=view)
 

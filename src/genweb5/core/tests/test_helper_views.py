@@ -35,7 +35,8 @@ class HelperViewsIntegrationTest(unittest.TestCase):
     def testHelperViewsNotAvailableForAnonymous(self):
         logout()
         portal = self.layer['portal']
-        self.assertRaises(Unauthorized, portal.restrictedTraverse, 'configure_site_cache')
+        self.assertRaises(
+            Unauthorized, portal.restrictedTraverse, 'configure_site_cache')
 
     def test_getDorsal(self):
         # self.setconfig(product_config={'genwebconfig': {'zeo': '1'}})
@@ -50,11 +51,13 @@ class HelperViewsIntegrationTest(unittest.TestCase):
         request = self.layer['request']
         setRoles(portal, TEST_USER_ID, ['Manager'])
         login(portal, TEST_USER_NAME)
-        cachesetup = getMultiAdapter((portal, request), name='configure_site_cache')
+        cachesetup = getMultiAdapter(
+            (portal, request), name='configure_site_cache')
         cachesetup.render()
         registry = queryUtility(IRegistry)
         cachepurginsettings = registry.forInterface(ICachePurgingSettings)
-        self.assertEqual(cachepurginsettings.cachingProxies, (os.environ['varnish_url'], ))
+        self.assertEqual(cachepurginsettings.cachingProxies,
+                         (os.environ['varnish_url'], ))
 
     # No longer needed.
     # def test_configure_site_cache_with_2_digits(self):

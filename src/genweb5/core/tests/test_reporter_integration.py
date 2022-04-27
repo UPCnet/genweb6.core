@@ -161,4 +161,3 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(
             'WS client exception (Something wrong with WS)',
             context.exception.message)
-

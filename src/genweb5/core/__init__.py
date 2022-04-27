@@ -53,7 +53,8 @@ def install_pre_commit_hook(argv=sys.argv):
             return
 
         with open(git_hooks_directory + '/pre-commit', 'w') as output_file:
-            output_file.write('#!/bin/bash\n{}/bin/code-analysis-{}'.format(sources_path.replace('/src', ''), repo))
+            output_file.write(
+                '#!/bin/bash\n{}/bin/code-analysis-{}'.format(sources_path.replace('/src', ''), repo))
 
         subprocess.call([
             'chmod',
