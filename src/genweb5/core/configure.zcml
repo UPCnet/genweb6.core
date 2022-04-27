@@ -15,6 +15,7 @@
   <!--<includeDependencies package="." />-->
   <include file="permissions.zcml" />
   <include file="behaviors.zcml" />
+  <include file="components.zcml" />
 
   <include package=".browser" />
 

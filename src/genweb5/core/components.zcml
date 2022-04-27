@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <include package="plone.resource" file="meta.zcml"/>
+
+    <!-- Resource traversers -->
+    <adapter
+        name="components"
+        for="* zope.publisher.interfaces.IRequest"
+        provides="zope.traversing.interfaces.ITraversable"
+        factory=".traversal.ComponentsTraverser"
+        />
+
+    <adapter
+        name="genweb"
+        for="* zope.publisher.interfaces.IRequest"
+        provides="zope.traversing.interfaces.ITraversable"
+        factory=".traversal.GenwebTraverser"
+        />
+
+</configure>
