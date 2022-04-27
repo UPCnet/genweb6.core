@@ -89,4 +89,10 @@
       permission="zope2.View"
       />
 
+  <!-- <subscriber
+      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
+           plone.app.workflow.events.ILocalrolesModifiedEvent"
+      handler=".hooks.addedPermissionsPloneSiteRoot"
+      /> -->
+
 </configure>
