@@ -6,101 +6,101 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="genweb">
 
-  <i18n:registerTranslations directory="locales" />
+    <i18n:registerTranslations directory="locales" />
 
-  <!--
-    Be careful if you use general includeDependencies, it can have side effects!
-    Better import explicit packages or configurations ;)
-  -->
-  <!--<includeDependencies package="." />-->
-  <include file="permissions.zcml" />
+    <!--
+      Be careful if you use general includeDependencies, it can have side effects!
+      Better import explicit packages or configurations ;)
+    -->
+    <!--<includeDependencies package="." />-->
+    <include file="permissions.zcml" />
 
-  <include file="behaviors.zcml" />
-  <include file="components.zcml" />
-  <include file="patches.zcml" />
+    <include file="behaviors.zcml" />
+    <include file="components.zcml" />
+    <include file="patches.zcml" />
 
-  <include package=".browser" />
+    <include package=".browser" />
 
-  <include package="souper.plone" />
+    <include package="souper.plone" />
 
-  <genericsetup:registerProfile
-      name="default"
-      title="genweb5.core"
-      directory="profiles/default"
-      description="Installs the genweb5.core add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.post_install"
-      />
+    <genericsetup:registerProfile
+        name="default"
+        title="genweb5.core"
+        directory="profiles/default"
+        description="Installs the genweb5.core add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.post_install"
+        />
 
-  <genericsetup:registerProfile
-      name="uninstall"
-      title="genweb5.core (uninstall)"
-      directory="profiles/uninstall"
-      description="Uninstalls the genweb5.core add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.uninstall"
-      />
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="genweb5.core (uninstall)"
+        directory="profiles/uninstall"
+        description="Uninstalls the genweb5.core add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler=".setuphandlers.uninstall"
+        />
 
-  <utility
-      factory=".setuphandlers.HiddenProfiles"
-      name="genweb5.core-hiddenprofiles"
-      />
+    <utility
+        factory=".setuphandlers.HiddenProfiles"
+        name="genweb5.core-hiddenprofiles"
+        />
 
-  <!-- -*- extra stuff goes here -*- -->
+    <!-- -*- extra stuff goes here -*- -->
 
-  <adapter
-      for="zope.interface.Interface"
-      provides=".adapters.important.IImportant"
-      factory=".adapters.important.ImportantMarker"
-      />
+    <adapter
+        for="zope.interface.Interface"
+        provides=".adapters.important.IImportant"
+        factory=".adapters.important.ImportantMarker"
+        />
 
-  <adapter factory=".adapters.important.importantIndexer" name="is_important" />
+    <adapter factory=".adapters.important.importantIndexer" name="is_important" />
 
-  <adapter
-      for="plone.app.contenttypes.interfaces.ILink"
-      provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
-      factory=".behaviors.openlinkin.OpenLinkInNewWindow"
-      />
+    <adapter
+        for="plone.app.contenttypes.interfaces.ILink"
+        provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
+        factory=".behaviors.openlinkin.OpenLinkInNewWindow"
+        />
 
-  <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
+    <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
 
-  <!-- The utilities browser view (can't be a grok view) -->
-  <browser:page
-      for="*"
-      name="genweb.utils"
-      class=".utils.genwebUtils"
-      permission="zope2.Public"
-      allowed_interface=".interfaces.IGenweb5CoreLayer"
-      />
+    <!-- The utilities browser view (can't be a grok view) -->
+    <browser:page
+        for="*"
+        name="genweb.utils"
+        class=".utils.genwebUtils"
+        permission="zope2.Public"
+        allowed_interface=".interfaces.IGenweb5CoreLayer"
+        />
 
-  <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
+    <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
 
-  <subscriber
-      for="plone.uuid.interfaces.IAttributeUUID
-           zope.lifecycleevent.interfaces.IObjectCreatedEvent"
-      handler=".gwuuid.addAttributeUUID"
-      />
+    <subscriber
+        for="plone.uuid.interfaces.IAttributeUUID
+             zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+        handler=".gwuuid.addAttributeUUID"
+        />
 
-  <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
+    <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
 
-  <browser:page
-      name="gwuuid"
-      for="zope.interface.Interface"
-      class=".gwuuid.GWUUIDView"
-      layer="genweb5.core.interfaces.IGenweb5CoreLayer"
-      permission="zope2.View"
-      />
+    <browser:page
+        name="gwuuid"
+        for="zope.interface.Interface"
+        class=".gwuuid.GWUUIDView"
+        layer="genweb5.core.interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        />
 
-  <!-- <subscriber
-      for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
-           plone.app.workflow.events.ILocalrolesModifiedEvent"
-      handler=".subscribers.addedPermissionsPloneSiteRoot"
-      /> -->
+    <!-- <subscriber
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
+             plone.app.workflow.events.ILocalrolesModifiedEvent"
+        handler=".subscribers.addedPermissionsPloneSiteRoot"
+        /> -->
 
-  <subscriber
-      for="genweb5.core.interfaces.IProtectedContent
-           zope.lifecycleevent.interfaces.IObjectRemovedEvent"
-      handler=".subscribers.preventDeletionOnProtectedContent"
-      />
+    <subscriber
+        for="genweb5.core.interfaces.IProtectedContent
+             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+        handler=".subscribers.preventDeletionOnProtectedContent"
+        />
 
 </configure>
