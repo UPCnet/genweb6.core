@@ -39,6 +39,14 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:page
+        name="edit"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        class=".dxforms.EditForm"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
     <browser:view
         name="folder_delete"
         for="*"

@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
+from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
+from BTrees.OOBTree import OOBTree
 from Products.CMFCore.MemberDataTool import MemberData as BaseMemberData
+from Products.CMFCore.permissions import ManageUsers
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
@@ -12,8 +17,8 @@ from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 from Products.PluggableAuthService.PropertiedUser import PropertiedUser
-from StringIO import StringIO
 
+from io import StringIO
 from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.content.interfaces import INameFromTitle
@@ -24,10 +29,8 @@ from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.instance import memoize
 from pyquery import PyQuery as pq
-from urllib import quote_plus
-from wildcard.foldercontents import wcfcMessageFactory as _WF
-from wildcard.foldercontents.interfaces import IATCTFileFactory
-from wildcard.foldercontents.interfaces import IDXFileFactory
+from urllib.parse import quote_plus
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.event import notify
 from zope.i18n import translate
@@ -186,7 +189,6 @@ def SearchableText(obj):
     ))
 
 
-
 def SearchableText(obj, text=False):
     subjList = []
     creatorList = []
@@ -194,7 +196,6 @@ def SearchableText(obj, text=False):
     for sub in obj.subject:
         subjList.append(sub)
     subjects = ','.join(subjList)
-
 
     return u' '.join((
         safe_unicode(obj.id),
@@ -206,35 +207,35 @@ def SearchableText(obj, text=False):
 
 
 def getThreads(self, start=0, size=None, root=0, depth=None):
-        """Get threaded comments
-        """
+    """Get threaded comments
+    """
 
-        def recurse(comment_id, d=0):
-            # Yield the current comment before we look for its children
-            yield {'id': comment_id, 'comment': self[comment_id], 'depth': d}
+    def recurse(comment_id, d=0):
+        # Yield the current comment before we look for its children
+        yield {'id': comment_id, 'comment': self[comment_id], 'depth': d}
 
-            # Recurse if there are children and we are not out of our depth
-            if depth is None or d + 1 < depth:
-                children = self._children.get(comment_id, None)
-                if children is not None:
-                    for child_id in children:
-                        for value in recurse(child_id, d + 1):
-                            yield value
+        # Recurse if there are children and we are not out of our depth
+        if depth is None or d + 1 < depth:
+            children = self._children.get(comment_id, None)
+            if children is not None:
+                for child_id in children:
+                    for value in recurse(child_id, d + 1):
+                        yield value
 
-        # Find top level threads
-        comments = self._children.get(root, None)
-        if comments is not None:
-            count = 0l
-            for comment_id in reversed(comments.keys(min=start)):
+    # Find top level threads
+    comments = self._children.get(root, None)
+    if comments is not None:
+        count = 0
+        for comment_id in reversed(comments.keys(min=start)):
 
-                # Abort if we have found all the threads we want
-                count += 1
-                if size and count > size:
-                    return
+            # Abort if we have found all the threads we want
+            count += 1
+            if size and count > size:
+                return
 
-                # Let the closure recurse
-                for value in recurse(comment_id):
-                    yield value
+            # Let the closure recurse
+            for value in recurse(comment_id):
+                yield value
 
 
 def getUserByAttr(self, name, value, pwd=None, cache=0):
@@ -257,11 +258,13 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
         cached_user = self._cache(cache_type).get(value, pwd)
 
         if cached_user:
-            msg = 'getUserByAttr: "%s" cached in %s cache' % (value, cache_type)
+            msg = 'getUserByAttr: "%s" cached in %s cache' % (
+                value, cache_type)
             logger.debug(msg)
             return cached_user
 
-    user_roles, user_dn, user_attrs, ldap_groups = self._lookupuserbyattr(name=name, value=value, pwd=pwd)
+    user_roles, user_dn, user_attrs, ldap_groups = self._lookupuserbyattr(
+        name=name, value=value, pwd=pwd)
 
     if user_dn is None:
         logger.debug('getUserByAttr: "%s=%s" not found' % (name, value))
@@ -269,13 +272,15 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
         return None
 
     if user_attrs is None:
-        msg = 'getUserByAttr: "%s=%s" has no properties, bailing' % (name, value)
+        msg = 'getUserByAttr: "%s=%s" has no properties, bailing' % (
+            name, value)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
         return None
 
     if user_roles is None or user_roles == self._roles:
-        msg = 'getUserByAttr: "%s=%s" only has roles %s' % (name, value, str(user_roles))
+        msg = 'getUserByAttr: "%s=%s" only has roles %s' % (
+            name, value, str(user_roles))
         logger.debug(msg)
 
     login_name = user_attrs.get(self._login_attr, '')
@@ -290,12 +295,14 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             else:
                 login_name = login_name[0]
         except:
-            msg = ('****getUserByAttr: logins %s and login_name %s' % (logins, login_name))
+            msg = ('****getUserByAttr: logins %s and login_name %s' %
+                   (logins, login_name))
             logger.error(msg)
             pass
 
     elif len(login_name) == 0:
-        msg = 'getUserByAttr: "%s" has no "%s" (Login) value!' % (user_dn, self._login_attr)
+        msg = 'getUserByAttr: "%s" has no "%s" (Login) value!' % (
+            user_dn, self._login_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
         return None
@@ -303,7 +310,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     if self._uid_attr != 'dn' and len(uid) > 0:
         uid = uid[0]
     elif len(uid) == 0:
-        msg = 'getUserByAttr: "%s" has no "%s" (UID Attribute) value!' % (user_dn, self._uid_attr)
+        msg = 'getUserByAttr: "%s" has no "%s" (UID Attribute) value!' % (
+            user_dn, self._uid_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
         return None
@@ -441,68 +449,6 @@ def enumerateUsers(self,
     return result
 
 
-from AccessControl import Unauthorized
-from Products.CMFCore.utils import _checkPermission
-from Products.CMFCore.permissions import ManageUsers
-from zope.component import getMultiAdapter
-from genweb.core.adapters.portrait import IPortraitUploadAdapter
-
-
-# Extensible member portrait management
-def changeMemberPortrait(self, portrait, id=None):
-    """update the portait of a member.
-
-    We URL-quote the member id if needed.
-
-    Note that this method might be called by an anonymous user who
-    is getting registered.  This method will then be called from
-    plone.app.users and this is fine.  When called from restricted
-    python code or with a curl command by a hacker, the
-    declareProtected line will kick in and prevent use of this
-    method.
-    """
-    authenticated_id = self.getAuthenticatedMember().getId()
-    if not id:
-        id = authenticated_id
-    safe_id = self._getSafeMemberId(id)
-
-    # Our LDAP improvements hand the current user id in unicode, but BTree can't
-    # handle unicode keys in inner objects... *sigh*
-    if isinstance(safe_id, unicode):
-        safe_id = str(safe_id)
-
-    if authenticated_id and id != authenticated_id:
-        # Only Managers can change portraits of others.
-        if not _checkPermission(ManageUsers, self):
-            raise Unauthorized
-
-    # The plugable actions for how to handle the portrait.
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(portrait, safe_id)
-
-
-def deletePersonalPortrait(self, id=None):
-    """deletes the Portait of a member.
-    """
-    authenticated_id = self.getAuthenticatedMember().getId()
-    if not id:
-        id = authenticated_id
-    safe_id = self._getSafeMemberId(id)
-    if id != authenticated_id and not _checkPermission(
-            ManageUsers, self):
-        raise Unauthorized
-
-    # The plugable actions for how to handle the portrait.
-    portrait_url = portal_url() + '/defaultUser.png'
-    imgData = requests.get(portrait_url).content
-    image = StringIO(imgData)
-    image.filename = 'defaultUser'
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(image, safe_id)
-    # membertool = getToolByName(self, 'portal_memberdata')
-    # return membertool._deletePortrait(safe_id)
-
-
 def chooseName(self, name, obj):
     container = aq_inner(self.context)
     if not name:
@@ -560,10 +506,6 @@ def html_results(self, query):
     )(**options)
 
 
-from BTrees.OOBTree import OOBTree
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-
-
 def sitemapObjects(self):
     """Returns the data to create the sitemap."""
     catalog = getToolByName(self.context, 'portal_catalog')
@@ -600,8 +542,8 @@ def sitemapObjects(self):
         yield {
             'loc': loc,
             'lastmod': lastmod,
-            #'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
-            #'prioriy': 0.5, # 0.0 to 1.0
+            # 'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
+            # 'prioriy': 0.5, # 0.0 to 1.0
         }
 
     query['is_default_page'] = False
@@ -618,6 +560,6 @@ def sitemapObjects(self):
         yield {
             'loc': loc,
             'lastmod': lastmod,
-            #'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
-            #'prioriy': 0.5, # 0.0 to 1.0
+            # 'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
+            # 'prioriy': 0.5, # 0.0 to 1.0
         }

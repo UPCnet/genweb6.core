@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
-#from Products.ATContentTypes.interface.folder import IATFolder
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser import BrowserView

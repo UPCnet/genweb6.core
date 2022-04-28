@@ -54,20 +54,6 @@
         replacement=".patches.getThreads"
         />
 
-     <monkey:patch
-        description="Patch to extend the features of the changeMemberPortrait"
-        class="Products.PlonePAS.tools.membership.MembershipTool"
-        original="changeMemberPortrait"
-        replacement=".patches.changeMemberPortrait"
-        />
-
-      <monkey:patch
-         description="Patch to extend the features of the deletePersonalPortrait"
-         class="Products.PlonePAS.tools.membership.MembershipTool"
-         original="deletePersonalPortrait"
-         replacement=".patches.deletePersonalPortrait"
-         />
-
      <!-- LDAP and user objects related patches -->
      <monkey:patch
         description="Force LDAP plugin authenticate to normalize userids and usernames to lowercase"

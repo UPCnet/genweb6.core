@@ -6,7 +6,8 @@ from plone.app.contenttypes.interfaces import ILink
 from plone.indexer import indexer
 from zope import schema
 from zope.component import adapts
-from zope.interface import alsoProvides, implementer
+from zope.interface import alsoProvides
+from zope.interface import implementer
 
 from genweb5.core import _
 

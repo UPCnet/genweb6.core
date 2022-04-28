@@ -55,6 +55,10 @@ setup(
         'plone.app.dexterity',
         'ipdb',
         'souper.plone',
+        'Products.LDAPUserFolder',
+        'Products.LDAPMultiPlugins',
+        'plone.app.search',
+        'pyquery',
     ],
     extras_require={
         'test': [
