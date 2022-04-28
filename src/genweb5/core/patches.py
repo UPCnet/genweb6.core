@@ -23,8 +23,6 @@ from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
-from plone.app.search.browser import EVER
-from plone.app.search.browser import quote_chars
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.instance import memoize

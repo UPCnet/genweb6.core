@@ -57,7 +57,6 @@ setup(
         'souper.plone',
         'Products.LDAPUserFolder',
         'Products.LDAPMultiPlugins',
-        'plone.app.search',
         'pyquery',
     ],
     extras_require={
