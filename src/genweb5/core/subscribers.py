@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from AccessControl import Unauthorized
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
@@ -9,6 +10,24 @@ from email.mime.text import MIMEText
 from plone import api
 
 import socket
+
+
+def preventDeletionOnProtectedContent(content, event):
+    """ Community added handler
+    """
+    try:
+        api.portal.get()
+    except:
+        # Most probably we are on Zope root and trying to delete an entire Plone
+        # Site so grant it unconditionally
+        return
+
+    # Only (global) site managers can delete packet content from root folder
+
+    if 'Manager' not in api.user.get_roles():
+        raise(Unauthorized, u'Cannot delete protected content.')
+    else:
+        return
 
 
 def addedPermissionsPloneSiteRoot(content, event):

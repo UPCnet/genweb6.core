@@ -94,7 +94,13 @@
   <!-- <subscriber
       for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
            plone.app.workflow.events.ILocalrolesModifiedEvent"
-      handler=".hooks.addedPermissionsPloneSiteRoot"
+      handler=".subscribers.addedPermissionsPloneSiteRoot"
       /> -->
+
+  <subscriber
+      for="genweb5.core.interfaces.IProtectedContent
+           zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+      handler=".subscribers.preventDeletionOnProtectedContent"
+      />
 
 </configure>
