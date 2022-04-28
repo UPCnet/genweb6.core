@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<portlets>
+<portlets
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="genweb">
 
     <assignment remove="True" name="calendar" category="context" key="/"
                 manager="plone.rightcolumn" type="portlets.Calendar">
@@ -30,5 +32,17 @@
 
         <property name="bottomLevel">2</property>
     </assignment>
+
+    <portlet
+        addview="genweb.banners.portlet"
+        remove="True"
+        />
+
+    <portlet
+        addview="genweb.banners.portlet"
+        title="portlet_banners_title"
+        description="A portlet that show site banners."
+        i18n:attributes="title; description"
+        />
 
 </portlets>

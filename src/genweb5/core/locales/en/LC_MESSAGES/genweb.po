@@ -1680,6 +1680,48 @@ msgstr "des."
 msgid "month_feb_abbr"
 msgstr "febr."
 
+msgid "obrir_link_finestra_nova"
+msgstr "(open link in a new window)"
+
+#. Default: "Imatge"
+#: content/Banner.py
+msgid "genweb.banners_label_Imatge"
+msgstr "Banner"
+
+#. Default: "Obrirennovafinestra"
+#: content/Banner.py
+msgid "genweb.banners_label_Obrirennovafinestra"
+msgstr "Open in a new window?"
+
+#. Default: "Url"
+#: content/Banner.py
+msgid "genweb.banners_label_URLdesti"
+msgstr "Destination URL"
+
+#. Default: "Url"
+#: content/Banner.py
+msgid "genweb.banners_help_descripcion"
+msgstr "You must include http:// at the beginning to make an external link"
+
+msgid "baners"
+msgstr "Banners"
+
+#: genweb.banners/genweb/banners/portlets/bannersportlet.py:101
+msgid "This portlet displays the site banners."
+msgstr "This portlet displays the site banners."
+
+#: genweb.banners/genweb/banners/portlets/bannersportlet.py:29
+msgid "Number of banners to display"
+msgstr "Number of banners to display"
+
+#: genweb.banners/genweb/banners/portlets/bannersportlet.py:30
+msgid "How many banners to list."
+msgstr "How many banners to list."
+
+#: genweb.banners/genweb/banners/portlets/bannersportlet.py:57
+msgid "Genweb banners"
+msgstr "Banners"
+
 #########
 # Dates #
 #########

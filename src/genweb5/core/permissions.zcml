@@ -21,6 +21,11 @@
             title="Genweb: Webmaster Users"
             />
 
+        <permission
+            id="genweb.banners.more_power"
+            title="genweb.banners: more power"
+            />
+
     </configure>
 
 </configure>

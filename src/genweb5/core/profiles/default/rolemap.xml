@@ -21,5 +21,11 @@
             <role name="Manager"/>
         </permission>
 
+        <permission name="genweb.banners: more power"
+                    acquire="True">
+
+            <role name="Manager" />
+        </permission>
+
     </permissions>
 </rolemap>

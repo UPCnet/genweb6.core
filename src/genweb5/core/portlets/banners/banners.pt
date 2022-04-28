@@ -1,0 +1,24 @@
+<tal:banners define="banners view/getBanners"
+             i18n:domain="genweb">
+
+  <div id="baners" class="portlet portlet-baners" role="complementary" aria-labelledby="titol-baners"
+       tal:condition="banners">
+
+        <h2 class="goout" id="titol-baners" i18n:translate="baners">Baners</h2>
+        <ul class="unstyled" role="list">
+            <li role="listitem" tal:repeat="banner banners">
+                <a tal:define="target python:banner.open_link_in_new_window and '_blank' or None;
+                               banner_literal python:view.getAltAndTitle(banner.Title, banner.open_link_in_new_window)"
+                   tal:attributes="href banner/getRemoteUrl;
+                                   target target | nothing"
+                   tal:omit-tag="not:banner/getRemoteUrl">
+                  <img rel="tooltip"
+                       tal:attributes="src string:${banner/getURL}/@@images/image;
+                                       alt banner_literal;
+                                       title banner_literal" />
+                </a>
+            </li>
+        </ul>
+  </div>
+
+</tal:banners>

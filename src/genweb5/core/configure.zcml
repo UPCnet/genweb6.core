@@ -20,6 +20,7 @@
     <include file="patches.zcml" />
 
     <include package=".browser" />
+    <include package=".portlets" />
 
     <include package="souper.plone" />
 
@@ -82,6 +83,8 @@
         />
 
     <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
+
+    <adapter factory=".content.banner.getRemoteUrl" name="getRemoteUrl" />
 
     <browser:page
         name="gwuuid"
