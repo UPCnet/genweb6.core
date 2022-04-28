@@ -52,7 +52,7 @@
         class=".helpers.getZOPE"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
-        template="helpers_templates/plone-addsite.pt"
+        template="helpers_templates/getzope.pt"
         />
 
     <browser:page

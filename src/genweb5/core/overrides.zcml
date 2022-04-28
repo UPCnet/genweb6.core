@@ -36,39 +36,6 @@
         factory=".overrides.gwFactoriesSubMenuItem"
         provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
 
-    <!-- Plone 5 admin pages eye candy -->
-    <browser:page
-        for="OFS.interfaces.IApplication"
-        name="plone-addsite"
-        class="Products.CMFPlone.browser.admin.AddPloneSite"
-        permission="zope2.ViewManagementScreens"
-        template="browser/templates/plone-addsite.pt"
-        />
-
-    <browser:page
-        for="OFS.Folder.Folder"
-        name="plone-addsite"
-        class="Products.CMFPlone.browser.admin.AddPloneSite"
-        permission="zope2.ViewManagementScreens"
-        template="browser/templates/plone-addsite.pt"
-        />
-
-    <browser:page
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        name="plone-upgrade"
-        class="Products.CMFPlone.browser.admin.Upgrade"
-        permission="cmf.ManagePortal"
-        template="browser/templates/plone-upgrade.pt"
-        />
-
-    <browser:page
-        for="OFS.interfaces.IApplication"
-        name="plone-overview"
-        class="Products.CMFPlone.browser.admin.Overview"
-        permission="zope.Public"
-        template="browser/templates/plone-overview.pt"
-        />
-
     <!-- Constrain container allowed content types -->
     <plone:behavior
         title="Folder Addable Constrains"

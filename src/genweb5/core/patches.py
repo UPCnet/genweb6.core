@@ -23,6 +23,8 @@ from plone import api
 from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
+from plone.app.contenttypes.behaviors.richtext import IRichText
+from plone.app.textfield.value import IRichTextValue
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.instance import memoize
@@ -44,6 +46,7 @@ import unicodedata
 import inspect
 import logging
 import requests
+import six
 
 try:
     from hashlib import sha1 as sha_new
@@ -184,23 +187,6 @@ def SearchableText(obj):
         safe_unicode(text),
         safe_unicode(subject),
         safe_unicode(creators),
-    ))
-
-
-def SearchableText(obj, text=False):
-    subjList = []
-    creatorList = []
-
-    for sub in obj.subject:
-        subjList.append(sub)
-    subjects = ','.join(subjList)
-
-    return u' '.join((
-        safe_unicode(obj.id),
-        safe_unicode(obj.title) or u'',
-        safe_unicode(obj.description) or u'',
-        safe_unicode(subjects) or u'',
-        safe_unicode(creators) or u'',
     ))
 
 
