@@ -12,7 +12,7 @@
         class=".inspector.clouseau"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
-        template="./inspector_templates/clouseau.pt"
+        template="inspector_templates/clouseau.pt"
         />
 
     <browser:page
@@ -54,5 +54,14 @@
         layer="..interfaces.IGenweb5CoreLayer"
         permission="zope2.DeleteObjects"
         />
+
+    <!-- <browser:viewlet
+        name="genweb.logosfooter"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.logosFooterViewlet"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/logosfooter.pt"
+        /> -->
 
 </configure>

@@ -7,4 +7,7 @@
     <object name="Banner" meta_type="Dexterity FTI" />
     <object name="BannerContainer" meta_type="Dexterity FTI" />
 
+    <object name="Logos_Footer" meta_type="Dexterity FTI" />
+    <object name="Logos_Container" meta_type="Dexterity FTI" />
+
 </object>

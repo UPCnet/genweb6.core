@@ -15,3 +15,13 @@ class Banner(Item):
 @implementer(IFolder)
 class BannerContainer(Container):
     pass
+
+
+@implementer(IBanner)
+class Logo(Item):
+    pass
+
+
+@implementer(IFolder)
+class LogoContainer(Container):
+    pass
