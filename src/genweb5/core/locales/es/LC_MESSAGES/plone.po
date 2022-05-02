@@ -364,6 +364,9 @@ msgstr "Grid agenda"
 msgid "AgendaGW"
 msgstr "Agenda"
 
+msgid "portlet_banners_title"
+msgstr "Báners"
+
 msgid "portlet_homepage_title"
 msgstr "Bienvenida"
 

@@ -1,0 +1,38 @@
+<metal:listingmacro define-macro="listing" i18n:domain="genweb">
+  <tal:results define="events view/get_events">
+    <div class="portlet portlet-grid-events" tal:condition="events">
+      <div class="titling-line-container">
+        <h2 class="titling-line" i18n:translate="">
+          Events
+        </h2>
+      </div>
+      <div class="list-agenda">
+        <ol class="row" metal:define-slot="entries">
+          <tal:repeat repeat="item events" metal:define-macro="entries">
+            <metal:block define-slot="entry" tal:define="span view/get_span">
+              <li tal:attributes="class span">
+                <a class="card" tal:attributes="href item/url">
+                  <span class="event-time">
+                    <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
+                      <block metal:use-macro="context/macros-genweb/sameday_samemonth"></block>
+                      <block metal:use-macro="context/macros-genweb/difday_samemonth"></block>
+                      <block metal:use-macro="context/macros-genweb/difday_difmonth"></block>
+                    </span>
+                  </span>
+                  <h3 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h3>
+                </a>
+              </li>
+            </metal:block>
+          </tal:repeat>
+        </ol>
+      </div>
+      <div class="portlet-footer">
+        <a tal:attributes="href view/all_events_link"
+           i18n:domain="genweb"
+           i18n:translate="box_upcoming_events">
+          Més esdeveniments
+        </a>
+      </div>
+    </div>
+  </tal:results>
+</metal:listingmacro>

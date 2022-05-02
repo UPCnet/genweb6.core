@@ -1,0 +1,5 @@
+<div>
+  <div tal:define="frontpage view/getHomepage">
+    <div tal:replace="structure frontpage/body">Cos de la pagina principal</div>
+  </div>
+</div>

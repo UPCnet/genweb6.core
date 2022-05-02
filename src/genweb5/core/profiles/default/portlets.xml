@@ -3,46 +3,147 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="genweb">
 
-    <assignment remove="True" name="calendar" category="context" key="/"
-                manager="plone.rightcolumn" type="portlets.Calendar">
-    </assignment>
-
-    <assignment remove="True" name="events" category="context" key="/"
-                manager="plone.rightcolumn" type="portlets.Events">
-    </assignment>
-
-    <assignment remove="True" name="news" category="context" key="/"
-                manager="plone.rightcolumn" type="portlets.News">
-    </assignment>
-
-    <assignment remove="True" name="review" category="context" key="/"
-                manager="plone.rightcolumn" type="portlets.Review">
-    </assignment>
-
-    <assignment remove="True" name="login" category="context" key="/"
-                manager="plone.leftcolumn" type="portlets.Login">
-    </assignment>
+    <portlet addview="portlets.Actions" remove="true" />
+    <portlet addview="portlets.Events" remove="true" />
+    <portlet addview="portlets.News" remove="true" />
+    <portlet addview="portlets.Search" remove="true" />
+    <portlet addview="portlets.Review" remove="true" />
 
     <assignment
+        remove="True"
         name="navigation"
         category="context"
         key="/"
         manager="plone.leftcolumn"
-        type="portlets.Navigation">
+        type="portlets.Navigation"
+        />
 
-        <property name="bottomLevel">2</property>
-    </assignment>
+    <assignment
+        remove="True"
+        name="events"
+        category="context"
+        key="/"
+        manager="plone.rightcolumn"
+        type="portlets.Events"
+        />
+
+    <assignment
+        remove="True"
+        name="news"
+        category="context"
+        key="/"
+        manager="plone.rightcolumn"
+        type="portlets.News"
+        />
+
+    <!-- <portlet
+        addview="collective.polls.VotePortlet"
+        title="portlet_poll_title"
+        description="A portlet to allow voting on a specific poll"
+        i18n:attributes="title; description">
+
+        <for interface="plone.app.portlets.interfaces.IColumn" />
+        <for interface="plone.app.portlets.interfaces.IDashboard" />
+    </portlet>
 
     <portlet
-        addview="genweb.banners.portlet"
-        remove="True"
+        addview="portlets.Calendar"
+        title="portlet_calendar_title"
+        description="A portlet which can render a calendar."
+        i18n:attributes="title; description">
+
+        <for interface="plone.app.portlets.interfaces.IColumn" />
+        <for interface="plone.app.portlets.interfaces.IDashboard" />
+    </portlet>
+
+    <portlet
+        addview="portlets.Login"
+        title="portlet_login_title"
+        description="A portlet which can render a log-in box"
+        i18n:attributes="title; description">
+
+        <for interface="plone.app.portlets.interfaces.IColumn" />
+    </portlet>
+
+    <portlet
+        addview="portlets.Navigation"
+        title="portlet_navigation_title"
+        description="A portlet which can render a navigation tree"
+        i18n:attributes="title; description">
+
+        <for interface="plone.app.portlets.interfaces.IColumn" />
+    </portlet>
+
+    <portlet
+        addview="plone.portlet.collection.Collection"
+        title="portlet_collection_title"
+        description="A portlet which displays the results of a collection query"
+        i18n:attributes="title; description"
         />
+
+    <portlet
+        addview="plone.portlet.static.Static"
+        title="portlet_static_title"
+        description="A portlet which can display static HTML text."
+        i18n:attributes="title; description"
+        />
+
+    <portlet
+        addview="portlets.rss"
+        title="portlet_rss_title"
+        description="A portlet which can receive and render an RSS feed."
+        i18n:attributes="title; description">
+
+        <for interface="plone.app.portlets.interfaces.IColumn" />
+        <for interface="plone.app.portlets.interfaces.IDashboard" />
+    </portlet> -->
 
     <portlet
         addview="genweb.banners.portlet"
         title="portlet_banners_title"
-        description="A portlet that show site banners."
-        i18n:attributes="title; description"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.esdeveniments"
+        title="AgendaGW"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.fullnews"
+        title="FullNews"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.grid_events"
+        title="GridEvents"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.homepage"
+        title="portlet_homepage_title"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.news"
+        title="NoticiesPropi"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.news_events_listing"
+        title="Categories"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.upcnews"
+        title="UPCNews"
+        i18n:attributes="title"
         />
 
 </portlets>

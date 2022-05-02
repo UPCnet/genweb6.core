@@ -63,6 +63,9 @@ msgstr "Calendar"
 msgid "portlet_collection_title"
 msgstr "Collection"
 
+msgid "portlet_banners_title"
+msgstr "Banners"
+
 msgid "portlet_multiviewcollection_title"
 msgstr "Multi-view Collection"
 
