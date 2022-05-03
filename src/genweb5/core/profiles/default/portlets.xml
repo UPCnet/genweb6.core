@@ -3,12 +3,14 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="genweb">
 
+    <!-- Eliminació de portlets de la base -->
     <portlet addview="portlets.Actions" remove="true" />
     <portlet addview="portlets.Events" remove="true" />
     <portlet addview="portlets.News" remove="true" />
     <portlet addview="portlets.Search" remove="true" />
     <portlet addview="portlets.Review" remove="true" />
 
+    <!-- Eliminar portlets de la base que s'afegeixen automaticament -->
     <assignment
         remove="True"
         name="navigation"
@@ -125,6 +127,18 @@
     <portlet
         addview="genweb.portlets.homepage"
         title="portlet_homepage_title"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.multiview_collection"
+        title="portlet_multiviewcollection_title"
+        i18n:attributes="title"
+        />
+
+    <portlet
+        addview="genweb.portlets.new_existing_content"
+        title="Nou Contingut existent"
         i18n:attributes="title"
         />
 

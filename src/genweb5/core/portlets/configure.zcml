@@ -1,7 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="genweb">
 
     <include package="plone.app.portlets" />
@@ -73,6 +73,38 @@
         assignment=".homepage.homepage.Assignment"
         renderer=".homepage.homepage.Renderer"
         addview=".homepage.homepage.AddForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.multiview_collection"
+        interface=".multiviewcollection.multiviewcollection.IMultiviewCollectionPortlet"
+        assignment=".multiviewcollection.multiviewcollection.Assignment"
+        renderer=".multiviewcollection.multiviewcollection.Renderer"
+        addview=".multiviewcollection.multiviewcollection.AddForm"
+        editview=".multiviewcollection.multiviewcollection.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.new_existing_content"
+        interface=".new_existing_content.new_existing_content.INewContentPortlet"
+        assignment=".new_existing_content.new_existing_content.Assignment"
+        renderer=".new_existing_content.new_existing_content.Renderer"
+        addview=".new_existing_content.new_existing_content.AddForm"
+        editview=".new_existing_content.new_existing_content.EditForm"
+        />
+
+    <class class=".new_existing_content.new_existing_content.NewContentPortletJSWidget">
+        <require
+            permission="zope.Public"
+            interface=".new_existing_content.new_existing_content.INewContentPortletJSWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".new_existing_content.new_existing_content.INewContentPortletJSWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="new_existing_content/js.pt"
         />
 
     <plone:portlet

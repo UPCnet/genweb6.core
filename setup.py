@@ -58,6 +58,8 @@ setup(
         'Products.LDAPUserFolder',
         'Products.LDAPMultiPlugins',
         'pyquery',
+        'plone.app.form',
+        'plone.formwidget.contenttree',
     ],
     extras_require={
         'test': [
