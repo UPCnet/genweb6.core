@@ -35,7 +35,6 @@ from zope.component import getUtility
 from zope.event import notify
 from zope.i18n import translate
 
-from genweb5.core.utils import get_safe_member_by_id
 from genweb5.core.utils import pref_lang
 from genweb5.core.utils import portal_url
 
@@ -131,25 +130,6 @@ def setMemberProperties(self, mapping, force_local=0):
     # excluding user login events
     if not set(mapping.keys()) & set(('login_time', 'last_login_time')):
         notify(PropertiesUpdated(self, mapping))
-
-
-# Patching the custom pas_member view that is called from some templates of p.a.c.
-@memoize
-def info(self, userid=None):
-    user = get_safe_member_by_id(userid)
-    if user is None:
-        # No such member: removed?  We return something useful anyway.
-        return {'username': userid, 'description': '', 'language': '',
-                'home_page': '', 'name_or_id': userid, 'location': '',
-                'fullname': ''}
-    user['name_or_id'] = user.get('fullname') or \
-        user.get('username') or userid
-    return user
-
-
-# Patching the method that calls getMemberById in DocumentByLine
-def author(self):
-    return get_safe_member_by_id(self.creator())
 
 
 # Add subjects and creators to searchableText Dexterity objects

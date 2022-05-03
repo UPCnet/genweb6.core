@@ -20,20 +20,6 @@
         />
 
     <monkey:patch
-        description="pas_member view override to user the user local catalog"
-        class="Products.PlonePAS.browser.member.PASMemberView"
-        original="info"
-        replacement=".patches.info"
-        />
-
-    <monkey:patch
-        description="DocumentByLine method override to user the user local catalog"
-        class="plone.app.layout.viewlets.content.DocumentBylineViewlet"
-        original="author"
-        replacement=".patches.author"
-        />
-
-    <monkey:patch
         description="Add subjects to searchableText"
         module="plone.app.contenttypes.indexers"
         original="SearchableText"

@@ -103,36 +103,6 @@ def _contact_ws_cachekey(method, self, unitat):
     return (unitat)
 
 
-def get_safe_member_by_id(username):
-    """Gets user info from the repoze.catalog based user properties catalog.
-       This is a safe implementation for getMemberById portal_membership to
-       avoid useless searches to the LDAP server. It gets only exact matches (as
-       the original does) and returns a dict. It DOES NOT return a Member
-       object.
-    """
-    portal = api.portal.get()
-    soup = get_soup('user_properties', portal)
-    username = username.lower()
-    records = [r for r in soup.query(Eq('id', username))]
-    if records:
-        properties = {}
-        for attr in records[0].attrs:
-            if records[0].attrs.get(attr, False):
-                properties[attr] = records[0].attrs[attr]
-
-        # Make sure that the key 'fullname' is returned anyway for it's used in
-        # the wild without guards
-        if 'fullname' not in properties:
-            properties['fullname'] = ''
-
-        return properties
-    else:
-        # No such member: removed?  We return something useful anyway.
-        return {'username': username, 'description': '', 'language': '',
-                'home_page': '', 'name_or_id': username, 'location': '',
-                'fullname': ''}
-
-
 def json_response(func):
     """ Decorator to transform the result of the decorated function to json.
         Expect a list (collection) that it's returned as is with response 200 or
