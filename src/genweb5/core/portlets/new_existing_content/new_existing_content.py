@@ -16,6 +16,7 @@ from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
 from z3c.form.interfaces import ITextWidget
 from z3c.form.widget import FieldWidget
+from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
@@ -170,13 +171,11 @@ class Renderer(base.Renderer):
     @memoize
     def owncontent(self):
         owncontent_path = self.data.own_content
-        if not owncontent_path:
+        if owncontent_path and isinstance(owncontent_path, RelationValue):
+            owncontent_path = owncontent_path.to_path
+        else:
             return None
 
-        if owncontent_path.startswith('/'):
-            owncontent_path = owncontent_path[1:]
-        if not owncontent_path:
-            return None
         portal_state = getMultiAdapter(
             (self.context, self.request), name=u'plone_portal_state')
         portal = portal_state.portal()
@@ -218,7 +217,6 @@ class Renderer(base.Renderer):
         content = ''
         try:
             # CONTINGUT INTERN #
-
             if self.data.content_or_url == 'INTERN':
                 # link intern, search through the catalog
                 raw_html = self.get_catalog_content()()
@@ -237,7 +235,6 @@ class Renderer(base.Renderer):
                     content = _(u"ERROR. Charset undefined")
 
             # CONTENIDO EXTERNO #
-
             elif self.data.content_or_url == 'EXTERN':
                 # link extern, pyreq
                 link_extern = self.data.external_url

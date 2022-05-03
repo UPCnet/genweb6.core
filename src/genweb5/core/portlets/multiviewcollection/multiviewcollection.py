@@ -12,6 +12,7 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletRetriever
+from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import getMultiAdapter
@@ -323,22 +324,15 @@ class Renderer(base.Renderer):
     @memoize
     def collection(self):
         collection_path = self.data.target_collection
-        if not collection_path:
+
+        if collection_path and isinstance(collection_path, RelationValue):
+            collection_path = collection_path.to_path
+        else:
             return None
 
-        if collection_path.startswith('/'):
-            collection_path = collection_path[1:]
-
-        if not collection_path:
-            return None
-
-        portal_state = getMultiAdapter((self.context, self.request),
-                                       name=u'plone_portal_state')
+        portal_state = getMultiAdapter(
+            (self.context, self.request), name=u'plone_portal_state')
         portal = portal_state.portal()
-        if isinstance(collection_path, unicode):
-            # restrictedTraverse accepts only strings
-            collection_path = str(collection_path)
-
         result = portal.unrestrictedTraverse(collection_path, default=None)
         if result is not None:
             sm = getSecurityManager()
