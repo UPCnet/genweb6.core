@@ -21,9 +21,9 @@ from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
 from zope.component import getMultiAdapter
-from zope.interface import Invalid
 from zope.interface import implementer
 from zope.interface import implementer_only
+from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.interfaces import IField
 from zope.site import hooks
