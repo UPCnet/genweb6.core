@@ -136,7 +136,7 @@ class INewContentPortlet(IPortletDataProvider):
     )
 
     form.widget('js', NewContentPortletJSFieldWidget)
-    js = schema.Text(title=_(u""))
+    js = schema.Text(title=_(u""), required=False)
 
     @invariant
     def validate_isFull(data):
@@ -149,10 +149,7 @@ class INewContentPortlet(IPortletDataProvider):
 @implementer(INewContentPortlet)
 class Assignment (base.Assignment):
 
-    def __init__(self, content_or_url, external_url, ptitle, own_content, element='#content-core', show_title=True, hide_footer=False):
-        # s'invoca quan cliquem a Desa
-        # import pdb; pdb.set_trace()
-
+    def __init__(self, content_or_url, external_url, ptitle, own_content, element='#content-core', show_title=True, hide_footer=False, js=u""):
         self.ptitle = ptitle
         self.show_title = show_title
         self.hide_footer = hide_footer
@@ -160,6 +157,7 @@ class Assignment (base.Assignment):
         self.external_url = external_url
         self.element = element
         self.own_content = own_content
+        self.js = js
 
     @property
     def title(self):
@@ -171,7 +169,6 @@ class Renderer(base.Renderer):
 
     @memoize
     def owncontent(self):
-
         owncontent_path = self.data.own_content
         if not owncontent_path:
             return None
