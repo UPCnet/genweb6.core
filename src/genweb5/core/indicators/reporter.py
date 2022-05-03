@@ -5,8 +5,8 @@ Reports indicators to the Indicators Web Service.
 
 from genweb5.core.indicators.client import Client
 from genweb5.core.indicators.client import ClientException
-from genweb5.core.indicators.model import Category
 from genweb5.core.indicators.model import CalculatorException
+from genweb5.core.indicators.model import Category
 from genweb5.core.indicators.model import Indicator
 from genweb5.core.indicators.registry import Registry
 

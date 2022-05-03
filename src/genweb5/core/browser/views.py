@@ -1,27 +1,16 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 
-from itertools import chain
 from plone import api
 from plone.app.contenttypes.interfaces import IDocument
 from plone.registry.interfaces import IRegistry
-from repoze.catalog.query import Eq
-from souper.soup import Record
-from souper.soup import get_soup
-from zExceptions import NotFound
-from zope.component import getMultiAdapter
 from zope.component import queryUtility
-from zope.component.hooks import getSite
-from zope.interface import Interface
 
 from genweb5.core import GenwebMessageFactory as _
 from genweb5.core.adapters import IImportant
-
-import json
 
 
 class GetDXDocumentText(BrowserView):
@@ -55,8 +44,7 @@ class TemplateList(BrowserView):
                 templates['1. DESTACATS'] = [['Destacat', absolute_url + '/templates/destacat/genweb.get.dxdocument.text', 'Text destacat.'],
                                              ['Destacat color', absolute_url + '/templates/destacat-color/genweb.get.dxdocument.text',
                                                  'Destacat amb text m\xc3\xa9s gran i color.'],
-                                             ['Destacat contorn', absolute_url
-                                                 + '/templates/destacat-contorn/genweb.get.dxdocument.text', 'Destacat amb text petit.'],
+                                             ['Destacat contorn', absolute_url + '/templates/destacat-contorn/genweb.get.dxdocument.text', 'Destacat amb text petit.'],
                                              ['Pou', absolute_url + '/templates/pou/genweb.get.dxdocument.text',
                                                  'Contenidor de pou per encabir elements i limitar-los visualment.'],
                                              ['Pou degradat', absolute_url + '/templates/pou-degradat/genweb.get.dxdocument.text',
@@ -95,8 +83,7 @@ class TemplateList(BrowserView):
                                                                                ['Bot\xc3\xb3', absolute_url + '/templates/boto/genweb.get.dxdocument.text', 'Bot\xc3\xb3 standard gris']]
 
                 templates['4. TAULES'] = [['Taula', absolute_url + '/templates/taula/genweb.get.dxdocument.text', 'Taula sense estils.'],
-                                          ['Taula colors destacats', absolute_url
-                                              + '/templates/taula-colors-destacats/genweb.get.dxdocument.text', 'Taula amb colors destacats.'],
+                                          ['Taula colors destacats', absolute_url + '/templates/taula-colors-destacats/genweb.get.dxdocument.text', 'Taula amb colors destacats.'],
                                           ['Taula de registres per files', absolute_url + '/templates/taula-de-registres-per-files/genweb.get.dxdocument.text',
                                               'Per definir una taula de registres estructurada per columnes. Es pot ampliar en files i columnes.'],
                                           ['Taula amb estils', absolute_url + '/templates/taula-amb-estils/genweb.get.dxdocument.text',
@@ -110,10 +97,8 @@ class TemplateList(BrowserView):
                                                     'Contenidor de fitxa.'],
                                                 ['\xc3\x80lbum de fotografies', absolute_url + '/templates/album-de-fotografies/genweb.get.dxdocument.text',
                                                     'Crea un \xc3\xa0lbum amb les miniatures de fotografies.'],
-                                                ["Imatge alineada a l'esquerra amb text ", absolute_url
-                                                    + '/templates/imatge-alineada-a-lesquerra-amb-text/genweb.get.dxdocument.text', "Imatge alineada a l'esquerra amb text."],
-                                                ['Imatge alineada a la dreta amb text ', absolute_url
-                                                    + '/templates/imatge-alineada-a-la-dreta-amb-text/genweb.get.dxdocument.text', 'Imatge alineada a la dreta amb text.'],
+                                                ["Imatge alineada a l'esquerra amb text ", absolute_url + '/templates/imatge-alineada-a-lesquerra-amb-text/genweb.get.dxdocument.text', "Imatge alineada a l'esquerra amb text."],
+                                                ['Imatge alineada a la dreta amb text ', absolute_url + '/templates/imatge-alineada-a-la-dreta-amb-text/genweb.get.dxdocument.text', 'Imatge alineada a la dreta amb text.'],
                                                 ['Imatge amb text lateral superposat', absolute_url + '/templates/imatge-amb-text-lateral-superposat/genweb.get.dxdocument.text',
                                                     'Imatge damunt la qual hi apareix un text superposat.'],
                                                 ['Imatge amb text superposat clar', absolute_url + '/templates/imatge-amb-text-superposat-clar/genweb.get.dxdocument.text',
@@ -121,8 +106,7 @@ class TemplateList(BrowserView):
                                                 ['Imatge amb text superposat fosc', absolute_url + '/templates/imatge-amb-text-superposat-fosc/genweb.get.dxdocument.text', 'Imatge amb text superposat en un bloc inferior fosc amb text blanc']]
 
                 templates['6. AVANÇADES'] = [["Carousel d'imatges", absolute_url + '/templates/carousel-dimatges/genweb.get.dxdocument.text', "Carousel d'imatges navegables."],
-                                             ['Zoom imatge', absolute_url
-                                                 + '/templates/zoom-imatge/genweb.get.dxdocument.text', "Imatge que s'amplia."],
+                                             ['Zoom imatge', absolute_url + '/templates/zoom-imatge/genweb.get.dxdocument.text', "Imatge que s'amplia."],
                                              ['Pestanyes', absolute_url + '/templates/pestanyes/genweb.get.dxdocument.text',
                                                  'Contingut segmentat per pestanyes amb un altre estil.'],
                                              ['Pestanyes caixa', absolute_url + '/templates/pestanyes-caixa/genweb.get.dxdocument.text',
@@ -142,40 +126,27 @@ class TemplateList(BrowserView):
                 qi = getToolByName(self.context, 'portal_quickinstaller')
                 if qi.isProductInstalled('genweb.robtheme'):
                     templates['1. DESTACATS'] += [['Rob Theme - Caixa amb llista - fons gris', absolute_url + '/templates/rob-theme-caixa-amb-llista-fons-gris/genweb.get.dxdocument.text', ''],
-                                                  ['Rob Theme - Caixa amb llista - fons verd', absolute_url
-                                                      + '/templates/rob-theme-caixa-amb-llista-fons-verd/genweb.get.dxdocument.text', ''],
-                                                  ['Rob Theme - Frase destacada', absolute_url
-                                                      + '/templates/rob-theme-frase-destacada/genweb.get.dxdocument.text', ''],
+                                                  ['Rob Theme - Caixa amb llista - fons verd', absolute_url + '/templates/rob-theme-caixa-amb-llista-fons-verd/genweb.get.dxdocument.text', ''],
+                                                  ['Rob Theme - Frase destacada', absolute_url + '/templates/rob-theme-frase-destacada/genweb.get.dxdocument.text', ''],
                                                   ['Rob Theme - Destacat amb imatge', absolute_url + '/templates/rob-theme-destacat-amb-imatge/genweb.get.dxdocument.text', '']]
 
                     templates['3. CONTINGUTS (TEXT, BOTONS, BÀNERS, LLISTATS)'] += [['Rob Theme - B\xc3\xa0ner gris amb icona Info', absolute_url + '/templates/rob-theme-baner-gris-amb-icona-info/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner blau amb icona Info', absolute_url
-                                                                                        + '/templates/rob-theme-baner-blau-amb-icona-info/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner blau', absolute_url
-                                                                                        + '/templates/rob-theme-baner-blau/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner gris', absolute_url
-                                                                                        + '/templates/rob-theme-baner-gris/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner vermell danger', absolute_url
-                                                                                        + '/templates/rob-theme-baner-vermell-danger/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner groc warning', absolute_url
-                                                                                        + '/templates/rob-theme-baner-groc-warning/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner verd success', absolute_url
-                                                                                        + '/templates/rob-theme-baner-verd-success/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - B\xc3\xa0ner amb imatge de fons', absolute_url
-                                                                                        + '/templates/rob-theme-baner-amb-imatge-de-fons/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - Llista amb subllista', absolute_url
-                                                                                        + '/templates/rob-theme-llista-amb-subllista/genweb.get.dxdocument.text', ''],
-                                                                                    ['Rob Theme - Llistat opcions amb icones lletres - 2 col', absolute_url
-                                                                                        + '/templates/rob-theme-llistat-opcions-amb-icones-lletres-2-col/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner blau amb icona Info', absolute_url + '/templates/rob-theme-baner-blau-amb-icona-info/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner blau', absolute_url + '/templates/rob-theme-baner-blau/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner gris', absolute_url + '/templates/rob-theme-baner-gris/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner vermell danger', absolute_url + '/templates/rob-theme-baner-vermell-danger/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner groc warning', absolute_url + '/templates/rob-theme-baner-groc-warning/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner verd success', absolute_url + '/templates/rob-theme-baner-verd-success/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - B\xc3\xa0ner amb imatge de fons', absolute_url + '/templates/rob-theme-baner-amb-imatge-de-fons/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - Llista amb subllista', absolute_url + '/templates/rob-theme-llista-amb-subllista/genweb.get.dxdocument.text', ''],
+                                                                                    ['Rob Theme - Llistat opcions amb icones lletres - 2 col', absolute_url + '/templates/rob-theme-llistat-opcions-amb-icones-lletres-2-col/genweb.get.dxdocument.text', ''],
                                                                                     ['Rob Theme - Conjunt imatge amb llista opcions - 3 col', absolute_url + '/templates/rob-theme-conjunt-imatge-amb-llista-opcions-3-col/genweb.get.dxdocument.text', '']]
 
                     templates['5. COMPOSICIONS'] += [['Rob Theme - Columna de suport', absolute_url + '/templates/rob-theme-columna-de-suport/genweb.get.dxdocument.text', ''],
-                                                     ['Rob Theme - Destacat amb dades num\xc3\xa8riques', absolute_url
-                                                         + '/templates/rob-theme-destacat-amb-dades-numeriques/genweb.get.dxdocument.text', ''],
+                                                     ['Rob Theme - Destacat amb dades num\xc3\xa8riques', absolute_url + '/templates/rob-theme-destacat-amb-dades-numeriques/genweb.get.dxdocument.text', ''],
                                                      ['Rob Theme - Graella d\'imatges amb enllaços', absolute_url + '/templates/rob-theme-graella-dimatges-amb-enllacos/genweb.get.dxdocument.text', '']]
 
-                    templates['6. AVANÇADES'] += [['Rob Theme - Acordi\xc3\xb3', absolute_url
-                                                   + '/templates/rob-theme-acordio/genweb.get.dxdocument.text', '']]
+                    templates['6. AVANÇADES'] += [['Rob Theme - Acordi\xc3\xb3', absolute_url + '/templates/rob-theme-acordio/genweb.get.dxdocument.text', '']]
 
         return u'var tinyMCETemplateList = %s;' % templates
 

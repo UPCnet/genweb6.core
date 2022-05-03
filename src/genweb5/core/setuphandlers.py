@@ -1,16 +1,10 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import INonInstallable
-from Products.CMFPlone.interfaces.controlpanel import ISiteSchema
 
-from plone import api
-from zope.interface import alsoProvides
 from zope.interface import implementer
 
-from genweb5.core.interfaces import IHomePage
-
 import logging
-import transaction
 
 
 PROFILE_ID = 'profile-genweb5.core:default'

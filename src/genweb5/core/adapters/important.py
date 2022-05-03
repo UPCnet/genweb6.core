@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.indexer import indexer
 from plone.dexterity.interfaces import IDexterityContent
+from plone.indexer import indexer
 from zope import schema
 from zope.annotation.interfaces import IAnnotations
 from zope.component import adapts

@@ -1,39 +1,41 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from OFS.interfaces import IApplication
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.utils import normalizeString
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin
 from Products.PortalTransforms.transforms.pdf_to_text import pdf_to_text
 
 from plone import api
 from plone.app.contenttypes.behaviors.richtext import IRichText
-from plone.app.contenttypes.interfaces import IFolder
-from plone.app.contenttypes.upgrades import use_new_view_names
-from plone.dexterity.content import Container
 from plone.dexterity.utils import createContentInContainer
 from plone.portlets.constants import CONTEXT_CATEGORY
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
-from plone.subrequest import subrequest
+from plone.registry.interfaces import IRegistry
+from plone.uuid import interfaces
+from plone.uuid.interfaces import IMutableUUID
+from plone.uuid.interfaces import IUUIDGenerator
+from repoze.catalog.query import Eq
 from souper.soup import get_soup
+from souper.soup import Record
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component import queryUtility
-from zope.interface import Interface
 from zope.interface import alsoProvides
 
 from genweb5.core import HAS_DXCT
-from genweb5.core import HAS_PAM
 from genweb5.core.browser.plantilles import get_plantilles
 from genweb5.core.interfaces import IHomePage
-from genweb5.core.utils import json_response
 
+import logging
+import os
 import pkg_resources
 import transaction
+
+logger = logging.getLogger(__name__)
+
 
 try:
     pkg_resources.get_distribution('plone4.csrffixes')
@@ -42,9 +44,6 @@ except pkg_resources.DistributionNotFound:
 else:
     from plone.protect.interfaces import IDisableCSRFProtection
     CSRF = True
-
-if HAS_PAM:
-    from plone.app.multilingual.browser.setup import SetupMultilingualSite
 
 
 class makeMeaHomePage(BrowserView):

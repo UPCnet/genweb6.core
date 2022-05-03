@@ -1,18 +1,10 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
-from Products.CMFCore.utils import getToolByName
 
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
-from plone.app.testing import applyProfile
 from plone.app.testing import login
-from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.portlets.interfaces import IPortletAssignmentMapping
-from plone.portlets.interfaces import IPortletManager
-from plone.testing.z2 import Browser
-from zope.component import getMultiAdapter
-from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb5.core.interfaces import IHomePage
@@ -20,7 +12,6 @@ from genweb5.core.interfaces import IHomePage
 from genweb5.core.testing import GENWEB_INTEGRATION_TESTING
 from genweb5.core.testing import GENWEB_FUNCTIONAL_TESTING
 
-import transaction
 import unittest2 as unittest
 
 

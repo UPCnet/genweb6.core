@@ -4,7 +4,6 @@ from mock import patch
 
 from genweb5.core.indicators import ClientException
 from genweb5.core.indicators import Registry
-from genweb5.core.indicators import RegistryException
 from genweb5.core.indicators import ReporterException
 from genweb5.core.indicators import WebServiceReporter
 

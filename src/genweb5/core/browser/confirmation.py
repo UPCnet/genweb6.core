@@ -14,8 +14,8 @@ try:
 except ImportError:
     from zope.component.hooks import getSite
 
-import unicodedata
 import transaction
+import unicodedata
 
 _ = MessageFactory('plone')
 

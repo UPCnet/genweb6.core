@@ -232,9 +232,7 @@ class Client(object):
             if 'application/json' in response.headers.get('Content-Type', ''):
                 try:
                     response_data = json.loads(response.text)
-                    if (type(response_data) is dict
-                            and 'message' in response_data
-                            and response_data['message']):
+                    if (type(response_data) is dict and 'message' in response_data and response_data['message']):
                         message += ': ' + response_data['message'].encode(
                             'utf-8')
                 except ValueError:

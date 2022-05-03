@@ -10,7 +10,6 @@ from zope.component import queryUtility
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.lifecycleevent.interfaces import IObjectCopiedEvent
-from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 
 try:
     from Acquisition import aq_base

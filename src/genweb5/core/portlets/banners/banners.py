@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
-from z3c.form import field
 from zope import schema
-from zope.component.hooks import getSite
-from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
-from zope.interface import Interface
 
 from genweb5.core import _
 from genweb5.core import utils

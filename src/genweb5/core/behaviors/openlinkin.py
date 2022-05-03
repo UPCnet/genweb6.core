@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from plone.supermodel import model
+from plone.app.contenttypes.interfaces import ILink
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
-from plone.app.contenttypes.interfaces import ILink
 from plone.indexer import indexer
+from plone.supermodel import model
 from zope import schema
 from zope.component import adapts
 from zope.interface import alsoProvides

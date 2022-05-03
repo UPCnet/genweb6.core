@@ -30,20 +30,20 @@ GENWEB_FIXTURE = Genweb5CoreLayer()
 
 
 GENWEB_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(GENWEB5_CORE_FIXTURE,),
+    bases=(GENWEB_FIXTURE,),
     name='Genweb5CoreLayer:IntegrationTesting',
 )
 
 
 GENWEB_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(GENWEB5_CORE_FIXTURE,),
+    bases=(GENWEB_FIXTURE,),
     name='Genweb5CoreLayer:FunctionalTesting',
 )
 
 
 GENWEB_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
-        GENWEB5_CORE_FIXTURE,
+        GENWEB_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
         z2.ZSERVER_FIXTURE,
     ),

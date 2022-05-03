@@ -1,25 +1,15 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser import BrowserView
-from Products.PlonePAS.plugins.ufactory import PloneUser
-from Products.PlonePAS.tools.memberdata import MemberData
 
 from plone import api
 from plone.memoize import ram
-from plone.registry.interfaces import IRegistry
-from plone.uuid.interfaces import IMutableUUID
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
-from repoze.catalog.query import Eq
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
-from souper.soup import Record
-from souper.soup import get_soup
-from zope.component import getMultiAdapter, queryUtility
-from zope.component import getUtilitiesFor
-from zope.component import getUtility
+from zope.component import getMultiAdapter
 from zope.component import provideUtility
 from zope.component.hooks import getSite
 from zope.i18nmessageid import MessageFactory
@@ -31,8 +21,6 @@ from genweb5.core import HAS_PAM
 import json
 import logging
 import requests
-import unicodedata
-import urllib.request as urllib2
 
 logger = logging.getLogger(__name__)
 

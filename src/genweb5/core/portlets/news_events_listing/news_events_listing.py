@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from calendar import monthrange
@@ -14,8 +13,6 @@ from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
-
-import re
 
 
 PLMF = MessageFactory('plonelocales')
@@ -191,8 +188,7 @@ class Renderer(base.Renderer):
     def next_month_url(self):
         now = self.date or self.now
         last_day = monthrange(now.year, now.month)[1]  # (wkday, days)
-        datestr = (now.replace(day=last_day)
-                   + timedelta(days=1)).date().isoformat()
+        datestr = (now.replace(day=last_day) + timedelta(days=1)).date().isoformat()
         return self._date_nav_url('month', datestr)
 
     @property

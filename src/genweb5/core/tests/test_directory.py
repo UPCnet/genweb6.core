@@ -1,22 +1,8 @@
 # -*- coding: utf-8 -*-
-from AccessControl import Unauthorized
-from Products.CMFCore.utils import getToolByName
-
 from plone import api
-from plone.app.testing import applyProfile
-from plone.app.testing import login
-from plone.app.testing import logout
-from plone.app.testing import setRoles
-from plone.app.testing import SITE_OWNER_NAME
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
-from plone.registry.interfaces import IRegistry
-from repoze.catalog.query import Contains
 from repoze.catalog.query import Eq
 from souper.soup import get_soup
-from souper.soup import Record
 from zope.component import getMultiAdapter
-from zope.component import queryUtility
 
 from genweb5.core.testing import GENWEB_INTEGRATION_TESTING
 

@@ -2,10 +2,8 @@
 from Products.Five.browser import BrowserView
 
 from plone import api
-from plone.app.layout.viewlets.interfaces import IPortalFooter
 from plone.memoize.view import memoize_contextless
 from zope.interface import implementer
-from zope.interface import Interface
 from zope.viewlet.interfaces import IViewlet
 
 from genweb5.core import _
@@ -50,5 +48,4 @@ class logosFooterViewlet(viewletBase):
         """ Funcio que extreu idioma actiu i afegeix al alt i al title de les imatges del banner
             el literal Obriu l'enllac en una finestra nova.
         """
-        return '%s, %s' % (altortitle,
-            self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))
+        return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 from Products.PlonePAS.interfaces.group import IGroupManagement
 from Products.PluggableAuthService.interfaces.plugins import IUserAdderPlugin
@@ -8,7 +7,6 @@ from Products.PluggableAuthService.interfaces.plugins import IUserAdderPlugin
 from plone import api
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
-from zope.interface import Interface
 
 from genweb5.core.interfaces import IHomePage
 
@@ -154,9 +152,8 @@ class setupLDAPExterns(BrowserView):
                                            rdn_attr='cn', LDAP_server='ldap.upcnet.es', encryption='SSHA')
 
             portal.acl_users.ldapexterns.acl_users.manage_edit('ldapexterns', 'cn', 'cn', 'ou=users,ou=' + branch + ',dc=upcnet,dc=es', 2, 'Authenticated,Member',
-                                                               'ou=groups,ou=' + branch + ',dc=upcnet,dc=es', 2, 'cn=ldap,ou='
-                                                               + branch + ',dc=upcnet,dc=es', LDAP_PASSWORD, 1, 'cn',
-                                                               'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
+                                                               'ou=groups,ou=' + branch + ',dc=upcnet,dc=es', 2, 'cn=ldap,ou=' + branch + ',dc=upcnet,dc=es',
+                                                               LDAP_PASSWORD, 1, 'cn', 'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
 
             plugin = portal.acl_users['ldapexterns']
 

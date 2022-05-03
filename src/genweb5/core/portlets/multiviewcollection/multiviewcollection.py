@@ -1,23 +1,17 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from plone import api
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import CatalogSource
-from plone.app.vocabularies.catalog import SearchableTextSourceBinder
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
-from plone.portlets.interfaces import IPortletManager
-from plone.portlets.interfaces import IPortletRetriever
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-from zope.formlib import form
 from zope.interface import implementer
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary

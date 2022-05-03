@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from DateTime.DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from DateTime.DateTime import DateTime
 
 from plone import api
 from plone.app.event.base import get_events

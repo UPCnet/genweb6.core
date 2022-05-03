@@ -64,7 +64,7 @@ class TestRegistry(unittest.TestCase):
 
     def test_load_from_file_path_should_raise_error_if_invalid_file(self):
         registry = Registry('context')
-        with self.assertRaises(ScannerError) as context:
+        with self.assertRaises(ScannerError) as self.context:
             registry._load_from_file_path(
                 os.path.join(
                     os.path.dirname(os.path.realpath(__file__)),

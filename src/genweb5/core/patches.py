@@ -1,50 +1,31 @@
 # -*- coding: utf-8 -*-
-from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from BTrees.OOBTree import OOBTree
-from Products.CMFCore.MemberDataTool import MemberData as BaseMemberData
-from Products.CMFCore.permissions import ManageUsers
-from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.interfaces import IPloneSiteRoot
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
 from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
-from Products.PluggableAuthService.PropertiedUser import PropertiedUser
 
-from io import StringIO
-from plone import api
-from plone.app.content.browser.folderfactories import _allowedTypes
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.textfield.value import IRichTextValue
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
-from plone.memoize.instance import memoize
-from pyquery import PyQuery as pq
 from urllib.parse import quote_plus
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.event import notify
-from zope.i18n import translate
 
 from genweb5.core.utils import pref_lang
-from genweb5.core.utils import portal_url
 
-import json
-import mimetypes
-import pkg_resources
-import unicodedata
-import inspect
 import logging
-import requests
 import six
 
 try:
@@ -82,7 +63,7 @@ def generate_user_id(self, data):
     return default
 
 
-def setMemberProperties(self, mapping, force_local=0):
+def setMemberProperties(self, mapping, force_local=0, force_empty=False):
     """PAS-specific method to set the properties of a
     member. Ignores 'force_local', which is not reliably present.
     """
@@ -428,7 +409,6 @@ def chooseName(self, name, obj):
 
     if not isinstance(name, six.text_type):
         name = six.text_type(name, 'utf-8')
-        #name = name.encode('utf-8')
 
     request = getattr(obj.__of__(container), 'REQUEST', None)
     if request is not None:
@@ -520,7 +500,8 @@ def sitemapObjects(self):
         if default_modified is not None:
             modified = max(modified, default_modified)
         lastmod = modified[1]
-
+        if item.portal_type in typesUseViewActionInListings:
+            loc += "/view"
         yield {
             'loc': loc,
             'lastmod': lastmod,

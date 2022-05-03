@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
 from plone.portlet.collection.collection import Renderer as CollectionRenderer
 
