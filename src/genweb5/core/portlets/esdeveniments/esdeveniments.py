@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_inner
 from DateTime.DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from datetime import date
@@ -130,8 +128,7 @@ class Renderer(base.Renderer):
             url=event.absolute_url())
 
     def get_month_name(self, month, month_format=''):
-        context = aq_inner(self.context)
-        self._ts = getToolByName(context, 'translation_service')
+        self._ts = api.portal.get_tool(name='translation_service')
         return PLMF(self._ts.month_msgid(int(month), format=month_format),
                     default=self._ts.month_english(int(month)))
 
@@ -155,8 +152,7 @@ class Renderer(base.Renderer):
 
     @memoize
     def _data(self):
-        context = aq_inner(self.context)
-        catalog = getToolByName(context, 'portal_catalog')
+        catalog = api.portal.get_tool(name='portal_catalog')
         limit = self.data.count
         state = self.data.state
 

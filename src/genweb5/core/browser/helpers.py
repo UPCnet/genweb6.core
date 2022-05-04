@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from OFS.interfaces import IFolder
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
 from Products.Five.browser import BrowserView
@@ -16,6 +15,10 @@ from souper.soup import get_soup
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 
+from genweb5.core import HAS_PAM
+from genweb5.core.interfaces import IProtectedContent
+from genweb5.core.utils import json_response
+
 import json
 import logging
 import os
@@ -23,9 +26,6 @@ import pkg_resources
 import re
 import urllib
 
-from genweb5.core import HAS_PAM
-from genweb5.core.interfaces import IProtectedContent
-from genweb5.core.utils import json_response
 
 logger = logging.getLogger(__name__)
 
@@ -50,28 +50,15 @@ else:
     CSRF = True
 
 
-def setupInstallProfile(profileid, steps=None):
-    """Installs the generic setup profile identified by ``profileid``.
-    If a list step names is passed with ``steps`` (e.g. ['actions']),
-    only those steps are installed. All steps are installed by default.
-    """
-    setup = api.portal.get_tool('portal_setup')
-    if steps is None:
-        setup.runAllImportStepsFromProfile(profileid, purge_old=False)
-    else:
-        for step in steps:
-            setup.runImportStepFromProfile(profileid,
-                                           step,
-                                           run_dependencies=False,
-                                           purge_old=False)
-
-
 class debug(BrowserView):
-    """ Convenience view for faster debugging. Needs to be manager. """
+    """
+        Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
+    """
 
     def __call__(self):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
+
         context = aq_inner(self.context)
         # Magic Victor debug view do not delete!
         import ipdb
@@ -79,15 +66,18 @@ class debug(BrowserView):
 
 
 class monitoringView(BrowserView):
-    """ Convenience view for monitoring software """
+    """
+        Vista de comoditat per al programari de monitorització
+    """
 
     def __call__(self):
         return '1'
 
 
 class protectContent(BrowserView):
-    """ Makes the context a content protected. It could only be deleted by
-        managers.
+    """
+        Fa que el context sigui un contingut protegit.
+        Només els gestors poden suprimir-lo.
     """
 
     def __call__(self):
@@ -98,7 +88,9 @@ class protectContent(BrowserView):
 
 
 class instanceindevelmode(BrowserView):
-    """ This instance is in development mode """
+    """
+        Posa aquesta instància en mode de desenvolupament
+    """
 
     __allow_access_to_unprotected_subobjects__ = True
 
@@ -106,13 +98,11 @@ class instanceindevelmode(BrowserView):
         return api.env.debug_mode()
 
 
-def getDorsal():
-    """ Returns Zeo dorsal """
-    return os.environ.get('dorsal', False)
-
-
 def listPloneSites(zope):
-    """ List the available plonesites to be used by other function """
+    """
+        Llista els plonesites disponibles
+    """
+
     out = []
     for item in zope.values():
         if IFolder.providedBy(item) and not IPloneSiteRoot.providedBy(item):
@@ -125,15 +115,17 @@ def listPloneSites(zope):
 
 
 class getZEO(BrowserView):
-    """ [DEPRECATED] Redirect to get_zope """
+    """
+        [DEPRECATED] Rederigeix a get_zope
+    """
 
     def __call__(self):
         self.request.response.redirect('get_zope')
 
 
 class getZOPE(BrowserView):
-    """ This view is used to know the dorsal (the Genweb enviroment) assigned to
-        this instance.
+    """
+        Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
     """
 
     def dorsal(self):
@@ -147,7 +139,9 @@ class getZOPE(BrowserView):
 
 
 class listPloneSitesView(BrowserView):
-    """ Returns a list with the available plonesites in this Zope """
+    """
+        Retorna una llista amb els plonesites disponibles en aquest Zope
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
@@ -161,67 +155,78 @@ class listPloneSitesView(BrowserView):
 
 
 class getFlavourSitesView(BrowserView):
-    """ Returns the last layer installed for each plonesite """
+    """
+        Retorna l'última capa instal·lada per a cada plonesite
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
+        portal_skins = api.portal.get_tool(name='portal_skins')
         for plonesite in plonesites:
-            portal_skins = getToolByName(plonesite, 'portal_skins')
             out[plonesite.id] = portal_skins.getDefaultSkin()
         return json.dumps(out)
 
 
 class getFlavourSiteView(BrowserView):
-    """ Returns the last layer installed in this plonesite """
+    """
+        Retorna l'última capa instal·lada en aquest lloc
+    """
 
     def __call__(self):
-        context = aq_inner(self.context)
-        portal_skins = getToolByName(context, 'portal_skins')
+        portal_skins = api.portal.get_tool(name='portal_skins')
         return portal_skins.getDefaultSkin()
 
 
 class getLanguagesSitesView(BrowserView):
-    """ Returns the last layer installed in this plonesite """
-
+    """
+        Retorna els idiomes soportats per a cada lloc
+    """
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
+        portal_languages = api.portal.get_tool(name='portal_languages')
         for plonesite in plonesites:
-            portal_languages = getToolByName(plonesite, 'portal_languages')
             out[plonesite.id] = portal_languages.getSupportedLanguages()
         return json.dumps(out)
 
 
 class getDefaultLanguageSitesView(BrowserView):
-    """ Returns default language for each plonesite """
+    """
+        Retorna l'idioma predeterminat per a cada lloc
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
+        portal_languages = api.portal.get_tool(name='portal_languages')
         for plonesite in plonesites:
-            portal_languages = getToolByName(plonesite, 'portal_languages')
             out[plonesite.id] = portal_languages.getDefaultLanguage()
         return json.dumps(out)
 
 
 class getDefaultWFSitesView(BrowserView):
-    """ Returns default workflow for each plonesite """
+    """
+        Retorna el workflow predeterminat per a cada lloc
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
+        portal_workflow = api.portal.get_tool(name='portal_workflow')
         for plonesite in plonesites:
-            portal_workflow = getToolByName(plonesite, 'portal_workflow')
             out[plonesite.id] = portal_workflow.getDefaultChain()
         return json.dumps(out)
 
 
 class mirrorUIDs(BrowserView):
+    """
+        mirrorUIDs
+    """
 
     def __call__(self):
         portal = self.context
@@ -254,6 +259,9 @@ class mirrorUIDs(BrowserView):
 
 
 class mirrorStates(BrowserView):
+    """
+        mirrorStates
+    """
 
     def __call__(self):
         portal = self.context
@@ -298,7 +306,13 @@ class mirrorStates(BrowserView):
 
 
 class bulkExecuteScriptView(BrowserView):
-    """ Execute one action view in all instances passed as a form parameter """
+    """
+        Executeu una vista en totes les instancies
+
+        Paràmetre:
+        - view: vista a executar
+        - exclude_sites: sites a excluir, ex: Plone
+    """
 
     def __call__(self):
         if CSRF:
@@ -325,8 +339,11 @@ class bulkExecuteScriptView(BrowserView):
 
 class notSubProcessedBulkExecuteScriptView(BrowserView):
     """
-        Execute one action view in all instances passed as a form parameter used
-        only in case that something does not work making a subrequest!
+        Executeu una vista en totes les instancies, utilitzat només
+        en cas que alguna cosa no funcioni fent una subrequest!
+
+        Paràmetre:
+        - view: vista a executar
     """
 
     def __call__(self):
@@ -344,7 +361,9 @@ class notSubProcessedBulkExecuteScriptView(BrowserView):
 
 
 class ExportGWConfig(BrowserView):
-    """ ExportGWConfig """
+    """
+        ExportGWConfig
+        """
 
     def render(self):
         portal = api.portal.get()
@@ -365,7 +384,7 @@ class ExportGWConfig(BrowserView):
 
 class ChangeEventsView(BrowserView):
     """
-        Execute one action view in all instances
+        Canvia la vista per defecte dels directoris d'esdeveniments
     """
 
     def __call__(self, portal=None):
@@ -387,7 +406,7 @@ class ChangeEventsView(BrowserView):
 
 # class ChangeTinyCSS(BrowserView):
 #     """
-#         Execute one action view in all instances
+#         Canvia la url dels css del TinyMCE
 #     """
 #
 #     def __call__(self, portal=None):
@@ -399,14 +418,16 @@ class ChangeEventsView(BrowserView):
 
 
 class listLDAPInfo(BrowserView):
-    """ List LDAP info for each plonesite """
+    """
+        Llista l'informació del LDAP de cada plonesite
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
+        acl_users = api.portal.get_tool(name='acl_users')
         for plonesite in plonesites:
-            acl_users = getToolByName(plonesite, 'acl_users')
             try:
                 out[plonesite.id] = acl_users.ldapUPC.acl_users.getServers()
             except:
@@ -416,7 +437,9 @@ class listLDAPInfo(BrowserView):
 
 
 class listLastLogin(BrowserView):
-    """ List the last_login information for all the users in this site. """
+    """
+        Llista la informació last_login per a tots els usuaris
+    """
 
     def __call__(self):
         pmd = api.portal.get_tool(name='portal_memberdata')
@@ -435,7 +458,9 @@ class listLastLogin(BrowserView):
 
 
 class getRenderedStylesheets(BrowserView):
-    """ List the location information for each stylesheet in this site. """
+    """
+        Llista l'informació d'ubicació de cada full d'estil
+    """
 
     @json_response
     def __call__(self):
@@ -493,7 +518,9 @@ class getRenderedStylesheets(BrowserView):
 
 
 class checkCacheSettings(BrowserView):
-    """ Check cache settings """
+    """
+        Comproba la configuració de la caché
+    """
 
     def __call__(self, portal=None):
         if not portal:
@@ -503,7 +530,9 @@ class checkCacheSettings(BrowserView):
 
 
 class listDomaninsCache(BrowserView):
-    """ Get domains from plone.app.caching """
+    """
+        Retorna els dominis de plone.app.caching
+    """
 
     def __call__(self, portal=None):
         if CSRF:
@@ -522,7 +551,9 @@ class listDomaninsCache(BrowserView):
 
 
 class getContactData(BrowserView):
-    """ Get Contact data from all instances """
+    """
+        Retorna les dades de contacte
+    """
 
     def __call__(self, portal=None):
         portal = api.portal.get()
@@ -534,249 +565,253 @@ class getContactData(BrowserView):
         return (path, host, name, email)
 
 
-class getConfigGenwebControlPanelSettings(BrowserView):
-    """Recordar afegir nous camps quan s'actualitzi el genweb upc ctrlpanel"""
+# class getConfigGenwebControlPanelSettings(BrowserView):
+#     """
+#         Retorna tota la informació del controlpanel
+#     """
 
-    def __call__(self, portal=None):
-        from genweb5.controlpanel.interface import IGenwebControlPanelSettings
-        from Products.CMFPlone.interfaces.controlpanel import ISiteSchema
-        import unicodedata
-        import types
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
-        portal = api.portal.get()
-        mail = IMailSchema(portal)
-        name = mail.email_from_name
-        if name is not None:
-            name = unicodedata.normalize(
-                'NFKD', name).encode('utf-8', errors='ignore')
-        email = mail.email_from_address
-        site = ISiteSchema(portal)
-        ga = '\n'.join(site.webstats_js)
-        if ga is not '':
-            ga = unicodedata.normalize('NFKD', ga).encode(
-                'utf-8', errors='ignore')
-        registry = queryUtility(IRegistry)
-        gwcps = registry.forInterface(IGenwebControlPanelSettings)
+#     def __call__(self, portal=None):
+#         from genweb5.controlpanel.interface import IGenwebControlPanelSettings
+#         from Products.CMFPlone.interfaces.controlpanel import ISiteSchema
+#         import unicodedata
+#         import types
+#         if CSRF:
+#             alsoProvides(self.request, IDisableCSRFProtection)
+#         portal = api.portal.get()
+#         mail = IMailSchema(portal)
+#         name = mail.email_from_name
+#         if name is not None:
+#             name = unicodedata.normalize(
+#                 'NFKD', name).encode('utf-8', errors='ignore')
+#         email = mail.email_from_address
+#         site = ISiteSchema(portal)
+#         ga = '\n'.join(site.webstats_js)
+#         if ga is not '':
+#             ga = unicodedata.normalize('NFKD', ga).encode(
+#                 'utf-8', errors='ignore')
+#         registry = queryUtility(IRegistry)
+#         gwcps = registry.forInterface(IGenwebControlPanelSettings)
 
-        html_title_ca = gwcps.html_title_ca
-        if html_title_ca is not None and type(html_title_ca) != types.BooleanType:
-            html_title_ca = unicodedata.normalize(
-                'NFKD', gwcps.html_title_ca).encode('utf-8', errors='ignore')
-        html_title_es = gwcps.html_title_es
-        if html_title_es is not None and type(html_title_es) != types.BooleanType:
-            html_title_es = unicodedata.normalize(
-                'NFKD', gwcps.html_title_es).encode('utf-8', errors='ignore')
-        html_title_en = gwcps.html_title_en
-        if html_title_en is not None and type(html_title_en) != types.BooleanType:
-            html_title_en = unicodedata.normalize(
-                'NFKD', gwcps.html_title_en).encode('utf-8', errors='ignore')
-        signatura_unitat_ca = gwcps.signatura_unitat_ca
-        if signatura_unitat_ca is not None and type(signatura_unitat_ca) != types.BooleanType:
-            signatura_unitat_ca = unicodedata.normalize(
-                'NFKD', gwcps.signatura_unitat_ca).encode('utf-8', errors='ignore')
-        signatura_unitat_es = gwcps.signatura_unitat_es
-        if signatura_unitat_es is not None and type(signatura_unitat_es) != types.BooleanType:
-            signatura_unitat_es = unicodedata.normalize(
-                'NFKD', gwcps.signatura_unitat_es).encode('utf-8', errors='ignore')
-        signatura_unitat_en = gwcps.signatura_unitat_en
-        if signatura_unitat_en is not None and type(signatura_unitat_en) != types.BooleanType:
-            signatura_unitat_en = unicodedata.normalize(
-                'NFKD', gwcps.signatura_unitat_en).encode('utf-8', errors='ignore')
-        right_logo_enabled = gwcps.right_logo_enabled
-        if right_logo_enabled is not None and type(right_logo_enabled) != types.BooleanType:
-            right_logo_enabled = unicodedata.normalize(
-                'NFKD', gwcps.right_logo_enabled).encode('utf-8', errors='ignore')
-        right_logo_alt = gwcps.right_logo_alt
-        if right_logo_alt is not None and type(right_logo_alt) != types.BooleanType:
-            right_logo_alt = unicodedata.normalize(
-                'NFKD', gwcps.right_logo_alt).encode('utf-8', errors='ignore')
-        meta_author = gwcps.meta_author
-        if meta_author is not None and type(meta_author) != types.BooleanType:
-            meta_author = unicodedata.normalize(
-                'NFKD', gwcps.meta_author).encode('utf-8', errors='ignore')
-        contacte_id = gwcps.contacte_id
-        if contacte_id is not None and type(contacte_id) != types.BooleanType:
-            contacte_id = unicodedata.normalize(
-                'NFKD', gwcps.contacte_id).encode('utf-8', errors='ignore')
-        contacte_BBDD_or_page = gwcps.contacte_BBDD_or_page
-        if contacte_BBDD_or_page is not None and type(contacte_BBDD_or_page) != types.BooleanType:
-            contacte_BBDD_or_page = unicodedata.normalize(
-                'NFKD', gwcps.contacte_BBDD_or_page).encode('utf-8', errors='ignore')
-        contacte_al_peu = gwcps.contacte_al_peu
-        if contacte_al_peu is not None and type(contacte_al_peu) != types.BooleanType:
-            contacte_al_peu = unicodedata.normalize(
-                'NFKD', gwcps.contacte_al_peu).encode('utf-8', errors='ignore')
-        directori_upc = gwcps.directori_upc
-        if directori_upc is not None and type(directori_upc) != types.BooleanType:
-            directori_upc = unicodedata.normalize(
-                'NFKD', gwcps.directori_upc).encode('utf-8', errors='ignore')
-        directori_filtrat = gwcps.directori_filtrat
-        if directori_filtrat is not None and type(directori_filtrat) != types.BooleanType:
-            directori_filtrat = unicodedata.normalize(
-                'NFKD', gwcps.directori_filtrat).encode('utf-8', errors='ignore')
-        contacte_no_upcmaps = gwcps.contacte_no_upcmaps
-        if contacte_no_upcmaps is not None and type(contacte_no_upcmaps) != types.BooleanType:
-            contacte_no_upcmaps = unicodedata.normalize(
-                'NFKD', gwcps.contacte_no_upcmaps).encode('utf-8', errors='ignore')
-        contacte_multi_email = gwcps.contacte_multi_email
-        if contacte_multi_email is not None and type(contacte_multi_email) != types.BooleanType:
-            contacte_multi_email = unicodedata.normalize(
-                'NFKD', gwcps.contacte_multi_email).encode('utf-8', errors='ignore')
-        contact_emails_table = gwcps.contact_emails_table
-        especific1 = gwcps.especific1
-        if especific1 is not None and type(especific1) != types.BooleanType:
-            especific1 = unicodedata.normalize(
-                'NFKD', gwcps.especific1).encode('utf-8', errors='ignore')
-        especific2 = gwcps.especific2
-        if especific2 is not None and type(especific2) != types.BooleanType:
-            especific2 = unicodedata.normalize(
-                'NFKD', gwcps.especific2).encode('utf-8', errors='ignore')
-        treu_imatge_capsalera = gwcps.treu_imatge_capsalera
-        if treu_imatge_capsalera is not None and type(treu_imatge_capsalera) != types.BooleanType:
-            treu_imatge_capsalera = unicodedata.normalize(
-                'NFKD', gwcps.treu_imatge_capsalera).encode('utf-8', errors='ignore')
-        treu_menu_horitzontal = gwcps.treu_menu_horitzontal
-        if treu_menu_horitzontal is not None and type(treu_menu_horitzontal) != types.BooleanType:
-            treu_menu_horitzontal = unicodedata.normalize(
-                'NFKD', gwcps.treu_menu_horitzontal).encode('utf-8', errors='ignore')
-        treu_icones_xarxes_socials = gwcps.treu_icones_xarxes_socials
-        if treu_icones_xarxes_socials is not None and type(treu_icones_xarxes_socials) != types.BooleanType:
-            treu_icones_xarxes_socials = unicodedata.normalize(
-                'NFKD', gwcps.treu_icones_xarxes_socials).encode('utf-8', errors='ignore')
-        amaga_identificacio = gwcps.amaga_identificacio
-        if amaga_identificacio is not None and type(amaga_identificacio) != types.BooleanType:
-            amaga_identificacio = unicodedata.normalize(
-                'NFKD', gwcps.amaga_identificacio).encode('utf-8', errors='ignore')
-        idiomes_publicats = gwcps.idiomes_publicats
-        languages_link_to_root = gwcps.languages_link_to_root
-        if languages_link_to_root is not None and type(languages_link_to_root) != types.BooleanType:
-            languages_link_to_root = unicodedata.normalize(
-                'NFKD', gwcps.languages_link_to_root).encode('utf-8', errors='ignore')
-        idestudi_master = gwcps.idestudi_master
-        if idestudi_master is not None and type(idestudi_master) != types.BooleanType:
-            idestudi_master = unicodedata.normalize(
-                'NFKD', gwcps.idestudi_master).encode('utf-8', errors='ignore')
-        create_packet = gwcps.create_packet
-        if create_packet is not None and type(create_packet) != types.BooleanType:
-            create_packet = unicodedata.normalize(
-                'NFKD', gwcps.create_packet).encode('utf-8', errors='ignore')
-        cl_title_ca = gwcps.cl_title_ca
-        if cl_title_ca is not None and type(cl_title_ca) != types.BooleanType:
-            cl_title_ca = unicodedata.normalize(
-                'NFKD', gwcps.cl_title_ca).encode('utf-8', errors='ignore')
-        cl_url_ca = gwcps.cl_url_ca
-        cl_img_ca = gwcps.cl_img_ca
-        if cl_img_ca is not None and type(cl_img_ca) != types.BooleanType:
-            cl_img_ca = unicodedata.normalize(
-                'NFKD', gwcps.cl_img_ca).encode('utf-8', errors='ignore')
-        cl_open_new_window_ca = gwcps.cl_open_new_window_ca
-        if cl_open_new_window_ca is not None and type(cl_open_new_window_ca) != types.BooleanType:
-            cl_open_new_window_ca = unicodedata.normalize(
-                'NFKD', gwcps.cl_open_new_window_ca).encode('utf-8', errors='ignore')
-        cl_enable_ca = gwcps.cl_enable_ca
-        if cl_enable_ca is not None and type(cl_enable_ca) != types.BooleanType:
-            cl_enable_ca = unicodedata.normalize(
-                'NFKD', gwcps.cl_enable_ca).encode('utf-8', errors='ignore')
-        cl_title_es = gwcps.cl_title_es
-        if cl_title_es is not None and type(cl_title_es) != types.BooleanType:
-            cl_title_es = unicodedata.normalize(
-                'NFKD', gwcps.cl_title_es).encode('utf-8', errors='ignore')
-        cl_url_es = gwcps.cl_url_es
-        cl_img_es = gwcps.cl_img_es
-        if cl_img_es is not None and type(cl_img_es) != types.BooleanType:
-            cl_img_es = unicodedata.normalize(
-                'NFKD', gwcps.cl_img_es).encode('utf-8', errors='ignore')
-        cl_open_new_window_es = gwcps.cl_open_new_window_es
-        if cl_open_new_window_es is not None and type(cl_open_new_window_es) != types.BooleanType:
-            cl_open_new_window_es = unicodedata.normalize(
-                'NFKD', gwcps.cl_open_new_window_es).encode('utf-8', errors='ignore')
-        cl_enable_es = gwcps.cl_enable_es
-        if cl_enable_es is not None and type(cl_enable_es) != types.BooleanType:
-            cl_enable_es = unicodedata.normalize(
-                'NFKD', gwcps.cl_enable_es).encode('utf-8', errors='ignore')
-        cl_title_en = gwcps.cl_title_en
-        if cl_title_en is not None and type(cl_title_en) != types.BooleanType:
-            cl_title_en = unicodedata.normalize(
-                'NFKD', gwcps.cl_title_en).encode('utf-8', errors='ignore')
-        cl_url_en = gwcps.cl_url_en
-        cl_img_en = gwcps.cl_img_en
-        if cl_img_en is not None and type(cl_img_en) != types.BooleanType:
-            cl_img_en = unicodedata.normalize(
-                'NFKD', gwcps.cl_img_en).encode('utf-8', errors='ignore')
-        cl_open_new_window_en = gwcps.cl_open_new_window_en
-        if cl_open_new_window_en is not None and type(cl_open_new_window_en) != types.BooleanType:
-            cl_open_new_window_en = unicodedata.normalize(
-                'NFKD', gwcps.cl_open_new_window_en).encode('utf-8', errors='ignore')
-        cl_enable_en = gwcps.cl_enable_en
-        if cl_enable_en is not None and type(cl_enable_en) != types.BooleanType:
-            cl_enable_en = unicodedata.normalize(
-                'NFKD', gwcps.cl_enable_en).encode('utf-8', errors='ignore')
+#         html_title_ca = gwcps.html_title_ca
+#         if html_title_ca is not None and type(html_title_ca) != types.BooleanType:
+#             html_title_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.html_title_ca).encode('utf-8', errors='ignore')
+#         html_title_es = gwcps.html_title_es
+#         if html_title_es is not None and type(html_title_es) != types.BooleanType:
+#             html_title_es = unicodedata.normalize(
+#                 'NFKD', gwcps.html_title_es).encode('utf-8', errors='ignore')
+#         html_title_en = gwcps.html_title_en
+#         if html_title_en is not None and type(html_title_en) != types.BooleanType:
+#             html_title_en = unicodedata.normalize(
+#                 'NFKD', gwcps.html_title_en).encode('utf-8', errors='ignore')
+#         signatura_unitat_ca = gwcps.signatura_unitat_ca
+#         if signatura_unitat_ca is not None and type(signatura_unitat_ca) != types.BooleanType:
+#             signatura_unitat_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.signatura_unitat_ca).encode('utf-8', errors='ignore')
+#         signatura_unitat_es = gwcps.signatura_unitat_es
+#         if signatura_unitat_es is not None and type(signatura_unitat_es) != types.BooleanType:
+#             signatura_unitat_es = unicodedata.normalize(
+#                 'NFKD', gwcps.signatura_unitat_es).encode('utf-8', errors='ignore')
+#         signatura_unitat_en = gwcps.signatura_unitat_en
+#         if signatura_unitat_en is not None and type(signatura_unitat_en) != types.BooleanType:
+#             signatura_unitat_en = unicodedata.normalize(
+#                 'NFKD', gwcps.signatura_unitat_en).encode('utf-8', errors='ignore')
+#         right_logo_enabled = gwcps.right_logo_enabled
+#         if right_logo_enabled is not None and type(right_logo_enabled) != types.BooleanType:
+#             right_logo_enabled = unicodedata.normalize(
+#                 'NFKD', gwcps.right_logo_enabled).encode('utf-8', errors='ignore')
+#         right_logo_alt = gwcps.right_logo_alt
+#         if right_logo_alt is not None and type(right_logo_alt) != types.BooleanType:
+#             right_logo_alt = unicodedata.normalize(
+#                 'NFKD', gwcps.right_logo_alt).encode('utf-8', errors='ignore')
+#         meta_author = gwcps.meta_author
+#         if meta_author is not None and type(meta_author) != types.BooleanType:
+#             meta_author = unicodedata.normalize(
+#                 'NFKD', gwcps.meta_author).encode('utf-8', errors='ignore')
+#         contacte_id = gwcps.contacte_id
+#         if contacte_id is not None and type(contacte_id) != types.BooleanType:
+#             contacte_id = unicodedata.normalize(
+#                 'NFKD', gwcps.contacte_id).encode('utf-8', errors='ignore')
+#         contacte_BBDD_or_page = gwcps.contacte_BBDD_or_page
+#         if contacte_BBDD_or_page is not None and type(contacte_BBDD_or_page) != types.BooleanType:
+#             contacte_BBDD_or_page = unicodedata.normalize(
+#                 'NFKD', gwcps.contacte_BBDD_or_page).encode('utf-8', errors='ignore')
+#         contacte_al_peu = gwcps.contacte_al_peu
+#         if contacte_al_peu is not None and type(contacte_al_peu) != types.BooleanType:
+#             contacte_al_peu = unicodedata.normalize(
+#                 'NFKD', gwcps.contacte_al_peu).encode('utf-8', errors='ignore')
+#         directori_upc = gwcps.directori_upc
+#         if directori_upc is not None and type(directori_upc) != types.BooleanType:
+#             directori_upc = unicodedata.normalize(
+#                 'NFKD', gwcps.directori_upc).encode('utf-8', errors='ignore')
+#         directori_filtrat = gwcps.directori_filtrat
+#         if directori_filtrat is not None and type(directori_filtrat) != types.BooleanType:
+#             directori_filtrat = unicodedata.normalize(
+#                 'NFKD', gwcps.directori_filtrat).encode('utf-8', errors='ignore')
+#         contacte_no_upcmaps = gwcps.contacte_no_upcmaps
+#         if contacte_no_upcmaps is not None and type(contacte_no_upcmaps) != types.BooleanType:
+#             contacte_no_upcmaps = unicodedata.normalize(
+#                 'NFKD', gwcps.contacte_no_upcmaps).encode('utf-8', errors='ignore')
+#         contacte_multi_email = gwcps.contacte_multi_email
+#         if contacte_multi_email is not None and type(contacte_multi_email) != types.BooleanType:
+#             contacte_multi_email = unicodedata.normalize(
+#                 'NFKD', gwcps.contacte_multi_email).encode('utf-8', errors='ignore')
+#         contact_emails_table = gwcps.contact_emails_table
+#         especific1 = gwcps.especific1
+#         if especific1 is not None and type(especific1) != types.BooleanType:
+#             especific1 = unicodedata.normalize(
+#                 'NFKD', gwcps.especific1).encode('utf-8', errors='ignore')
+#         especific2 = gwcps.especific2
+#         if especific2 is not None and type(especific2) != types.BooleanType:
+#             especific2 = unicodedata.normalize(
+#                 'NFKD', gwcps.especific2).encode('utf-8', errors='ignore')
+#         treu_imatge_capsalera = gwcps.treu_imatge_capsalera
+#         if treu_imatge_capsalera is not None and type(treu_imatge_capsalera) != types.BooleanType:
+#             treu_imatge_capsalera = unicodedata.normalize(
+#                 'NFKD', gwcps.treu_imatge_capsalera).encode('utf-8', errors='ignore')
+#         treu_menu_horitzontal = gwcps.treu_menu_horitzontal
+#         if treu_menu_horitzontal is not None and type(treu_menu_horitzontal) != types.BooleanType:
+#             treu_menu_horitzontal = unicodedata.normalize(
+#                 'NFKD', gwcps.treu_menu_horitzontal).encode('utf-8', errors='ignore')
+#         treu_icones_xarxes_socials = gwcps.treu_icones_xarxes_socials
+#         if treu_icones_xarxes_socials is not None and type(treu_icones_xarxes_socials) != types.BooleanType:
+#             treu_icones_xarxes_socials = unicodedata.normalize(
+#                 'NFKD', gwcps.treu_icones_xarxes_socials).encode('utf-8', errors='ignore')
+#         amaga_identificacio = gwcps.amaga_identificacio
+#         if amaga_identificacio is not None and type(amaga_identificacio) != types.BooleanType:
+#             amaga_identificacio = unicodedata.normalize(
+#                 'NFKD', gwcps.amaga_identificacio).encode('utf-8', errors='ignore')
+#         idiomes_publicats = gwcps.idiomes_publicats
+#         languages_link_to_root = gwcps.languages_link_to_root
+#         if languages_link_to_root is not None and type(languages_link_to_root) != types.BooleanType:
+#             languages_link_to_root = unicodedata.normalize(
+#                 'NFKD', gwcps.languages_link_to_root).encode('utf-8', errors='ignore')
+#         idestudi_master = gwcps.idestudi_master
+#         if idestudi_master is not None and type(idestudi_master) != types.BooleanType:
+#             idestudi_master = unicodedata.normalize(
+#                 'NFKD', gwcps.idestudi_master).encode('utf-8', errors='ignore')
+#         create_packet = gwcps.create_packet
+#         if create_packet is not None and type(create_packet) != types.BooleanType:
+#             create_packet = unicodedata.normalize(
+#                 'NFKD', gwcps.create_packet).encode('utf-8', errors='ignore')
+#         cl_title_ca = gwcps.cl_title_ca
+#         if cl_title_ca is not None and type(cl_title_ca) != types.BooleanType:
+#             cl_title_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_title_ca).encode('utf-8', errors='ignore')
+#         cl_url_ca = gwcps.cl_url_ca
+#         cl_img_ca = gwcps.cl_img_ca
+#         if cl_img_ca is not None and type(cl_img_ca) != types.BooleanType:
+#             cl_img_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_img_ca).encode('utf-8', errors='ignore')
+#         cl_open_new_window_ca = gwcps.cl_open_new_window_ca
+#         if cl_open_new_window_ca is not None and type(cl_open_new_window_ca) != types.BooleanType:
+#             cl_open_new_window_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_open_new_window_ca).encode('utf-8', errors='ignore')
+#         cl_enable_ca = gwcps.cl_enable_ca
+#         if cl_enable_ca is not None and type(cl_enable_ca) != types.BooleanType:
+#             cl_enable_ca = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_enable_ca).encode('utf-8', errors='ignore')
+#         cl_title_es = gwcps.cl_title_es
+#         if cl_title_es is not None and type(cl_title_es) != types.BooleanType:
+#             cl_title_es = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_title_es).encode('utf-8', errors='ignore')
+#         cl_url_es = gwcps.cl_url_es
+#         cl_img_es = gwcps.cl_img_es
+#         if cl_img_es is not None and type(cl_img_es) != types.BooleanType:
+#             cl_img_es = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_img_es).encode('utf-8', errors='ignore')
+#         cl_open_new_window_es = gwcps.cl_open_new_window_es
+#         if cl_open_new_window_es is not None and type(cl_open_new_window_es) != types.BooleanType:
+#             cl_open_new_window_es = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_open_new_window_es).encode('utf-8', errors='ignore')
+#         cl_enable_es = gwcps.cl_enable_es
+#         if cl_enable_es is not None and type(cl_enable_es) != types.BooleanType:
+#             cl_enable_es = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_enable_es).encode('utf-8', errors='ignore')
+#         cl_title_en = gwcps.cl_title_en
+#         if cl_title_en is not None and type(cl_title_en) != types.BooleanType:
+#             cl_title_en = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_title_en).encode('utf-8', errors='ignore')
+#         cl_url_en = gwcps.cl_url_en
+#         cl_img_en = gwcps.cl_img_en
+#         if cl_img_en is not None and type(cl_img_en) != types.BooleanType:
+#             cl_img_en = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_img_en).encode('utf-8', errors='ignore')
+#         cl_open_new_window_en = gwcps.cl_open_new_window_en
+#         if cl_open_new_window_en is not None and type(cl_open_new_window_en) != types.BooleanType:
+#             cl_open_new_window_en = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_open_new_window_en).encode('utf-8', errors='ignore')
+#         cl_enable_en = gwcps.cl_enable_en
+#         if cl_enable_en is not None and type(cl_enable_en) != types.BooleanType:
+#             cl_enable_en = unicodedata.normalize(
+#                 'NFKD', gwcps.cl_enable_en).encode('utf-8', errors='ignore')
 
-        output = """Títol del web amb HTML tags (negretes) [CA]: {}<br/>
-                     Títol del web amb HTML tags (negretes) [ES]: {}<br/>
-                     Títol del web amb HTML tags (negretes) [EN]: {}<br/>
-                     Signatura de la unitat [CA]: {}<br/>
-                     Signatura de la unitat [ES]: {}<br/>
-                     Signatura de la unitat [EN]: {}<br/>
-                     Mostrar logo dret: {}<br/>
-                     Text alternatiu del logo dret: {}<br/>
-                     Meta author tag content: {}<br/>
-                     ID contacte de la unitat: {}<br/>
-                     Pàgina de contacte alternativa: {}<br/>
-                     Adreça de contacte al peu: {}<br/>
-                     Directori UPC a les eines: {}<br/>
-                     Filtrat per unitat?: {}<br/>
-                     Desactivar UPCmaps: {}<br/>
-                     Seleccionar l'adreça d'enviament: {}<br/>
-                     Contact emails: {}<br/>
-                     Color específic 1: {}<br/>
-                     Color específic 2: {}<br/>
-                     Treu la imatge de la capçalera: {}<br/>
-                     Treu el menú horitzontal: {}<br/>
-                     Treu les icones per compartir en xarxes socials: {}<br/>
-                     Amaga l'enllaç d'identificació de les eines: {}<br/>
-                     Idiomes publicats al web: {}<br/>
-                     Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal: {}<br/>
-                     id_estudi: {}<br/>
-                     Crear informació general del màster: {}<br/>
-                     Link title [CA]: {}<br/>
-                     Enllaç per al menú superior: {}<br/>
-                     Enllaç per a la icona del menú superior: {}<br/>
-                     Obre en una nova finestra: {}<br/>
-                     Publica l'enllaç customitzat: {}<br/>
-                     Link title [ES]: {}<br/>
-                     Enllaç per al menú superior: {}<br/>
-                     Enllaç per a la icona del menú superior: {}<br/>
-                     Obre en una nova finestra: {}<br/>
-                     Publica l'enllaç customitzat: {}<br/>
-                     Link title [EN]: {}<br/>
-                     Enllaç per al menú superior: {}<br/>
-                     Enllaç per a la icona del menú superior: {}<br/>
-                     Obre en una nova finestra: {}<br/>
-                     Publica l'enllaç customitzat: {}<br/>
-                     Nom 'De' del lloc: {}<br/>
-                     Adreça 'De' del lloc: {}<br/>
-                     Javascript per al suport d'estadístiques web: {}<br/></br>
-                     """.format(html_title_ca, html_title_es, html_title_en, signatura_unitat_ca,
-                                signatura_unitat_es, signatura_unitat_en,
-                                right_logo_enabled, right_logo_alt, meta_author, contacte_id,
-                                contacte_BBDD_or_page, contacte_al_peu, directori_upc,
-                                directori_filtrat, contacte_no_upcmaps, contacte_multi_email,
-                                contact_emails_table, especific1, especific2,
-                                treu_imatge_capsalera, treu_menu_horitzontal,
-                                treu_icones_xarxes_socials, amaga_identificacio,
-                                idiomes_publicats, languages_link_to_root, idestudi_master,
-                                create_packet, cl_title_ca, cl_url_ca, cl_img_ca,
-                                cl_open_new_window_ca, cl_enable_ca, cl_title_es, cl_url_es,
-                                cl_img_es, cl_open_new_window_es, cl_enable_es, cl_title_en,
-                                cl_url_en, cl_img_en, cl_open_new_window_en, cl_enable_en,
-                                name, email, ga)
-        return output
+#         output = """Títol del web amb HTML tags (negretes) [CA]: {}<br/>
+#                      Títol del web amb HTML tags (negretes) [ES]: {}<br/>
+#                      Títol del web amb HTML tags (negretes) [EN]: {}<br/>
+#                      Signatura de la unitat [CA]: {}<br/>
+#                      Signatura de la unitat [ES]: {}<br/>
+#                      Signatura de la unitat [EN]: {}<br/>
+#                      Mostrar logo dret: {}<br/>
+#                      Text alternatiu del logo dret: {}<br/>
+#                      Meta author tag content: {}<br/>
+#                      ID contacte de la unitat: {}<br/>
+#                      Pàgina de contacte alternativa: {}<br/>
+#                      Adreça de contacte al peu: {}<br/>
+#                      Directori UPC a les eines: {}<br/>
+#                      Filtrat per unitat?: {}<br/>
+#                      Desactivar UPCmaps: {}<br/>
+#                      Seleccionar l'adreça d'enviament: {}<br/>
+#                      Contact emails: {}<br/>
+#                      Color específic 1: {}<br/>
+#                      Color específic 2: {}<br/>
+#                      Treu la imatge de la capçalera: {}<br/>
+#                      Treu el menú horitzontal: {}<br/>
+#                      Treu les icones per compartir en xarxes socials: {}<br/>
+#                      Amaga l'enllaç d'identificació de les eines: {}<br/>
+#                      Idiomes publicats al web: {}<br/>
+#                      Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal: {}<br/>
+#                      id_estudi: {}<br/>
+#                      Crear informació general del màster: {}<br/>
+#                      Link title [CA]: {}<br/>
+#                      Enllaç per al menú superior: {}<br/>
+#                      Enllaç per a la icona del menú superior: {}<br/>
+#                      Obre en una nova finestra: {}<br/>
+#                      Publica l'enllaç customitzat: {}<br/>
+#                      Link title [ES]: {}<br/>
+#                      Enllaç per al menú superior: {}<br/>
+#                      Enllaç per a la icona del menú superior: {}<br/>
+#                      Obre en una nova finestra: {}<br/>
+#                      Publica l'enllaç customitzat: {}<br/>
+#                      Link title [EN]: {}<br/>
+#                      Enllaç per al menú superior: {}<br/>
+#                      Enllaç per a la icona del menú superior: {}<br/>
+#                      Obre en una nova finestra: {}<br/>
+#                      Publica l'enllaç customitzat: {}<br/>
+#                      Nom 'De' del lloc: {}<br/>
+#                      Adreça 'De' del lloc: {}<br/>
+#                      Javascript per al suport d'estadístiques web: {}<br/></br>
+#                      """.format(html_title_ca, html_title_es, html_title_en, signatura_unitat_ca,
+#                                 signatura_unitat_es, signatura_unitat_en,
+#                                 right_logo_enabled, right_logo_alt, meta_author, contacte_id,
+#                                 contacte_BBDD_or_page, contacte_al_peu, directori_upc,
+#                                 directori_filtrat, contacte_no_upcmaps, contacte_multi_email,
+#                                 contact_emails_table, especific1, especific2,
+#                                 treu_imatge_capsalera, treu_menu_horitzontal,
+#                                 treu_icones_xarxes_socials, amaga_identificacio,
+#                                 idiomes_publicats, languages_link_to_root, idestudi_master,
+#                                 create_packet, cl_title_ca, cl_url_ca, cl_img_ca,
+#                                 cl_open_new_window_ca, cl_enable_ca, cl_title_es, cl_url_es,
+#                                 cl_img_es, cl_open_new_window_es, cl_enable_es, cl_title_en,
+#                                 cl_url_en, cl_img_en, cl_open_new_window_en, cl_enable_en,
+#                                 name, email, ga)
+#         return output
 
 
 class getUsedGroups(BrowserView):
-    """ Return all users from ldap groups that have permissions in any plone object """
+    """
+        Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
+    """
 
     def __call__(self, portal=None):
         if CSRF:
@@ -803,8 +838,8 @@ class getUsedGroups(BrowserView):
 
 class getCollectionDefaultPages(BrowserView):
     """
-    List the value of the property 'default_page' (if defined) for contents
-    with type Collection.
+        Llista el valor de la propietat 'default_page' (si està definida) per
+        als continguts Col·lecció.
     """
 
     REPORT_TABLE = """

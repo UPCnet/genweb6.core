@@ -208,13 +208,13 @@
         permission="cmf.ManagePortal"
         />
 
-    <browser:page
+    <!-- <browser:page
         name="get_controlpanel_settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers.getConfigGenwebControlPanelSettings"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
-        />
+        /> -->
 
     <browser:page
         name="get_used_groups"
@@ -347,25 +347,9 @@
         />
 
     <browser:page
-        name="remove_duplicated_genweb_settings"
-        for="zope.interface.Interface"
-        class=".helpers_touchers.removeDuplicatedGenwebSettings"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         name="portal_setup_import"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.PortalSetupImport"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        name="replace_nav_portlet"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.changeNewsEventsPortlets"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -387,14 +371,6 @@
         />
 
     <browser:page
-        name="reinstall_genweb_upc_with_languages"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.reinstallGenwebUPCWithLanguages"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         name="reindex_all_pages"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.reindexAllPages"
@@ -402,42 +378,11 @@
         permission="cmf.ManagePortal"
         />
 
-    <browser:page
-        name="add_permissions_contributor"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.addPermissionsContributor"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        name="set_folder_default_view"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.setFolderIndexViewasDefault"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        name="add_link2news"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.addLinkIntoFolderNews"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
 
     <browser:page
         name="refactor_news_collection"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.refactorAggregatorNewsCollection"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        name="translate_news"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.translateNews"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -503,14 +448,6 @@
         name="fix_record"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.fixRecord"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="add_packet_in_default_page_types"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.addPacketInDefaultPageTypes"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
         />

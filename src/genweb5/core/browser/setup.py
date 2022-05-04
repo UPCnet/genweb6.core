@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.PlonePAS.interfaces.group import IGroupManagement
 from Products.PluggableAuthService.interfaces.plugins import IUserAdderPlugin
@@ -39,13 +38,14 @@ LDAP_PASSWORD = os.environ.get('ldapbindpasswd', '')
 
 
 class setupDX(BrowserView):
-    """ Setup View that fixes p.a.ct front-page
+    """
+        Soluciona la pàgina principal cuan es trenca
     """
 
     def __call__(self):
         if HAS_DXCT:
             portal = getSite()
-            pl = getToolByName(portal, 'portal_languages')
+            pl = api.portal.get_tool(name='portal_languages')
             if getattr(portal, 'front-page', False):
                 portal.manage_delObjects('front-page')
                 frontpage = createContentInContainer(
@@ -62,7 +62,9 @@ class setupDX(BrowserView):
 
 
 class setupLDAPUPC(BrowserView):
-    """ Configure LDAPUPC for Plone instance """
+    """
+        Configura el LDAP UPC
+    """
 
     def __call__(self):
         portal = getSite()
@@ -128,7 +130,9 @@ class setupLDAPUPC(BrowserView):
 
 
 class setupLDAPExterns(BrowserView):
-    """ Configure LDAPExterns for Plone instance """
+    """
+        Configura el LDAPExterns
+    """
 
     def __call__(self):
 
@@ -203,7 +207,9 @@ class setupLDAPExterns(BrowserView):
 
 
 class setupLDAP(BrowserView):
-    """ Configure basic LDAP for Plone instance """
+    """
+        Configura un LDAP básic
+    """
 
     def __call__(self):
         portal = getSite()

@@ -3,7 +3,6 @@ from Acquisition import aq_base
 from Acquisition import aq_inner
 from BTrees.OOBTree import OOBTree
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
@@ -12,6 +11,7 @@ from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 
+from plone import api
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
@@ -120,7 +120,7 @@ def SearchableText(obj):
     if richtext:
         textvalue = richtext.text
         if IRichTextValue.providedBy(textvalue):
-            transforms = getToolByName(obj, 'portal_transforms')
+            transforms = api.portal.get_tool(name='portal_transforms')
             # Before you think about switching raw/output
             # or mimeType/outputMimeType, first read
             # https://github.com/plone/Products.CMFPlone/issues/2066
@@ -452,11 +452,11 @@ def html_results(self, query):
 
 def sitemapObjects(self):
     """Returns the data to create the sitemap."""
-    catalog = getToolByName(self.context, 'portal_catalog')
+    catalog = api.portal.get_tool(name='portal_catalog')
     query = {}
-    utils = getToolByName(self.context, 'plone_utils')
+    utils = api.portal.get_tool(name='plone_utils')
     query['portal_type'] = utils.getUserFriendlyTypes()
-    ptool = getToolByName(self, 'portal_properties')
+    ptool = api.portal.get_tool(name='portal_properties')
     siteProperties = getattr(ptool, 'site_properties')
     typesUseViewActionInListings = frozenset(
         siteProperties.getProperty('typesUseViewActionInListings', [])

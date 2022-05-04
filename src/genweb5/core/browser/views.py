@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 
@@ -123,7 +122,7 @@ class TemplateList(BrowserView):
                     templates['7. PRÒPIES'].append(
                         [r.Title, '%s/genweb.get.dxdocument.text' % r.getURL(), r.Description])
 
-                qi = getToolByName(self.context, 'portal_quickinstaller')
+                qi = api.portal.get_tool(name='portal_quickinstaller')
                 if qi.isProductInstalled('genweb.robtheme'):
                     templates['1. DESTACATS'] += [['Rob Theme - Caixa amb llista - fons gris', absolute_url + '/templates/rob-theme-caixa-amb-llista-fons-gris/genweb.get.dxdocument.text', ''],
                                                   ['Rob Theme - Caixa amb llista - fons verd', absolute_url + '/templates/rob-theme-caixa-amb-llista-fons-verd/genweb.get.dxdocument.text', ''],

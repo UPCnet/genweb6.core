@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import INonInstallable
 
+from plone import api
 from zope.interface import implementer
 
 import logging
@@ -58,10 +58,10 @@ def add_catalog_indexes(context, logger=None):
     # code makes this method usable as upgrade step as well.  Note that
     # this silently does nothing when there is no catalog.xml, so it
     # is quite safe.
-    setup = getToolByName(context, 'portal_setup')
+    setup = api.portal.get_tool(name='portal_setup')
     setup.runImportStepFromProfile(PROFILE_ID, 'catalog')
 
-    catalog = getToolByName(context, 'portal_catalog')
+    catalog = api.portal.get_tool(name='portal_catalog')
     indexes = catalog.indexes()
 
     indexables = []
@@ -90,7 +90,7 @@ def setupVarious(context):
     portal = context.getSite()
     logger = logging.getLogger(__name__)
 
-    # transforms = getToolByName(portal, 'portal_transforms')
+    # transforms = api.portal.get_tool(name='portal_transforms')
     # transform = getattr(transforms, 'safe_html')
     # valid = transform.get_parameter_value('valid_tags')
     # nasty = transform.get_parameter_value('nasty_tags')
@@ -129,7 +129,7 @@ def setupVarious(context):
     # site_properties.enable_inline_editing = False
 
     # # configurem els estats del calendari
-    # pct = getToolByName(portal, 'portal_calendar')
+    # pct = api.portal.get_tool(name='portal_calendar')
     # pct.calendar_states = ('published', 'intranet')
     # # Fixem el primer dia de la setamana com dilluns (0)
     # pct.firstweekday = 0
@@ -141,7 +141,7 @@ def setupVarious(context):
 
     # # Set mailhost
     # if portal.email_from_address in ('noreply@upc.edu', 'no-reply@upcnet.es'):
-    #     mh = getToolByName(portal, 'MailHost')
+    #     mh = api.portal.get_tool(name='MailHost')
     #     mh.smtp_host = 'localhost'
     #     portal.email_from_name = 'Genweb Administrator'
     #     portal.email_from_address = 'no-reply@upcnet.es'

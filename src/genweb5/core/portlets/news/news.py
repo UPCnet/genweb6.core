@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_inner
 from Products.CMFPlone import PloneMessageFactory as _
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
@@ -87,8 +85,7 @@ class Renderer(news_renderer):
 
     @memoize
     def _data(self):
-        context = aq_inner(self.context)
-        catalog = getToolByName(context, 'portal_catalog')
+        catalog = api.portal.get_tool(name='portal_catalog')
         limit = self.data.count
         state = ['published', 'intranet']
         allresults = catalog(portal_type=('News Item', 'Link'),

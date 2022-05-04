@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
-from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import safe_unicode
 
 from email.mime.multipart import MIMEMultipart
@@ -43,8 +41,7 @@ def addedPermissionsPloneSiteRoot(content, event):
     plone = content.absolute_url()
 
     # TODO Enviar correo para abrir tiquet
-    context = aq_inner(content)
-    mailhost = getToolByName(context, 'MailHost')
+    mailhost = api.portal.get_tool(name='MailHost')
     msg = MIMEMultipart()
     msg['From'] = fromMsg
     msg['To'] = 'mailtoticket.areatic@upc.edu'

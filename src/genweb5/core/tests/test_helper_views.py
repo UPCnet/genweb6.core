@@ -10,7 +10,6 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
 
-from genweb5.core.browser.helpers import getDorsal
 from genweb5.core.testing import GENWEB_INTEGRATION_TESTING
 
 import os
@@ -37,11 +36,6 @@ class HelperViewsIntegrationTest(unittest.TestCase):
         portal = self.layer['portal']
         self.assertRaises(
             Unauthorized, portal.restrictedTraverse, 'configure_site_cache')
-
-    def test_getDorsal(self):
-        # self.setconfig(product_config={'genwebconfig': {'zeo': '1'}})
-        os.environ['dorsal'] = '1'
-        self.assertEqual(getDorsal(), os.environ['dorsal'])
 
     def test_configure_site_cache(self):
         # old way using Zope product_config:

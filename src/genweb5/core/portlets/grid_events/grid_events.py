@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from DateTime.DateTime import DateTime
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
@@ -102,7 +101,7 @@ class Renderer(base.Renderer):
     @memoize
     def get_events(self):
         events = []
-        ts = getToolByName(self.context, 'translation_service')
+        ts = api.portal.get_tool(name='translation_service')
         results = self._data()
         for event in results:
             if len(events) >= self.data.count:

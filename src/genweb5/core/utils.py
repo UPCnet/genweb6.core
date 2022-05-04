@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser import BrowserView
 
 from plone import api
@@ -39,7 +38,7 @@ if HAS_PAM:
 def havePermissionAtRoot():
     """Funcio que retorna si es Editor a l'arrel"""
     proot = portal()
-    pm = getToolByName(proot, 'portal_membership')
+    pm = api.portal.get_tool(name='portal_membership')
     sm = getSecurityManager()
     user = pm.getAuthenticatedMember()
 
@@ -68,7 +67,7 @@ def portal():
 def pref_lang():
     """ Extracts the current language for the current user
     """
-    lt = getToolByName(portal(), 'portal_languages')
+    lt = api.portal.get_tool(name='portal_languages')
     return lt.getPreferredLanguage()
 
 
@@ -127,7 +126,7 @@ class genwebUtils(BrowserView):
 
     def havePermissionAtRoot(self):
         """Funcio que retorna si es Editor a l'arrel"""
-        pm = getToolByName(self, 'portal_membership')
+        pm = api.portal.get_tool(name='portal_membership')
         proot = portal()
         sm = getSecurityManager()
         user = pm.getAuthenticatedMember()
@@ -272,7 +271,7 @@ class genwebUtils(BrowserView):
     def pref_lang_native(self):
         """ Extracts the current language for the current user in native
         """
-        lt = getToolByName(portal(), 'portal_languages')
+        lt = api.portal.get_tool(name='portal_languages')
         return lt.getAvailableLanguages()[lt.getPreferredLanguage()]['native']
 
     # def get_published_languages(self):
@@ -302,8 +301,8 @@ class genwebUtils(BrowserView):
         return api.user.has_permission('Modify portal content', username=current, obj=self.context)
 
     def link_redirect_blank(self, item, isObject=False):
-        ptool = getToolByName(self.context, 'portal_properties')
-        mtool = getToolByName(self.context, 'portal_membership')
+        ptool = api.portal.get_tool(name='portal_properties')
+        mtool = api.portal.get_tool(name='portal_membership')
 
         redirect_links = getattr(
             ptool.site_properties,

@@ -1,6 +1,4 @@
 # # -*- coding: utf-8 -*-
-# from Products.CMFCore.utils import getToolByName
-
 # from datetime import timedelta
 # from plone import api
 # from plone.app.event.base import localized_now
@@ -31,7 +29,7 @@
 #         portal = self.layer['portal']
 #         self.portal = portal
 #         self.request = self.layer['request']
-#         self.wft = getToolByName(self.portal, 'portal_workflow')
+#         self.wft = api.portal.get_tool(name='portal_workflow')
 #         setRoles(portal, TEST_USER_ID, ['Manager'])
 #         setHooks()
 #         setSite(portal)

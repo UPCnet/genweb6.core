@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import normalizeString
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -9,8 +8,6 @@ from Products.PortalTransforms.transforms.pdf_to_text import pdf_to_text
 from plone import api
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.dexterity.utils import createContentInContainer
-from plone.portlets.constants import CONTEXT_CATEGORY
-from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.registry.interfaces import IRegistry
@@ -47,7 +44,9 @@ else:
 
 
 class makeMeaHomePage(BrowserView):
-    """ makeMeaHomePage """
+    """
+        Habilita el layout de homepage en el contingut, ha de ser una carpeta
+    """
 
     def __call__(self):
         alsoProvides(self.context, IHomePage)
@@ -59,7 +58,9 @@ class makeMeaHomePage(BrowserView):
 
 
 class makeMeaSubHomePage(BrowserView):
-    """ makeMeaSubHomePage """
+    """
+        Habilita el layout de subhomepage en el contingut, ha de ser una carpeta
+    """
 
     def __call__(self):
         alsoProvides(self.context, IHomePage)
@@ -72,7 +73,8 @@ class makeMeaSubHomePage(BrowserView):
 
 class resetLanguage(BrowserView):
     """
-        Re-set the language of each LRF according to its name. Execute in an LRF
+        Torna a establir l'idioma de cada LRF segons el seu nom. Executar en un LRF
+        LRF -> Language Root Folder
     """
 
     def __call__(self):
@@ -91,7 +93,9 @@ class resetLanguage(BrowserView):
 
 
 class enablePDFIndexing(BrowserView):
-    """ Enable PDF indexing """
+    """
+        Activa la indexació de PDF
+    """
 
     def __call__(self):
         pt = api.portal.get_tool('portal_transforms')
@@ -101,15 +105,18 @@ class enablePDFIndexing(BrowserView):
 
 
 class updateFolderViews(BrowserView):
-    """ Update view methods for folder type in the current Plone site. """
+    """
+        Actualitza les vistes per al tipus de carpeta
+    """
 
     def __call__(self, portal=None):
         if not portal:
             portal = api.portal.get()
 
         output = []
-        portal.portal_types['Folder'].view_methods = ('listing_view', 'folder_extended', 'album_view', 'summary_view',
-                                                      'tabular_view', 'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
+        portal.portal_types['Folder'].view_methods = (
+            'listing_view', 'folder_extended', 'album_view', 'summary_view',
+            'tabular_view', 'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
         import transaction
         transaction.commit()
         output.append('{}: Successfully reinstalled'.format(portal.id))
@@ -117,7 +124,12 @@ class updateFolderViews(BrowserView):
 
 
 class addFolderView(BrowserView):
-    """ Add view method for folder type in the current Plone site. """
+    """
+        Afegeix una vista nova al tipus de contingut carpeta
+
+        Paràmetre:
+        - addview: nom de la vista
+    """
 
     def __call__(self, portal=None):
         output = []
@@ -136,12 +148,17 @@ class addFolderView(BrowserView):
             return '\n'.join(output)
 
         output.append(
-            '{}: Error added view, not defined view'.format(portal.id))
+            '{}: Error parameter addview, not defined'.format(portal.id))
         return '\n'.join(output)
 
 
 class removeFolderView(BrowserView):
-    """ Remove view method for folder type in the current Plone site. """
+    """
+        Elimina una vista al tipus de contingut carpeta
+
+        Paràmetre:
+        - removeview: nom de la vista
+    """
 
     def __call__(self, portal=None):
         output = []
@@ -160,70 +177,90 @@ class removeFolderView(BrowserView):
             return '\n'.join(output)
 
         output.append(
-            '{}: Error removed view, not defined view'.format(portal.id))
+            '{}: Error parameter removeview, not defined'.format(portal.id))
         return '\n'.join(output)
 
 
 class checkPloneProductIsInstalled(BrowserView):
-    """ Check is installed a product passed by form parameter in the current Plone site. """
+    """
+        Comproba si un paquet està instal·lat
 
-    def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
+        Paràmetre:
+        - product_name: id del paquet
+    """
 
-        product_name = self.request.form['product_name']
-        qi = getToolByName(portal, 'portal_quickinstaller')
+    def __call__(self):
+        if 'product_name' in self.request.form:
+            product_name = self.request.form['product_name']
+            qi = api.portal.get_tool(name='portal_quickinstaller')
 
-        if qi.isProductInstalled(product_name):
-            return 'OK\n'
+            if qi.isProductInstalled(product_name):
+                return 'OK\n'
+
+        return 'Error parameter product_name, not defined'
 
 
 class reinstallPloneProduct(BrowserView):
-    """ Reinstalls a product passed by form parameter in the current Plone site. """
+    """
+        Reinstal·la un paquet
+
+        Paràmetre:
+        - product_name: id del paquet
+    """
 
     def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
+        if 'product_name' in self.request.form:
+            if not portal:
+                portal = api.portal.get()
 
-        product_name = self.request.form['product_name']
-        output = []
-        qi = getToolByName(portal, 'portal_quickinstaller')
+            product_name = self.request.form['product_name']
+            output = []
+            qi = api.portal.get_tool(name='portal_quickinstaller')
 
-        if qi.isProductInstalled(product_name):
-            qi.uninstallProducts([product_name, ], reinstall=True)
-            qi.installProducts([product_name], reinstall=True)
-            output.append('{}: Successfully reinstalled {}'.format(
-                portal.id, product_name))
-        return '\n'.join(output)
+            if qi.isProductInstalled(product_name):
+                qi.uninstallProducts([product_name, ], reinstall=True)
+                qi.installProducts([product_name], reinstall=True)
+                output.append('{}: Successfully reinstalled {}'.format(
+                    portal.id, product_name))
+            return '\n'.join(output)
+
+        return 'Error parameter product_name, not defined'
 
 
 class uninstallPloneProduct(BrowserView):
-    """ Uninstall a product passed by form parameter in the current Plone site. """
+    """
+        Desinstal·la un paquet
+
+        Paràmetre:
+        - product_name: id del paquet
+    """
 
     def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
+        if 'product_name' in self.request.form:
+            product_name = self.request.form['product_name']
+            output = []
+            qi = api.portal.get_tool(name='portal_quickinstaller')
 
-        product_name = self.request.form['product_name']
-        output = []
-        qi = getToolByName(portal, 'portal_quickinstaller')
+            if qi.isProductInstalled(product_name):
+                qi.uninstallProducts([product_name, ], reinstall=False)
+                output.append('{}: Successfully uninstalled {}'.format(portal.id, product_name))
+            return '\n'.join(output)
 
-        if qi.isProductInstalled(product_name):
-            qi.uninstallProducts([product_name, ], reinstall=False)
-            output.append('{}: Successfully uninstalled {}'.format(
-                portal.id, product_name))
-        return '\n'.join(output)
+        return 'Error parameter product_name, not defined'
 
 
 class upgradePloneVersion(BrowserView):
-    """ Upgrade to the latest Plone version in code """
+    """
+        Upgrada a la última versió de Plone
+    """
 
     def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
-        # pm = getattr(self.context, 'portal_migration')
+
+        if not portal:
+            portal = api.portal.get()
+
         pm = api.portal.get_tool('portal_migration')
         self.request.method = 'POST'
         report = pm.upgrade(
@@ -234,19 +271,20 @@ class upgradePloneVersion(BrowserView):
 
 
 class setupPAMAgain(BrowserView):
-    """ Reinstalls a product passed by form parameter in the current Plone site. """
+    """
+        setupPAMAgain
+    """
 
-    def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
-
+    def __call__(self):
         from plone.app.multilingual.browser.setup import SetupMultilingualSite
         setupTool = SetupMultilingualSite()
         setupTool.setupSite(self.context, False)
 
 
 class deleteNavPortletFromRoot(BrowserView):
-    """ Delete NavPortlet from Root """
+    """
+        Elimina el portlet de navegació de l'arrel
+    """
 
     def __call__(self, portal=None):
         if not portal:
@@ -262,11 +300,14 @@ class deleteNavPortletFromRoot(BrowserView):
 
 
 class reinstallGWTinyTemplates(BrowserView):
-    """ Reinstalls all TinyMCE Templates """
+    """
+        Reinstal·la les plantilles del TinyMCE
+    """
 
     def __call__(self, portal=None):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
+
         if not portal:
             portal = api.portal.get()
 
@@ -295,7 +336,7 @@ class reinstallGWTinyTemplates(BrowserView):
         """ Make the content visible either in both possible genweb.simple and
             genweb.review workflows.
         """
-        pw = getToolByName(context, "portal_workflow")
+        pw = api.portal.get_tool(name="portal_workflow")
         object_workflow = pw.getWorkflowsFor(context)[0].id
         object_status = pw.getStatusOf(object_workflow, context)
         if object_status:
@@ -303,24 +344,14 @@ class reinstallGWTinyTemplates(BrowserView):
                                    'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
 
 
-class removeDuplicatedGenwebSettings(BrowserView):
-    """ Remove duplicate (old) Genweb UPC settings in Control Panel """
-
-    def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
-
-        portal_controlpanel = api.portal.get_tool('portal_controlpanel')
-        portal_controlpanel.unregisterConfiglet('genweb')
-
-
 class PortalSetupImport(BrowserView):
     """
-    Go to portal setup, select profile and import step.
-    URL parameters:
-      - step: id of the step to import, e.g. 'portlets'.
-      - profile: id of the profile or snapshot to select, e.g. 'genweb.upc'.
-      - profile_type: type of the selected profile, 'default' by default.
+    Reinstal·la un step específic
+
+    Paràmetres:
+    - step: id del step a importar, ex: 'portlets'.
+    - profile: identificador del perfil o de la instantània a seleccionar, ex: 'genweb.upc'.
+    - profile_type: tipus del perfil seleccionat, 'default' per defecte.
     """
 
     DEFAULT_PROFILE_TYPE = 'default'
@@ -328,8 +359,8 @@ class PortalSetupImport(BrowserView):
     def __call__(self):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
-        portal = api.portal.get()
-        ps = getToolByName(portal, 'portal_setup')
+
+        ps = api.portal.get_tool(name='portal_setup')
         params = self._parse_params()
         ps.runImportStepFromProfile(
             'profile-{profile}:{profile_type}'.format(**params),
@@ -349,92 +380,16 @@ class PortalSetupImport(BrowserView):
         return dict(step=step, profile=profile, profile_type=profile_type)
 
 
-class changeNewsEventsPortlets(BrowserView):
-    """ Replace navigation portlet by categories portlet from news and events
-    view methods in the current Plone site. """
-
-    def __call__(self, portal=None):
-        output = []
-        portal = api.portal.get()
-
-        ps = getToolByName(portal, 'portal_setup')
-        ps.runImportStepFromProfile('profile-genweb.theme:default', 'portlets')
-
-        portal_ca = portal['ca']
-        portal_es = portal['es']
-        portal_en = portal['en']
-
-        self.disinherit_from_parent(portal_ca, portal_es, portal_en)
-
-        self.assign_news_events_listing_portlet(portal_ca['noticies'], 'News')
-        self.assign_news_events_listing_portlet(
-            portal_ca['esdeveniments'], 'Events')
-        self.assign_news_events_listing_portlet(portal_es['noticias'], 'News')
-        self.assign_news_events_listing_portlet(portal_es['eventos'], 'Events')
-        self.assign_news_events_listing_portlet(portal_en['news'], 'News')
-        self.assign_news_events_listing_portlet(portal_en['events'], 'Events')
-
-        # Set layout for news folders
-        portal_en['news'].setLayout('news_listing')
-        portal_es['noticias'].setLayout('news_listing')
-        portal_ca['noticies'].setLayout('news_listing')
-
-        # Set layout for events folders
-        portal_en['events'].setLayout('event_listing')
-        portal_es['eventos'].setLayout('event_listing')
-        portal_ca['esdeveniments'].setLayout('event_listing')
-
-        import transaction
-        transaction.commit()
-
-        output.append(
-            '{}: Successfully replaced news_events_listing portlet'.format(portal.id))
-        return '\n'.join(output)
-
-    def disinherit_from_parent(self, portal_ca, portal_es, portal_en):
-        # Blacklist the left column on portal_ca['noticies'] and portal_ca['esdeveniments'],
-        # portal_es['noticias'] and portal_es['eventos'],
-        # portal_en['news'] and portal_en['events']
-        left_manager = queryUtility(IPortletManager, name=u'plone.leftcolumn')
-        blacklist_ca = getMultiAdapter(
-            (portal_ca['noticies'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_ca = getMultiAdapter(
-            (portal_ca['esdeveniments'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter(
-            (portal_es['noticias'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter(
-            (portal_es['eventos'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter(
-            (portal_en['news'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter(
-            (portal_en['events'], left_manager), ILocalPortletAssignmentManager)
-        blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
-
-    def assign_news_events_listing_portlet(self, portal, obj_type):
-        from genweb5.core.portlets.news_events_listing import Assignment as news_events_Assignment
-
-        target_manager_left = queryUtility(
-            IPortletManager, name='plone.leftcolumn', context=portal)
-        target_manager_assignments_left = getMultiAdapter(
-            (portal, target_manager_left), IPortletAssignmentMapping)
-        for portlet in target_manager_assignments_left:
-            del target_manager_assignments_left[portlet]
-        if 'news_events_listing' not in target_manager_assignments_left:
-            target_manager_assignments_left['news_events_listing'] = news_events_Assignment([
-            ], obj_type)
-
-
 class setSitemapDepth(BrowserView):
-    """ Set 3 levels of sitemap  """
+    """
+        Assigna 3 nivells en el sitemap
+    """
 
     def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
         output = []
-        portal = api.portal.get()
         navtree_props = portal.portal_properties.navtree_properties
         navtree_props.sitemapDepth = 4
         import transaction
@@ -445,7 +400,7 @@ class setSitemapDepth(BrowserView):
 
 
 class updateLIF_LRF(BrowserView):
-    """ Update view methods for LIf and LRF types in the current Plone site """
+    """ Actualitza les vistes de LIf i LRF """
 
     def __call__(self, portal=None):
         if not portal:
@@ -464,40 +419,17 @@ class updateLIF_LRF(BrowserView):
         return '\n'.join(output)
 
 
-class reinstallGenwebUPCWithLanguages(BrowserView):
-    """ Reinstalls genweb.upc keeping published languages in the current Plone site. """
-
-    def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
-        defaultLanguage = api.portal.get_default_language()
-        languages = api.portal.get_registry_record(
-            name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats')
-        context = aq_inner(self.context)
-        output = []
-        qi = getToolByName(context, 'portal_quickinstaller')
-
-        if qi.isProductInstalled('genweb.upc'):
-            qi.uninstallProducts(['genweb.upc'], reinstall=True)
-            qi.installProducts(['genweb.upc'], reinstall=True)
-            pl = api.portal.get_tool('portal_languages')
-            pl.setDefaultLanguage(defaultLanguage)
-            pl.supported_langs = ['ca', 'es', 'en']
-            api.portal.set_registry_record(
-                name='genweb5.controlpanel.interface.IGenwebControlPanelSettings.idiomes_publicats', value=languages)
-            output.append(
-                '{}: Successfully reinstalled genweb upc'.format(context))
-        return '\n'.join(output)
-
-
 class reindexAllPages(BrowserView):
-    """ reindexAllPages """
+    """
+        Reindeixa tots els continguts de tipus Document
+    """
 
     def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
         output = []
-        portal = api.portal.get()
-        context = aq_inner(self.context)
-        pc = getToolByName(context, 'portal_catalog')
+        pc = api.portal.get_tool(name='portal_catalog')
         brains = pc.searchResults(portal_type='Document')
         for result in brains:
             obj = result.getObject()
@@ -508,97 +440,21 @@ class reindexAllPages(BrowserView):
         return '\n'.join(output)
 
 
-class addPermissionsContributor(BrowserView):
-    """ add permission to folder contentes when rol is Contributor """
-
-    def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
-        output = []
-        portal = api.portal.get()
-        roles_of_permission = portal.rolesOfPermission('List folder contents')
-        portlets = portal.rolesOfPermission('Portlets: Manage portlets')
-        output.append('PREVIOUS (List folder contents): name = {}, selected = {}'.format(
-            roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
-        output.append('PREVIOUS (Portlets: Manage portlets): name = {}, selected = {}'.format(
-            portlets[2]['name'], portlets[2]['selected']))
-        ps = getToolByName(portal, 'portal_setup')
-        ps.runImportStepFromProfile('profile-genweb.core:default', 'rolemap')
-        roles_of_permission = portal.rolesOfPermission('List folder contents')
-        portlets = portal.rolesOfPermission('Portlets: Manage portlets')
-        output.append('AFTER (List folder contents): name = {}, selected = {}'.format(
-            roles_of_permission[2]['name'], roles_of_permission[2]['selected']))
-        output.append('AFTER (Portlets: Manage portlets): name = {}, selected = {}'.format(
-            portlets[2]['name'], portlets[2]['selected']))
-        output.append('{}: Permissions added'.format(portal.id))
-        return '\n'.join(output)
-
-
-class setFolderIndexViewasDefault(BrowserView):
-    """ Set all folders views of this site with the view passed by param """
-
-    def __call__(self, portal=None):
-        output = []
-        context = aq_inner(self.context)
-        view_method = self.request.form['view_method']
-        pc = getToolByName(context, 'portal_catalog')
-        brains = pc.searchResults(portal_type='Folder')
-        for result in brains:
-            obj = result.getObject()
-            if obj.getDefaultPage() is None:
-                obj.setLayout(view_method)
-        import transaction
-        transaction.commit()
-        output.append('{}: Folder view successfully changed'.format(
-            api.portal.get().id))
-        return '\n'.join(output)
-
-
-class addLinkIntoFolderNews(BrowserView):
-    """ addLinkIntoFolderNews """
-
-    def __call__(self, portal=None):
-        output = []
-        portal = api.portal.get()
-        noticies = portal['ca']['noticies']
-        noticias = portal['es']['noticias']
-        news = portal['en']['news']
-        from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
-        behavior = ISelectableConstrainTypes(noticies)
-        behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        behavior = ISelectableConstrainTypes(noticias)
-        behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        behavior = ISelectableConstrainTypes(news)
-        behavior.setConstrainTypesMode(1)
-        behavior.setLocallyAllowedTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        behavior.setImmediatelyAddableTypes(
-            ('News Item', 'Folder', 'Image', 'Link'))
-        import transaction
-        transaction.commit()
-        output.append(
-            '{}: Link type added successfully to news folder in'.format(portal.id))
-        return '\n'.join(output)
-
-
 class refactorAggregatorNewsCollection(BrowserView):
-    """ refactorAggregatorNewsCollection """
+    """
+        refactorAggregatorNewsCollection
+    """
 
     def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
         output = []
         NEWS_QUERY = [{'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.is', 'v': [u'News Item', u'Link']},
                       {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.is', 'v': [
                           u'published']},
                       {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath', 'v': u'..'}]
-        portal = api.portal.get()
+
         noticies = portal['ca']['noticies']['aggregator']
         noticias = portal['es']['noticias']['aggregator']
         news = portal['en']['news']['aggregator']
@@ -612,23 +468,13 @@ class refactorAggregatorNewsCollection(BrowserView):
         return '\n'.join(output)
 
 
-class translateNews(BrowserView):
-    """ translate title and description spanish news"""
-
-    def __call__(self, portal=None):
-        output = []
-        portal = api.portal.get()
-        newsfolder = portal['es']['noticias']
-        newsfolder.setTitle('Noticias')
-        newsfolder.setDescription('Noticias del sitio')
-        newsfolder.reindexObject()
-
-        output.append('{}: Successfully translated news'.format(portal.id))
-        return '\n'.join(output)
-
-
 class bulkChangeCreator(BrowserView):
-    """ If the creator of the content is X, change it to Y """
+    """
+        Modifica el creador dels contingut de X a Y
+        Paràmetres:
+        - old_creator
+        - new_creator
+    """
 
     STATUS_oldcreators = u"You must select one old creator."
     STATUS_newcreators = u"You must select one new creator."
@@ -753,7 +599,9 @@ class bulkChangeCreator(BrowserView):
 
 
 class addPermissionsPlantilles(BrowserView):
-    """ add permissions in plantilles folder """
+    """
+        Afegir permissos en la carpeta de plantilles
+    """
 
     def __call__(self, portal=None):
         try:
@@ -810,14 +658,18 @@ class rebuildUUIDs(BrowserView):
 
 
 class configuraSiteCache(BrowserView):
-    """ [DEPRECATED] Redirect to configure_site_cache """
+    """
+        [DEPRECATED] Rederigeix a configure_site_cache
+    """
 
     def __call__(self):
         self.request.response.redirect('configure_site_cache')
 
 
 class configureSiteCache(BrowserView):
-    """ Vista que configura la caché del site corresponent. """
+    """
+        Vista que configura la caché
+    """
 
     def __call__(self):
         context = aq_inner(self.context)
@@ -847,6 +699,9 @@ class configureSiteCache(BrowserView):
 
 
 class refreshUIDs(BrowserView):
+    """
+        Refresca les UIDs
+    """
 
     def __call__(self):
         form = self.request.form
@@ -866,9 +721,11 @@ class refreshUIDs(BrowserView):
 
 
 class fixRecord(BrowserView):
-    """ Fix KeyError problem when plonesite is moved from the original Zeo"""
+    """
+        Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
+    """
 
-    def __call__(self, portal=None):
+    def __call__(self):
         from zope.component import getUtility
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
@@ -885,22 +742,3 @@ class fixRecord(BrowserView):
                 del site.portal_registry.records._values[k]
                 del site.portal_registry.records._fields[k]
         return "S'han purgat les entrades del registre: {}".format(output)
-
-
-class addPacketInDefaultPageTypes(BrowserView):
-    """ Add type packet in default_page_types > site_properties"""
-
-    def __call__(self):
-        propsTool = getToolByName(self, 'portal_properties')
-        siteProperties = getattr(propsTool, 'site_properties')
-        defaultPageTypes = siteProperties.getProperty('default_page_types')
-        try:
-            types = [typ for typ in defaultPageTypes]
-            if 'packet' not in types:
-                types.append('packet')
-                siteProperties.default_page_types = tuple(types)
-                transaction.commit()
-                return 'OK'
-            return 'KO'
-        except:
-            return 'KO'

@@ -5,6 +5,7 @@ def get_plantilles():
     """
     Declaració de les pàgines que es faràn servir com plantilles
     """
+
     plantilles = []
     titol = u"Llistat índex"
     resum = u"Índex de continguts."
