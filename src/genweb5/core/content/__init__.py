@@ -4,7 +4,7 @@ from plone.dexterity.content import Container
 from plone.dexterity.content import Item
 from zope.interface import implementer
 
-from genweb5.core.content.banner import IBanner
+from genweb5.core.content.banner.banner import IBanner
 
 
 @implementer(IBanner)

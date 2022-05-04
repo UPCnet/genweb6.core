@@ -8,7 +8,7 @@
     <property name="global_allow">False</property>
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types" />
-    <property name="schema">genweb5.core.content.banner.IBanner</property>
+    <property name="schema">genweb5.core.content.banner.banner.IBanner</property>
     <property name="klass">genweb5.core.content.Banner</property>
     <property name="add_permission">cmf.AddPortalContent</property>
 
