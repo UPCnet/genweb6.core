@@ -3,6 +3,56 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="genweb">
 
+    <portletmanager
+        name="genweb.portlets.HomePortletManager1"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager2"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager3"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager4"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager5"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager6"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager7"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager8"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager9"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
+    <portletmanager
+        name="genweb.portlets.HomePortletManager10"
+        type="genweb5.core.browser.portlets.interfaces.IPortletsHomepage"
+        />
+
     <!-- Eliminació de portlets de la base -->
     <portlet addview="portlets.Actions" remove="true" />
     <portlet addview="portlets.Events" remove="true" />

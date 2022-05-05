@@ -26,6 +26,11 @@
             title="genweb.banners: more power"
             />
 
+        <permission
+            id="genweb.manage.homeportlets"
+            title="Genweb: Manage home portlets"
+            />
+
     </configure>
 
 </configure>

@@ -5,6 +5,8 @@ from plone.dexterity.content import Item
 from zope.interface import implementer
 
 from genweb5.core.content.banner.banner import IBanner
+from genweb5.core.content.subhome.subhome import ISubhome
+from genweb5.core.interfaces import IHomePageView
 
 
 @implementer(IBanner)
@@ -24,4 +26,9 @@ class Logo(Item):
 
 @implementer(IFolder)
 class LogoContainer(Container):
+    pass
+
+
+@implementer(ISubhome, IHomePageView)
+class Subhome(Item):
     pass

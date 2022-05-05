@@ -12,6 +12,7 @@
       Be careful if you use general includeDependencies, it can have side effects!
       Better import explicit packages or configurations ;)
     -->
+
     <!--<includeDependencies package="." />-->
     <include file="permissions.zcml" />
 
@@ -47,8 +48,6 @@
         name="genweb5.core-hiddenprofiles"
         />
 
-    <!-- -*- extra stuff goes here -*- -->
-
     <adapter
         for="zope.interface.Interface"
         provides=".adapters.important.IImportant"
@@ -65,10 +64,17 @@
 
     <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
 
-    <!-- The utilities browser view (can't be a grok view) -->
+    <!-- <browser:page
+        name="gwconfig"
+        for="zope.interface.Interface"
+        class=".utils.GWConfig"
+        permission="zope2.Public"
+        allowed_interface=".interfaces.IGenweb5CoreLayer"
+        /> -->
+
     <browser:page
-        for="*"
         name="genweb.utils"
+        for="*"
         class=".utils.genwebUtils"
         permission="zope2.Public"
         allowed_interface=".interfaces.IGenweb5CoreLayer"

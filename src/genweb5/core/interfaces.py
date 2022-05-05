@@ -84,3 +84,7 @@ class INewsFolder(Interface):
 
 class IEventFolder(Interface):
     """ Marker interface for the event folders """
+
+
+class IHomePageView(Interface):
+    """Marker interface for the Homepage View."""

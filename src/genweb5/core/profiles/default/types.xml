@@ -2,6 +2,7 @@
 <object name="portal_types" meta_type="Plone Types Tool">
 
     <object name="Plone Site" meta_type="Factory-based Type Information with dynamic views"/>
+
     <object name="Link" meta_type="Dexterity FTI" />
 
     <object name="Banner" meta_type="Dexterity FTI" />
@@ -9,5 +10,7 @@
 
     <object name="Logos_Footer" meta_type="Dexterity FTI" />
     <object name="Logos_Container" meta_type="Dexterity FTI" />
+
+    <object name="genweb.upc.subhome" meta_type="Dexterity FTI"  />
 
 </object>

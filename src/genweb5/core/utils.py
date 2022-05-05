@@ -114,6 +114,12 @@ def json_response(func):
     return decorator
 
 
+# class GWConfig(BrowserView):
+
+#     def render(self):
+#         return genweb_config()
+
+
 class genwebUtils(BrowserView):
     """ Convenience methods placeholder genweb.utils view. """
 

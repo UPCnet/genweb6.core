@@ -27,5 +27,12 @@
             <role name="Manager" />
         </permission>
 
+        <permission name="Genweb: Manage home portlets"
+                    acquire="True">
+
+            <role name="WebMaster"/>
+            <role name="Manager"/>
+        </permission>
+
     </permissions>
 </rolemap>

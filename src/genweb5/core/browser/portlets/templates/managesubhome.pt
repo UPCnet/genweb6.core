@@ -1,0 +1,224 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb">
+<head>
+  <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+    <script type="text/javascript"
+      tal:attributes="src string:${context/absolute_url}/++resource++gw-manage-portlets.js">
+    </script>
+
+    <script type="text/javascript"
+      tal:attributes="src string:${context/absolute_url}/++resource++manage-portlets.js">
+    </script>
+
+  </div>
+  <div metal:fill-slot="style_slot" tal:omit-tag="">
+    <link rel="stylesheet"
+      tal:attributes="href string:${context/absolute_url}/++genweb++static/css/alertify.core.css">
+    <link rel="stylesheet"
+      tal:attributes="href string:${context/absolute_url}/++genweb++static/css/alertify.default.css">
+  </div>
+</head>
+
+<body class="manage-homeportlets">
+
+  <metal:block fill-slot="top_slot"
+                   tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                               disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+
+  <div metal:fill-slot="portlets_one_slot">
+      <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
+  </div>
+
+  <div metal:fill-slot="main">
+
+    <tal:warning tal:condition="plone_view/isDefaultPageInFolder">
+      <div class="alert alert-info"
+           tal:attributes="class string:alert alert-warning">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <strong i18n:translate="">
+                      Warning
+            </strong>
+            <tal:msg i18n:translate="message_warning_footer_area_dt">
+              Is this really where you want to add portlets in the footer area?
+            </tal:msg>
+            <tal:msg i18n:translate="message_warning_footer_area_dd">
+              If you add portlets here, they will only appear on this item. If instead you want portlets to appear on all items in this folder,
+              <a href=""
+                   tal:attributes="href string:${plone_view/getCurrentFolderUrl}/@@manage-subhome"
+                    i18n:name="manage-footerportlets_link">
+                    <span i18n:translate="add_them_to_the_folder_itself">add them to the folder itself</span>
+                </a>
+            </tal:msg>
+      </div>
+    </tal:warning>
+
+    <tal:ishp tal:condition="view/paginaPrincipal">
+      <h1 class="documentFirstHeading" i18n:translate="manage_portlets_footer">Manage home portlets</h1>
+    </tal:ishp>
+
+    <tal:nishp tal:condition="not: view/paginaPrincipal">
+      <h1 class="documentFirstHeading" tal:content="view/getTitle"> titol graella</h1>
+    </tal:nishp>
+
+    <p>
+     <a href=""
+           class="link-parent"
+           tal:attributes="href string:${plone_view/getCurrentFolderUrl}"
+           i18n:translate="return_to_view">
+        Return
+     </a>
+    </p>
+
+    <section id="content">
+      <div class="container">
+        <div id="portal-columns" class="row-fluid">
+          <div class="span12">
+            <div class="row-fluid">
+              <div id="portal-column-one" class="span2">
+                  <h2 i18n:translate="homeportlets_title_1">Menu L2</h2>
+                  <span tal:replace="structure provider:genweb.portlets.HomePortletManager1" />
+              </div>
+              <div id="portal-column-content" class="span10">
+                <div class="row-fluid">
+                  <div class="span12">
+                    <h2 class="liniaDalt" i18n:translate="homeportlets_title_f1">1a Fila</h2>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager2" />
+                  </div>
+                </div>
+                <h2 class="liniaDalt" i18n:translate="homeportlets_title_f2">2a Fila</h2>
+                <div class="row-fluid">
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 1</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager3">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager3" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 2</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager4">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager4" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 3</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager5">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager5" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 4</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager6">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager6" />
+                  </div>
+                </div>
+                <h2 class="liniaDalt" i18n:translate="homeportlets_title_f3">3a Fila</h2>
+                <div class="row-fluid">
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 1</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager7">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager7" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 2</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager8">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager8" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 3</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager9">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager9" />
+                  </div>
+                  <div class="span3">
+                    <div class="clearfix">
+                      <h3 class="pull-left">Columna 4</h3>
+                      <div class="input-prepend pull-right clearfix"
+                           tal:define="manager_name string:genweb.portlets.HomePortletManager10">
+                        <span class="add-on">span</span>
+                        <input class="editable" type="text" placeholder="0" style="width: 10px;"
+                               tal:attributes="data-context-id context/id;
+                                               data-manager manager_name;
+                                               value python:view.getValue(manager_name)">
+                      </div>
+                    </div>
+                    <span tal:replace="structure provider:genweb.portlets.HomePortletManager10" />
+                  </div>
+                </div>
+                <div class="liniaDalt"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+        <div metal:fill-slot="portlets_two_slot">
+            <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
+        </div>
+
+    </body>
+</html>
