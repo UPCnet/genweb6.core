@@ -74,6 +74,14 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:page
+        name="setup-view"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".setup_view.setup"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
     <browser:view
         name="folder_delete"
         for="*"
