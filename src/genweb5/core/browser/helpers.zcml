@@ -232,6 +232,14 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="check_product_is_installed"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.checkPloneProductIsInstalled"
+        layer="..interfaces.IGenweb5CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
     <!-- helpers_touchers.py -->
 
     <browser:page
@@ -286,14 +294,6 @@
         name="remove_folder_view"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.removeFolderView"
-        layer="..interfaces.IGenweb5CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
-        name="check_product_is_installed"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.checkPloneProductIsInstalled"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="cmf.ManagePortal"
         />

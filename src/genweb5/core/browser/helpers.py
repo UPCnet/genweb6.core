@@ -8,11 +8,9 @@ from Products.PythonScripts.standard import url_quote
 
 from plone import api
 from plone.app.layout.navigation.defaultpage import getDefaultPage
-from plone.registry.interfaces import IRegistry
 from plone.subrequest import subrequest
 from plone.uuid.interfaces import IMutableUUID
 from souper.soup import get_soup
-from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb5.core import HAS_PAM
@@ -890,3 +888,22 @@ class getCollectionDefaultPages(BrowserView):
             **dict(body='\n'.join(
                 [getCollectionDefaultPages.REPORT_ROW.format(**default_page)
                  for default_page in collections])))
+
+
+class checkPloneProductIsInstalled(BrowserView):
+    """
+        Comproba si un paquet està instal·lat
+
+        Paràmetre:
+        - product_name: id del paquet
+    """
+
+    def __call__(self):
+        if 'product_name' in self.request.form:
+            product_name = self.request.form['product_name']
+            qi = api.portal.get_tool(name='portal_quickinstaller')
+
+            if qi.isProductInstalled(product_name):
+                return 'OK\n'
+
+        return 'Error parameter product_name, not defined'

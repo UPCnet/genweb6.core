@@ -181,25 +181,6 @@ class removeFolderView(BrowserView):
         return '\n'.join(output)
 
 
-class checkPloneProductIsInstalled(BrowserView):
-    """
-        Comproba si un paquet està instal·lat
-
-        Paràmetre:
-        - product_name: id del paquet
-    """
-
-    def __call__(self):
-        if 'product_name' in self.request.form:
-            product_name = self.request.form['product_name']
-            qi = api.portal.get_tool(name='portal_quickinstaller')
-
-            if qi.isProductInstalled(product_name):
-                return 'OK\n'
-
-        return 'Error parameter product_name, not defined'
-
-
 class reinstallPloneProduct(BrowserView):
     """
         Reinstal·la un paquet
