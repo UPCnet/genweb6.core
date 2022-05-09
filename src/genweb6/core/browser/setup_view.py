@@ -8,10 +8,10 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from datetime import timedelta
 from plone import api
-from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.event.base import localized_now
 from plone.app.multilingual.browser.setup import SetupMultilingualSite
 from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
 from plone.namedfile.file import NamedBlobImage
 from plone.portlets.constants import CONTEXT_CATEGORY
@@ -320,13 +320,13 @@ class setup(BrowserView):
 
         if not getattr(portal_en, 'welcome', False):
             welcome = self.create_content(portal_en, 'Document', 'welcome', title='Welcome')
-            welcome.text = IRichText['text'].fromUnicode(welcome_string_en)
+            welcome.text = RichTextValue(welcome_string_en, 'text/html')
         if not getattr(portal_es, 'bienvenido', False):
             bienvenido = self.create_content(portal_es, 'Document', 'bienvenido', title='Bienvenido')
-            bienvenido.text = IRichText['text'].fromUnicode(welcome_string_es)
+            bienvenido.text = RichTextValue(welcome_string_es, 'text/html')
         if not getattr(portal_ca, 'benvingut', False):
             benvingut = self.create_content(portal_ca, 'Document', 'benvingut', title='Benvingut')
-            benvingut.text = IRichText['text'].fromUnicode(welcome_string_ca)
+            benvingut.text = RichTextValue(welcome_string_ca, 'text/html')
 
         welcome = portal_en['welcome']
         bienvenido = portal_es['bienvenido']
@@ -361,15 +361,15 @@ class setup(BrowserView):
         if not getattr(portal_en, 'customizedcontact', False):
             customizedcontact = self.create_content(portal_en, 'Document', 'customizedcontact', title='customizedcontact', publish=False)
             customizedcontact.title = u'Custom contact'
-            customizedcontact.text = IRichText['text'].fromUnicode(contact_string_en)
+            customizedcontact.text = RichTextValue(contact_string_en, 'text/html')
         if not getattr(portal_es, 'contactopersonalizado', False):
             contactopersonalizado = self.create_content(portal_es, 'Document', 'contactopersonalizado', title='contactopersonalizado', publish=False)
             contactopersonalizado.title = u'Contacto personalizado'
-            contactopersonalizado.text = IRichText['text'].fromUnicode(contact_string_es)
+            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html')
         if not getattr(portal_ca, 'contactepersonalitzat', False):
             contactepersonalitzat = self.create_content(portal_ca, 'Document', 'contactepersonalitzat', title='contactepersonalitzat', publish=False)
             contactepersonalitzat.title = u'Contacte personalitzat'
-            contactepersonalitzat.text = IRichText['text'].fromUnicode(contact_string_ca)
+            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html')
 
         customizedcontact = portal_en['customizedcontact']
         contactopersonalizado = portal_es['contactopersonalizado']
@@ -397,7 +397,7 @@ class setup(BrowserView):
 
         for plt in get_plantilles():
             plantilla = self.create_content(templates, 'Document', normalizeString(plt['titol']), title=plt['titol'], description=plt['resum'])
-            plantilla.text = IRichText['text'].fromUnicode(plt['cos'])
+            plantilla.text = RichTextValue(plt['cos'], 'text/html')
             plantilla.reindexObject()
 
         api.content.transition(obj=plantilles, transition='retracttointranet')
@@ -483,6 +483,7 @@ class setup(BrowserView):
             target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
             target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
             target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
+
             from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
             if 'navigation' not in target_manager_en_assignments:
                 target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
@@ -498,6 +499,7 @@ class setup(BrowserView):
             target_manager_bienvenido_assignments = getMultiAdapter((portal_es['bienvenido'], target_manager_bienvenido), IPortletAssignmentMapping)
             target_manager_benvingut = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager1', context=portal_ca['benvingut'])
             target_manager_benvingut_assignments = getMultiAdapter((portal_ca['benvingut'], target_manager_benvingut), IPortletAssignmentMapping)
+
             from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
             if 'navigation' not in target_manager_welcome_assignments:
                 target_manager_welcome_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
@@ -524,7 +526,7 @@ class setup(BrowserView):
         blacklist_en = getMultiAdapter((portal_en['events'], left_manager), ILocalPortletAssignmentManager)
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
 
-        from genweb.theme.portlets.news_events_listing import Assignment as news_events_Assignment
+        from genweb6.core.portlets.news_events_listing.news_events_listing import Assignment as news_events_Assignment
         # Put Categories portlet by default on:
 
         # noticies
@@ -593,7 +595,7 @@ class setup(BrowserView):
 <a class="link-bannerwarning external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/recursos-grafics/llistat-estils-CSS" target="_self"><span class="btntitolwarning">Llistat de tots els estils de Genweb</span><br /><span class="btnsubtitolwarning">Us ajudarà a fer pàgines més atractives</span></a></div>
 </div>"""
 
-        pagina_mostra_ca.text = IRichText['text'].fromUnicode(pagebody_sample)
+        pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html')
         pagina_mostra_ca.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb.upc').location
@@ -610,7 +612,7 @@ class setup(BrowserView):
                                                                          contentType=u'image/jpeg'),
                                                     description='Descripció notícia')
 
-            noticia_mostra_ca.text = IRichText['text'].fromUnicode("Contingut notícia")
+            noticia_mostra_ca.text = RichTextValue("Contingut notícia", 'text/html')
             noticia_mostra_ca.reindexObject()
 
         esdeveniments = portal['ca']['esdeveniments']
@@ -622,7 +624,7 @@ class setup(BrowserView):
                                                   'esdeveniment-de-mostra-' + str(i),
                                                   title='Esdeveniment de mostra ' + str(i))
 
-            event_sample_ca.text = IRichText['text'].fromUnicode("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.")
+            event_sample_ca.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html')
             event_sample_ca.location = "Lloc de l'esdeveniment"
             event_sample_ca.start = now
             event_sample_ca.end = far
@@ -636,7 +638,8 @@ class setup(BrowserView):
             spanstorage.span = '12'
 
             managerAssignments = getMultiAdapter((portal['ca']['benvingut'], portletManager), IPortletAssignmentMapping)
-            from genweb.upc.portlets.new_existing_content import Assignment as newExistingContentAssignment
+
+            from genweb6.core.portlets.new_existing_content.new_existing_content import Assignment as newExistingContentAssignment
             if 'pagina_principal' not in managerAssignments:
                 managerAssignments['pagina_principal'] = newExistingContentAssignment(
                     ptitle='Pàgina principal',
@@ -646,25 +649,21 @@ class setup(BrowserView):
                     external_url='',
                     own_content='/ca/pagina-principal-mostra')
 
-            from genweb.theme.portlets.fullnews import Assignment as fullnewsAssignment
+            from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
             if 'noticies' not in managerAssignments:
                 managerAssignments['noticies'] = fullnewsAssignment(
                     view_type='id_full_3cols')
 
-            from genweb.theme.portlets.grid_events import Assignment as gridEventsAssignment
+            from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
             if 'esdeveniments' not in managerAssignments:
                 managerAssignments['esdeveniments'] = gridEventsAssignment()
 
     def create_content(self, container, portal_type, id, publish=True, **kwargs):
-        try:
-            if not getattr(container, id, False):
-                obj = createContentInContainer(container, portal_type, checkConstraints=False, **kwargs)
-                if publish:
-                    self.publish_content(obj)
-            return getattr(container, id)
-        except:
-            import ipdb; ipdb.set_trace()
-            pass
+        if not getattr(container, id, False):
+            obj = createContentInContainer(container, portal_type, checkConstraints=False, **kwargs)
+            if publish:
+                self.publish_content(obj)
+        return getattr(container, id)
 
     def link_translations(self, items):
         """
