@@ -88,7 +88,7 @@
         <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone">
             <property name="title" i18n:translate="">Site Setup</property>
             <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${portal_url}/plone_control_panel</property>
+            <property name="url_expr">string:${portal_url}/@@overview-controlpanel</property>
             <property name="link_target" />
             <property name="icon_expr" />
             <property name="available_expr" />
