@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_parent, aq_inner
-from Products.CMFPlone.utils import getSiteEncoding
 from Products.CMFPlone.utils import transaction_note
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -104,7 +103,6 @@ class FolderDelete(BrowserView):
         # use the portal for traversal in case we have relative paths
         portal = getSite()
         traverse = portal.restrictedTraverse
-        charset = getSiteEncoding(self.context)
         for path in paths:
             # Skip and note any errors
             if handle_errors:
@@ -128,7 +126,7 @@ class FolderDelete(BrowserView):
                 # PATCH: support for content with non ASCII chars
                 title_or_id = obj.title_or_id()
                 if not isinstance(title_or_id, unicode):
-                    title_or_id = unicode(title_or_id, charset, 'ignore')
+                    title_or_id = unicode(title_or_id, 'UTF-8', 'ignore')
                 # Transform in plain ASCII
                 title_or_id = unicodedata.normalize(
                     'NFKD', title_or_id).encode('ascii', 'ignore')
