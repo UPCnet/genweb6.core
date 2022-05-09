@@ -33,22 +33,36 @@
         replacement=".browser.dxforms.update"
         />
 
-     <monkey:patch
+    <monkey:patch
         description="Force to the comments portlet to show comments in descending order from most newest to the most older"
         module="plone.app.discussion.conversation.Conversation"
         original="getThreads"
         replacement=".patches.getThreads"
         />
 
-     <!-- LDAP and user objects related patches -->
-     <monkey:patch
+    <monkey:patch
+        description="Patch to extend the features of the changeMemberPortrait"
+        class="Products.PlonePAS.tools.membership.MembershipTool"
+        original="changeMemberPortrait"
+        replacement=".patches.changeMemberPortrait"
+        />
+
+    <monkey:patch
+        description="Patch to extend the features of the deletePersonalPortrait"
+        class="Products.PlonePAS.tools.membership.MembershipTool"
+        original="deletePersonalPortrait"
+        replacement=".patches.deletePersonalPortrait"
+        />
+
+    <!-- LDAP and user objects related patches -->
+    <monkey:patch
         description="Force LDAP plugin authenticate to normalize userids and usernames to lowercase"
         module="Products.LDAPUserFolder.LDAPUserFolder.LDAPUserFolder"
         original="getUserByAttr"
         replacement=".patches.getUserByAttr"
         />
 
-     <monkey:patch
+    <monkey:patch
         description="Force LDAP plugin enumerate to normalize userids and usernames to lowercase"
         module="Products.LDAPMultiPlugins.LDAPMultiPlugin.LDAPMultiPlugin"
         original="enumerateUsers"

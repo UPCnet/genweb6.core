@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from BTrees.OOBTree import OOBTree
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
+from Products.CMFCore.permissions import ManageUsers
+from Products.CMFCore.utils import _checkPermission
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
@@ -11,6 +14,7 @@ from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 
+from io import StringIO
 from plone import api
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
@@ -23,9 +27,12 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.event import notify
 
+from genweb5.core.adapters.portrait import IPortraitUploadAdapter
+from genweb5.core.utils import portal_url
 from genweb5.core.utils import pref_lang
 
 import logging
+import requests
 import six
 
 try:
@@ -508,3 +515,58 @@ def sitemapObjects(self):
             # 'changefreq': 'always', # hourly/daily/weekly/monthly/yearly/never
             # 'prioriy': 0.5, # 0.0 to 1.0
         }
+
+
+# Extensible member portrait management
+def changeMemberPortrait(self, portrait, id=None):
+    """update the portait of a member.
+
+    We URL-quote the member id if needed.
+
+    Note that this method might be called by an anonymous user who
+    is getting registered.  This method will then be called from
+    plone.app.users and this is fine.  When called from restricted
+    python code or with a curl command by a hacker, the
+    declareProtected line will kick in and prevent use of this
+    method.
+    """
+    authenticated_id = self.getAuthenticatedMember().getId()
+    if not id:
+        id = authenticated_id
+    safe_id = self._getSafeMemberId(id)
+
+    # Our LDAP improvements hand the current user id in unicode, but BTree can't
+    # handle unicode keys in inner objects... *sigh*
+    if isinstance(safe_id, unicode):
+        safe_id = str(safe_id)
+
+    if authenticated_id and id != authenticated_id:
+        # Only Managers can change portraits of others.
+        if not _checkPermission(ManageUsers, self):
+            raise Unauthorized
+
+    # The plugable actions for how to handle the portrait.
+    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+    adapter(portrait, safe_id)
+
+
+def deletePersonalPortrait(self, id=None):
+    """deletes the Portait of a member.
+    """
+    authenticated_id = self.getAuthenticatedMember().getId()
+    if not id:
+        id = authenticated_id
+    safe_id = self._getSafeMemberId(id)
+    if id != authenticated_id and not _checkPermission(
+            ManageUsers, self):
+        raise Unauthorized
+
+    # The plugable actions for how to handle the portrait.
+    portrait_url = portal_url() + '/defaultUser.png'
+    imgData = requests.get(portrait_url).content
+    image = StringIO(imgData)
+    image.filename = 'defaultUser'
+    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+    adapter(image, safe_id)
+    # membertool = getToolByName(self, 'portal_memberdata')
+    # return membertool._deletePortrait(safe_id)
