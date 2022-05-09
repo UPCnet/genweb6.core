@@ -10,19 +10,6 @@
 
     <include package="plone.behavior" file="meta.zcml"/>
 
-    <!-- XXX This is only needed in the innpass migration situation,
-         after that it can be safely removed as the IGenwebLayer will
-         be in place and the grokker will take precedence. During the
-         innpass the layer will not be enabled and the override has to
-         be enabled globaly. -->
-    <!-- **** Not going to work if not refactored if coexistance -->
-    <browser:page
-        for="*"
-        name="collective.tinymcetemplates.templatelist"
-        class=".browser.views.TemplateList"
-        permission="zope2.View"
-        />
-
     <!-- Own customization of the display menu (i18n issues mainly) -->
     <adapter
         for="* *"
@@ -44,7 +31,5 @@
         factory=".overrides.gwConstrainTypesBehavior"
         for="plone.dexterity.interfaces.IDexterityContainer"
         />
-
-    <!-- BBB -->
 
 </configure>

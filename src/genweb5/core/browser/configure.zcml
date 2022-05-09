@@ -27,7 +27,7 @@
 
     <browser:page
         name="collective.tinymcetemplates.templatelist"
-        for="zope.interface.Interface"
+        for="*"
         class=".views.TemplateList"
         layer="..interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
