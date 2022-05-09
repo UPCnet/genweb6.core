@@ -1,0 +1,138 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="genweb">
+
+    <include package="plone.app.portlets" />
+
+    <include file="manage_portlets/configure.zcml" />
+
+    <plone:portletRenderer
+        portlet="plone.portlet.collection.collection.ICollectionPortlet"
+        class=".collection.collection.gwCollection"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <plone:portletRenderer
+        portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
+        class=".navigation.navigation.gwNavigation"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <plone:portletRenderer
+        portlet="plone.app.portlets.portlets.recent.IRecentPortlet"
+        class=".recent.recent.gwRecent"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <plone:portletRenderer
+        portlet="plone.app.portlets.portlets.rss.IRSSPortlet"
+        class=".rss.rss.gwRSS"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <plone:portlet
+        name="genweb.banners.portlet"
+        interface=".banners.banners.IBannersPortlet"
+        assignment=".banners.banners.Assignment"
+        view_permission="zope2.View"
+        renderer=".banners.banners.Renderer"
+        addview=".banners.banners.AddForm"
+        editview=".banners.banners.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.esdeveniments"
+        interface=".esdeveniments.esdeveniments.IEsdevenimentsPortlet"
+        assignment=".esdeveniments.esdeveniments.Assignment"
+        renderer=".esdeveniments.esdeveniments.Renderer"
+        addview=".esdeveniments.esdeveniments.AddForm"
+        editview=".esdeveniments.esdeveniments.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.fullnews"
+        interface=".fullnews.fullnews.IFullNewsPortlet"
+        assignment=".fullnews.fullnews.Assignment"
+        renderer=".fullnews.fullnews.Renderer"
+        addview=".fullnews.fullnews.AddForm"
+        editview=".fullnews.fullnews.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.grid_events"
+        interface=".grid_events.grid_events.IGridEventsPortlet"
+        assignment=".grid_events.grid_events.Assignment"
+        renderer=".grid_events.grid_events.Renderer"
+        addview=".grid_events.grid_events.AddForm"
+        editview=".grid_events.grid_events.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.homepage"
+        interface=".homepage.homepage.IHomepagePortlet"
+        assignment=".homepage.homepage.Assignment"
+        renderer=".homepage.homepage.Renderer"
+        addview=".homepage.homepage.AddForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.multiview_collection"
+        interface=".multiviewcollection.multiviewcollection.IMultiviewCollectionPortlet"
+        assignment=".multiviewcollection.multiviewcollection.Assignment"
+        renderer=".multiviewcollection.multiviewcollection.Renderer"
+        addview=".multiviewcollection.multiviewcollection.AddForm"
+        editview=".multiviewcollection.multiviewcollection.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.new_existing_content"
+        interface=".new_existing_content.new_existing_content.INewContentPortlet"
+        assignment=".new_existing_content.new_existing_content.Assignment"
+        renderer=".new_existing_content.new_existing_content.Renderer"
+        addview=".new_existing_content.new_existing_content.AddForm"
+        editview=".new_existing_content.new_existing_content.EditForm"
+        />
+
+    <class class=".new_existing_content.new_existing_content.NewContentPortletJSWidget">
+        <require
+            permission="zope.Public"
+            interface=".new_existing_content.new_existing_content.INewContentPortletJSWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".new_existing_content.new_existing_content.INewContentPortletJSWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="new_existing_content/js.pt"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.news"
+        interface=".news.news.INewsPortlet"
+        assignment=".news.news.Assignment"
+        renderer=".news.news.Renderer"
+        addview=".news.news.AddForm"
+        editview=".news.news.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.news_events_listing"
+        interface=".news_events_listing.news_events_listing.INewsEventsListingPortlet"
+        assignment=".news_events_listing.news_events_listing.Assignment"
+        renderer=".news_events_listing.news_events_listing.Renderer"
+        addview=".news_events_listing.news_events_listing.AddForm"
+        editview=".news_events_listing.news_events_listing.EditForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.upcnews"
+        interface=".upcnews.upcnews.IUPCNewsPortlet"
+        assignment=".upcnews.upcnews.Assignment"
+        renderer=".upcnews.upcnews.Renderer"
+        addview=".upcnews.upcnews.AddForm"
+        />
+
+</configure>

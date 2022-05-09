@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Installer for the genweb5.core package."""
+"""Installer for the genweb6.core package."""
 
 from setuptools import find_packages
 from setuptools import setup
@@ -13,7 +13,7 @@ long_description = '\n\n'.join([
 
 
 setup(
-    name='genweb5.core',
+    name='genweb6.core',
     version='1.0a1',
     description="Genweb 5 core package",
     long_description=long_description,
@@ -32,16 +32,16 @@ setup(
     keywords='Python Plone CMS',
     author='Plone Team',
     author_email='plone.team@upcnet.es',
-    url='https://github.com/collective/genweb5.core',
+    url='https://github.com/collective/genweb6.core',
     project_urls={
-        'PyPI': 'https://pypi.python.org/pypi/genweb5.core',
-        'Source': 'https://github.com/collective/genweb5.core',
-        'Tracker': 'https://github.com/collective/genweb5.core/issues',
-        # 'Documentation': 'https://genweb5.core.readthedocs.io/en/latest/',
+        'PyPI': 'https://pypi.python.org/pypi/genweb6.core',
+        'Source': 'https://github.com/collective/genweb6.core',
+        'Tracker': 'https://github.com/collective/genweb6.core/issues',
+        # 'Documentation': 'https://genweb6.core.readthedocs.io/en/latest/',
     },
     license='GPL version 2',
     packages=find_packages('src', exclude=['ez_setup']),
-    namespace_packages=['genweb5'],
+    namespace_packages=['genweb6'],
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
@@ -76,6 +76,6 @@ setup(
     [z3c.autoinclude.plugin]
     target = plone
     [console_scripts]
-    update_locale = genweb5.core.locales.update:update_locale
+    update_locale = genweb6.core.locales.update:update_locale
     """,
 )

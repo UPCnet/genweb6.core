@@ -1,0 +1,100 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <include file="helpers.zcml" />
+
+    <browser:page
+        name="clouseau"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".inspector.clouseau"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        template="inspector_templates/clouseau.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text"
+        for="plone.app.contenttypes.interfaces.IDocument"
+        class=".views.GetDXDocumentText"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="collective.tinymcetemplates.templatelist"
+        for="*"
+        class=".views.TemplateList"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="toggle_important"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        class=".views.gwToggleIsImportant"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        name="homepage"
+        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        class=".views.homePage"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="homepage"
+        for="Products.CMFCore.interfaces.IFolderish"
+        class=".views.subHomePage"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="subhome_view"
+        for="genweb6.core.content.subhome.subhome.ISubhome"
+        class=".views.SubhomeView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/subhome_view.pt"
+        />
+
+    <browser:page
+        name="edit"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        class=".dxforms.EditForm"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        name="setup-view"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".setup_view.setup"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:view
+        name="folder_delete"
+        for="*"
+        class=".confirmation.FolderDelete"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.DeleteObjects"
+        />
+
+    <!-- <browser:viewlet
+        name="genweb.logosfooter"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.logosFooterViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/logosfooter.pt"
+        /> -->
+
+</configure>

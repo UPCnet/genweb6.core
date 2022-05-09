@@ -42,7 +42,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'genweb5.core'
+project = u'genweb6.core'
 copyright = u'Plone Team (pilar.marinas@upcnet.es)'
 author = u'Plone Team (pilar.marinas@upcnet.es)'
 
@@ -199,7 +199,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'genweb5.coredoc'
+htmlhelp_basename = 'genweb6.coredoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 

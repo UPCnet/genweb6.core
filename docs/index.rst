@@ -1,5 +1,5 @@
 ============
-genweb5.core
+genweb6.core
 ============
 
 User documentation

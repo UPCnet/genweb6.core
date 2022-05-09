@@ -1,5 +1,0 @@
-from genweb5.core.portlets.multiviewcollection.multiviewcollection import IMultiviewCollectionPortlet
-from genweb5.core.portlets.multiviewcollection.multiviewcollection import Assignment
-from genweb5.core.portlets.multiviewcollection.multiviewcollection import Renderer
-from genweb5.core.portlets.multiviewcollection.multiviewcollection import AddForm
-from genweb5.core.portlets.multiviewcollection.multiviewcollection import EditForm

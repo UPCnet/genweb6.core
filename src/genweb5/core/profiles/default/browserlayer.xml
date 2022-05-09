@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<layers>
-  <layer
-      name="genweb5.core"
-      interface="genweb5.core.interfaces.IGenweb5CoreLayer"
-      />
-</layers>

@@ -1,0 +1,32 @@
+service: entitats
+id: ens-1
+description: Nombre d'ens 1
+categories:
+  - id: gabinet-juridic-i-entitats
+    description: Gabinet Jurídic i Entitats
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator
+  - id: gabinet-del-rector
+    description: Gabinet del Rector
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator
+---
+service: entitats
+id: ens-2
+description: Nombre d'ens 2
+categories:
+  - id: gabinet-juridic-i-entitats
+    description: Gabinet Jurídic i Entitats
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator
+  - id: gabinet-del-rector
+    description: Gabinet del Rector
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator
+---
+service: entitats
+id: ens-3
+description: Nombre d'ens 3
+categories:
+  - id: gabinet-juridic-i-entitats
+    description: Gabinet Jurídic i Entitats
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator
+  - id: gabinet-del-rector
+    description: Gabinet del Rector
+    calculator: genweb6.core.tests.test_registry_integration.MockCalculator

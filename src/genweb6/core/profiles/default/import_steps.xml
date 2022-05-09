@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<import-steps>
+    <import-step id="genweb6.core.various"
+                 version="20220426-01"
+                 handler="genweb6.core.setuphandlers.setupVarious"
+                 title="Genweb: miscellaneous import steps">
+
+        <dependency step="various" />
+        Various import steps that are not handled by GS import/export handlers.
+
+    </import-step>
+</import-steps>

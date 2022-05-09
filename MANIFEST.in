@@ -1,4 +1,4 @@
-graft src/genweb5
+graft src/genweb6
 graft docs
 include *.rst
 global-exclude *.pyc
