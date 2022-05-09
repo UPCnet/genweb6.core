@@ -25,14 +25,14 @@
         template="templates/managesubhome.pt"
         />
 
-    <browser:page
+    <!-- <browser:page
         name="manage-portlets-macros"
         for="*"
         class="plone.app.portlets.browser.manage.ManageContextualPortlets"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="plone.app.portlets.ManageOwnPortlets"
         template="templates/edit-manager-macros.pt"
-        />
+        /> -->
 
     <!-- Modify template to make regular portlets work -->
     <browser:page
