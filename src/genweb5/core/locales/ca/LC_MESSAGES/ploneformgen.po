@@ -1,23 +1,20 @@
-# PloneFormGen
-# Steve McMahon <steve@dcn.org>, 2006.
-# -------------------------------------------------------
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.7b5\n"
-"POT-Creation-Date: 2014-02-27 07:52+0000\n"
-"PO-Revision-Date: 2011-10-20 12:25+0100\n"
-"Last-Translator: Ariel von Barnekow <ariel.von.barnekow@upcnet.es>\n"
-"Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-05-09 10:0+0000\n"
+"PO-Revision-Date: 2022-05-09 10:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "Language-Code: ca\n"
 "Language-Name: Catalan\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: ploneformgen\n"
-"X-Poedit-Language: Catalan\n"
-"X-Poedit-Country: SPAIN\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: ca\n"
 
 #. Default: "A Likert form entry"
 #: ./profiles/default/types/FormLikertField.xml
