@@ -57,6 +57,13 @@
     <adapter factory=".adapters.important.importantIndexer" name="is_important" />
 
     <adapter
+        for="Products.PlonePAS.interfaces.membership.IMembershipTool
+             zope.interface.Interface"
+        provides=".adapters.portrait.IPortraitUploadAdapter"
+        factory=".adapters.portrait.PortraitUploadAdapter"
+        />
+
+    <adapter
         for="plone.app.contenttypes.interfaces.ILink"
         provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
         factory=".behaviors.openlinkin.OpenLinkInNewWindow"
