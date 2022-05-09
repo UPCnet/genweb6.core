@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
 
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.portlets.interfaces import IPortletAssignmentMapping
+from plone.portlets.interfaces import IPortletManager
+from plone.testing.z2 import Browser
+from zope.component import getMultiAdapter
+from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb5.core.interfaces import IHomePage
-# from genweb5.theme.portlets import homepage
-from genweb5.core.testing import GENWEB_INTEGRATION_TESTING
+from genweb5.core.portlets.homepage import homepage
 from genweb5.core.testing import GENWEB_FUNCTIONAL_TESTING
+from genweb5.core.testing import GENWEB_INTEGRATION_TESTING
 
 import unittest2 as unittest
+import transaction
 
 
 class IntegrationTest(unittest.TestCase):
@@ -98,29 +104,29 @@ class IntegrationTest(unittest.TestCase):
             Unauthorized, self.portal.manage_delObjects, 'test_folder')
 
 
-# class FunctionalTest(unittest.TestCase):
+class FunctionalTest(unittest.TestCase):
 
-#     layer = GENWEB_FUNCTIONAL_TESTING
+    layer = GENWEB_FUNCTIONAL_TESTING
 
-#     def setUp(self):
-#         self.portal = self.layer['portal']
-#         self.request = self.layer['request']
-#         self.app = self.layer['app']
-#         self.browser = Browser(self.app)
-#         setRoles(self.portal, TEST_USER_ID, ['Manager'])
+    def setUp(self):
+        self.portal = self.layer['portal']
+        self.request = self.layer['request']
+        self.app = self.layer['app']
+        self.browser = Browser(self.app)
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
-#         # Create a portlet in a slot
-#         benvingut = self.portal['front-page']
-#         manager = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager2', context=benvingut)
-#         assignments = getMultiAdapter((benvingut, manager), IPortletAssignmentMapping)
-#         homepage_assignment = homepage.Assignment()
-#         assignments['homepage'] = homepage_assignment
-#         transaction.commit()
-#         setRoles(self.portal, TEST_USER_ID, ['Member'])
+        # Create a portlet in a slot
+        benvingut = self.portal['front-page']
+        manager = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager2', context=benvingut)
+        assignments = getMultiAdapter((benvingut, manager), IPortletAssignmentMapping)
+        homepage_assignment = homepage.Assignment()
+        assignments['homepage'] = homepage_assignment
+        transaction.commit()
+        setRoles(self.portal, TEST_USER_ID, ['Member'])
 
-#     def testHomePagePortlet(self):
-#         portalURL = self.portal.absolute_url()
+    def testHomePagePortlet(self):
+        portalURL = self.portal.absolute_url()
 
-#         self.browser.open(portalURL)
+        self.browser.open(portalURL)
 
-#         self.assertTrue('Congratulations! You have successfully installed Plone.' in self.browser.contents)
+        self.assertTrue('Congratulations! You have successfully installed Plone.' in self.browser.contents)

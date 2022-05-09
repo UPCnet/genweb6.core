@@ -1,0 +1,9 @@
+id: ens-n
+description: Nombre d'ens
+categories
+  - id: gabinet-juridic-i-entitats
+    description: Gabinet Jurídic i Entitats
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator
+  - id: gabinet-del-rector
+    description: Gabinet del Rector
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator

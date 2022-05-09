@@ -1,0 +1,13 @@
+service: service-1
+id: indicator-1
+description: Indicator 1
+categories:
+  - id: category-1.1
+    description: Category 1.1
+    type: type 1.1
+    frequency: frequency 1.1
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator111
+  - id: category-1.2
+    description: Category 1.2
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculatorWithException
+

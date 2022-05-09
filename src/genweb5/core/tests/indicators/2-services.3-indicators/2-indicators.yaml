@@ -1,0 +1,22 @@
+service: service-2
+id: indicator-1
+description: Indicator 1
+categories:
+  - id: category-1.1
+    description: Category 1.1
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator211
+  - id: category-1.2
+    description: Category 1.2
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator212
+---
+service: service-2
+id: indicator-2
+description: Indicator 2
+categories:
+  - id: category-2.1
+    description: Category 2.1
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator221
+  - id: category-2.2
+    description: Category 2.2
+    calculator: genweb5.core.tests.test_registry_integration.MockCalculator222
+
