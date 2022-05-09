@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="genweb">
+
+    <adapter
+        for="zope.interface.Interface"
+        provides=".adapters.important.IImportant"
+        factory=".adapters.important.ImportantMarker"
+        />
+
+    <adapter factory=".adapters.important.importantIndexer" name="is_important" />
+
+    <adapter
+        for="Products.PlonePAS.interfaces.membership.IMembershipTool
+             zope.interface.Interface"
+        provides=".adapters.portrait.IPortraitUploadAdapter"
+        factory=".adapters.portrait.PortraitUploadAdapter"
+        />
+
+    <adapter
+        for="plone.app.contenttypes.interfaces.ILink"
+        provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
+        factory=".behaviors.openlinkin.OpenLinkInNewWindow"
+        />
+
+    <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
+    <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
+    <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
+    <adapter factory=".content.banner.banner.getRemoteUrl" name="getRemoteUrl" />
+
+</configure>

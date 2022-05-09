@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="genweb">
+
+    <subscriber
+        for="plone.uuid.interfaces.IAttributeUUID
+             zope.lifecycleevent.interfaces.IObjectCreatedEvent"
+        handler=".gwuuid.addAttributeUUID"
+        />
+
+    <!-- <subscriber
+        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
+             plone.app.workflow.events.ILocalrolesModifiedEvent"
+        handler=".subscribers.addedPermissionsPloneSiteRoot"
+        /> -->
+
+    <subscriber
+        for="genweb5.core.interfaces.IProtectedContent
+             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
+        handler=".subscribers.preventDeletionOnProtectedContent"
+        />
+
+</configure>

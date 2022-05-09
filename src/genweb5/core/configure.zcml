@@ -16,9 +16,11 @@
     <!--<includeDependencies package="." />-->
     <include file="permissions.zcml" />
 
+    <include file="adapters.zcml" />
     <include file="behaviors.zcml" />
     <include file="components.zcml" />
     <include file="patches.zcml" />
+    <include file="subscribers.zcml" />
 
     <include package=".browser" />
     <include package=".portlets" />
@@ -48,29 +50,6 @@
         name="genweb5.core-hiddenprofiles"
         />
 
-    <adapter
-        for="zope.interface.Interface"
-        provides=".adapters.important.IImportant"
-        factory=".adapters.important.ImportantMarker"
-        />
-
-    <adapter factory=".adapters.important.importantIndexer" name="is_important" />
-
-    <adapter
-        for="Products.PlonePAS.interfaces.membership.IMembershipTool
-             zope.interface.Interface"
-        provides=".adapters.portrait.IPortraitUploadAdapter"
-        factory=".adapters.portrait.PortraitUploadAdapter"
-        />
-
-    <adapter
-        for="plone.app.contenttypes.interfaces.ILink"
-        provides=".behaviors.openlinkin.IOpenLinkInNewWindow"
-        factory=".behaviors.openlinkin.OpenLinkInNewWindow"
-        />
-
-    <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
-
     <!-- <browser:page
         name="gwconfig"
         for="zope.interface.Interface"
@@ -87,36 +66,12 @@
         allowed_interface=".interfaces.IGenweb5CoreLayer"
         />
 
-    <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
-
-    <subscriber
-        for="plone.uuid.interfaces.IAttributeUUID
-             zope.lifecycleevent.interfaces.IObjectCreatedEvent"
-        handler=".gwuuid.addAttributeUUID"
-        />
-
-    <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
-
-    <adapter factory=".content.banner.banner.getRemoteUrl" name="getRemoteUrl" />
-
     <browser:page
         name="gwuuid"
         for="zope.interface.Interface"
         class=".gwuuid.GWUUIDView"
         layer="genweb5.core.interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
-        />
-
-    <!-- <subscriber
-        for="Products.CMFPlone.interfaces.siteroot.IPloneSiteRoot
-             plone.app.workflow.events.ILocalrolesModifiedEvent"
-        handler=".subscribers.addedPermissionsPloneSiteRoot"
-        /> -->
-
-    <subscriber
-        for="genweb5.core.interfaces.IProtectedContent
-             zope.lifecycleevent.interfaces.IObjectRemovedEvent"
-        handler=".subscribers.preventDeletionOnProtectedContent"
         />
 
 </configure>
