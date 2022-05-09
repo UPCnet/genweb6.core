@@ -19,36 +19,20 @@ class clouseau(BrowserView):
         app = portal.restrictedTraverse('/')
 
         setup = []
-
-        bulk = []
-        products = []
-        cache = []
-
-        application = []
-        plone = []
-
+        helpers = []
+        helpers_touchers = []
+      
         for module in MODULES_TO_INSPECT:
             themodule = importlib.import_module(module)
             members = inspect.getmembers(themodule, inspect.isclass)
-            # import ipdb; ipdb.set_trace()
-            pass
 
             for name, klass in members:
                 if name != 'BrowserView':
                     if module == 'genweb6.core.browser.setup':
-                        setup.append(
-                            dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
-                    elif 'bulk' in name.lower():
-                        pass
-                    elif 'product' in name.lower():
-                        pass
-                    elif 'cache' in name.lower():
-                        pass
+                        setup.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                    elif module == 'genweb6.core.browser.helpers':
+                        helpers.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                    elif module == 'genweb6.core.browser.helpers_touchers':
+                        helpers_touchers.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
 
-            #     if grok.View in klass.__bases__:
-            #         if getattr(klass, 'grokcore.component.directive.context').getName() == 'IApplication':
-            #             application.append(dict(url='{}/{}'.format(app.absolute_url(), getattr(klass, 'grokcore.component.directive.name', name.lower())), description=klass.__doc__))
-            #         else:
-            #             plone_site.append(dict(url='{}/{}'.format(portal.absolute_url(), getattr(klass, 'grokcore.component.directive.name', name.lower())), description=klass.__doc__))
-
-        return (plone, application)
+        return (setup, helpers, helpers_touchers)

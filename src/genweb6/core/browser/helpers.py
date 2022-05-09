@@ -63,7 +63,7 @@ class debug(BrowserView):
         ipdb.set_trace()  # Magic! Do not delete!!! :)
 
 
-class monitoringView(BrowserView):
+class ping(BrowserView):
     """
         Vista de comoditat per al programari de monitorització
     """
@@ -121,7 +121,7 @@ class getZEO(BrowserView):
         self.request.response.redirect('get_zope')
 
 
-class getZOPE(BrowserView):
+class get_zope(BrowserView):
     """
         Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
     """
@@ -136,7 +136,7 @@ class getZOPE(BrowserView):
             return '<span style="color:#6b2508; font-size: 12vw;">' + dorsal + "<br/>[" + str(serverid) + "]</span>"
 
 
-class listPloneSitesView(BrowserView):
+class list_plone_sites(BrowserView):
     """
         Retorna una llista amb els plonesites disponibles en aquest Zope
     """
@@ -152,7 +152,7 @@ class listPloneSitesView(BrowserView):
         return json.dumps(out)
 
 
-class getFlavourSitesView(BrowserView):
+class get_flavour_sites(BrowserView):
     """
         Retorna l'última capa instal·lada per a cada plonesite
     """
@@ -167,7 +167,7 @@ class getFlavourSitesView(BrowserView):
         return json.dumps(out)
 
 
-class getFlavourSiteView(BrowserView):
+class get_flavour_site(BrowserView):
     """
         Retorna l'última capa instal·lada en aquest lloc
     """
@@ -177,7 +177,7 @@ class getFlavourSiteView(BrowserView):
         return portal_skins.getDefaultSkin()
 
 
-class getLanguagesSitesView(BrowserView):
+class get_languages_sites(BrowserView):
     """
         Retorna els idiomes soportats per a cada lloc
     """
@@ -191,7 +191,7 @@ class getLanguagesSitesView(BrowserView):
         return json.dumps(out)
 
 
-class getDefaultLanguageSitesView(BrowserView):
+class get_default_language_sites(BrowserView):
     """
         Retorna l'idioma predeterminat per a cada lloc
     """
@@ -206,7 +206,7 @@ class getDefaultLanguageSitesView(BrowserView):
         return json.dumps(out)
 
 
-class getDefaultWFSitesView(BrowserView):
+class get_default_wfsites(BrowserView):
     """
         Retorna el workflow predeterminat per a cada lloc
     """
@@ -221,7 +221,7 @@ class getDefaultWFSitesView(BrowserView):
         return json.dumps(out)
 
 
-class mirrorUIDs(BrowserView):
+class mirror_uids(BrowserView):
     """
         mirrorUIDs
     """
@@ -256,7 +256,7 @@ class mirrorUIDs(BrowserView):
             self.output = '<br/>'.join(self.output)
 
 
-class mirrorStates(BrowserView):
+class mirror_states(BrowserView):
     """
         mirrorStates
     """
@@ -303,7 +303,7 @@ class mirrorStates(BrowserView):
             self.output = '<br/>'.join(self.output)
 
 
-class bulkExecuteScriptView(BrowserView):
+class bulk_action(BrowserView):
     """
         Executeu una vista en totes les instancies
 
@@ -335,7 +335,7 @@ class bulkExecuteScriptView(BrowserView):
         return '\n'.join(output)
 
 
-class notSubProcessedBulkExecuteScriptView(BrowserView):
+class nsp_bulk_action(BrowserView):
     """
         Executeu una vista en totes les instancies, utilitzat només
         en cas que alguna cosa no funcioni fent una subrequest!
@@ -358,7 +358,7 @@ class notSubProcessedBulkExecuteScriptView(BrowserView):
         return '\n'.join(output)
 
 
-class ExportGWConfig(BrowserView):
+class export_gw_properties(BrowserView):
     """
         ExportGWConfig
         """
@@ -380,7 +380,7 @@ class ExportGWConfig(BrowserView):
         return json.dumps(result)
 
 
-class ChangeEventsView(BrowserView):
+class change_events_view(BrowserView):
     """
         Canvia la vista per defecte dels directoris d'esdeveniments
     """
@@ -402,7 +402,7 @@ class ChangeEventsView(BrowserView):
                 esdeveniments.setLayout('event_listing')
 
 
-# class ChangeTinyCSS(BrowserView):
+# class change_tiny_css(BrowserView):
 #     """
 #         Canvia la url dels css del TinyMCE
 #     """
@@ -415,7 +415,7 @@ class ChangeEventsView(BrowserView):
 #         ptiny.content_css = u'++genwebupc++stylesheets/genwebupc.css'
 
 
-class listLDAPInfo(BrowserView):
+class list_ldap_info(BrowserView):
     """
         Llista l'informació del LDAP de cada plonesite
     """
@@ -455,7 +455,7 @@ class listLastLogin(BrowserView):
         return '\n'.join(output)
 
 
-class getRenderedStylesheets(BrowserView):
+class get_rendered_stylesheets(BrowserView):
     """
         Llista l'informació d'ubicació de cada full d'estil
     """
@@ -515,7 +515,7 @@ class getRenderedStylesheets(BrowserView):
         return aq_inner(self.context).getCurrentSkinName()
 
 
-class checkCacheSettings(BrowserView):
+class check_cache_settings(BrowserView):
     """
         Comproba la configuració de la caché
     """
@@ -527,7 +527,7 @@ class checkCacheSettings(BrowserView):
         return api.portal.get_registry_record(name='plone.app.caching.moderateCaching.etags')
 
 
-class listDomaninsCache(BrowserView):
+class list_domains_cache(BrowserView):
     """
         Retorna els dominis de plone.app.caching
     """
@@ -548,7 +548,7 @@ class listDomaninsCache(BrowserView):
         return '\n'.join(output)
 
 
-class getContactData(BrowserView):
+class get_contact_data(BrowserView):
     """
         Retorna les dades de contacte
     """
@@ -563,7 +563,7 @@ class getContactData(BrowserView):
         return (path, host, name, email)
 
 
-# class getConfigGenwebControlPanelSettings(BrowserView):
+# class get_controlpanel_settings(BrowserView):
 #     """
 #         Retorna tota la informació del controlpanel
 #     """
@@ -806,7 +806,7 @@ class getContactData(BrowserView):
 #         return output
 
 
-class getUsedGroups(BrowserView):
+class get_used_groups(BrowserView):
     """
         Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
     """
@@ -834,7 +834,7 @@ class getUsedGroups(BrowserView):
         return res
 
 
-class getCollectionDefaultPages(BrowserView):
+class get_collection_default_pages(BrowserView):
     """
         Llista el valor de la propietat 'default_page' (si està definida) per
         als continguts Col·lecció.
@@ -890,7 +890,7 @@ class getCollectionDefaultPages(BrowserView):
                  for default_page in collections])))
 
 
-class checkPloneProductIsInstalled(BrowserView):
+class check_product_is_installed(BrowserView):
     """
         Comproba si un paquet està instal·lat
 

@@ -43,7 +43,7 @@ else:
     CSRF = True
 
 
-class makeMeaHomePage(BrowserView):
+class make_me_a_homepage(BrowserView):
     """
         Habilita el layout de homepage en el contingut, ha de ser una carpeta
     """
@@ -57,7 +57,7 @@ class makeMeaHomePage(BrowserView):
         return self.request.response.redirect(self.context.absolute_url())
 
 
-class makeMeaSubHomePage(BrowserView):
+class make_me_a_subhome_page(BrowserView):
     """
         Habilita el layout de subhomepage en el contingut, ha de ser una carpeta
     """
@@ -71,7 +71,7 @@ class makeMeaSubHomePage(BrowserView):
         return self.request.response.redirect(self.context.absolute_url())
 
 
-class resetLanguage(BrowserView):
+class reset_language(BrowserView):
     """
         Torna a establir l'idioma de cada LRF segons el seu nom. Executar en un LRF
         LRF -> Language Root Folder
@@ -92,7 +92,7 @@ class resetLanguage(BrowserView):
                 ob.reindexObject(idxs=['Language', 'TranslationGroup'])
 
 
-class enablePDFIndexing(BrowserView):
+class enable_pdf_indexing(BrowserView):
     """
         Activa la indexació de PDF
     """
@@ -104,7 +104,7 @@ class enablePDFIndexing(BrowserView):
         return 'Done'
 
 
-class updateFolderViews(BrowserView):
+class update_folder_views(BrowserView):
     """
         Actualitza les vistes per al tipus de carpeta
     """
@@ -123,7 +123,7 @@ class updateFolderViews(BrowserView):
         return '\n'.join(output)
 
 
-class addFolderView(BrowserView):
+class add_folder_view(BrowserView):
     """
         Afegeix una vista nova al tipus de contingut carpeta
 
@@ -152,7 +152,7 @@ class addFolderView(BrowserView):
         return '\n'.join(output)
 
 
-class removeFolderView(BrowserView):
+class remove_folder_view(BrowserView):
     """
         Elimina una vista al tipus de contingut carpeta
 
@@ -181,7 +181,7 @@ class removeFolderView(BrowserView):
         return '\n'.join(output)
 
 
-class reinstallPloneProduct(BrowserView):
+class reinstall_product(BrowserView):
     """
         Reinstal·la un paquet
 
@@ -208,7 +208,7 @@ class reinstallPloneProduct(BrowserView):
         return 'Error parameter product_name, not defined'
 
 
-class uninstallPloneProduct(BrowserView):
+class uninstall_product(BrowserView):
     """
         Desinstal·la un paquet
 
@@ -230,7 +230,7 @@ class uninstallPloneProduct(BrowserView):
         return 'Error parameter product_name, not defined'
 
 
-class upgradePloneVersion(BrowserView):
+class upgrade_plone_version(BrowserView):
     """
         Upgrada a la última versió de Plone
     """
@@ -251,7 +251,7 @@ class upgradePloneVersion(BrowserView):
         return report
 
 
-class setupPAMAgain(BrowserView):
+class setup_pam_again(BrowserView):
     """
         setupPAMAgain
     """
@@ -262,7 +262,7 @@ class setupPAMAgain(BrowserView):
         setupTool.setupSite(self.context, False)
 
 
-class deleteNavPortletFromRoot(BrowserView):
+class delete_navportlet_from_root(BrowserView):
     """
         Elimina el portlet de navegació de l'arrel
     """
@@ -280,7 +280,7 @@ class deleteNavPortletFromRoot(BrowserView):
             del target_manager_root_assignments['navigation']
 
 
-class reinstallGWTinyTemplates(BrowserView):
+class reinstall_gw_tiny_templates(BrowserView):
     """
         Reinstal·la les plantilles del TinyMCE
     """
@@ -325,7 +325,7 @@ class reinstallGWTinyTemplates(BrowserView):
                                    'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
 
 
-class PortalSetupImport(BrowserView):
+class portal_setup_import(BrowserView):
     """
     Reinstal·la un step específic
 
@@ -361,7 +361,7 @@ class PortalSetupImport(BrowserView):
         return dict(step=step, profile=profile, profile_type=profile_type)
 
 
-class setSitemapDepth(BrowserView):
+class set_sitemap_depth(BrowserView):
     """
         Assigna 3 nivells en el sitemap
     """
@@ -380,7 +380,7 @@ class setSitemapDepth(BrowserView):
         return '\n'.join(output)
 
 
-class updateLIF_LRF(BrowserView):
+class update_lif_lrf(BrowserView):
     """ Actualitza les vistes de LIf i LRF """
 
     def __call__(self, portal=None):
@@ -400,7 +400,7 @@ class updateLIF_LRF(BrowserView):
         return '\n'.join(output)
 
 
-class reindexAllPages(BrowserView):
+class reindex_all_pages(BrowserView):
     """
         Reindeixa tots els continguts de tipus Document
     """
@@ -421,7 +421,7 @@ class reindexAllPages(BrowserView):
         return '\n'.join(output)
 
 
-class refactorAggregatorNewsCollection(BrowserView):
+class refactor_news_collection(BrowserView):
     """
         refactorAggregatorNewsCollection
     """
@@ -449,7 +449,7 @@ class refactorAggregatorNewsCollection(BrowserView):
         return '\n'.join(output)
 
 
-class bulkChangeCreator(BrowserView):
+class bulk_change_creator(BrowserView):
     """
         Modifica el creador dels contingut de X a Y
         Paràmetres:
@@ -579,7 +579,7 @@ class bulkChangeCreator(BrowserView):
                                     '/bulk_change_creator.pt')(self)
 
 
-class addPermissionsPlantilles(BrowserView):
+class add_permissions_plantilles(BrowserView):
     """
         Afegir permissos en la carpeta de plantilles
     """
@@ -638,16 +638,7 @@ class rebuildUUIDs(BrowserView):
                         'Can\'t set UUID for {}'.format(result.getPath()))
 
 
-class configuraSiteCache(BrowserView):
-    """
-        [DEPRECATED] Rederigeix a configure_site_cache
-    """
-
-    def __call__(self):
-        self.request.response.redirect('configure_site_cache')
-
-
-class configureSiteCache(BrowserView):
+class configure_site_cache(BrowserView):
     """
         Vista que configura la caché
     """
@@ -679,7 +670,7 @@ class configureSiteCache(BrowserView):
             return 'There are not any varnish_url in the environment. No caching proxy could be configured.'
 
 
-class refreshUIDs(BrowserView):
+class refresh_uids(BrowserView):
     """
         Refresca les UIDs
     """
@@ -701,7 +692,7 @@ class refreshUIDs(BrowserView):
             self.output = '<br/>'.join(self.output)
 
 
-class fixRecord(BrowserView):
+class fix_record(BrowserView):
     """
         Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
     """

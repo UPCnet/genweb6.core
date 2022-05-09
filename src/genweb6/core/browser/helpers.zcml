@@ -17,7 +17,7 @@
     <browser:page
         name="ping"
         for="OFS.interfaces.IApplication"
-        class=".helpers.monitoringView"
+        class=".helpers.ping"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -49,7 +49,7 @@
     <browser:page
         name="get_zope"
         for="zope.interface.Interface"
-        class=".helpers.getZOPE"
+        class=".helpers.get_zope"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="helpers_templates/getzope.pt"
@@ -58,7 +58,7 @@
     <browser:page
         name="list_plone_sites"
         for="OFS.interfaces.IApplication"
-        class=".helpers.listPloneSitesView"
+        class=".helpers.list_plone_sites"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -66,7 +66,7 @@
     <browser:page
         name="get_flavour_sites"
         for="OFS.interfaces.IApplication"
-        class=".helpers.getFlavourSitesView"
+        class=".helpers.get_flavour_sites"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -74,7 +74,7 @@
     <browser:page
         name="get_flavour_site"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getFlavourSiteView"
+        class=".helpers.get_flavour_site"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -82,7 +82,7 @@
     <browser:page
         name="get_languages_sites"
         for="OFS.interfaces.IApplication"
-        class=".helpers.getLanguagesSitesView"
+        class=".helpers.get_languages_sites"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -90,7 +90,7 @@
     <browser:page
         name="get_default_language_sites"
         for="OFS.interfaces.IApplication"
-        class=".helpers.getDefaultLanguageSitesView"
+        class=".helpers.get_default_language_sites"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -98,7 +98,7 @@
     <browser:page
         name="get_default_wfsites"
         for="OFS.interfaces.IApplication"
-        class=".helpers.getDefaultWFSitesView"
+        class=".helpers.get_default_wfsites"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -106,7 +106,7 @@
     <browser:page
         name="mirror_uids"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.mirrorUIDs"
+        class=".helpers.mirror_uids"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -114,7 +114,7 @@
     <browser:page
         name="mirror_states"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.mirrorStates"
+        class=".helpers.mirror_states"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         template="helpers_templates/mirroruids.pt"
@@ -123,7 +123,7 @@
     <browser:page
         name="bulk_action"
         for="OFS.interfaces.IApplication"
-        class=".helpers.bulkExecuteScriptView"
+        class=".helpers.bulk_action"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -131,7 +131,7 @@
     <browser:page
         name="nsp_bulk_action"
         for="OFS.interfaces.IApplication"
-        class=".helpers.notSubProcessedBulkExecuteScriptView"
+        class=".helpers.nsp_bulk_action"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -139,7 +139,7 @@
     <browser:page
         name="export_gw_properties"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.ExportGWConfig"
+        class=".helpers.export_gw_properties"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -147,7 +147,7 @@
     <browser:page
         name="change_events_view"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.ChangeEventsView"
+        class=".helpers.change_events_view"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -155,7 +155,7 @@
     <!-- <browser:page
         name="change_tiny_css"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.ChangeTinyCSS"
+        class=".helpers.change_tiny_css"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         /> -->
@@ -163,7 +163,7 @@
     <browser:page
         name="list_ldap_info"
         for="OFS.interfaces.IApplication"
-        class=".helpers.listLDAPInfo"
+        class=".helpers.list_ldap_info"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.ViewManagementScreens"
         />
@@ -179,7 +179,7 @@
     <browser:page
         name="get_rendered_stylesheets"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getRenderedStylesheets"
+        class=".helpers.get_rendered_stylesheets"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -187,7 +187,7 @@
     <browser:page
         name="check_cache_settings"
         for="zope.interface.Interface"
-        class=".helpers.checkCacheSettings"
+        class=".helpers.check_cache_settings"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -195,7 +195,7 @@
     <browser:page
         name="list_domains_cache"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.listDomaninsCache"
+        class=".helpers.list_domains_cache"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -203,7 +203,7 @@
     <browser:page
         name="get_contact_data"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getContactData"
+        class=".helpers.get_contact_data"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -211,7 +211,7 @@
     <!-- <browser:page
         name="get_controlpanel_settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getConfigGenwebControlPanelSettings"
+        class=".helpers.get_controlpanel_settings"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         /> -->
@@ -219,7 +219,7 @@
     <browser:page
         name="get_used_groups"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getUsedGroups"
+        class=".helpers.get_used_groups"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -227,7 +227,7 @@
     <browser:page
         name="get_collection_default_pages"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.getCollectionDefaultPages"
+        class=".helpers.get_collection_default_pages"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -235,7 +235,7 @@
     <browser:page
         name="check_product_is_installed"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.checkPloneProductIsInstalled"
+        class=".helpers.check_product_is_installed"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -245,7 +245,7 @@
     <browser:page
         name="make_me_a_homepage"
         for="zope.interface.Interface"
-        class=".helpers_touchers.makeMeaHomePage"
+        class=".helpers_touchers.make_me_a_homepage"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.ViewManagementScreens"
         />
@@ -253,7 +253,7 @@
     <browser:page
         name="make_me_a_subhome_page"
         for="zope.interface.Interface"
-        class=".helpers_touchers.makeMeaSubHomePage"
+        class=".helpers_touchers.make_me_a_subhome_page"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.ViewManagementScreens"
         />
@@ -261,7 +261,7 @@
     <browser:page
         name="reset_language"
         for="zope.interface.Interface"
-        class=".helpers_touchers.resetLanguage"
+        class=".helpers_touchers.reset_language"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -269,7 +269,7 @@
     <browser:page
         name="enable_pdf_indexing"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.enablePDFIndexing"
+        class=".helpers_touchers.enable_pdf_indexing"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -277,7 +277,7 @@
     <browser:page
         name="update_folder_views"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.updateFolderViews"
+        class=".helpers_touchers.update_folder_views"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -285,7 +285,7 @@
     <browser:page
         name="add_folder_view"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.addFolderView"
+        class=".helpers_touchers.add_folder_view"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -293,7 +293,7 @@
     <browser:page
         name="remove_folder_view"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.removeFolderView"
+        class=".helpers_touchers.remove_folder_view"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -301,7 +301,7 @@
     <browser:page
         name="reinstall_product"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.reinstallPloneProduct"
+        class=".helpers_touchers.reinstall_product"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -309,7 +309,7 @@
     <browser:page
         name="uninstall_product"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.uninstallPloneProduct"
+        class=".helpers_touchers.uninstall_product"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -317,7 +317,7 @@
     <browser:page
         name="upgrade_plone_version"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.upgradePloneVersion"
+        class=".helpers_touchers.upgrade_plone_version"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -325,7 +325,7 @@
     <browser:page
         name="setup_pam_again"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.setupPAMAgain"
+        class=".helpers_touchers.setup_pam_again"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -333,7 +333,7 @@
     <browser:page
         name="delete_navportlet_from_root"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.deleteNavPortletFromRoot"
+        class=".helpers_touchers.delete_navportlet_from_root"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -341,7 +341,7 @@
     <browser:page
         name="reinstall_gw_tiny_templates"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.reinstallGWTinyTemplates"
+        class=".helpers_touchers.reinstall_gw_tiny_templates"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -349,7 +349,7 @@
     <browser:page
         name="portal_setup_import"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.PortalSetupImport"
+        class=".helpers_touchers.portal_setup_import"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -357,7 +357,7 @@
     <browser:page
         name="set_sitemap_depth"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.setSitemapDepth"
+        class=".helpers_touchers.set_sitemap_depth"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -365,7 +365,7 @@
     <browser:page
         name="update_lif_lrf"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.updateLIF_LRF"
+        class=".helpers_touchers.update_lif_lrf"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -373,7 +373,7 @@
     <browser:page
         name="reindex_all_pages"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.reindexAllPages"
+        class=".helpers_touchers.reindex_all_pages"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -382,7 +382,7 @@
     <browser:page
         name="refactor_news_collection"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.refactorAggregatorNewsCollection"
+        class=".helpers_touchers.refactor_news_collection"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -390,7 +390,7 @@
     <browser:page
         name="bulk_change_creator"
         for="plone.app.contenttypes.interfaces.IFolder"
-        class=".helpers_touchers.bulkChangeCreator"
+        class=".helpers_touchers.bulk_change_creator"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -398,7 +398,7 @@
     <browser:page
         name="add_permissions_plantilles"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.addPermissionsPlantilles"
+        class=".helpers_touchers.add_permissions_plantilles"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         />
@@ -420,17 +420,9 @@
         />
 
     <browser:page
-        name="configuraSiteCache"
-        for="zope.interface.Interface"
-        class=".helpers_touchers.configuraSiteCache"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        />
-
-    <browser:page
         name="configure_site_cache"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.configureSiteCache"
+        class=".helpers_touchers.configure_site_cache"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.ViewManagementScreens"
         />
@@ -438,7 +430,7 @@
     <browser:page
         name="refresh_uids"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.refreshUIDs"
+        class=".helpers_touchers.refresh_uids"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
         template="helpers_templates/refreshuids.pt"
@@ -447,7 +439,7 @@
     <browser:page
         name="fix_record"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.fixRecord"
+        class=".helpers_touchers.fix_record"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
@@ -455,7 +447,7 @@
     <!-- setup.py -->
 
     <browser:page
-        name="setupdxctsite"
+        name="setupDX"
         for="zope.interface.Interface"
         class=".setup.setupDX"
         layer="..interfaces.IGenweb6CoreLayer"

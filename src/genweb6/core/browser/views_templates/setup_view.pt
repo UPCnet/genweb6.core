@@ -53,8 +53,8 @@
                 <input id="createn3" class="context" type="submit" value="Crear GW n3" name="createn3"/>
                 <input id="createexamplesrobtheme" class="context" type="submit" value="Crear contingut de mostra robtheme" name="createexamplesrobtheme" />
             </form>
-            <form method="get" action="configuraSiteCache" target="_blank">
-                <input id="configuraSiteCache" class="context" type="submit" value="Configurar la caché" />
+            <form method="get" action="configure_site_cache" target="_blank">
+                <input id="configure_site_cache" class="context" type="submit" value="Configurar la caché" />
             </form>
         </fieldset>
     </metal:main-macro>
