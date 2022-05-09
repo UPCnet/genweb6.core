@@ -24,7 +24,7 @@ from zope.interface import Interface
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 
-from genweb5.core.browser.portlets.interfaces import IHomepagePortletManager
+from genweb5.core.portlets.manage_portlets.interfaces import IHomepagePortletManager
 from genweb5.core.browser.viewlets import viewletBase
 from genweb5.core.interfaces import IHomePage
 from genweb5.core.utils import pref_lang

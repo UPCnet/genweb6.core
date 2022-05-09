@@ -6,8 +6,6 @@
 
     <include file="helpers.zcml" />
 
-    <include file="portlets/configure.zcml" />
-
     <browser:page
         name="clouseau"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"

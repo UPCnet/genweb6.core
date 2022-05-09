@@ -6,6 +6,8 @@
 
     <include package="plone.app.portlets" />
 
+    <include file="manage_portlets/configure.zcml" />
+
     <plone:portletRenderer
         portlet="plone.portlet.collection.collection.ICollectionPortlet"
         class=".collection.collection.gwCollection"

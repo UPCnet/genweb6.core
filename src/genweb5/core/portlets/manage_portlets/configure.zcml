@@ -10,7 +10,7 @@
     <browser:page
         name="manage-homeportlets"
         for="plone.portlets.interfaces.ILocalPortletAssignable"
-        class="genweb5.core.browser.portlets.manager.gwManageContextualPortlets"
+        class="genweb5.core.portlets.manage_portlets.manager.gwManageContextualPortlets"
         layer="genweb5.core.interfaces.IGenweb5CoreLayer"
         permission="genweb.manage.homeportlets"
         template="templates/managehomeportlets.pt"
@@ -19,7 +19,7 @@
     <browser:page
         name="manage-subhome"
         for="plone.portlets.interfaces.ILocalPortletAssignable"
-        class="genweb5.core.browser.portlets.manager.gwManageContextualPortlets"
+        class="genweb5.core.portlets.manage_portlets.manager.gwManageContextualPortlets"
         layer="genweb5.core.interfaces.IGenweb5CoreLayer"
         permission="cmf.ModifyPortalContent"
         template="templates/managesubhome.pt"
@@ -48,7 +48,7 @@
     <browser:page
         name="set-portlethomemanager-span"
         for="*"
-        class="genweb5.core.browser.portlets.manager.setPortletHomeManagerSpan"
+        class="genweb5.core.portlets.manage_portlets.manager.setPortletHomeManagerSpan"
         layer="genweb5.core.interfaces.IGenweb5CoreLayer"
         permission="plone.app.portlets.ManageOwnPortlets"
         />
@@ -56,16 +56,16 @@
     <!-- ADAPTERS -->
     <!-- make an adapter for our very own renderer -->
     <adapter
-        factory="genweb5.core.browser.portlets.manager.GenwebPortletRenderer"
+        factory="genweb5.core.portlets.manage_portlets.manager.GenwebPortletRenderer"
         provides="plone.portlets.interfaces.IPortletManagerRenderer"
         />
 
     <adapter
-        factory="genweb5.core.browser.portlets.manager.gwContextualEditPortletManagerRenderer"
+        factory="genweb5.core.portlets.manage_portlets.manager.gwContextualEditPortletManagerRenderer"
         provides="plone.portlets.interfaces.IPortletManagerRenderer"
         />
 
-    <adapter factory=".portlets.manager.SpanStorage" />
+    <adapter factory="genweb5.core.portlets.manage_portlets.manager.SpanStorage" />
 
     <browser:resource
         name="gw-manage-portlets.js"
@@ -76,7 +76,7 @@
         name="genweb.manage_portlets_fallback"
         for="genweb5.core.interfaces.IHomePageView"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        class=".portlets.manager.gwManagePortletsFallbackViewletForIHomePage"
+        class="genweb5.core.portlets.manage_portlets.manager.gwManagePortletsFallbackViewletForIHomePage"
         layer="genweb5.core.interfaces.IGenweb5CoreLayer"
         permission="zope2.View"
         />

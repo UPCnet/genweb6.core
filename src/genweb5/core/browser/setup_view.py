@@ -26,7 +26,7 @@ from zope.interface import alsoProvides
 
 from genweb5.core import utils
 from genweb5.core.browser.plantilles import get_plantilles
-from genweb5.core.browser.portlets.manager import ISpanStorage
+from genweb5.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb5.core.interfaces import IEventFolder
 from genweb5.core.interfaces import IHomePage
 from genweb5.core.interfaces import INewsFolder

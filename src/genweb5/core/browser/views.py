@@ -18,7 +18,7 @@ from zope.interface import implementer
 
 from genweb5.core import GenwebMessageFactory as _
 from genweb5.core.adapters import IImportant
-from genweb5.core.browser.portlets.manager import ISpanStorage
+from genweb5.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb5.core.interfaces import IHomePage
 from genweb5.core.interfaces import IHomePageView
 from genweb5.core.utils import pref_lang
