@@ -1,46 +1,47 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="here/main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="genweb">
 
-    <body>
-        <metal:block fill-slot="top_slot"
-        tal:define="dummy python:request.set('disable_border',1)" />
+<head>
+  <div metal:fill-slot="javascript_head_slot" tal:omit-tag=""></div>
+</head>
+<body>
 
-        <div metal:fill-slot="main">
-            <metal:main-macro define-macro="main">
+    <metal:block fill-slot="top_slot"
+                 tal:define="disable_column_one python:request.set('disable_plone.leftcolumn', 1);
+                             disable_column_two python:request.set('disable_plone.rightcolumn', 1);
+                             dummy python:request.set('disable_border', 1)" />
 
-                <div>
-                    <h1 class="documentFirstHeading"><img src="++resource++cpgenweb.png" style="margin-right: 10px;" />Configuració inicial de GenWeb</h1>
-                    <p class="documentDescription">Vista per executar la creació de contingut per defecte del GenWeb.</p>
-                    <div> </div>
-                    <div class="visualClear"></div>
+    <div metal:fill-slot="main">
+        <h1 class="documentFirstHeading">Configuració inicial de GenWeb</h1>
+        <p class="documentDescription">Vista per executar la creació de contingut per defecte del GenWeb.</p>
+        <div class="visualClear"></div>
 
-                    <div class="alert alert-warning">
-                        <button data-dismiss="alert" class="close" type="button">×</button>
-                        <strong i18n:translate="">
-                            Warning
-                        </strong>
-                        <tal:msg i18n:translate="">
-                        Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció.
-                    </tal:msg>
-                </div>
-            <fieldset class="formPanel">
-                <div class="field">
-                    <label>Estat dels objectes</label>
-                    <table class="listing">
-                        <thead>
-                            <tr>
-                                <th class="nosort"></th>
-                                <th class="nosort">ca</th>
-                                <th class="nosort">es</th>
-                                <th class="nosort">en</th>
-                            </tr>
-                        </thead>
-                        <tal:block repeat="files view/contentStatus">
+        <div class="alert alert-warning">
+            <button data-dismiss="alert" class="close" type="button">×</button>
+            <strong i18n:translate="">
+                Warning
+            </strong>
+            <tal:msg i18n:translate="">
+                Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció.
+            </tal:msg>
+        </div>
+        <fieldset class="formPanel">
+            <div class="field">
+                <label>Estat dels objectes</label>
+                <table class="listing">
+                    <thead>
+                        <tr>
+                            <th class="nosort"></th>
+                            <th class="nosort">ca</th>
+                            <th class="nosort">es</th>
+                            <th class="nosort">en</th>
+                        </tr>
+                    </thead>
+                    <tal:block repeat="files view/contentStatus">
                         <tr tal:define="isodd repeat/files/odd" tal:attributes="class python:isodd and 'odd' or 'even'">
                             <td tal:repeat="columna files" >
                                 <span tal:replace="columna"></span>
@@ -50,14 +51,15 @@
                 </table>
             </div>
             <form method="get" action="@@setup-view">
-                <input id="createn3" class="context" type="submit" value="Crear GW n3" name="createn3"/>
-                <input id="createexamplesrobtheme" class="context" type="submit" value="Crear contingut de mostra robtheme" name="createexamplesrobtheme" />
+                <input id="createcontent" class="context" type="submit" value="Crear contingut" name="createcontent"/>
+                <input id="createexamples" class="context" type="submit" value="Crear contingut de mostra" name="createexamples" />
             </form>
-            <form method="get" action="configure_site_cache" target="_blank">
+
+            <form method="get" action="@@configure_site_cache" target="_blank">
                 <input id="configure_site_cache" class="context" type="submit" value="Configurar la caché" />
             </form>
         </fieldset>
-    </metal:main-macro>
-</div>
+    </div>
+
 </body>
 </html>

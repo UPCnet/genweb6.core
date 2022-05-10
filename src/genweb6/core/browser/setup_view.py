@@ -18,6 +18,7 @@ from plone.portlets.constants import CONTEXT_CATEGORY
 from plone.portlets.interfaces import ILocalPortletAssignmentManager
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
+from plone.registry.interfaces import IRegistry
 from urllib.parse import parse_qs
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -54,24 +55,23 @@ class setup(BrowserView):
 
         if qs is not None:
             query = parse_qs(qs)
-            gwtype = ''
 
-            if 'createn3' in query:
-                logger = logging.getLogger('Genweb: Executing setup-view N3 on site -')
+            if 'createcontent' in query:
+                logger = logging.getLogger('Genweb: Executing setup-view on site -')
                 logger.info('%s' % self.context.id)
+                self.apply_default_language_settings()
                 # if not api.portal.get_registry_record(name='genweb.hidden_settings.languages_applied'):
                 #     self.apply_default_language_settings()
                 #     api.portal.set_registry_record('genweb.hidden_settings.languages_applied', True)
-                gwtype = 'n3'
                 self.setup_multilingual()
-                self.createContent(gwtype)
+                self.createContent()
                 self.request.response.redirect(base_url)
-                # self.setGenwebProperties(gwtype)
+                # self.setGenwebProperties()
 
-            if 'createexamplesrobtheme' in query:
-                logger = logging.getLogger('Genweb: Executing setup-view Examples robtheme on site -')
+            if 'createexamples' in query:
+                logger = logging.getLogger('Genweb: Executing setup-view Examples on site -')
                 logger.info('%s' % self.context.id)
-                self.createExampleRobThemeContent()
+                self.createExampleContent()
                 self.request.response.redirect(base_url)
 
             return self.render()
@@ -103,15 +103,14 @@ class setup(BrowserView):
         return result
 
     def apply_default_language_settings(self):
-        pl = api.portal.get_tool('portal_languages')
-        pl.setDefaultLanguage('ca')
-        pl.supported_langs = ['ca', 'es', 'en']
+        registry = getUtility(IRegistry)
+        registry["plone.available_languages"] = ['ca', 'es', 'en']
 
     def setup_multilingual(self):
         setupTool = SetupMultilingualSite()
         setupTool.setupSite(self.context, False)
 
-    def createContent(self, gwtype):
+    def createContent(self):
         """ Method that creates all the default content """
         portal = api.portal.get()
         portal_ca = portal['ca']
@@ -320,13 +319,13 @@ class setup(BrowserView):
 
         if not getattr(portal_en, 'welcome', False):
             welcome = self.create_content(portal_en, 'Document', 'welcome', title='Welcome')
-            welcome.text = RichTextValue(welcome_string_en, 'text/html')
+            welcome.text = RichTextValue(welcome_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'bienvenido', False):
             bienvenido = self.create_content(portal_es, 'Document', 'bienvenido', title='Bienvenido')
-            bienvenido.text = RichTextValue(welcome_string_es, 'text/html')
+            bienvenido.text = RichTextValue(welcome_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'benvingut', False):
             benvingut = self.create_content(portal_ca, 'Document', 'benvingut', title='Benvingut')
-            benvingut.text = RichTextValue(welcome_string_ca, 'text/html')
+            benvingut.text = RichTextValue(welcome_string_ca, 'text/html', 'text/x-html-safe')
 
         welcome = portal_en['welcome']
         bienvenido = portal_es['bienvenido']
@@ -361,15 +360,15 @@ class setup(BrowserView):
         if not getattr(portal_en, 'customizedcontact', False):
             customizedcontact = self.create_content(portal_en, 'Document', 'customizedcontact', title='customizedcontact', publish=False)
             customizedcontact.title = u'Custom contact'
-            customizedcontact.text = RichTextValue(contact_string_en, 'text/html')
+            customizedcontact.text = RichTextValue(contact_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'contactopersonalizado', False):
             contactopersonalizado = self.create_content(portal_es, 'Document', 'contactopersonalizado', title='contactopersonalizado', publish=False)
             contactopersonalizado.title = u'Contacto personalizado'
-            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html')
+            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'contactepersonalitzat', False):
             contactepersonalitzat = self.create_content(portal_ca, 'Document', 'contactepersonalitzat', title='contactepersonalitzat', publish=False)
             contactepersonalitzat.title = u'Contacte personalitzat'
-            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html')
+            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html', 'text/x-html-safe')
 
         customizedcontact = portal_en['customizedcontact']
         contactopersonalizado = portal_es['contactopersonalizado']
@@ -397,7 +396,7 @@ class setup(BrowserView):
 
         for plt in get_plantilles():
             plantilla = self.create_content(templates, 'Document', normalizeString(plt['titol']), title=plt['titol'], description=plt['resum'])
-            plantilla.text = RichTextValue(plt['cos'], 'text/html')
+            plantilla.text = RichTextValue(plt['cos'], 'text/html', 'text/x-html-safe')
             plantilla.reindexObject()
 
         api.content.transition(obj=plantilles, transition='retracttointranet')
@@ -460,53 +459,19 @@ class setup(BrowserView):
         pc.clearFindAndRebuild()
 
         # Put navigation portlets in place
-        if gwtype == 'n3':
-            target_manager_en = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_en)
-            target_manager_en_assignments = getMultiAdapter((portal_en, target_manager_en), IPortletAssignmentMapping)
-            target_manager_es = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_es)
-            target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
-            target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
-            target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
-            from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
-            if 'navigation' not in target_manager_en_assignments:
-                target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
-            if 'navigation' not in target_manager_es_assignments:
-                target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
-            if 'navigation' not in target_manager_ca_assignments:
-                target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
-
-        if gwtype == 'n2':
-            # Navigation portlets in language root folders
-            target_manager_en = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_en)
-            target_manager_en_assignments = getMultiAdapter((portal_en, target_manager_en), IPortletAssignmentMapping)
-            target_manager_es = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_es)
-            target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
-            target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
-            target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
-
-            from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
-            if 'navigation' not in target_manager_en_assignments:
-                target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
-            if 'navigation' not in target_manager_es_assignments:
-                target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
-            if 'navigation' not in target_manager_ca_assignments:
-                target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
-
-            # Navigation portlets in welcome view
-            target_manager_welcome = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager1', context=portal_en['welcome'])
-            target_manager_welcome_assignments = getMultiAdapter((portal_en['welcome'], target_manager_welcome), IPortletAssignmentMapping)
-            target_manager_bienvenido = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager1', context=portal_es['bienvenido'])
-            target_manager_bienvenido_assignments = getMultiAdapter((portal_es['bienvenido'], target_manager_bienvenido), IPortletAssignmentMapping)
-            target_manager_benvingut = queryUtility(IPortletManager, name='genweb.portlets.HomePortletManager1', context=portal_ca['benvingut'])
-            target_manager_benvingut_assignments = getMultiAdapter((portal_ca['benvingut'], target_manager_benvingut), IPortletAssignmentMapping)
-
-            from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
-            if 'navigation' not in target_manager_welcome_assignments:
-                target_manager_welcome_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
-            if 'navigation' not in target_manager_bienvenido_assignments:
-                target_manager_bienvenido_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
-            if 'navigation' not in target_manager_benvingut_assignments:
-                target_manager_benvingut_assignments['navigation'] = navigationAssignment(topLevel=0, bottomLevel=2)
+        target_manager_en = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_en)
+        target_manager_en_assignments = getMultiAdapter((portal_en, target_manager_en), IPortletAssignmentMapping)
+        target_manager_es = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_es)
+        target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
+        target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
+        target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
+        from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
+        if 'navigation' not in target_manager_en_assignments:
+            target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
+        if 'navigation' not in target_manager_es_assignments:
+            target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
+        if 'navigation' not in target_manager_ca_assignments:
+            target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
 
         # Blacklist the left column on:
         # portal_ca['noticies'] and portal_ca['esdeveniments'],
@@ -572,7 +537,7 @@ class setup(BrowserView):
             del target_manager_root_assignments['navigation']
         return True
 
-    def createExampleRobThemeContent(self):
+    def createExampleContent(self):
         portal = api.portal.get()
 
         folder_ca = portal['ca']
@@ -581,7 +546,7 @@ class setup(BrowserView):
         pagebody_sample = """
 <div>
 <div class="box">
-<h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Rob Theme</strong>, el nou disseny per al teu genweb <span class="fa fa-quote-right"></span></h2>
+<h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Genweb 6</strong>, el nou disseny per al teu genweb <span class="fa fa-quote-right"></span></h2>
 </div>
 </div>
 <p> </p>
@@ -595,7 +560,7 @@ class setup(BrowserView):
 <a class="link-bannerwarning external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/recursos-grafics/llistat-estils-CSS" target="_self"><span class="btntitolwarning">Llistat de tots els estils de Genweb</span><br /><span class="btnsubtitolwarning">Us ajudarà a fer pàgines més atractives</span></a></div>
 </div>"""
 
-        pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html')
+        pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
         pagina_mostra_ca.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
@@ -612,7 +577,7 @@ class setup(BrowserView):
                                                                          contentType=u'image/jpeg'),
                                                     description='Descripció notícia')
 
-            noticia_mostra_ca.text = RichTextValue("Contingut notícia", 'text/html')
+            noticia_mostra_ca.text = RichTextValue("Contingut notícia", 'text/html', 'text/x-html-safe')
             noticia_mostra_ca.reindexObject()
 
         esdeveniments = portal['ca']['esdeveniments']
@@ -624,7 +589,7 @@ class setup(BrowserView):
                                                   'esdeveniment-de-mostra-' + str(i),
                                                   title='Esdeveniment de mostra ' + str(i))
 
-            event_sample_ca.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html')
+            event_sample_ca.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
             event_sample_ca.location = "Lloc de l'esdeveniment"
             event_sample_ca.start = now
             event_sample_ca.end = far
@@ -633,30 +598,30 @@ class setup(BrowserView):
             event_sample_ca.contact_name = 'Responsable esdeveniment'
             event_sample_ca.reindexObject()
 
-            portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
-            spanstorage = getMultiAdapter((portal['ca']['benvingut'], portletManager), ISpanStorage)
-            spanstorage.span = '12'
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter((portal['ca']['benvingut'], portletManager), ISpanStorage)
+        spanstorage.span = '12'
 
-            managerAssignments = getMultiAdapter((portal['ca']['benvingut'], portletManager), IPortletAssignmentMapping)
+        managerAssignments = getMultiAdapter((portal['ca']['benvingut'], portletManager), IPortletAssignmentMapping)
 
-            from genweb6.core.portlets.new_existing_content.new_existing_content import Assignment as newExistingContentAssignment
-            if 'pagina_principal' not in managerAssignments:
-                managerAssignments['pagina_principal'] = newExistingContentAssignment(
-                    ptitle='Pàgina principal',
-                    show_title=False,
-                    hide_footer=True,
-                    content_or_url='INTERN',
-                    external_url='',
-                    own_content='/ca/pagina-principal-mostra')
+        from genweb6.core.portlets.new_existing_content.new_existing_content import Assignment as newExistingContentAssignment
+        if 'pagina_principal' not in managerAssignments:
+            managerAssignments['pagina_principal'] = newExistingContentAssignment(
+                ptitle='Pàgina principal',
+                show_title=False,
+                hide_footer=True,
+                content_or_url='INTERN',
+                external_url='',
+                own_content=pagina_mostra_ca.UID())
 
-            from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
-            if 'noticies' not in managerAssignments:
-                managerAssignments['noticies'] = fullnewsAssignment(
-                    view_type='id_full_3cols')
+        from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
+        if 'noticies' not in managerAssignments:
+            managerAssignments['noticies'] = fullnewsAssignment(
+                view_type='id_full_3cols')
 
-            from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
-            if 'esdeveniments' not in managerAssignments:
-                managerAssignments['esdeveniments'] = gridEventsAssignment()
+        from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
+        if 'esdeveniments' not in managerAssignments:
+            managerAssignments['esdeveniments'] = gridEventsAssignment()
 
     def create_content(self, container, portal_type, id, publish=True, **kwargs):
         if not getattr(container, id, False):
@@ -716,13 +681,10 @@ class setup(BrowserView):
         if object_status:
             api.content.transition(obj=context, transition={'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
 
-    def setGenwebProperties(self, gwtype):
+    def setGenwebProperties(self):
         """ Set default configuration in genweb properties """
         gwoptions = utils.genweb_config()
         gwoptions.languages_link_to_root = True
-
-        if gwtype == 'n2':
-            gwoptions.treu_menu_horitzontal = True
 
         portal = getToolByName(self, 'portal_url').getPortalObject()
         site_props = portal.portal_properties.site_properties
