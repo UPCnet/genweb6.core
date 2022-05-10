@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 
 from zope.component.hooks import getSite
@@ -15,24 +14,22 @@ MODULES_TO_INSPECT = ['genweb6.core.browser.setup',
 class clouseau(BrowserView):
 
     def get_helpers(self):
-        portal = getSite()
-        app = portal.restrictedTraverse('/')
+        absolute_url = getSite().absolute_url()
+        result = {'setup': [],
+                  'helpers': [],
+                  'helpers_touchers': []}
 
-        setup = []
-        helpers = []
-        helpers_touchers = []
-      
         for module in MODULES_TO_INSPECT:
             themodule = importlib.import_module(module)
             members = inspect.getmembers(themodule, inspect.isclass)
 
             for name, klass in members:
-                if name != 'BrowserView':
+                if 'genweb6.' in str(klass):
                     if module == 'genweb6.core.browser.setup':
-                        setup.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                        result['setup'].append(dict(url='{}/{}'.format(absolute_url, name), description=klass.__doc__))
                     elif module == 'genweb6.core.browser.helpers':
-                        helpers.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                        result['helpers'].append(dict(url='{}/{}'.format(absolute_url, name), description=klass.__doc__))
                     elif module == 'genweb6.core.browser.helpers_touchers':
-                        helpers_touchers.append(dict(url='{}/{}'.format(portal.absolute_url(), name), description=klass.__doc__))
+                        result['helpers_touchers'].append(dict(url='{}/{}'.format(absolute_url, name), description=klass.__doc__))
 
-        return (setup, helpers, helpers_touchers)
+        return result

@@ -6,47 +6,41 @@
       i18n:domain="genweb.portlets">
 
 <head>
-  <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
-
-  </div>
+  <div metal:fill-slot="javascript_head_slot" tal:omit-tag=""></div>
 </head>
-
 <body>
-
   <metal:block fill-slot="top_slot"
-                   tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                               disable_column_two python:request.set('disable_plone.rightcolumn',1);
-                               dummy python:request.set('disable_border',1)" />
+               tal:define="disable_column_one python:request.set('disable_plone.leftcolumn', 1);
+                           disable_column_two python:request.set('disable_plone.rightcolumn', 1);
+                           dummy python:request.set('disable_border', 1)" />
 
   <div metal:fill-slot="portlets_one_slot">
-      <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
+    <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
   </div>
 
   <div metal:fill-slot="main" tal:define="helpers view/get_helpers">
+    <h1>Setup</h1>
+    <div class="lead clearfix" tal:repeat="helper helpers/setup">
+      <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
+      <p tal:content="helper/description">The description</p>
+    </div>
 
-  <h1>Setup</h1>
-  <div class="lead clearfix" tal:repeat="helper python:helpers[0]">
-    <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
-    <p tal:content="helper/description">The description</p>
+    <h1>Helpers</h1>
+    <div class="lead clearfix" tal:repeat="helper helpers/helpers">
+      <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
+      <p tal:content="helper/description">The description</p>
+    </div>
+
+    <h1>Helpers Touchers</h1>
+    <div class="lead clearfix" tal:repeat="helper helpers/helpers_touchers">
+      <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
+      <p tal:content="helper/description">The description</p>
+    </div>
   </div>
 
-  <h1>Helpers</h1>
-  <div class="lead clearfix" tal:repeat="helper python:helpers[1]">
-    <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
-    <p tal:content="helper/description">The description</p>
+  <div metal:fill-slot="portlets_two_slot">
+    <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
   </div>
-
-  <h1>Helpers Touchers</h1>
-  <div class="lead clearfix" tal:repeat="helper python:helpers[2]">
-    <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
-    <p tal:content="helper/description">The description</p>
-  </div>
-
-  </div>
-
-        <div metal:fill-slot="portlets_two_slot">
-            <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
-        </div>
 
 </body>
 </html>

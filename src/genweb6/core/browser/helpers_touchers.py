@@ -45,7 +45,7 @@ else:
 
 class make_me_a_homepage(BrowserView):
     """
-        Habilita el layout de homepage en el contingut, ha de ser una carpeta
+Habilita el layout de homepage en el contingut, ha de ser una carpeta
     """
 
     def __call__(self):
@@ -59,7 +59,7 @@ class make_me_a_homepage(BrowserView):
 
 class make_me_a_subhome_page(BrowserView):
     """
-        Habilita el layout de subhomepage en el contingut, ha de ser una carpeta
+Habilita el layout de subhomepage en el contingut, ha de ser una carpeta
     """
 
     def __call__(self):
@@ -73,8 +73,8 @@ class make_me_a_subhome_page(BrowserView):
 
 class reset_language(BrowserView):
     """
-        Torna a establir l'idioma de cada LRF segons el seu nom. Executar en un LRF
-        LRF -> Language Root Folder
+Torna a establir l'idioma de cada LRF segons el seu nom. Executar en un LRF
+LRF -> Language Root Folder
     """
 
     def __call__(self):
@@ -94,7 +94,7 @@ class reset_language(BrowserView):
 
 class enable_pdf_indexing(BrowserView):
     """
-        Activa la indexació de PDF
+Activa la indexació de PDF
     """
 
     def __call__(self):
@@ -106,7 +106,7 @@ class enable_pdf_indexing(BrowserView):
 
 class update_folder_views(BrowserView):
     """
-        Actualitza les vistes per al tipus de carpeta
+Actualitza les vistes per al tipus de carpeta
     """
 
     def __call__(self, portal=None):
@@ -125,10 +125,10 @@ class update_folder_views(BrowserView):
 
 class add_folder_view(BrowserView):
     """
-        Afegeix una vista nova al tipus de contingut carpeta
+Afegeix una vista nova al tipus de contingut carpeta
 
-        Paràmetre:
-        - addview: nom de la vista
+Paràmetre:
+- addview: nom de la vista
     """
 
     def __call__(self, portal=None):
@@ -154,10 +154,10 @@ class add_folder_view(BrowserView):
 
 class remove_folder_view(BrowserView):
     """
-        Elimina una vista al tipus de contingut carpeta
+Elimina una vista al tipus de contingut carpeta
 
-        Paràmetre:
-        - removeview: nom de la vista
+Paràmetre:
+- removeview: nom de la vista
     """
 
     def __call__(self, portal=None):
@@ -183,10 +183,10 @@ class remove_folder_view(BrowserView):
 
 class reinstall_product(BrowserView):
     """
-        Reinstal·la un paquet
+Reinstal·la un paquet
 
-        Paràmetre:
-        - product_name: id del paquet
+Paràmetre:
+- product_name: id del paquet
     """
 
     def __call__(self, portal=None):
@@ -210,10 +210,10 @@ class reinstall_product(BrowserView):
 
 class uninstall_product(BrowserView):
     """
-        Desinstal·la un paquet
+Desinstal·la un paquet
 
-        Paràmetre:
-        - product_name: id del paquet
+Paràmetre:
+- product_name: id del paquet
     """
 
     def __call__(self, portal=None):
@@ -232,7 +232,7 @@ class uninstall_product(BrowserView):
 
 class upgrade_plone_version(BrowserView):
     """
-        Upgrada a la última versió de Plone
+Upgrada a la última versió de Plone
     """
 
     def __call__(self, portal=None):
@@ -253,7 +253,7 @@ class upgrade_plone_version(BrowserView):
 
 class setup_pam_again(BrowserView):
     """
-        setupPAMAgain
+setup_pam_again
     """
 
     def __call__(self):
@@ -264,7 +264,7 @@ class setup_pam_again(BrowserView):
 
 class delete_navportlet_from_root(BrowserView):
     """
-        Elimina el portlet de navegació de l'arrel
+Elimina el portlet de navegació de l'arrel
     """
 
     def __call__(self, portal=None):
@@ -282,7 +282,7 @@ class delete_navportlet_from_root(BrowserView):
 
 class reinstall_gw_tiny_templates(BrowserView):
     """
-        Reinstal·la les plantilles del TinyMCE
+Reinstal·la les plantilles del TinyMCE
     """
 
     def __call__(self, portal=None):
@@ -327,12 +327,12 @@ class reinstall_gw_tiny_templates(BrowserView):
 
 class portal_setup_import(BrowserView):
     """
-    Reinstal·la un step específic
+Reinstal·la un step específic
 
-    Paràmetres:
-    - step: id del step a importar, ex: 'portlets'.
-    - profile: identificador del perfil o de la instantània a seleccionar, ex: 'genweb.upc'.
-    - profile_type: tipus del perfil seleccionat, 'default' per defecte.
+Paràmetres:
+- step: id del step a importar, ex: 'portlets'.
+- profile: identificador del perfil o de la instantània a seleccionar, ex: 'genweb.upc'.
+- profile_type: tipus del perfil seleccionat, 'default' per defecte.
     """
 
     DEFAULT_PROFILE_TYPE = 'default'
@@ -357,13 +357,13 @@ class portal_setup_import(BrowserView):
         step = self.request.form['step']
         profile = self.request.form['profile']
         profile_type = self.request.form.get(
-            'profile_type', PortalSetupImport.DEFAULT_PROFILE_TYPE)
+            'profile_type', portal_setup_import.DEFAULT_PROFILE_TYPE)
         return dict(step=step, profile=profile, profile_type=profile_type)
 
 
 class set_sitemap_depth(BrowserView):
     """
-        Assigna 3 nivells en el sitemap
+Assigna 3 nivells en el sitemap
     """
 
     def __call__(self, portal=None):
@@ -381,7 +381,9 @@ class set_sitemap_depth(BrowserView):
 
 
 class update_lif_lrf(BrowserView):
-    """ Actualitza les vistes de LIf i LRF """
+    """
+Actualitza les vistes de LIf i LRF
+    """
 
     def __call__(self, portal=None):
         if not portal:
@@ -402,7 +404,7 @@ class update_lif_lrf(BrowserView):
 
 class reindex_all_pages(BrowserView):
     """
-        Reindeixa tots els continguts de tipus Document
+Reindeixa tots els continguts de tipus Document
     """
 
     def __call__(self, portal=None):
@@ -423,7 +425,7 @@ class reindex_all_pages(BrowserView):
 
 class refactor_news_collection(BrowserView):
     """
-        refactorAggregatorNewsCollection
+refactor_news_collection
     """
 
     def __call__(self, portal=None):
@@ -451,10 +453,11 @@ class refactor_news_collection(BrowserView):
 
 class bulk_change_creator(BrowserView):
     """
-        Modifica el creador dels contingut de X a Y
-        Paràmetres:
-        - old_creator
-        - new_creator
+Modifica el creador dels contingut de X a Y
+
+Paràmetres:
+- old_creator
+- new_creator
     """
 
     STATUS_oldcreators = u"You must select one old creator."
@@ -581,7 +584,7 @@ class bulk_change_creator(BrowserView):
 
 class add_permissions_plantilles(BrowserView):
     """
-        Afegir permissos en la carpeta de plantilles
+Afegir permissos en la carpeta de plantilles
     """
 
     def __call__(self, portal=None):
@@ -601,6 +604,9 @@ class add_permissions_plantilles(BrowserView):
 
 
 class preserveUUIDs(BrowserView):
+    """
+preserveUUIDs
+    """
 
     def __call__(self):
         portal = api.portal.get()
@@ -618,6 +624,9 @@ class preserveUUIDs(BrowserView):
 
 
 class rebuildUUIDs(BrowserView):
+    """
+rebuildUUIDs
+    """
 
     def __call__(self):
         portal = api.portal.get()
@@ -640,7 +649,7 @@ class rebuildUUIDs(BrowserView):
 
 class configure_site_cache(BrowserView):
     """
-        Vista que configura la caché
+Vista que configura la caché
     """
 
     def __call__(self):
@@ -672,7 +681,7 @@ class configure_site_cache(BrowserView):
 
 class refresh_uids(BrowserView):
     """
-        Refresca les UIDs
+Refresca les UIDs
     """
 
     def __call__(self):
@@ -694,7 +703,7 @@ class refresh_uids(BrowserView):
 
 class fix_record(BrowserView):
     """
-        Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
+Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
     """
 
     def __call__(self):

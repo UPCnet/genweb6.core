@@ -39,7 +39,7 @@ LDAP_PASSWORD = os.environ.get('ldapbindpasswd', '')
 
 class setupDX(BrowserView):
     """
-        Soluciona la pàgina principal cuan es trenca
+Soluciona la pàgina principal cuan es trenca
     """
 
     def __call__(self):
@@ -63,7 +63,7 @@ class setupDX(BrowserView):
 
 class setupLDAPUPC(BrowserView):
     """
-        Configura el LDAP UPC
+Configura el LDAP UPC
     """
 
     def __call__(self):
@@ -131,7 +131,7 @@ class setupLDAPUPC(BrowserView):
 
 class setupLDAPExterns(BrowserView):
     """
-        Configura el LDAPExterns
+Configura el LDAPExterns
     """
 
     def __call__(self):
@@ -208,7 +208,7 @@ class setupLDAPExterns(BrowserView):
 
 class setupLDAP(BrowserView):
     """
-        Configura un LDAP básic
+Configura un LDAP básic
     """
 
     def __call__(self):
@@ -262,7 +262,6 @@ class setupLDAP(BrowserView):
         plugin.manage_activateInterfaces(active_plugins)
 
         # Redefine some schema properties
-
         LDAPUserFolder.manage_deleteLDAPSchemaItems(
             ldap_acl_users, ldap_names=['sn'], REQUEST=None)
         LDAPUserFolder.manage_deleteLDAPSchemaItems(

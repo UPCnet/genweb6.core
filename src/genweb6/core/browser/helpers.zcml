@@ -39,14 +39,6 @@
         />
 
     <browser:page
-        name="getZEO"
-        for="zope.interface.Interface"
-        class=".helpers.getZEO"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        />
-
-    <browser:page
         name="get_zope"
         for="zope.interface.Interface"
         class=".helpers.get_zope"

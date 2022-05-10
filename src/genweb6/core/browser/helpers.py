@@ -50,7 +50,7 @@ else:
 
 class debug(BrowserView):
     """
-        Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
+Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
     """
 
     def __call__(self):
@@ -58,14 +58,14 @@ class debug(BrowserView):
             alsoProvides(self.request, IDisableCSRFProtection)
 
         context = aq_inner(self.context)
-        # Magic Victor debug view do not delete!
+
         import ipdb
-        ipdb.set_trace()  # Magic! Do not delete!!! :)
+        ipdb.set_trace()
 
 
 class ping(BrowserView):
     """
-        Vista de comoditat per al programari de monitorització
+Vista de comoditat per al programari de monitorització.
     """
 
     def __call__(self):
@@ -74,8 +74,8 @@ class ping(BrowserView):
 
 class protectContent(BrowserView):
     """
-        Fa que el context sigui un contingut protegit.
-        Només els gestors poden suprimir-lo.
+Fa que el context sigui un contingut protegit.
+Només els gestors poden suprimir-lo.
     """
 
     def __call__(self):
@@ -87,7 +87,7 @@ class protectContent(BrowserView):
 
 class instanceindevelmode(BrowserView):
     """
-        Posa aquesta instància en mode de desenvolupament
+Posa aquesta instància en mode de desenvolupament
     """
 
     __allow_access_to_unprotected_subobjects__ = True
@@ -98,7 +98,7 @@ class instanceindevelmode(BrowserView):
 
 def listPloneSites(zope):
     """
-        Llista els plonesites disponibles
+Llista els plonesites disponibles
     """
 
     out = []
@@ -112,18 +112,9 @@ def listPloneSites(zope):
     return out
 
 
-class getZEO(BrowserView):
-    """
-        [DEPRECATED] Rederigeix a get_zope
-    """
-
-    def __call__(self):
-        self.request.response.redirect('get_zope')
-
-
 class get_zope(BrowserView):
     """
-        Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
+Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
     """
 
     def dorsal(self):
@@ -138,7 +129,7 @@ class get_zope(BrowserView):
 
 class list_plone_sites(BrowserView):
     """
-        Retorna una llista amb els plonesites disponibles en aquest Zope
+Retorna una llista amb els plonesites disponibles en aquest Zope
     """
 
     def __call__(self):
@@ -154,7 +145,7 @@ class list_plone_sites(BrowserView):
 
 class get_flavour_sites(BrowserView):
     """
-        Retorna l'última capa instal·lada per a cada plonesite
+Retorna l'última capa instal·lada per a cada plonesite
     """
 
     def __call__(self):
@@ -169,7 +160,7 @@ class get_flavour_sites(BrowserView):
 
 class get_flavour_site(BrowserView):
     """
-        Retorna l'última capa instal·lada en aquest lloc
+Retorna l'última capa instal·lada en aquest lloc
     """
 
     def __call__(self):
@@ -179,7 +170,7 @@ class get_flavour_site(BrowserView):
 
 class get_languages_sites(BrowserView):
     """
-        Retorna els idiomes soportats per a cada lloc
+Retorna els idiomes soportats per a cada lloc
     """
     def __call__(self):
         context = aq_inner(self.context)
@@ -193,7 +184,7 @@ class get_languages_sites(BrowserView):
 
 class get_default_language_sites(BrowserView):
     """
-        Retorna l'idioma predeterminat per a cada lloc
+Retorna l'idioma predeterminat per a cada lloc
     """
 
     def __call__(self):
@@ -208,7 +199,7 @@ class get_default_language_sites(BrowserView):
 
 class get_default_wfsites(BrowserView):
     """
-        Retorna el workflow predeterminat per a cada lloc
+Retorna el workflow predeterminat per a cada lloc
     """
 
     def __call__(self):
@@ -223,7 +214,7 @@ class get_default_wfsites(BrowserView):
 
 class mirror_uids(BrowserView):
     """
-        mirrorUIDs
+mirror_uids
     """
 
     def __call__(self):
@@ -258,7 +249,7 @@ class mirror_uids(BrowserView):
 
 class mirror_states(BrowserView):
     """
-        mirrorStates
+mirror_states
     """
 
     def __call__(self):
@@ -305,11 +296,11 @@ class mirror_states(BrowserView):
 
 class bulk_action(BrowserView):
     """
-        Executeu una vista en totes les instancies
+Executeu una vista en totes les instancies
 
-        Paràmetre:
-        - view: vista a executar
-        - exclude_sites: sites a excluir, ex: Plone
+Paràmetre:
+- view: vista a executar
+- exclude_sites: sites a excluir, ex: Plone
     """
 
     def __call__(self):
@@ -337,11 +328,11 @@ class bulk_action(BrowserView):
 
 class nsp_bulk_action(BrowserView):
     """
-        Executeu una vista en totes les instancies, utilitzat només
-        en cas que alguna cosa no funcioni fent una subrequest!
+Executeu una vista en totes les instancies, utilitzat només
+en cas que alguna cosa no funcioni fent una subrequest!
 
-        Paràmetre:
-        - view: vista a executar
+Paràmetre:
+- view: vista a executar
     """
 
     def __call__(self):
@@ -360,8 +351,8 @@ class nsp_bulk_action(BrowserView):
 
 class export_gw_properties(BrowserView):
     """
-        ExportGWConfig
-        """
+Exporta les propietats del Genweb
+    """
 
     def render(self):
         portal = api.portal.get()
@@ -382,7 +373,7 @@ class export_gw_properties(BrowserView):
 
 class change_events_view(BrowserView):
     """
-        Canvia la vista per defecte dels directoris d'esdeveniments
+Canvia la vista per defecte dels directoris d'esdeveniments
     """
 
     def __call__(self, portal=None):
@@ -404,7 +395,7 @@ class change_events_view(BrowserView):
 
 # class change_tiny_css(BrowserView):
 #     """
-#         Canvia la url dels css del TinyMCE
+# Canvia la url dels css del TinyMCE
 #     """
 #
 #     def __call__(self, portal=None):
@@ -417,7 +408,7 @@ class change_events_view(BrowserView):
 
 class list_ldap_info(BrowserView):
     """
-        Llista l'informació del LDAP de cada plonesite
+Llista l'informació del LDAP de cada plonesite
     """
 
     def __call__(self):
@@ -436,7 +427,7 @@ class list_ldap_info(BrowserView):
 
 class listLastLogin(BrowserView):
     """
-        Llista la informació last_login per a tots els usuaris
+Llista la informació last_login per a tots els usuaris
     """
 
     def __call__(self):
@@ -457,7 +448,7 @@ class listLastLogin(BrowserView):
 
 class get_rendered_stylesheets(BrowserView):
     """
-        Llista l'informació d'ubicació de cada full d'estil
+Llista l'informació d'ubicació de cada full d'estil
     """
 
     @json_response
@@ -517,7 +508,7 @@ class get_rendered_stylesheets(BrowserView):
 
 class check_cache_settings(BrowserView):
     """
-        Comproba la configuració de la caché
+Comproba la configuració de la caché
     """
 
     def __call__(self, portal=None):
@@ -529,7 +520,7 @@ class check_cache_settings(BrowserView):
 
 class list_domains_cache(BrowserView):
     """
-        Retorna els dominis de plone.app.caching
+Retorna els dominis de plone.app.caching
     """
 
     def __call__(self, portal=None):
@@ -550,7 +541,7 @@ class list_domains_cache(BrowserView):
 
 class get_contact_data(BrowserView):
     """
-        Retorna les dades de contacte
+Retorna les dades de contacte
     """
 
     def __call__(self, portal=None):
@@ -565,7 +556,7 @@ class get_contact_data(BrowserView):
 
 # class get_controlpanel_settings(BrowserView):
 #     """
-#         Retorna tota la informació del controlpanel
+# Retorna tota la informació del controlpanel
 #     """
 
 #     def __call__(self, portal=None):
@@ -808,7 +799,7 @@ class get_contact_data(BrowserView):
 
 class get_used_groups(BrowserView):
     """
-        Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
+Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
     """
 
     def __call__(self, portal=None):
@@ -836,8 +827,7 @@ class get_used_groups(BrowserView):
 
 class get_collection_default_pages(BrowserView):
     """
-        Llista el valor de la propietat 'default_page' (si està definida) per
-        als continguts Col·lecció.
+Llista el valor de la propietat 'default_page' (si està definida) per als continguts Col·lecció.
     """
 
     REPORT_TABLE = """
@@ -884,18 +874,19 @@ class get_collection_default_pages(BrowserView):
     def _compose_report(self, collections):
         if not collections:
             return "No default pages were found"
-        return getCollectionDefaultPages.REPORT_TABLE.format(
+
+        return get_collection_default_pages.REPORT_TABLE.format(
             **dict(body='\n'.join(
-                [getCollectionDefaultPages.REPORT_ROW.format(**default_page)
+                [get_collection_default_pages.REPORT_ROW.format(**default_page)
                  for default_page in collections])))
 
 
 class check_product_is_installed(BrowserView):
     """
-        Comproba si un paquet està instal·lat
+Comproba si un paquet està instal·lat
 
-        Paràmetre:
-        - product_name: id del paquet
+Paràmetre:
+- product_name: id del paquet
     """
 
     def __call__(self):
