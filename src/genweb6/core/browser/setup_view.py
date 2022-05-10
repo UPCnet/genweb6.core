@@ -598,8 +598,8 @@ class setup(BrowserView):
         pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html')
         pagina_mostra_ca.reindexObject()
 
-        egglocation = pkg_resources.get_distribution('genweb.upc').location
-        newsimg_sample = open('{}/genweb/upc/browser/sample_images/news_sample_2.jpg'.format(egglocation)).read()
+        egglocation = pkg_resources.get_distribution('genweb6.theme').location
+        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
 
         noticies = portal['ca']['noticies']
         for i in range(1, 4):
