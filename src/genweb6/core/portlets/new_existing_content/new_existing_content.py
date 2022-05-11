@@ -220,43 +220,27 @@ class Renderer(base.Renderer):
             if self.data.content_or_url == 'INTERN':
                 # link intern, search through the catalog
                 raw_html = self.get_catalog_content()()
-                charset = re.findall('charset=(.*)"', raw_html)
-                if len(charset) > 0:
-                    clean_html = re.sub(
-                        r'[\n\r]?', r'', raw_html.encode(charset[0]))
-                    doc = pq(clean_html)
-                    if doc(self.data.element):
-                        content = pq(
-                            '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
-                    else:
-                        content = _(
-                            u"ERROR. This element does not exist:") + " " + self.data.element
+                clean_html = re.sub(r'[\n\r]?', r'', raw_html)
+                doc = pq(clean_html)
+                if doc(self.data.element):
+                    content = pq('<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
                 else:
-                    content = _(u"ERROR. Charset undefined")
+                    content = _(u"ERROR. This element does not exist:") + " " + self.data.element
 
             # CONTENIDO EXTERNO #
             elif self.data.content_or_url == 'EXTERN':
                 # link extern, pyreq
                 link_extern = self.data.external_url
                 headers = {'Accept-Language': self.context.language}
-                raw_html = requests.get(
-                    link_extern, headers=headers, verify=False, timeout=5)
-                charset = re.findall('charset=(.*)"', raw_html.content)
-                if len(charset) > 0:
-                    clean_html = re.sub(
-                        r'[\n\r]?', r'', raw_html.content.decode(charset[0]))
-                    doc = pq(clean_html)
-                    if doc(self.data.element):
-                        content = pq(
-                            '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
-                    else:
-                        content = _(
-                            u"ERROR. This element does not exist:") + " " + self.data.element
+                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=5)
+                clean_html = re.sub(r'[\n\r]?', r'', raw_html.content)
+                doc = pq(clean_html)
+                if doc(self.data.element):
+                    content = pq('<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
                 else:
-                    content = _(u"ERROR. Charset undefined")
+                    content = _(u"ERROR. This element does not exist:") + " " + self.data.element
 
             # PORTLET MALAMENT CONFIGURAT #
-
             else:
                 content = _(u"ERROR. Review the portlet configuration.")
 
