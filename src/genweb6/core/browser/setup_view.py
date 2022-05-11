@@ -29,7 +29,7 @@ from genweb6.core import utils
 from genweb6.core.browser.plantilles import get_plantilles
 from genweb6.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb6.core.interfaces import IEventFolder
-from genweb6.core.interfaces import IHomePage
+from genweb6.core.interfaces import IHomePageView
 from genweb6.core.interfaces import INewsFolder
 from genweb6.core.interfaces import IProtectedContent
 
@@ -333,10 +333,10 @@ class setup(BrowserView):
 
         self.link_translations([(benvingut, 'ca'), (bienvenido, 'es'), (welcome, 'en')])
 
-        # Mark all homes with IHomePage marker interface
-        alsoProvides(benvingut, IHomePage)
-        alsoProvides(bienvenido, IHomePage)
-        alsoProvides(welcome, IHomePage)
+        # Mark all homes with IHomePageView marker interface
+        alsoProvides(benvingut, IHomePageView)
+        alsoProvides(bienvenido, IHomePageView)
+        alsoProvides(welcome, IHomePageView)
 
         benvingut.exclude_from_nav = True
         bienvenido.exclude_from_nav = True
@@ -348,9 +348,9 @@ class setup(BrowserView):
         welcome.reindexObject()
 
         # Set the default pages to the homepage view
-        portal_en.setLayout('homepage')
-        portal_es.setLayout('homepage')
-        portal_ca.setLayout('homepage')
+        portal_en.setLayout('welcome')
+        portal_es.setLayout('bienvenido')
+        portal_ca.setLayout('benvingut')
 
         contact_string_ca = u"""Editeu a la pàgina "Contacte personalitzat", que trobareu a l’arrel de català, les vostres dades personalitzades de contacte. """
         contact_string_es = u"""Editad en la página "Contacto personalizado", que encontraréis en la raíz de español, vuestros datos personalizados de contacto. """
