@@ -39,7 +39,7 @@
         permission="cmf.ModifyPortalContent"
         />
 
-    <browser:page
+    <!-- <browser:page
         name="homepage"
         for="plone.app.layout.navigation.interfaces.INavigationRoot"
         class=".views.homePage"
@@ -53,7 +53,7 @@
         class=".views.subHomePage"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        />
+        /> -->
 
     <browser:page
         name="subhome_view"
