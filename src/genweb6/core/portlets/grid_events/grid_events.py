@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from DateTime.DateTime import DateTime
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
@@ -107,7 +108,7 @@ class Renderer(base.Renderer):
             if len(events) >= self.data.count:
                 break
 
-            if not event.isExpired():
+            if not isExpired(event):
                 startDay = DateTime(event.start)
                 endDay = DateTime(event.end)
                 info = {'url': event.absolute_url(),

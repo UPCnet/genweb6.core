@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from DateTime.DateTime import DateTime
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from datetime import date
@@ -99,7 +100,7 @@ class Renderer(base.Renderer):
             if len(results) >= self.data.count:
                 break
 
-            if not event.isExpired():
+            if not isExpired(event):
                 results.append(self.event_to_view_obj(event))
 
         return results
@@ -174,7 +175,7 @@ class Renderer(base.Renderer):
             if len(results_not_expired) >= limit:
                 break
 
-            if not res.isExpired():
+            if not isExpired(res):
                 results_not_expired.append(res)
 
         count = len(results_not_expired)
@@ -193,7 +194,7 @@ class Renderer(base.Renderer):
                 if len(results2_not_expired) >= (limit - count):
                     break
 
-                if not res.isExpired():
+                if not isExpired(res):
                     results2_not_expired.append(res)
 
             count = len(results_not_expired + results2_not_expired)
@@ -213,7 +214,7 @@ class Renderer(base.Renderer):
                     if len(results3_not_expired) >= (limit - count):
                         break
 
-                    if not res.isExpired():
+                    if not isExpired(res):
                         results3_not_expired.append(res)
 
                 return results_not_expired + results2_not_expired + results3_not_expired

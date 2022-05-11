@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone import PloneMessageFactory as _
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
@@ -97,7 +98,7 @@ class Renderer(news_renderer):
 
         results = []
         for brain in allresults:
-            if not brain.isExpired():
+            if not isExpired(brain):
                 results.append(brain)
                 if len(results) == limit:
                     break
@@ -113,7 +114,7 @@ class Renderer(news_renderer):
                                path=self.get_current_path_news())
             results3 = []
             for brain in results2:
-                if not brain.isExpired():
+                if not isExpired(brain):
                     results3.append(brain)
                     if len(results3) == limit - important:
                         break

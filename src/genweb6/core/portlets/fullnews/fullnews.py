@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
@@ -9,7 +10,6 @@ from zope import schema
 from zope.interface import implementer
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
 from genweb6.core import GenwebMessageFactory as _
 from genweb6.core.interfaces import INewsFolder
 from genweb6.core.utils import pref_lang
@@ -159,7 +159,7 @@ class Renderer(base.Renderer):
 
         importants = []
         for brain in results:
-            if not brain.isExpired():
+            if not isExpired(brain):
                 importants.append(brain)
                 if len(importants) == limit:
                     break
@@ -176,7 +176,7 @@ class Renderer(base.Renderer):
             normals_limit = []
             path_folder_news = self.all_news_link()
             for brain in normals:
-                if not brain.isExpired():
+                if not isExpired(brain):
                     brain_url = brain.getURL()
                     brain_type = brain.Type
                     if brain_type == 'Link' and brain_url.startswith(path_folder_news) or brain_type == 'News Item':
