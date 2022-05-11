@@ -7,7 +7,7 @@
 <head>
   <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
     <script type="text/javascript"
-      tal:attributes="src string:${context/absolute_url}/++resource++gw-manage-portlets.js">
+      tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/gw-manage-portlets.min.js">
     </script>
 
     <script type="text/javascript"
