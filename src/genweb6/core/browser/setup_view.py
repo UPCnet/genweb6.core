@@ -159,11 +159,6 @@ class setup(BrowserView):
         noticies = self.create_content(portal_ca, 'Folder', 'noticies', title='Notícies', description=u'Notícies del lloc')
         self.link_translations([(news, 'en'), (noticias, 'es'), (noticies, 'ca')])
 
-        # Set layout for news folders
-        news.setLayout('news_listing')
-        noticias.setLayout('news_listing')
-        noticies.setLayout('news_listing')
-
         news.exclude_from_nav = True
         noticias.exclude_from_nav = True
         noticies.exclude_from_nav = True
@@ -190,6 +185,11 @@ class setup(BrowserView):
 
         col_noticies.reindexObject()
 
+        # Set layout for news folders
+        news.setLayout('aggregator')
+        noticias.setLayout('aggregator')
+        noticies.setLayout('aggregator')
+
         self.link_translations([(col_news, 'en'), (col_noticias, 'es'), (col_noticies, 'ca')])
 
         self.constrain_content_types(news, ('News Item', 'Folder', 'Image', 'Link'))
@@ -201,11 +201,6 @@ class setup(BrowserView):
         eventos = self.create_content(portal_es, 'Folder', 'eventos', title='Eventos', description=u'Eventos del sitio')
         esdeveniments = self.create_content(portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments', description=u'Esdeveniments del lloc')
         self.link_translations([(events, 'en'), (eventos, 'es'), (esdeveniments, 'ca')])
-
-        # Set layout for news folders
-        events.setLayout('event_listing')
-        eventos.setLayout('event_listing')
-        esdeveniments.setLayout('event_listing')
 
         events.exclude_from_nav = True
         eventos.exclude_from_nav = True
@@ -233,6 +228,11 @@ class setup(BrowserView):
         col_esdeveniments.sort_on = QUERY_SORT_ON
 
         col_esdeveniments.reindexObject()
+
+        # Set layout for news folders
+        events.setLayout('aggregator')
+        eventos.setLayout('aggregator')
+        esdeveniments.setLayout('aggregator')
 
         self.link_translations([(col_events, 'en'), (col_eventos, 'es'), (col_esdeveniments, 'ca')])
 
