@@ -105,7 +105,7 @@
     <z3c:widgetTemplate
         mode="input"
         widget=".new_existing_content.new_existing_content.INewContentPortletJSWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
         template="new_existing_content/js.pt"
         />
 

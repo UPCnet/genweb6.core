@@ -4,7 +4,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.app.vocabularies.catalog import CatalogSource
-from plone.autoform import directives as form
+from plone.autoform import directives
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from pyquery import PyQuery as pq
@@ -136,8 +136,8 @@ class INewContentPortlet(IPortletDataProvider):
         default=_(u"#content-core")
     )
 
-    form.widget('js', NewContentPortletJSFieldWidget)
     js = schema.Text(title=_(u""), required=False)
+    directives.widget('js', NewContentPortletJSFieldWidget)
 
     @invariant
     def validate_isFull(data):
