@@ -6,13 +6,13 @@
       i18n:domain="genweb">
 <head>
   <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script type="text/javascript"
             tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/gw-manage-portlets.min.js">
     </script>
   </div>
   <div metal:fill-slot="style_slot" tal:omit-tag="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.core.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.default.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
   </div>
 </head>
 
