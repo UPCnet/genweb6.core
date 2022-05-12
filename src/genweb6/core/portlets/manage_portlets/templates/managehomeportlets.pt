@@ -7,19 +7,12 @@
 <head>
   <div metal:fill-slot="javascript_head_slot" tal:omit-tag="">
     <script type="text/javascript"
-      tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/gw-manage-portlets.min.js">
+            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/gw-manage-portlets.min.js">
     </script>
-
-    <script type="text/javascript"
-      tal:attributes="src string:${context/absolute_url}/++resource++manage-portlets.js">
-    </script>
-
   </div>
   <div metal:fill-slot="style_slot" tal:omit-tag="">
-    <link rel="stylesheet"
-      tal:attributes="href string:${context/absolute_url}/++genweb++static/css/alertify.core.css">
-    <link rel="stylesheet"
-      tal:attributes="href string:${context/absolute_url}/++genweb++static/css/alertify.default.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.core.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/alertify.js/0.5.0/alertify.default.min.css">
   </div>
 </head>
 
