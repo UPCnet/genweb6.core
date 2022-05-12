@@ -82,7 +82,7 @@ class IMultiviewCollectionPortlet(IPortletDataProvider):
         title=_(u"Select random items"),
         description=_(u"If enabled, items will be selected randomly from the "
                       u"collection, rather than based on its sort order."),
-        required=True,
+        required=False,
         default=False)
 
     show_more = schema.Bool(
@@ -90,14 +90,14 @@ class IMultiviewCollectionPortlet(IPortletDataProvider):
         description=_(u"If enabled, a more... link will appear in the footer "
                       u"of the portlet, linking to the underlying "
                       u"Collection."),
-        required=True,
+        required=False,
         default=True)
 
     show_dates = schema.Bool(
         title=_(u"Show dates"),
         description=_(u"If enabled, effective dates will be shown underneath "
                       u"the items listed."),
-        required=True,
+        required=False,
         default=False)
 
     exclude_context = schema.Bool(
@@ -105,7 +105,7 @@ class IMultiviewCollectionPortlet(IPortletDataProvider):
         description=_(
             u"If enabled, the listing will not include the current item the "
             u"portlet is rendered for if it otherwise would be."),
-        required=True,
+        required=False,
         default=True)
 
     view_type = schema.Choice(

@@ -48,7 +48,7 @@ class IFullNewsPortlet(IPortletDataProvider):
         title=_(u"Mostra data?"),
         description=_(
             u"Boolea que indica si s'ha de mostrar la data en les noticies"),
-        required=True,
+        required=False,
         default=True
     )
 
