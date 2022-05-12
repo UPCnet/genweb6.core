@@ -79,16 +79,16 @@ class Renderer(base.Renderer):
         elif lang == 'en':
             return root_path + '/' + lang + '/events'
 
-    def get_span(self):
+    def get_col(self):
         columns = self.data.columns
         if columns == 1:
-            return 'span12'
+            return 'col-md-12'
         elif columns == 2:
-            return 'span6'
+            return 'col-md-6'
         elif columns == 3:
-            return 'span4'
+            return 'col-md-4'
         else:
-            return 'span3'
+            return 'col-md-3'
 
     def _data(self):
         return get_events(
