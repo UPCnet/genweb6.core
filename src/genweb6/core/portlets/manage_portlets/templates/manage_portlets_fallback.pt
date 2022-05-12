@@ -1,10 +1,15 @@
 <tal:div condition="view/available">
-    <a class="btn btn-small btn-block"
-       tal:attributes="href view/managePortletsURL">
-       <span class="icon-cog"></span>
-       <tal:adminPortlets i18n:domain="genweb"
-                          i18n:translate="manage_homeportlets_link">
-                            Manage home page
-       </tal:adminPortlets>
-    </a>
+
+  <a class="btn btn-small btn-block"
+     tal:attributes="href view/managePortletsURL">
+
+   <span class="icon-cog"></span>
+
+   <tal:adminPortlets i18n:domain="genweb"
+                      i18n:translate="manage_homeportlets_link">
+                        Manage home page
+   </tal:adminPortlets>
+
+  </a>
+
 </tal:div>

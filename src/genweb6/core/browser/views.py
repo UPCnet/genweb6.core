@@ -222,7 +222,7 @@ class HomePageBase(BrowserView):
 
         return provider.render()
 
-    def getSpanValueForManager(self, manager):
+    def getColValueForManager(self, manager):
         portletManager = getUtility(IPortletManager, manager)
         spanstorage = getMultiAdapter((self.portlet_container, portletManager), ISpanStorage)
         span = spanstorage.span
@@ -269,7 +269,7 @@ class HomePageBase(BrowserView):
             return False
 
 
-@implementer(IHomePageView)
+@implementer(IHomePage)
 class homePage(HomePageBase):
     """ This is the special view for the homepage containing support for the
         portlet managers provided by the package genweb.portlets.
@@ -279,7 +279,7 @@ class homePage(HomePageBase):
     pass
 
 
-@implementer(IHomePageView)
+@implementer(IHomePage)
 class subHomePage(HomePageBase):
     """ This is the special view for the subhomepage containing support for the
         portlet managers provided by the package genweb.portlets.
@@ -290,7 +290,7 @@ class subHomePage(HomePageBase):
     pass
 
 
-@implementer(IHomePageView)
+@implementer(IHomePage)
 class SubhomeView(HomePageBase):
     """ This is the special view for the subhomepage containing support for the
         portlet managers provided by the package genweb.portlets.

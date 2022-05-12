@@ -230,11 +230,11 @@ class genwebUtils(BrowserView):
         sr = plone_view.have_portlets('plone.rightcolumn', view=view)
 
         if not sl and not sr:
-            return 'span12'
+            return 'col-md-12'
         if (sl and not sr) or (not sl and sr):
-            return 'span9'
+            return 'col-md-9'
         if sl and sr:
-            return 'span6'
+            return 'col-md-6'
 
     def getProgressBarName(self, number, view=None):
         if number == 1:

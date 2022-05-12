@@ -25,15 +25,6 @@
         template="templates/managesubhome.pt"
         />
 
-    <!-- <browser:page
-        name="manage-portlets-macros"
-        for="*"
-        class="plone.app.portlets.browser.manage.ManageContextualPortlets"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="plone.app.portlets.ManageOwnPortlets"
-        template="templates/edit-manager-macros.pt"
-        /> -->
-
     <!-- Modify template to make regular portlets work -->
     <browser:page
         name="manage-portlets"
@@ -74,11 +65,12 @@
 
     <browser:viewlet
         name="genweb.manage_portlets_fallback"
-        for="genweb6.core.interfaces.IHomePageView"
+        for="genweb6.core.interfaces.IHomePage"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         class="genweb6.core.portlets.manage_portlets.manager.gwManagePortletsFallbackViewletForIHomePage"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
+        template="templates/manage_portlets_fallback.pt"
         />
 
 </configure>

@@ -39,21 +39,14 @@
         permission="cmf.ModifyPortalContent"
         />
 
-    <!-- <browser:page
-        name="homepage"
-        for="plone.app.layout.navigation.interfaces.INavigationRoot"
-        class=".views.homePage"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        />
-
     <browser:page
         name="homepage"
-        for="Products.CMFCore.interfaces.IFolderish"
+        for="genweb6.core.interfaces.IHomePage"
         class=".views.subHomePage"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        /> -->
+        template="views_templates/homepage.pt"
+        />
 
     <browser:page
         name="subhome_view"

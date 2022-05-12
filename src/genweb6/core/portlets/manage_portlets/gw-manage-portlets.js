@@ -1,13 +1,10 @@
 $(document).ready(function() {
 
   // Use bootstrap classes for add portlet dropdown
-  $('#portal-columns').delegate('#gwportletselector a', 'click', function(event) {
+  $('select.add-portlet').change(function(event) {
     event.preventDefault();
     event.stopPropagation();
-    $a = $(event.target);
-    $form = $('#portletselectorform');
-    $form.find('input[name=":action"]').val($a.attr('href'));
-    $form.submit();
+    $(this).parent().submit();
   });
 
   // Call the ws that stores the span value given a portletManager
