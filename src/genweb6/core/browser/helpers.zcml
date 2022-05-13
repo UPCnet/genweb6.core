@@ -331,14 +331,6 @@
         />
 
     <browser:page
-        name="reinstall_gw_tiny_templates"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers_touchers.reinstall_gw_tiny_templates"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="cmf.ManagePortal"
-        />
-
-    <browser:page
         name="portal_setup_import"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".helpers_touchers.portal_setup_import"

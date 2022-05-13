@@ -23,7 +23,6 @@ from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb6.core import HAS_DXCT
-from genweb6.core.browser.plantilles import get_plantilles
 from genweb6.core.interfaces import IHomePage
 
 import logging
@@ -278,51 +277,6 @@ Elimina el portlet de navegació de l'arrel
             (portal, target_manager_root), IPortletAssignmentMapping)
         if 'navigation' in target_manager_root_assignments:
             del target_manager_root_assignments['navigation']
-
-
-class reinstall_gw_tiny_templates(BrowserView):
-    """
-Reinstal·la les plantilles del TinyMCE
-    """
-
-    def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
-
-        if not portal:
-            portal = api.portal.get()
-
-        templates = portal.get('templates', None)
-        if templates:
-            self.delete_templates(templates)
-            for plt in get_plantilles():
-                plantilla = self.create_content(templates, 'Document', normalizeString(
-                    plt['titol']), title=plt['titol'], description=plt['resum'])
-                plantilla.text = IRichText['text'].fromUnicode(plt['cos'])
-                plantilla.reindexObject()
-
-    def delete_templates(self, templates):
-        for template in templates.objectIds():
-            api.content.delete(obj=templates[template])
-
-    def create_content(self, container, portal_type, id, publish=True, **kwargs):
-        if not getattr(container, id, False):
-            obj = createContentInContainer(
-                container, portal_type, checkConstraints=False, **kwargs)
-            if publish:
-                self.publish_content(obj)
-        return getattr(container, id)
-
-    def publish_content(self, context):
-        """ Make the content visible either in both possible genweb.simple and
-            genweb.review workflows.
-        """
-        pw = api.portal.get_tool(name="portal_workflow")
-        object_workflow = pw.getWorkflowsFor(context)[0].id
-        object_status = pw.getStatusOf(object_workflow, context)
-        if object_status:
-            api.content.transition(obj=context, transition={
-                                   'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
 
 
 class portal_setup_import(BrowserView):

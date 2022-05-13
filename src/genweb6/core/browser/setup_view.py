@@ -27,7 +27,6 @@ from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb6.core import utils
-from genweb6.core.browser.plantilles import get_plantilles
 from genweb6.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb6.core.interfaces import IEventFolder
 from genweb6.core.interfaces import IHomePage
@@ -394,11 +393,6 @@ class setup(BrowserView):
             api.content.transition(obj=templates, transition='restrict')
         except:
             pass
-
-        for plt in get_plantilles():
-            plantilla = self.create_content(templates, 'Document', normalizeString(plt['titol']), title=plt['titol'], description=plt['resum'])
-            plantilla.text = RichTextValue(plt['cos'], 'text/html', 'text/x-html-safe')
-            plantilla.reindexObject()
 
         api.content.transition(obj=plantilles, transition='retracttointranet')
         api.content.transition(obj=plantilles, transition='publish')

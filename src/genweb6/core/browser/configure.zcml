@@ -24,7 +24,7 @@
         />
 
     <browser:page
-        name="collective.tinymcetemplates.templatelist"
+        name="tinymce_template_list"
         for="*"
         class=".views.TemplateList"
         layer="..interfaces.IGenweb6CoreLayer"
