@@ -19,13 +19,13 @@
             </h3>
             <tal:co tal:define="item obj/getObject"
                     tal:condition="python:obj.Type=='News Item'">
-              <img tal:condition="obj/news_image_filename|nothing" class="span6"
+              <img tal:condition="obj/news_image_filename|nothing" class="col-md-6"
                    tal:attributes="src string:${obj/getURL}/@@images/image/mini;
                                    title python: item.image_caption if item.image_caption else nothing;
                                    alt python: item.image_caption if item.image_caption else '';"
                    class="image-noticies" />
             </tal:co>
-            <div class="content-noticies" class="span6">
+            <div class="content-noticies" class="col-md-6">
               <p tal:content="python: view.abrevia(obj)">New description</p>
               <tal:co condition="data">
                 <time class="smaller" tal:content="python:toLocalizedTime(obj.EffectiveDate)">May 5</time>
@@ -59,8 +59,8 @@
         </ul>
 
         <tal:comment replace="nothing"> FULL 2COLS </tal:comment>
-        <div tal:condition="python:tipus=='id_full_2cols'" class="row-fluid">
-          <div class='span6 noticies-full-2cols' id='pair-news'>
+        <div tal:condition="python:tipus=='id_full_2cols'" class="row">
+          <div class='col-md-6 noticies-full-2cols' id='pair-news'>
             <div tal:repeat="obj view/published_news_items_pair" class='noticia-full-2cols'>
               <a tal:attributes="href obj/getURL" tal:define="item obj/getObject">
                 <div class='noticies-full'>
@@ -83,7 +83,7 @@
               </div>
             </div>
           </div>
-          <div class='span6 noticies-full-2cols' id='odd-news'>
+          <div class='col-md-6 noticies-full-2cols' id='odd-news'>
             <div tal:repeat="obj view/published_news_items_odd" class='noticia-full-2cols'>
               <a tal:attributes="href obj/getURL" tal:define="item obj/getObject">
                 <div class='noticies-full'>
@@ -109,8 +109,8 @@
         </div>
 
         <tal:comment replace="nothing"> FULL 3COLS </tal:comment>
-        <div tal:condition="python:tipus=='id_full_3cols'" class="row-fluid">
-          <div tal:repeat="group view/published_news_items_group_by_three" class='span4 noticies-full-2cols'>
+        <div tal:condition="python:tipus=='id_full_3cols'" class="row">
+          <div tal:repeat="group view/published_news_items_group_by_three" class='col-md-4 noticies-full-2cols'>
             <div tal:repeat="obj group" class='noticia-full-2cols'>
               <a tal:attributes="href obj/getURL" tal:define="item obj/getObject">
                 <div class='noticies-full'>
@@ -136,8 +136,8 @@
         </div>
 
         <tal:comment replace="nothing"> FULL 4COLS </tal:comment>
-        <div tal:condition="python:tipus=='id_full_4cols'" class="row-fluid">
-          <div tal:repeat="group view/published_news_items_group_by_four" class='span3 noticies-full-2cols'>
+        <div tal:condition="python:tipus=='id_full_4cols'" class="row">
+          <div tal:repeat="group view/published_news_items_group_by_four" class='col-md-3 noticies-full-2cols'>
             <div tal:repeat="obj group" class='noticia-full-2cols'>
               <a tal:attributes="href obj/getURL" tal:define="item obj/getObject">
                 <div class='noticies-full'>

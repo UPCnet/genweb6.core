@@ -2,18 +2,18 @@
            define='root view/navigation_root;
                    is_lrf_type view/is_lrf_type'><!-- menú 2on nivell -->
 
-  <h2 id='titol-menu-2' class='hidden-desktop' >
+  <h2 id='titol-menu-2' class='hidden-md hidden-lg' >
     <a id='titol-menu-2-boto' class='collapsed btn boto' data-toggle='collapse' data-target='#portlet-navigation-tree'><span>≡</span></a>
     <span id='titol-menu-2-text' tal:condition="not:is_lrf_type" tal:content="context/title">titol</span>
     <span id='titol-menu-2-text' tal:condition="is_lrf_type" i18n:domain='genweb' i18n:translate="menu">Menú</span>
   </h2>
 
   <nav class='subnavbar'>
-    <ul id='portlet-navigation-tree' class='nav nav-list nav-collapse'  role='menu'>
+    <ul id='portlet-navigation-tree' class='nav nav-list navbar-collapse'  role='menu'>
       <li role='menuitem' tal:define="selectedClass view/root_item_class;
                                       li_class python:selectedClass and ' navTreeCurrentNode' or '';"
           tal:condition='view/include_top'
-          tal:attributes='class string:hidden-phone hidden-tablet navTreeItem navTreeTopNode${li_class}'>
+          tal:attributes='class string:hidden-xs hidden-sm navTreeItem navTreeTopNode${li_class}'>
           <div tal:define="rootIsPortal view/root_is_portal;
                            normalizeString nocall:context/plone_utils/normalizeString;
                            root_icon view/root_icon;

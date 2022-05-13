@@ -9,7 +9,7 @@
       <div class="list-agenda">
         <ol class="row" metal:define-slot="entries">
           <tal:repeat repeat="item events" metal:define-macro="entries">
-            <metal:block define-slot="entry" tal:define="span view/get_span">
+            <metal:block define-slot="entry" tal:define="span view/get_col">
               <li tal:attributes="class span">
                 <a class="card" tal:attributes="href item/url">
                   <span class="event-time">

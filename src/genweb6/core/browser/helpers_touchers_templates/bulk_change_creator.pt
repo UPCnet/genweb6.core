@@ -4,54 +4,58 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="genweb.portlets">
-  <head>
-    <div metal:fill-slot="javascript_head_slot" tal:omit-tag="" />
-  </head>
-  <body>
-    <metal:block fill-slot="top_slot"
-                 tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
-                             disable_column_two python:request.set('disable_plone.rightcolumn',1);
-                             dummy python:request.set('disable_border',1)" />
-    <div metal:fill-slot="main">
-      <dl class="portalMessage"
-          tal:condition="view/status">
-        <tal:repeat repeat="msg view/status">
-          <dd tal:content="msg" style="display: block">Message</dd>
-        </tal:repeat>
-      </dl>
-      <h1 class="documentFirstHeading" i18n:translate="">Change Ownership</h1>
-      <div class="documentDescription" i18n:translate="">
-          This form will help you to pass ownership of objects owned by a user to a new one.
-      </div>
-      <form method="post">
-        <div class="field">
-           <label for="old_creator" i18n:translate="">The old creator:</label><br/>
-           <select name="old_creator" id="old_creator">
-             <tal:loop tal:repeat="creator view/list_creators">
-              <option tal:content="creator/name"
-                      tal:attributes="value creator/id;
-                                      selected creator/selected"/>
-             </tal:loop>
-           </select>
-        </div>
-        <div class="field">
-          <label for="new_creator" i18n:translate="">The new creator:</label><br/>
-          <input type="text" name="new_creator" id="new_creator">
-        </div>
-        <div class="field">
-           <input type="checkbox"
-                  name="change_modification_date:boolean"
-                  id="change_modification_date"
-                  tal:attributes="checked view/change_modification_date" />
-           <label for="change_modification_date" i18n:translate="">Change the modification date</label><br/>
-        </div>
-        <input type="submit"
-               name="submit"
-               value="Change Ownership"
-               class="submit-button"
-               i18n:attributes="value"
-           />
-      </form>
+
+<head>
+  <div metal:fill-slot="javascript_head_slot" tal:omit-tag="" />
+</head>
+
+<body>
+
+  <metal:block fill-slot="top_slot"
+               tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                           disable_column_two python:request.set('disable_plone.rightcolumn',1);
+                           dummy python:request.set('disable_border',1)" />
+
+  <div metal:fill-slot="main">
+    <dl class="portalMessage"
+        tal:condition="view/status">
+      <tal:repeat repeat="msg view/status">
+        <dd tal:content="msg" style="display: block">Message</dd>
+      </tal:repeat>
+    </dl>
+    <h1 class="documentFirstHeading" i18n:translate="">Change Ownership</h1>
+    <div class="documentDescription" i18n:translate="">
+        This form will help you to pass ownership of objects owned by a user to a new one.
     </div>
-  </body>
+    <form method="post">
+      <div class="field">
+       <label for="old_creator" i18n:translate="">The old creator:</label><br/>
+       <select name="old_creator" id="old_creator">
+         <tal:loop tal:repeat="creator view/list_creators">
+          <option tal:content="creator/name"
+                  tal:attributes="value creator/id;
+                                  selected creator/selected"/>
+         </tal:loop>
+       </select>
+      </div>
+      <div class="field">
+        <label for="new_creator" i18n:translate="">The new creator:</label><br/>
+        <input type="text" name="new_creator" id="new_creator">
+      </div>
+      <div class="field">
+        <input type="checkbox"
+               name="change_modification_date:boolean"
+               id="change_modification_date"
+               tal:attributes="checked view/change_modification_date" />
+        <label for="change_modification_date" i18n:translate="">Change the modification date</label><br/>
+      </div>
+      <input type="submit"
+             name="submit"
+             value="Change Ownership"
+             class="submit-button"
+             i18n:attributes="value" />
+    </form>
+  </div>
+
+</body>
 </html>

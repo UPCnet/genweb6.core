@@ -23,16 +23,16 @@
   <div metal:fill-slot="main">
 
     <div tal:define="view nocall:view;
-                         have_portlets_slot1 python:view.have_portlets('genweb.portlets.HomePortletManager1', view);
-                         have_portlets_slot2 python:view.have_portlets('genweb.portlets.HomePortletManager2', view);
-                         have_portlets_slot3 python:view.have_portlets('genweb.portlets.HomePortletManager3', view);
-                         have_portlets_slot4 python:view.have_portlets('genweb.portlets.HomePortletManager4', view);
-                         have_portlets_slot5 python:view.have_portlets('genweb.portlets.HomePortletManager5', view);
-                         have_portlets_slot6 python:view.have_portlets('genweb.portlets.HomePortletManager6', view);
-                         have_portlets_slot7 python:view.have_portlets('genweb.portlets.HomePortletManager7', view);
-                         have_portlets_slot8 python:view.have_portlets('genweb.portlets.HomePortletManager8', view);
-                         have_portlets_slot9 python:view.have_portlets('genweb.portlets.HomePortletManager9', view);
-                         have_portlets_slot10 python:view.have_portlets('genweb.portlets.HomePortletManager10', view);"
+                     have_portlets_slot1 python:view.have_portlets('genweb.portlets.HomePortletManager1', view);
+                     have_portlets_slot2 python:view.have_portlets('genweb.portlets.HomePortletManager2', view);
+                     have_portlets_slot3 python:view.have_portlets('genweb.portlets.HomePortletManager3', view);
+                     have_portlets_slot4 python:view.have_portlets('genweb.portlets.HomePortletManager4', view);
+                     have_portlets_slot5 python:view.have_portlets('genweb.portlets.HomePortletManager5', view);
+                     have_portlets_slot6 python:view.have_portlets('genweb.portlets.HomePortletManager6', view);
+                     have_portlets_slot7 python:view.have_portlets('genweb.portlets.HomePortletManager7', view);
+                     have_portlets_slot8 python:view.have_portlets('genweb.portlets.HomePortletManager8', view);
+                     have_portlets_slot9 python:view.have_portlets('genweb.portlets.HomePortletManager9', view);
+                     have_portlets_slot10 python:view.have_portlets('genweb.portlets.HomePortletManager10', view);"
           tal:condition="view/is_visible">
 
       <div class="row">

@@ -551,11 +551,11 @@ class setup(BrowserView):
 </div>
 <p> </p>
 <p> </p>
-<div class="row-fluid">
-<div class="span6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/lestructura-i-els-tipus-de-contingut/opcions-de-configuracio/clean-vs-standard" target="_self"><span class="btntitolblau">Coneix els tres dissenys de Genweb</span><br /><span class="btnsubtitolblau">Standard, Clean Theme i Rob Theme</span></a>
+<div class="row">
+<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/lestructura-i-els-tipus-de-contingut/opcions-de-configuracio/clean-vs-standard" target="_self"><span class="btntitolblau">Coneix els tres dissenys de Genweb</span><br /><span class="btnsubtitolblau">Standard, Clean Theme i Rob Theme</span></a>
 <p> </p>
 <a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca" target="_self"><span class="btntitoldanger">Exemple de pàgina principal amb estil Rob Theme</span> <br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
-<div class="span6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/treballant-continguts/plantilles/les-plantilles" target="_self"> <span class="btntitolsuccess">Totes les plantilles de Genweb</span><br /><span class="btnsubtitolsuccess">Incloses  les noves de Rob Theme</span></a>
+<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/treballant-continguts/plantilles/les-plantilles" target="_self"> <span class="btntitolsuccess">Totes les plantilles de Genweb</span><br /><span class="btnsubtitolsuccess">Incloses  les noves de Rob Theme</span></a>
 <p> </p>
 <a class="link-bannerwarning external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/recursos-grafics/llistat-estils-CSS" target="_self"><span class="btntitolwarning">Llistat de tots els estils de Genweb</span><br /><span class="btnsubtitolwarning">Us ajudarà a fer pàgines més atractives</span></a></div>
 </div>"""

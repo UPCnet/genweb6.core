@@ -5,8 +5,8 @@
   <div class="portlet portlet-noticies portlet-ampliat" role="complementary">
     <h2 tal:content="view/data/header" tal:condition="view/showTitle">Collection title</h2>
 
-      <div class="row-fluid">
-        <div class='span12 noticies-full-2cols noticies-full-1col'>
+      <div class="row">
+        <div class='col-md-12 noticies-full-2cols noticies-full-1col'>
           <div tal:repeat="result result_columns" class='noticia-full-2cols noticia-full-1col'>
             <a tal:attributes="href result/url">
               <div class='noticies-full'>

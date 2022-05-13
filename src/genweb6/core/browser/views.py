@@ -20,7 +20,6 @@ from genweb6.core import GenwebMessageFactory as _
 from genweb6.core.adapters import IImportant
 from genweb6.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb6.core.interfaces import IHomePage
-from genweb6.core.interfaces import IHomePageView
 from genweb6.core.utils import pref_lang
 
 

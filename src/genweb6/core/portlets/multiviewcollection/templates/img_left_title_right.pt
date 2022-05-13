@@ -12,11 +12,11 @@
             Result title
           </a>
         </h3>
-        <img tal:condition="result/image" class="span6"
+        <img tal:condition="result/image" class="col-md-6"
              tal:attributes="src result/image_src;
                              title python: result['image_caption'] if result['image_caption'] else nothing;
                              alt python: result['image_caption'] if result['image_caption'] else ' ';"/>
-        <div class="content-noticies" class="span6">
+        <div class="content-noticies" class="col-md-6">
           <p tal:content="result/description">Description summary</p>
           <time tal:condition="view/show_time" class="smaller" tal:content="python:toLocalizedTime(result['date'])">Date</time>
         </div>
