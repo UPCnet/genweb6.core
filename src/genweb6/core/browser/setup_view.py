@@ -20,6 +20,7 @@ from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.registry.interfaces import IRegistry
 from urllib.parse import parse_qs
+from z3c.relationfield.relation import create_relation
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
@@ -612,7 +613,7 @@ class setup(BrowserView):
                 hide_footer=True,
                 content_or_url='INTERN',
                 external_url='',
-                own_content=pagina_mostra_ca.UID())
+                own_content=create_relation('/'.join(pagina_mostra_ca.getPhysicalPath())))
 
         from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
         if 'noticies' not in managerAssignments:
