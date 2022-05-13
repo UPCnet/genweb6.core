@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+  <metal:block metal:define-macro="day">
+    <tal:omit-tag tal:content="day">22</tal:omit-tag>
+  </metal:block>
+
+  <metal:block metal:define-macro="time">
+    <tal:omit-tag tal:content="day">22</tal:omit-tag>
+    <span tal:content="month" class="event-months">novembre</span>
+  </metal:block>
+
+  <metal:block metal:define-macro="firstday">
+    <time class='event-days' tal:define="day item/firstday; month item/firstmonth">
+      <block metal:use-macro="context/macros-genweb/time"></block>
+    </time>
+  </metal:block>
+
+  <metal:block metal:define-macro="firstdayonly">
+    <time class='event-days' tal:define="day item/firstday;">
+      <block metal:use-macro="context/macros-genweb/day"></block>
+    </time>
+  </metal:block>
+
+  <metal:block metal:define-macro="lastday">
+    <time class='event-days' tal:define="day item/lastday; month item/lastmonth">
+      <block metal:use-macro="context/macros-genweb/time"></block>
+    </time>
+  </metal:block>
+
+  <metal:block metal:define-macro="sameday_samemonth">
+    <tal:sameday_samemonth condition="python: type == 'sameday_samemonth'">
+      <block metal:use-macro="context/macros-genweb/firstday"></block>
+    </tal:sameday_samemonth>
+  </metal:block>
+
+  <metal:block metal:define-macro="difday_samemonth">
+    <tal:difday_samemonth condition="python: type == 'difday_samemonth'">
+      <block metal:use-macro="context/macros-genweb/firstdayonly"></block>
+      <span class='event-days event-days-connector' i18n:translate="">a</span>
+      <block metal:use-macro="context/macros-genweb/lastday"></block>
+    </tal:difday_samemonth>
+  </metal:block>
+
+  <metal:block metal:define-macro="difday_difmonth">
+    <tal:difday_difmonth condition="python: type == 'difday_difmonth'">
+      <block metal:use-macro="context/macros-genweb/firstday"></block>
+      <span class="event-days event-days-connector" i18n:translate="">a</span>
+      <block metal:use-macro="context/macros-genweb/lastday"></block>
+    </tal:difday_difmonth>
+  </metal:block>
+</html>
