@@ -16,6 +16,10 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Language: es\n"
 
+#. "Configure"
+msgid "Configure"
+msgstr "Configura"
+
 #. Default: "You are here:"
 msgid "genweb-you_are_here"
 msgstr "Está en:"
@@ -345,8 +349,6 @@ msgstr "El correo se ha enviado correctamente"
 
 msgid "upc_message_send_feedback_confirm"
 msgstr "Se ha enviado un correo con sus preguntas y/o comentarios."
-
-
 
 ############
 # portlets #

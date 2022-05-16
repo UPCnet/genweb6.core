@@ -16,6 +16,10 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Language: ca\n"
 
+#. "Configure"
+msgid "Configure"
+msgstr "Configura"
+
 #. Default: "You are here:"
 msgid "genweb-you_are_here"
 msgstr "Sou a:"
