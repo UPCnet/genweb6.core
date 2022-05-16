@@ -12,5 +12,6 @@
     <object name="Logos_Container" meta_type="Dexterity FTI" />
 
     <object name="genweb.upc.subhome" meta_type="Dexterity FTI"  />
+    <object meta_type="Dexterity FTI" name="genweb.upc.documentimage" />
 
 </object>

@@ -5,8 +5,7 @@
     i18n_domain="genweb">
 
     <include package="plone.app.portlets" />
-
-    <include file="manage_portlets/configure.zcml" />
+    <include package=".manage_portlets" />
 
     <plone:portletRenderer
         portlet="plone.portlet.collection.collection.ICollectionPortlet"
