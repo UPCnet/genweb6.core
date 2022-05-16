@@ -15,7 +15,7 @@ long_description = '\n\n'.join([
 setup(
     name='genweb6.core',
     version='1.0a1',
-    description="Genweb 5 core package",
+    description="Genweb 6 Core package",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
     classifiers=[
@@ -23,15 +23,17 @@ setup(
         "Framework :: Plone",
         "Framework :: Plone :: Addon",
         "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 6.0",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
     keywords='Python Plone CMS',
     author='Plone Team',
-    author_email='plone.team@upcnet.es',
+    author_email='ploneteam@upcnet.es',
     url='https://github.com/collective/genweb6.core',
     project_urls={
         'PyPI': 'https://pypi.python.org/pypi/genweb6.core',
