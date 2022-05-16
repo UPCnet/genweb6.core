@@ -213,7 +213,7 @@ msgstr "Research groups"
 
 #: genweb.upc/genweb/upc/adapters.py:90
 msgid "Grups de recerca d'un departament específic"
-msgstr "<p>List of the research groups belonging to a department.</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the department.</p><p class=\"muted\">For example, the code of the Department of Electronic Engineering is <strong>710.</strong></p><p><a target=\"_blank\" href=\"https://gpaq.upc.edu/eines/?op=unitats\" class=\"external-link\">UPC codes<img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>UPC code</p>"
+msgstr "<p>List of the research groups belonging to a department.</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the department.</p><p class=\"muted\">For example, the code of the Department of Electronic Engineering is <strong>710.</strong></p><p><a target=\"_blank\" href=\"https://gpaq.upc.edu/eines/?op=unitats\" class=\"external-link\">UPC codes<img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>UPC code</p>"
 
 #: genweb.theme/genweb/theme/browser/views.py:644
 msgid "Gràcies per la vostra col·laboració. Les dades de l'activitat s'han enviat correctament i seran publicades com més aviat millor."
@@ -247,19 +247,19 @@ msgstr "Info"
 
 #: genweb.upc/genweb/upc/adapters.py:38
 msgid "Informació sobre el pla d'estudis d'un grau específic"
-msgstr "<p>Curriculum for a bachelor’s degree and access to the course guide.</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the bachelor’s degree for PRISMA.</p><p class=\"muted\">For example, the UPC code of the bachelor's degree in Engineering Physics is <strong>23010611.</strong></p><p><a target=\"_blank\" href=\"https://www.upc.edu/ca/comunicacio/www/continguts-upc/codis-upc-del-estudis-de-grau\" class=\"external-link\">UPC codes of the bachelor’s degree <img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>UPC code</p>"
+msgstr "<p>Curriculum for a bachelor’s degree and access to the course guide.</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the bachelor’s degree for PRISMA.</p><p class=\"muted\">For example, the UPC code of the bachelor's degree in Engineering Physics is <strong>23010611.</strong></p><p><a target=\"_blank\" href=\"https://www.upc.edu/ca/comunicacio/www/continguts-upc/codis-upc-del-estudis-de-grau\" class=\"external-link\">UPC codes of the bachelor’s degree <img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>UPC code</p>"
 
 #: genweb.upc/genweb/upc/adapters.py:22
 msgid "Informació sobre un estudi d'un grau específic"
-msgstr "<p>File containing basic information on a bachelor’s degree</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the bachelor’s degree for PRISMA</p><p class=\"muted\">For example, the UPC code of the bachelor's degree in Engineering Physics is <strong>23010611.</strong></p><p><a target=\"_blank\" href=\"http://www.upc.edu/comunicacio/www/continguts-upc/codis-upc-del-estudis-de-grau\" class=\"external-link\">UPC codes of the bachelor’s degree <img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a><strong>.<br></strong></p><p class=\"muted\"><strong>Select: </strong>UPC code</p></p>"
+msgstr "<p>File containing basic information on a bachelor’s degree</p><p class=\"muted\"><strong>Parameter:</strong> UPC code of the bachelor’s degree for PRISMA</p><p class=\"muted\">For example, the UPC code of the bachelor's degree in Engineering Physics is <strong>23010611.</strong></p><p><a target=\"_blank\" href=\"http://www.upc.edu/comunicacio/www/continguts-upc/codis-upc-del-estudis-de-grau\" class=\"external-link\">UPC codes of the bachelor’s degree <img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a><strong>.<br></strong></p><p class=\"muted\"><strong>Select: </strong>UPC code</p></p>"
 
 #: genweb.upc/genweb/upc/adapters.py:56
 msgid "Informació sobre un màster específic"
-msgstr "<p>File containing basic information on a master’s degree.</p><p class=\"muted\"><strong>Parameter:</strong> Identifier of the master’s degree.</p><p><a target=\"_blank\" href=\"https://www.upc.edu/comunicacio/www/continguts-upc/identificadors-dels-estudis-de-master\" class=\"external-link\">Identifiers of the master’s degree<img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Identifier</p>"
+msgstr "<p>File containing basic information on a master’s degree.</p><p class=\"muted\"><strong>Parameter:</strong> Identifier of the master’s degree.</p><p><a target=\"_blank\" href=\"https://www.upc.edu/comunicacio/www/continguts-upc/identificadors-dels-estudis-de-master\" class=\"external-link\">Identifiers of the master’s degree<img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Identifier</p>"
 
 #: genweb.upc/genweb/upc/adapters.py:74
 msgid "Informació sobre un pla d'estudis de màster específic"
-msgstr "<p>Available for all master except interuniversity</p><p>Curriculum for a master’s degree and access to the course guide.</p><p class=\"muted\"><strong>Parameter:</strong> Identifier of the master’s degree.</p><p><a target=\"_blank\" href=\"https://www.upc.edu/comunicacio/www/continguts-upc/identificadors-dels-estudis-de-master\" class=\"external-link\">Identifiers of the master’s degree<img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Identifier</p>"
+msgstr "<p>Available for all master except interuniversity</p><p>Curriculum for a master’s degree and access to the course guide.</p><p class=\"muted\"><strong>Parameter:</strong> Identifier of the master’s degree.</p><p><a target=\"_blank\" href=\"https://www.upc.edu/comunicacio/www/continguts-upc/identificadors-dels-estudis-de-master\" class=\"external-link\">Identifiers of the master’s degree<img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Identifier</p>"
 
 #: genweb.stack/genweb/stack/browser/collage.py:29
 msgid "Inherit"
@@ -275,7 +275,7 @@ msgstr "Researchers in a research group"
 
 #: genweb.upc/genweb/upc/adapters.py:106
 msgid "Investigadors d'un grup de recerca d'un departament específic"
-msgstr "<p>List of the researchers in a research group.</p><p class=\"muted\"><strong>Parameter:</strong> Acronym for the research group as published in DRAC.</p><p class=\"muted\">For example, the acronym for the Architecture, Energy and the Environment research group is AIEM</p><p><a target=\"_blank\" href=\"http://futur.upc.edu/organitzacio/os/Z3J1cHJlY2VyY2E=#produccio\" class=\"external-link\">Research group acronyms<img src=\"++genweb++static/images/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Acronym</p>"
+msgstr "<p>List of the researchers in a research group.</p><p class=\"muted\"><strong>Parameter:</strong> Acronym for the research group as published in DRAC.</p><p class=\"muted\">For example, the acronym for the Architecture, Energy and the Environment research group is AIEM</p><p><a target=\"_blank\" href=\"http://futur.upc.edu/organitzacio/os/Z3J1cHJlY2VyY2E=#produccio\" class=\"external-link\">Research group acronyms<img src=\"++theme++genweb6.theme/img/blank_blau.png\" class=\"img_blank\" alt=\"(Open new window)\"></a>.</p><p class=\"muted\"><strong>Select: </strong>Acronym</p>"
 
 #: genweb.theme/genweb/theme/portlets/esdeveniments.py:43
 msgid "Items in which workflow state to show."
