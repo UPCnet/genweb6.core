@@ -334,6 +334,10 @@ class setup(BrowserView):
         self.link_translations([(benvingut, 'ca'), (bienvenido, 'es'), (welcome, 'en')])
 
         # Mark all homes with IHomePage marker interface
+        alsoProvides(portal_ca, IHomePage)
+        alsoProvides(portal_en, IHomePage)
+        alsoProvides(portal_es, IHomePage)
+
         alsoProvides(benvingut, IHomePage)
         alsoProvides(bienvenido, IHomePage)
         alsoProvides(welcome, IHomePage)
