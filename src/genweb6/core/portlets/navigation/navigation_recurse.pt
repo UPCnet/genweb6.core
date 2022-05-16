@@ -10,7 +10,6 @@
                 item_url        node/getURL;
                 item_remote_url node/getRemoteUrl;
                 use_remote_url  node/useRemoteUrl | nothing;
-                item_icon       nocall:node/item_icon;
                 item_type       node/portal_type;
                 is_current      node/currentItem;
                 is_in_path      node/currentParent;

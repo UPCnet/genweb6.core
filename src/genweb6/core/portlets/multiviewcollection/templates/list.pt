@@ -17,7 +17,6 @@
             tal:define="oddrow repeat/obj/odd;
                     useView python:obj.portal_type in viewActions;
                     itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();
-                    item_icon python:getIcon(obj);
                     normalizeString nocall:plone_view/normalizeString;"
             tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
 

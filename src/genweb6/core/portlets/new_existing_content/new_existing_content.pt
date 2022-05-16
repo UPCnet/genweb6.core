@@ -1,6 +1,6 @@
 <div tal:condition="view/checkContentIsPublic" tal:attributes="class view/getClass">
-		<h2 class='portlet-title' tal:condition="view/showTitle" tal:content="view/getTitle"> titol contingut </h2>
-		<div class='portlet-content'>
-    	<tal:packet replace="structure view/getHTML"></tal:packet>
-    </div>
+	<h2 class='portlet-title' tal:condition="view/showTitle" tal:content="view/getTitle"> titol contingut </h2>
+	<div class='portlet-content'>
+  	<tal:packet replace="structure view/getHTML"></tal:packet>
+  </div>
 </div>
