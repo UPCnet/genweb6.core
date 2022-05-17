@@ -136,8 +136,8 @@ class INewContentPortlet(IPortletDataProvider):
         default=_(u"#content-core")
     )
 
-    js = schema.Text(title=_(u""), required=False)
     directives.widget('js', NewContentPortletJSFieldWidget)
+    js = schema.Text(title=_(u""), required=False)
 
     @invariant
     def validate_isFull(data):
