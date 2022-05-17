@@ -166,7 +166,7 @@ class gwManagePortletsFallbackViewletMixin(object):
 
     def available(self):
         secman = getSecurityManager()
-        if secman.checkPermission('Genweb: Manage home portlets', self.context):
+        if secman.checkPermission('Genweb: Superadmin Users', self.context):
             return True
         else:
             return False

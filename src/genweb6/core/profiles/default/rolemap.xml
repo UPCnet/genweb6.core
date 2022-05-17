@@ -14,9 +14,23 @@
             <role name="Member"/>
         </permission>
 
+        <permission name="Genweb: Manager Users"
+                    acquire="True">
+
+            <role name="Manager"/>
+        </permission>
+
         <permission name="Genweb: Webmaster Users"
                     acquire="True">
 
+            <role name="WebMaster"/>
+            <role name="Manager"/>
+        </permission>
+
+        <permission name="Genweb: Superadmin Users"
+                    acquire="True">
+
+            <!-- Add new role superadmin -->
             <role name="WebMaster"/>
             <role name="Manager"/>
         </permission>
@@ -25,13 +39,6 @@
                     acquire="True">
 
             <role name="Manager" />
-        </permission>
-
-        <permission name="Genweb: Manage home portlets"
-                    acquire="True">
-
-            <role name="WebMaster"/>
-            <role name="Manager"/>
         </permission>
 
     </permissions>

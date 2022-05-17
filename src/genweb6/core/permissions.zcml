@@ -4,7 +4,6 @@
   i18n_domain="plone">
 
     <configure zcml:condition="installed AccessControl.security">
-        <!-- -*- extra stuff goes here -*- -->
 
         <permission
             id="genweb.authenticated"
@@ -17,18 +16,23 @@
             />
 
         <permission
+            id="genweb.manager"
+            title="Genweb: Manager Users"
+            />
+
+        <permission
             id="genweb.webmaster"
             title="Genweb: Webmaster Users"
             />
 
         <permission
-            id="genweb.banners.more_power"
-            title="genweb.banners: more power"
+            id="genweb.superadmin"
+            title="Genweb: Superadmin Users"
             />
 
         <permission
-            id="genweb.manage.homeportlets"
-            title="Genweb: Manage home portlets"
+            id="genweb.banners.more_power"
+            title="genweb.banners: more power"
             />
 
     </configure>
