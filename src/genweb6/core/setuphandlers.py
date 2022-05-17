@@ -82,7 +82,7 @@ def setupVarious(context):
     # flag to check that we actually meant for this import step to be run.
     # The file is found in profiles/default.
 
-    if context.readDataFile('genweb.core_various.txt') is None:
+    if context.readDataFile('genweb6.core_various.txt') is None:
         return
 
     # Add additional setup code here
