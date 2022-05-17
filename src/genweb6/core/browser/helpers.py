@@ -11,6 +11,7 @@ from plone.app.layout.navigation.defaultpage import getDefaultPage
 from plone.subrequest import subrequest
 from plone.uuid.interfaces import IMutableUUID
 from souper.soup import get_soup
+from urllib.parse import urlencode
 from zope.interface import alsoProvides
 
 from genweb6.core import HAS_PAM
@@ -22,7 +23,6 @@ import logging
 import os
 import pkg_resources
 import re
-import urllib
 
 
 logger = logging.getLogger(__name__)
@@ -317,7 +317,7 @@ Paràmetre:
                 print('======================')
                 print('Executing view in {}'.format(plonesite.id))
                 print('======================')
-                quoted_args = urllib.urlencode(args)
+                quoted_args = urlencode(args)
                 response = subrequest(
                     '/'.join(plonesite.getPhysicalPath()) + '/{}?{}'.format(view_name, quoted_args))
                 output.append(
