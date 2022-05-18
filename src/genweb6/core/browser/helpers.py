@@ -5,6 +5,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
 from Products.Five.browser import BrowserView
 from Products.PythonScripts.standard import url_quote
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.layout.navigation.defaultpage import getDefaultPage
@@ -214,8 +215,10 @@ Retorna el workflow predeterminat per a cada lloc
 
 class mirror_uids(BrowserView):
     """
-mirror_uids
+Retorna el UID del path que li dones
     """
+
+    render = ViewPageTemplateFile("helpers_templates/mirroruids.pt")
 
     def __call__(self):
         portal = self.context
@@ -245,6 +248,7 @@ mirror_uids
                     print(
                         '{0} -> {1}'.format(destination_obj.absolute_url(), origin_uuid))
             self.output = '<br/>'.join(self.output)
+        return self.render()
 
 
 class mirror_states(BrowserView):

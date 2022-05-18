@@ -34,6 +34,7 @@ from genweb6.core.utils import pref_lang
 import logging
 import requests
 import six
+from hashlib import sha1
 
 try:
     from hashlib import sha1 as sha_new
@@ -47,28 +48,125 @@ genweb_log = logging.getLogger('genweb6.core')
 def isStringType(data):
     return isinstance(data, str) or isinstance(data, unicode)
 
+# Dejo la funcion que teniamos ya que ha cambiado mucho
+# BORRAR cuando veamos que funciona todo
+# def generate_user_id(self, data):
+#     """Generate a user id from data.
+
+#     The data is the data passed in the form.  Note that when email
+#     is used as login, the data will not have a username.
+
+#     There are plans to add some more options and add a hook here
+#     so it is possible to use a different scheme here, for example
+#     creating a uuid or creating bob-jones-1 based on the fullname.
+
+#     This will update the 'username' key of the data that is passed.
+#     """
+#     if data.get('username'):
+#         default = data.get('username').lower()
+#     elif data.get('email'):
+#         default = data.get('email').lower()
+#     else:
+#         default = ''
+#     data['username'] = default
+#     return default
 
 def generate_user_id(self, data):
     """Generate a user id from data.
 
-    The data is the data passed in the form.  Note that when email
-    is used as login, the data will not have a username.
+    We try a few options for coming up with a good user id:
 
-    There are plans to add some more options and add a hook here
-    so it is possible to use a different scheme here, for example
-    creating a uuid or creating bob-jones-1 based on the fullname.
+    1. We query a utility, so integrators can register a hook to
+       generate a user id using their own logic.
 
-    This will update the 'username' key of the data that is passed.
+    2. If use_uuid_as_userid is set in the registry, we
+       generate a uuid.
+
+    3. If a username is given and we do not use email as login,
+       then we simply return that username as the user id.
+
+    4. We create a user id based on the full name, if that is
+       passed.  This may result in an id like bob-jones-2.
+
+    When the email address is used as login name, we originally
+    used the email address as user id as well.  This has a few
+    possible downsides, which are the main reasons for the new,
+    pluggable approach:
+
+    - It does not work for some valid email addresses.
+
+    - Exposing the email address in this way may not be wanted.
+
+    - When the user later changes his email address, the user id
+      will still be his old address.  It works, but may be
+      confusing.
+
+    Another possibility would be to simply generate a uuid, but that
+    is ugly.  We could certainly try that though: the big plus here
+    would be that you then cannot create a new user with the same user
+    id as a previously existing user if this ever gets removed.  If
+    you would get the same id, this new user would get the same global
+    and local roles, if those have not been cleaned up.
+
+    When a user id is chosen, the 'user_id' key of the data gets
+    set and the user id is returned.
     """
-    if data.get('username'):
-        default = data.get('username').lower()
-    elif data.get('email'):
-        default = data.get('email').lower()
-    else:
-        default = ''
-    data['username'] = default
-    return default
+    generator = queryUtility(IUserIdGenerator)
+    if generator:
+        userid = generator(data)
+        if userid:
+            data['user_id'] = userid
+            return userid
 
+    settings = self._get_security_settings()
+    if settings.use_uuid_as_userid:
+        userid = uuid_userid_generator()
+        data['user_id'] = userid
+        return userid
+
+    # We may have a username already.
+    userid = data.get('username').lower()
+    if userid:
+        # If we are not using email as login, then this user name is fine.
+        if not settings.use_email_as_login:
+            data['user_id'] = userid
+            return userid
+
+    # First get a default value that we can return if we cannot
+    # find anything better.
+    pas = getToolByName(self.context, 'acl_users')
+    email = pas.applyTransform(data.get('email').lower())
+    default = data.get('username').lower() or email or ''
+    data['user_id'] = default
+    fullname = data.get('fullname')
+    if not fullname:
+        return default
+    userid = normalizeString(fullname)
+    # First check that this is a valid member id, regardless of
+    # whether a member with this id already exists or not.  We
+    # access an underscore attribute of the registration tool, so
+    # we take a precaution in case this is ever removed as an
+    # implementation detail.
+    registration = getToolByName(self.context, 'portal_registration')
+    if hasattr(registration, '_ALLOWED_MEMBER_ID_PATTERN'):
+        if not registration._ALLOWED_MEMBER_ID_PATTERN.match(userid):
+            # If 'bob-jones' is not good then 'bob-jones-1' will not
+            # be good either.
+            return default
+    if registration.isMemberIdAllowed(userid):
+        data['user_id'] = userid
+        return userid
+    # Try bob-jones-1, bob-jones-2, etc.
+    idx = 1
+    while idx <= RENAME_AFTER_CREATION_ATTEMPTS:
+        new_id = "%s-%d" % (userid, idx)
+        if registration.isMemberIdAllowed(new_id):
+            data['user_id'] = new_id
+            return new_id
+        idx += 1
+
+    # We cannot come up with a nice id, so we simply return the default.
+    return default
 
 def setMemberProperties(self, mapping, force_local=0, force_empty=False):
     """PAS-specific method to set the properties of a
@@ -191,8 +289,7 @@ def getThreads(self, start=0, size=None, root=0, depth=None):
 
 
 def getUserByAttr(self, name, value, pwd=None, cache=0):
-    """
-        Get a user based on a name/value pair representing an
+    """ Get a user based on a name/value pair representing an
         LDAP attribute provided to the user.  If cache is True,
         try to cache the result using 'value' as the key
     """
@@ -200,9 +297,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
         return None
 
     cache_type = pwd and 'authenticated' or 'anonymous'
-    negative_cache_key = '%s:%s:%s' % (name,
-                                       value,
-                                       sha_new(pwd or '').hexdigest())
+    negative_cache_key = '%s:%s:%s' % (
+        name, value, sha1((pwd or '').encode()).hexdigest())
     if cache:
         if self._cache('negative').get(negative_cache_key) is not None:
             return None
@@ -251,7 +347,6 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
                    (logins, login_name))
             logger.error(msg)
             pass
-
     elif len(login_name) == 0:
         msg = 'getUserByAttr: "%s" has no "%s" (Login) value!' % (
             user_dn, self._login_attr)
@@ -273,15 +368,10 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     uid = uid.lower()
     # END PATCH
 
-    user_obj = LDAPUser(uid,
-                        login_name,
-                        pwd or 'undef',
-                        user_roles or [],
-                        [],
-                        user_dn,
-                        user_attrs,
-                        self.getMappedUserAttrs(),
+    user_obj = LDAPUser(uid, login_name, pwd or 'undef', user_roles or [],
+                        [], user_dn, user_attrs, self.getMappedUserAttrs(),
                         self.getMultivaluedUserAttrs(),
+                        self.getBinaryUserAttrs(),
                         ldap_groups=ldap_groups)
 
     if cache:
@@ -290,13 +380,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     return user_obj
 
 
-def enumerateUsers(self,
-                   id=None,
-                   login=None,
-                   exact_match=0,
-                   sort_by=None,
-                   max_results=None,
-                   **kw):
+def enumerateUsers(self, id=None, login=None, exact_match=0, sort_by=None,
+                   max_results=None, **kw):
     """ Fulfill the UserEnumerationPlugin requirements """
     view_name = self.getId() + '_enumerateUsers'
     criteria = {'id': id, 'login': login, 'exact_match': exact_match,
@@ -365,7 +450,8 @@ def enumerateUsers(self,
         if not login and not id:
             ldap_criteria[login_attr] = ''
 
-        l_results = acl.searchUsers(exact_match=exact_match, **ldap_criteria)
+        l_results = acl.searchUsers(exact_match=exact_match,
+                                    **ldap_criteria)
 
         for l_res in l_results:
             try:
@@ -389,11 +475,10 @@ def enumerateUsers(self,
                 pass
 
         if sort_by is not None:
-            result.sort(lambda a, b: cmp(a.get(sort_by, '').lower(),
-                                         b.get(sort_by, '').lower()))
+            result.sort(key=lambda item: item.get(sort_by, '').lower())
 
         if isinstance(max_results, int) and len(result) > max_results:
-            result = result[:max_results - 1]
+            result = result[:max_results-1]
 
     result = tuple(result)
     self.ZCacheable_set(result, view_name=view_name, keywords=criteria)

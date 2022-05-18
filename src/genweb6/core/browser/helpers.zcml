@@ -16,7 +16,7 @@
 
     <browser:page
         name="ping"
-        for="OFS.interfaces.IApplication"
+        for="*"
         class=".helpers.ping"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
