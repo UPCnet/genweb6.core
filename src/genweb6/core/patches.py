@@ -6,7 +6,13 @@ from BTrees.OOBTree import OOBTree
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
 from Products.CMFCore.permissions import ManageUsers
 from Products.CMFCore.utils import _checkPermission
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.syndication.adapters import BaseItem
+from Products.CMFPlone.browser.syndication.adapters import FolderFeed
 from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.CMFPlone.interfaces import ISocialMediaSchema
+from Products.CMFPlone.interfaces.syndication import IFeedItem
+from Products.CMFPlone.utils import getSiteLogo
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
@@ -23,10 +29,14 @@ from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
+from plone.memoize.view import memoize
+from plone.registry.interfaces import IRegistry
 from urllib.parse import quote_plus
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryMultiAdapter
 from zope.component import queryUtility
+from zope.component.hooks import getSite
 from zope.event import notify
 
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
@@ -37,11 +47,6 @@ import logging
 import requests
 import six
 from hashlib import sha1
-
-try:
-    from hashlib import sha1 as sha_new
-except ImportError:
-    from sha import new as sha_new
 
 logger = logging.getLogger('event.LDAPUserFolder')
 genweb_log = logging.getLogger('genweb6.core')
@@ -657,3 +662,106 @@ def deletePersonalPortrait(self, id=None):
     adapter(image, safe_id)
     # membertool = getToolByName(self, 'portal_memberdata')
     # return membertool._deletePortrait(safe_id)
+
+
+@memoize
+def _get_tags(self):
+    site = getSite()
+    registry = getUtility(IRegistry)
+    settings = registry.forInterface(
+        ISocialMediaSchema, prefix="plone", check=False
+    )
+
+    if not settings.share_social_data:
+        return []
+
+    # Comentar lineas para que sean visible siempre los tags
+    # portal_membership = api.portal.get_tool(name="portal_membership")  # Se modifico para para hacerlo con la api
+    # is_anonymous = bool(portal_membership.isAnonymousUser())
+    # if not is_anonymous:
+    #     return []
+
+    tags = [
+        dict(itemprop="name", content=self.page_title),
+        dict(name="twitter:card", content="summary"),
+        dict(property="og:site_name", content=self.site_title_setting),
+        dict(property="og:title", content=self.page_title),
+        dict(property="twitter:title", content=self.page_title),  # Añadido
+        dict(property="og:type", content="website"),
+    ]
+
+    if settings.twitter_username:
+        tags.append(
+            dict(
+                name="twitter:site",
+                content="@" + settings.twitter_username.lstrip("@"),
+            )
+        )
+
+    if settings.facebook_app_id:
+        tags.append(dict(property="fb:app_id", content=settings.facebook_app_id))
+
+    if settings.facebook_username:
+        tags.append(
+            dict(
+                property="og:article:publisher",
+                content="https://www.facebook.com/" + settings.facebook_username,
+            )
+        )
+
+    # reuse syndication since that packages the data
+    # the way we'd prefer likely
+    feed = FolderFeed(site)
+    item = queryMultiAdapter((self.context, feed), IFeedItem, default=None)
+    if item is None:
+        item = BaseItem(self.context, feed)
+
+    tags.extend(
+        [
+            dict(itemprop="description", content=item.description),
+            dict(itemprop="url", content=item.link),
+            dict(property="og:description", content=item.description),
+            dict(property="twitter:description", content=item.description),  # Añadido
+            dict(property="og:url", content=item.link),
+            dict(property="twitter:url", content=item.link),  # Añadido
+        ]
+    )
+
+    found_image = False
+    if item.has_enclosure and item.file_length > 0:
+        if item.file_type.startswith("image"):
+            found_image = True
+            tags.extend(
+                [
+                    dict(property="og:image", content=item.file_url),
+                    dict(property="twitter:image", content=item.file_url),  # Añadido
+                    dict(itemprop="image", content=item.file_url),
+                    dict(property="og:image:type", content=item.file_type),
+                ]
+            )
+        elif item.file_type.startswith("video") or item.file_type == "application/x-shockwave-flash":
+            tags.extend(
+                [
+                    dict(property="og:video", content=item.file_url),
+                    dict(property="og:video:type", content=item.file_type),
+                ]
+            )
+        elif item.file_type.startswith("audio"):
+            tags.extend(
+                [
+                    dict(property="og:audio", content=item.file_url),
+                    dict(property="og:audio:type", content=item.file_type),
+                ]
+            )
+
+    if not found_image:
+        url = getSiteLogo()
+        tags.extend(
+            [
+                dict(property="og:image", content=url),
+                dict(property="twitter:image", content=url),  # Added
+                dict(itemprop="image", content=url),
+                dict(property="og:image:type", content="image/png"),
+            ]
+        )
+    return tags

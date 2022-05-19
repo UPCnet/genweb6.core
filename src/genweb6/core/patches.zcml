@@ -90,4 +90,11 @@
         replacement=".patches.sitemapObjects"
         />
 
+    <monkey:patch
+        description="Añadir meta tags para la twitter card y mostrarlos aunque estes validado"
+        class="plone.app.layout.viewlets.social.SocialTagsViewlet"
+        original="_get_tags"
+        replacement=".patches._get_tags"
+        />
+
 </configure>

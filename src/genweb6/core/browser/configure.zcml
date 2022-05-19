@@ -5,6 +5,7 @@
     i18n_domain="genweb">
 
     <include file="helpers.zcml" />
+    <include file="viewlets.zcml" />
 
     <browser:page
         name="clouseau"
@@ -96,15 +97,6 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.DeleteObjects"
         />
-
-    <!-- <browser:viewlet
-        name="genweb.logosfooter"
-        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class=".viewlets.logosFooterViewlet"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        template="viewlets_templates/logosfooter.pt"
-        /> -->
 
     <browser:page
         name="macros-genweb"
