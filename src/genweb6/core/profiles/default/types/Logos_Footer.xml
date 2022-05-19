@@ -8,7 +8,7 @@
     <property name="global_allow">False</property>
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types" />
-    <property name="schema">genweb6.core.content.banner.IBanner</property>
+    <property name="schema">genweb6.core.content.banner.banner.IBanner</property>
     <property name="klass">genweb6.core.content.Logo</property>
     <property name="add_permission">cmf.AddPortalContent</property>
 
@@ -16,7 +16,7 @@
         <element value="plone.app.content.interfaces.INameFromTitle"/>
         <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
         <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-        <element value="genweb.core.behaviors.openlinkin.IOpenLinkInNewWindow" />
+        <element value="genweb6.core.behaviors.openlinkin.IOpenLinkInNewWindow" />
     </property>
 
     <property name="default_view">view</property>
