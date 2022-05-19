@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone.app.event">
+    <body>
+
+        <metal:content-core fill-slot="content-core">
+                <tal:def define="batch view/news;
+                                 mode request/mode|string:all;
+                                 toLocalizedTime nocall: context/@@plone/toLocalizedTime;">
+                    <div role="complementary">
+                        <ul class="list-portlet">
+                            <li tal:repeat="data batch">
+                                <a href="" tal:attributes="href data/getURL">
+                                    <img tal:condition="data/news_image_filename|nothing"
+                                         tal:attributes="src string:${data/getURL}/@@images/image/tile"
+                                         alt=""
+                                         class="image-noticies" >  <!-- large, preview, mini, thumb, tile, icon -->
+                                </a>
+                                    <strong>
+                                        <a href="" itemprop="url" class="url" tal:attributes="href data/getURL">
+                                            <span itemprop="summary" class="summary" tal:content="data/pretty_title_or_id">Title</span>
+                                        </a>
+                                    </strong>
+                                    <p class="smaller data-noticies">
+                                        <time class="smaller data-noticies"
+                                              tal:content="python:toLocalizedTime(data.EffectiveDate)">
+                                              May 5
+                                        </time>
+                                    </p>
+                                    <div class="content-noticies">
+                                        <p tal:content="data/Description">
+                                            New description
+                                        </p>
+                                    </div>
+                             </li>
+                    </div>
+                    <div metal:use-macro="context/batch_macros/macros/navigation" />
+                </tal:def>
+        </metal:content-core>
+    </body>
+</html>

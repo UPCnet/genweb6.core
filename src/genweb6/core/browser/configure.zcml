@@ -167,4 +167,13 @@
         template="views_templates/folder_index_view.pt"
         />
 
+    <browser:page
+        name="news_listing"
+        for="*"
+        class=".news_listing.NewsListing"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/news_listing.pt"
+        />
+
 </configure>
