@@ -16,11 +16,27 @@
         />
 
     <browser:page
+        name="blank_template"
+        for="*"
+        permission="zope.Public"
+        template="views_templates/blank_template.pt"
+        />
+
+    <browser:page
         name="genweb.get.dxdocument.text"
         for="plone.app.contenttypes.interfaces.IDocument"
         class=".views.GetDXDocumentText"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.style"
+        for="plone.app.contenttypes.interfaces.IDocument"
+        class=".views.GetDXDocumentTextStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_style.pt"
         />
 
     <browser:page
@@ -95,6 +111,60 @@
         for="*"
         permission="zope.Public"
         template="views_templates/macros.pt"
+        />
+
+    <browser:page
+        name="portlet_events_view"
+        for="zope.interface.Interface"
+        class=".views.PortletEventsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/portlet_events_view.pt"
+        />
+
+    <browser:page
+        name="filtered_contents_search_pretty_view"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search.pt"
+        />
+
+    <browser:page
+        name="filtered_contents_search_complete_pretty_view"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchCompleteView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search.pt"
+        />
+
+    <browser:page
+        name="search_filtered_content_pretty"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_ajax.pt"
+        />
+
+    <browser:page
+        name="search_complete_filtered_content_pretty"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchCompleteView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_ajax.pt"
+        />
+
+    <browser:page
+        name="folder_index_view"
+        for="Products.CMFCore.interfaces.IFolderish"
+        class=".views.FolderIndexView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/folder_index_view.pt"
         />
 
 </configure>

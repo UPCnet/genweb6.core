@@ -1,0 +1,41 @@
+<metal:page define-macro="master">
+<tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      tal:define="portal_state python:context.restrictedTraverse('@@plone_portal_state');
+                  lang python:portal_state.language();"
+      i18n:domain="plone"
+      tal:attributes="lang lang;">
+
+    <metal:cache tal:replace="structure provider:plone.httpheaders" />
+
+  <head>
+    <meta charset="utf-8" />
+
+    <div tal:replace="structure provider:plone.htmlhead" />
+
+    <tal:comment replace="nothing">
+        Various slots where you can insert elements in the header from a template.
+    </tal:comment>
+
+    <metal:topslot define-slot="top_slot" />
+    <metal:headslot define-slot="head_slot" />
+    <metal:styleslot define-slot="style_slot" />
+
+    <div tal:replace="structure provider:plone.scripts" />
+    <metal:javascriptslot define-slot="javascript_head_slot" />
+
+    <link tal:replace="structure provider:plone.htmlhead.links" />
+  </head>
+
+  <body>
+    <article id="portal-column-content">
+      <metal:block define-slot="content"></metal:block>
+    </article>
+  </body>
+
+</html>
+</metal:page>

@@ -1,0 +1,103 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+  <metal:javascript fill-slot="javascript_head_slot" tal:omit-tag="">
+    <script type="text/javascript" src="++theme++genweb6.theme/js/views/filtered_contents_search.min.js"></script>
+  </metal:javascript>
+
+  <metal:block fill-slot="top_slot">
+    <tal:insert tal:replace="nothing"
+                tal:define="dummy python:request.set('enable_border', 1);
+                            disable_column_one python:request.set('disable_plone.rightcolumn',1);" />
+  </metal:block>
+</head>
+
+<body>
+
+  <metal:main metal:fill-slot="content-core"
+              tal:define="b_start python:0;
+                          b_start request/b_start | b_start;
+                          continguts python: view.getContent();
+                          path python: view.get_container_path()">
+
+    <div id="librarysearchpretty" class="filtered_contents_search_pretty row">
+      <div class="col-md-3">
+        <h2 i18n:domain="genweb" i18n:translate="label_filters">Filters</h2>
+        <div class="caixessearch">
+          <div id="searchinputcontent">
+            <div class="input-append">
+              <input class="searchInputPretty" type="text" placeholder="Cerca"
+                     i18n:attributes="placeholder search"  tal:attributes="data-name path" />
+            </div>
+          </div>
+
+          <h3 i18n:translate="label_tags">Tags</h3>
+          <div class="searchbytagcontainer">
+            <p tal:repeat="tag view/getTags">
+              <input type="checkbox" name="tag" tal:attributes="value tag;"  />
+              <span tal:content="tag"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <section id="tagslist" tal:define="site_properties context/portal_properties/site_properties;
+                                           use_view_action site_properties/typesUseViewActionInListings|python:()">
+          <article class="tileItem visualIEFloatFix" tal:repeat="contingut continguts">
+
+            <tal:block tal:define="item_type contingut/portal_type;
+                                   item_url contingut/getURL|contingut/absolute_url;
+                                   item_obj python:contingut.getObject();
+                                   item_has_image python:hasattr(item_obj, 'image');">
+
+              <div class="tileImage" tal:condition="item_has_image">
+                <a tal:attributes="href item_url">
+                  <img tal:define="scales item_obj/@@images;
+                                   scale python:scales.scale('image', 'thumb')"
+                      tal:replace="structure python:scale and scale.tag(css_class='tileImage') or None" />
+                </a>
+              </div>
+
+              <h2 class="tileHeadline">
+                <a class="summary url"
+                   tal:condition="python:item_type != 'Link'"
+                   tal:attributes="href python: item_url+'/view' if item_type in use_view_action else item_url;"
+                   tal:content="contingut/Title">
+                  Title
+                </a>
+
+                <tal:block tal:condition="python:item_type == 'Link'" tal:define="gwutils context/@@genweb.utils">
+                  <a class="summary url" target="_blank"
+                     tal:condition="python:gwutils.link_redirect_blank(contingut)"
+                     tal:attributes="href python: item_url+'/view' if item_type in use_view_action else item_url;">
+                    <span tal:content="contingut/Title">Item Title</span>
+                    <img class="img_blank" src="++genweb++static/images/blank_blau.png"
+                           i18n:domain="genweb"
+                           i18n:attributes="alt obrir_link_finestra_nova">
+                  </a>
+                  <a class="summary url"
+                     tal:condition="python:not gwutils.link_redirect_blank(contingut)"
+                     tal:attributes="href python: item_url+'/view' if item_type in use_view_action else item_url;"
+                     tal:content="contingut/Title">
+                    Title
+                  </a>
+                </tal:block>
+              </h2>
+              <span class="documentByLine" tal:condition="contingut/Description" tal:content="contingut/Description">
+                Description
+              </span>
+              <div class="visualClear"></div>
+            </tal:block>
+          </article>
+        </section>
+      </div>
+    </div>
+  </metal:main>
+</body>
+</html>
