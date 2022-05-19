@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
-from Products.Five.browser import BrowserView
-
 from plone import api
+from plone.app.layout.viewlets import ViewletBase
 from plone.memoize.view import memoize_contextless
-from zope.interface import implementer
-from zope.viewlet.interfaces import IViewlet
 
 from genweb6.core import _
 from genweb6.core import utils
 
 
-@implementer(IViewlet)
-class viewletBase(BrowserView):
+class viewletBase(ViewletBase):
 
     @memoize_contextless
     def root_url(self):

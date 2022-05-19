@@ -1,4 +1,4 @@
-<tal:logosfooter define="logos viewlet/getLogosFooter">
+<tal:logosfooter define="logos view/getLogosFooter">
 
 <aside id="bandaLogos"
        tal:condition="logos" role="complementary"  aria-labelledby="titol-banda-logos">
@@ -14,7 +14,7 @@
                              target target | nothing">
           <img tal:condition="logo/open_link_in_new_window"
                tal:attributes="src string:${logo/getURL}/@@images/image;
-                               alt python:viewlet.getAltAndTitle(logo.Title)">
+                               alt python:view.getAltAndTitle(logo.Title)">
           <img tal:condition="not: logo/open_link_in_new_window"
                tal:attributes="src string:${logo/getURL}/@@images/image;
                                  alt logo/Title">

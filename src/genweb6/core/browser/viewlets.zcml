@@ -4,13 +4,13 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="genweb">
 
-    <!-- <browser:viewlet
+    <browser:viewlet
         name="genweb.logosfooter"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".viewlets.logosFooterViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/logosfooter.pt"
-        /> -->
+        />
 
 </configure>
