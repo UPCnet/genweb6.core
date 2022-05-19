@@ -20,11 +20,13 @@ from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.textfield.value import IRichTextValue
+from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from urllib.parse import quote_plus
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.event import notify
 
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
