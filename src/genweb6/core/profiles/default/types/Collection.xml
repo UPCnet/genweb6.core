@@ -12,6 +12,7 @@
         <element value="plone.richtext" />
         <element value="plone.relateditems" />
         <element value="plone.locking" />
+        <element value="plone.translatable" />
     </property>
 
     <property name="view_methods">
