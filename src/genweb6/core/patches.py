@@ -7,6 +7,7 @@ from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
 from Products.CMFCore.permissions import ManageUsers
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import PloneMessageFactory as _CMFPlone
 from Products.CMFPlone.browser.syndication.adapters import BaseItem
 from Products.CMFPlone.browser.syndication.adapters import FolderFeed
 from Products.CMFPlone.interfaces import IPloneSiteRoot
@@ -27,6 +28,7 @@ from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
+from plone.base.interfaces.controlpanel import IMailSchema
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.view import memoize
@@ -39,6 +41,7 @@ from zope.component import queryUtility
 from zope.component.hooks import getSite
 from zope.event import notify
 
+from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
@@ -765,3 +768,39 @@ def _get_tags(self):
             ]
         )
     return tags
+
+
+gw_group = dict(
+    member=[
+        ('Member', _CMFPlone('My Preferences')),
+    ],
+    site=[
+        ('plone-general', _CMFPlone('General')),
+        ('plone-content', _CMFPlone('Content')),
+        ('plone-users', _CMFPlone('Users')),
+        ('plone-security', _CMFPlone('Security')),
+        ('plone-advanced', _CMFPlone('Advanced')),
+        ('Plone', _CMFPlone('Plone Configuration')),
+        ('Products', _CMFPlone('Add-on Configuration')),
+        ('genweb-design', _('Genweb Design')),  # Añadido
+        ('genweb-advanced', _('Genweb Advanced')),  # Añadido
+        ('genweb-connection', _('Connections')),  # Añadido
+    ]
+)
+
+
+def mailhost_warning(self):
+    # Añadir el control para ver si puede acceder al controlpanel de Correo
+    # Los permisos corresponden a plone.app.controlpanel.Mail
+    username = api.user.get_current().id
+    user_permissions = api.user.get_roles(username=username, obj=self)
+    if 'Manager' not in user_permissions and 'Site Administrator' not in user_permissions:
+        return False
+
+    registry = getUtility(IRegistry)
+    mail_settings = registry.forInterface(IMailSchema, prefix="plone", check=False)
+    mailhost = mail_settings.smtp_host
+    email = mail_settings.email_from_address
+    if mailhost and email:
+        return False
+    return True

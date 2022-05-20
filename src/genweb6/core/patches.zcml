@@ -97,4 +97,18 @@
         replacement=".patches._get_tags"
         />
 
+    <monkey:patch
+        description="Añadir nuevas categorias de controlpanel"
+        class="Products.CMFPlone.PloneControlPanel.PloneControlPanel"
+        original="group"
+        replacement=".patches.gw_group"
+        />
+
+    <monkey:patch
+        description="Añadir un control para ver si puede configurar el panel del correo"
+        class="Products.CMFPlone.controlpanel.browser.overview.OverviewControlPanel"
+        original="mailhost_warning"
+        replacement=".patches.mailhost_warning"
+        />
+
 </configure>
