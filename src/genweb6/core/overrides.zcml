@@ -4,15 +4,4 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="genweb">
 
-    <include package="plone.behavior" file="meta.zcml"/>
-
-    <!-- Constrain container allowed content types -->
-    <plone:behavior
-        title="Folder Addable Constrains"
-        description="Restrict the content types that can be added to folderish content"
-        provides="Products.CMFPlone.interfaces.constrains.ISelectableConstrainTypes"
-        factory=".overrides.gwConstrainTypesBehavior"
-        for="plone.dexterity.interfaces.IDexterityContainer"
-        />
-
 </configure>
