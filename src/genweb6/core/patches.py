@@ -809,3 +809,9 @@ def mailhost_warning(self):
     if mailhost and email:
         return False
     return True
+
+
+title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
+
+
+title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')

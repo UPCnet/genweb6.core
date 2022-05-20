@@ -1,27 +1,13 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 
-from plone.app.contentmenu.menu import DisplaySubMenuItem
-from plone.app.contentmenu.menu import FactoriesSubMenuItem
 from plone.app.dexterity.behaviors.constrains import ConstrainTypesBehavior
-
-from genweb6.core import GenwebMessageFactory as _
 
 
 # constants for enableConstrain. Copied from AT
 ACQUIRE = -1  # acquire locallyAllowedTypes from parent (default)
 DISABLED = 0  # use default behavior of PortalFolder which uses the FTI info
 ENABLED = 1  # allow types from locallyAllowedTypes only
-
-
-class gwDisplaySubMenuItem(DisplaySubMenuItem):
-
-    title = _(u'label_choose_template', default=u'Display')
-
-
-class gwFactoriesSubMenuItem(FactoriesSubMenuItem):
-
-    title = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
 class gwConstrainTypesBehavior(ConstrainTypesBehavior):

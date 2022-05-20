@@ -111,4 +111,18 @@
         replacement=".patches.mailhost_warning"
         />
 
+    <monkey:patch
+        description="Cambiar literal title"
+        class="plone.app.contentmenu.menu.DisplaySubMenuItem"
+        original="title"
+        replacement=".patches.title_displaysubmenuitem"
+        />
+
+    <monkey:patch
+        description="Cambiar literal title"
+        class="plone.app.contentmenu.menu.FactoriesSubMenuItem"
+        original="title"
+        replacement=".patches.title_factoriessubmenuitem"
+        />
+
 </configure>
