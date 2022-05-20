@@ -28,6 +28,11 @@
 
     <include package="souper.plone" />
 
+    <browser:jbot
+        directory="templates"
+        layer=".interfaces.IGenweb6CoreLayer"
+        />
+
     <genericsetup:registerProfile
         name="default"
         title="genweb6.core"
