@@ -759,7 +759,7 @@ def _get_tags(self):
         tags.extend(
             [
                 dict(property="og:image", content=url),
-                dict(property="twitter:image", content=url),  # Added
+                dict(property="twitter:image", content=url),  # Añadido
                 dict(itemprop="image", content=url),
                 dict(property="og:image:type", content="image/png"),
             ]
