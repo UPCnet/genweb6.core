@@ -8,7 +8,8 @@
   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
 <tal:block
-    tal:define="feed view/feed;
+    tal:define="gwutils context/@@genweb.utils;
+                feed view/feed;
                 items python: [f for f in feed.items]">
 
 <channel rdf:about="" tal:attributes="rdf:about request/URL">
@@ -46,7 +47,7 @@
     <dc:date tal:content="item/published/HTML4|item/modified/HTML4">Published or last modified date if no published date</dc:date>
     <tal:comment replace="nothing">   ===   Inicio contenido añadido   ===   </tal:comment>
     <tal:block tal:condition="python:item.context.portal_type == 'Event'">
-      <eventstartdate tal:content="item/context/start"/>
+      <eventstartdate tal:content="python:gwutils.localized_time(item.context.start)"/>
       <eventrecurrence tal:condition="python: getattr(item.context, 'recurrence', None)" tal:content="item/context/recurrence" />
     </tal:block>
     <tal:block tal:condition="python:item.context.portal_type in ['News Item', 'genweb.upc.documentimage']">
@@ -58,7 +59,7 @@
       <tal:docs repeat="related item/context/relatedItems">
         <docs tal:content="string:${context/portal_url}${related/to_path}"></docs>
       </tal:docs>
-      <dc:expiration-date tal:condition="item/context/expiration_date" tal:content="item/context/expiration_date">Expiration date</dc:expiration-date>
+      <dc:expiration-date tal:condition="item/context/expiration_date" tal:content="python:gwutils.localized_time(item.context.expiration_date)">Expiration date</dc:expiration-date>
     </tal:block>
     <tal:comment replace="nothing">   ===   Final contenido añadido   ===   </tal:comment>
     <dc:type tal:content="item/context/portal_type">Type</dc:type>

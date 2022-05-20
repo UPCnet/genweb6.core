@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
+from DateTime.DateTime import DateTime
 from Products.Five.browser import BrowserView
 
 from plone import api
@@ -337,6 +338,10 @@ class genwebUtils(BrowserView):
         ])
 
         return redirect_links and not can_edit and getattr(item, 'open_link_in_new_window', False)
+
+    def localized_time(self, date):
+        local_date = DateTime(date)
+        return local_date.strftime('%Y-%m-%d %X')
 
 
 @implementer(ICatalogFactory)
