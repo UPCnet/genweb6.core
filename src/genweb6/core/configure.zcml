@@ -19,7 +19,6 @@
     <include file="adapters.zcml" />
     <include file="behaviors.zcml" />
     <include file="components.zcml" />
-    <include file="overrides.zcml" />
     <include file="patches.zcml" />
     <include file="subscribers.zcml" />
 
