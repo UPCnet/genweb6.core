@@ -14,6 +14,7 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces import ISocialMediaSchema
 from Products.CMFPlone.interfaces.syndication import IFeedItem
 from Products.CMFPlone.utils import getSiteLogo
+from Products.CMFPlone.utils import normalizeString
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
@@ -28,6 +29,8 @@ from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
+from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
+from plone.app.users.utils import uuid_userid_generator
 from plone.base.interfaces.controlpanel import IMailSchema
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
@@ -80,6 +83,7 @@ def isStringType(data):
 #         default = ''
 #     data['username'] = default
 #     return default
+
 
 def generate_user_id(self, data):
     """Generate a user id from data.
@@ -177,6 +181,7 @@ def generate_user_id(self, data):
 
     # We cannot come up with a nice id, so we simply return the default.
     return default
+
 
 def setMemberProperties(self, mapping, force_local=0, force_empty=False):
     """PAS-specific method to set the properties of a
