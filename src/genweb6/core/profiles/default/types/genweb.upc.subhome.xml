@@ -20,12 +20,12 @@
     <property name="schema_policy">dexterity</property>
 
     <property name="behaviors">
-        <element  value="plone.app.multilingual.dx.interfaces.IDexterityTranslatable"/>
-        <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-        <element value="plone.app.content.interfaces.INameFromTitle"/>
-        <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-        <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" />
-        <element value="plone.app.lockingbehavior.behaviors.ILocking" />
+        <element value="plone.translatable" />
+        <element value="plone.dublincore" />
+        <element value="plone.namefromtitle" />
+        <element value="plone.excludefromnavigation" />
+        <element value="plone.locking" />
+        <element value="collective.dexteritytextindexer" />
     </property>
 
     <property name="default_view">subhome_view</property>

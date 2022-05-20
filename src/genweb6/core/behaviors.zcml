@@ -5,6 +5,7 @@
     i18n_domain="genweb">
 
     <plone:behavior
+        name="genweb.openlinkinnewwindow"
         title="Optional open link in a new window"
         description="Add field to mark a link to open in a new window when clicked."
         provides=".behaviors.openlinkin.IOpenLinkInNewWindow"

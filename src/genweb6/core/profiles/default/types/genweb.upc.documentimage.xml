@@ -20,13 +20,13 @@
     <property name="schema_policy">dexterity</property>
 
     <property name="behaviors">
-        <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
-        <element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>
-        <element value="plone.app.content.interfaces.INameFromTitle"/>
-        <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/>
-        <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
-        <element value="plone.app.relationfield.behavior.IRelatedItems"/>
-        <element value="plone.app.versioningbehavior.behaviors.IVersionable" />
+        <element value="plone.dublincore" />
+        <element value="plone.richtext" />
+        <element value="plone.namefromtitle" />
+        <element value="plone.allowdiscussion" />
+        <element value="plone.excludefromnavigation" />
+        <element value="plone.relateditems" />
+        <element value="plone.versioning" />
     </property>
 
     <property name="default_view">view</property>
