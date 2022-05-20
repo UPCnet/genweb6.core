@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<object name="Collection" meta_type="Dexterity FTI" i18n:domain="plone"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <property name="behaviors">
+        <element value="plone.namefromtitle" />
+        <element value="plone.collection" />
+        <element value="plone.allowdiscussion" />
+        <element value="plone.shortname" />
+        <element value="plone.excludefromnavigation" />
+        <element value="plone.dublincore" />
+        <element value="plone.richtext" />
+        <element value="plone.relateditems" />
+        <element value="plone.locking" />
+    </property>
+
+    <property name="view_methods">
+        <element value="listing_view" />
+        <element value="summary_view" />
+        <element value="tabular_view" />
+        <element value="full_view" />
+        <element value="album_view" />
+    </property>
+
+</object>

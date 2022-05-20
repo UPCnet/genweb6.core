@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<object name="Image" meta_type="Dexterity FTI" i18n:domain="plone"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <property name="behaviors">
+        <element value="plone.categorization" />
+        <element value="plone.publication" />
+        <element value="plone.ownership" />
+        <element value="plone.allowdiscussion" />
+        <element value="plone.namefromfilename" />
+        <element value="plone.excludefromnavigation" />
+        <element value="plone.relateditems" />
+        <element value="plone.translatable" />
+        <element value="plone.locking"/>
+    </property>
+
+</object>

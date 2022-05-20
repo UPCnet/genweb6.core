@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="News Item" meta_type="Dexterity FTI" i18n:domain="plone"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <property name="behaviors">
+        <element value="plone.dublincore"/>
+        <element value="plone.richtext"/>
+        <element value="plone.namefromtitle"/>
+        <element value="plone.allowdiscussion"/>
+        <element value="plone.excludefromnavigation"/>
+        <element value="plone.relateditems"/>
+        <element value="plone.leadimage"/>
+        <element value="plone.versioning"/>
+        <element value="plone.translatable" />
+        <element value="plone.locking"/>
+    </property>
+
+</object>
+

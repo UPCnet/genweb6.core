@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<object name="Banner" meta_type="Dexterity FTI"
-        i18n:domain="genweb" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<object name="Banner" meta_type="Dexterity FTI" i18n:domain="genweb"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <property name="title" i18n:translate="">Banner</property>
     <property name="description" i18n:translate="">A Banner</property>

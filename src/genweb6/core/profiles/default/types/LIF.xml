@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="LIF" meta_type="Dexterity FTI" i18n:domain="plone"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+    <property name="title" i18n:translate="">Language Independent Folder</property>
+    <property name="default_view">tabular_view</property>
+
+    <property name="view_methods">
+        <element value="listing_view"/>
+        <element value="summary_view"/>
+        <element value="tabular_view"/>
+        <element value="full_view"/>
+        <element value="album_view"/>
+    </property>
+
+</object>
