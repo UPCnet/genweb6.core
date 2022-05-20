@@ -1,45 +1,48 @@
 <?xml version="1.0"?>
 <rolemap>
+
+    <roles>
+
+        <role name="Genweb Superadmin"/>
+
+    </roles>
+
     <permissions>
 
-        <permission name="Genweb: Authenticated Users"
+        <permission name="Portlets: Manage own portlets"
                     acquire="True">
 
-            <role name="Authenticated"/>
-        </permission>
-
-        <permission name="Genweb: Member Users"
-                    acquire="True">
-
+            <role name="Genweb Superadmin"/> <!-- Añadido -->
+            <role name="Manager"/>
             <role name="Member"/>
+            <role name="Site Administrator"/>
         </permission>
 
-        <permission name="Genweb: Manager Users"
+        <permission name="Portlets: Manage portlets"
                     acquire="True">
 
+            <role name="Genweb Superadmin"/> <!-- Añadido -->
             <role name="Manager"/>
+            <role name="Site Administrator"/>
         </permission>
 
-        <permission name="Genweb: Webmaster Users"
+        <permission name="Portlets: View dashboard"
                     acquire="True">
 
-            <role name="WebMaster"/>
+            <role name="Genweb Superadmin"/> <!-- Añadido -->
             <role name="Manager"/>
+            <role name="Member"/>
+            <role name="Site Administrator"/>
         </permission>
 
-        <permission name="Genweb: Superadmin Users"
-                    acquire="True">
+         <permission name="Plone Site Setup: Overview"
+                     acquire="True">
 
-            <!-- Add new role superadmin -->
-            <role name="WebMaster"/>
+            <role name="Genweb Superadmin"/> <!-- Añadido -->
             <role name="Manager"/>
-        </permission>
-
-        <permission name="genweb.banners: more power"
-                    acquire="True">
-
-            <role name="Manager" />
+            <role name="Site Administrator"/>
         </permission>
 
     </permissions>
+
 </rolemap>

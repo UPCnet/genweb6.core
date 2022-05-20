@@ -7,33 +7,57 @@
 
         <permission
             id="genweb.authenticated"
-            title="Genweb: Authenticated Users"
-            />
+            title="Genweb: Authenticated Users">
+
+            <role name="Authenticated"/>
+        </permission>
 
         <permission
             id="genweb.member"
-            title="Genweb: Member Users"
-            />
+            title="Genweb: Member Users">
+
+            <role name="Member"/>
+        </permission>
 
         <permission
             id="genweb.manager"
-            title="Genweb: Manager Users"
-            />
+            title="Genweb: Manager Users">
+
+            <role name="Manager"/>
+        </permission>
 
         <permission
             id="genweb.webmaster"
-            title="Genweb: Webmaster Users"
-            />
+            title="Genweb: Webmaster Users">
+
+            <role name="Site Administrator"/>
+            <role name="Manager"/>
+        </permission>
+
+        <permission
+            id="genweb.administrator"
+            title="Genweb: Administrator Users">
+
+            <role name="WebMaster"/>
+            <role name="Site Administrator"/>
+            <role name="Manager"/>
+        </permission>
 
         <permission
             id="genweb.superadmin"
-            title="Genweb: Superadmin Users"
-            />
+            title="Genweb: Superadmin Users">
+
+            <role name="Genweb Superadmin"/>
+            <role name="Site Administrator"/>
+            <role name="Manager"/>
+        </permission>
 
         <permission
             id="genweb.banners.more_power"
-            title="genweb.banners: more power"
-            />
+            title="genweb.banners: more power">
+
+            <role name="Manager" />
+        </permission>
 
     </configure>
 
