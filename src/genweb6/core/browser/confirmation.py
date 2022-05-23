@@ -21,7 +21,7 @@ _ = MessageFactory('plone')
 
 class FolderDelete(BrowserView):
     __module__ = __name__
-    delete_confirmation = ViewPageTemplateFile('templates/confirmation.pt')
+    delete_confirmation = ViewPageTemplateFile('views_templates/confirmation.pt')
 
     def __init__(self, context, request):
         self.context = context
