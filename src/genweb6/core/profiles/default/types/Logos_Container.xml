@@ -4,6 +4,7 @@
 
     <property name="title" i18n:translate="">Logos_Container</property>
     <property name="description" i18n:translate=""></property>
+    <property name="icon_expr">string:contenttype/folder</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">False</property>
     <property name="filter_content_types">True</property>
@@ -15,7 +16,6 @@
     <property name="schema"></property>
     <property name="klass">genweb6.core.content.LogoContainer</property>
     <property name="add_permission">plone.app.contenttypes.addFolder</property>
-    <property name="icon_expr"></property>
     <property name="factory">Logos_Container</property>
     <property name="link_target"></property>
     <property name="immediate_view">view</property>

@@ -4,6 +4,7 @@
 
     <property name="title" i18n:translate="subhome">Subhome</property>
     <property name="description" i18n:translate="subhome_desc">Subhome Description</property>
+    <property name="icon_expr">string:columns-gap</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
@@ -11,7 +12,6 @@
     <property name="schema">genweb6.core.content.subhome.subhome.ISubhome</property>
     <property name="klass">plone.dexterity.content.Item</property>
     <property name="add_permission">cmf.AddPortalContent</property>
-    <property name="icon_expr"></property>
     <property name="factory">genweb.upc.subhome</property>
     <property name="link_target"></property>
     <property name="immediate_view">subhome_view</property>

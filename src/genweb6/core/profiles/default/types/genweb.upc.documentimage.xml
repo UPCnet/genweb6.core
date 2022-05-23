@@ -4,6 +4,7 @@
 
     <property name="title" i18n:translate="">Document Image</property>
     <property name="description" i18n:translate=""></property>
+    <property name="icon_expr">string:file-earmark-richtext</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
@@ -11,7 +12,6 @@
     <property name="schema">genweb6.core.content.document_image.document_image.IDocumentImage</property>
     <property name="klass">genweb6.core.content.document_image.document_image.DocumentImage</property>
     <property name="add_permission">cmf.AddPortalContent</property>
-    <property name="icon_expr"></property>
     <property name="factory">genweb.upc.documentimage</property>
     <property name="link_target"></property>
     <property name="immediate_view">view</property>
