@@ -13,4 +13,13 @@
         template="viewlets_templates/logosfooter.pt"
         />
 
+    <browser:viewlet
+        name="genweb.cookies"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.cookiesViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/cookies.pt"
+        />
+
 </configure>

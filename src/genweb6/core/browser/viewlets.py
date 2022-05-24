@@ -45,3 +45,23 @@ class logosFooterViewlet(viewletBase):
             el literal Obriu l'enllac en una finestra nova.
         """
         return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))
+
+
+class cookiesViewlet(viewletBase):
+
+    def urlCookies(self):
+        lang = self.pref_lang()
+
+        if lang == 'es':
+            return self.root_url() + '/politica-de-cookies-es'
+
+        if lang == 'en':
+            return self.root_url() + '/cookies-policy'
+
+        return self.root_url() + '/politica-de-cookies'
+
+    def notViewPDF(self):
+        try:
+            return 'application/pdf' not in self.request.environ['HTTP_ACCEPT']
+        except:
+            return True

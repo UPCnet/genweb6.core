@@ -4,23 +4,22 @@ from DateTime.DateTime import DateTime
 from Products.Five.browser import BrowserView
 
 from plone import api
-from plone.memoize import ram
+from plone.registry.interfaces import IRegistry
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
 from zope.component import getMultiAdapter
 from zope.component import provideUtility
+from zope.component import queryUtility
 from zope.component.hooks import getSite
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
-# from genweb6.controlpanel.interface import IGenwebControlPanelSettings
 from genweb6.core import HAS_PAM
 
 import json
 import logging
-import requests
 
 logger = logging.getLogger(__name__)
 
@@ -86,11 +85,6 @@ def link_translations(items):
             canonical.register_translation(language, obj)
 
 
-def _contact_ws_cachekey(method, self, unitat):
-    """Cache by the unitat value"""
-    return (unitat)
-
-
 def json_response(func):
     """ Decorator to transform the result of the decorated function to json.
         Expect a list (collection) that it's returned as is with response 200 or
@@ -147,82 +141,6 @@ class genwebUtils(BrowserView):
         """
         lt = api.portal.get_tool('portal_languages')
         return lt.getPreferredLanguage()
-
-    @ram.cache(_contact_ws_cachekey)
-    def _queryInfoUnitatWS(self, unitat):
-        try:
-            r = requests.get(
-                'https://bus-soa.upc.edu/SCP/InfoUnitatv1?id=%s' % unitat, timeout=10)
-            return r.json()
-        except:
-            return {}
-
-    # def getDadesUnitat(self):
-    #     """ Retorna les dades proporcionades pel WebService del SCP """
-    #     unitat = genweb_config().contacte_id
-    #     if unitat:
-    #         dades = self._queryInfoUnitatWS(unitat)
-    #         if 'error' in dades:
-    #             return False
-    #         else:
-    #             return dades
-    #     else:
-    #         return False
-
-    # def getDadesContact(self):
-    #     """ Retorna les dades proporcionades pel WebService del SCP
-    #         per al contacte
-    #     """
-    #     dades = self.getDadesUnitat()
-    #     if dades:
-    #         idioma = self.context.Language()
-    #         dict_contact = {
-    #             'ca': {
-    #                 'adreca_sencera': ((dades.get('campus_ca', '') and
-    #                                     dades.get('campus_ca') + ', ') +
-    #                                     dades.get('edifici_ca', '') + '. ' +
-    #                                     dades.get('adreca', '') + ' ' +
-    #                                     dades.get('codi_postal', '') + ' ' +
-    #                                     dades.get('localitat', '')),
-    #                 'nom': dades.get('nom_ca', ''),
-    #                 'telefon': dades.get('telefon', ''),
-    #                 'fax': dades.get('fax', ''),
-    #                 'email': dades.get('email', ''),
-    #                 'id_scp': dades.get('id', ''),
-    #                 'codi_upc': dades.get('codi_upc', ''),
-    #             },
-    #             'es': {
-    #                 'adreca_sencera': ((dades.get('campus_es', '') and
-    #                                     dades.get('campus_es') + ', ') +
-    #                                     dades.get('edifici_es', '') + '. ' +
-    #                                     dades.get('adreca', '') + ' ' +
-    #                                     dades.get('codi_postal', '') + ' ' +
-    #                                     dades.get('localitat', '')),
-    #                 'nom': dades.get('nom_es', ''),
-    #                 'telefon': dades.get('telefon', ''),
-    #                 'fax': dades.get('fax', ''),
-    #                 'email': dades.get('email', ''),
-    #                 'id_scp': dades.get('id', ''),
-    #                 'codi_upc': dades.get('codi_upc', ''),
-    #             },
-    #             'en': {
-    #                 'adreca_sencera': ((dades.get('campus_en', '') and
-    #                                     dades.get('campus_en') + ', ') +
-    #                                     dades.get('edifici_en', '') + '. ' +
-    #                                     dades.get('adreca', '') + ' ' +
-    #                                     dades.get('codi_postal', '') + ' ' +
-    #                                     dades.get('localitat', '')),
-    #                 'nom': dades.get('nom_en', ''),
-    #                 'telefon': dades.get('telefon', ''),
-    #                 'fax': dades.get('fax', ''),
-    #                 'email': dades.get('email', ''),
-    #                 'id_scp': dades.get('id', ''),
-    #                 'codi_upc': dades.get('codi_upc', ''),
-    #             }
-    #         }
-    #         return dict_contact[idioma]
-    #     else:
-    #         return ""
 
     def getContentClass(self, view=None):
         plone_view = getMultiAdapter(
