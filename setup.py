@@ -62,6 +62,7 @@ setup(
         'pyquery',
         'plone.app.form',
         'plone.formwidget.contenttree',
+        'pdfkit',
     ],
     extras_require={
         'test': [

@@ -168,4 +168,12 @@
         template="views_templates/news_listing.pt"
         />
 
+    <browser:page
+        name="download_files"
+        for="plone.app.contenttypes.interfaces.IFolder"
+        permission="zope2.ViewManagementScreens"
+        class=".download_files.DownloadFiles"
+        template="views_templates/download_files.pt"
+        />
+
 </configure>

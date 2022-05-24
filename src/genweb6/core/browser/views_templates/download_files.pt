@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb">
+
+<body>
+<metal:block fill-slot="top_slot"
+	 tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+		         disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+
+    <metal:content-core fill-slot="content-core">
+
+        <p i18n:translate="">Submit the form below to download a .zip of files contained in this folder.</p>
+
+        <p>
+            <span i18n:translate="">This process may take a while. If the request times out, the zip file will still be created in this folder. Check for the new file in</span>
+            <a href="${context/absolute_url}/folder_contents" i18n:translate="">folder contents</a>.
+        </p>
+
+        <form action="" tal:define="options view/options">
+
+            <label for="file_type" i18n:translate="">File Types</label>
+
+            <select name="file_type" id="file_type" multiple>
+                <option value="all" i18n:translate="">All</option>
+                <option tal:repeat="option options"
+                        tal:attributes="value option"
+                        tal:content="python:options[option]"></option>
+            </select>
+
+            <input type="submit" name="submit" value="Submit" />
+        </form>
+
+    </metal:content-core>
+
+</body>
+</html>
