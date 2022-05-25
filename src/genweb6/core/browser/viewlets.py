@@ -2,9 +2,12 @@
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize.view import memoize_contextless
+from plone.registry.interfaces import IRegistry
+from zope.component import queryUtility
 
 from genweb6.core import _
 from genweb6.core import utils
+from genweb6.core.controlpanels.cookies import ICookiesSettings
 
 
 class viewletBase(ViewletBase):
@@ -49,6 +52,11 @@ class logosFooterViewlet(viewletBase):
 
 class cookiesViewlet(viewletBase):
 
+    def cookiesConfig(self):
+        """ Funcio que retorna les configuracions del controlpanel """
+        registry = queryUtility(IRegistry)
+        return registry.forInterface(ICookiesSettings)
+
     def urlCookies(self):
         lang = self.pref_lang()
 
@@ -65,3 +73,19 @@ class cookiesViewlet(viewletBase):
             return 'application/pdf' not in self.request.environ['HTTP_ACCEPT']
         except:
             return True
+
+    def isEnable(self):
+        config = self.cookiesConfig()
+        return not config.disable
+
+    def alternativeText(self):
+        config = self.cookiesConfig()
+        lang = self.pref_lang()
+
+        if lang == 'es':
+            return config.alternative_text_es
+
+        if lang == 'en':
+            return config.alternative_text_en
+
+        return config.alternative_text_ca

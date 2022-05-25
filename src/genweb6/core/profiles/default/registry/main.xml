@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <registry
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="genweb6.core">
+    i18n:domain="genweb">
 
-<!-- -*- extra stuff goes here -*- -->
+    <records
+        interface="genweb6.core.controlpanels.cookies.ICookiesSettings"
+        purge="False" />
 
 </registry>
