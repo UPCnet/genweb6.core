@@ -80,12 +80,17 @@ class cookiesViewlet(viewletBase):
 
     def alternativeText(self):
         config = self.cookiesConfig()
-        lang = self.pref_lang()
 
-        if lang == 'es':
-            return config.alternative_text_es
+        if config.enable_alternative_text:
 
-        if lang == 'en':
-            return config.alternative_text_en
+            lang = self.pref_lang()
 
-        return config.alternative_text_ca
+            if lang == 'es':
+                return config.alternative_text_es
+
+            if lang == 'en':
+                return config.alternative_text_en
+
+            return config.alternative_text_ca
+
+        return False

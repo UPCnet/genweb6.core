@@ -13,7 +13,7 @@
       </div>
     </div>
     <ul id="cookies-buttons">
-      <button type="button" id="cookies-accept">
+      <button type="button" id="cookies-accept" class="btn btn-primary">
         <tal:msg i18n:translate="cookie_policy_button">Acceptar</tal:msg>
       </button>
     </ul>
