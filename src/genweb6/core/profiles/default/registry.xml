@@ -1,0 +1,78 @@
+<registry>
+  <!-- TinyMCE -->
+  <record name="collective.tinymcetemplates.templateLocations">
+    <field type="plone.registry.field.Tuple">
+      <description>Paths, relative to the portal root, where templates may be found. This will normally be a directory containing Pages.</description>
+      <title>Template locations</title>
+      <value_type type="plone.registry.field.TextLine" />
+    </field>
+    <value>
+      <element>/templates</element>
+      <element>/plantilles</element>
+    </value>
+  </record>
+  <!-- Discussion -->
+  <record field="globally_enabled" interface="plone.app.discussion.interfaces.IDiscussionSettings" name="plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled">
+    <field type="plone.registry.field.Bool">
+      <default>False</default>
+      <description>help_globally_enabled</description>
+      <required>False</required>
+      <title>label_globally_enabled</title>
+    </field>
+    <value>True</value>
+  </record>
+  <record field="captcha" interface="plone.app.discussion.interfaces.IDiscussionSettings" name="plone.app.discussion.interfaces.IDiscussionSettings.captcha">
+    <field type="plone.registry.field.Choice">
+      <default>disabled</default>
+      <description>help_captcha</description>
+      <title>label_captcha</title>
+      <vocabulary>plone.app.discussion.vocabularies.CaptchaVocabulary</vocabulary>
+    </field>
+    <value>recaptcha</value>
+  </record>
+  <record field="text_transform" interface="plone.app.discussion.interfaces.IDiscussionSettings" name="plone.app.discussion.interfaces.IDiscussionSettings.text_transform">
+    <field type="plone.registry.field.Choice">
+      <default>text/plain</default>
+      <description>help_text_transform</description>
+      <title>label_text_transform</title>
+      <vocabulary>plone.app.discussion.vocabularies.TextTransformVocabulary</vocabulary>
+    </field>
+    <value>text/x-web-intelligent</value>
+  </record>
+  <!-- plone.formwidget.recaptcha -->
+
+  <record field="private_key" interface="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings" name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
+    <field type="plone.registry.field.TextLine">
+      <default />
+      <title>Private Key</title>
+    </field>
+    <value>6LcEtjEUAAAAAFoR3rEORJQTzMdQE0y6prqaC0Ta</value>
+  </record>
+
+  <record field="public_key" interface="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings" name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
+    <field type="plone.registry.field.TextLine">
+      <default />
+      <title>Public Key</title>
+    </field>
+    <value>6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn</value>
+  </record>
+
+
+  <!-- Syndication enabled by default -->
+  <record name="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled" interface="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings" field="default_enabled">
+    <field type="plone.registry.field.Bool">
+      <default>False</default>
+      <description>If syndication should be enabled by default for all folders and collections.</description>
+      <title>Enabled by default</title>
+    </field>
+    <value>True</value>
+  </record>
+  <record name="genweb.hidden_settings.languages_applied" field="languages_applied">
+    <field type="plone.registry.field.Bool">
+      <default>False</default>
+      <description>A field that let us know if the site has been set up</description>
+      <title>languages_applied</title>
+    </field>
+    <value>False</value>
+  </record>
+</registry>

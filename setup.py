@@ -63,6 +63,7 @@ setup(
         'plone.app.form',
         'plone.formwidget.contenttree',
         'pdfkit',
+        'plone.formwidget.recaptcha'
     ],
     extras_require={
         'test': [
