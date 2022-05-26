@@ -28,7 +28,7 @@
              tal:condition="python:gwutils.link_redirect_blank(contingut)"
              tal:attributes="href python: item_url+'/view' if item_type in use_view_action else item_url;">
             <span tal:content="contingut/Title">Item Title</span>
-            <img class="img_blank" src="++genweb++static/images/blank_blau.png"
+            <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                    i18n:domain="genweb"
                    i18n:attributes="alt obrir_link_finestra_nova">
           </a>

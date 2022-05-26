@@ -20,7 +20,7 @@
                                 <a tal:condition="python:gwutils.link_redirect_blank(item.brain)"
                                    tal:attributes="href item/getPath" target="_blank">
                                     <span tal:content="item/getTitle">Item Title</span>
-                                    <img class="img_blank" src="++genweb++static/images/blank_blau.png"
+                                    <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                          i18n:domain="genweb"
                                          i18n:attributes="alt obrir_link_finestra_nova">
                                 </a>
@@ -40,7 +40,7 @@
                                         <a tal:condition="python:gwutils.link_redirect_blank(item2.brain)"
                                            tal:attributes="href item2/getPath" target="_blank">
                                             <span tal:content="item2/getTitle">Item Title</span>
-                                            <img class="img_blank" src="++genweb++static/images/blank_blau.png"
+                                            <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                                  i18n:domain="genweb"
                                                  i18n:attributes="alt obrir_link_finestra_nova">
                                         </a>
@@ -59,7 +59,7 @@
                                                     <a tal:condition="python:gwutils.link_redirect_blank(item3.brain)"
                                                        tal:attributes="href item3/getPath" target="_blank">
                                                         <span tal:content="item3/getTitle">Item Title</span>
-                                                        <img class="img_blank" src="++genweb++static/images/blank_blau.png"
+                                                        <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                                              i18n:domain="genweb"
                                                              i18n:attributes="alt obrir_link_finestra_nova">
                                                     </a>
