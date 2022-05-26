@@ -29,10 +29,9 @@ def preventDeletionOnProtectedContent(content, event):
 
 
 def addedPermissionsPloneSiteRoot(content, event):
-    portal = api.portal.get()
-    # sender_email = portal.getProperty('email_from_address')
-    # sender_name = portal.getProperty('email_from_name').encode('utf-8')
-    email_charset = portal.getProperty('email_charset')
+    # sender_email = api.portal.get_registry_record('plone.email_from_address')
+    # sender_name = api.portal.get_registry_record('plone.email_from_name').encode('utf-8')
+    email_charset = api.portal.get_registry_record('plone.email_charset')
     # fromMsg = sender_name + ' ' + '<' + sender_email + '>'
     fromMsg = 'gestio.genweb@upc.edu'
 
