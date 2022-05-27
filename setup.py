@@ -57,14 +57,17 @@ setup(
         'plone.app.dexterity',
         'ipdb',
         'souper.plone',
+        'Products.PloneLDAP',
         'Products.LDAPUserFolder',
         'Products.LDAPMultiPlugins',
+        'dataflake.fakeldap',
         'pyquery',
         'plone.app.form',
         'plone.formwidget.contenttree',
         'pdfkit',
         'plone.formwidget.recaptcha'
     ],
+
     extras_require={
         'test': [
             'plone.app.testing',

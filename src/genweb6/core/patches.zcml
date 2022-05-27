@@ -125,4 +125,18 @@
         replacement=".patches.title_factoriessubmenuitem"
         />
 
+    <monkey:patch
+        description="Solucionar error Too many results for this query al mostrar los grupos en el manage"
+        class="Products.LDAPUserFolder.LDAPUserFolder.LDAPUserFolder"
+        original="getGroups"
+        replacement=".patches.getGroups"
+        />
+
+    <monkey:patch
+        description="Solucionar que muestre datos usuario mapedos LDAP"
+        class="Products.PlonePAS.tools.memberdata.MemberData"
+        original="getProperty"
+        replacement=".patches.getProperty"
+        />
+
 </configure>

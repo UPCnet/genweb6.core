@@ -815,3 +815,134 @@ title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 
 
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
+
+
+from Products.LDAPUserFolder.utils import GROUP_MEMBER_MAP
+
+def getGroups(self, dn='*', attr=None, pwd=''):
+    """ returns a list of possible groups from the ldap tree
+        (Used e.g. in showgroups.dtml) or, if a DN is passed
+        in, all groups for that particular DN.
+    """
+    group_list = []
+    no_show = ('Anonymous', 'Authenticated', 'Shared')
+
+    if self._local_groups:
+        if dn != '*':
+            all_groups_list = self._groups_store.get(dn) or []
+        else:
+            all_groups_dict = {}
+            zope_roles = list(self.valid_roles())
+            zope_roles.extend(list(self._additional_groups))
+
+            for role_name in zope_roles:
+                if role_name not in no_show:
+                    all_groups_dict[role_name] = 1
+
+            all_groups_list = all_groups_dict.keys()
+
+        for group in all_groups_list:
+            if attr is None:
+                group_list.append((group, group))
+            else:
+                group_list.append(group)
+
+        group_list.sort()
+
+    else:
+        gscope = self._delegate.getScopes()[self.groups_scope]
+
+        if dn != '*':
+            f_template = '(&(objectClass=%s)(%s=%s))'
+            group_filter = '(|'
+
+            for g_name, m_name in GROUP_MEMBER_MAP.items():
+                fltr = self._delegate.filter_format(f_template,
+                                                    (g_name, m_name, dn))
+                group_filter += fltr
+
+            group_filter += ')'
+
+        else:
+            group_filter = '(|'
+
+            for g_name in GROUP_MEMBER_MAP.keys():
+                fltr = self._delegate.filter_format('(objectClass=%s)',
+                                                    (g_name,))
+                group_filter += fltr
+
+            group_filter += ')'
+
+        res = self._delegate.search(base=self.groups_base, scope=gscope,
+                                    filter=group_filter, attrs=['cn'],
+                                    bind_dn='', bind_pwd='')
+
+        exc = res['exception']
+        if exc and exc != 'Too many results for this query':
+            if attr is None:
+                group_list = (('', exc),)
+            else:
+                group_list = (exc,)
+        elif res['size'] > 0:
+            res_dicts = res['results']
+            for i in range(res['size']):
+                dn = res_dicts[i].get('dn')
+                try:
+                    cn = res_dicts[i]['cn'][0]
+                except KeyError:    # NDS oddity
+                    cn = self._delegate.explode_dn(dn, 1)[0]
+
+                if attr is None:
+                    group_list.append((cn, dn))
+                elif attr == 'cn':
+                    group_list.append(cn)
+                elif attr == 'dn':
+                    group_list.append(dn)
+
+    return group_list
+
+from Products.CMFCore.MemberDataTool import _marker
+
+def getProperty(self, id, default=_marker):
+    """PAS-specific method to fetch a user's properties. Looks
+    through the ordered property sheets.
+    """
+    sheets = None
+    if not IPluggableAuthService.providedBy(self._tool.acl_users):
+        return BaseMemberAdapter.getProperty(self, id)
+    else:
+        # It's a PAS! Whee!
+        user = self.getUser()
+        sheets = getattr(user, 'getOrderedPropertySheets', lambda: None)()
+
+        # we won't always have PlonePAS users, due to acquisition,
+        # nor are guaranteed property sheets
+        if not sheets:
+            try:
+                return BaseMemberAdapter.getProperty(self, id, default)
+            except ValueError:
+                # Zope users don't have PropertySheets,
+                # return an empty string for them if the property
+                # doesn't exists.
+                return ''
+
+    # If we made this far, we found a PAS and some property sheets.
+    for sheet in sheets:
+        if sheet.hasProperty(id):
+            # Return the first one that has the property.
+            value = sheet.getProperty(id)
+            if six.PY2 and isinstance(value, six.text_type):
+                # XXX Temporarily work around the fact that
+                # property sheets blindly store and return
+                # unicode. This is sub-optimal and should be
+                # dealed with at the property sheets level by
+                # using Zope's converters.
+                return value.encode('utf-8')
+            if value != '':
+                return value
+            else:
+                continue
+
+    # Couldn't find the property in the property sheets. Try to
+    # delegate back to the base implementation.
+    return BaseMemberAdapter.getProperty(self, id, default)
