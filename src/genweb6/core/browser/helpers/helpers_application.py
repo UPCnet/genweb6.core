@@ -46,7 +46,9 @@ Retorna una llista amb els plonesites disponibles en aquest Zope
         context = aq_inner(self.context)
         out = []
         for item in context.values():
-            if IFolder.providedBy(item):
+            if IPloneSiteRoot.providedBy(item):
+                out.append(item.id)
+            elif IFolder.providedBy(item):
                 for site in item.values():
                     if IPloneSiteRoot.providedBy(site):
                         out.append(item.id + '/' + site.id)
