@@ -422,34 +422,54 @@ class setup(BrowserView):
         compartidos.reindexObject()
 
         # Mark all protected content with the protected marker interface
+        alsoProvides(portal_ca, IProtectedContent)
+        alsoProvides(portal_en, IProtectedContent)
+        alsoProvides(portal_es, IProtectedContent)
+
         alsoProvides(benvingut, IProtectedContent)
         alsoProvides(bienvenido, IProtectedContent)
         alsoProvides(welcome, IProtectedContent)
+
         alsoProvides(noticies, IProtectedContent)
         alsoProvides(noticias, IProtectedContent)
         alsoProvides(news, IProtectedContent)
+
+        alsoProvides(col_noticies, IProtectedContent)
+        alsoProvides(col_noticias, IProtectedContent)
+        alsoProvides(col_news, IProtectedContent)
+
         alsoProvides(esdeveniments, IProtectedContent)
         alsoProvides(eventos, IProtectedContent)
         alsoProvides(events, IProtectedContent)
+
+        alsoProvides(col_esdeveniments, IProtectedContent)
+        alsoProvides(col_eventos, IProtectedContent)
+        alsoProvides(col_events, IProtectedContent)
+
         alsoProvides(banners_ca, IProtectedContent)
         alsoProvides(banners_en, IProtectedContent)
         alsoProvides(banners_es, IProtectedContent)
-        alsoProvides(templates, IProtectedContent)
-        alsoProvides(plantilles, IProtectedContent)
+
         alsoProvides(logosfooter_ca, IProtectedContent)
         alsoProvides(logosfooter_es, IProtectedContent)
         alsoProvides(logosfooter_en, IProtectedContent)
+
         alsoProvides(customizedcontact, IProtectedContent)
         alsoProvides(contactopersonalizado, IProtectedContent)
         alsoProvides(contactepersonalitzat, IProtectedContent)
+
         alsoProvides(shared, IProtectedContent)
         alsoProvides(compartidos, IProtectedContent)
         alsoProvides(compartits, IProtectedContent)
+
+        alsoProvides(templates, IProtectedContent)
+        alsoProvides(plantilles, IProtectedContent)
 
         # Mark also the special folders
         alsoProvides(noticies, INewsFolder)
         alsoProvides(noticias, INewsFolder)
         alsoProvides(news, INewsFolder)
+
         alsoProvides(esdeveniments, IEventFolder)
         alsoProvides(eventos, IEventFolder)
         alsoProvides(events, IEventFolder)

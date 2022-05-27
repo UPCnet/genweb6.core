@@ -21,4 +21,10 @@
         handler=".subscribers.preventDeletionOnProtectedContent"
         />
 
+    <subscriber
+        for="genweb6.core.interfaces.IProtectedContent
+             zope.lifecycleevent.interfaces.IObjectMovedEvent"
+        handler=".subscribers.preventMovedOnProtectedContent"
+        />
+
 </configure>

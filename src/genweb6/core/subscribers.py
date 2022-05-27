@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl import Unauthorized
 from Products.CMFPlone.utils import safe_unicode
+from Products.statusmessages.interfaces import IStatusMessage
 
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -23,7 +24,27 @@ def preventDeletionOnProtectedContent(content, event):
     # Only (global) site managers can delete packet content from root folder
 
     if 'Manager' not in api.user.get_roles():
+        IStatusMessage(content.request).addStatusMessage(u'Cannot delete protected content.', type='error')
         raise(Unauthorized, u'Cannot delete protected content.')
+    else:
+        return
+
+
+def preventMovedOnProtectedContent(content, event):
+    """ Community added handler
+    """
+    try:
+        api.portal.get()
+    except:
+        # Most probably we are on Zope root and trying to moved or renamed an entire Plone
+        # Site so grant it unconditionally
+        return
+
+    # Only (global) site managers can moved or renamed packet content from root folder
+
+    if 'Manager' not in api.user.get_roles():
+        IStatusMessage(content.request).addStatusMessage(u'Cannot moved or renamed protected content.', type='error')
+        raise(Unauthorized, u'Cannot moved or renamed protected content.')
     else:
         return
 
