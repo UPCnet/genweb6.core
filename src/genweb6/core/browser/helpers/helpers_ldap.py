@@ -252,11 +252,6 @@ Paràmetres:
 
         ldap_acl_users = getattr(portal.acl_users, ldap_name).acl_users
 
-        ldap_acl_users.manage_edit(
-            ldap_name, 'cn', 'cn', users_base, 2, 'Authenticated,Member',
-            groups_base, 2, bind_uid, branch_admin_password, 1, 'cn',
-            'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
-
         plugin = portal.acl_users[ldap_name]
 
         active_plugins = ['IAuthenticationPlugin',
