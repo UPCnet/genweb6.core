@@ -43,6 +43,12 @@ Soluciona la pàgina principal cuan es trenca
     """
 
     def __call__(self):
+        try:
+            from plone.protect.interfaces import IDisableCSRFProtection
+            alsoProvides(self.request, IDisableCSRFProtection)
+        except:
+            pass
+
         if HAS_DXCT:
             portal = getSite()
             pl = api.portal.get_tool(name='portal_languages')
@@ -67,6 +73,12 @@ Configura el LDAP UPC
     """
 
     def __call__(self):
+        try:
+            from plone.protect.interfaces import IDisableCSRFProtection
+            alsoProvides(self.request, IDisableCSRFProtection)
+        except:
+            pass
+
         portal = getSite()
 
         if HAS_LDAP:
@@ -135,6 +147,11 @@ Configura el LDAPExterns
     """
 
     def __call__(self):
+        try:
+            from plone.protect.interfaces import IDisableCSRFProtection
+            alsoProvides(self.request, IDisableCSRFProtection)
+        except:
+            pass
 
         if 'branch' not in self.request.form:
             raise ValueError("Mandatory parameter 'branch' was not specified")
@@ -212,6 +229,12 @@ Configura un LDAP básic
     """
 
     def __call__(self):
+        try:
+            from plone.protect.interfaces import IDisableCSRFProtection
+            alsoProvides(self.request, IDisableCSRFProtection)
+        except:
+            pass
+
         portal = getSite()
         ldap_name = self.request.form.get('ldap_name', 'ldap')
         ldap_server = self.request.form.get('ldap_server')
