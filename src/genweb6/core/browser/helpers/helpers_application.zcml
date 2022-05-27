@@ -1,0 +1,71 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="list_plone_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.list_plone_sites"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_flavour_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.get_flavour_sites"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_languages_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.get_languages_sites"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_default_language_sites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.get_default_language_sites"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="get_default_wfsites"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.get_default_wfsites"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="bulk_action"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.bulk_action"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="nsp_bulk_action"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.nsp_bulk_action"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="list_ldap_info"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.list_ldap_info"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+</configure>

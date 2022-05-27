@@ -1,0 +1,209 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="make_me_a_homepage"
+        for="zope.interface.Interface"
+        class=".helpers_touchers.make_me_a_homepage"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="make_me_a_subhome_page"
+        for="zope.interface.Interface"
+        class=".helpers_touchers.make_me_a_subhome_page"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="reset_language"
+        for="zope.interface.Interface"
+        class=".helpers_touchers.reset_language"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="enable_pdf_indexing"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.enable_pdf_indexing"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="update_folder_views"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.update_folder_views"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="add_folder_view"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.add_folder_view"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="remove_folder_view"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.remove_folder_view"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="reinstall_product"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.reinstall_product"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="uninstall_product"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.uninstall_product"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="upgrade_plone_version"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.upgrade_plone_version"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="setup_pam_again"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.setup_pam_again"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="delete_navportlet_from_root"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.delete_navportlet_from_root"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="portal_setup_import"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.portal_setup_import"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="set_sitemap_depth"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.set_sitemap_depth"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="update_lif_lrf"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.update_lif_lrf"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="reindex_all_pages"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.reindex_all_pages"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+
+    <browser:page
+        name="refactor_news_collection"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.refactor_news_collection"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="bulk_change_creator"
+        for="plone.app.contenttypes.interfaces.IFolder"
+        class=".helpers_touchers.bulk_change_creator"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="add_permissions_plantilles"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.add_permissions_plantilles"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="preserveUUIDs"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.preserveUUIDs"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="rebuildUUIDs"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.rebuildUUIDs"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <browser:page
+        name="configure_site_cache"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.configure_site_cache"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="refresh_uids"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.refresh_uids"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        template="templates/refreshuids.pt"
+        />
+
+    <browser:page
+        name="fix_record"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.fix_record"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="change_tiny_css"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.change_tiny_css"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+</configure>

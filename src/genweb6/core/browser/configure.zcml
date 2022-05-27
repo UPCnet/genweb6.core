@@ -4,17 +4,9 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="genweb">
 
-    <include file="helpers.zcml" />
-    <include file="viewlets.zcml" />
+    <include package=".helpers" />
 
-    <browser:page
-        name="clouseau"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".inspector.clouseau"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="cmf.ManagePortal"
-        template="inspector_templates/clouseau.pt"
-        />
+    <include file="viewlets.zcml" />
 
     <browser:page
         name="blank_template"

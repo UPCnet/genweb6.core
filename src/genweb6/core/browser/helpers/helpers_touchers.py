@@ -532,8 +532,7 @@ Paràmetres:
 
                 self.status[header_index] = self.STATUS_updated % count
 
-        return ViewPageTemplateFile('helpers_touchers_templates'
-                                    '/bulk_change_creator.pt')(self)
+        return ViewPageTemplateFile('templates/bulk_change_creator.pt')(self)
 
 
 class add_permissions_plantilles(BrowserView):
@@ -677,3 +676,16 @@ Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
                 del site.portal_registry.records._values[k]
                 del site.portal_registry.records._fields[k]
         return "S'han purgat les entrades del registre: {}".format(output)
+
+
+class change_tiny_css(BrowserView):
+    """
+Canvia la url dels css del TinyMCE
+    """
+
+    def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
+        ptiny = api.portal.get_tool('portal_tinymce')
+        ptiny.content_css = u'++theme++genweb6.theme/theme.min.css'

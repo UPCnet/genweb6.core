@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <include file="helpers.zcml" />
+    <include file="helpers_application.zcml" />
+    <include file="helpers_touchers.zcml" />
+    <include file="helpers_ldap.zcml" />
+
+    <browser:page
+        name="clouseau"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".clouseau.clouseau"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        template="templates/clouseau.pt"
+        />
+
+</configure>

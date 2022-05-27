@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="setupLDAP"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_ldap.setupLDAP"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="setupLDAPUPC"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_ldap.setupLDAPUPC"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+    <browser:page
+        name="setupLDAPExterns"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_ldap.setupLDAPExterns"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+</configure>

@@ -7,8 +7,6 @@ from plone import api
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
 
-from genweb6.core.interfaces import IHomePage
-
 import os
 import logging
 import pkg_resources
@@ -22,49 +20,11 @@ else:
     from Products.PloneLDAP.factory import manage_addPloneLDAPMultiPlugin
     from Products.LDAPUserFolder.LDAPUserFolder import LDAPUserFolder
 
-try:
-    pkg_resources.get_distribution('plone.app.contenttypes')
-except pkg_resources.DistributionNotFound:
-    HAS_DXCT = False
-else:
-    HAS_DXCT = True
-    from plone.dexterity.utils import createContentInContainer
-
 
 logger = logging.getLogger(__name__)
 
 
 LDAP_PASSWORD = os.environ.get('ldapbindpasswd', '')
-
-
-class setupDX(BrowserView):
-    """
-Soluciona la pàgina principal cuan es trenca
-    """
-
-    def __call__(self):
-        try:
-            from plone.protect.interfaces import IDisableCSRFProtection
-            alsoProvides(self.request, IDisableCSRFProtection)
-        except:
-            pass
-
-        if HAS_DXCT:
-            portal = getSite()
-            pl = api.portal.get_tool(name='portal_languages')
-            if getattr(portal, 'front-page', False):
-                portal.manage_delObjects('front-page')
-                frontpage = createContentInContainer(
-                    portal, 'Document', title=u"front-page", checkConstraints=False)
-                alsoProvides(frontpage, IHomePage)
-                frontpage.exclude_from_nav = True
-                frontpage.language = pl.getDefaultLanguage()
-                frontpage.reindexObject()
-            # Set the default page to the homepage view
-            portal.setDefaultPage('homepage')
-            return self.request.response.redirect(portal.absolute_url())
-        else:
-            return 'This site has no p.a.contenttypes installed.'
 
 
 class setupLDAPUPC(BrowserView):

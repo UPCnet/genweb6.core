@@ -20,14 +20,19 @@
   </div>
 
   <div metal:fill-slot="main" tal:define="helpers view/get_helpers">
-    <h1>Setup</h1>
-    <div class="lead clearfix" tal:repeat="helper helpers/setup">
+    <h1>LDAP</h1>
+    <div class="lead clearfix" tal:repeat="helper helpers/helpers_ldap">
       <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
       <p tal:content="helper/description">The description</p>
     </div>
 
     <h1>Helpers</h1>
     <div class="lead clearfix" tal:repeat="helper helpers/helpers">
+      <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
+      <p tal:content="helper/description">The description</p>
+    </div>
+
+    <div class="lead clearfix" tal:repeat="helper helpers/helpers_application">
       <a tal:attributes="href helper/url" tal:content="helper/url">The url</a>
       <p tal:content="helper/description">The description</p>
     </div>
