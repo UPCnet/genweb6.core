@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
 from OFS.interfaces import IFolder
+from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 
-from plone import api
 from plone.subrequest import subrequest
 from urllib.parse import urlencode
 from zope.interface import alsoProvides
@@ -64,8 +64,8 @@ Retorna l'última capa instal·lada per a cada plonesite
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
-        portal_skins = api.portal.get_tool(name='portal_skins')
         for plonesite in plonesites:
+            portal_skins = getToolByName(plonesite, 'portal_skins')
             out[plonesite.id] = portal_skins.getDefaultSkin()
         return json.dumps(out)
 
@@ -78,8 +78,8 @@ Retorna els idiomes soportats per a cada lloc
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
-        portal_languages = api.portal.get_tool(name='portal_languages')
         for plonesite in plonesites:
+            portal_languages = getToolByName(plonesite, 'portal_languages')
             out[plonesite.id] = portal_languages.getSupportedLanguages()
         return json.dumps(out)
 
@@ -93,8 +93,8 @@ Retorna l'idioma predeterminat per a cada lloc
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
-        portal_languages = api.portal.get_tool(name='portal_languages')
         for plonesite in plonesites:
+            portal_languages = getToolByName(plonesite, 'portal_languages')
             out[plonesite.id] = portal_languages.getDefaultLanguage()
         return json.dumps(out)
 
@@ -108,8 +108,8 @@ Retorna el workflow predeterminat per a cada lloc
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
-        portal_workflow = api.portal.get_tool(name='portal_workflow')
         for plonesite in plonesites:
+            portal_workflow = getToolByName(plonesite, 'portal_workflow')
             out[plonesite.id] = portal_workflow.getDefaultChain()
         return json.dumps(out)
 
@@ -178,8 +178,8 @@ Llista l'informació del LDAP de cada plonesite
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
-        acl_users = api.portal.get_tool(name='acl_users')
         for plonesite in plonesites:
+            acl_users = getToolByName(plonesite, 'acl_users')
             try:
                 out[plonesite.id] = acl_users.ldapUPC.acl_users.getServers()
             except:
