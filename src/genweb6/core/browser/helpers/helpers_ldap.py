@@ -43,6 +43,14 @@ Configura el LDAP UPC
 
         if HAS_LDAP:
             try:
+                # Delete the ldapUPC if exists
+                if getattr(portal.acl_users, 'ldapUPC', None):
+                    portal.acl_users.manage_delObjects('ldapUPC')
+
+                # Delete the ldapexterns if exists
+                if getattr(portal.acl_users, 'ldapexterns', None):
+                    portal.acl_users.manage_delObjects('ldapUPC')
+
                 manage_addPloneLDAPMultiPlugin(
                     portal.acl_users, 'ldapUPC',
                     title='ldapUPC', LDAP_server='ldap.upc.edu', login_attr='cn', uid_attr='cn',
@@ -102,6 +110,9 @@ Configura el LDAP UPC
 class setupLDAPExterns(BrowserView):
     """
 Configura el LDAPExterns
+
+Paràmetre:
+- branch
     """
 
     def __call__(self):
@@ -120,6 +131,10 @@ Configura el LDAPExterns
 
             # Delete the LDAPUPC if exists
             if getattr(portal.acl_users, 'ldapUPC', None):
+                portal.acl_users.manage_delObjects('ldapUPC')
+
+            # Delete the ldapexterns if exists
+            if getattr(portal.acl_users, 'ldapexterns', None):
                 portal.acl_users.manage_delObjects('ldapUPC')
 
             # try:
@@ -184,6 +199,15 @@ Configura el LDAPExterns
 class setupLDAP(BrowserView):
     """
 Configura un LDAP básic
+
+Paràmetres:
+- ldap_name
+- ldap_server
+- branch_name
+- base_dn
+- branch_admin_cn
+- branch_admin_password
+- allow_manage_users
     """
 
     def __call__(self):
@@ -206,9 +230,17 @@ Configura un LDAP básic
         groups_base = 'ou=groups,ou={},{}'.format(branch_name, base_dn)
         bind_uid = 'cn={},ou={},{}'.format(branch_admin_cn, branch_name, base_dn)
 
+        # Delete the ldapUPC if exists
+        if getattr(portal.acl_users, 'ldapUPC', None):
+            portal.acl_users.manage_delObjects('ldapUPC')
+
+        # Delete the ldapexterns if exists
+        if getattr(portal.acl_users, 'ldapexterns', None):
+            portal.acl_users.manage_delObjects('ldapUPC')
+
         # Delete if exists
         if getattr(portal.acl_users, ldap_name, None):
-            portal.acl_users.manage_delObjects('ldapUPC')
+            portal.acl_users.manage_delObjects(ldap_name)
 
         manage_addPloneLDAPMultiPlugin(
             portal.acl_users, ldap_name,
