@@ -59,6 +59,11 @@ Configura el LDAP UPC
                     binduid='cn=ldap.serveis,ou=users,dc=upc,dc=edu', bindpwd=LDAP_PASSWORD, binduid_usage=1,
                     rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
 
+                portal.acl_users.ldapUPC.acl_users.manage_edit(
+                    'ldapUPC', 'cn', 'cn', 'ou=Users,dc=upc,dc=edu', 2, 'Authenticated',
+                    'ou=Groups,dc=upc,dc=edu', 2, 'cn=ldap.serveis,ou=users,dc=upc,dc=edu',
+                    LDAP_PASSWORD, 1, 'cn', 'top,person', 0, 0, 'SSHA', 1, '')
+
                 plugin = portal.acl_users['ldapUPC']
 
                 plugin.manage_activateInterfaces(['IGroupEnumerationPlugin',
@@ -145,6 +150,11 @@ Paràmetre:
                     groups_base='ou=groups,ou=' + branch + ',dc=upcnet,dc=es', groups_scope=2,
                     binduid='cn=ldap,ou=' + branch + ',dc=upcnet,dc=es', bindpwd=LDAP_PASSWORD, binduid_usage=1,
                     rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
+
+            portal.acl_users.ldapexterns.acl_users.manage_edit(
+                'ldapexterns', 'cn', 'cn', 'ou=users,ou=upcnet,dc=upcnet,dc=es', 2, 'Authenticated,Member',
+                'ou=groups,ou=upcnet,dc=upcnet,dc=es', 2, 'cn=ldap,ou=upcnet,dc=upcnet,dc=es',
+                LDAP_PASSWORD, 1, 'cn', 'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
 
             plugin = portal.acl_users['ldapexterns']
 
@@ -251,6 +261,11 @@ Paràmetres:
             rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
 
         ldap_acl_users = getattr(portal.acl_users, ldap_name).acl_users
+
+        ldap_acl_users.manage_edit(
+            ldap_name, 'cn', 'cn', users_base, 2, 'Authenticated,Member',
+            groups_base, 2, bind_uid, branch_admin_password, 1, 'cn',
+            'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
 
         plugin = portal.acl_users[ldap_name]
 
