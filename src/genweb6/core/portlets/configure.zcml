@@ -25,12 +25,6 @@
         layer="..interfaces.IGenweb6CoreLayer"
         />
 
-    <plone:portletRenderer
-        portlet="plone.app.portlets.portlets.rss.IRSSPortlet"
-        class=".rss.rss.gwRSS"
-        layer="..interfaces.IGenweb6CoreLayer"
-        />
-
     <plone:portlet
         name="genweb.banners.portlet"
         interface=".banners.banners.IBannersPortlet"
@@ -132,6 +126,15 @@
         assignment=".upcnews.upcnews.Assignment"
         renderer=".upcnews.upcnews.Renderer"
         addview=".upcnews.upcnews.AddForm"
+        />
+
+    <plone:portlet
+        name="genweb.portlets.rss"
+        interface=".rss.rss.IRSSPortlet"
+        assignment=".rss.rss.Assignment"
+        renderer=".rss.rss.Renderer"
+        addview=".rss.rss.AddForm"
+        editview=".rss.rss.EditForm"
         />
 
 </configure>

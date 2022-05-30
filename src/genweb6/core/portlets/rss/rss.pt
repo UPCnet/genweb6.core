@@ -2,38 +2,72 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
-<div class="portlet portletRss"
-    i18n:domain="plone"
-    tal:condition="view/enabled">
 
-    <h2 tal:content="view/title">
-      Tags
-    </h2>
-    <ul class="list-portlet">
-    <tal:rss tal:condition="view/feedAvailable"
-                tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-                tal:repeat="item view/items">
-        <li
-            tal:define="oddrow repeat/item/odd"
-            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
+  <tal:block tal:condition="not:view/isAnon">
 
-            <a href="#"
-                tal:attributes="href string:${item/url}"><span tal:omit-tag="" tal:replace="item/title">Title</span></a>
-            <time class="smaller"
-                tal:condition="exists:item/updated">
-              <span tal:omit-tag="" tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
-            </time>
+    <div class="portlet-noticies rss" i18n:domain="plone"
+         tal:condition="view/enabled">
+
+      <div class="osomcorner-wrapper"><div class="osomcorner"></div></div>
+      <h2 tal:content="view/title">Tags</h2>
+      <ul class="list-portlet">
+        <tal:rss tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+                 tal:repeat="item view/items">
+
+          <li class="noticies clearfix">
+            <div>
+              <tal:block tal:condition="view/data/display_image">
+                <a href="#" tal:attributes="href item/url" target="_blink" tal:condition="item/image">
+                  <div class="imatge_noticia">
+                    <img class="newsImage" tal:attributes="src item/image;
+                                                           title item/title;
+                                                           alt item/title" />
+                  </div>
+                </a>
+              </tal:block>
+              <div class="text_noticia">
+                <h3>
+                  <a href="#" tal:attributes="href item/url" target="_blink">
+                    <span tal:replace="item/title">Notícies RSS</span>
+                  </a>
+                </h3>
+                <p tal:condition="view/data/display_date">
+                  <time class="smaller">
+                    <span tal:omit-tag="" tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
+                  </time>
+                </p>
+                <tal:block tal:condition="view/data/display_description">
+                  <p class="description" tal:condition="item/summary|nothing" tal:content="item/summary">Text Noticia</p>
+                </tal:block>
+                <p class="categories" tal:condition="view/data/display_categories">
+                 <span class="category" tal:repeat="category item/categories" tal:content="category">Categoria</span>
+                </p>
+              </div>
+            </div>
+          </li>
+        </tal:rss>
+        <li class="noticies clearfix" tal:condition="view/data/more_url">
+          <a href="" tal:attributes="href view/data/more_url" target="_blink">
+            <i class="icon-plus-sign icons"> </i>
+            <span tal:omit-tag="" tal:condition="view/data/more_text" tal:content="view/data/more_text">Més notícies</span>
+            <span tal:omit-tag="" tal:condition="not:view/data/more_text" i18n:translate="seemore">More news</span>
+          </a>
         </li>
-    </tal:rss>
-    </ul>
-    <div class="portletFooter" tal:omit-tag="" tal:condition="view/feedAvailable">
-        <a href="" class="portlet-footer"
-           tal:condition="view/siteurl"
-           tal:attributes="href view/siteurl">
-           <span class="icon-rss"></span>
-           <span tal:omit-tag="" i18n:translate="box_morelink">More&hellip;</span>
-
-        </a>
+        <li class="noticies clearfix" tal:condition="not:view/data/more_url">
+          <a href="" tal:condition="view/siteurl" tal:attributes="href view/siteurl" target="_blink">
+            <i class="icon-plus-sign icons"> </i>
+            <span tal:omit-tag="" tal:condition="view/data/more_text" tal:content="view/data/more_text">Més notícies</span>
+            <span tal:omit-tag="" tal:condition="not:view/data/more_text" i18n:translate="seemore">More news</span>
+          </a>
+        </li>
+      </ul>
     </div>
-</div>
+    <script type="text/javascript">
+      $(".portlet-noticies.rss .description").each(function(){
+        $(this).html($(this).text());
+      });
+      $(".portlet-noticies.rss a[rel='external']").attr("target", "_blink")
+    </script>
+
+  </tal:block>
 </html>
