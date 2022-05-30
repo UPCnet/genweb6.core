@@ -42,7 +42,6 @@
         class=".helpers.get_zope"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        template="templates/getzope.pt"
         />
 
     <browser:page
@@ -59,6 +58,7 @@
         class=".helpers.mirror_uids"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
+        template="templates/origin_root_path.pt"
         />
 
     <browser:page
@@ -67,15 +67,7 @@
         class=".helpers.mirror_states"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
-        template="templates/mirroruids.pt"
-        />
-
-    <browser:page
-        name="export_gw_properties"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.export_gw_properties"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="cmf.ManagePortal"
+        template="templates/origin_root_path.pt"
         />
 
     <browser:page
@@ -87,19 +79,11 @@
         />
 
     <browser:page
-        name="listLastLogin"
+        name="list_last_login"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.listLastLogin"
+        class=".helpers.list_last_login"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="genweb.webmaster"
-        />
-
-    <browser:page
-        name="get_rendered_stylesheets"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".helpers.get_rendered_stylesheets"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="cmf.ManagePortal"
         />
 
     <browser:page

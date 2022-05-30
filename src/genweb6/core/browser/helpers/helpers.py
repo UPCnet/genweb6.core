@@ -1,29 +1,22 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from OFS.interfaces import IFolder
-from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
+from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
-from Products.PythonScripts.standard import url_quote
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.layout.navigation.defaultpage import getDefaultPage
-from plone.subrequest import subrequest
 from plone.uuid.interfaces import IMutableUUID
 from souper.soup import get_soup
-from urllib.parse import urlencode
 from zope.interface import alsoProvides
 
 from genweb6.core import HAS_PAM
 from genweb6.core.interfaces import IProtectedContent
-from genweb6.core.utils import json_response
 
-import json
 import logging
 import os
 import pkg_resources
-import re
 
 
 logger = logging.getLogger(__name__)
@@ -127,7 +120,7 @@ class mirror_uids(BrowserView):
 Retorna el UID del path que li dones
     """
 
-    render = ViewPageTemplateFile("templates/mirroruids.pt")
+    render = ViewPageTemplateFile("templates/origin_root_path.pt")
 
     def __call__(self):
         portal = self.context
@@ -207,28 +200,6 @@ mirror_states
             self.output = '<br/>'.join(self.output)
 
 
-class export_gw_properties(BrowserView):
-    """
-Exporta les propietats del Genweb
-    """
-
-    def render(self):
-        portal = api.portal.get()
-        p_properties = portal.portal_properties
-        properties_map = p_properties.genwebupc_properties.propertyMap()
-        result = {}
-        for gw_property in properties_map:
-            result[gw_property['id']] = p_properties.genwebupc_properties.getProperty(
-                gw_property['id'])
-
-        # Translation flavour - GW4.2 settings
-        legacy_skin = api.portal.get_tool('portal_skins').getDefaultSkin()
-        result.update({'legacy_skin': legacy_skin})
-
-        self.request.response.setHeader("Content-type", "application/json")
-        return json.dumps(result)
-
-
 class change_events_view(BrowserView):
     """
 Canvia la vista per defecte dels directoris d'esdeveniments
@@ -251,7 +222,7 @@ Canvia la vista per defecte dels directoris d'esdeveniments
                 esdeveniments.setLayout('event_listing')
 
 
-class listLastLogin(BrowserView):
+class list_last_login(BrowserView):
     """
 Llista la informació last_login per a tots els usuaris
     """
@@ -270,66 +241,6 @@ Llista la informació last_login per a tots els usuaris
                 last_login = wrapped_user.getProperty('last_login_time')
                 output.append('{}; {}'.format(fullname, last_login))
         return '\n'.join(output)
-
-
-class get_rendered_stylesheets(BrowserView):
-    """
-Llista l'informació d'ubicació de cada full d'estil
-    """
-
-    @json_response
-    def __call__(self):
-        registry = self.context.portal_css
-        registry_url = registry.absolute_url()
-        context = aq_inner(self.context)
-        portal = api.portal.get()
-
-        styles = registry.getEvaluatedResources(context)
-        skinname = url_quote(self.skinname())
-        urls = []
-        files = []
-        for style in styles:
-            rendering = style.getRendering()
-            if style.isExternalResource():
-                src = "%s" % style.getId()
-            else:
-                src = "%s/%s/%s" % (registry_url, skinname, style.getId())
-
-            try:
-                file_path = portal.restrictedTraverse(
-                    re.sub(r'(http://[^\/]+)(.*)', r'\2', src)).context.path
-            except:
-                file_path = 'No path'
-
-            if rendering == 'link':
-                data = {'rendering': rendering,
-                        'media': style.getMedia(),
-                        'rel': style.getRel(),
-                        'title': style.getTitle(),
-                        'conditionalcomment': style.getConditionalcomment(),
-                        'src': src,
-                        'file': file_path}
-            elif rendering == 'import':
-                data = {'rendering': rendering,
-                        'media': style.getMedia(),
-                        'conditionalcomment': style.getConditionalcomment(),
-                        'src': src,
-                        'file': file_path}
-            elif rendering == 'inline':
-                content = registry.getInlineResource(style.getId(), context)
-                data = {'rendering': rendering,
-                        'media': style.getMedia(),
-                        'conditionalcomment': style.getConditionalcomment(),
-                        'content': content}
-            else:
-                raise ValueError("Unkown rendering method '%s' for style '%s'" % (
-                    rendering, style.getId()))
-            urls.append(data['src'])
-            files.append(data['file'])
-        return urls + files
-
-    def skinname(self):
-        return aq_inner(self.context).getCurrentSkinName()
 
 
 class check_cache_settings(BrowserView):
@@ -353,8 +264,7 @@ Retorna els dominis de plone.app.caching
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
         output = []
-        domains = api.portal.get_registry_record(
-            name='plone.cachepurging.interfaces.ICachePurgingSettings.domains')
+        domains = api.portal.get_registry_record(name='plone.cachepurging.interfaces.ICachePurgingSettings.domains')
         ppath = api.portal.getSite().getPhysicalPath()
         info = {}
         if len(ppath) > 2:
@@ -718,9 +628,9 @@ Paràmetre:
     def __call__(self):
         if 'product_name' in self.request.form:
             product_name = self.request.form['product_name']
-            qi = api.portal.get_tool(name='portal_quickinstaller')
+            qi = get_installer(self.context)
 
-            if qi.isProductInstalled(product_name):
+            if qi.is_product_installed(product_name):
                 return 'OK\n'
-
-        return 'Error parameter product_name, not defined'
+        else:
+            return 'Error parameter product_name, not defined'

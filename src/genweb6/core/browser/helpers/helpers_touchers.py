@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFPlone.utils import normalizeString
+from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PortalTransforms.transforms.pdf_to_text import pdf_to_text
 
 from plone import api
-from plone.app.contenttypes.behaviors.richtext import IRichText
-from plone.dexterity.utils import createContentInContainer
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.registry.interfaces import IRegistry
@@ -77,7 +75,7 @@ LRF -> Language Root Folder
     """
 
     def __call__(self):
-        from plone.app.multilingual.interfaces import ILanguage
+        from Products.CMFPlone.interfaces import ILanguage
         context = aq_inner(self.context)
         pc = api.portal.get_tool('portal_catalog')
         results = pc.unrestrictedSearchResults(
@@ -131,10 +129,11 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
         output = []
         if 'addview' in self.request.form:
-            if not portal:
-                portal = api.portal.get()
 
             views = list(portal.portal_types['Folder'].view_methods)
             view = self.request.form['addview']
@@ -160,11 +159,11 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
+        if not portal:
+            portal = api.portal.get()
+
         output = []
         if 'removeview' in self.request.form:
-            if not portal:
-                portal = api.portal.get()
-
             views = list(portal.portal_types['Folder'].view_methods)
             view = self.request.form['removeview']
             if view in views:
@@ -180,6 +179,38 @@ Paràmetre:
         return '\n'.join(output)
 
 
+class install_product(BrowserView):
+    """
+Instal·la un paquet
+
+Paràmetre:
+- product_name: id del paquet
+    """
+
+    def __call__(self, portal=None):
+        if CSRF:
+            alsoProvides(self.request, IDisableCSRFProtection)
+
+        if 'product_name' in self.request.form:
+            if not portal:
+                portal = api.portal.get()
+
+            product_name = self.request.form['product_name']
+            output = []
+            qi = get_installer(self.context)
+
+            if qi.is_product_installed(product_name):
+                qi.uninstall_product(product_name)
+
+            qi.install_product(product_name)
+            output.append('{}: Successfully installed {}'.format(
+                portal.id, product_name))
+
+            return '\n'.join(output)
+
+        return 'Error parameter product_name, not defined'
+
+
 class reinstall_product(BrowserView):
     """
 Reinstal·la un paquet
@@ -189,17 +220,20 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
+        if CSRF:
+            alsoProvides(self.request, IDisableCSRFProtection)
+
         if 'product_name' in self.request.form:
             if not portal:
                 portal = api.portal.get()
 
             product_name = self.request.form['product_name']
             output = []
-            qi = api.portal.get_tool(name='portal_quickinstaller')
+            qi = get_installer(self.context)
 
-            if qi.isProductInstalled(product_name):
-                qi.uninstallProducts([product_name, ], reinstall=True)
-                qi.installProducts([product_name], reinstall=True)
+            if qi.is_product_installed(product_name):
+                qi.uninstall_product(product_name)
+                qi.install_product(product_name)
                 output.append('{}: Successfully reinstalled {}'.format(
                     portal.id, product_name))
             return '\n'.join(output)
@@ -216,13 +250,19 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
+        if CSRF:
+            alsoProvides(self.request, IDisableCSRFProtection)
+
         if 'product_name' in self.request.form:
+            if not portal:
+                portal = api.portal.get()
+
             product_name = self.request.form['product_name']
             output = []
-            qi = api.portal.get_tool(name='portal_quickinstaller')
+            qi = get_installer(self.context)
 
-            if qi.isProductInstalled(product_name):
-                qi.uninstallProducts([product_name, ], reinstall=False)
+            if qi.is_product_installed(product_name):
+                qi.uninstall_product(product_name)
                 output.append('{}: Successfully uninstalled {}'.format(portal.id, product_name))
             return '\n'.join(output)
 
@@ -412,6 +452,7 @@ Modifica el creador dels contingut de X a Y
 Paràmetres:
 - old_creator
 - new_creator
+- change_modification_date
     """
 
     STATUS_oldcreators = u"You must select one old creator."
@@ -419,6 +460,8 @@ Paràmetres:
     STATUS_samecreator = u"You must select different creators."
     STATUS_updated = u"%s objects updated."
     status = []
+
+    render = ViewPageTemplateFile("templates/bulk_change_creator.pt")
 
     @property
     def catalog(self):
@@ -451,9 +494,8 @@ Paràmetres:
                 d = dict(id=userid, name=userid)
             d['selected'] = 1 if userid in user_old else 0
             ret_list.append(d)
-        ret_list.sort(lambda a, b:
-                      cmp(str(a['id']).lower(), str(b['id']).lower()))
-        return ret_list
+
+        return sorted(ret_list, key=lambda a: str(a['id']).lower())
 
     def list_creators(self):
         creator_list = []
@@ -469,7 +511,6 @@ Paràmetres:
 
     def __call__(self):
         """ Main method """
-
         if 'submit' in self.request.form:
 
             old_creator = self.old_creator()
@@ -532,7 +573,7 @@ Paràmetres:
 
                 self.status[header_index] = self.STATUS_updated % count
 
-        return ViewPageTemplateFile('templates/bulk_change_creator.pt')(self)
+        return self.render()
 
 
 class add_permissions_plantilles(BrowserView):
@@ -637,6 +678,8 @@ class refresh_uids(BrowserView):
 Refresca les UIDs
     """
 
+    render = ViewPageTemplateFile("templates/origin_root_path.pt")
+
     def __call__(self):
         form = self.request.form
         self.output = []
@@ -652,6 +695,8 @@ Refresca les UIDs
                 self.output.append(obj.absolute_url())
                 print(obj.absolute_url())
             self.output = '<br/>'.join(self.output)
+
+        return self.render()
 
 
 class fix_record(BrowserView):
@@ -683,9 +728,7 @@ class change_tiny_css(BrowserView):
 Canvia la url dels css del TinyMCE
     """
 
-    def __call__(self, portal=None):
-        if not portal:
-            portal = api.portal.get()
-
-        ptiny = api.portal.get_tool('portal_tinymce')
-        ptiny.content_css = u'++theme++genweb6.theme/theme.min.css'
+    def __call__(self):
+        api.portal.set_registry_record('plone.content_css', ['++theme++genweb6.theme/theme.min.css'])
+        transaction.commit()
+        return 'OK'
