@@ -3,6 +3,7 @@ from AccessControl import getSecurityManager
 from DateTime.DateTime import DateTime
 from Products.Five.browser import BrowserView
 
+from bs4 import BeautifulSoup
 from plone import api
 from plone.registry.interfaces import IRegistry
 from repoze.catalog.catalog import Catalog
@@ -107,6 +108,53 @@ def json_response(func):
             return json.dumps(result.get('data', result), indent=2, sort_keys=True)
 
     return decorator
+
+
+def abrevia(summary, sumlenght):
+    """ Retalla contingut de cadenes
+    """
+    bb = ''
+
+    if sumlenght < len(summary):
+        bb = summary[:sumlenght]
+
+        lastspace = bb.rfind(' ')
+        cutter = lastspace
+        precut = bb[0:cutter]
+
+        if precut.count('<b>') > precut.count('</b>'):
+            cutter = summary.find('</b>', lastspace) + 4
+        elif precut.count('<strong>') > precut.count('</strong>'):
+            cutter = summary.find('</strong>', lastspace) + 9
+        bb = summary[0:cutter]
+
+        if bb.count('<p') > precut.count('</p'):
+            bb += '...</p>'
+        else:
+            bb = bb + '...'
+    else:
+        bb = summary
+
+    try:
+        return BeautifulSoup(bb.decode('utf-8', 'ignore')).prettify()
+    except:
+        return BeautifulSoup(bb).prettify()
+
+
+def abreviaPlainText(summary, sumlenght):
+    """ Retalla contingut de cadenes
+    """
+    bb = ''
+
+    if sumlenght < len(summary):
+        bb = summary[:sumlenght]
+
+        lastspace = bb.rfind(' ')
+        bb = bb[0:lastspace]
+    else:
+        bb = summary
+
+    return bb
 
 
 # class GWConfig(BrowserView):

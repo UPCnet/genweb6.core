@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+
+  <div metal:define-macro="text-field-view"
+      id="parent-fieldname-text" class="stx"
+      tal:define="text view/text"
+      tal:condition="text"
+      tal:attributes="class view/text_class">
+    <div metal:define-slot="inside" tal:replace="structure text">The body</div>
+  </div>
+
+  <metal:listingmacro define-macro="listing">
+    <tal:results define="batch view/batch; events view/get_events">
+      <tal:listing condition="batch">
+        <div class="list-agenda row" metal:define-slot="entries">
+          <tal:repeat repeat="item events" metal:define-macro="entries">
+            <metal:block define-slot="entry">
+              <div tal:define="flip_class python:'flip-card' if item.get('showflip') else 'no-flip-card'" class="col-lg-3  col-md-4 col-sm-6 col-xs-12">
+                <a class="event-highlighted event-img" tal:attributes="href item/url">
+                  <div tal:attributes="class python: flip_class">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                             class="bi bi-arrow-clockwise event-flip" viewBox="0 0 16 16"
+                             tal:condition="item/showflip">
+                          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                        </svg>
+                        <span class="event-time">
+                          <span class="event-time--wrap" tal:define="type item/dateType">
+                            <block metal:use-macro="context/macros-genweb/sameday_samemonth"></block>
+                            <block metal:use-macro="context/macros-genweb/difday_samemonth"></block>
+                            <block metal:use-macro="context/macros-genweb/difday_difmonth"></block>
+                            <block metal:use-macro="context/macros-genweb/difday_difyear"></block>
+                          </span>
+                        </span>
+                        <h2 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h2>
+                      </div>
+                      <div class="flip-card-back">
+                        <p tal:content="item/location"></p>
+                        <p tal:content="item/descr"></p>
+                        <p class="more_info" i18n:domain="base" i18n:translate="">Mes informacio</p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </metal:block>
+          </tal:repeat>
+        </div>
+
+        <div metal:use-macro="context/batch_macros/macros/navigation" />
+
+      </tal:listing>
+
+      <metal:empty metal:define-slot="no_items_in_listing">
+        <p class="discreet"
+            tal:condition="not: view/batch"
+            tal:content="view/no_items_message">
+          There are currently no items in this folder.
+        </p>
+      </metal:empty>
+
+    </tal:results>
+  </metal:listingmacro>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>

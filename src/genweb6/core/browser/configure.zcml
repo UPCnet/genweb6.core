@@ -168,4 +168,22 @@
         template="views_templates/download_files.pt"
         />
 
+    <browser:page
+        name="grid_events_view"
+        for="plone.app.contenttypes.interfaces.IFolder"
+        class=".events.GridEventsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/grid_events.pt"
+        />
+
+    <browser:page
+        name="grid_future_events_view"
+        for="plone.app.contenttypes.interfaces.IFolder"
+        class=".events.GridEventsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/grid_future_events.pt"
+        />
+
 </configure>
