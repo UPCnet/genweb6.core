@@ -96,7 +96,7 @@ class RSSFeed(object):
 
     def _buildItemDict(self, item):
         link = item.links[0]['href']
-        description = self.html_escape(item.get('description', '').encode('utf-8'))
+        description = self.html_escape(item.get('description', ''))
         itemdict = {
             'title': item.title,
             'url': link,
