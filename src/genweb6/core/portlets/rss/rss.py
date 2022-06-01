@@ -97,13 +97,20 @@ class RSSFeed(object):
     def _buildItemDict(self, item):
         link = item.links[0]['href']
         description = self.html_escape(item.get('description', ''))
+        image = item.get('media_content', None)
+        if image:
+            image = image[0]['url']
+        else:
+            image = self.getFirstImageDescription(description)
+
         itemdict = {
             'title': item.title,
             'url': link,
             'summary': self.abrevia(description, 250),
-            'image': item.get('href', '') or self.getFirstImageDescription(description),
-            'categories': [tag['term'] for tag in item.tags],
+            'image': image,
+            'categories': [tag['term'] for tag in item.get('term', [])],
         }
+
         if hasattr(item, "updated"):
             try:
                 itemdict['updated'] = DateTime(item.updated)
@@ -121,21 +128,21 @@ class RSSFeed(object):
         if url != '':
             self._last_update_time_in_minutes = time.time() / 60
             self._last_update_time = DateTime()
-            d = feedparser.parse(url)
-            if getattr(d, 'bozo', 0) == 1 and not isinstance(d.get('bozo_exception'), ACCEPTED_FEEDPARSER_EXCEPTIONS):
+            noticies = feedparser.parse(url)
+            if getattr(noticies, 'bozo', 0) == 1 and not isinstance(noticies.get('bozo_exception'), ACCEPTED_FEEDPARSER_EXCEPTIONS):
                 self._loaded = True     # we tried at least but have a failed load
                 self._failed = True
                 return False
             try:
-                self._title = d.feed.title
+                self._title = noticies.feed.title
             except AttributeError:
                 self._title = ""
             self._items = []
             try:
-                self._siteurl = d.feed.link
+                self._siteurl = noticies.feed.link
             except AttributeError:
                 self._siteurl = ""
-            for item in d['items']:
+            for item in noticies['items']:
                 try:
                     itemdict = self._buildItemDict(item)
                 except AttributeError:
