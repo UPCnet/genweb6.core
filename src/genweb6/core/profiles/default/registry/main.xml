@@ -4,6 +4,10 @@
     i18n:domain="genweb">
 
     <records
+        interface="genweb6.core.cas.controlpanel.ICASSettings"
+        purge="False"/>
+
+    <records
         interface="genweb6.core.controlpanels.cookies.ICookiesSettings"
         purge="False" />
 

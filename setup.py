@@ -67,6 +67,7 @@ setup(
         'pdfkit',
         'plone.formwidget.recaptcha',
         'collective.easyform',
+        'ftw.casauth',
     ],
 
     extras_require={

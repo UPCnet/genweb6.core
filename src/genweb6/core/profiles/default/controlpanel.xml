@@ -2,6 +2,19 @@
 <object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
 
     <configlet
+        title="CAS"
+        action_id="genweb6.core.cas"
+        appId="genweb6.core.cas"
+        category="genweb-advanced"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@cas-controlpanel"
+        icon_expr="string:gear"
+        visible="True">
+
+        <permission>Genweb: Manager Users</permission>
+    </configlet>
+
+    <configlet
         title="Cookies"
         action_id="genweb6.core.cookies"
         appId="genweb6.core.cookies"
@@ -13,5 +26,7 @@
 
         <permission>Genweb: Webmaster Users</permission>
     </configlet>
+
+
 
 </object>

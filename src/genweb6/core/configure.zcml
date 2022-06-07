@@ -23,6 +23,7 @@
     <include file="subscribers.zcml" />
 
     <include package=".browser" />
+    <include package=".cas" />
     <include package=".content" />
     <include package=".controlpanels" />
     <include package=".portlets" />

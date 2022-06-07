@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="genweb6.core">
+
+    <browser:page
+        name="cas-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.CASSettingsControlPanel"
+        permission="genweb.manager"
+        />
+
+    <!-- TODO Comentado porque no funciona el paquete de anz.casclient -->
+    <!-- <include package="anz.casclient" /> -->
+
+    <browser:page
+        for="*"
+        name="cas_login_url"
+        class=".browser.LoginUrl"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="cas_loginform_url"
+        class=".browser.LoginFormUrl"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="cas_logout"
+        class=".browser.Logout"
+        permission="zope2.Public"
+        />
+
+    <!-- TODO Comentado porque no funciona el paquete de anz.casclient -->
+    <!-- <subscriber
+        for="anz.casclient.interfaces.ISAMLPropertiesExist"
+        handler=".events.setoAuthTokenFromCASSAMLProperties"
+        /> -->
+
+</configure>
