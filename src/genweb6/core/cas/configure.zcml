@@ -12,9 +12,6 @@
         permission="genweb.manager"
         />
 
-    <!-- TODO Comentado porque no funciona el paquete de anz.casclient -->
-    <!-- <include package="anz.casclient" /> -->
-
     <browser:page
         for="*"
         name="cas_login_url"
