@@ -189,4 +189,13 @@
         template="views_templates/login.pt"
         />
 
+    <browser:page
+        name="login"
+        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        permission="zope.Public"
+        layer="..interfaces.IGenweb6CoreLayer"
+        class=".login.GWLoginForm"
+        template="views_templates/login.pt"
+        />
+
 </configure>

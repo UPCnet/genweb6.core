@@ -4,13 +4,67 @@ from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.browser.login.login import LoginForm
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone import api
 from plone.base.interfaces import ILoginForm
+from plone.memoize.instance import memoize
+from plone.registry.interfaces import IRegistry
 from z3c.form import button
+from zope.component import queryUtility
 from zope.interface import implementer
+
+from genweb6.core.cas.utils import getCASSettings
+from genweb6.core.cas.utils import login_URL
+from genweb6.core.controlpanels.login import ILoginSettings
+
+
+class LoginUtils():
+
+    def cas_settings(self):
+        return getCASSettings()
+
+    def cas_login_URL(self):
+        return login_URL(self.context, self.request)
+
+    def login_form(self):
+        return "%s/login_form" % api.portal.get().absolute_url()
+
+    def login_name(self):
+        auth = self.auth()
+        name = None
+        if auth is not None:
+            name = getattr(auth, "name_cookie", None)
+        if not name:
+            name = "__ac_name"
+        return name
+
+    def login_password(self):
+        auth = self.auth()
+        passwd = None
+        if auth is not None:
+            passwd = getattr(auth, "pw_cookie", None)
+        if not passwd:
+            passwd = "__ac_password"
+        return passwd
+
+    @memoize
+    def auth(self, _marker=None):
+        if _marker is None:
+            _marker = []
+        acl_users = api.portal.get_tool('acl_users')
+        return getattr(acl_users, "credentials_cookie_auth", None)
+
+    def change_password_url(self):
+        registry = queryUtility(IRegistry)
+        login_settings = registry.forInterface(ILoginSettings)
+        if login_settings.change_password_url:
+            return login_settings.change_password_url
+        else:
+            portal_url = self.get_root_url()
+            return '{}/@@change-password'.format(portal_url)
 
 
 @implementer(ILoginForm)
-class GWLoginForm(LoginForm):
+class GWLoginForm(LoginForm, LoginUtils):
 
     @button.buttonAndHandler(_('Log in'), name='login')
     def handleLogin(self, action):

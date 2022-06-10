@@ -91,7 +91,7 @@
   </metal:block>
 
   <metal:block metal:define-macro="login">
-    <tal:block tal:define="cas view/cas_settings">
+    <div id="loginGW" tal:define="cas view/cas_settings">
       <div class="accordion" id="accordionLogin" tal:condition="not:cas/enabled">
         <block metal:use-macro="context/macros-genweb-login/login_site"></block>
       </div>
@@ -121,7 +121,7 @@
           </div>
         </div>
       </div>
-    </tal:block>
+    </div>
   </metal:block>
 
 </html>
