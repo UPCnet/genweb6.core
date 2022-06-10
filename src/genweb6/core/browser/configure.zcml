@@ -5,6 +5,7 @@
     i18n_domain="genweb">
 
     <include package=".helpers" />
+    <include package=".macros" />
 
     <include file="viewlets.zcml" />
 
@@ -88,13 +89,6 @@
         class=".confirmation.FolderDelete"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.DeleteObjects"
-        />
-
-    <browser:page
-        name="macros-genweb"
-        for="*"
-        permission="zope.Public"
-        template="views_templates/macros.pt"
         />
 
     <browser:page
@@ -184,6 +178,15 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/grid_future_events.pt"
+        />
+
+    <browser:page
+        name="login_form"
+        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        permission="zope.Public"
+        layer="..interfaces.IGenweb6CoreLayer"
+        class=".login.GWLoginForm"
+        template="views_templates/login.pt"
         />
 
 </configure>

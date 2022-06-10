@@ -78,4 +78,5 @@
       <block metal:use-macro="context/macros-genweb/lastdayyear"></block>
     </tal:difday_difmonth>
   </metal:block>
+
 </html>

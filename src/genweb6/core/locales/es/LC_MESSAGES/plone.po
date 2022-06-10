@@ -237,7 +237,7 @@ msgstr "aquí"
 
 #. "genweb-per_recuperarla"
 msgid "genweb-per_recuperarla"
-msgstr " para recuperarla."
+msgstr "aquí para recuperarla."
 
 #: ."faltava"
 msgid "go_to_home"

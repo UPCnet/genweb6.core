@@ -3,6 +3,7 @@ from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from BTrees.OOBTree import OOBTree
+from Products.CMFCore.MemberDataTool import _marker
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
 from Products.CMFCore.permissions import ManageUsers
 from Products.CMFCore.utils import _checkPermission
@@ -17,6 +18,7 @@ from Products.CMFPlone.utils import getSiteLogo
 from Products.CMFPlone.utils import normalizeString
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
+from Products.LDAPUserFolder.utils import GROUP_MEMBER_MAP
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
 from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
@@ -817,8 +819,6 @@ title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
-from Products.LDAPUserFolder.utils import GROUP_MEMBER_MAP
-
 def getGroups(self, dn='*', attr=None, pwd=''):
     """ returns a list of possible groups from the ldap tree
         (Used e.g. in showgroups.dtml) or, if a DN is passed
@@ -901,7 +901,6 @@ def getGroups(self, dn='*', attr=None, pwd=''):
 
     return group_list
 
-from Products.CMFCore.MemberDataTool import _marker
 
 def getProperty(self, id, default=_marker):
     """PAS-specific method to fetch a user's properties. Looks

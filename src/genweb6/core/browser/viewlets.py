@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
+from plone.memoize.instance import memoize
 from plone.memoize.view import memoize_contextless
 from plone.registry.interfaces import IRegistry
 from zope.component import queryUtility
@@ -8,6 +9,9 @@ from zope.component import queryUtility
 from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.controlpanels.cookies import ICookiesSettings
+from genweb6.core.controlpanels.login import ILoginSettings
+from genweb6.core.cas.utils import getCASSettings
+from genweb6.core.cas.utils import login_URL
 
 
 class viewletBase(ViewletBase):
@@ -31,6 +35,62 @@ class viewletBase(ViewletBase):
         """
         portal_url = api.portal.get().absolute_url()
         return portal_url
+
+    def isAnonymous(self):
+        return api.user.is_anonymous()
+
+
+class loginViewlet(viewletBase):
+
+    def show_login(self):
+        if self.isAnonymous():
+            # TODO
+            # self.genweb_config().amaga_identificacio
+            return True
+        return False
+
+    def cas_settings(self):
+        return getCASSettings()
+
+    def cas_login_URL(self):
+        return login_URL(self.context, self.request)
+
+    def login_form(self):
+        return "%s/login_form" % self.portal_state.portal_url()
+
+    def login_name(self):
+        auth = self.auth()
+        name = None
+        if auth is not None:
+            name = getattr(auth, "name_cookie", None)
+        if not name:
+            name = "__ac_name"
+        return name
+
+    def login_password(self):
+        auth = self.auth()
+        passwd = None
+        if auth is not None:
+            passwd = getattr(auth, "pw_cookie", None)
+        if not passwd:
+            passwd = "__ac_password"
+        return passwd
+
+    @memoize
+    def auth(self, _marker=None):
+        if _marker is None:
+            _marker = []
+        acl_users = api.portal.get_tool('acl_users')
+        return getattr(acl_users, "credentials_cookie_auth", None)
+
+    def change_password_url(self):
+        registry = queryUtility(IRegistry)
+        login_settings = registry.forInterface(ILoginSettings)
+        if login_settings.change_password_url:
+            return login_settings.change_password_url
+        else:
+            portal_url = self.get_root_url()
+            return '{}/@@change-password'.format(portal_url)
 
 
 class logosFooterViewlet(viewletBase):

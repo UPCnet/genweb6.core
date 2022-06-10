@@ -27,6 +27,17 @@
         <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
+    <configlet
+        title="Login"
+        action_id="genweb6.core.login"
+        appId="genweb6.core.login"
+        category="genweb-advanced"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@login-controlpanel"
+        icon_expr="string:gear"
+        visible="True">
 
+        <permission>Genweb: Manager Users</permission>
+    </configlet>
 
 </object>

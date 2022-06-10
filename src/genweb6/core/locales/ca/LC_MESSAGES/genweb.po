@@ -1016,7 +1016,7 @@ msgstr "Configuració"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:199
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:180
 msgid "genweb-si_heu_oblidat_la_contrasenya"
-msgstr "Si heu oblidat la contrasenya, cliqueu ${click_here}"
+msgstr "Si heu oblidat la contrasenya, cliqueu"
 
 #. "genweb-si_heu_oblidat_la_contrasenya_question"
 #. Default: "Have you forgotten your password?"
@@ -2269,3 +2269,10 @@ msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
 
 msgid "menu"
 msgstr "Menú"
+
+#. "genweb-si_heu_oblidat_la_contrasenya_question"
+#. Default: "Have you forgotten your password?"
+#: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:192
+#: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:173
+msgid "genweb-si_heu_oblidat_la_contrasenya_question"
+msgstr "Have you forgotten your password?"

@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+  <metal:block metal:define-macro="login_site" i18n:domain="plone">
+    <div tal:define="ac_name view/login_name;
+                     ac_password view/login_password">
+      <form id="loginform" method="post" tal:attributes="action view/login_form">
+        <div>
+          <input type="hidden" name="form.submitted" value="1" />
+          <input type="hidden" name="came_from" tal:attributes="value context/@@plone_context_state/current_page_url" />
+          <input type="hidden" name="js_enabled" id="js_enabled" value="0" />
+          <input type="hidden" name="cookies_enabled" id="cookies_enabled" value="" />
+          <input type="hidden" name="login_name" id="login_name" value="" />
+          <input type="hidden" name="pwd_empty" id="pwd_empty" value="0" />
+        </div>
+
+        <div class="form-floating mb-3"
+             tal:define="use_email_as_login python:context.portal_registry['plone.use_email_as_login'];">
+
+          <tal:loginname condition="not:use_email_as_login">
+            <input type="text" class="form-control" placeholder="name.surname"
+                   tal:attributes="name ac_name;
+                                   id ac_name;
+                                   value python:request.get(ac_name, '');" />
+
+            <label for="" tal:attributes="for ac_name"
+                   i18n:translate="label_login_name">Login Name</label>
+          </tal:loginname>
+
+          <tal:email condition="use_email_as_login">
+            <input type="email" class="form-control" placeholder="name.surname@example.com"
+                   tal:attributes="name ac_name;
+                                   id ac_name;
+                                   value python:request.get(ac_name, '');" />
+
+            <label for="" tal:attributes="for ac_name"
+                   i18n:translate="label_email">Email</label>
+          </tal:email>
+
+        </div>
+
+        <div class="form-floating">
+          <input type="password" class="form-control" placeholder="Qwerty1234+"
+                 tal:attributes="name ac_password;
+                                 id ac_password;" />
+
+          <label for="" tal:attributes="for ac_password"
+                 i18n:translate="label_password">Password</label>
+        </div>
+
+        <div class="cookiesMessage alert alert-warning"
+             style="display:none" role="alert">
+          <strong i18n:translate="">Warning</strong>
+          <span i18n:translate="enable_cookies_message_before_login">
+            Cookies are not enabled. You must enable cookies before you
+            can log in.
+          </span>
+        </div>
+
+        <div class="formControls">
+          <input class="btn btn-primary" type="submit" value="Log in"
+                 id="buttons-login" name="buttons.login"
+                 title="Log in" i18n:attributes="value label_log_in;
+                                                 title label_log_in;"/>
+        </div>
+      </form>
+
+      <br>
+
+      <tal:block i18n:domain="genweb">
+
+        <h5 class="l" i18n:translate="genweb-si_heu_oblidat_la_contrasenya_question">
+          Have you forgotten your password?
+        </h5>
+
+        <p class="s margin0">
+          <span i18n:translate="genweb-si_heu_oblidat_la_contrasenya">
+            If you have forgotten your password,
+          </span>
+          <a target="_blank" tal:attributes="href view/change_password_url"
+             i18n:translate="genweb-per_recuperarla">
+            click here to retrieve it
+          </a>
+        </p>
+
+      </tal:block>
+    </div>
+  </metal:block>
+
+  <metal:block metal:define-macro="login">
+    <tal:block tal:define="cas view/cas_settings">
+      <div class="accordion" id="accordionLogin" tal:condition="not:cas/enabled">
+        <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+      </div>
+
+      <div class="accordion" id="accordionLogin" tal:condition="cas/enabled">
+        <div class="accordion-item">
+          <a tal:attributes="href view/cas_login_URL" id="linkCAS">
+            <h3 class="accordion-header accordion-button collapsed" id="headingCAS">
+              <tal:block i18n:translate="">Entra amb la identificació única</tal:block>
+              <tal:block tal:content="cas/login_text_btn"></tal:block>
+            </h3>
+          </a>
+        </div>
+        <div class="accordion-item">
+          <h3 class="accordion-header" id="headingLogin">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin"
+                    i18n:translate="genweb_loginlocal">
+              Log in only in this site
+            </button>
+          </h3>
+          <div id="collapseLogin" class="accordion-collapse collapse" aria-labelledby="headingLogin"
+               data-bs-parent="#accordionLogin">
+            <div class="accordion-body">
+              <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+            </div>
+          </div>
+        </div>
+      </div>
+    </tal:block>
+  </metal:block>
+
+</html>

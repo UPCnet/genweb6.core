@@ -28,8 +28,7 @@ def login_URL(context, request):
     plugin = getattr(portal.acl_users, PLUGIN_CAS, None)
 
     if plugin:
-        registry = queryUtility(IRegistry)
-        cas_settings = registry.forInterface(ICASSettings)
+        cas_settings = getCASSettings()
         current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
 
         if current_url[-6:] == '/login' or current_url[-11:] == '/login_form' or 'require_login' in current_url or 'popup_login_form' in current_url:
@@ -41,14 +40,7 @@ def login_URL(context, request):
         else:
             url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(portal.absolute_url()))
 
-        # Now not planned to be used. If it's used, then make them go before the (unquoted) service URL
-        if plugin.renew:
-            url += '&renew=true'
-        if plugin.gateway:
-            url += '&gateway=true'
-
         return url
-
     else:
         return '%s/login_form' % portal.absolute_url()
 
@@ -68,3 +60,8 @@ def logout(context, request):
 
     else:
         return '%s/logout' % portal.absolute_url()
+
+
+def getCASSettings():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(ICASSettings)

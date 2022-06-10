@@ -961,7 +961,7 @@ msgstr "Cambio de contraseña"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:200
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:181
 msgid "genweb-per_recuperarla"
-msgstr " para recuperarla."
+msgstr "aquí para recuperarla."
 
 #. "genweb-perfil"
 #. Default: "Profile"
@@ -1018,7 +1018,7 @@ msgstr "Configuración"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:199
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:180
 msgid "genweb-si_heu_oblidat_la_contrasenya"
-msgstr "Si ha olvidado la contraseña, clique ${click_here}"
+msgstr "Si ha olvidado la contraseña, clique"
 
 #. "genweb-si_heu_oblidat_la_contrasenya_question"
 #. Default: "Have you forgotten your password?"

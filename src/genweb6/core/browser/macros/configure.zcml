@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="macros-genweb"
+        for="*"
+        permission="zope.Public"
+        template="macros.pt"
+        />
+
+    <browser:page
+        name="macros-genweb-login"
+        for="*"
+        permission="zope.Public"
+        template="macros-login.pt"
+        />
+
+</configure>

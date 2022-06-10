@@ -4,13 +4,26 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="genweb">
 
+    <!-- HEADER -->
+
+    <browser:viewlet
+        name="genweb.login"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.loginViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/header/login.pt"
+        />
+
+    <!-- FOOTER -->
+
     <browser:viewlet
         name="genweb.logosfooter"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".viewlets.logosFooterViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        template="viewlets_templates/logosfooter.pt"
+        template="viewlets_templates/footer/logosfooter.pt"
         />
 
     <browser:viewlet
@@ -19,7 +32,7 @@
         class=".viewlets.cookiesViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        template="viewlets_templates/cookies.pt"
+        template="viewlets_templates/footer/cookies.pt"
         />
 
 </configure>

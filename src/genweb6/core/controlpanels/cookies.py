@@ -10,10 +10,6 @@ from zope import schema
 
 from genweb6.core import _
 
-import logging
-
-log = logging.getLogger('genweb6.upc')
-
 
 class ICookiesSettings(model.Schema):
 

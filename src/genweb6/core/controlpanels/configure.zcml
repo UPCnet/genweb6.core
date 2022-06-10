@@ -11,4 +11,11 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="login-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".login.LoginSettingsControlPanel"
+        permission="genweb.webmaster"
+        />
+
 </configure>

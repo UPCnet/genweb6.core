@@ -154,7 +154,7 @@ msgstr "Por favor, identifíquese con el <strong>nombre de usuario de la intrane
 
 #. "genweb-si_heu_oblidat_la_contrasenya"
 msgid "genweb-si_heu_oblidat_la_contrasenya"
-msgstr "Si ha olvidado la contraseña, clique ${click_here}"
+msgstr "Si ha olvidado la contraseña, clique"
 
 #. "genweb-aqui"
 msgid "genweb-aqui"
@@ -162,7 +162,7 @@ msgstr "aquí"
 
 #. "genweb-per_recuperarla"
 msgid "genweb-per_recuperarla"
-msgstr " para recuperarla."
+msgstr "aquí para recuperarla."
 
 #. "canvi_de_contrasenya"
 msgid "canvi_de_contrasenya"
