@@ -73,6 +73,7 @@ Retorna l'última capa instal·lada per a cada plonesite
 class get_languages_sites(BrowserView):
     """
 Retorna els idiomes soportats per a cada lloc
+DA ERROR REVISAR
     """
     def __call__(self):
         context = aq_inner(self.context)
@@ -87,6 +88,7 @@ Retorna els idiomes soportats per a cada lloc
 class get_default_language_sites(BrowserView):
     """
 Retorna l'idioma predeterminat per a cada lloc
+DA ERROR REVISAR
     """
 
     def __call__(self):

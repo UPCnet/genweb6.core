@@ -75,6 +75,9 @@ LRF -> Language Root Folder
     """
 
     def __call__(self):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         from Products.CMFPlone.interfaces import ILanguage
         context = aq_inner(self.context)
         pc = api.portal.get_tool('portal_catalog')
@@ -188,8 +191,8 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
             if not portal:
@@ -220,8 +223,8 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
             if not portal:
@@ -250,8 +253,8 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
             if not portal:
@@ -275,8 +278,8 @@ Upgrada a la última versió de Plone
     """
 
     def __call__(self, portal=None):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         if not portal:
             portal = api.portal.get()
@@ -296,6 +299,9 @@ setup_pam_again
     """
 
     def __call__(self):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         from plone.app.multilingual.browser.setup import SetupMultilingualSite
         setupTool = SetupMultilingualSite()
         setupTool.setupSite(self.context, False)
@@ -603,6 +609,9 @@ preserveUUIDs
     """
 
     def __call__(self):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         portal = api.portal.get()
         soup = get_soup('uuid_preserver', portal)
         pc = api.portal.get_tool('portal_catalog')
@@ -623,6 +632,9 @@ rebuildUUIDs
     """
 
     def __call__(self):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         portal = api.portal.get()
         soup = get_soup('uuid_preserver', portal)
         pc = api.portal.get_tool('portal_catalog')
@@ -647,6 +659,9 @@ Vista que configura la caché
     """
 
     def __call__(self):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         context = aq_inner(self.context)
         from Products.GenericSetup.tests.common import DummyImportContext
         from plone.app.registry.exportimport.handler import RegistryImporter

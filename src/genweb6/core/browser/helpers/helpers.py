@@ -206,6 +206,9 @@ Canvia la vista per defecte dels directoris d'esdeveniments
     """
 
     def __call__(self, portal=None):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         if not portal:
             portal = api.portal.get()
         if portal.get('en', False):
