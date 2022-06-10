@@ -3,6 +3,9 @@ from Products.Five.browser import BrowserView
 from Products.PlonePAS.interfaces.group import IGroupManagement
 from Products.PluggableAuthService.interfaces.plugins import IUserAdderPlugin
 
+from plone.base.interfaces import IUserGroupsSettingsSchema
+from zope.component import getAdapter
+
 from plone import api
 from zope.component.hooks import getSite
 from zope.interface import alsoProvides
@@ -86,6 +89,9 @@ Configura el LDAP UPC
                 # from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin
                 # portal.acl_users.plugins.movePluginsUp(IPropertiesPlugin, ['ldapUPC'])
                 # portal.acl_users.plugins.manage_movePluginsUp('IPropertiesPlugin', ['ldapUPC'], context.REQUEST.RESPONSE)
+
+                getAdapter(portal, IUserGroupsSettingsSchema).set_many_groups(True)
+                getAdapter(portal, IUserGroupsSettingsSchema).set_many_users(True)
 
             except:
                 logger.debug('Something bad happened and the LDAP has not been created properly')
