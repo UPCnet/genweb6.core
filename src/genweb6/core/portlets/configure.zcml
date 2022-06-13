@@ -14,6 +14,12 @@
         />
 
     <plone:portletRenderer
+        portlet="plone.app.portlets.portlets.login.ILoginPortlet"
+        class=".login.login.gwLogin"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <plone:portletRenderer
         portlet="plone.app.portlets.portlets.navigation.INavigationPortlet"
         class=".navigation.navigation.gwNavigation"
         layer="..interfaces.IGenweb6CoreLayer"
