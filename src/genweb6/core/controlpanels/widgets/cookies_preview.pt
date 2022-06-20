@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:omit-tag=""
+      lang="ca"
+      i18n:domain="genweb">
+
+  <label for="form-widgets-preview" class="form-label">Preview</label>
+
+  <p id="cookies_preview_text" style="display:none;">
+    <tal:msg i18n:translate="cookie_policy_this_site">
+      El lloc web de la Universitat Politècnica de Catalunya utilitza cookies pròpies i de tercers per millorar l’experiència de navegació i amb finalitats estadístiques. Per obtenir més informació sobre l'ús de les cookies podeu consultar la
+    </tal:msg>
+    <a href="#" i18n:translate="cookie_policy" target="_blank">Política de cookies</a>.
+  </p>
+
+  <div id="cookies-gw-preview" role="alert" i18n:domain="genweb">
+    <div id="cookies-bodyContent">
+      <div id="cookies-bodyText"></div>
+    </div>
+    <ul id="cookies-buttons">
+      <button type="button" id="cookies-accept" class="btn btn-primary">
+        <tal:msg i18n:translate="cookie_policy_button">Acceptar</tal:msg>
+      </button>
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="/++theme++genweb6.theme/js/controlpanels/cookies_preview.min.js"></script>
+
+</html>

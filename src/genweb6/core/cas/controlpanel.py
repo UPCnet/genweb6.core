@@ -3,15 +3,46 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from ftw.casauth.plugin import addCASAuthenticationPlugin
 from plone.app.registry.browser import controlpanel
+from plone.autoform import directives
 from plone.registry.interfaces import IRegistry
 from z3c.form import button
+from z3c.form.browser.text import TextWidget
+from z3c.form.browser.widget import addFieldClass
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IFormLayer
+from z3c.form.interfaces import ITextWidget
+from z3c.form.widget import FieldWidget
 from zope import schema
+from zope.component import adapter
 from zope.component import queryUtility
 from zope.component.hooks import getSite
+from zope.interface import implementer
+from zope.interface import implementer_only
 from zope.interface import Interface
+from zope.schema.interfaces import IField
 
 from genweb6.core import _
 from genweb6.core.cas import PLUGIN_CAS
+
+
+class ICASSettingsLoginPreviewWidget(ITextWidget):
+    pass
+
+
+@implementer_only(ICASSettingsLoginPreviewWidget)
+class CASSettingsLoginPreviewWidget(TextWidget):
+
+    klass = u'cas_settings-login_preview-widget'
+
+    def update(self):
+        super(TextWidget, self).update()
+        addFieldClass(self)
+
+
+@adapter(IField, IFormLayer)
+@implementer(IFieldWidget)
+def CASSettingsLoginPreviewFieldWidget(field, request):
+    return FieldWidget(field, CASSettingsLoginPreviewWidget(request))
 
 
 class ICASSettings(Interface):
@@ -47,6 +78,9 @@ class ICASSettings(Interface):
         default=u"",
     )
 
+    directives.widget('login_preview', CASSettingsLoginPreviewFieldWidget)
+    login_preview = schema.Text(title=_(u""), required=False)
+
 
 class CASSettingsForm(controlpanel.RegistryEditForm):
 
@@ -79,6 +113,10 @@ class CASSettingsForm(controlpanel.RegistryEditForm):
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(_("Changes canceled."), "info")
         self.request.response.redirect(self.context.absolute_url() + '/' + self.control_panel_view)
+
+    def absolute_url(self):
+        import ipdb; ipdb.set_trace()
+        self.context.absolute_url()
 
 
 class CASSettingsControlPanel(controlpanel.ControlPanelFormWrapper):

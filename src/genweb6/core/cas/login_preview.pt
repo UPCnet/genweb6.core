@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:omit-tag=""
+      lang="ca"
+      i18n:domain="genweb">
+
+  <label for="form-widgets-preview" class="form-label">Preview</label>
+
+  <p id="login_preview_text" style="display:none;" i18n:translate="">
+    Entra amb la identificació única
+  </p>
+
+  <div class="accordion" id="accordionLogin">
+    <div class="accordion-item">
+      <a href="#" id="linkCAS">
+        <h3 class="accordion-header accordion-button collapsed" id="headingCAS"></h3>
+      </a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/++theme++genweb6.theme/js/controlpanels/login_preview.min.js"></script>
+
+</html>

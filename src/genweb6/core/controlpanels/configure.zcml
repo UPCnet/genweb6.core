@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="genweb">
 
@@ -9,6 +10,20 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".cookies.CookiesSettingsControlPanel"
         permission="genweb.webmaster"
+        />
+
+    <class class=".cookies.CookiesSettingsPreviewWidget">
+        <require
+            permission="zope.Public"
+            interface=".cookies.ICookiesSettingsPreviewWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".cookies.ICookiesSettingsPreviewWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="widgets/cookies_preview.pt"
         />
 
     <browser:page

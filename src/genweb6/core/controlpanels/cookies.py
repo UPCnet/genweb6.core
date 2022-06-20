@@ -6,9 +6,39 @@ from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.autoform import directives
 from plone.supermodel import model
 from z3c.form import button
+from z3c.form.browser.text import TextWidget
+from z3c.form.browser.widget import addFieldClass
+from z3c.form.interfaces import IFieldWidget
+from z3c.form.interfaces import IFormLayer
+from z3c.form.interfaces import ITextWidget
+from z3c.form.widget import FieldWidget
 from zope import schema
+from zope.component import adapter
+from zope.interface import implementer
+from zope.interface import implementer_only
+from zope.schema.interfaces import IField
 
 from genweb6.core import _
+
+
+class ICookiesSettingsPreviewWidget(ITextWidget):
+    pass
+
+
+@implementer_only(ICookiesSettingsPreviewWidget)
+class CookiesSettingsPreviewWidget(TextWidget):
+
+    klass = u'cookies_settings-preview-widget'
+
+    def update(self):
+        super(TextWidget, self).update()
+        addFieldClass(self)
+
+
+@adapter(IField, IFormLayer)
+@implementer(IFieldWidget)
+def CookiesSettingsPreviewFieldWidget(field, request):
+    return FieldWidget(field, CookiesSettingsPreviewWidget(request))
 
 
 class ICookiesSettings(model.Schema):
@@ -47,6 +77,9 @@ class ICookiesSettings(model.Schema):
         description=_(u""),
         required=False,
     )
+
+    directives.widget('preview', CookiesSettingsPreviewWidget)
+    preview = schema.Text(title=_(u""), required=False)
 
 
 class CookiesSettingsForm(controlpanel.RegistryEditForm):

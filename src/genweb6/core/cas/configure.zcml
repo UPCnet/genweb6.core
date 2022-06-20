@@ -3,6 +3,7 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="genweb6.core">
 
     <browser:page
@@ -10,6 +11,20 @@
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".controlpanel.CASSettingsControlPanel"
         permission="genweb.manager"
+        />
+
+    <class class=".controlpanel.CASSettingsLoginPreviewWidget">
+        <require
+            permission="zope.Public"
+            interface=".controlpanel.ICASSettingsLoginPreviewWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".controlpanel.ICASSettingsLoginPreviewWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="login_preview.pt"
         />
 
     <browser:page
