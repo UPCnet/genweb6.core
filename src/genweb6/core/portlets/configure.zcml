@@ -25,12 +25,6 @@
         layer="..interfaces.IGenweb6CoreLayer"
         />
 
-    <plone:portletRenderer
-        portlet="plone.app.portlets.portlets.recent.IRecentPortlet"
-        class=".recent.recent.gwRecent"
-        layer="..interfaces.IGenweb6CoreLayer"
-        />
-
     <plone:portlet
         name="genweb.banners.portlet"
         interface=".banners.banners.IBannersPortlet"
