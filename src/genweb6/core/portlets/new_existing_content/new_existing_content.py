@@ -150,7 +150,7 @@ class INewContentPortlet(IPortletDataProvider):
 @implementer(INewContentPortlet)
 class Assignment (base.Assignment):
 
-    def __init__(self, content_or_url, external_url, ptitle, own_content, element='#content-core', show_title=True, hide_footer=False, js=u""):
+    def __init__(self, ptitle=u"", content_or_url='EXTERN', external_url='#', own_content=None, element='#content-core', show_title=True, hide_footer=False, js=u""):
         self.ptitle = ptitle
         self.show_title = show_title
         self.hide_footer = hide_footer

@@ -139,4 +139,12 @@
         replacement=".patches.getProperty"
         />
 
+    <monkey:patch
+        description="Solucionar error import_relations"
+        class="collective.exportimport.import_other.ImportRelations"
+        original="import_relations"
+        replacement=".patches.import_relations"
+        />
+
+
 </configure>

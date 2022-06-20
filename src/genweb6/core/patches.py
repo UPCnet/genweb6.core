@@ -24,7 +24,9 @@ from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 
+from hashlib import sha1
 from io import StringIO
+from operator import itemgetter
 from plone import api
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
@@ -54,7 +56,20 @@ from genweb6.core.utils import pref_lang
 import logging
 import requests
 import six
-from hashlib import sha1
+
+try:
+    from collective.relationhelpers import api as relapi
+
+    HAS_RELAPI = True
+except ImportError:
+    HAS_RELAPI = False
+
+try:
+    from Products.CMFPlone import relationhelper
+
+    HAS_PLONE6 = True
+except ImportError:
+    HAS_PLONE6 = False
 
 logger = logging.getLogger('event.LDAPUserFolder')
 genweb_log = logging.getLogger('genweb6.core')
@@ -945,3 +960,38 @@ def getProperty(self, id, default=_marker):
     # Couldn't find the property in the property sheets. Try to
     # delegate back to the base implementation.
     return BaseMemberAdapter.getProperty(self, id, default)
+
+
+def import_relations(self, data):
+    ignore = [
+        "translationOf",  # old LinguaPlone
+        "isReferencing",  # linkintegrity
+        "internal_references",  # obsolete
+        "link",  # tab
+        "link1",  # extranetfrontpage
+        "link2",  # extranetfrontpage
+        "link3",  # extranetfrontpage
+        "link4",  # extranetfrontpage
+        "box3_link",  # shopfrontpage
+        "box1_link",  # shopfrontpage
+        "box2_link",  # shopfrontpage
+        "source",  # remotedisplay
+        "internally_links_to",  # DoormatReference
+    ]
+    all_fixed_relations = []
+    for rel in data:
+        if "relationship" in rel and rel["relationship"] in ignore:  # Añadido a la condición la comprobación de que exista el atributo relationship
+            continue
+        rel["from_attribute"] = self.get_from_attribute(rel)
+        all_fixed_relations.append(rel)
+    all_fixed_relations = sorted(
+        all_fixed_relations, key=itemgetter("from_uuid", "from_attribute")
+    )
+    if HAS_RELAPI:
+        relapi.purge_relations()
+        relapi.cleanup_intids()
+        relapi.restore_relations(all_relations=all_fixed_relations)
+    elif HAS_PLONE6:
+        relationhelper.purge_relations()
+        relationhelper.cleanup_intids()
+        relationhelper.restore_relations(all_relations=all_fixed_relations)
