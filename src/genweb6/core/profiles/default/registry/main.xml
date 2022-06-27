@@ -15,4 +15,8 @@
         interface="genweb6.core.controlpanels.login.ILoginSettings"
         purge="False" />
 
+    <records
+        interface="genweb6.core.controlpanels.footer.IFooterSettings"
+        purge="False" />
+
 </registry>

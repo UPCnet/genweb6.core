@@ -33,4 +33,11 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="footer-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".footer.FooterSettingsControlPanel"
+        permission="genweb.superadmin"
+        />
+
 </configure>

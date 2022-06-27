@@ -1350,18 +1350,18 @@ msgstr "Mostrar o no el logo derecho de la cabecera."
 
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:68
-msgid "help_signatura_unitat_ca"
-msgstr "Es el literal que aparece al pie de la página o en el texto alternativo del logotipo (centros docentes)."
+msgid "help_signatura_ca"
+msgstr "Es el literal que aparece al pie de la página."
 
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:86
-msgid "help_signatura_unitat_en"
-msgstr "Es el literal que aparece al pie de la página o en el texto alternativo del logotipo (centros docentes)."
+msgid "help_signatura_en"
+msgstr "Es el literal que aparece al pie de la página."
 
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:77
-msgid "help_signatura_unitat_es"
-msgstr "Es el literal que aparece al pie de la página o en el texto alternativo del logotipo (centros docentes)."
+msgid "help_signatura_es"
+msgstr "Es el literal que aparece al pie de la página."
 
 #. Default: "Treu les icones per compartir en xarxes socials ..."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:206
@@ -1891,18 +1891,18 @@ msgstr "Ficheros compartidos"
 
 #. Default: "Signatura de la unitat [CA]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:66
-msgid "signatura_unitat_ca"
-msgstr "Firma de la unidad [CA]"
+msgid "signatura_ca"
+msgstr "Firma [CA]"
 
 #. Default: "Signatura de la unitat [EN]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:84
-msgid "signatura_unitat_en"
-msgstr "Firma de la unidad [EN]"
+msgid "signatura_en"
+msgstr "Firma [EN]"
 
 #. Default: "Signatura de la unitat [ES]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:75
-msgid "signatura_unitat_es"
-msgstr "Firma de la unidad [ES]"
+msgid "signatura_es"
+msgstr "Firma [ES]"
 
 #. "Vés al contingut (premeu Retorn)"
 #. Default: "Vés al contingut (premeu Retorn)"

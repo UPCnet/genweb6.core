@@ -7,14 +7,12 @@ from Products.statusmessages.interfaces import IStatusMessage
 from plone import api
 from plone.base.interfaces import ILoginForm
 from plone.memoize.instance import memoize
-from plone.registry.interfaces import IRegistry
 from z3c.form import button
-from zope.component import queryUtility
 from zope.interface import implementer
 
 from genweb6.core.cas.utils import getCASSettings
 from genweb6.core.cas.utils import login_URL
-from genweb6.core.controlpanels.login import ILoginSettings
+from genweb6.core.utils import genwebLoginConfig
 
 
 class LoginUtils():
@@ -54,8 +52,7 @@ class LoginUtils():
         return getattr(acl_users, "credentials_cookie_auth", None)
 
     def change_password_url(self):
-        registry = queryUtility(IRegistry)
-        login_settings = registry.forInterface(ILoginSettings)
+        login_settings = genwebLoginConfig()
         if login_settings.change_password_url:
             return login_settings.change_password_url
         else:

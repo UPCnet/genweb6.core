@@ -2,13 +2,12 @@
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.memoize.view import memoize_contextless
-from plone.registry.interfaces import IRegistry
-from zope.component import queryUtility
 
 from genweb6.core import _
 from genweb6.core import utils
-from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.browser.login import LoginUtils
+from genweb6.core.utils import genwebCookiesConfig
+from genweb6.core.utils import genwebFooterConfig
 
 
 class viewletBase(ViewletBase):
@@ -22,16 +21,11 @@ class viewletBase(ViewletBase):
         return api.portal.get()
 
     def pref_lang(self):
-        """ Extracts the current language for the current user """
         lt = api.portal.get_tool(name='portal_languages')
-        return lt.getPreferredLanguage()
-
-    def get_root_url(self):
-        """
-        Get url link for logo
-        """
-        portal_url = api.portal.get().absolute_url()
-        return portal_url
+        lang = lt.getPreferredLanguage()
+        if lang not in ['ca', 'es', 'en']:
+            lang = 'ca'
+        return lang
 
     def isAnonymous(self):
         return api.user.is_anonymous()
@@ -64,12 +58,38 @@ class logosFooterViewlet(viewletBase):
         return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))
 
 
-class cookiesViewlet(viewletBase):
+class footerViewlet(viewletBase):
 
-    def cookiesConfig(self):
-        """ Funcio que retorna les configuracions del controlpanel """
-        registry = queryUtility(IRegistry)
-        return registry.forInterface(ICookiesSettings)
+    def getSignatura(self):
+        lang = self.pref_lang()
+        footer_config = genwebFooterConfig()
+        return getattr(footer_config, 'signatura_' + lang, '')
+
+    def getLinksPeu(self):
+        lang = self.pref_lang()
+
+        links = {"ca": {"contact":       {"url": self.root_url() + "/ca/contact", "target": '_self'},
+                        "sitemap":       {"url": self.root_url() + "/ca/sitemap", "target": '_self'},
+                        "accessibility": {"url": self.root_url() + "/accessibilitat", "target": '_self'},
+                        "disclaimer":    {},
+                        "cookies":       {"url": self.root_url() + "/politica-de-cookies", "target": '_self'}},
+
+                 "es": {"contact":       {"url": self.root_url() + "/es/contact", "target": '_self'},
+                        "sitemap":       {"url": self.root_url() + "/es/sitemap", "target": '_self'},
+                        "accessibility": {"url": self.root_url() + "/accesibilidad", "target": '_self'},
+                        "disclaimer":    {},
+                        "cookies":       {"url": self.root_url() + "/politica-de-cookies-es", "target": '_self'}},
+
+                 "en": {"contact":       {"url": self.root_url() + "/en/contact", "target": '_self'},
+                        "sitemap":       {"url": self.root_url() + "/en/sitemap", "target": '_self'},
+                        "accessibility": {"url": self.root_url() + "/accessibility", "target": '_self'},
+                        "disclaimer":    {},
+                        "cookies":       {"url": self.root_url() + "/cookies-policy", "target": '_self'}}}
+
+        return links[lang]
+
+
+class cookiesViewlet(viewletBase):
 
     def urlCookies(self):
         lang = self.pref_lang()
@@ -89,11 +109,11 @@ class cookiesViewlet(viewletBase):
             return True
 
     def isEnable(self):
-        config = self.cookiesConfig()
+        config = genwebCookiesConfig()
         return not config.disable
 
     def alternativeText(self):
-        config = self.cookiesConfig()
+        config = genwebCookiesConfig()
 
         if config.enable_alternative_text:
 

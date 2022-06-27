@@ -27,6 +27,15 @@
         />
 
     <browser:viewlet
+        name="genweb.footer"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.footerViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/footer/footer.pt"
+        />
+
+    <browser:viewlet
         name="genweb.cookies"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".viewlets.cookiesViewlet"

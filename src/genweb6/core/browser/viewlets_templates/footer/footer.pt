@@ -1,0 +1,67 @@
+<div class="footer-complementary" i18n:domain="genweb">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <p tal:content="structure view/getSignatura"></p>
+        </div>
+
+        <div class="col-md-6">
+            <nav id="complimentary-footer-nav" aria-label="Complimenatary-footer">
+                <ul id="footer-menu-complementari" class="footer-container"
+                    tal:define="links view/getLinksPeu">
+
+                    <li tal:define="link links/contact"
+                        tal:condition="link">
+                        <a tal:attributes="href link/url;
+                                           target link/target"
+                           accesskey="9"
+                           i18n:domain="plone"
+                           i18n:translate="Contact">
+                            Contact
+                        </a>
+                    </li>
+
+                    <li tal:define="link links/sitemap"
+                        tal:condition="link">
+                        <a tal:attributes="href link/url;
+                                           target link/target"
+                           accesskey="3"
+                           i18n:domain="plone"
+                           i18n:translate="Site Map">
+                            Site Map
+                        </a>
+                    </li>
+
+                    <li tal:define="link links/accessibility"
+                        tal:condition="link">
+                        <a tal:attributes="href link/url;
+                                           target link/target"
+                           accesskey="0"
+                           i18n:translate="genweb-accessibility">
+                            Accessibilitat
+                        </a>
+                    </li>
+
+                    <li tal:define="link links/disclaimer"
+                        tal:condition="link">
+                        <a tal:attributes="href link/url;
+                                           target link/target"
+                           i18n:translate="genweb-disclaimer">
+                            Disclaimer
+                        </a>
+                    </li>
+
+                    <li tal:define="link links/cookies"
+                        tal:condition="link">
+                        <a tal:attributes="href link/url;
+                                           target link/target"
+                           i18n:translate="cookie_policy">
+                            Cookie Policy
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

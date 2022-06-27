@@ -1351,20 +1351,20 @@ msgstr "Mostra o no el logo dret de la capçalera."
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:68
-msgid "help_signatura_unitat_ca"
-msgstr "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
+msgid "help_signatura_ca"
+msgstr "És el literal que apareix al peu de pàgina."
 
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:86
-msgid "help_signatura_unitat_en"
-msgstr "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
+msgid "help_signatura_en"
+msgstr "És el literal que apareix al peu de pàgina."
 
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #: genweb.controlpanel/genweb/controlpanel/interface.py:77
-msgid "help_signatura_unitat_es"
-msgstr "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
+msgid "help_signatura_es"
+msgstr "És el literal que apareix al peu de pàgina."
 
 #. "Treu les icones per compartir en xarxes socials ..."
 #. Default: "Treu les icones per compartir en xarxes socials ..."
@@ -1902,20 +1902,20 @@ msgstr "Fitxers compartits"
 #. "Signatura de la unitat [CA]"
 #. Default: "Signatura de la unitat [CA]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:66
-msgid "signatura_unitat_ca"
-msgstr "Signatura de la unitat [CA]"
+msgid "signatura_ca"
+msgstr "Signatura [CA]"
 
 #. "Signatura de la unitat [EN]"
 #. Default: "Signatura de la unitat [EN]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:84
-msgid "signatura_unitat_en"
-msgstr "Signatura de la unitat [EN]"
+msgid "signatura_en"
+msgstr "Signatura [EN]"
 
 #. "Signatura de la unitat [ES]"
 #. Default: "Signatura de la unitat [ES]"
 #: genweb.controlpanel/genweb/controlpanel/interface.py:75
-msgid "signatura_unitat_es"
-msgstr "Signatura de la unitat [ES]"
+msgid "signatura_es"
+msgstr "Signatura [ES]"
 
 #. "Vés al contingut (premeu Retorn)"
 #. Default: "Vés al contingut (premeu Retorn)"

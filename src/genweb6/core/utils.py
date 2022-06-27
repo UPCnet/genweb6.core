@@ -18,6 +18,9 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
 from genweb6.core import HAS_PAM
+from genweb6.core.controlpanels.cookies import ICookiesSettings
+from genweb6.core.controlpanels.footer import IFooterSettings
+from genweb6.core.controlpanels.login import ILoginSettings
 
 import json
 import logging
@@ -163,6 +166,21 @@ def abreviaPlainText(summary, sumlenght):
 #         return genweb_config()
 
 
+def genwebCookiesConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(ICookiesSettings)
+
+
+def genwebFooterConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IFooterSettings)
+
+
+def genwebLoginConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(ILoginSettings)
+
+
 class genwebUtils(BrowserView):
     """ Convenience methods placeholder genweb.utils view. """
 
@@ -172,6 +190,15 @@ class genwebUtils(BrowserView):
     def portal_url_https(self):
         """Get the Plone portal URL in https mode """
         return self.portal().absolute_url().replace('http://', 'https://')
+
+    def genwebCookiesConfig(self):
+        return genwebCookiesConfig()
+
+    def genwebFooterConfig(self):
+        return genwebFooterConfig()
+
+    def genwebLoginConfig(self):
+        return genwebLoginConfig()
 
     def havePermissionAtRoot(self):
         """Funcio que retorna si es Editor a l'arrel"""

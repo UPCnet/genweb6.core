@@ -167,9 +167,9 @@ class gwManagePortletsFallbackViewletMixin(object):
     def available(self):
         secman = getSecurityManager()
         if secman.checkPermission('Genweb: Superadmin Users', self.context):
-            return True
-        else:
-            return False
+            if self.request.steps[-1] in ['document_view', 'homepage']:
+                return True
+        return False
 
     def canManageGrid(self):
         secman = getSecurityManager()

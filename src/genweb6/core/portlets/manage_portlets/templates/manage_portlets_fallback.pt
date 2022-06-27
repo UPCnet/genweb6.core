@@ -1,6 +1,7 @@
-<tal:div condition="view/available">
+<div tal:condition="view/available"
+     class="d-grid gap-2">
 
-  <a class="btn btn-small btn-block"
+  <a class="btn btn-secondary"
      tal:attributes="href view/managePortletsURL">
 
    <span class="icon-cog"></span>
@@ -12,4 +13,4 @@
 
   </a>
 
-</tal:div>
+</div>
