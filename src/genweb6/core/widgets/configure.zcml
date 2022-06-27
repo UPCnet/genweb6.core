@@ -1,0 +1,35 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:z3c="http://namespaces.zope.org/z3c"
+  i18n_domain="plone">
+
+  <class class=".fieldset.fieldset.FieldsetWidget">
+    <require
+      permission="zope.Public"
+      interface=".fieldset.fieldset.IFieldsetWidget"
+      />
+  </class>
+
+  <z3c:widgetTemplate
+    mode="input"
+    widget=".fieldset.fieldset.IFieldsetWidget"
+    layer="z3c.form.interfaces.IFormLayer"
+    template="fieldset/fieldset.pt"
+    />
+
+
+  <class class=".read_only.read_only.ReadOnlyInputWidget">
+    <require
+      permission="zope.Public"
+      interface=".read_only.read_only.IReadOnlyInputWidget"
+      />
+  </class>
+
+  <z3c:widgetTemplate
+    mode="input"
+    widget=".read_only.read_only.IReadOnlyInputWidget"
+    layer="z3c.form.interfaces.IFormLayer"
+    template="read_only/read_only.pt"
+    />
+
+</configure>

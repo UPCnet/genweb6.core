@@ -27,6 +27,7 @@
     <include package=".content" />
     <include package=".controlpanels" />
     <include package=".portlets" />
+    <include package=".widgets" />
 
     <include package="souper.plone" />
 
