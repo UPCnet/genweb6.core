@@ -125,7 +125,7 @@
 
                   <span class="add-on">span</span>
 
-                  <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                  <input class="editable" type="text" placeholder="0" style="width: 30px;"
                          tal:attributes="data-context-id context/id;
                                          data-manager manager_name;
                                          value python:view.getValue(manager_name)">
@@ -148,7 +148,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
@@ -171,7 +171,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
@@ -194,7 +194,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
@@ -221,7 +221,7 @@
 
                   <span class="add-on">span</span>
 
-                  <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                  <input class="editable" type="text" placeholder="0" style="width: 30px;"
                          tal:attributes="data-context-id context/id;
                                          data-manager manager_name;
                                          value python:view.getValue(manager_name)">
@@ -244,7 +244,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
@@ -267,7 +267,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
@@ -290,7 +290,7 @@
 
                 <span class="add-on">span</span>
 
-                <input class="editable" type="text" placeholder="0" style="width: 15px;"
+                <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
