@@ -37,13 +37,6 @@ class IFooterSettings(model.Schema):
         required=False,
     )
 
-    treu_icones_xarxes_socials = schema.Bool(
-        title=_(u"treu_icones_xarxes_socials", default="Treu les icones per compartir en xarxes socials"),
-        description=_(u"help_treu_icones_xarxes_socials", default=u"Treu les icones per compartir en xarxes socials ..."),
-        required=False,
-        default=False,
-    )
-
 
 class FooterSettingsForm(controlpanel.RegistryEditForm):
 
