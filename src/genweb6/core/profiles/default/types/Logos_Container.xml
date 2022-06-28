@@ -27,7 +27,7 @@
         <element value="plone.namefromtitle" />
         <element value="plone.translatable" />
         <element value="plone.excludefromnavigation" />
-        <element value="plone.selectablecontrainstypes" />
+        <element value="plone.constraintypes" />
     </property>
 
     <property name="default_view">folder_listing</property>
