@@ -17,6 +17,7 @@ from zope.component.hooks import getSite
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
+from genweb6.core import _
 from genweb6.core import HAS_PAM
 from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
@@ -335,6 +336,9 @@ class genwebUtils(BrowserView):
     def localized_time(self, date):
         local_date = DateTime(date)
         return local_date.strftime('%Y-%m-%d %X')
+
+    def lit_open_in_new_window(self):
+        return self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)"))
 
 
 @implementer(ICatalogFactory)
