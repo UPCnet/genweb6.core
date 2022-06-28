@@ -70,21 +70,21 @@ class footerViewlet(viewletBase):
 
         links = {"ca": {"contact":       {"url": self.root_url() + "/ca/contact", "target": '_self'},
                         "sitemap":       {"url": self.root_url() + "/ca/sitemap", "target": '_self'},
-                        "accessibility": {"url": self.root_url() + "/accessibilitat", "target": '_self'},
+                        "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {"url": self.root_url() + "/politica-de-cookies", "target": '_self'}},
+                        "cookies":       {}},
 
                  "es": {"contact":       {"url": self.root_url() + "/es/contact", "target": '_self'},
                         "sitemap":       {"url": self.root_url() + "/es/sitemap", "target": '_self'},
-                        "accessibility": {"url": self.root_url() + "/accesibilidad", "target": '_self'},
+                        "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {"url": self.root_url() + "/politica-de-cookies-es", "target": '_self'}},
+                        "cookies":       {}},
 
                  "en": {"contact":       {"url": self.root_url() + "/en/contact", "target": '_self'},
                         "sitemap":       {"url": self.root_url() + "/en/sitemap", "target": '_self'},
-                        "accessibility": {"url": self.root_url() + "/accessibility", "target": '_self'},
+                        "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {"url": self.root_url() + "/cookies-policy", "target": '_self'}}}
+                        "cookies":       {}}}
 
         return links[lang]
 
