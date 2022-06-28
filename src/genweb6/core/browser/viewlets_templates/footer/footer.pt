@@ -1,4 +1,4 @@
-<div class="footer-complementary" i18n:domain="genweb">
+<div id="footer-complementary" i18n:domain="genweb">
 
     <div class="row">
 

@@ -1,28 +1,29 @@
-<tal:logosfooter define="logos view/getLogosFooter">
+<div id="footer-logos" tal:define="logos view/getLogosFooter"
+     tal:condition="logos" i18n:domain="genweb">
 
-<aside id="bandaLogos"
-       tal:condition="logos" role="complementary"  aria-labelledby="titol-banda-logos">
+  <h2 i18n:translate="layout_banda_logos">Banda de d'enllacos de peu</h2>
 
-  <div class="container">
-    <h2 class="goout" id="titol-banda-logos" i18n:domain="genweb" i18n:translate="layout_banda_logos">Banda de d'enllacos de peu</h2>
-    <ul class="llistatLogos" role="list">
-      <li tal:repeat="logo logos" role="listitem">
-        <a rel="tooltip" data-placement="top"
-           tal:define="target python:logo.open_link_in_new_window and '_blank' or None"
-           tal:attributes="href logo/getRemoteUrl| nothing;
-                             data-original-title logo/Title;
-                             target target | nothing">
-          <img tal:condition="logo/open_link_in_new_window"
-               tal:attributes="src string:${logo/getURL}/@@images/image;
-                               alt python:view.getAltAndTitle(logo.Title)">
-          <img tal:condition="not: logo/open_link_in_new_window"
-               tal:attributes="src string:${logo/getURL}/@@images/image;
-                                 alt logo/Title">
-        </a>
-      </li>
-    </ul>
-  </div>
+  <ul class="llistatLogos" role="list">
 
-</aside>
+    <li tal:repeat="logo logos" role="listitem">
 
-</tal:logosfooter>
+      <a rel="tooltip" data-placement="top"
+         tal:define="target python:logo.open_link_in_new_window and '_blank' or None"
+         tal:attributes="href logo/getRemoteUrl| nothing;
+                         data-original-title logo/Title;
+                         target target | nothing">
+
+        <img tal:condition="logo/open_link_in_new_window"
+             tal:define="title python:view.getAltAndTitle(logo.Title)"
+             tal:attributes="src string:${logo/getURL}/@@images/image;
+                             title title;
+                             alt title">
+
+        <img tal:condition="not: logo/open_link_in_new_window"
+             tal:attributes="src string:${logo/getURL}/@@images/image;
+                             title logo/Title;
+                             alt logo/Title">
+      </a>
+    </li>
+  </ul>
+</div>
