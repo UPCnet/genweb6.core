@@ -68,6 +68,7 @@ setup(
         'plone.formwidget.recaptcha',
         'collective.easyform',
         'ftw.casauth',
+        'collective.exportimport',
     ],
 
     extras_require={
