@@ -139,6 +139,9 @@ class gwManagePortletsFallbackViewletMixin(object):
 
     def getPortletContainerPath(self):
         context = aq_inner(self.context)
+        lang = self.context.language
+        if not lang:
+            lang = 'ca'
 
         container_url = context.absolute_url()
 
@@ -150,7 +153,7 @@ class gwManagePortletsFallbackViewletMixin(object):
             # non PAM-enabled site and the possible inner ones.
             result = pc.searchResults(object_provides=IHomePage.__identifier__,
                                       portal_type='Document',
-                                      Language=pref_lang())
+                                      Language=lang)
 
             if result:
                 # Return the object without forcing a getObject()
