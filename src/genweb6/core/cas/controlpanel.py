@@ -115,7 +115,6 @@ class CASSettingsForm(controlpanel.RegistryEditForm):
         self.request.response.redirect(self.context.absolute_url() + '/' + self.control_panel_view)
 
     def absolute_url(self):
-        import ipdb; ipdb.set_trace()
         self.context.absolute_url()
 
 
