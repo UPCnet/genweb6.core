@@ -13,7 +13,7 @@ from zope.interface import implementer
 from genweb6.core.cas.utils import getCASSettings
 from genweb6.core.cas.utils import login_URL
 from genweb6.core.utils import genwebLoginConfig
-
+from genweb6.core.utils import portal_url
 
 class LoginUtils():
 
@@ -56,8 +56,7 @@ class LoginUtils():
         if login_settings.change_password_url:
             return login_settings.change_password_url
         else:
-            portal_url = self.get_root_url()
-            return '{}/@@change-password'.format(portal_url)
+            return '{}/@@change-password'.format(portal_url())
 
 
 @implementer(ILoginForm)
