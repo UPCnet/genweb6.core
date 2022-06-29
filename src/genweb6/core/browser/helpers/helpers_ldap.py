@@ -52,7 +52,7 @@ Configura el LDAP UPC
 
                 # Delete the ldapexterns if exists
                 if getattr(portal.acl_users, 'ldapexterns', None):
-                    portal.acl_users.manage_delObjects('ldapUPC')
+                    portal.acl_users.manage_delObjects('ldapexterns')
 
                 manage_addPloneLDAPMultiPlugin(
                     portal.acl_users, 'ldapUPC',
@@ -146,7 +146,7 @@ Paràmetre:
 
             # Delete the ldapexterns if exists
             if getattr(portal.acl_users, 'ldapexterns', None):
-                portal.acl_users.manage_delObjects('ldapUPC')
+                portal.acl_users.manage_delObjects('ldapexterns')
 
             # try:
             manage_addPloneLDAPMultiPlugin(
@@ -252,7 +252,7 @@ Paràmetres:
 
         # Delete the ldapexterns if exists
         if getattr(portal.acl_users, 'ldapexterns', None):
-            portal.acl_users.manage_delObjects('ldapUPC')
+            portal.acl_users.manage_delObjects('ldapexterns')
 
         # Delete if exists
         if getattr(portal.acl_users, ldap_name, None):
