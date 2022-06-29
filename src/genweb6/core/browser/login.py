@@ -15,6 +15,7 @@ from genweb6.core.cas.utils import login_URL
 from genweb6.core.utils import genwebLoginConfig
 from genweb6.core.utils import portal_url
 
+
 class LoginUtils():
 
     def cas_settings(self):
