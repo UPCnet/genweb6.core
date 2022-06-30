@@ -1,8 +1,6 @@
 <div id="footer-logos" tal:define="logos view/getLogosFooter"
      tal:condition="logos" i18n:domain="genweb">
 
-  <h2 i18n:translate="layout_banda_logos">Banda de d'enllacos de peu</h2>
-
   <ul class="llistatLogos" role="list">
 
     <li tal:repeat="logo logos" role="listitem">
