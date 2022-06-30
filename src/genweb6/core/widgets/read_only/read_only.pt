@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
      xmlns:tal="http://xml.zope.org/namespaces/tal"
      tal:omit-tag=""
-     i18n:domain="genweb6.tfemarket">>
+     i18n:domain="genweb6.tfemarket">
 
      <input type="text" readonly
             tal:attributes="id view/id;
