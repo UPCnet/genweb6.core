@@ -3,7 +3,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.portlets.portlets import base
-from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform import directives
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
@@ -126,7 +125,7 @@ class INewContentPortlet(IPortletDataProvider):
         description=_(u'help_existing_content',
                       default=u"You may search for and choose an existing content"),
         required=False,
-        source=CatalogSource()
+        vocabulary='plone.app.vocabularies.Catalog',
     )
 
     element = schema.TextLine(
