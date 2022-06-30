@@ -13,7 +13,7 @@
   <z3c:widgetTemplate
     mode="input"
     widget=".fieldset.fieldset.IFieldsetWidget"
-    layer="z3c.form.interfaces.IFormLayer"
+    layer="plone.app.z3cform.interfaces.IPloneFormLayer"
     template="fieldset/fieldset.pt"
     />
 
@@ -28,7 +28,7 @@
   <z3c:widgetTemplate
     mode="input"
     widget=".read_only.read_only.IReadOnlyInputWidget"
-    layer="z3c.form.interfaces.IFormLayer"
+    layer="plone.app.z3cform.interfaces.IPloneFormLayer"
     template="read_only/read_only.pt"
     />
 

@@ -2,7 +2,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       tal:omit-tag=""
       lang="ca"
-      i18n:domain="genweb6.tfemarket">>
+      i18n:domain="genweb6.tfemarket">
 
     <h2 class="formFieldset" i18n:translate="" tal:content="view/value">
       Title
