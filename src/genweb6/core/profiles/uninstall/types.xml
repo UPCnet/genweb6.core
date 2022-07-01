@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<object name="portal_types" meta_type="Plone Types Tool">
+
+    <object name="Banner" meta_type="Dexterity FTI" remove="True" />
+    <object name="BannerContainer" meta_type="Dexterity FTI" remove="True" />
+
+    <object name="Logos_Footer" meta_type="Dexterity FTI" remove="True" />
+    <object name="Logos_Container" meta_type="Dexterity FTI" remove="True" />
+
+    <object name="genweb.upc.subhome" meta_type="Dexterity FTI" remove="True" />
+    <object name="genweb.upc.documentimage" meta_type="Dexterity FTI" remove="True" />
+
+</object>

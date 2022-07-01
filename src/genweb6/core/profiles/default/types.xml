@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
 <object name="portal_types" meta_type="Plone Types Tool">
 
-    <object name="Plone Site" meta_type="Factory-based Type Information with dynamic views"/>
-
-    <object name="Link" meta_type="Dexterity FTI" />
-
     <object name="Banner" meta_type="Dexterity FTI" />
     <object name="BannerContainer" meta_type="Dexterity FTI" />
 
     <object name="Logos_Footer" meta_type="Dexterity FTI" />
     <object name="Logos_Container" meta_type="Dexterity FTI" />
 
-    <object name="genweb.upc.subhome" meta_type="Dexterity FTI"  />
-    <object meta_type="Dexterity FTI" name="genweb.upc.documentimage" />
+    <object name="genweb.upc.subhome" meta_type="Dexterity FTI" />
+    <object name="genweb.upc.documentimage" meta_type="Dexterity FTI" />
 
 </object>
