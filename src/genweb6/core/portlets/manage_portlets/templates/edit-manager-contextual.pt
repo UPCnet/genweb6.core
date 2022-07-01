@@ -4,8 +4,8 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
 
-<br>
-<div class="portlets-manager"
+
+<div class="portlets-manager mt-2"
      tal:attributes="id string:portletmanager-${view/normalized_manager_name};"
      i18n:domain="plone">
 
