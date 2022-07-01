@@ -6,7 +6,6 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
-from plone.app.layout.navigation.defaultpage import getDefaultPage
 from plone.uuid.interfaces import IMutableUUID
 from souper.soup import get_soup
 from zope.interface import alsoProvides
@@ -605,7 +604,7 @@ Llista el valor de la propietat 'default_page' (si està definida) per als conti
         return self._compose_report(collections)
 
     def _get_default_page(self, content):
-        default_page = getDefaultPage(content)
+        default_page = content.getDefaultPage()
         if not default_page:
             default_page = content.getProperty('default_page')
         return default_page

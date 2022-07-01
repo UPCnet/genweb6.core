@@ -19,7 +19,6 @@ from plone.app.event.base import RET_MODE_ACCESSORS
 from plone.app.event.base import RET_MODE_OBJECTS
 from plone.app.event.base import start_end_from_mode
 from plone.app.event.ical.exporter import construct_icalendar
-from plone.app.layout.navigation.defaultpage import getDefaultPage
 from plone.app.querystring import queryparser
 from plone.memoize import view
 from zope.component import getMultiAdapter
@@ -78,7 +77,7 @@ class NewsListing(BrowserView):
     def default_context(self):
         # Try to get the default page
         context = self.context
-        default = getDefaultPage(context)
+        default = context.getDefaultPage()
         if default:
             context = context[default]
         return context
