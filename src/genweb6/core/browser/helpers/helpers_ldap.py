@@ -8,6 +8,7 @@ from zope.component import getAdapter
 
 from plone import api
 from zope.component.hooks import getSite
+from zope.globalrequest import getRequest
 from zope.interface import alsoProvides
 
 import os
@@ -30,92 +31,96 @@ logger = logging.getLogger(__name__)
 LDAP_PASSWORD = os.environ.get('ldapbindpasswd', '')
 
 
+def setSetupLDAPUPC():
+    try:
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(getRequest(), IDisableCSRFProtection)
+    except:
+        pass
+
+    portal = getSite()
+
+    if HAS_LDAP:
+        try:
+            # Delete the ldapUPC if exists
+            if getattr(portal.acl_users, 'ldapUPC', None):
+                portal.acl_users.manage_delObjects('ldapUPC')
+
+            # Delete the ldapexterns if exists
+            if getattr(portal.acl_users, 'ldapexterns', None):
+                portal.acl_users.manage_delObjects('ldapexterns')
+
+            manage_addPloneLDAPMultiPlugin(
+                portal.acl_users, 'ldapUPC',
+                title='ldapUPC', LDAP_server='ldap.upc.edu', login_attr='cn', uid_attr='cn',
+                users_base='ou=Users,dc=upc,dc=edu', users_scope=2, roles='Authenticated',
+                groups_base='ou=Groups,dc=upc,dc=edu', groups_scope=2,
+                binduid='cn=ldap.serveis,ou=users,dc=upc,dc=edu', bindpwd=LDAP_PASSWORD, binduid_usage=1,
+                rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
+
+            portal.acl_users.ldapUPC.acl_users.manage_edit(
+                'ldapUPC', 'cn', 'cn', 'ou=Users,dc=upc,dc=edu', 2, 'Authenticated',
+                'ou=Groups,dc=upc,dc=edu', 2, 'cn=ldap.serveis,ou=users,dc=upc,dc=edu',
+                LDAP_PASSWORD, 1, 'cn', 'top,person', 0, 0, 'SSHA', 1, '')
+
+            plugin = portal.acl_users['ldapUPC']
+
+            plugin.manage_activateInterfaces(['IGroupEnumerationPlugin',
+                                              'IGroupsPlugin',
+                                              'IGroupIntrospection',
+                                              'IAuthenticationPlugin',
+                                              'IUserEnumerationPlugin'])
+
+            # Comentem la linia per a que no afegeixi
+            # LDAPUserFolder.manage_addServer(portal.acl_users.ldapUPC.acl_users, 'ldap.upc.edu', '636', use_ssl=1)
+
+            LDAPUserFolder.manage_deleteLDAPSchemaItems(
+                portal.acl_users.ldapUPC.acl_users, ldap_names=['sn'], REQUEST=None)
+
+            LDAPUserFolder.manage_addLDAPSchemaItem(
+                portal.acl_users.ldapUPC.acl_users, ldap_name='sn', friendly_name='Last Name', public_name='name')
+
+            # Move the ldapUPC to the top of the active plugins.
+            # Otherwise member.getProperty('email') won't work properly.
+            # from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin
+            # portal.acl_users.plugins.movePluginsUp(IPropertiesPlugin, ['ldapUPC'])
+            # portal.acl_users.plugins.manage_movePluginsUp('IPropertiesPlugin', ['ldapUPC'], context.REQUEST.RESPONSE)
+
+            getAdapter(portal, IUserGroupsSettingsSchema).set_many_groups(True)
+            getAdapter(portal, IUserGroupsSettingsSchema).set_many_users(True)
+
+        except:
+            logger.debug('Something bad happened and the LDAP has not been created properly')
+
+        try:
+            plugin = portal.acl_users['ldapUPC']
+            plugin.ZCacheable_setManagerId('RAMCache')
+
+            portal_role_manager = portal.acl_users['portal_role_manager']
+            portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPC.Plone.Admins')
+            portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.Plone.Admins')
+            portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.ATIC')
+
+        except:
+            logger.debug('Something bad happened and the LDAP has not been configured properly')
+
+    else:
+        logger.debug('You do not have LDAP libraries in your current buildout configuration. POSOK.')
+
+        # try:
+        # Fora el sistema de cookies que fan buscar al LDAP cn=*
+        #     portal.acl_users.manage_delObjects('credentials_cookie_auth')
+        # except:
+        #     pass
+
+
 class setupLDAPUPC(BrowserView):
     """
 Configura el LDAP UPC
     """
 
     def __call__(self):
-        try:
-            from plone.protect.interfaces import IDisableCSRFProtection
-            alsoProvides(self.request, IDisableCSRFProtection)
-        except:
-            pass
-
-        portal = getSite()
-
-        if HAS_LDAP:
-            try:
-                # Delete the ldapUPC if exists
-                if getattr(portal.acl_users, 'ldapUPC', None):
-                    portal.acl_users.manage_delObjects('ldapUPC')
-
-                # Delete the ldapexterns if exists
-                if getattr(portal.acl_users, 'ldapexterns', None):
-                    portal.acl_users.manage_delObjects('ldapexterns')
-
-                manage_addPloneLDAPMultiPlugin(
-                    portal.acl_users, 'ldapUPC',
-                    title='ldapUPC', LDAP_server='ldap.upc.edu', login_attr='cn', uid_attr='cn',
-                    users_base='ou=Users,dc=upc,dc=edu', users_scope=2, roles='Authenticated',
-                    groups_base='ou=Groups,dc=upc,dc=edu', groups_scope=2,
-                    binduid='cn=ldap.serveis,ou=users,dc=upc,dc=edu', bindpwd=LDAP_PASSWORD, binduid_usage=1,
-                    rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
-
-                portal.acl_users.ldapUPC.acl_users.manage_edit(
-                    'ldapUPC', 'cn', 'cn', 'ou=Users,dc=upc,dc=edu', 2, 'Authenticated',
-                    'ou=Groups,dc=upc,dc=edu', 2, 'cn=ldap.serveis,ou=users,dc=upc,dc=edu',
-                    LDAP_PASSWORD, 1, 'cn', 'top,person', 0, 0, 'SSHA', 1, '')
-
-                plugin = portal.acl_users['ldapUPC']
-
-                plugin.manage_activateInterfaces(['IGroupEnumerationPlugin',
-                                                  'IGroupsPlugin',
-                                                  'IGroupIntrospection',
-                                                  'IAuthenticationPlugin',
-                                                  'IUserEnumerationPlugin'])
-
-                # Comentem la linia per a que no afegeixi
-                # LDAPUserFolder.manage_addServer(portal.acl_users.ldapUPC.acl_users, 'ldap.upc.edu', '636', use_ssl=1)
-
-                LDAPUserFolder.manage_deleteLDAPSchemaItems(
-                    portal.acl_users.ldapUPC.acl_users, ldap_names=['sn'], REQUEST=None)
-
-                LDAPUserFolder.manage_addLDAPSchemaItem(
-                    portal.acl_users.ldapUPC.acl_users, ldap_name='sn', friendly_name='Last Name', public_name='name')
-
-                # Move the ldapUPC to the top of the active plugins.
-                # Otherwise member.getProperty('email') won't work properly.
-                # from Products.PluggableAuthService.interfaces.plugins import IPropertiesPlugin
-                # portal.acl_users.plugins.movePluginsUp(IPropertiesPlugin, ['ldapUPC'])
-                # portal.acl_users.plugins.manage_movePluginsUp('IPropertiesPlugin', ['ldapUPC'], context.REQUEST.RESPONSE)
-
-                getAdapter(portal, IUserGroupsSettingsSchema).set_many_groups(True)
-                getAdapter(portal, IUserGroupsSettingsSchema).set_many_users(True)
-
-            except:
-                logger.debug('Something bad happened and the LDAP has not been created properly')
-
-            try:
-                plugin = portal.acl_users['ldapUPC']
-                plugin.ZCacheable_setManagerId('RAMCache')
-
-                portal_role_manager = portal.acl_users['portal_role_manager']
-                portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPC.Plone.Admins')
-                portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.Plone.Admins')
-                portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.ATIC')
-
-            except:
-                logger.debug('Something bad happened and the LDAP has not been configured properly')
-
-        else:
-            logger.debug('You do not have LDAP libraries in your current buildout configuration. POSOK.')
-
-            # try:
-            # Fora el sistema de cookies que fan buscar al LDAP cn=*
-            #     portal.acl_users.manage_delObjects('credentials_cookie_auth')
-            # except:
-            #     pass
+        setSetupLDAPUPC()
 
 
 class setupLDAPExterns(BrowserView):
@@ -129,7 +134,7 @@ Paràmetre:
     def __call__(self):
         try:
             from plone.protect.interfaces import IDisableCSRFProtection
-            alsoProvides(self.request, IDisableCSRFProtection)
+            alsoProvides(getRequest(), IDisableCSRFProtection)
         except:
             pass
 
@@ -227,20 +232,22 @@ Paràmetres:
     """
 
     def __call__(self):
+        request = getRequest()
+
         try:
             from plone.protect.interfaces import IDisableCSRFProtection
-            alsoProvides(self.request, IDisableCSRFProtection)
+            alsoProvides(request, IDisableCSRFProtection)
         except:
             pass
 
         portal = getSite()
-        ldap_name = self.request.form.get('ldap_name', 'ldap')
-        ldap_server = self.request.form.get('ldap_server')
-        branch_name = self.request.form.get('branch_name')
-        base_dn = self.request.form.get('base_dn')
-        branch_admin_cn = self.request.form.get('branch_admin_cn')
-        branch_admin_password = self.request.form.get('branch_admin_password')
-        allow_manage_users = self.request.form.get('allow_manage_users', False)
+        ldap_name = request.form.get('ldap_name', 'ldap')
+        ldap_server = request.form.get('ldap_server')
+        branch_name = request.form.get('branch_name')
+        base_dn = request.form.get('base_dn')
+        branch_admin_cn = request.form.get('branch_admin_cn')
+        branch_admin_password = request.form.get('branch_admin_password')
+        allow_manage_users = request.form.get('allow_manage_users', False)
 
         users_base = 'ou=users,ou={},{}'.format(branch_name, base_dn)
         groups_base = 'ou=groups,ou={},{}'.format(branch_name, base_dn)
