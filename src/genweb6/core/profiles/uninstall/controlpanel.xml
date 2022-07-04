@@ -28,6 +28,19 @@
     </configlet>
 
     <configlet
+        title="Header"
+        action_id="genweb6.core.header"
+        appId="genweb6.core.header"
+        category="genweb-design"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@header-controlpanel"
+        icon_expr="string:border-top"
+        remove="True">
+
+        <permission>Genweb: Superadmin Users</permission>
+    </configlet>
+
+    <configlet
         title="Footer"
         action_id="genweb6.core.footer"
         appId="genweb6.core.footer"

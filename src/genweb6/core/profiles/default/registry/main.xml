@@ -16,6 +16,10 @@
         purge="False" />
 
     <records
+        interface="genweb6.core.controlpanels.header.IHeaderSettings"
+        purge="False" />
+
+    <records
         interface="genweb6.core.controlpanels.footer.IFooterSettings"
         purge="False" />
 

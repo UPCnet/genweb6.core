@@ -34,6 +34,13 @@
         />
 
     <browser:page
+        name="header-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".header.HeaderSettingsControlPanel"
+        permission="genweb.superadmin"
+        />
+
+    <browser:page
         name="footer-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".footer.FooterSettingsControlPanel"
