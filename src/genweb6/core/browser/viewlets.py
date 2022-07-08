@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
+from plone.app.layout.viewlets.common import GlobalSectionsViewlet
+from plone.app.layout.viewlets.common import SearchBoxViewlet
+from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
 
 from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.browser.login import LoginUtils
+from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
+from genweb6.core.utils import genwebHeaderConfig
 
 
 class viewletBase(ViewletBase):
@@ -31,14 +36,67 @@ class viewletBase(ViewletBase):
         return api.user.is_anonymous()
 
 
+class cintilloViewlet(viewletBase):
+
+    def info_cintillo(self):
+        cintillo_config = genwebCintilloConfig()
+        if not cintillo_config.active:
+            return {"show": False}
+
+        lang = self.pref_lang()
+        return {"show": True,
+                "style": "background-color: " + cintillo_config.background_color +
+                         "; color: " + cintillo_config.font_color + ";",
+                "icon": cintillo_config.icon,
+                "title": getattr(cintillo_config, "title_" + lang, ""),
+                "text": getattr(cintillo_config, "text_" + lang, "")}
+
+
 class loginViewlet(viewletBase, LoginUtils):
 
     def show_login(self):
         if self.isAnonymous():
-            # TODO
-            # self.genweb_config().amaga_identificacio
-            return True
+            if not genwebHeaderConfig().amaga_identificacio:
+                return True
         return False
+
+
+class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet):
+
+    def getLogosHeader(self):
+        header_config = genwebHeaderConfig()
+        portal_url = self.root_url()
+
+        if getattr(header_config, 'logo', False):
+            filename, data = b64decode_file(header_config.logo)
+            logo = '{}/@@gw-logo/{}'.format(portal_url, filename)
+        else:
+            logo = '%s/logo.png' % portal_url
+
+        if getattr(header_config, 'logo_responsive', False):
+            filename, data = b64decode_file(header_config.logo_responsive)
+            logo_responsive = '{}/@@gw-logo-responsive/{}'.format(portal_url, filename)
+        else:
+            logo_responsive = logo
+
+        if getattr(header_config, 'secundary_logo', False):
+            filename, data = b64decode_file(header_config.secundary_logo)
+            secundary_logo = '{}/@@gw-secundary-logo/{}'.format(portal_url, filename)
+        else:
+            secundary_logo = None
+
+        if getattr(header_config, 'secundary_logo_responsive', False):
+            filename, data = b64decode_file(header_config.secundary_logo_responsive)
+            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive/{}'.format(portal_url, filename)
+        else:
+            secundary_logo_responsive = secundary_logo
+
+        return {"logo": logo,
+                "logo_alt": getattr(header_config, 'logo_alt', ""),
+                "logo_responsive": logo_responsive,
+                "secundary_logo": secundary_logo,
+                "secundary_logo_responsive": secundary_logo_responsive,
+                "secundary_logo_alt": getattr(header_config, 'secundary_logo_alt', "")}
 
 
 class logosFooterViewlet(viewletBase):

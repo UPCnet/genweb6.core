@@ -7,13 +7,31 @@
     <!-- HEADER -->
 
     <browser:viewlet
+        name="genweb.cintillo"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.cintilloViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/header/cintillo.pt"
+        />
+
+    <browser:viewlet
+        name="genweb.header"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class=".viewlets.headerViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/header/header.pt"
+        />
+
+    <!-- <browser:viewlet
         name="genweb.login"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
         class=".viewlets.loginViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/header/login.pt"
-        />
+        /> -->
 
     <!-- FOOTER -->
 

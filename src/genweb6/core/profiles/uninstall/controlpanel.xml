@@ -2,68 +2,45 @@
 <object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
 
     <configlet
-        title="CAS"
         action_id="genweb6.core.cas"
         appId="genweb6.core.cas"
-        category="genweb-connection"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@cas-controlpanel"
-        icon_expr="string:gear"
         remove="True">
 
-        <permission>Genweb: Manager Users</permission>
     </configlet>
 
     <configlet
-        title="Cookies"
         action_id="genweb6.core.cookies"
         appId="genweb6.core.cookies"
-        category="genweb-advanced"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@cookies-controlpanel"
-        icon_expr="string:gear"
         remove="True">
 
-        <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
     <configlet
-        title="Header"
+        action_id="genweb6.core.cintillo"
+        appId="genweb6.core.cintillo"
+        remove="True">
+
+    </configlet>
+
+    <configlet
         action_id="genweb6.core.header"
         appId="genweb6.core.header"
-        category="genweb-design"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@header-controlpanel"
-        icon_expr="string:border-top"
         remove="True">
 
-        <permission>Genweb: Superadmin Users</permission>
     </configlet>
 
     <configlet
-        title="Footer"
         action_id="genweb6.core.footer"
         appId="genweb6.core.footer"
-        category="genweb-design"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@footer-controlpanel"
-        icon_expr="string:border-bottom"
         remove="True">
 
-        <permission>Genweb: Superadmin Users</permission>
     </configlet>
 
     <configlet
-        title="Login"
         action_id="genweb6.core.login"
         appId="genweb6.core.login"
-        category="genweb-connection"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@login-controlpanel"
-        icon_expr="string:gear"
         remove="True">
 
-        <permission>Genweb: Manager Users</permission>
     </configlet>
 
 </object>

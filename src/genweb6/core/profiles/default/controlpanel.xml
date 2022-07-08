@@ -28,6 +28,19 @@
     </configlet>
 
     <configlet
+        title="Cintillo"
+        action_id="genweb6.core.cintillo"
+        appId="genweb6.core.cintillo"
+        category="genweb-design"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@cintillo-controlpanel"
+        icon_expr="string:exclamation-diamond"
+        visible="True">
+
+        <permission>Genweb: Superadmin Users</permission>
+    </configlet>
+
+    <configlet
         title="Header"
         action_id="genweb6.core.header"
         appId="genweb6.core.header"

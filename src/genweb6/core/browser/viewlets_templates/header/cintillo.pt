@@ -1,0 +1,15 @@
+<tal:block tal:define="info view/info_cintillo" tal:condition="info/show"
+           i18n:domain="genweb">
+
+  <div id="header-cintillo" class="cintillo" role="alert" tal:attributes="style info/style">
+
+    <div>
+      <i tal:condition="info/icon" tal:attributes="class string:bi ${info/icon}"></i>
+      <strong class="cintillo-title" tabindex="0" tal:content="structure info/title">Informació COVID-19</strong>
+    </div>
+
+    <div class="cintillo-body" tal:content="structure info/text">Text informatiu</div>
+
+  </div>
+
+</tal:block>

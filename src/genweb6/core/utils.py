@@ -19,8 +19,10 @@ from zope.interface import implementer
 
 from genweb6.core import _
 from genweb6.core import HAS_PAM
+from genweb6.core.controlpanels.cintillo import ICintilloSettings
 from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
+from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 
 import json
@@ -172,6 +174,16 @@ def genwebCookiesConfig():
     return registry.forInterface(ICookiesSettings)
 
 
+def genwebCintilloConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(ICintilloSettings)
+
+
+def genwebHeaderConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IHeaderSettings)
+
+
 def genwebFooterConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IFooterSettings)
@@ -188,12 +200,21 @@ class genwebUtils(BrowserView):
     def portal(self):
         return api.portal.get()
 
+    def portal_url(self):
+        return self.portal().absolute_url()
+
     def portal_url_https(self):
         """Get the Plone portal URL in https mode """
-        return self.portal().absolute_url().replace('http://', 'https://')
+        return self.portal_url().replace('http://', 'https://')
 
     def genwebCookiesConfig(self):
         return genwebCookiesConfig()
+
+    def genwebCintilloConfig(self):
+        return genwebCintilloConfig()
+
+    def genwebHeaderConfig(self):
+        return genwebHeaderConfig()
 
     def genwebFooterConfig(self):
         return genwebFooterConfig()
