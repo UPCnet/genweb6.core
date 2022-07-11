@@ -2,6 +2,8 @@
 from Products.CMFPlone.interfaces import INonInstallable
 
 from plone import api
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 from zope.interface import implementer
 
 import logging
@@ -86,9 +88,12 @@ def setupVarious(context):
         return
 
     # Add additional setup code here
-    #
     portal = context.getSite()
     logger = logging.getLogger(__name__)
+
+    # Setup settings Plone
+    registry = getUtility(IRegistry)
+    registry["plone.navigation_depth"] = 2
 
     # transforms = api.portal.get_tool(name='portal_transforms')
     # transform = getattr(transforms, 'safe_html')
@@ -134,10 +139,6 @@ def setupVarious(context):
     # # Fixem el primer dia de la setamana com dilluns (0)
     # pct.firstweekday = 0
 
-    # # Mark the home page
-    # if getattr(portal, 'front-page', False):
-    #     alsoProvides(portal['front-page'], IHomePage)
-    #     portal['front-page'].reindexObject()
 
     # # Set mailhost
     # if portal.email_from_address in ('noreply@upc.edu', 'no-reply@upcnet.es'):
