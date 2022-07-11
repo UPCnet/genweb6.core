@@ -94,11 +94,16 @@ class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
             secundary_logo_responsive = secundary_logo
 
         return {"logo": logo,
+                "logo_responsive": logo_responsive,
                 "logo_alt": getattr(header_config, 'logo_alt', ""),
+                "logo_url": getattr(header_config, 'logo_url', None),
+                "logo_target": "_blank" if header_config.logo_external_url else "_self",
                 "logo_responsive": logo_responsive,
                 "secundary_logo": secundary_logo,
                 "secundary_logo_responsive": secundary_logo_responsive,
-                "secundary_logo_alt": getattr(header_config, 'secundary_logo_alt', "")}
+                "secundary_logo_alt": getattr(header_config, 'secundary_logo_alt', ""),
+                "secundary_logo_url": getattr(header_config, 'secundary_logo_url', None),
+                "secundary_logo_target": "_blank" if header_config.secundary_logo_external_url else "_self"}
 
     def show_auto_register(self):
         if self.isAnonymous():

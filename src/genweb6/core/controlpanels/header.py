@@ -25,7 +25,9 @@ class IHeaderSettings(model.Schema):
                    fields=['fieldset_logo', 'fieldset_secundary_logo',
                            'logo', 'secundary_logo',
                            'logo_responsive', 'secundary_logo_responsive',
-                           'logo_alt', 'secundary_logo_alt'])
+                           'logo_alt', 'secundary_logo_alt',
+                           'logo_url', 'secundary_logo_url',
+                           'logo_external_url', 'secundary_logo_external_url'])
 
     directives.widget('fieldset_logo', FieldsetFieldWidget)
     fieldset_logo = schema.Text(
@@ -76,7 +78,7 @@ class IHeaderSettings(model.Schema):
     logo_alt = schema.TextLine(
         title=_(u"logo_alt",
                 default=u"Text alternatiu del logo"),
-        description=_(u"help_right_logo_alt",
+        description=_(u"help_logo_alt",
                       default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,
     )
@@ -84,8 +86,40 @@ class IHeaderSettings(model.Schema):
     secundary_logo_alt = schema.TextLine(
         title=_(u"logo_alt",
                 default=u"Text alternatiu del logo"),
-        description=_(u"help_right_logo_alt",
+        description=_(u"help_logo_alt",
                       default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
+        required=False,
+    )
+
+    read_permission(logo_url='genweb.superadmin')
+    write_permission(logo_url='genweb.webmaster')
+    logo_url = schema.TextLine(
+        title=_(u"logo_url",
+                default=u"URL del logo"),
+        description=_(u"help_logo_url",
+                      default=u"Afegiu l'URL del logo."),
+        required=False,
+    )
+
+    secundary_logo_url = schema.TextLine(
+        title=_(u"logo_url",
+                default=u"URL del logo"),
+        description=_(u"help_logo_url",
+                      default=u"Afegiu l'URL del logo."),
+        required=False,
+    )
+
+    read_permission(logo_external_url='genweb.superadmin')
+    write_permission(logo_external_url='genweb.webmaster')
+    logo_external_url = schema.Bool(
+        title=_(u"logo_external_url",
+                default=u"Es una URL externa?"),
+        required=False,
+    )
+
+    secundary_logo_external_url = schema.Bool(
+        title=_(u"logo_external_url",
+                default=u"Es una URL externa?"),
         required=False,
     )
 

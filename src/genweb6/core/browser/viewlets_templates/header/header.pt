@@ -6,27 +6,70 @@
 
     <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
         <div id="logo-primary">
-            <img alt="" title="" class="img-desktop"
-                 tal:attributes="src logos/logo;
-                                 alt logos/logo_alt;
-                                 title logos/logo_alt;">
 
-            <img alt="" title="" class="img-responsive"
-                 tal:attributes="src logos/logo_responsive;
-                                 alt logos/logo_alt;
-                                 title logos/logo_alt;">
+            <a tal:condition="logos/logo_url"
+               tal:attributes="href logos/logo_url;
+                               target logos/logo_target;">
+
+                <img alt="" title="" class="img-desktop"
+                     tal:attributes="src logos/logo;
+                                     alt logos/logo_alt;
+                                     title logos/logo_alt;">
+
+                <img alt="" title="" class="img-responsive"
+                     tal:attributes="src logos/logo_responsive;
+                                     alt logos/logo_alt;
+                                     title logos/logo_alt;">
+
+            </a>
+
+            <tal:condition condition="not:logos/logo_url">
+
+                <img alt="" title="" class="img-desktop"
+                     tal:attributes="src logos/logo;
+                                     alt logos/logo_alt;
+                                     title logos/logo_alt;">
+
+                <img alt="" title="" class="img-responsive"
+                     tal:attributes="src logos/logo_responsive;
+                                     alt logos/logo_alt;
+                                     title logos/logo_alt;">
+
+            </tal:condition>
+
         </div>
 
         <div id="logo-secundary" class="ms-2" tal:condition="logos/secundary_logo">
-            <img alt="" title="" class="img-desktop"
-                 tal:attributes="src logos/secundary_logo;
-                                 alt logos/secundary_logo_alt;
-                                 title logos/secundary_logo_alt;">
 
-            <img alt="" title="" class="img-responsive"
-                 tal:attributes="src logos/secundary_logo_responsive;
-                                 alt logos/secundary_logo_alt;
-                                 title logos/secundary_logo_alt;">
+            <a tal:condition="logos/secundary_logo_url"
+               tal:attributes="href logos/secundary_logo_url;
+                               target logos/secundary_logo_target;">
+
+                <img alt="" title="" class="img-desktop"
+                     tal:attributes="src logos/secundary_logo;
+                                     alt logos/secundary_logo_alt;
+                                     title logos/secundary_logo_alt;">
+
+                <img alt="" title="" class="img-responsive"
+                     tal:attributes="src logos/secundary_logo_responsive;
+                                     alt logos/secundary_logo_alt;
+                                     title logos/secundary_logo_alt;">
+
+            </a>
+
+            <tal:condition condition="not:logos/secundary_logo_url">
+
+                <img alt="" title="" class="img-desktop"
+                     tal:attributes="src logos/secundary_logo;
+                                     alt logos/secundary_logo_alt;
+                                     title logos/secundary_logo_alt;">
+
+                <img alt="" title="" class="img-responsive"
+                     tal:attributes="src logos/secundary_logo_responsive;
+                                     alt logos/secundary_logo_alt;
+                                     title logos/secundary_logo_alt;">
+
+            </tal:condition>
         </div>
     </div>
 
