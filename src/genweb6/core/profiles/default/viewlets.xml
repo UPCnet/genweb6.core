@@ -17,22 +17,24 @@
   <viewlet name="plone.global_sections"/>
  </order>
  <order manager="plone.portalfooter" skinname="Plone Default">
+  <viewlet name="genweb.logosfooter"/>
+  <viewlet name="genweb.footer"/>
+  <viewlet name="genweb.upc.footer.contact"/>
+  <viewlet name="genweb.upc.footer"/>
+  <viewlet name="genweb.cookies"/>
+  <viewlet name="plone.analytics"/>
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.site_actions"/>
-  <viewlet name="genweb.logosfooter"/>
-  <viewlet name="genweb.footer"/>
-  <viewlet name="genweb.cookies"/>
-  <viewlet name="plone.analytics"/>
  </order>
  <order manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.anontools"/>
-  <viewlet name="plone.membertools"/>
   <viewlet name="plone.logo"/>
-  <viewlet name="plone.favicon"/>
+  <viewlet name="plone.membertools"/>
   <viewlet name="plone.searchbox"/>
   <viewlet name="plone.app.i18n.locales.languageselector"/>
-  <viewlet name="plone.app.multilingual.languageselector"/>
+  <viewlet name="genweb.cintillo"/>
+  <viewlet name="genweb.header"/>
  </order>
  <order manager="plone.portaltop" skinname="Plone Default"/>
  <order manager="plone.toolbar" skinname="Plone Default">
@@ -45,9 +47,14 @@
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.site_actions"/>
+  <viewlet name="genweb.footer"/>
  </hidden>
  <hidden manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.app.multilingual.languageselector"/>
   <viewlet name="plone.app.i18n.locales.languageselector"/>
+  <viewlet name="plone.searchbox"/>
+  <viewlet name="plone.logo"/>
+  <viewlet name="plone.membertools"/>
+  <viewlet name="plone.anontools"/>
  </hidden>
 </object>
