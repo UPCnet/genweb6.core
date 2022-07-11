@@ -19,8 +19,6 @@
  <order manager="plone.portalfooter" skinname="Plone Default">
   <viewlet name="genweb.logosfooter"/>
   <viewlet name="genweb.footer"/>
-  <viewlet name="genweb.upc.footer.contact"/>
-  <viewlet name="genweb.upc.footer"/>
   <viewlet name="genweb.cookies"/>
   <viewlet name="plone.analytics"/>
   <viewlet name="plone.footer"/>
@@ -47,7 +45,6 @@
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.site_actions"/>
-  <viewlet name="genweb.footer"/>
  </hidden>
  <hidden manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.app.multilingual.languageselector"/>
