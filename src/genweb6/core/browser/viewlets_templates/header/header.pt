@@ -1,8 +1,10 @@
-<div id="header" class="d-flex justify-content-between"
-     tal:define="gwutils context/@@genweb.utils;
-                 portal_url gwutils/portal_url">
+<tal:content tal:define="navigation_root_url view/navigation_root_url;
+                         show_login view/show_login;
+                         header_config context/@@genweb.utils/genwebHeaderConfig">
 
-    <div id="portal-logos" class="d-flex" tal:define="logos view/getLogosHeader">
+<div id="header" class="d-flex align-items-center">
+
+    <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
         <div id="logo-primary">
             <img alt="" title="" class="img-desktop"
                  tal:attributes="src logos/logo;
@@ -28,53 +30,88 @@
         </div>
     </div>
 
-    <nav id="portal-navbar" role="navigation"
-         class="global-navigation d-flex align-items-center">
+    <nav id="portal-navbar" role="navigation" class="global-navigation ms-auto">
 
-        <ul class="navbar-nav me-4 mb-2 mb-lg-0" id="portal-globalnav">
+        <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
             <li class="home nav-item">
-                <a class="state-visible nav-link" tal:attributes="href portal_url"
+                <a class="state-visible nav-link" tal:attributes="href navigation_root_url"
                    i18n:domain="genweb" i18n:translate="">
-                   Home
+                   Inici
                 </a>
             </li>
-            <navtree tal:replace="structure python:view.render_globalnav()" />
+
+            <navtree tal:condition="not:header_config/treu_menu_horitzontal"
+                     tal:replace="structure python:view.render_globalnav()" />
+
+            <li class="login nav-item" tal:condition="show_login">
+                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+                   i18n:translate="identificat">Identifica't</a>
+            </li>
+
+            <li class="register nav-item" tal:condition="view/show_auto_register">
+                <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
+                   i18n:domain="plone" i18n:translate="">Register</a>
+            </li>
+
         </ul>
-
-        <div id="portal-searchbox" class="d-flex flex-column position-relative"
-             i18n:domain="plone" tal:define="navigation_root_url view/navigation_root_url;">
-
-            <form id="searchGadget_form" action="@@search" role="search"
-                  class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'} "
-                  tal:attributes="action string:${navigation_root_url}/@@search;
-                                  data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;">
-
-                <label class="hiddenStructure" for="searchGadget"
-                       i18n:translate="text_search">Search Site</label>
-
-                <tal:comment condition="nothing">
-                <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
-                       title="Search Site" laceholder="Search Site"
-                       i18n:attributes="title title_search_site;
-                                        placeholder title_search_site"
-                       tal:attributes="value request/form/SearchableText|nothing;"
-                       class="searchField form-control me-2" />
-                </tal:comment>
-
-                <button class="searchButton btn btn-outline-light" type="submit"
-                        i18n:translate="label_search;">
-                    <i class="bi bi-search"></i>
-                </button>
-
-                <div id="portal-advanced-search" class="hiddenStructure">
-
-                    <a href="#" tal:attributes="href string:${navigation_root_url}/@@search"
-                       i18n:translate="label_advanced_search">
-                        Advanced Search&hellip;
-                    </a>
-
-                </div>
-            </form>
-        </div>
     </nav>
+
+    <div id="portal-searchbox" class="nav-item" i18n:domain="plone">
+
+        <form id="searchGadget_form" action="@@search" role="search"
+              class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'} "
+              tal:attributes="action string:${navigation_root_url}/@@search;
+                              data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;">
+
+            <label class="hiddenStructure" for="searchGadget"
+                   i18n:translate="text_search">Search Site</label>
+
+            <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
+                   title="Search Site" laceholder="Search Site"
+                   i18n:attributes="title title_search_site;
+                                    placeholder title_search_site"
+                   tal:attributes="value request/form/SearchableText|nothing;"
+                   class="searchField form-control me-2" />
+
+            <button class="searchButton" type="submit"
+                    i18n:translate="label_search;">
+                <i class="bi bi-search"></i>
+            </button>
+
+            <div id="portal-advanced-search" class="hiddenStructure">
+
+                <a href="#" tal:attributes="href string:${navigation_root_url}/@@search"
+                   i18n:translate="label_advanced_search">
+                    Advanced Search&hellip;
+                </a>
+
+            </div>
+        </form>
+    </div>
 </div>
+
+<div id="loginModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+     tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
+     tal:condition="show_login">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2 id="loginModalLabel" i18n:translate="label_start_session">Inicia la sessió</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <block metal:use-macro="context/macros-genweb-login/login"></block>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" i18n:translate="">Tanca</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</tal:content>

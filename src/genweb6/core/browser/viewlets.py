@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from AccessControl.SecurityManagement import getSecurityManager
+
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
@@ -61,7 +63,7 @@ class loginViewlet(viewletBase, LoginUtils):
         return False
 
 
-class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet):
+class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
 
     def getLogosHeader(self):
         header_config = genwebHeaderConfig()
@@ -97,6 +99,11 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet):
                 "secundary_logo": secundary_logo,
                 "secundary_logo_responsive": secundary_logo_responsive,
                 "secundary_logo_alt": getattr(header_config, 'secundary_logo_alt', "")}
+
+    def show_auto_register(self):
+        if self.isAnonymous():
+            return getSecurityManager().checkPermission("Add portal member", self.context)
+        return False
 
 
 class logosFooterViewlet(viewletBase):
