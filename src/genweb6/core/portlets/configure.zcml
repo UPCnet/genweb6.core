@@ -121,14 +121,6 @@
         />
 
     <plone:portlet
-        name="genweb.portlets.upcnews"
-        interface=".upcnews.upcnews.IUPCNewsPortlet"
-        assignment=".upcnews.upcnews.Assignment"
-        renderer=".upcnews.upcnews.Renderer"
-        addview=".upcnews.upcnews.AddForm"
-        />
-
-    <plone:portlet
         name="genweb.portlets.rss"
         interface=".rss.rss.IRSSPortlet"
         assignment=".rss.rss.Assignment"

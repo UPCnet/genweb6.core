@@ -205,15 +205,9 @@
         />
 
     <portlet
-        addview="genweb.portlets.upcnews"
-        title="UPCNews"
-        i18n:attributes="title"
-        />
-
-    <!-- <portlet
         addview="genweb.portlets.rss"
         title="Pretty RSS"
         i18n:attributes="title"
-        /> -->
+        />
 
 </portlets>

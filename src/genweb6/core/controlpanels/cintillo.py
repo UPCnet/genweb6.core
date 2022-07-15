@@ -31,8 +31,8 @@ class ICintilloSettings(model.Schema):
     )
 
     icon = schema.TextLine(
-        title=_(u"Icone"),
-        description=_(u"Icone que es mostrarà al costat del títol, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-exclamation-diamond"),
+        title=_(u"Icona"),
+        description=_(u"Icona que es mostrarà al costat del títol, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-exclamation-diamond"),
         required=False
     )
 
