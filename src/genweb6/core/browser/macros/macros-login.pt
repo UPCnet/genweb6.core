@@ -90,6 +90,9 @@
     </div>
   </metal:block>
 
+  <!-- Al cridar a aquesta macro es necessari definir el paràmetre target,
+       aixo serveix per identificar cada accordion de login amb un nom diferent. -->
+
   <metal:block metal:define-macro="login">
     <div id="loginGW" tal:define="cas view/cas_settings">
       <div class="accordion" id="accordionLogin" tal:condition="not:cas/enabled">
