@@ -9,17 +9,9 @@
        i18n:domain="plone">
 
     <div class="card-header"
-        tal:attributes="class python:view.hasName() and 'card-header' or 'card-header hiddenStructure'">
+         tal:attributes="class python:view.hasName() and 'card-header' or 'card-header hiddenStructure'">
 
-      <a href="#" class="tile"
-         tal:attributes="href string:${view/heading_link_target}"
-         tal:content="view/title" tal:condition="not:is_lrf_type"
-         i18n:translate="">Navigation</a>
-
-      <a href="#" class="tile"
-         tal:attributes="href string:${view/heading_link_target}"
-         tal:condition="is_lrf_type" i18n:domain="genweb"
-         i18n:translate="menu">Menú</a>
+      <h3 class="tile" tal:content="view/title" tal:condition="not:is_lrf_type" >Navigation</h3>
 
     </div>
 
