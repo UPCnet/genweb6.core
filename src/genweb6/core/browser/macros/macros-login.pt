@@ -107,13 +107,15 @@
         </div>
         <div class="accordion-item">
           <h3 class="accordion-header" id="headingLogin">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin"
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false"
+                    tal:attributes="data-bs-target string:#${target};
+                                    aria-controls target"
+                    i18n:domain="genweb"
                     i18n:translate="genweb_loginlocal">
               Log in only in this site
             </button>
           </h3>
-          <div id="collapseLogin" class="accordion-collapse collapse" aria-labelledby="headingLogin"
+          <div tal:attributes="id target" class="accordion-collapse collapse" aria-labelledby="headingLogin"
                data-bs-parent="#accordionLogin">
             <div class="accordion-body">
               <block metal:use-macro="context/macros-genweb-login/login_site"></block>

@@ -125,7 +125,7 @@ class logosFooterViewlet(viewletBase):
         """ Funcio que extreu idioma actiu i afegeix al alt i al title de les imatges del banner
             el literal Obriu l'enllac en una finestra nova.
         """
-        return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))
+        return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova')))
 
 
 class footerViewlet(viewletBase):

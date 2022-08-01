@@ -79,7 +79,7 @@ class Renderer(base.Renderer):
             el literal Obriu l'enllac en una finestra nova.
         """
         if open_in_new_window:
-            return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)")))
+            return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova')))
         else:
             return '%s' % (altortitle)
 

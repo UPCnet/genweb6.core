@@ -29,7 +29,8 @@
                 </span>
               </div>
 
-              <block metal:use-macro="context/macros-genweb-login/login"></block>
+              <block tal:define="target string:collapseLoginView"
+                     metal:use-macro="context/macros-genweb-login/login"></block>
 
               <tal:comment condition="nothing">
                 <!-- <div class="footer mt-4"

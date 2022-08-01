@@ -359,7 +359,7 @@ class genwebUtils(BrowserView):
         return local_date.strftime('%Y-%m-%d %X')
 
     def lit_open_in_new_window(self):
-        return self.portal().translate(_('obrir_link_finestra_nova', default=u"(obriu en una finestra nova)"))
+        return self.portal().translate(_('obrir_link_finestra_nova'))
 
 
 @implementer(ICatalogFactory)

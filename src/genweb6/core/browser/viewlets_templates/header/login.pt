@@ -16,7 +16,8 @@
         </div>
 
         <div class="modal-body">
-          <block metal:use-macro="context/macros-genweb-login/login"></block>
+          <block tal:define="target string:collapseLoginViewlet"
+                 metal:use-macro="context/macros-genweb-login/login"></block>
         </div>
 
         <div class="modal-footer">

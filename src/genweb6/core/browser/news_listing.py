@@ -280,7 +280,7 @@ class NewsListing(BrowserView):
         main_msgid = None
         sub_msgid = None
         if mode == 'all':
-            main_msgid = _(u"all_news", default=u"News")
+            main_msgid = _(u"all_news", default=u"All news")
 
         elif mode == 'past':
             main_msgid = _(u"past_events", default=u"Past events")
