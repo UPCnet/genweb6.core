@@ -94,7 +94,7 @@ class get_zope(BrowserView):
 Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
     """
 
-    def dorsal(self):
+    def __call__(self):
         import socket
         dorsal = os.environ.get('dorsal', False)
         serverid = socket.gethostname()
