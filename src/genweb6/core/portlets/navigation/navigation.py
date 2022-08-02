@@ -10,6 +10,3 @@ class gwNavigation(NavigationRenderer):
     """
     _template = ViewPageTemplateFile('navigation.pt')
     recurse = ViewPageTemplateFile('navigation_recurse.pt')
-
-    def is_lrf_type(self):
-        return self.context.id in ["ca", "es", "en", "benvingut", "bienvenido", "welcome"]

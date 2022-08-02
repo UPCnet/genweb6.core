@@ -4,15 +4,13 @@
       tal:omit-tag="">
 
   <div class="card portlet portletNavigationTree"
-       tal:define="root view/navigation_root;
-                   is_lrf_type view/is_lrf_type"
+       tal:define="root view/navigation_root"
        i18n:domain="plone">
 
     <div class="card-header"
          tal:attributes="class python:view.hasName() and 'card-header' or 'card-header hiddenStructure'">
 
-      <h3 class="tile" tal:content="view/title" tal:condition="not:is_lrf_type" >Navigation</h3>
-
+      <h3 class="tile" tal:content="view/title">Navigation</h3>
     </div>
 
     <nav class="card-body">
