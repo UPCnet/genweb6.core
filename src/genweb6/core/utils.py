@@ -306,8 +306,8 @@ class genwebUtils(BrowserView):
         else:
             return False
 
-    # def redirect_to_root_always_lang_selector(self):
-    #     return genweb_config().languages_link_to_root
+    def redirect_to_root_always_lang_selector(self):
+        return genwebHeaderConfig().languages_link_to_root
 
     def is_debug_mode(self):
         return api.env.debug_mode()

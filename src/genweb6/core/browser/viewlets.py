@@ -5,8 +5,11 @@ from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet
+from plone.app.multilingual.browser.selector import addQuery
+from plone.app.multilingual.browser.selector import getPostPath
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
+from plone.uuid.interfaces import IUUID
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -109,6 +112,84 @@ class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
         if self.isAnonymous():
             return getSecurityManager().checkPermission("Add portal member", self.context)
         return False
+
+    def languages(self):
+        lt = api.portal.get_tool(name='portal_languages')
+        if lt is None:
+            return []
+
+        bound = lt.getLanguageBindings(self.request)
+        current = bound[0]
+
+        def merge(lang, info):
+            info["code"] = lang
+            info["selected"] = lang == current
+            return info
+
+        header_config = genwebHeaderConfig()
+
+        languages = [
+            merge(lang, info)
+            for (lang, info) in lt.getAvailableLanguageInformation().items()
+            if info["selected"] and lang in header_config.idiomes_publicats
+        ]
+
+        supported_langs = lt.getSupportedLanguages()
+
+        def index(info):
+            return len(supported_langs)
+
+        lang_selected = None
+        lang_others = []
+
+        uuid = IUUID(self.context)
+        if uuid is None:
+            uuid = 'nouuid'
+
+        redirect_to_root = header_config.languages_link_to_root
+
+        for lang in languages:
+            if redirect_to_root:
+                url = self.root_url() + '/' + lang['code'] + '?set_language=' + lang['code']
+            else:
+                query_extras = {'set_language': lang['code']}
+                post_path = getPostPath(self.context, self.request)
+                if post_path:
+                    query_extras['post_path'] = post_path
+
+                url = addQuery(
+                    self.request,
+                    self.context.absolute_url().rstrip('/') +
+                    '/@@multilingual-selector/%s/%s' % (
+                        uuid,
+                        lang['code']
+                    ),
+                    **query_extras
+                )
+
+            lang.update({'url': url})
+
+            if lang['selected']:
+                lang_selected = lang
+            else:
+                lang_others.append(lang)
+
+        len_others = len(lang_others)
+
+        result = {'selected': lang_selected,
+                  'others': sorted(lang_others, key=index),
+                  'has_selector': len_others > 0 and self.context.portal_type != 'Plone Site',
+                  'simple_selector': len_others == 1,
+                  'multiple_selector': len_others > 1}
+
+        return result
+
+    def showFlags(self):
+        lt = api.portal.get_tool(name='portal_languages')
+        if lt is None:
+            return False
+
+        return lt.showFlags
 
 
 class logosFooterViewlet(viewletBase):

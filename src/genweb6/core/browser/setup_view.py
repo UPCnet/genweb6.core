@@ -702,8 +702,8 @@ class setup(BrowserView):
 
     def setGenwebProperties(self):
         """ Set default configuration in genweb properties """
-        gwoptions = utils.genweb_config()
-        gwoptions.languages_link_to_root = True
+        gwheader = utils.genwebHeaderConfig()
+        gwheader.languages_link_to_root = True
 
         portal = getToolByName(self, 'portal_url').getPortalObject()
         site_props = portal.portal_properties.site_properties

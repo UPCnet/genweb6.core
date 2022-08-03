@@ -151,7 +151,8 @@ class IHeaderSettings(model.Schema):
     )
 
     model.fieldset('Altres', _(u'Altres'),
-                   fields=['treu_menu_horitzontal', 'amaga_identificacio'])
+                   fields=['treu_menu_horitzontal', 'amaga_identificacio',
+                           'idiomes_publicats', 'languages_link_to_root'])
 
     treu_menu_horitzontal = schema.Bool(
         title=_(u"treu_menu_horitzontal",
@@ -165,6 +166,25 @@ class IHeaderSettings(model.Schema):
     amaga_identificacio = schema.Bool(
         title=_(u"amaga_identificacio", default="Amaga de les eines l'enllaç d'identificació"),
         description=_(u"help_amaga_identificacio", default=u"Amaga de les eines l'enllaç d'identificació ..."),
+        required=False,
+        default=False,
+    )
+
+    idiomes_publicats = schema.List(
+        title=_(u"idiomes_publicats",
+                default=u"Idiomes publicats al web"),
+        description=_(u"help_idiomes_publicats",
+                      default=u"Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."),
+        value_type=schema.Choice(vocabulary='plone.app.vocabularies.SupportedContentLanguages'),
+        required=False,
+        default=['ca']
+    )
+
+    languages_link_to_root = schema.Bool(
+        title=_(u"languages_link_to_root",
+                default=u"languages_link_to_root"),
+        description=_(u"help_languages_link_to_root",
+                      default=u"help_languages_link_to_root"),
         required=False,
         default=False,
     )
