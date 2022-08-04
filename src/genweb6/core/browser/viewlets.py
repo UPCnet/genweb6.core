@@ -142,11 +142,14 @@ class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
         lang_selected = None
         lang_others = []
 
-        uuid = IUUID(self.context)
-        if uuid is None:
-            uuid = 'nouuid'
-
         redirect_to_root = header_config.languages_link_to_root
+        if redirect_to_root:
+            try:
+                uuid = IUUID(self.context)
+                if uuid is None:
+                    uuid = 'nouuid'
+            except:
+                uuid = 'nouuid'
 
         for lang in languages:
             if redirect_to_root:
