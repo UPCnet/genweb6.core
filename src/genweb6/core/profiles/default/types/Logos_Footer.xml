@@ -8,10 +8,15 @@
     <property name="allow_discussion">False</property>
     <property name="global_allow">False</property>
     <property name="filter_content_types">True</property>
-    <property name="allowed_content_types" />
+
     <property name="schema">genweb6.core.content.banner.banner.IBanner</property>
     <property name="klass">genweb6.core.content.Logo</property>
     <property name="add_permission">cmf.AddPortalContent</property>
+    <property name="factory">Logos_Footer</property>
+    <property name="link_target"></property>
+    <property name="immediate_view">view</property>
+    <property name="add_view_expr">string:${folder_url}/++add++Logos_Footer</property>
+    <property name="schema_policy">dexterity</property>
 
     <property name="behaviors">
         <element value="plone.dublincore" />
@@ -22,9 +27,8 @@
 
     <property name="default_view">view</property>
     <property name="default_view_fallback">False</property>
-
     <property name="view_methods">
-        <element value="view"/>
+        <element value="view" />
     </property>
 
     <alias from="(Default)" to="(dynamic view)"/>

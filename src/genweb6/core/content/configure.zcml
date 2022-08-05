@@ -6,6 +6,15 @@
 
     <browser:page
         name="view"
+        for="genweb6.core.content.banner.banner.IBanner"
+        class=".banner.banner.View"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="banner/banner.pt"
+        />
+
+    <browser:page
+        name="view"
         for="genweb6.core.content.document_image.document_image.IDocumentImage"
         class=".document_image.document_image.View"
         layer="..interfaces.IGenweb6CoreLayer"

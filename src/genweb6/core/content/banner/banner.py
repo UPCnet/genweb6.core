@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from Products.Five.browser import BrowserView
+
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.indexer.decorator import indexer
 from plone.namedfile.field import NamedBlobImage
@@ -29,3 +31,7 @@ class IBanner(model.Schema):
 def getRemoteUrl(obj):
     if obj.remoteUrl:
         return replace_link_variables_by_paths(obj, obj.remoteUrl)
+
+
+class View(BrowserView):
+    pass

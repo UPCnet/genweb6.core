@@ -18,4 +18,11 @@
         template="macros-login.pt"
         />
 
+    <browser:page
+        name="macros-genweb-banner"
+        for="*"
+        permission="zope.Public"
+        template="macros-banner.pt"
+        />
+
 </configure>
