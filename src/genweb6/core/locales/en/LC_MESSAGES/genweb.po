@@ -2158,3 +2158,6 @@ msgstr "Menu"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:173
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
 msgstr "Ha olvidado la contraseña?"
+
+msgid "more_url"
+msgstr "View more"

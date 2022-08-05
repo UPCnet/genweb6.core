@@ -2186,3 +2186,6 @@ msgstr "No mostrar la imagen en la página, pero sí en los portlets y vistas"
 
 msgid "menu"
 msgstr "Menú"
+
+msgid "more_url"
+msgstr "Ver más"
