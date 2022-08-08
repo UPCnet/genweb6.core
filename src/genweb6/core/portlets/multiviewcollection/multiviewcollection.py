@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl import getSecurityManager
+from Products.CMFPlone.utils import normalizeString
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.app.portlets.portlets import base
@@ -160,9 +161,9 @@ class Renderer(base.Renderer):
         VIEW_TYPE_LIST: 'list.pt',
         VIEW_TYPE_IMG_LEFT_TITLE_RIGHT: 'img_left_title_right.pt',
         VIEW_TYPE_IMG_UP_TITLE_DOWN: 'img_up_title_down.pt',
-        VIEW_TYPE_IMG_UP_TITLE_DOWN_2COLUMNS: 'img_up_title_down_2columns.pt',
-        VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS: 'img_up_title_down_3columns.pt',
-        VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS: 'img_up_title_down_4columns.pt',
+        VIEW_TYPE_IMG_UP_TITLE_DOWN_2COLUMNS: 'img_up_title_down.pt',
+        VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS: 'img_up_title_down.pt',
+        VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS: 'img_up_title_down.pt',
     }
     SUMMARY_LENGTH_MAX = 200
 
@@ -174,6 +175,10 @@ class Renderer(base.Renderer):
 
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
+
+    def toLocalizedTime(self, time):
+        plone_view = getMultiAdapter((self.context, self.request), name=u"plone")
+        return plone_view.toLocalizedTime(time)
 
     @property
     def available(self):
@@ -232,6 +237,15 @@ class Renderer(base.Renderer):
         Transform results into dictionaries of results containing only the data
         to render from templates.
         """
+        view_type = getattr(self.data, 'view_type', VIEW_TYPE_LIST)
+        col = 12
+        if view_type == VIEW_TYPE_IMG_UP_TITLE_DOWN_2COLUMNS:
+            col = 6
+        elif view_type == VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS:
+            col = 4
+        elif view_type == VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS:
+            col = 3
+
         result_dicts = []
         for result in self.results():
             result_obj = result.getObject()
@@ -243,14 +257,20 @@ class Renderer(base.Renderer):
                     result_description = result.Description()
                 except:
                     result_description = ''
+
+            date = self.toLocalizedTime(result.EffectiveDate())
+            if not date:
+                date = self.toLocalizedTime(result.modified)
+
             result_dicts.append(dict(
-                date=result.EffectiveDate(),
+                date=date,
                 description=self._summarize(result_description),
+                col=col,
                 image=result_image,
                 image_caption=getattr(result_obj, 'image_caption', None),
-                image_src=("{0}/@@images/image/preview".format(result.getURL())
-                           if result_image else None),
-                title=result.title,
+                image_src=("{0}/@@images/image/preview".format(result.getURL()) if result_image else None),
+                portal_type=normalizeString(result.portal_type),
+                title=result.title_or_id(),
                 url=result.getURL(),
             ))
         return result_dicts

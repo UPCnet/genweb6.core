@@ -1,5 +1,6 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:z3c="http://namespaces.zope.org/z3c"
     i18n_domain="genweb">
@@ -77,6 +78,13 @@
         renderer=".multiviewcollection.multiviewcollection.Renderer"
         addview=".multiviewcollection.multiviewcollection.AddForm"
         editview=".multiviewcollection.multiviewcollection.EditForm"
+        />
+
+    <browser:page
+        name="macros-genweb-portlet-multiviewcollection"
+        for="*"
+        permission="zope.Public"
+        template="multiviewcollection/templates/macros.pt"
         />
 
     <plone:portlet

@@ -1,36 +1,19 @@
-<tal:def tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                     results view/result_dicts;"
-         tal:condition="results"
-         i18n:domain="genweb">
-  <div class="portlet portlet-noticies portlet-ampliat" role="complementary">
-    <h2 tal:content="view/data/header" tal:condition="view/showTitle">Collection title</h2>
+<div class="portlet portletCollection"
+     i18n:domain="plone"
+     tal:attributes="class string:portlet portletCollection ${view/css_class}">
 
-    <ul class="list-portlet">
-      <li class="clearfix" tal:repeat="result results">
-        <h3>
-          <a tal:attributes="href result/url" tal:content="result/title">
-            Result title
-          </a>
-        </h3>
-        <img tal:condition="result/image" class="col-md-6"
-             tal:attributes="src result/image_src;
-                             title python: result['image_caption'] if result['image_caption'] else nothing;
-                             alt python: result['image_caption'] if result['image_caption'] else ' ';"/>
-        <div class="content-noticies" class="col-md-6">
-          <p tal:content="result/description">Description summary</p>
-          <time tal:condition="view/show_time" class="smaller" tal:content="python:toLocalizedTime(result['date'])">Date</time>
-        </div>
-      </li>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
+
+    <ul class="list-group list-group-flush mb-2">
+
+        <tal:item tal:repeat="obj view/result_dicts">
+
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/img_left_title_right"></block>
+
+        </tal:item>
+
     </ul>
 
-    <div tal:condition="view/more_info" class="portlet-footer">
-      <a tal:attributes="href view/collection_url_rss">
-        <span class="icon-rss"></span>
-      </a>
-      <a tal:attributes="href view/collection_url"
-         i18n:translate="more_url" i18n:domain="plone">
-        More&hellip;
-      </a>
-    </div>
-  </div>
-</tal:def>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
+
+</div>

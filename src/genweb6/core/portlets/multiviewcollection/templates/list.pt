@@ -1,26 +1,23 @@
 <div class="portlet portletCollection"
-    i18n:domain="plone"
-    tal:define="collection_url view/collection_url;
-                plone_view context/@@plone;
-                toLocalizedTime nocall:plone_view/toLocalizedTime;
-                viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();"
-    tal:attributes="class string:portlet portletCollection ${view/css_class}">
+     i18n:domain="plone"
+     tal:define="plone_view context/@@plone;
+                 normalizeString nocall:plone_view/normalizeString;
+                 toLocalizedTime nocall:plone_view/toLocalizedTime;
+                 viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();"
+     tal:attributes="class string:portlet portletCollection ${view/css_class}">
 
-    <h3 class="portlet-title" tal:condition="view/showTitle"
-        tal:content="view/data/header">Colleccio</h3>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
     <ul class="list-group list-group-flush mb-2">
 
         <tal:item tal:repeat="obj view/results">
 
-            <li class="list-group-item ps-0"
+            <li tal:attributes="class string:list-group-item ps-0 contenttype-${obj/portal_type}"
                 tal:define="useView python:obj.portal_type in viewActions;
-                            itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();
-                            normalizeString nocall:plone_view/normalizeString;">
+                            itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
 
-                <a href="#"
+                <a href="#" class="d-block text-decoration-none"
                    tal:attributes="href itemUrl;
-                                   class python:'d-block text-decoration-none contenttype-' + normalizeString(obj.portal_type);
                                    title obj/Description">
 
                     <span tal:replace="obj/title_or_id">Title</span>
@@ -31,17 +28,13 @@
                       tal:content="python:toLocalizedTime(date_item)">
                     Date
                 </time>
+
             </li>
+
         </tal:item>
+
     </ul>
 
-    <div tal:condition="view/more_info" class="portlet-footer">
-        <tal:block tal:condition="view/data/show_more">
-            <a class="portlet-show-more small text-decoration-none" tal:attributes="href collection_url">
-                <i class="bi bi-plus-circle-fill"></i>
-                <span i18n:domain="genweb" i18n:translate="more_url">More</span>
-            </a>
-        </tal:block>
-    </div>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
 
 </div>

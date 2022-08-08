@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+<metal:block metal:define-macro="img_left_title_right" i18n:domain="plone">
+
+    <li tal:attributes="class string:ps-0 mt-3 mb-2 row contenttype-${obj/portal_type}">
+
+        <div class="img col-md-3">
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/img"></block>
+        </div>
+
+        <div class="txt col-md-9">
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/txt"></block>
+        </div>
+    </li>
+
+</metal:block>
+
+
+<metal:block metal:define-macro="img_up_title_down" i18n:domain="plone">
+
+    <li tal:attributes="class string:mt-3 mb-2 contenttype-${obj/portal_type} col-md-${obj/col}">
+
+        <div class="img mb-2">
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/img"></block>
+        </div>
+
+        <div class="txt">
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/txt"></block>
+        </div>
+    </li>
+
+</metal:block>
+
+<metal:block metal:define-macro="img" i18n:domain="plone">
+
+    <a href="#"
+       tal:attributes="href obj/url;
+                       title obj/title">
+
+        <img class="rounded-circle"
+             tal:condition="obj/image"
+             tal:attributes="src obj/image_src;
+                             title obj/image_src | nothing;
+                             alt obj/image_src | string: ;"/>
+
+    </a>
+
+</metal:block>
+
+<metal:block metal:define-macro="txt" i18n:domain="plone">
+
+    <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
+       tal:content="obj/description">Description summary</p>
+
+    <a href="#" class="title d-block text-decoration-none text-truncate"
+       tal:attributes="href obj/url;
+                       title obj/title">
+
+        <span tal:replace="obj/title">Title</span>
+    </a>
+
+    <time tal:condition="view/show_time" class="time smaller"
+          tal:content="obj/date">
+        Date
+    </time>
+
+</metal:block>
+
+<metal:block metal:define-macro="title" i18n:domain="plone">
+
+    <h3 class="portlet-title" tal:condition="view/showTitle"
+        tal:content="view/data/header">Colleccio</h3>
+
+</metal:block>
+
+<metal:block metal:define-macro="more_info" i18n:domain="plone">
+
+    <div tal:condition="view/more_info" class="portlet-footer">
+
+        <tal:block tal:condition="view/data/show_more">
+
+            <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/collection_url">
+
+                <i class="bi bi-plus-circle-fill"></i>
+                <span i18n:domain="genweb" i18n:translate="more_url">More</span>
+
+            </a>
+
+        </tal:block>
+
+    </div>
+
+</metal:block>
+
+</html>
