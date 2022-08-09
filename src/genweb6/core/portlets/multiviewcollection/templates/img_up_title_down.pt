@@ -1,4 +1,4 @@
-<div class="portlet portletCollection"
+<div class="portlet portlet-collection"
      i18n:domain="plone"
      tal:attributes="class string:portlet portletCollection ${view/css_class}">
 

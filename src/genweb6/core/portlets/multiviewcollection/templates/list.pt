@@ -1,4 +1,4 @@
-<div class="portlet portletCollection"
+<div class="portlet portlet-collection portlet-list"
      i18n:domain="plone"
      tal:define="plone_view context/@@plone;
                  normalizeString nocall:plone_view/normalizeString;

@@ -1,36 +1,48 @@
-<tal:newsitems tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime;
-                           plone_view context/@@plone;
-                           news_items view/published_news_items;
-                           data view/mostraData"
-               tal:condition="news_items"
-               i18n:domain="genweb">
+<div class="portlet portlet-noticies portlet-list"
+     tal:define="news_items view/published_news_items"
+     tal:condition="news_items"
+     i18n:domain="plone" >
 
-    <div class="portlet portlet-noticies">
-        <h2 i18n:translate="genweb-noticies">Notícies</h2>
-        <ul class="list-portlet">
-            <li tal:repeat="obj news_items">
-                <a href=""
-                   tal:attributes="href obj/getURL">
-                    <span tal:replace="obj/pretty_title_or_id">
-                    Notícies RSS
-                    </span>
+    <h3 class="portlet-title" i18n:translate="genweb-noticies">Notícies</h3>
+
+    <ul class="list-group list-group-flush mb-2"
+        tal:define="plone_view context/@@plone;
+                    toLocalizedTime nocall:plone_view/toLocalizedTime;">
+
+        <tal:item tal:repeat="obj news_items">
+
+            <li class="list-group-item ps-0">
+
+                <a href="#" class="d-block text-decoration-none"
+                   tal:attributes="href obj/getURL;
+                                   title obj/pretty_title_or_id">
+
+                    <span tal:replace="obj/pretty_title_or_id">Title</span>
+
                 </a>
-                <tal:co condition="data">
-                    <time class="smaller"  datetime="obj.Date" tal:content="python:toLocalizedTime(obj.Date)">May 5</time>
-                </tal:co>
-            </li>
-        </ul>
-        <div class="portlet-footer">
-            <a href=""
-               tal:attributes="href view/rss_news_link">
-                <span class="icon-rss pull-left"></span>
-            </a>
-            <a href=""
 
-               tal:attributes="href view/all_news_link"
-               i18n:domain="plone"
-               i18n:translate="more_news_link">Més notícies
-            </a>
-        </div>
+                <time tal:condition="view/mostraData" class="smaller"
+                      tal:define="date_item python:obj.effective if toLocalizedTime(obj.EffectiveDate) not in [None, ''] else obj.modified"
+                      tal:content="python:toLocalizedTime(date_item)">
+                    Date
+                </time>
+
+            </li>
+
+        </tal:item>
+
+    </ul>
+
+    <div class="portlet-footer">
+
+        <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/rss_news_link">
+            <i class="bi bi-rss"></i>
+        </a>
+
+        <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/all_news_link">
+            <span i18n:domain="genweb" i18n:translate="more_news_link">Més notícies</span>
+        </a>
+
     </div>
-</tal:newsitems>
+
+</div>
