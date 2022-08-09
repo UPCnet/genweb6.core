@@ -111,22 +111,33 @@ class Renderer(base.Renderer):
         local_end = DateTime(event.end)
         local_end_str = local_end.strftime('%d/%m/%Y')
         is_same_day = local_start_str == local_end_str
-        return dict(
-            class_li='' if is_same_day else 'multidate',
-            class_a='' if is_same_day else 'multidate-before',
-            date_start=local_start_str,
-            date_end=local_end_str,
-            day_start=int(local_start.strftime('%d')),
-            day_end=int(local_end.strftime('%d')),
-            is_multidate=not is_same_day,
-            month_start=self.get_month_name(local_start.strftime('%m')),
-            month_start_abbr=self.get_month_name(
-                local_start.strftime('%m'), month_format='a'),
-            month_end=self.get_month_name(local_end.strftime('%m')),
-            month_end_abbr=self.get_month_name(
-                local_end.strftime('%m'), month_format='a'),
-            title=event.Title,
-            url=event.absolute_url())
+
+        info = {
+            'class_li': '' if is_same_day else 'multidate',
+            'class_a': '' if is_same_day else 'multidate-before',
+            'date': self.dateFormat(local_start, local_end),
+            'title': event.Title,
+            'url': event.absolute_url()}
+
+        return info
+
+    def dateFormat(self, start, end):
+        """Select which type of text appears"""
+        startday = start.strftime("%d")
+        endday = end.strftime("%d")
+        startmonth = start.strftime("%m")
+        endmonth = end.strftime("%m")
+        startyear = start.strftime("%Y")
+        endyear = end.strftime("%Y")
+
+        if startyear != endyear:
+            return start.strftime('%d/%m/%Y') + " - " + end.strftime('%d/%m/%Y')
+        elif startmonth != endmonth:
+            return start.strftime('%d/%m') + " - " + end.strftime('%d/%m/%Y')
+        elif startday != endday:
+            return start.strftime('%d') + " - " + end.strftime('%d/%m/%Y')
+        else:
+            return start.strftime('%d/%m/%Y')
 
     def get_month_name(self, month, month_format=''):
         self._ts = api.portal.get_tool(name='translation_service')

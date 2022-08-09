@@ -2,7 +2,7 @@
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="genweb">
+      i18n:domain="plone">
 
 <metal:block metal:define-macro="img_left_title_right" i18n:domain="plone">
 
@@ -70,7 +70,7 @@
 
 </metal:block>
 
-<metal:block metal:define-macro="title" i18n:domain="plone">
+<metal:block metal:define-macro="title" i18n:domain="genweb">
 
     <h3 class="portlet-title" tal:condition="view/showTitle"
         tal:content="view/data/header">Colleccio</h3>

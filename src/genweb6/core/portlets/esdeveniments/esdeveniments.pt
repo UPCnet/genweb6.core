@@ -1,51 +1,43 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      tal:omit-tag="">
+<div class="portlet portlet-esdeveniments portlet-list"
+     tal:define="events view/published_events_expanded"
+     tal:condition="events"
+     i18n:domain="plone">
 
-  <div class="portlet portlet-esdeveniments" i18n:domain="plone">
+    <h3 class="portlet-title" i18n:domain="genweb"
+        i18n:translate="genweb-agenda">Agenda</h3>
 
-    <h2 i18n:domain="genweb" i18n:translate="genweb-agenda">Agenda
-      <span class="icon-calendar large-icon pull-right"></span>
-    </h2>
+    <ul class="list-group list-group-flush mb-2">
 
-    <ul class="unstyled">
-      <li tal:attributes="class event/class_li"
-          tal:repeat="event view/published_events_expanded">
+        <tal:item tal:repeat="event events">
 
-        <a href="#" tal:attributes="href event/url; class event/class_a"
-           tal:content="event/title">
-        </a>
+            <li tal:attributes="class string:list-group-item ps-0 ${event/class_li}">
 
-        <time class="smaller"
-              tal:attributes="datetime event/date_start">
-          <tal:repl tal:replace="event/day_start">28</tal:repl>
-          <abbr rel="tooltip"
-                data-placement="left"
-                tal:attributes="title event/month_start"
-                tal:content="event/month_start_abbr">
-          </abbr>
-        </time>
+                <a tal:attributes="href event/url;
+                                   title event/title;
+                                   class string:d-block text-decoration-none ${event/class_a}">
 
-        <time tal:condition="event/is_multidate"
-              class="smaller"
-              tal:attributes="datetime event/date_end">
-          <tal:repl tal:replace="event/day_end">30</tal:repl>
-          <abbr rel="tooltip"
-                data-placement="left"
-                tal:attributes="title event/month_end"
-                tal:content="event/month_end_abbr">
-          </abbr>
-        </time>
+                    <span tal:replace="event/title">Title</span>
 
-      </li>
+                </a>
+
+                <time class="smaller" tal:content="event/date">01/01/2022</time>
+
+            </li>
+
+        </tal:item>
+
     </ul>
 
-  <a href="" class="portlet-footer" tal:attributes="href view/all_events_link"
-     i18n:domain="genweb" i18n:translate="box_upcoming_events">
-    Més esdeveniments
-  </a>
+    <div class="portlet-footer">
 
-  </div>
+        <a class="portlet-show-more small text-decoration-none" tal:attributes="href string:${view/all_events_link}/aggregator/RSS">
+            <i class="bi bi-rss"></i>
+        </a>
 
-</html>
+        <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/all_events_link">
+            <span i18n:domain="genweb" i18n:translate="box_upcoming_events">Més esdeveniments</span>
+        </a>
+
+    </div>
+
+</div>

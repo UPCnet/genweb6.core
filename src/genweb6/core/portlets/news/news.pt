@@ -1,9 +1,10 @@
 <div class="portlet portlet-noticies portlet-list"
      tal:define="news_items view/published_news_items"
      tal:condition="news_items"
-     i18n:domain="plone" >
+     i18n:domain="plone">
 
-    <h3 class="portlet-title" i18n:translate="genweb-noticies">Notícies</h3>
+    <h3 class="portlet-title" i18n:domain="genweb"
+        i18n:translate="genweb-noticies">Notícies</h3>
 
     <ul class="list-group list-group-flush mb-2"
         tal:define="plone_view context/@@plone;
