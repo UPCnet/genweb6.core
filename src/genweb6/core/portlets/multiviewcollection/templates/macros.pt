@@ -44,8 +44,8 @@
         <img class="rounded-circle"
              tal:condition="obj/image"
              tal:attributes="src obj/image_src;
-                             title obj/image_src | nothing;
-                             alt obj/image_src | string: ;"/>
+                             title obj/image_caption | nothing;
+                             alt obj/image_caption | string: ;"/>
 
     </a>
 
