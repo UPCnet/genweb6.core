@@ -64,13 +64,23 @@
         />
 
     <browser:viewlet
-        name="genweb.manage_portlets_fallback"
+        name="genweb.manage_portlets_fallback_homepage"
         for="genweb6.core.interfaces.IHomePage"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         class="genweb6.core.portlets.manage_portlets.manager.gwManagePortletsFallbackViewletForIHomePage"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        template="templates/manage_portlets_fallback.pt"
+        template="templates/manage_portlets_fallback_homepage.pt"
+        />
+
+    <browser:viewlet
+        name="genweb.manage_portlets_fallback_subhome"
+        for="genweb6.core.content.subhome.subhome.ISubhome"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        class="genweb6.core.portlets.manage_portlets.manager.gwManagePortletsFallbackViewletForISubhome"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="templates/manage_portlets_fallback_subhome.pt"
         />
 
 </configure>

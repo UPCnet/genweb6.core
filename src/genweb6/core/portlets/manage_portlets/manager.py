@@ -135,8 +135,6 @@ class gwManagePortletsFallbackViewletMixin(object):
     """ The override for the manage_portlets_fallback viewlet for IPloneSiteRoot
     """
 
-    index = ViewPageTemplateFile("templates/manage_portlets_fallback.pt")
-
     def getPortletContainerPath(self):
         context = aq_inner(self.context)
         lang = self.context.language
@@ -167,13 +165,6 @@ class gwManagePortletsFallbackViewletMixin(object):
     def manageSubhomePortletsURL(self):
         return "%s/%s" % (self.getPortletContainerPath(), '@@manage-subhome')
 
-    def available(self):
-        secman = getSecurityManager()
-        if secman.checkPermission('Genweb: Superadmin Users', self.context):
-            if self.request.steps[-1] in ['document_view', 'homepage']:
-                return True
-        return False
-
     def canManageGrid(self):
         secman = getSecurityManager()
         user = secman.getUser()
@@ -189,4 +180,26 @@ class gwManagePortletsFallbackViewletMixin(object):
 class gwManagePortletsFallbackViewletForIHomePage(gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
     """ The override for the manage_portlets_fallback viewlet for ISubhome
     """
-    pass
+
+    index = ViewPageTemplateFile("templates/manage_portlets_fallback_homepage.pt")
+
+    def available(self):
+        secman = getSecurityManager()
+        if secman.checkPermission('Genweb: Superadmin Users', self.context):
+            if self.request.steps[-1] in ['document_view', 'homepage']:
+                return True
+        return False
+
+
+class gwManagePortletsFallbackViewletForISubhome(gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
+    """ The override for the manage_portlets_fallback viewlet for ISubhome
+    """
+
+    index = ViewPageTemplateFile("templates/manage_portlets_fallback_subhome.pt")
+
+    def available(self):
+        secman = getSecurityManager()
+        if secman.checkPermission('Genweb: Superadmin Users', self.context):
+            if self.request.steps[-1] in ['subhome_view']:
+                return True
+        return False
