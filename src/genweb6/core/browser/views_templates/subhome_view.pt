@@ -44,25 +44,25 @@
               <div class="col-md-3"
                    tal:condition="have_portlets_slot3"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager3"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot4"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager4"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot5"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager5"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot6"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager6"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
             </div>
@@ -72,25 +72,25 @@
               <div class="col-md-3"
                    tal:condition="have_portlets_slot7"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager7"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot8"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager8"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot9"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager9"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
               <div class="col-md-3"
                    tal:condition="have_portlets_slot10"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager10"
-                   tal:attributes="class python:'span' + view.getColValueForManager(manager_name)">
+                   tal:attributes="class python:'col-md-' + view.getColValueForManager(manager_name)">
                 <span tal:replace="structure python:view.renderProviderByName(manager_name)" />
               </div>
             </div>
