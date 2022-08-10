@@ -1,0 +1,53 @@
+<tal:block tal:condition="view/enabled">
+
+    <div class="portlet portlet-rss portlet-list"
+         i18n:domain="plone"
+         tal:define="feedAvailable view/feedAvailable"
+         tal:condition="feedAvailable">
+
+        <h2 class="portlet-title" tal:condition="view/title"
+            tal:content="view/title">RSS</h2>
+
+        <ul class="list-group list-group-flush mb-2"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+            <tal:item tal:repeat="item view/items">
+
+                <li class="list-group-item ps-0">
+
+                    <a href="#" class="d-block text-decoration-none"
+                       tal:attributes="href item/url;
+                                       title item/title">
+
+                        <span tal:replace="item/title">Title</span>
+                    </a>
+
+                    <time tal:condition="exists:item/updated" class="smaller"
+                          tal:content="python:toLocalizedTime(item['updated'])">
+                        Date
+                    </time>
+
+                </li>
+
+            </tal:item>
+
+        </ul>
+
+        <tal:block tal:condition="feedAvailable">
+
+            <div tal:condition="view/siteurl" class="portlet-footer">
+
+                <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/siteurl">
+
+                    <i class="bi bi-plus-circle-fill"></i>
+                    <span i18n:domain="genweb" i18n:translate="more_url">More</span>
+
+                </a>
+
+            </div>
+
+        </tal:block>
+
+    </div>
+
+</tal:block>
