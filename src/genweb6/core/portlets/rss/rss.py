@@ -101,14 +101,14 @@ class RSSFeed(object):
         if image:
             image = image[0]['url']
         else:
-            image = self.getFirstImageDescription(description)
+            image = item.get('href', None) or self.getFirstImageDescription(description)
 
         itemdict = {
             'title': item.title,
             'url': link,
             'summary': self.abrevia(description, 250),
             'image': image,
-            'categories': [tag['term'] for tag in item.get('term', [])],
+            'categories': [tag['term'] for tag in item.get('tags', [])],
         }
 
         if hasattr(item, "updated"):

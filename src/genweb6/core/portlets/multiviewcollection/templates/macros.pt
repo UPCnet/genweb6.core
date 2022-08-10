@@ -72,8 +72,8 @@
 
 <metal:block metal:define-macro="title" i18n:domain="genweb">
 
-    <h3 class="portlet-title" tal:condition="view/showTitle"
-        tal:content="view/data/header">Colleccio</h3>
+    <h2 class="portlet-title" tal:condition="view/showTitle"
+        tal:content="view/data/header">Colleccio</h2>
 
 </metal:block>
 

@@ -10,7 +10,7 @@
     <div class="card-header"
          tal:attributes="class python:view.hasName() and 'card-header' or 'card-header hiddenStructure'">
 
-      <h3 class="portlet-title" tal:content="view/title">Navigation</h3>
+      <h2 class="portlet-title" tal:content="view/title">Navigation</h2>
     </div>
 
     <nav class="card-body">

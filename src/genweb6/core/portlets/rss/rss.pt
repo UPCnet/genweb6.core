@@ -3,71 +3,116 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       tal:omit-tag="">
 
-  <tal:block tal:condition="not:view/isAnon">
+  <div class="portlet portlet-rss" i18n:domain="plone"
+       tal:condition="view/enabled">
 
-    <div class="portlet-noticies rss" i18n:domain="plone"
-         tal:condition="view/enabled">
+    <h2 class="portlet-title" tal:content="view/title">Tags</h2>
 
-      <div class="osomcorner-wrapper"><div class="osomcorner"></div></div>
-      <h2 tal:content="view/title">Tags</h2>
-      <ul class="list-portlet">
-        <tal:rss tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
-                 tal:repeat="item view/items">
+    <ul class="list-group list-group-flush mb-2">
 
-          <li class="noticies clearfix">
-            <div>
-              <tal:block tal:condition="view/data/display_image">
-                <a href="#" tal:attributes="href item/url" target="_blink" tal:condition="item/image">
-                  <div class="imatge_noticia">
-                    <img class="newsImage" tal:attributes="src item/image;
-                                                           title item/title;
-                                                           alt item/title" />
-                  </div>
-                </a>
-              </tal:block>
-              <div class="text_noticia">
-                <h3>
-                  <a href="#" tal:attributes="href item/url" target="_blink">
-                    <span tal:replace="item/title">Notícies RSS</span>
-                  </a>
-                </h3>
-                <p tal:condition="view/data/display_date">
-                  <time class="smaller">
-                    <span tal:omit-tag="" tal:content="python:toLocalizedTime(item['updated'])">19.02.2007</span>
-                  </time>
-                </p>
-                <tal:block tal:condition="view/data/display_description">
-                  <p class="description" tal:condition="item/summary|nothing" tal:content="item/summary">Text Noticia</p>
-                </tal:block>
-                <p class="categories" tal:condition="view/data/display_categories">
-                 <span class="category" tal:repeat="category item/categories" tal:content="category">Categoria</span>
-                </p>
+      <tal:rss tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
+               tal:repeat="item view/items">
+
+        <li class="mt-3 mb-2">
+
+          <tal:block tal:condition="view/data/display_image">
+
+            <a href="#" tal:attributes="href item/url" target="_blink"
+               tal:condition="item/image">
+
+              <div class="img mb-2">
+
+                <img class="rounded-circle"
+                     tal:attributes="src item/image;
+                                     title item/title;
+                                     alt item/title" />
               </div>
-            </div>
-          </li>
-        </tal:rss>
-        <li class="noticies clearfix" tal:condition="view/data/more_url">
-          <a href="" tal:attributes="href view/data/more_url" target="_blink">
-            <i class="icon-plus-sign icons"> </i>
-            <span tal:omit-tag="" tal:condition="view/data/more_text" tal:content="view/data/more_text">Més notícies</span>
-            <span tal:omit-tag="" tal:condition="not:view/data/more_text" i18n:translate="seemore">More news</span>
-          </a>
-        </li>
-        <li class="noticies clearfix" tal:condition="not:view/data/more_url">
-          <a href="" tal:condition="view/siteurl" tal:attributes="href view/siteurl" target="_blink">
-            <i class="icon-plus-sign icons"> </i>
-            <span tal:omit-tag="" tal:condition="view/data/more_text" tal:content="view/data/more_text">Més notícies</span>
-            <span tal:omit-tag="" tal:condition="not:view/data/more_text" i18n:translate="seemore">More news</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-    <script type="text/javascript">
-      $(".portlet-noticies.rss .description").each(function(){
-        $(this).html($(this).text());
-      });
-      $(".portlet-noticies.rss a[rel='external']").attr("target", "_blink")
-    </script>
 
-  </tal:block>
+            </a>
+
+          </tal:block>
+
+          <div class="txt">
+
+            <a href="#" tal:attributes="href item/url" target="_blink"
+               class="title d-block text-decoration-none mb-1">
+
+              <span tal:replace="item/title">Title</span>
+
+            </a>
+
+            <tal:block tal:condition="view/data/display_description">
+
+              <p class="description mb-1" tal:condition="item/summary|nothing"
+                 tal:content="item/summary">Text Noticia</p>
+
+            </tal:block>
+
+            <time class="time smaller" tal:condition="view/data/display_date">
+
+              <span tal:replace="python:toLocalizedTime(item['updated'])">19.02.2007</span>
+
+            </time>
+
+            <p class="categories mb-0" tal:condition="view/data/display_categories">
+
+             <span class="category smaller" tal:repeat="category item/categories"
+                   tal:content="category">Categoria</span>
+
+            </p>
+
+          </div>
+
+        </li>
+
+      </tal:rss>
+
+    </ul>
+
+    <div class="portlet-footer">
+
+        <a class="portlet-show-more small text-decoration-none"
+           tal:attributes="href view/data/more_url" target="_blink"
+           tal:condition="view/data/more_url">
+
+          <i class="bi bi-plus-circle-fill"></i>
+
+          <span tal:condition="view/data/more_text"
+                tal:replace="view/data/more_text">Més notícies</span>
+
+          <span tal:condition="not:view/data/more_text"
+                i18n:translate="seemore">More news</span>
+
+        </a>
+
+        <tal:block tal:condition="not:view/data/more_url">
+
+          <a class="portlet-show-more small text-decoration-none"
+             tal:condition="view/siteurl" tal:attributes="href view/siteurl"
+             target="_blink">
+
+            <i class="bi bi-plus-circle-fill"></i>
+
+            <span tal:condition="view/data/more_text"
+                  tal:replace="view/data/more_text">Més notícies</span>
+
+            <span tal:condition="not:view/data/more_text"
+                  i18n:translate="seemore">More news</span>
+
+          </a>
+
+        </tal:block>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    $(".portlet.portlet-rss .description").each(function(){
+      $(this).html($(this).text());
+    });
+
+    $(".portlet.portlet-rss  a[rel='external']").attr("target", "_blink")
+  </script>
+
 </html>

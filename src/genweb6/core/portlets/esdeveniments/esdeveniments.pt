@@ -3,8 +3,8 @@
      tal:condition="events"
      i18n:domain="plone">
 
-    <h3 class="portlet-title" i18n:domain="genweb"
-        i18n:translate="genweb-agenda">Agenda</h3>
+    <h2 class="portlet-title" i18n:domain="genweb"
+        i18n:translate="genweb-agenda">Agenda</h2>
 
     <ul class="list-group list-group-flush mb-2">
 
