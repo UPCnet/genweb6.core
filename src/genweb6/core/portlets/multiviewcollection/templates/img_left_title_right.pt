@@ -1,6 +1,6 @@
 <div class="portlet portlet-collection"
      i18n:domain="plone"
-     tal:attributes="class string:portlet portletCollection ${view/css_class}">
+     tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
     <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 

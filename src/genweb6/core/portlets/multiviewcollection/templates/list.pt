@@ -4,7 +4,7 @@
                  normalizeString nocall:plone_view/normalizeString;
                  toLocalizedTime nocall:plone_view/toLocalizedTime;
                  viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();"
-     tal:attributes="class string:portlet portletCollection ${view/css_class}">
+     tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
     <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
