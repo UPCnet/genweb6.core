@@ -1,0 +1,72 @@
+<tal:block tal:define="portal context/@@plone_portal_state/portal;
+                       image_scale portal/@@image_scale;
+                       supress_icon view/data/no_icons;
+                       supress_thumb view/data/no_thumbs;
+                       thumb_scale view/thumb_scale;
+                       icons nocall:context/@@iconresolver;
+                       plone_view context/@@plone;
+                       normalizeString nocall:plone_view/normalizeString;
+                       toLocalizedTime nocall:plone_view/toLocalizedTime;">
+
+    <div class="portlet portlet-recent portlet-list"
+         i18n:domain="plone"
+         tal:define="recent_items view/recent_items">
+
+        <h2 class="portlet-title" tal:condition="view/title"
+            tal:content="view/title">Recent</h2>
+
+        <ul class="list-group list-group-flush mb-2"
+            tal:condition="recent_items"
+            tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+            <tal:item tal:repeat="obj recent_items">
+
+                <li class="list-group-item ps-0"
+                    tal:define="item_type obj/portal_type;
+                                item_wf_state obj/review_state;
+                                item_wf_state_class python:'state-' + normalizeString(item_wf_state);
+                                item_class python:'contenttype-' + normalizeString(obj.portal_type) if not supress_icon else '';">
+
+                    <a href="#" class="d-block text-decoration-none"
+                       tal:attributes="href string:${obj/getURL}/view;
+                                       title obj/Description;
+                                       class string:d-block text-decoration-none ${item_wf_state_class} ${item_class}">
+
+                        <tal:icon tal:condition="python: not supress_icon and item_type != 'File'"
+                                  tal:replace="structure python:icons.tag(f'contenttype/{normalizeString(item_type)}')" />
+
+                        <tal:icon tal:condition="python: not supress_icon and item_type == 'File'"
+                                  tal:replace="structure python:icons.tag(f'mimetype-{obj.mime_type}')" />
+
+                        <img tal:condition="python:obj.getIcon and thumb_scale and not supress_thumb and image_scale"
+                             tal:replace="structure python:image_scale.tag(obj, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale)" />
+
+                        <span tal:replace="obj/pretty_title_or_id">Title</span>
+                    </a>
+
+                    <time class="smaller" tal:content="python:toLocalizedTime(obj.ModificationDate)">
+                        Date
+                    </time>
+
+                </li>
+
+            </tal:item>
+
+        </ul>
+
+        <p tal:condition="not:recent_items" i18n:translate="box_recent_no_items">No items changed yet.</p>
+
+        <div class="portlet-footer">
+
+            <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/recently_modified_link">
+
+                <i class="bi bi-plus-circle-fill"></i>
+                <span i18n:translate="box_more_recently_changed">All recent changes</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</tal:block>
