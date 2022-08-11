@@ -20,6 +20,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 from genweb6.core import GenwebMessageFactory as _
 
 import random
+import secrets
 
 
 VIEW_TYPE_LIST = 'list'
@@ -28,6 +29,8 @@ VIEW_TYPE_IMG_UP_TITLE_DOWN = 'img_up_title_down'
 VIEW_TYPE_IMG_UP_TITLE_DOWN_2COLUMNS = 'img_up_title_down_2columns'
 VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS = 'img_up_title_down_3columns'
 VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS = 'img_up_title_down_4columns'
+VIEW_TYPE_SIMPLE_CAROUSEL = 'simple_carousel'
+VIEW_TYPE_MULTIPLE_CAROUSEL = 'multiple_carousel'
 
 vocabulary_view_type = SimpleVocabulary([
     SimpleTerm(
@@ -48,6 +51,12 @@ vocabulary_view_type = SimpleVocabulary([
     SimpleTerm(
         value=VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS,
         title=_(u'Full4cols view')),
+    SimpleTerm(
+        value=VIEW_TYPE_SIMPLE_CAROUSEL,
+        title=_(u'Simple carousel view')),
+    SimpleTerm(
+        value=VIEW_TYPE_MULTIPLE_CAROUSEL,
+        title=_(u'Multiple carousel view')),
 ])
 
 
@@ -164,6 +173,8 @@ class Renderer(base.Renderer):
         VIEW_TYPE_IMG_UP_TITLE_DOWN_2COLUMNS: 'img_up_title_down.pt',
         VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS: 'img_up_title_down.pt',
         VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS: 'img_up_title_down.pt',
+        VIEW_TYPE_SIMPLE_CAROUSEL: 'carousel.pt',
+        VIEW_TYPE_MULTIPLE_CAROUSEL: 'carousel_complex.pt',
     }
     SUMMARY_LENGTH_MAX = 200
 
@@ -183,6 +194,10 @@ class Renderer(base.Renderer):
     @property
     def available(self):
         return len(self.results())
+
+    @property
+    def token(self):
+        return secrets.token_hex(16)
 
     def showTitle(self):
         return self.data.show_title
@@ -247,7 +262,7 @@ class Renderer(base.Renderer):
             col = 3
 
         result_dicts = []
-        for result in self.results():
+        for index, result in enumerate(self.results(), start=0):
             result_obj = result.getObject()
             result_image = getattr(result_obj, 'image', None)
             try:
@@ -272,7 +287,10 @@ class Renderer(base.Renderer):
                 portal_type=normalizeString(result.portal_type),
                 title=result.title_or_id(),
                 url=result.getURL(),
+                active=index == 0,
+                index=index,
             ))
+
         return result_dicts
 
     def _summarize(self, text):

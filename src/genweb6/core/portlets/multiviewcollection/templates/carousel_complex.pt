@@ -1,0 +1,89 @@
+<div class="portlet portlet-collection portlet-collection-carousel-complex"
+     i18n:domain="plone"
+     tal:attributes="class string:portlet portlet-collection portlet-collection-carousel-complex ${view/css_class}"
+     tal:define="result_dicts view/result_dicts;
+                 id_carousel string:carousel-collection-${view/token}"
+     tal:condition="result_dicts">
+
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
+
+    <div class="mx-auto my-auto justify-content-center mb-2">
+
+        <div class="carousel slide" data-bs-ride="carousel"
+             tal:attributes="id id_carousel">
+
+            <div class="carousel-inner" role="listbox">
+
+                <tal:item tal:repeat="obj result_dicts">
+
+                    <div tal:condition="obj/active" class="carousel-item active">
+                        <div class="w-100">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="++theme++genweb6.theme/img/blank_blau.png" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div tal:condition="not:obj/active" class="carousel-item">
+                         <div class="w-100">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="++theme++genweb6.theme/img/blank_blau.png" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </tal:item>
+
+            </div>
+
+            <a class="carousel-control-prev bg-transparent w-auto" type="button" data-bs-slide="prev"
+                tal:attributes="data-bs-target string:#${id_carousel};">
+
+                <i class="bi bi-arrow-left-short"></i>
+                <span class="visually-hidden">Previous</span>
+
+            </a>
+
+            <a class="carousel-control-next bg-transparent w-auto" type="button" data-bs-slide="next"
+                tal:attributes="data-bs-target string:#${id_carousel};">
+
+                <i class="bi bi-arrow-right-short"></i>
+                <span class="visually-hidden">Next</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
+
+    <script type="text/javascript">
+
+        let items = document.querySelectorAll('.portlet-collection-carousel-complex .carousel .carousel-item');
+
+        items.forEach((el) => {
+            const minPerSlide = 4;
+            let next = el.nextElementSibling;
+            for (var i=1; i<minPerSlide; i++) {
+                if (!next) {
+                    // wrap carousel by using first child
+                    next = items[0];
+                }
+                let cloneChild = next.cloneNode(true);
+                el.appendChild(cloneChild.children[0]);
+                next = next.nextElementSibling;
+            }
+        });
+
+    </script>
+
+</div>
+
+
