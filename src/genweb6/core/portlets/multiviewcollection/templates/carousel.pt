@@ -1,4 +1,4 @@
-<div class="portlet portlet-collection"
+<div class="portlet portlet-collection portlet-collection-carousel"
      i18n:domain="plone"
      tal:attributes="class string:portlet portlet-collection ${view/css_class}"
      tal:define="result_dicts view/result_dicts;

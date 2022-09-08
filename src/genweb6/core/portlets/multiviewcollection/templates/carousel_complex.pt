@@ -17,25 +17,11 @@
                 <tal:item tal:repeat="obj result_dicts">
 
                     <div tal:condition="obj/active" class="carousel-item active">
-                        <div class="w-100">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="++theme++genweb6.theme/img/blank_blau.png" class="img-fluid">
-                                </div>
-                                <div class="card-img-overlay">Slide 1</div>
-                            </div>
-                        </div>
+                        <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/complex_carousel_content"></block>
                     </div>
 
                     <div tal:condition="not:obj/active" class="carousel-item">
-                         <div class="w-100">
-                            <div class="card">
-                                <div class="card-img">
-                                    <img src="++theme++genweb6.theme/img/blank_blau.png" class="img-fluid">
-                                </div>
-                                <div class="card-img-overlay">Slide 1</div>
-                            </div>
-                        </div>
+                        <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/complex_carousel_content"></block>
                     </div>
 
                 </tal:item>
@@ -73,7 +59,6 @@
             let next = el.nextElementSibling;
             for (var i=1; i<minPerSlide; i++) {
                 if (!next) {
-                    // wrap carousel by using first child
                     next = items[0];
                 }
                 let cloneChild = next.cloneNode(true);

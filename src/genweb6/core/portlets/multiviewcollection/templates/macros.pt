@@ -128,4 +128,45 @@
 
 </metal:block>
 
+<metal:block metal:define-macro="complex_carousel_content" i18n:domain="plone">
+
+    <div class="w-100">
+
+        <div class="card-img-top">
+
+            <img tal:condition="obj/image_src" class="d-block w-100 rounded-3"
+                 tal:attributes="src obj/image_src;
+                                 alt obj/image_caption;
+                                 title obj/title">
+
+            <img tal:condition="not:obj/image_src" class="d-block w-100 rounded-3"
+                 src="++theme++genweb6.theme/img/sample/not_image.png"
+                 tal:attributes="alt obj/title;
+                                 title obj/title">
+
+        </div>
+
+        <div class="card-body mt-2">
+
+            <a href="#" class="title d-block text-decoration-none"
+               tal:attributes="href obj/url;
+                               title obj/title">
+
+                <h5 class="text-truncate" tal:content="obj/title">Title</h5>
+            </a>
+
+            <p tal:condition="obj/description" class="description text-truncate-2 mb-1"
+               tal:content="obj/description">Description summary</p>
+
+            <time tal:condition="view/show_time" class="time smaller text-muted"
+                  tal:content="obj/date">
+                Date
+            </time>
+
+        </div>
+
+    </div>
+
+</metal:block>
+
 </html>
