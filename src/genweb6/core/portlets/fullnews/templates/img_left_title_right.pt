@@ -1,0 +1,18 @@
+<div class="portlet portlet-fullnews portlet-collection"
+     i18n:domain="plone">
+
+    <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
+
+    <ul class="list-group list-group-flush mb-2">
+
+        <tal:item tal:repeat="obj view/result_dicts">
+
+            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/img_left_title_right"></block>
+
+        </tal:item>
+
+    </ul>
+
+    <block metal:use-macro="context/macros-genweb-portlet-fullnews/more_info"></block>
+
+</div>

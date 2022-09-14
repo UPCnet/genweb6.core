@@ -77,7 +77,7 @@ class Renderer(base.Renderer):
 
     TEMPLATE_FOLDER = 'templates'
     TEMPLATE_FILE = {
-        'id_normal': 'list.pt',
+        'id_normal': 'img_left_title_right.pt',
         'id_full': 'img_up_title_down.pt',
         'id_full_2cols': 'img_up_title_down.pt',
         'id_full_3cols': 'img_up_title_down.pt',
