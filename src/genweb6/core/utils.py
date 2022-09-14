@@ -163,6 +163,10 @@ def abreviaPlainText(summary, sumlenght):
     return bb
 
 
+def toLocalizedTime(self, time):
+    plone_view = getMultiAdapter((self.context, self.request), name=u"plone")
+    return plone_view.toLocalizedTime(time)
+
 # class GWConfig(BrowserView):
 
 #     def render(self):

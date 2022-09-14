@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+<metal:block metal:define-macro="title" i18n:domain="genweb">
+
+    <h2 class="portlet-title" i18n:translate="genweb-noticies">Notícies</h2>
+
+</metal:block>
+
+<metal:block metal:define-macro="more_info" i18n:domain="plone">
+
+    <div class="portlet-footer">
+
+        <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/rss_news_link">
+
+            <i class="bi bi-plus-circle-fill"></i>
+            <span i18n:translate="more_news_link">Més notícies</span>
+
+        </a>
+
+    </div>
+
+</metal:block>
+
+</html>

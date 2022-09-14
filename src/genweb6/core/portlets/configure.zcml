@@ -54,6 +54,13 @@
         editview=".fullnews.fullnews.EditForm"
         />
 
+    <browser:page
+        name="macros-genweb-portlet-fullnews"
+        for="*"
+        permission="zope.Public"
+        template="fullnews/templates/macros.pt"
+        />
+
     <plone:portlet
         name="genweb.portlets.grid_events"
         interface=".grid_events.grid_events.IGridEventsPortlet"

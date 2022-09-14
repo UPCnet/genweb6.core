@@ -18,6 +18,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import GenwebMessageFactory as _
+from genweb6.core.utils import toLocalizedTime
 
 import random
 import secrets
@@ -187,10 +188,6 @@ class Renderer(base.Renderer):
     def __init__(self, *args):
         base.Renderer.__init__(self, *args)
 
-    def toLocalizedTime(self, time):
-        plone_view = getMultiAdapter((self.context, self.request), name=u"plone")
-        return plone_view.toLocalizedTime(time)
-
     @property
     def available(self):
         return len(self.results())
@@ -273,9 +270,9 @@ class Renderer(base.Renderer):
                 except:
                     result_description = ''
 
-            date = self.toLocalizedTime(result.EffectiveDate())
+            date = toLocalizedTime(self, result.EffectiveDate())
             if not date:
-                date = self.toLocalizedTime(result.modified)
+                date = toLocalizedTime(self, result.modified)
 
             result_dicts.append(dict(
                 date=date,

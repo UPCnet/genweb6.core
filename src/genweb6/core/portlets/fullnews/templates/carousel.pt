@@ -1,0 +1,68 @@
+<div class="portlet portlet-collection portlet-collection-carousel"
+     i18n:domain="plone"
+     tal:define="result_dicts view/result_dicts;
+                 id_carousel string:carousel-collection-${view/token}"
+     tal:condition="result_dicts">
+
+    <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
+
+    <div class="carousel carousel-dark slide mb-2" data-bs-ride="carousel"
+         tal:attributes="id id_carousel">
+
+        <div class="carousel-indicators">
+
+            <tal:indicator tal:repeat="obj result_dicts">
+
+                <button tal:condition="obj/active" type="button" class="active" aria-current="true"
+                        tal:attributes="data-bs-target string:#${id_carousel};
+                                        data-bs-slide-to obj/index;
+                                        aria-label obj/title"></button>
+
+                <button tal:condition="not:obj/active" type="button"
+                        tal:attributes="data-bs-target string:#${id_carousel};
+                                        data-bs-slide-to obj/index;
+                                        aria-label obj/title"></button>
+
+            </tal:indicator>
+
+        </div>
+
+        <div class="carousel-inner">
+
+            <tal:item tal:repeat="obj result_dicts">
+
+                <div tal:condition="obj/active" class="carousel-item active" data-bs-interval="10000">
+                    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/simple_carousel_content"></block>
+                </div>
+
+                <div tal:condition="not:obj/active" class="carousel-item" data-bs-interval="5000">
+                    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/simple_carousel_content"></block>
+                </div>
+
+            </tal:item>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-slide="prev"
+                tal:attributes="data-bs-target string:#${id_carousel};">
+
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-slide="next"
+                tal:attributes="data-bs-target string:#${id_carousel};">
+
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+
+        </button>
+
+    </div>
+
+    <block metal:use-macro="context/macros-genweb-portlet-fullnews/more_info"></block>
+
+</div>
+
+
