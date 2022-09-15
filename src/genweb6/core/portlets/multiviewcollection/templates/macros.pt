@@ -41,7 +41,7 @@
        tal:attributes="href obj/url;
                        title obj/title">
 
-        <img class="rounded-circle"
+        <img class="rounded-3"
              tal:condition="obj/image"
              tal:attributes="src obj/image_src;
                              title obj/image_caption | nothing;

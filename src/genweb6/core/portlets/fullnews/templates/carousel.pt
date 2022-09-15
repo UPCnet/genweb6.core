@@ -1,4 +1,4 @@
-<div class="portlet portlet-collection portlet-collection-carousel"
+<div class="portlet portlet-fullnews portlet-collection portlet-collection-carousel"
      i18n:domain="plone"
      tal:define="result_dicts view/result_dicts;
                  id_carousel string:carousel-collection-${view/token}"

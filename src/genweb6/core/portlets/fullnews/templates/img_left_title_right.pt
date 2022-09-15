@@ -1,4 +1,4 @@
-<div class="portlet portlet-fullnews portlet-collection"
+<div class="portlet portlet-fullnews portlet-collection portlet-collection-iltr"
      i18n:domain="plone">
 
     <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
