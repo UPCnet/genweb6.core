@@ -22,7 +22,7 @@
 
               <div class="img mb-2">
 
-                <img class="rounded-circle"
+                <img class="rounded"
                      tal:attributes="src item/image;
                                      title item/title;
                                      alt item/title" />
@@ -91,7 +91,7 @@
              tal:condition="view/siteurl" tal:attributes="href view/siteurl"
              target="_blink">
 
-            <i class="bi bi-plus-circle-fill"></i>
+            <!-- <i class="bi bi-plus-circle-fill"></i> -->
 
             <span tal:condition="view/data/more_text"
                   tal:replace="view/data/more_text">Més notícies</span>

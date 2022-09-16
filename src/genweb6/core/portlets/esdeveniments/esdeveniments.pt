@@ -30,9 +30,9 @@
 
     <div class="portlet-footer">
 
-        <a class="portlet-show-more small text-decoration-none" tal:attributes="href string:${view/all_events_link}/aggregator/RSS">
+        <!-- <a class="portlet-show-more small text-decoration-none" tal:attributes="href string:${view/all_events_link}/aggregator/RSS">
             <i class="bi bi-rss"></i>
-        </a>
+        </a> -->
 
         <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/all_events_link">
             <span i18n:domain="genweb" i18n:translate="box_upcoming_events">Més esdeveniments</span>

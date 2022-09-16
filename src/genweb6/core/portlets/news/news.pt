@@ -36,9 +36,9 @@
 
     <div class="portlet-footer">
 
-        <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/rss_news_link">
+        <!-- <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/rss_news_link">
             <i class="bi bi-rss"></i>
-        </a>
+        </a> -->
 
         <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/all_news_link">
             <span i18n:domain="genweb" i18n:translate="more_news_link">Més notícies</span>

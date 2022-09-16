@@ -41,7 +41,7 @@
        tal:attributes="href obj/url;
                        title obj/title">
 
-        <img class="rounded-3"
+        <img class="rounded"
              tal:condition="obj/image"
              tal:attributes="src obj/image_src;
                              title obj/image_caption | nothing;
@@ -85,7 +85,7 @@
 
             <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/collection_url">
 
-                <i class="bi bi-plus-circle-fill"></i>
+                <!-- <i class="bi bi-plus-circle-fill"></i> -->
                 <span i18n:domain="genweb" i18n:translate="more_url">More</span>
 
             </a>
@@ -134,12 +134,12 @@
 
         <div class="card-img-top">
 
-            <img tal:condition="obj/image_src" class="d-block w-100 rounded-3"
+            <img tal:condition="obj/image_src" class="d-block w-100 rounded"
                  tal:attributes="src obj/image_src;
                                  alt obj/image_caption;
                                  title obj/title">
 
-            <img tal:condition="not:obj/image_src" class="d-block w-100 rounded-3"
+            <img tal:condition="not:obj/image_src" class="d-block w-100 rounded"
                  src="++theme++genweb6.theme/img/sample/not_image.png"
                  tal:attributes="alt obj/title;
                                  title obj/title">
