@@ -47,6 +47,12 @@
                              title obj/image_caption | nothing;
                              alt obj/image_caption | string: ;"/>
 
+        <img class="rounded"
+             tal:condition="not:obj/image"
+             src="++theme++genweb6.theme/img/sample/not_image.png"
+             tal:attributes="title obj/title | nothing;
+                             alt obj/title | string: ;"/>
+
     </a>
 
 </metal:block>
