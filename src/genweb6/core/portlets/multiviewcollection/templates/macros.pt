@@ -49,7 +49,7 @@
 
         <img class="rounded"
              tal:condition="not:obj/image"
-             src="++theme++genweb6.theme/img/sample/not_image.png"
+             src="++theme++genweb6.theme/img/sample/default_new_image.png"
              tal:attributes="title obj/title | nothing;
                              alt obj/title | string: ;"/>
 
@@ -109,7 +109,7 @@
                          alt obj/image_caption;
                          title obj/title">
 
-    <img tal:condition="not:obj/image_src" class="d-block w-100" src="++theme++genweb6.theme/img/sample/not_image.png"
+    <img tal:condition="not:obj/image_src" class="d-block w-100" src="++theme++genweb6.theme/img/sample/default_new_image.png"
          tal:attributes="alt obj/title;
                          title obj/title">
 

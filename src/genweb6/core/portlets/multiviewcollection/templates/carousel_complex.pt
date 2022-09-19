@@ -52,7 +52,7 @@
 
     <script type="text/javascript">
 
-        let items = document.querySelectorAll('.portlet-collection-carousel-complex .carousel .carousel-item');
+        var items = document.querySelectorAll('.portlet-collection-carousel-complex .carousel .carousel-item');
 
         items.forEach((el) => {
             const minPerSlide = 4;
