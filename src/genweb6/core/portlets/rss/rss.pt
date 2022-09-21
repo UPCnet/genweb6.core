@@ -107,12 +107,8 @@
 
   </div>
 
-  <script type="text/javascript">
-    $(".portlet.portlet-rss .description").each(function(){
-      $(this).html($(this).text());
-    });
-
-    $(".portlet.portlet-rss  a[rel='external']").attr("target", "_blink")
+  <script type="text/javascript"
+          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/rss.min.js">
   </script>
 
 </html>

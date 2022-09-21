@@ -8,11 +8,8 @@
 <body>
 
 <metal:head fill-slot="javascript_head_slot">
-  <script type="text/javascript">
-    jQuery(function ($) {
-      $('.newsImageContainer a').prepOverlay({subtype: 'image'});
-      $('figcaption').css('max-width', $('.newsImageContainer img').width());
-    });
+  <script type="text/javascript"
+          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/document_image.min.js">
   </script>
 </metal:head>
 

@@ -50,23 +50,8 @@
 
     <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
 
-    <script type="text/javascript">
-
-        var items = document.querySelectorAll('.portlet-collection-carousel-complex .carousel .carousel-item');
-
-        items.forEach((el) => {
-            const minPerSlide = 4;
-            let next = el.nextElementSibling;
-            for (var i=1; i<minPerSlide; i++) {
-                if (!next) {
-                    next = items[0];
-                }
-                let cloneChild = next.cloneNode(true);
-                el.appendChild(cloneChild.children[0]);
-                next = next.nextElementSibling;
-            }
-        });
-
+    <script type="text/javascript"
+            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/portlets/multiviewcollection_complex_carousel.min.js">
     </script>
 
 </div>
