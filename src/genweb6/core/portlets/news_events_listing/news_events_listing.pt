@@ -9,7 +9,7 @@
     <tal:events condition="not:is_news">
         <div class="portlet portlet-noticies" role="complementary">
             <ul class="mode_selector list-portlet first-selector">
-                <li class="" tal:attributes="class python:mode=='future' and 'selected' or 'not-selected'">
+                <li class="" tal:attributes="class python:mode=='future' and 'selected select-future' or 'select-future'">
                     <a class="mode_future"
                        href="" tal:attributes="href view/mode_future_url"
                        i18n:translate="mode_future_link">Upcoming</a>
@@ -18,14 +18,14 @@
                     <a class="today"
                        href="" tal:attributes="href view/today_url"
                        i18n:translate="today_link">Today</a> </li>
-                <li class="" tal:attributes="class python:mode=='past' and 'selected' or 'not-selected'">
+                <li class="" tal:attributes="class python:mode=='past' and 'selected select-past' or 'select-past'">
                     <a class="mode_past"
                        href="" tal:attributes="href view/mode_past_url"
                        i18n:domain="genweb" i18n:translate="mode_past_link">Past</a>
                 </li>
             </ul>
             <ul class="mode_selector list-portlet second-selector">
-                <li class="" tal:attributes="class python:mode=='day' and 'selected' or 'not-selected'">
+                <li class="" tal:attributes="class python:mode=='day' and 'selected select-day' or 'select-day'">
                     <a class="prev_day"
                        href="" tal:attributes="href view/prev_day_url">&lArr;</a>
                     <a class="mode_day"
@@ -35,12 +35,12 @@
                        href="" tal:attributes="href view/next_day_url">&rArr;</a>
                     <input id="event_listing_calendar" type="hidden" />
                 </li>
-                <li class="" tal:attributes="class python:mode=='month' and 'selected' or 'not-selected'">
+                <li class="" tal:attributes="class python:mode=='month' and 'selected select-month' or 'select-month'">
                     <a class="prev_month" href="" tal:attributes="href view/prev_month_url">&lArr;</a>
                     <a class="mode_month" href="" tal:attributes="href view/mode_month_url" i18n:translate="mode_month_link">Month</a>
                     <a class="next_month" href="" tal:attributes="href view/next_month_url">&rArr;</a>
                 </li>
-                <li class="" tal:attributes="class python:mode=='week' and 'selected' or 'not-selected'">
+                <li class="" tal:attributes="class python:mode=='week' and 'selected select-week' or 'select-week'">
                   <a class="prev_week" href="" tal:attributes="href view/prev_week_url">&lArr;</a>
                   <a class="mode_week" href="" tal:attributes="href view/mode_week_url"  i18n:translate="mode_week_link">Week</a>
                   <a class="next_week" href="" tal:attributes="href view/next_week_url">&rArr;</a>
