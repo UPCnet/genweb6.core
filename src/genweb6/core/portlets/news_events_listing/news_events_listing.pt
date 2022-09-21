@@ -8,7 +8,7 @@
 
     <tal:events condition="not:is_news">
         <div class="portlet portlet-noticies" role="complementary">
-            <ul class="mode_selector list-portlet">
+            <ul class="mode_selector list-portlet first-selector">
                 <li class="" tal:attributes="class python:mode=='future' and 'selected' or ''">
                     <a class="mode_future"
                        href="" tal:attributes="href view/mode_future_url"
@@ -24,7 +24,7 @@
                        i18n:domain="genweb" i18n:translate="mode_past_link">Past</a>
                 </li>
             </ul>
-            <ul class="mode_selector list-portlet">
+            <ul class="mode_selector list-portlet second-selector">
                 <li class="" tal:attributes="class python:mode=='day' and 'selected' or ''">
                     <a class="prev_day"
                        href="" tal:attributes="href view/prev_day_url">&lArr;</a>
