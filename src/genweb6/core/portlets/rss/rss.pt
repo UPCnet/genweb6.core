@@ -75,7 +75,7 @@
            tal:attributes="href view/data/more_url" target="_blink"
            tal:condition="view/data/more_url">
 
-          <i class="bi bi-plus-circle-fill"></i>
+          <!-- <i class="bi bi-plus-circle-fill"></i> -->
 
           <span tal:condition="view/data/more_text"
                 tal:replace="view/data/more_text">Més notícies</span>
