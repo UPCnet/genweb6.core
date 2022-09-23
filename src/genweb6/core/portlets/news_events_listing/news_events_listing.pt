@@ -7,7 +7,7 @@
              i18n:domain="genweb">
 
     <tal:events condition="not:is_news">
-        <div class="portlet portlet-noticies" role="complementary">
+        <div class="portlet portlet-noticies portlet-events-content" role="complementary">
             <ul class="mode_selector list-portlet first-selector">
                 <li class="" tal:attributes="class python:mode=='future' and 'selected select-future' or 'select-future'">
                     <a class="mode_future"
@@ -47,13 +47,12 @@
                 </li>
             </ul>
 
-            <ul class="sub_nav list-portlet">
+            <ul class="sub_nav list-portlet ical ps-0">
                 <li>
                     <a class="mode_ical"  href="" tal:attributes="href view/ical_url"
                        title="Download this event in iCal format"
                        i18n:attributes="title title_add_to_ical;">
-                    <img src="" alt=""
-                         tal:attributes="src string:${context/portal_url}/++resource++plone.app.event/icon_export_ical.png"/>
+                    <i class="bi bi-download pe-1"></i>
                     <span i18n:translate="label_add_to_ical">iCal</span></a>
                 </li>
             </ul>
