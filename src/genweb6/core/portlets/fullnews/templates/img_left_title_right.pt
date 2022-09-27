@@ -7,7 +7,7 @@
 
         <tal:item tal:repeat="obj view/result_dicts">
 
-            <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/img_left_title_right"></block>
+            <block metal:use-macro="context/macros-genweb-portlets/img_left_title_right"></block>
 
         </tal:item>
 

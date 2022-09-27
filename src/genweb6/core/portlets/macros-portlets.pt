@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plone">
+
+<metal:block metal:define-macro="img_left_title_right" i18n:domain="plone">
+
+    <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
+
+        <div class="img col-md-3">
+            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+        </div>
+
+        <div class="txt col-md-9">
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt"></block>
+        </div>
+    </li>
+
+</metal:block>
+
+
+<metal:block metal:define-macro="img_up_title_down" i18n:domain="plone">
+
+    <li tal:attributes="class string:mt-2 mb-3 contenttype-${obj/portal_type} col-md-${obj/col}">
+
+        <div class="img mb-2">
+            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+        </div>
+
+        <div class="txt">
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt"></block>
+        </div>
+    </li>
+
+</metal:block>
+
+<metal:block metal:define-macro="it-img" i18n:domain="plone">
+
+    <a href="#"
+       tal:attributes="href obj/url;
+                       title obj/title">
+
+        <img class="rounded"
+             tal:condition="obj/image"
+             tal:attributes="src obj/image_src;
+                             title obj/image_caption | nothing;
+                             alt obj/image_caption | string: ;"/>
+
+        <img class="rounded"
+             tal:condition="not:obj/image"
+             src="++theme++genweb6.theme/img/sample/default_image_sm.png"
+             tal:attributes="title obj/title | nothing;
+                             alt obj/title | string: ;"/>
+
+    </a>
+
+</metal:block>
+
+<metal:block metal:define-macro="it-txt" i18n:domain="plone">
+
+    <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
+       tal:content="obj/description">Description summary</p>
+
+    <a href="#" class="title d-block text-decoration-none text-truncate"
+       tal:attributes="href obj/url;
+                       title obj/title">
+
+        <span tal:replace="obj/title">Title</span>
+    </a>
+
+    <time tal:condition="view/show_time" class="time smaller"
+          tal:content="obj/date">
+        Date
+    </time>
+
+</metal:block>
+
+</html>

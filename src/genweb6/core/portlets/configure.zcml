@@ -8,6 +8,13 @@
     <include package="plone.app.portlets" />
     <include package=".manage_portlets" />
 
+    <browser:page
+        name="macros-genweb-portlets"
+        for="*"
+        permission="zope.Public"
+        template="macros-portlets.pt"
+        />
+
     <plone:portletRenderer
         portlet="plone.portlet.collection.collection.ICollectionPortlet"
         class=".collection.collection.gwCollection"

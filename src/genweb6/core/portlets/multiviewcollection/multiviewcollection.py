@@ -175,7 +175,7 @@ class Renderer(base.Renderer):
         VIEW_TYPE_IMG_UP_TITLE_DOWN_3COLUMNS: 'img_up_title_down.pt',
         VIEW_TYPE_IMG_UP_TITLE_DOWN_4COLUMNS: 'img_up_title_down.pt',
         VIEW_TYPE_SIMPLE_CAROUSEL: 'carousel.pt',
-        VIEW_TYPE_MULTIPLE_CAROUSEL: 'carousel_complex.pt',
+        VIEW_TYPE_MULTIPLE_CAROUSEL: 'multiple_carousel.pt',
     }
     SUMMARY_LENGTH_MAX = 200
 

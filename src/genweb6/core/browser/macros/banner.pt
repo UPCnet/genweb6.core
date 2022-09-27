@@ -7,7 +7,9 @@
 <metal:block metal:define-macro="banner" i18n:domain="plone">
 
     <div class="gw-banner">
+
         <tal:block tal:condition="context/image">
+
             <a tal:condition="context/open_link_in_new_window" target="_blank"
                tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                href context/remoteUrl">
@@ -16,6 +18,7 @@
                      tal:replace="structure python: scale.scale('image',
                                   scale='preview').tag(css_class='image-inline')">
             </a>
+
             <a tal:condition="not:context/open_link_in_new_window"
                tal:attributes="title context/title;
                                href context/remoteUrl">
@@ -24,40 +27,53 @@
                      tal:replace="structure python: scale.scale('image',
                                   scale='preview').tag(css_class='image-inline')">
             </a>
+
         </tal:block>
 
         <tal:block tal:condition="not: context/image">
+
             <div class="defaultBanner">
+
                 <a tal:condition="context/open_link_in_new_window" target="_blank"
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
+                    <span tal:content="context/title">Title</span>
+
                     <tal:block tal:condition="context/icon | nothing">
+
                         <i tal:condition="not:context/icon_large"
                            tal:attributes="class string:bi ${context/icon}"></i>
 
                         <i tal:condition="context/icon_large"
                            tal:attributes="class string:bi ${context/icon} icon-large"></i>
+
                     </tal:block>
 
-                    <span tal:content="context/title">Title</span>
                 </a>
+
                 <a tal:condition="not:context/open_link_in_new_window"
                    tal:attributes="title context/title;
                                    href context/remoteUrl">
 
+                    <span tal:content="context/title">Title</span>
+
                     <tal:block tal:condition="context/icon | nothing">
+
                         <i tal:condition="not:context/icon_large"
                            tal:attributes="class string:bi ${context/icon}"></i>
 
                         <i tal:condition="context/icon_large"
                            tal:attributes="class string:bi ${context/icon} icon-large"></i>
+
                     </tal:block>
 
-                    <span tal:content="context/title">Title</span>
                 </a>
+
             </div>
+
         </tal:block>
+
     </div>
 
 </metal:block>

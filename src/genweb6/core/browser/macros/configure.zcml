@@ -15,14 +15,21 @@
         name="macros-genweb-login"
         for="*"
         permission="zope.Public"
-        template="macros-login.pt"
+        template="login.pt"
         />
 
     <browser:page
         name="macros-genweb-banner"
         for="*"
         permission="zope.Public"
-        template="macros-banner.pt"
+        template="banner.pt"
+        />
+
+    <browser:page
+        name="macros-genweb-carousel"
+        for="*"
+        permission="zope.Public"
+        template="carousel/carousel.pt"
         />
 
 </configure>

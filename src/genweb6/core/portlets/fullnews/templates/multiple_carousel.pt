@@ -1,4 +1,4 @@
-<div class="portlet portlet-fullnews portlet-collection template-carousel"
+<div class="portlet portlet-fullnews portlet-collection template-multiple-carousel"
      i18n:domain="plone"
      tal:define="result_dicts view/result_dicts;
                  id_carousel string:carousel-collection-${view/token}"
@@ -6,10 +6,10 @@
 
     <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
 
-    <block metal:use-macro="context/macros-genweb-carousel/carousel"></block>
+    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel"></block>
 
     <block metal:use-macro="context/macros-genweb-portlet-fullnews/more_info"></block>
 
+    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+
 </div>
-
-

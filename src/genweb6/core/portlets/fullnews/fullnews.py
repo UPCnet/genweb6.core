@@ -83,7 +83,7 @@ class Renderer(base.Renderer):
         'id_full_3cols': 'img_up_title_down.pt',
         'id_full_4cols': 'img_up_title_down.pt',
         'id_simple_carousel': 'carousel.pt',
-        'id_multiple_carousel': 'carousel_complex.pt',
+        'id_multiple_carousel': 'multiple_carousel.pt',
     }
     SUMMARY_LENGTH_MAX = 200
 
