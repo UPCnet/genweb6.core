@@ -280,7 +280,7 @@ class Renderer(base.Renderer):
                 col=col,
                 image=result_image,
                 image_caption=getattr(result_obj, 'image_caption', None),
-                image_src=("{0}/@@images/image/preview".format(result.getURL()) if result_image else None),
+                image_src=("{0}/@@images/image/large".format(result.getURL()) if result_image else None),
                 portal_type=normalizeString(result.portal_type),
                 title=result.title_or_id(),
                 url=result.getURL(),
