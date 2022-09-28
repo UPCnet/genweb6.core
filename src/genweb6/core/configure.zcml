@@ -72,7 +72,7 @@
         for="*"
         class=".utils.genwebUtils"
         permission="zope2.Public"
-        allowed_interface=".interfaces.IGenweb6CoreLayer"
+        allowed_interface=".interfaces.IGenwebUtils"
         />
 
     <browser:page

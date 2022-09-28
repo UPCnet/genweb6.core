@@ -150,6 +150,8 @@ class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
                     uuid = 'nouuid'
             except:
                 uuid = 'nouuid'
+        else:
+            uuid = 'nouuid'
 
         for lang in languages:
             if redirect_to_root:
