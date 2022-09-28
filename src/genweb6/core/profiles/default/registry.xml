@@ -84,6 +84,30 @@
     </value>
   </record>
 
+  <!-- Para que se pueda selecionar la graella de portlets o subhome como vista por defecto carpeta -->
+  <record name="plone.default_page_types" interface="plone.base.interfaces.controlpanel.ITypesSchema" field="default_page_types">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>Document</element>
+        <element>Event</element>
+        <element>News Item</element>
+        <element>Collection</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">The content types that should be available for selection when setting a default page.</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Types that can be set as a default page</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>Document</element>
+      <element>Event</element>
+      <element>News Item</element>
+      <element>Collection</element>
+      <element>genweb.upc.subhome</element>
+    </value>
+  </record>
+
   <!-- Syndication enabled by default -->
   <record name="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled" interface="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings" field="default_enabled">
     <field type="plone.registry.field.Bool">
