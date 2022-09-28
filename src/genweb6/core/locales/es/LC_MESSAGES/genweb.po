@@ -1025,7 +1025,7 @@ msgstr "Si ha olvidado la contraseña, clique"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:192
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:173
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
-msgstr "Ha olvidado la contraseña?"
+msgstr "¿Ha olvidado la contraseña?"
 
 #. Default: "Si ets un usuari nou... "
 #: ."genweb-sietsusuarinou"

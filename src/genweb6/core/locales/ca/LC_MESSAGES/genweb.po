@@ -2275,7 +2275,7 @@ msgstr "Menú"
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/login_form.cpt:192
 #: genweb.theme/genweb/theme/skins/genwebtheme_custom/popup_login_form.cpt:173
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
-msgstr "Have you forgotten your password?"
+msgstr "Has oblidat la teva contrasenya?"
 
 msgid "more_url"
 msgstr "Veure més"
