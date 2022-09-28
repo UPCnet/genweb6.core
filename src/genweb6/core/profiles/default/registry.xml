@@ -57,6 +57,32 @@
     <value>6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn</value>
   </record>
 
+  <!-- Para que no muestre los portlets seleccionados en el menu administrar portlets -->
+  <record name="plone.app.portlets.PortletManagerBlacklist">
+    <field type="plone.registry.field.List">
+      <description>A list of portlet manager names that will not be shown in the toolbar dropdown</description>
+      <title>Toolbar Portlet Manager Blacklist</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>plone.dashboard1</element>
+      <element>plone.dashboard2</element>
+      <element>plone.dashboard3</element>
+      <element>plone.dashboard4</element>
+      <element>genweb.portlets.HomePortletManager1</element>
+      <element>genweb.portlets.HomePortletManager2</element>
+      <element>genweb.portlets.HomePortletManager3</element>
+      <element>genweb.portlets.HomePortletManager4</element>
+      <element>genweb.portlets.HomePortletManager5</element>
+      <element>genweb.portlets.HomePortletManager6</element>
+      <element>genweb.portlets.HomePortletManager7</element>
+      <element>genweb.portlets.HomePortletManager8</element>
+      <element>genweb.portlets.HomePortletManager9</element>
+      <element>genweb.portlets.HomePortletManager10</element>
+      <element>plone.footerportlets</element>
+      <element>plone.rightcolumn</element>
+    </value>
+  </record>
 
   <!-- Syndication enabled by default -->
   <record name="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled" interface="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings" field="default_enabled">
