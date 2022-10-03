@@ -9,11 +9,11 @@
 
             <ul class="mode_selector list-portlet first-selector">
 
-                <li class="" tal:attributes="class python:mode=='future' and 'selected select-future' or 'select-future'">
+                <li class="" tal:attributes="class python:mode=='past' and 'selected select-past' or 'select-past'">
 
-                    <a class="mode_future"
-                       href="" tal:attributes="href view/mode_future_url"
-                       i18n:translate="mode_future_link">Upcoming</a>
+                    <a class="mode_past"
+                       href="" tal:attributes="href view/mode_past_url"
+                       i18n:domain="genweb" i18n:translate="mode_past_link">Past</a>
                 </li>
 
                 <li class="select-today">
@@ -23,11 +23,11 @@
                        i18n:translate="today_link">Today</a>
                 </li>
 
-                <li class="" tal:attributes="class python:mode=='past' and 'selected select-past' or 'select-past'">
+                <li class="" tal:attributes="class python:mode=='future' and 'selected select-future' or 'select-future'">
 
-                    <a class="mode_past"
-                       href="" tal:attributes="href view/mode_past_url"
-                       i18n:domain="genweb" i18n:translate="mode_past_link">Past</a>
+                    <a class="mode_future"
+                       href="" tal:attributes="href view/mode_future_url"
+                       i18n:translate="mode_future_link">Upcoming</a>
                 </li>
 
             </ul>
