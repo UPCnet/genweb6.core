@@ -31,14 +31,14 @@ def login_URL(context, request):
         cas_settings = getCASSettings()
         current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
 
-        if current_url[-6:] == '/login' or current_url[-11:] == '/login_form' or 'require_login' in current_url or 'popup_login_form' in current_url:
-            camefrom = getattr(request, 'came_from', '')
-            if not camefrom:
-                camefrom = portal.absolute_url()
+        # if current_url[-6:] == '/login' or current_url[-11:] == '/login_form' or 'require_login' in current_url or 'popup_login_form' in current_url:
+        #     camefrom = getattr(request, 'came_from', '')
+        #     if not camefrom:
+        #         camefrom = portal.absolute_url()
 
-            url = '%s/login?idApp=%s&service=%s/logged_in?came_from=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(portal.absolute_url()), secureURL(camefrom))
-        else:
-            url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(portal.absolute_url()))
+        #     url = '%s/login?idApp=%s&service=%s/logged_in?came_from=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(portal.absolute_url()), secureURL(camefrom))
+        # else:
+        url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(context.absolute_url()))
 
         return url
     else:

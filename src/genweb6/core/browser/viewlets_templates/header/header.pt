@@ -89,7 +89,7 @@
             <li class="login nav-item" tal:condition="show_login">
                 <a class="nav-link" href="#" id="loginBtn"
                    data-bs-toggle="modal" data-bs-target="#loginModal"
-                   tal:attributes="data-url string:${navigation_root_url}/popup_login_form?came_from=${view/current_url}"
+                   tal:attributes="data-url string:${view/current_url}/popup_login_form"
                    i18n:translate="identificat">Identifica't</a>
             </li>
 
