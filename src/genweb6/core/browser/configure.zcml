@@ -198,4 +198,13 @@
         template="views_templates/login.pt"
         />
 
+    <browser:page
+        name="popup_login_form"
+        for="*"
+        class=".views.PopupLoginForm"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/popup_login_form.pt"
+        />
+
 </configure>

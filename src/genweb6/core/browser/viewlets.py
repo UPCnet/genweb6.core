@@ -40,6 +40,9 @@ class viewletBase(ViewletBase):
     def isAnonymous(self):
         return api.user.is_anonymous()
 
+    def current_url(self):
+        return self.context.absolute_url()
+
 
 class cintilloViewlet(viewletBase):
 

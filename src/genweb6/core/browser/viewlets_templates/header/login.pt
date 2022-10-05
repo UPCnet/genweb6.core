@@ -1,6 +1,8 @@
 <tal:block tal:condition="view/show_login" i18n:domain="genweb">
 
-  <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal"
+  <a href="#" id="loginBtn"
+     tal:attributes="data-url string:${view/navigation_root_url}/popup_login_form?came_from=${view/current_url}"
+     data-bs-toggle="modal" data-bs-target="#loginModal"
      i18n:translate="identificat">Identifica't</a>
 
   <div id="loginModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -15,10 +17,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body">
-          <block tal:define="target string:collapseLoginViewlet"
-                 metal:use-macro="context/macros-genweb-login/login"></block>
-        </div>
+        <div class="modal-body"></div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" i18n:translate="">Tanca</button>
@@ -26,5 +25,7 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="++theme++genweb6.theme/js/viewlets/login.min.js"></script>
 
 </tal:block>
