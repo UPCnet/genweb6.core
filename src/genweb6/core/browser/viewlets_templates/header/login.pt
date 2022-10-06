@@ -1,7 +1,7 @@
 <tal:block tal:condition="view/show_login" i18n:domain="genweb">
 
   <a href="#" id="loginBtn"
-     tal:attributes="data-url string:${view/navigation_root_url}/popup_login_form?came_from=${view/current_url}"
+     tal:attributes="data-url string:${view/current_url}/popup_login_form"
      data-bs-toggle="modal" data-bs-target="#loginModal"
      i18n:translate="identificat">Identifica't</a>
 
