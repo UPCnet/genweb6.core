@@ -37,7 +37,7 @@
         icon_expr="string:exclamation-diamond"
         visible="True">
 
-        <permission>Genweb: Superadmin Users</permission>
+        <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
     <configlet
@@ -50,7 +50,7 @@
         icon_expr="string:border-top"
         visible="True">
 
-        <permission>Genweb: Superadmin Users</permission>
+        <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
     <configlet
@@ -63,7 +63,7 @@
         icon_expr="string:border-bottom"
         visible="True">
 
-        <permission>Genweb: Superadmin Users</permission>
+        <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
     <configlet

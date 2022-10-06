@@ -41,7 +41,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo='genweb.superadmin')
     write_permission(logo='genweb.webmaster')
     directives.widget('logo', NamedImageFieldWidget)
     logo = schema.Bytes(
@@ -57,7 +56,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_responsive='genweb.superadmin')
     write_permission(logo_responsive='genweb.webmaster')
     directives.widget('logo_responsive', NamedImageFieldWidget)
     logo_responsive = schema.Bytes(
@@ -73,7 +71,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_alt='genweb.superadmin')
     write_permission(logo_alt='genweb.webmaster')
     logo_alt = schema.TextLine(
         title=_(u"logo_alt",
@@ -91,7 +88,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_url='genweb.superadmin')
     write_permission(logo_url='genweb.webmaster')
     logo_url = schema.TextLine(
         title=_(u"logo_url",
@@ -109,7 +105,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_external_url='genweb.superadmin')
     write_permission(logo_external_url='genweb.webmaster')
     logo_external_url = schema.Bool(
         title=_(u"logo_external_url",

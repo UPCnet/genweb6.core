@@ -12,7 +12,7 @@
         for="plone.portlets.interfaces.ILocalPortletAssignable"
         class="genweb6.core.portlets.manage_portlets.manager.gwManageContextualPortlets"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="genweb.superadmin"
+        permission="genweb.webmaster"
         template="templates/managehomeportlets.pt"
         />
 
@@ -31,7 +31,7 @@
         for="plone.portlets.interfaces.ILocalPortletAssignable"
         class="plone.app.portlets.browser.manage.ManageContextualPortlets"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="genweb.superadmin"
+        permission="genweb.webmaster"
         template="templates/manage-contextual.pt"
         />
 

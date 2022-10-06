@@ -37,7 +37,7 @@
         name="header-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".header.HeaderSettingsControlPanel"
-        permission="genweb.superadmin"
+        permission="genweb.webmaster"
         />
 
     <browser:page
@@ -79,14 +79,14 @@
         name="footer-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".footer.FooterSettingsControlPanel"
-        permission="genweb.superadmin"
+        permission="genweb.webmaster"
         />
 
     <browser:page
         name="cintillo-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".cintillo.CintilloSettingsControlPanel"
-        permission="genweb.superadmin"
+        permission="genweb.webmaster"
         />
 
 </configure>

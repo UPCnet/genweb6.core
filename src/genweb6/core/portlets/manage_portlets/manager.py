@@ -185,7 +185,7 @@ class gwManagePortletsFallbackViewletForIHomePage(gwManagePortletsFallbackViewle
 
     def available(self):
         secman = getSecurityManager()
-        if secman.checkPermission('Genweb: Superadmin Users', self.context):
+        if secman.checkPermission('Genweb: Webmaster Users', self.context):
             if self.request.steps[-1] in ['document_view', 'homepage']:
                 return True
         return False
@@ -199,7 +199,7 @@ class gwManagePortletsFallbackViewletForISubhome(gwManagePortletsFallbackViewlet
 
     def available(self):
         secman = getSecurityManager()
-        if secman.checkPermission('Genweb: Superadmin Users', self.context):
+        if secman.checkPermission('Genweb: Webmaster Users', self.context):
             if self.request.steps[-1] in ['subhome_view']:
                 return True
         return False

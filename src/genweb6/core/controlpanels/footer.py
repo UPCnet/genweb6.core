@@ -13,7 +13,6 @@ from genweb6.core import _
 
 class IFooterSettings(model.Schema):
 
-    read_permission(signatura_ca='genweb.superadmin')
     write_permission(signatura_ca='genweb.webmaster')
     signatura_ca = schema.TextLine(
         title=_(u"signatura_ca", default=u"Signatura [CA]"),
@@ -21,7 +20,6 @@ class IFooterSettings(model.Schema):
         required=False,
     )
 
-    read_permission(signatura_es='genweb.superadmin')
     write_permission(signatura_es='genweb.webmaster')
     signatura_es = schema.TextLine(
         title=_(u"signatura_es", default=u"Signatura [ES]"),
@@ -29,7 +27,6 @@ class IFooterSettings(model.Schema):
         required=False,
     )
 
-    read_permission(signatura_en='genweb.superadmin')
     write_permission(signatura_en='genweb.webmaster')
     signatura_en = schema.TextLine(
         title=_(u"signatura_en", default=u"Signatura [EN]"),

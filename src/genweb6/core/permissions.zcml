@@ -30,7 +30,7 @@
             id="genweb.webmaster"
             title="Genweb: Webmaster Users">
 
-            <role name="Site Administrator"/>
+            <role name="WebMaster"/>
             <role name="Manager"/>
         </permission>
 
@@ -38,17 +38,8 @@
             id="genweb.administrator"
             title="Genweb: Administrator Users">
 
+            <role name="Site Administrator"/>
             <role name="WebMaster"/>
-            <role name="Site Administrator"/>
-            <role name="Manager"/>
-        </permission>
-
-        <permission
-            id="genweb.superadmin"
-            title="Genweb: Superadmin Users">
-
-            <role name="Genweb Superadmin"/>
-            <role name="Site Administrator"/>
             <role name="Manager"/>
         </permission>
 
