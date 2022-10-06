@@ -48,10 +48,4 @@
         permission="zope2.Public"
         />
 
-    <!-- TODO Comentado porque no funciona el paquete de anz.casclient -->
-    <!-- <subscriber
-        for="anz.casclient.interfaces.ISAMLPropertiesExist"
-        handler=".events.setoAuthTokenFromCASSAMLProperties"
-        /> -->
-
 </configure>
