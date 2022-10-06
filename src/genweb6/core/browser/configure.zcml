@@ -182,7 +182,7 @@
 
     <browser:page
         name="login_form"
-        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        for="*"
         permission="zope.Public"
         layer="..interfaces.IGenweb6CoreLayer"
         class=".login.GWLoginForm"
@@ -191,7 +191,7 @@
 
     <browser:page
         name="login"
-        for="plone.app.layout.navigation.interfaces.INavigationRoot"
+        for="*"
         permission="zope.Public"
         layer="..interfaces.IGenweb6CoreLayer"
         class=".login.GWLoginForm"

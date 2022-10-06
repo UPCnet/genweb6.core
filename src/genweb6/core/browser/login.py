@@ -25,7 +25,7 @@ class LoginUtils():
         return login_URL(self.context, self.request)
 
     def login_form(self):
-        return "%s/login_form" % api.portal.get().absolute_url()
+        return "%s/login_form" % self.context.absolute_url()
 
     def login_name(self):
         auth = self.auth()
@@ -71,6 +71,11 @@ class GWLoginForm(LoginForm, LoginUtils):
             return
         membership_tool = getToolByName(self.context, 'portal_membership')
         status_msg = IStatusMessage(self.request)
+
+        # Código añadido, lista de url de login
+        urls_login = ['/popup_login_form', '/login_form', '/login']
+        # FIN Código añadido
+
         if membership_tool.isAnonymousUser():
             self.request.response.expireCookie('__ac', path='/')
             if self.use_email_as_login():
@@ -93,6 +98,12 @@ class GWLoginForm(LoginForm, LoginUtils):
             # Código añadido para que en vez de reedirigir a la página de login reedirija
             # a la misma URL donde se situaba.
             came_from = data.get('came_from', None)
+            if not came_from:
+                came_from = self.context.absolute_url()
+
+            for url in urls_login:
+                came_from = came_from.replace(url, '')
+
             self.request.response.redirect(came_from)
             # FIN Código añadido
 
@@ -107,5 +118,14 @@ class GWLoginForm(LoginForm, LoginUtils):
             'info'
         )
 
+        # Código añadido para que en vez de reedirigir a la página de login reedirija
+        # a la misma URL donde se situaba.
         came_from = data.get('came_from', None)
+        if not came_from:
+            came_from = self.context.absolute_url()
+
+        for url in urls_login:
+            came_from = came_from.replace(url, '')
+
         self.redirect_after_login(came_from, is_initial_login)
+        # FIN Código añadido
