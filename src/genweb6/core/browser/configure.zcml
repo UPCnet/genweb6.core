@@ -180,7 +180,7 @@
         template="views_templates/grid_future_events.pt"
         />
 
-    <browser:page
+<!--     <browser:page
         name="login_form"
         for="*"
         permission="zope.Public"
@@ -205,6 +205,6 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/popup_login_form.pt"
-        />
+        /> -->
 
 </configure>
