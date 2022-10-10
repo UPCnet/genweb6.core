@@ -550,5 +550,5 @@ class FolderIndexItem():
         return not self.brain.exclude_from_nav and len(self.brain.Title) > 0
 
 
-class PopupLoginForm(BrowserView, LoginUtils):
-    pass
+# class PopupLoginForm(BrowserView, LoginUtils):
+#     pass

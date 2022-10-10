@@ -20,6 +20,8 @@ from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 
+from plone.app.layout.viewlets.common import PersonalBarViewlet
+
 
 class viewletBase(ViewletBase):
 
@@ -74,7 +76,7 @@ class loginViewlet(viewletBase, LoginUtils):
         return False
 
 
-class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
+class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet, PersonalBarViewlet):
 
     def getClass(self):
         default_class = 'd-flex align-items-center '

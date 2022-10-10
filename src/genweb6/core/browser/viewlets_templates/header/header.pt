@@ -75,7 +75,21 @@
         </div>
     </div>
 
+    <div id="portal-anontools" tal:condition="python:view.user_actions and view.anonymous">
+              <ul class="list-inline">
+                <li class="list-inline-item" tal:repeat="action view/user_actions">
+                  <a href=""
+                      tal:attributes="action"
+                      tal:content="action/title"
+                      i18n:translate="">
+                      action title
+                  </a>
+                </li>
+              </ul>
+            </div>
+
     <nav id="portal-navbar" role="navigation" class="global-navigation ms-auto">
+
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
             <li class="home nav-item">
@@ -88,12 +102,13 @@
             <navtree tal:condition="not:header_config/treu_menu_horitzontal"
                      tal:replace="structure render_globalnav" />
 
-            <li class="login nav-item" tal:condition="show_login">
+<!--             <li class="login nav-item" tal:condition="show_login">
                 <a class="nav-link" href="#" id="loginBtn"
                    data-bs-toggle="modal" data-bs-target="#loginModal"
-                   tal:attributes="data-url string:${view/current_url}/popup_login_form"
+                   tal:attributes="data-url string:${view/current_url}/login"
                    i18n:translate="identificat">Identifica't</a>
-            </li>
+            </li> -->
+        
 
             <li class="register nav-item" tal:condition="view/show_auto_register">
                 <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
