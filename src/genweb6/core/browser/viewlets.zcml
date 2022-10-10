@@ -24,6 +24,15 @@
         template="viewlets_templates/header/header.pt"
         />
 
+    <browser:viewlet
+        name="genweb.hero"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".viewlets.heroViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/header/hero.pt"
+        />
+
     <!-- <browser:viewlet
         name="genweb.login"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"

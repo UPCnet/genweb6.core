@@ -3,7 +3,6 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
-from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedImageFieldWidget
@@ -20,6 +19,68 @@ from genweb6.core.widgets import FieldsetFieldWidget
 
 
 class IHeaderSettings(model.Schema):
+
+    new_style = schema.Bool(
+        title=_(u"Activar el nou estil"),
+        required=False,
+        default=False,
+    )
+
+    html_title_ca = schema.TextLine(
+        title=_(u"html_title_ca",
+                default=u"Títol del web amb HTML tags (negretes) [CA]"),
+        description=_(u"help_html_title_ca",
+                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML"),
+        required=False,
+    )
+
+    html_title_es = schema.TextLine(
+        title=_(u"html_title_es",
+                default=u"Títol del web amb HTML tags (negretes) [ES]"),
+        description=_(u"help_html_title_es",
+                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML"),
+        required=False,
+    )
+
+    html_title_en = schema.TextLine(
+        title=_(u"html_title_en",
+                default=u"Títol del web amb HTML tags (negretes) [EN]"),
+        description=_(u"help_html_title_en",
+                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML."),
+        required=False,
+    )
+
+    html_description_ca = schema.TextLine(
+        title=_(u"Descripció del web amb HTML tags (negretes) [CA]"),
+        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        required=False,
+    )
+
+    html_description_es = schema.TextLine(
+        title=_(u"Descripció del web amb HTML tags (negretes) [ES]"),
+        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        required=False,
+    )
+
+    html_description_en = schema.TextLine(
+        title=_(u"Descripció del web amb HTML tags (negretes) [EN]"),
+        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        required=False,
+    )
+
+    directives.widget('hero_image', NamedImageFieldWidget)
+    hero_image = schema.Bytes(
+        title=_(u"Imatge principal"),
+        description=_(u"És important pujar una imatge amb una resolució de ???, en el cas d'utilitzar el nou estil de Genweb la resolució haurà de ser de ???. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        required=False,
+    )
+
+    meta_author = schema.TextLine(
+        title=_(u'Meta author tag content'),
+        description=_(u'Contingut de la etiqueta meta \"author\"'),
+        required=False,
+        default=u'UPC. Universitat Politècnica de Catalunya'
+    )
 
     model.fieldset('Logo', _(u'Logo'),
                    fields=['fieldset_logo', 'fieldset_secundary_logo',
@@ -216,6 +277,26 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
 
 class HeaderSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     form = HeaderSettingsForm
+
+
+class GWHero(Download):
+
+    def __init__(self, context, request):
+        super(GWHero, self).__init__(context, request)
+        self.filename = None
+        self.data = None
+
+        registry = queryUtility(IRegistry)
+        header_config = registry.forInterface(IHeaderSettings)
+
+        if getattr(header_config, 'hero_image', False):
+            filename, data = b64decode_file(header_config.hero_image)
+            data = NamedImage(data=data, filename=filename)
+            self.data = data
+            self.filename = filename
+
+    def _getFile(self):
+        return self.data
 
 
 class GWLogo(Download):

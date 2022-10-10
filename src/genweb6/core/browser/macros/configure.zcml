@@ -32,4 +32,11 @@
         template="carousel/carousel.pt"
         />
 
+    <browser:page
+        name="macros-genweb-searchBox"
+        for="*"
+        permission="zope.Public"
+        template="searchBox.pt"
+        />
+
 </configure>

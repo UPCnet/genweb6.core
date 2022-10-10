@@ -1,0 +1,19 @@
+<tal:hero tal:define="pref_lang context/@@genweb.utils/pref_lang;
+                      header_config context/@@genweb.utils/genwebHeaderConfig;
+                      new_style header_config/new_style | nothing">
+
+    <div id="hero" tal:attributes="class python:'new-style' if new_style else 'old-style'">
+
+        <img tal:attributes="src view/getHeroHeader"></img>
+        <h1 tal:condition="not:new_style"
+            tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
+
+        <div tal:condition="new_style">
+            <h1 tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
+            <div class="line"></div>
+            <h2 tal:content="python:getattr(header_config, 'html_description_' + pref_lang, '')"></h2>
+        </div>
+
+    </div>
+
+</tal:hero>

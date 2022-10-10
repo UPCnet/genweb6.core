@@ -14,6 +14,7 @@ from plone.uuid.interfaces import IUUID
 from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.browser.login import LoginUtils
+from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
@@ -46,14 +47,18 @@ class viewletBase(ViewletBase):
 
 class cintilloViewlet(viewletBase):
 
+    def render(self):
+        cintillo_config = genwebCintilloConfig()
+        if cintillo_config.active:
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
     def info_cintillo(self):
         cintillo_config = genwebCintilloConfig()
-        if not cintillo_config.active:
-            return {"show": False}
-
         lang = self.pref_lang()
-        return {"show": True,
-                "style": "background-color: " + cintillo_config.background_color +
+
+        return {"style": "background-color: " + cintillo_config.background_color +
                          "; color: " + cintillo_config.font_color + ";",
                 "icon": cintillo_config.icon,
                 "title": getattr(cintillo_config, "title_" + lang, ""),
@@ -71,31 +76,41 @@ class loginViewlet(viewletBase, LoginUtils):
 
 class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
 
+    def getClass(self):
+        default_class = 'd-flex align-items-center '
+
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
+            header_config = genwebHeaderConfig()
+            if header_config.new_style:
+                return default_class + 'new-style'
+
+        return default_class + 'old-style'
+
     def getLogosHeader(self):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
 
         if getattr(header_config, 'logo', False):
             filename, data = b64decode_file(header_config.logo)
-            logo = '{}/@@gw-logo/{}'.format(portal_url, filename)
+            logo = '{}/@@gw-logo'.format(portal_url)
         else:
-            logo = '%s/logo.png' % portal_url
+            logo = '%s/++theme++genweb6.theme/img/logo.png' % portal_url
 
         if getattr(header_config, 'logo_responsive', False):
             filename, data = b64decode_file(header_config.logo_responsive)
-            logo_responsive = '{}/@@gw-logo-responsive/{}'.format(portal_url, filename)
+            logo_responsive = '{}/@@gw-logo-responsive'.format(portal_url)
         else:
             logo_responsive = logo
 
         if getattr(header_config, 'secundary_logo', False):
             filename, data = b64decode_file(header_config.secundary_logo)
-            secundary_logo = '{}/@@gw-secundary-logo/{}'.format(portal_url, filename)
+            secundary_logo = '{}/@@gw-secundary-logo'.format(portal_url)
         else:
             secundary_logo = None
 
         if getattr(header_config, 'secundary_logo_responsive', False):
             filename, data = b64decode_file(header_config.secundary_logo_responsive)
-            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive/{}'.format(portal_url, filename)
+            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive'.format(portal_url)
         else:
             secundary_logo_responsive = secundary_logo
 
@@ -200,6 +215,26 @@ class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet):
         return lt.showFlags
 
 
+class heroViewlet(viewletBase):
+
+    def render(self):
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
+            return super(viewletBase, self).render()
+
+        return ""
+
+    def getHeroHeader(self):
+        header_config = genwebHeaderConfig()
+        portal_url = self.root_url()
+
+        if getattr(header_config, 'hero_image', False):
+            img_url = '{}/@@gw-hero'.format(portal_url)
+        else:
+            img_url = '%s/++theme++genweb6.theme/img/hero-image.png' % portal_url
+
+        return img_url
+
+
 class logosFooterViewlet(viewletBase):
 
     def getLogosFooter(self):
@@ -250,6 +285,13 @@ class footerViewlet(viewletBase):
 
 class cookiesViewlet(viewletBase):
 
+    def render(self):
+        config = genwebCookiesConfig()
+        if config.disable:
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
     def urlCookies(self):
         lang = self.pref_lang()
 
@@ -266,10 +308,6 @@ class cookiesViewlet(viewletBase):
             return 'application/pdf' not in self.request.environ['HTTP_ACCEPT']
         except:
             return True
-
-    def isEnable(self):
-        config = genwebCookiesConfig()
-        return not config.disable
 
     def alternativeText(self):
         config = genwebCookiesConfig()

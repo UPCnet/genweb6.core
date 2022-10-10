@@ -241,7 +241,8 @@ class genwebUtils(BrowserView):
         """ Extracts the current language for the current user
         """
         lt = api.portal.get_tool('portal_languages')
-        return lt.getPreferredLanguage()
+        lang = lt.getPreferredLanguage()
+        return lang if lang else 'ca'
 
     def getContentClass(self, view=None):
         plone_view = getMultiAdapter(
@@ -364,6 +365,10 @@ class genwebUtils(BrowserView):
 
     def lit_open_in_new_window(self):
         return self.portal().translate(_('obrir_link_finestra_nova'))
+
+    def class_footer_image(self):
+        footer_config = genwebFooterConfig()
+        return 'show-image' if footer_config.show_image else ''
 
 
 @implementer(ICatalogFactory)

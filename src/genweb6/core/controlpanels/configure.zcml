@@ -42,6 +42,13 @@
 
     <browser:page
         for="*"
+        name="gw-hero"
+        class=".header.GWHero"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
         name="gw-logo"
         class=".header.GWLogo"
         permission="zope.Public"

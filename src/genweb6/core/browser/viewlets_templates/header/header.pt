@@ -1,8 +1,10 @@
 <tal:content tal:define="navigation_root_url view/navigation_root_url;
                          show_login view/show_login;
-                         header_config context/@@genweb.utils/genwebHeaderConfig">
+                         header_config context/@@genweb.utils/genwebHeaderConfig;
+                         languages view/languages;
+                         render_globalnav python:view.render_globalnav()">
 
-<div id="header" class="d-flex align-items-center">
+<div id="header" tal:attributes="class view/getClass">
 
     <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
         <div id="logo-primary">
@@ -84,7 +86,7 @@
             </li>
 
             <navtree tal:condition="not:header_config/treu_menu_horitzontal"
-                     tal:replace="structure python:view.render_globalnav()" />
+                     tal:replace="structure render_globalnav" />
 
             <li class="login nav-item" tal:condition="show_login">
                 <a class="nav-link" href="#" id="loginBtn"
@@ -99,9 +101,7 @@
             </li>
 
 
-
-            <tal:languages tal:define="languages view/languages"
-                           tal:condition="languages/has_selector">
+            <tal:languages tal:condition="languages/has_selector">
 
                 <tal:selector tal:condition="languages/selected">
 
@@ -119,7 +119,7 @@
 
                     <tal:multiplelangs tal:condition="languages/multiple_selector">
 
-                       <li class="has_subtree nav-item" tal:define="selected languages/selected">
+                       <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
                             <a href="#" class="nav-link" aria-haspopup="true">
                                 <i class="bi bi-globe"></i>
                                 <span tal:content="selected/native"></span>
@@ -145,34 +145,105 @@
 
     <div id="portal-searchbox" class="nav-item" i18n:domain="plone">
 
-        <form id="searchGadget_form" action="@@search" role="search"
-              class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'} "
-              tal:attributes="action string:${navigation_root_url}/@@search;
-                              data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;">
+        <block metal:use-macro="context/macros-genweb-searchBox/search"></block>
 
-            <label class="hiddenStructure" for="searchGadget"
-                   i18n:translate="text_search">Search Site</label>
+    </div>
 
-            <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
-                   title="Search Site" laceholder="Search Site"
-                   i18n:attributes="title title_search_site;
-                                    placeholder title_search_site"
-                   tal:attributes="value request/form/SearchableText|nothing;"
-                   class="searchField form-control me-2" />
+    <div id="portal-navbar-mobile" class="d-none ms-auto" role="navigation">
 
-            <button class="searchButton" type="submit"
-                    i18n:translate="label_search;">
-                <i class="bi bi-search"></i>
-            </button>
+        <nav class="navbar navbar-dark">
 
-            <div id="portal-advanced-search" class="hiddenStructure">
+            <div class="container-fluid">
 
-                <a href="#" tal:attributes="href string:${navigation_root_url}/@@search"
-                   i18n:translate="label_advanced_search">
-                    Advanced Search&hellip;
-                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#gwMobileNavbar" aria-controls="gwMobileNavbar">
+
+                  <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+                     id="gwMobileNavbar" aria-labelledby="gwMobileNavbarLabel">
+
+                    <div class="offcanvas-header">
+
+                        <h5 i18n:translate="">Menú</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+                    </div>
+
+                    <div class="offcanvas-body">
+
+                        <div class="d-flex mt-3 mb-2" role="search">
+
+                            <div id="portal-searchbox-mobile" class="nav-item" i18n:domain="plone">
+
+                                <block metal:use-macro="context/macros-genweb-searchBox/search"></block>
+
+                            </div>
+
+                        </div>
+
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                          <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li>
+                                <hr class="dropdown-divider">
+                              </li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </li> -->
+
+                            <li class="nav-item">
+
+                                <a class="nav-link" tal:attributes="href navigation_root_url"
+                                   i18n:domain="genweb" i18n:translate="">
+                                    Inici
+                                </a>
+
+                            </li>
+
+                            <li class="ps-3"><hr class="mt-1 mb-1"></li>
+
+                            <navtree tal:condition="not:header_config/treu_menu_horitzontal"
+                                     tal:replace="structure render_globalnav" />
+
+                            <li class="ps-3"><hr class="mt-1 mb-1"></li>
+
+                            <tal:languages tal:condition="languages/has_selector">
+
+                                <tal:multiplelangs tal:condition="languages/multiple_selector"
+                                                   tal:define="langs languages/others">
+
+
+                                    <li tal:repeat="lang langs" class="nav-item">
+
+                                        <a class="nav-link" tal:attributes="href lang/url">
+
+                                            <span tal:content="lang/native"></span>
+
+                                        </a>
+
+                                    </li>
+
+                                </tal:multiplelangs>
+
+                            </tal:languages>
+
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </form>
+        </nav>
     </div>
 </div>
 

@@ -2,7 +2,6 @@
 from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
-from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.supermodel import model
 from z3c.form import button
@@ -12,6 +11,13 @@ from genweb6.core import _
 
 
 class IFooterSettings(model.Schema):
+
+    show_image = schema.Bool(
+        title=_(u"Mostrar imatge de fons al peu"),
+        description=_(u"Al marcar aquesta opció es mostrarà la imatge principal configurada en la capçalera com a fons del peu."),
+        required=False,
+        default=False,
+    )
 
     write_permission(signatura_ca='genweb.webmaster')
     signatura_ca = schema.TextLine(

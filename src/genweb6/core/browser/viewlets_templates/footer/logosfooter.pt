@@ -1,5 +1,7 @@
-<div id="footer-logos" tal:define="logos view/getLogosFooter"
-     tal:condition="logos" i18n:domain="genweb">
+<div id="footer-logos" i18n:domain="genweb"
+     tal:define="logos view/getLogosFooter"
+     tal:condition="logos"
+     tal:attributes="class context/@@genweb.utils/class_footer_image">
 
   <ul class="llistatLogos" role="list">
 
