@@ -185,7 +185,7 @@
         for="*"
         permission="zope.Public"
         layer="..interfaces.IGenweb6CoreLayer"
-        class=".login.GWLoginForm"
+        class=".views.GWLoginForm"
         template="views_templates/login.pt"
         />
 

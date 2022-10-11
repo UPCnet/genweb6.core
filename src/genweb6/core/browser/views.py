@@ -2,6 +2,7 @@
 from Acquisition import aq_inner
 from DateTime.DateTime import DateTime
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.login.login import LoginForm
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 
@@ -9,6 +10,7 @@ from plone import api
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
 from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.base.interfaces import ILoginForm
 from plone.batching import Batch
 from plone.memoize.view import memoize
 from plone.portlets.interfaces import IPortletManager
@@ -547,3 +549,8 @@ class FolderIndexItem():
     def isVisible(self):
         # test if excluded from nav and has valid title
         return not self.brain.exclude_from_nav and len(self.brain.Title) > 0
+
+
+@implementer(ILoginForm)
+class GWLoginForm(LoginForm):
+    pass
