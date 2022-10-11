@@ -1,43 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
 
+  <metal:block metal:define-macro="login_site" i18n:domain="plone">
+
+    <metal:form use-macro="context/@@ploneform-macros/titlelessform" />
+
+    <br>
+
+    <tal:block i18n:domain="genweb">
+
+      <h5 class="l" i18n:translate="genweb-si_heu_oblidat_la_contrasenya_question">
+        Have you forgotten your password?
+      </h5>
+
+      <p class="s margin0">
+
+        <span i18n:translate="genweb-si_heu_oblidat_la_contrasenya">
+          If you have forgotten your password,
+        </span>
+
+        <a target="_blank" tal:attributes="href context/@@genweb.login.utils/change_password_url"
+           i18n:translate="genweb-per_recuperarla">
+          click here to retrieve it
+        </a>
+
+      </p>
+
+    </tal:block>
+
+  </metal:block>
 
   <!-- Al cridar a aquesta macro es necessari definir el paràmetre target,
        aixo serveix per identificar cada accordion de login amb un nom diferent. -->
 
-  <!-- <metal:block metal:define-macro="login">
-    <div id="loginGW" tal:define="cas view/cas_settings">
+  <metal:block metal:define-macro="login_content"
+               tal:define="login_utils context/@@genweb.login.utils">
+
+    <div id="loginGW" tal:define="cas login_utils/cas_settings">
+
       <div class="accordion" id="accordionLogin" tal:condition="not:cas/enabled">
+
         <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+
       </div>
 
       <div class="accordion" id="accordionLogin" tal:condition="cas/enabled">
+
         <div class="accordion-item">
-          <a tal:attributes="href view/cas_login_URL" id="linkCAS">
+
+          <a tal:attributes="href login_utils/cas_login_URL" id="linkCAS">
+
             <h3 class="accordion-header accordion-button collapsed" id="headingCAS">
+
               <tal:block i18n:translate="">Entra amb la identificació única</tal:block>
               <tal:block tal:content="cas/login_text_btn"></tal:block>
+
             </h3>
+
           </a>
+
         </div>
+
         <div class="accordion-item">
+
           <h3 class="accordion-header" id="headingLogin">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" aria-expanded="false"
+
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" aria-expanded="false"
                     tal:attributes="data-bs-target string:#${target};
                                     aria-controls target"
                     i18n:domain="genweb"
                     i18n:translate="genweb_loginlocal">
               Log in only in this site
             </button>
+
           </h3>
-          <div tal:attributes="id target" class="accordion-collapse collapse" aria-labelledby="headingLogin"
-               data-bs-parent="#accordionLogin">
+
+          <div tal:attributes="id target" class="accordion-collapse collapse"
+               aria-labelledby="headingLogin" data-bs-parent="#accordionLogin">
+
             <div class="accordion-body">
+
               <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+
             </div>
+
           </div>
+
         </div>
+
       </div>
+
     </div>
+
+  </metal:block>
+
+  <metal:block metal:define-macro="login">
+
+    <article id="content" class="login-wrapper">
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h1 class="card-title h5" i18n:domain="genweb"
+              i18n:translate="label_start_session">Inicia la sessió</h1>
+
+          <div id="login-form">
+
+            <div class="alert alert-danger pat-cookietrigger" style="display:none">
+              <strong i18n:translate="">
+                Error
+              </strong>
+              <span tal:omit-tag=""
+                i18n:translate="enable_cookies_message_before_login">
+                Cookies are not enabled. You must enable cookies before you can log in.
+              </span>
+            </div>
+
+            <metal:form tal:define="target string:gwLogin"
+                        use-macro="context/macros-genweb-login/login_content" />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </article>
+
   </metal:block>
 
 </html>
- -->

@@ -24,7 +24,6 @@ from zope.interface import implementer
 
 from genweb6.core import _
 from genweb6.core.adapters import IImportant
-from genweb6.core.browser.login import LoginUtils
 from genweb6.core.interfaces import IEventFolder
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.portlets.manage_portlets.manager import ISpanStorage
@@ -548,7 +547,3 @@ class FolderIndexItem():
     def isVisible(self):
         # test if excluded from nav and has valid title
         return not self.brain.exclude_from_nav and len(self.brain.Title) > 0
-
-
-# class PopupLoginForm(BrowserView, LoginUtils):
-#     pass

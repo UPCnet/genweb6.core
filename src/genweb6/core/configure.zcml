@@ -76,6 +76,14 @@
         />
 
     <browser:page
+        name="genweb.login.utils"
+        for="*"
+        class=".utils.genwebLoginUtils"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.Public"
+        />
+
+    <browser:page
         name="gwuuid"
         for="zope.interface.Interface"
         class=".gwuuid.GWUUIDView"

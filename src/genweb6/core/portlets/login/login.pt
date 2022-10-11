@@ -1,18 +1,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="plone"
+      i18n:domain="genweb"
       tal:omit-tag="">
 
-  <tal:block condition="view/show">
+  <tal:block tal:condition="view/show"
+             tal:define="site_url python:context.portal_url();">
 
     <div class="portlet portletLogin">
 
-      <block tal:define="target string:collapseLoginPorlet"
-             metal:use-macro="context/macros-genweb-login/login"></block>
+      <div class="d-grid gap-2">
+
+        <a title="" href="" id="personaltools-login" data-pat-plone-modal="{'title': ''}"
+           class="pat-plone-modal btn btn-primary"
+           tal:attributes="href string:${site_url}/login_form"
+           i18n:attributes="title label_start_session"
+           i18n:translate="label_start_session">
+
+          Inicia la sessió
+        </a>
+
+      </div>
 
     </div>
 
   </tal:block>
 
 </html>
+
+

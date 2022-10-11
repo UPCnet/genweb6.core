@@ -5,6 +5,7 @@ from Products.Five.browser import BrowserView
 
 from bs4 import BeautifulSoup
 from plone import api
+from plone.memoize.instance import memoize
 from plone.registry.interfaces import IRegistry
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
@@ -19,6 +20,8 @@ from zope.interface import implementer
 
 from genweb6.core import _
 from genweb6.core import HAS_PAM
+from genweb6.core.cas.utils import getCASSettings
+from genweb6.core.cas.utils import login_URL
 from genweb6.core.controlpanels.cintillo import ICintilloSettings
 from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
@@ -196,6 +199,54 @@ def genwebFooterConfig():
 def genwebLoginConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ILoginSettings)
+
+
+class LoginUtils():
+
+    def cas_settings(self):
+        return getCASSettings()
+
+    def cas_login_URL(self):
+        return login_URL(self.context, self.request)
+
+    def login_form(self):
+        return "%s/login_form" % self.context.absolute_url()
+
+    def login_name(self):
+        auth = self.auth()
+        name = None
+        if auth is not None:
+            name = getattr(auth, "name_cookie", None)
+        if not name:
+            name = "__ac_name"
+        return name
+
+    def login_password(self):
+        auth = self.auth()
+        passwd = None
+        if auth is not None:
+            passwd = getattr(auth, "pw_cookie", None)
+        if not passwd:
+            passwd = "__ac_password"
+        return passwd
+
+    @memoize
+    def auth(self, _marker=None):
+        if _marker is None:
+            _marker = []
+        acl_users = api.portal.get_tool('acl_users')
+        return getattr(acl_users, "credentials_cookie_auth", None)
+
+    def change_password_url(self):
+        login_settings = genwebLoginConfig()
+        if login_settings.change_password_url:
+            return login_settings.change_password_url
+        else:
+            return '{}/@@change-password'.format(portal_url())
+
+
+class genwebLoginUtils(BrowserView, LoginUtils):
+    pass
 
 
 class genwebUtils(BrowserView):

@@ -33,15 +33,6 @@
         template="viewlets_templates/header/hero.pt"
         />
 
-    <!-- <browser:viewlet
-        name="genweb.login"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".viewlets.loginViewlet"
-        layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        template="viewlets_templates/header/login.pt"
-        /> -->
-
     <!-- FOOTER -->
 
     <browser:viewlet

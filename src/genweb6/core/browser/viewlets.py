@@ -13,7 +13,6 @@ from plone.uuid.interfaces import IUUID
 
 from genweb6.core import _
 from genweb6.core import utils
-from genweb6.core.browser.login import LoginUtils
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebCookiesConfig
@@ -67,16 +66,7 @@ class cintilloViewlet(viewletBase):
                 "text": getattr(cintillo_config, "text_" + lang, "")}
 
 
-class loginViewlet(viewletBase, LoginUtils):
-
-    def show_login(self):
-        if self.isAnonymous():
-            if not genwebHeaderConfig().amaga_identificacio:
-                return True
-        return False
-
-
-class headerViewlet(loginViewlet, SearchBoxViewlet, GlobalSectionsViewlet, PersonalBarViewlet):
+class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet, PersonalBarViewlet):
 
     def getClass(self):
         default_class = 'd-flex align-items-center '
