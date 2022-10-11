@@ -75,6 +75,15 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
+    write_permission(logo_alt='genweb.webmaster')
+    hero_image_alt = schema.TextLine(
+        title=_(u"hero_image_alt",
+                default=u"Text alternatiu del hero image"),
+        description=_(u"help_hero_image_alt",
+                      default=u"Afegiu el text alternatiu (alt) del hero image."),
+        required=False,
+    )
+
     meta_author = schema.TextLine(
         title=_(u'Meta author tag content'),
         description=_(u'Contingut de la etiqueta meta \"author\"'),

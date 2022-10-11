@@ -44,8 +44,8 @@
         <img class="rounded"
              tal:condition="obj/image"
              tal:attributes="src obj/image_src;
-                             title obj/image_caption | nothing;
-                             alt obj/image_caption | string: ;"/>
+                             title obj/title | nothing;
+                             alt obj/title | string: ;"/>
 
         <img class="rounded"
              tal:condition="not:obj/image"

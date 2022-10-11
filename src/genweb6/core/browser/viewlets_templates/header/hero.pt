@@ -2,9 +2,11 @@
                       header_config context/@@genweb.utils/genwebHeaderConfig;
                       new_style header_config/new_style | nothing">
 
-    <div id="hero" tal:attributes="class python:'new-style' if new_style else 'old-style'">
+    <div id="hero" tal:attributes="class python:'new-style' if new_style else 'old-style'" tal:define="heroImage view/getHeroHeader">
 
-        <img tal:attributes="src view/getHeroHeader"></img>
+        <img alt="" title="" tal:attributes="src heroImage/hero_image;
+                                             alt heroImage/hero_image_alt;
+                                             title heroImage/hero_image_alt"></img>
         <h1 tal:condition="not:new_style"
             tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
 
