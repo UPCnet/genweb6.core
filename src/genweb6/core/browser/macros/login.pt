@@ -68,7 +68,7 @@
 
           <h3 class="accordion-header" id="headingLogin">
 
-            <button class="accordion-button collapsed" type="button"
+            <button class="accordion-button" type="button"
                     data-bs-toggle="collapse" aria-expanded="false"
                     tal:attributes="data-bs-target string:#${target};
                                     aria-controls target"
@@ -79,7 +79,7 @@
 
           </h3>
 
-          <div tal:attributes="id target" class="accordion-collapse collapse"
+          <div tal:attributes="id target" class="accordion-collapse collapse show"
                aria-labelledby="headingLogin" data-bs-parent="#accordionLogin">
 
             <div class="accordion-body">
