@@ -1,266 +1,142 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<object xmlns:i18n="http://xml.zope.org/namespaces/i18n" name="portal_actions" meta_type="Plone Actions Tool">
+<?xml version="1.0" encoding="utf-8"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <action-provider name="portal_workflow"/>
+ <action-provider name="portal_types"/>
+ <action-provider name="portal_actions"/>
 
-    <action-provider name="portal_workflow" />
-    <action-provider name="portal_actions" />
+ <object name="object_buttons" meta_type="CMF Action Category">
+  <property name="title">Object buttons</property>
+  <object name="cut" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Cut</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/object_cut</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-cut</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", plone_context_state.parent()) and checkPermission("Copy or Move", object) and not plone_context_state.is_portal_root() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
+   <property name="permissions">
+    <element value="Delete objects"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="copy" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Copy</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/object_copy</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-copy</property>
+   <property
+      name="available_expr">python:checkPermission("Copy or Move", object) and not plone_context_state.is_portal_root() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="paste" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Paste</property>
+   <property name="description" i18n:translate=""></property>
+   <property
+      name="url_expr">python:f"{plone_context_state.folder().absolute_url()}/object_paste"</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-paste</property>
+   <property name="available_expr">folder/cb_dataValid|nothing</property>
+   <property name="permissions">
+    <element value="View"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="delete" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Delete</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/delete_confirmation</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-delete</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", plone_context_state.parent()) and not plone_context_state.is_portal_root() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
+   <property name="permissions">
+    <element value="Delete objects"/>
+   </property>
+   <property name="visible">True</property>
+   <property name="modal"
+      type="text">{"actionOptions": {"disableAjaxFormSubmit":true, "redirectOnResponse":true}}</property>
+  </object>
+  <object name="rename" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Rename</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:$object_url/object_rename</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-rename</property>
+   <property
+      name="available_expr">python:checkPermission("Delete objects", plone_context_state.parent()) and checkPermission("Copy or Move", object) and checkPermission("Add portal content", object) and not plone_context_state.is_portal_root() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
+   <property name="permissions">
+    <element value="Add portal content"/>
+   </property>
+   <property name="visible">True</property>
+   <property name="modal" type="text">{}</property>
+  </object>
+  <object name="redirection" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">URL Management</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string: ${object_url}/@@manage-aliases</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-redirection</property>
+   <property
+      name="available_expr">python:not plone_context_state.is_portal_root() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
+   <property name="permissions">
+    <element value="Manage Context Aliases"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="ical_import_enable" meta_type="CMF Action"
+     i18n:domain="plone">
+   <property name="title" i18n:translate="">Enable icalendar import</property>
+   <property name="description"
+      i18n:translate="">Click to enable the icalendar import feature on this context.</property>
+   <property
+      name="url_expr">string:$object_url/@@ical_import_settings/enable</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">object/@@ical_import_tool/available_disabled|nothing</property>
+   <property name="permissions">
+    <element value="plone.app.event: Import Ical"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+  <object name="ical_import_disable" meta_type="CMF Action"
+     i18n:domain="plone">
+   <property name="title"
+      i18n:translate="">Disable icalendar import</property>
+   <property name="description"
+      i18n:translate="">Click to disable the icalendar import feature on this context.</property>
+   <property
+      name="url_expr">string:$object_url/@@ical_import_settings/disable</property>
+   <property name="link_target"></property>
+   <property name="icon_expr"></property>
+   <property
+      name="available_expr">object/@@ical_import_tool/enabled|nothing</property>
+   <property name="permissions">
+    <element value="plone.app.event: Import Ical"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
 
-    <object name="object" meta_type="CMF Action Category">
-        <object name="contentrules" meta_type="CMF Action" i18n:domain="plone">
-            <property name="visible">False</property>
-        </object>
-    </object>
+ <object name="user" meta_type="CMF Action Category">
+  <property name="title">User actions</property>
 
-    <object name="document_actions" meta_type="CMF Action Category">
-        <object name="permalink" remove="True" />
-    </object>
-
-    <object name="portal_tabs" meta_type="CMF Action Category">
-        <property name="title" />
-
-        <object name="index_html" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Home</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}</property>
-            <property name="icon_expr" />
-            <property name="available_expr" />
-            <property name="permissions">
-                <element value="View" />
-            </property>
-            <property name="visible">False</property>
-        </object>
-    </object>
-
-    <object name="site_actions" meta_type="CMF Action Category">
-        <object name="accessibility" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Accessibility</property>
-            <property name="visible">False</property>
-        </object>
-    </object>
-
-    <object name="user" meta_type="CMF Action Category">
-        <object name="dashboard" remove="True" />
-        <object name="preferences" remove="True" />
-        <object name="plone_setup" remove="True" />
-        <object name="login" remove="True" />
-        <object name="join" remove="True" />
-        <object name="undo" remove="True" />
-        <object name="logout" remove="True" />
-
-        <object name="genweb-accesarrel" meta_type="CMF Action" i18n:domain="genweb">
-            <property name="title" i18n:translate="">genweb-accesarrel</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/folder_contents</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">context/@@genweb.utils/havePermissionAtRoot</property>
-            <property name="permissions">
-                <element value="View" />
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <!-- <object name="dashboard" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Dashboard</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${portal_url}/dashboard</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is not None</property>
-            <property name="permissions">
-                <element value="Portlets: Manage own portlets" />
-            </property>
-            <property name="visible">True</property>
-        </object> -->
-
-        <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Preferences</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/@@personal-preferences</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is not None</property>
-            <property name="permissions">
-                <element value="View" />
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Site Setup</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${portal_url}/@@overview-controlpanel</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr" />
-            <property name="permissions">
-                <element value="Genweb: Webmaster Users" />
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="login" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Log in</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/login_form</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is None</property>
-            <property name="permissions">
-                <element value="View" />
-            </property>
-            <property name="visible">False</property>
-        </object>
-
-        <object name="join" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Register</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/@@register</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is None</property>
-            <property name="permissions">
-                <element value="Add portal member" />
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="undo" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Undo</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/undo_form</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is not None</property>
-            <property name="permissions">
-                <element value="List undoable changes" />
-            </property>
-            <property name="visible">False</property>
-        </object>
-
-        <object name="logout" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Log out</property>
-            <property name="description" i18n:translate="" />
-            <property name="url_expr">string:${globals_view/navigationRootUrl}/logout</property>
-            <property name="link_target" />
-            <property name="icon_expr" />
-            <property name="available_expr">python:member is not None</property>
-            <property name="permissions">
-                <element value="View" />
-            </property>
-            <property name="visible">True</property>
-        </object>
-    </object>
-
-    <object name="object_buttons" meta_type="CMF Action Category">
-
-        <property name="title">Object buttons</property>
-
-        <object name="cut" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Cut</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string:$object_url/object_cut</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-cut</property>
-            <property name="available_expr">python:checkPermission('Delete objects', globals_view.getParentObject()) and checkPermission('Copy or Move', object) and not globals_view.isPortalOrPortalDefaultPage() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
-            <property name="permissions">
-                <element value="Delete objects"/>
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="copy" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Copy</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string:$object_url/object_copy</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-copy</property>
-            <property name="available_expr">python:checkPermission('Copy or Move', object) and not globals_view.isPortalOrPortalDefaultPage() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
-            <property name="permissions">
-                <element value="View"/>
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="paste" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Paste</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string:${globals_view/getCurrentFolderUrl}/object_paste</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-paste</property>
-            <property name="available_expr">folder/cb_dataValid|nothing</property>
-            <property name="permissions">
-                <element value="View"/>
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="delete" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Delete</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string:$object_url/delete_confirmation</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-delete</property>
-            <property name="available_expr">python:checkPermission('Delete objects', globals_view.getParentObject()) and not globals_view.isPortalOrPortalDefaultPage() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
-            <property name="permissions">
-                <element value="Delete objects"/>
-            </property>
-            <property name="visible">True</property>
-            <property name="modal" type="text">{'actionOptions': {'disableAjaxFormSubmit':true, 'redirectOnResponse':true}}</property>
-        </object>
-
-        <object name="rename" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Rename</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string:$object_url/object_rename</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-rename</property>
-            <property name="available_expr">python:checkPermission('Delete objects', globals_view.getParentObject()) and checkPermission('Copy or Move', object) and checkPermission('Add portal content', object) and not globals_view.isPortalOrPortalDefaultPage() and (not context.restrictedTraverse('@@plone_interface_info').provides('genweb6.core.interfaces.IProtectedContent') or checkPermission('Manage portal', object))</property>
-            <property name="permissions">
-                <element value="Add portal content"/>
-            </property>
-            <property name="visible">True</property>
-            <property name="modal" type="text">{}</property>
-        </object>
-
-        <object name="redirection" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">URL Management</property>
-            <property name="description" i18n:translate=""></property>
-            <property name="url_expr">string: ${object_url}/@@manage-aliases</property>
-            <property name="link_target"></property>
-            <property name="icon_expr">string:plone-redirection</property>
-            <property name="available_expr">python:not globals_view.isPortalOrPortalDefaultPage()</property>
-            <property name="permissions">
-                <element value="Manage Context Aliases"/>
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-        <object name="ical_import_enable" meta_type="CMF Action" i18n:domain="plone.app.event">
-            <property name="title" i18n:translate="title_ical_import_enable">Enable icalendar import</property>
-            <property name="description" i18n:translate="">Click to enable the icalendar import feature on this context.</property>
-            <property name="url_expr">string:$object_url/@@ical_import_settings/enable</property>
-            <property name="link_target"></property>
-            <property name="icon_expr"></property>
-            <property name="available_expr">object/@@ical_import_tool/available_disabled|nothing</property>
-            <property name="permissions">
-                <element value="plone.app.event: Import Ical"/>
-            </property>
-            <property name="visible">False</property>
-        </object>
-
-        <object name="ical_import_disable" meta_type="CMF Action" i18n:domain="plone">
-            <property name="title" i18n:translate="">Disable icalendar import</property>
-            <property name="description" i18n:translate="">Click to disable the icalendar import feature on this context.</property>
-            <property name="url_expr">string:$object_url/@@ical_import_settings/disable</property>
-            <property name="link_target"></property>
-            <property name="icon_expr"></property>
-            <property name="available_expr">object/@@ical_import_tool/enabled|nothing</property>
-            <property name="permissions">
-                <element value="plone.app.event: Import Ical"/>
-            </property>
-            <property name="visible">True</property>
-        </object>
-
-    </object>
-
+   <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone">
+    <property name="title" i18n:translate="">Site Setup</property>
+    <property name="description" i18n:translate="" />
+    <property name="url_expr">string:${portal_url}/@@overview-controlpanel</property>
+    <property name="link_target" />
+    <property name="icon_expr" />
+    <property name="available_expr" />
+    <property name="permissions">
+        <element value="Genweb: Webmaster Users" />
+    </property>
+    <property name="visible">True</property>
+   </object>
+ </object>
 </object>
