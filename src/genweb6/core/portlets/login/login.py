@@ -3,7 +3,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.app.portlets.portlets.login import Renderer as LoginRenderer
 
-from genweb6.core.browser.login import LoginUtils
+from genweb6.core.utils import LoginUtils
 
 
 class gwLogin(LoginRenderer, LoginUtils):

@@ -1,5 +1,4 @@
 <tal:content tal:define="navigation_root_url view/navigation_root_url;
-                         show_login view/show_login;
                          header_config context/@@genweb.utils/genwebHeaderConfig;
                          languages view/languages;
                          render_globalnav python:view.render_globalnav()">
@@ -75,21 +74,7 @@
         </div>
     </div>
 
-    <div id="portal-anontools" tal:condition="python:view.user_actions and view.anonymous">
-              <ul class="list-inline">
-                <li class="list-inline-item" tal:repeat="action view/user_actions">
-                  <a href=""
-                      tal:attributes="action"
-                      tal:content="action/title"
-                      i18n:translate="">
-                      action title
-                  </a>
-                </li>
-              </ul>
-            </div>
-
     <nav id="portal-navbar" role="navigation" class="global-navigation ms-auto">
-
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
             <li class="home nav-item">
@@ -102,13 +87,21 @@
             <navtree tal:condition="not:header_config/treu_menu_horitzontal"
                      tal:replace="structure render_globalnav" />
 
-<!--             <li class="login nav-item" tal:condition="show_login">
-                <a class="nav-link" href="#" id="loginBtn"
-                   data-bs-toggle="modal" data-bs-target="#loginModal"
-                   tal:attributes="data-url string:${view/current_url}/login"
-                   i18n:translate="identificat">Identifica't</a>
-            </li> -->
-        
+
+            <tal:block tal:condition="python:view.user_actions and view.anonymous">
+
+                <li class="nav-item" tal:repeat="action view/user_actions">
+
+                  <a href=""
+                      tal:attributes="action"
+                      tal:content="action/title"
+                      i18n:translate="">
+                      action title
+                  </a>
+
+                </li>
+
+            </tal:block>
 
             <li class="register nav-item" tal:condition="view/show_auto_register">
                 <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
@@ -201,23 +194,6 @@
 
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
-                          <!-- <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                          </li>
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Dropdown
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark">
-                              <li><a class="dropdown-item" href="#">Action</a></li>
-                              <li><a class="dropdown-item" href="#">Another action</a></li>
-                              <li>
-                                <hr class="dropdown-divider">
-                              </li>
-                              <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                          </li> -->
-
                             <li class="nav-item">
 
                                 <a class="nav-link" tal:attributes="href navigation_root_url"
@@ -261,29 +237,5 @@
         </nav>
     </div>
 </div>
-
-<div id="loginModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
-     tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true"
-     tal:condition="show_login">
-
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h2 id="loginModalLabel" i18n:translate="label_start_session">Inicia la sessió</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <div class="modal-body"></div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" i18n:translate="">Tanca</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="++theme++genweb6.theme/js/viewlets/login.min.js"></script>
 
 </tal:content>
