@@ -208,6 +208,23 @@
                             <navtree tal:condition="not:header_config/treu_menu_horitzontal"
                                      tal:replace="structure render_globalnav" />
 
+                            <tal:block tal:condition="python:view.user_actions and view.anonymous">
+
+                                <li class="ps-3"><hr class="mt-1 mb-1"></li>
+
+                                <li class="nav-item" tal:repeat="action view/user_actions">
+
+                                  <a href=""
+                                      tal:attributes="action"
+                                      tal:content="action/title"
+                                      i18n:translate="">
+                                      action title
+                                  </a>
+
+                                </li>
+
+                            </tal:block>
+
                             <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
                             <tal:languages tal:condition="languages/has_selector">

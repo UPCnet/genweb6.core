@@ -209,34 +209,6 @@ class LoginUtils():
     def cas_login_URL(self):
         return login_URL(self.context, self.request)
 
-    def login_form(self):
-        return "%s/login_form" % self.context.absolute_url()
-
-    def login_name(self):
-        auth = self.auth()
-        name = None
-        if auth is not None:
-            name = getattr(auth, "name_cookie", None)
-        if not name:
-            name = "__ac_name"
-        return name
-
-    def login_password(self):
-        auth = self.auth()
-        passwd = None
-        if auth is not None:
-            passwd = getattr(auth, "pw_cookie", None)
-        if not passwd:
-            passwd = "__ac_password"
-        return passwd
-
-    @memoize
-    def auth(self, _marker=None):
-        if _marker is None:
-            _marker = []
-        acl_users = api.portal.get_tool('acl_users')
-        return getattr(acl_users, "credentials_cookie_auth", None)
-
     def change_password_url(self):
         login_settings = genwebLoginConfig()
         if login_settings.change_password_url:
