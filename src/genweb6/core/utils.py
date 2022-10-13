@@ -218,7 +218,14 @@ class LoginUtils():
 
 
 class genwebLoginUtils(BrowserView, LoginUtils):
-    pass
+
+    @memoize
+    def login_header_available(self):
+        gwheader = genwebHeaderConfig()
+        return not gwheader.amaga_identificacio
+
+    def view_login(self):
+        return api.user.is_anonymous() and self.login_header_available()
 
 
 class genwebUtils(BrowserView):
