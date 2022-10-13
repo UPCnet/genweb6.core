@@ -16,7 +16,7 @@
 
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline')">
+                                  scale='preview').tag(css_class='image-inline', alt='')">
             </a>
 
             <a tal:condition="not:context/open_link_in_new_window"
@@ -25,7 +25,7 @@
 
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline')">
+                                  scale='preview').tag(css_class='image-inline', alt='')">
             </a>
 
         </tal:block>
