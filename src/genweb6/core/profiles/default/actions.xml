@@ -142,7 +142,7 @@
    <object name="login" meta_type="CMF Action" i18n:domain="plone">
       <property name="title" i18n:translate="">Log in</property>
       <property name="description" i18n:translate=""/>
-      <property name="url_expr">string:${globals_view/navigationRootUrl}/login_form</property>
+      <property name="url_expr">python:f"{plone_portal_state.navigation_root_url()}/login"</property>
       <property name="link_target"/>
       <property name="icon_expr"/>
       <property name="available_expr">python:member is None</property>
@@ -150,7 +150,7 @@
          <element value="View"/>
       </property>
       <property name="visible">True</property>
-      <property name="modal" type="text">position: center top; titleSelector: h1.card-title;</property>
+      <property name="modal" type="text">position: center top; titleSelector: h1.card-title; buttons: ;</property>
    </object>
  </object>
 
