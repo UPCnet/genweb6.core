@@ -4,11 +4,13 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="genweb">
 
-<metal:block metal:define-macro="search" i18n:domain="plone">
+<metal:block metal:define-macro="search" i18n:domain="plone"
+             tal:define="default_id string:searchGadget_form">
 
     <form id="searchGadget_form" action="@@search" role="search"
           class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'} "
-          tal:attributes="action string:${navigation_root_url}/@@search;
+          tal:attributes="id id_searchBox|default_id;
+                          action string:${navigation_root_url}/@@search;
                           data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;">
 
         <label class="hiddenStructure" for="searchGadget"
