@@ -6,11 +6,11 @@
 
 <metal:block metal:define-macro="banner" i18n:domain="plone">
 
-    <div class="gw-banner rounded">
+    <div class="gw-banner">
 
         <tal:block tal:condition="context/image">
 
-            <a tal:condition="context/open_link_in_new_window" target="_blank"
+            <a tal:condition="context/open_link_in_new_window" target="_blank" class="rounded"
                tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                href context/remoteUrl">
 
@@ -19,7 +19,7 @@
                                   scale='preview').tag(css_class='image-inline', alt='')">
             </a>
 
-            <a tal:condition="not:context/open_link_in_new_window"
+            <a tal:condition="not:context/open_link_in_new_window" class="rounded"
                tal:attributes="title context/title;
                                href context/remoteUrl">
 
@@ -34,7 +34,7 @@
 
             <div class="defaultBanner">
 
-                <a tal:condition="context/open_link_in_new_window" target="_blank"
+                <a tal:condition="context/open_link_in_new_window" target="_blank" class="rounded"
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
@@ -52,7 +52,7 @@
 
                 </a>
 
-                <a tal:condition="not:context/open_link_in_new_window"
+                <a tal:condition="not:context/open_link_in_new_window" class="rounded"
                    tal:attributes="title context/title;
                                    href context/remoteUrl">
 
