@@ -6,7 +6,7 @@
 
 <metal:block metal:define-macro="banner" i18n:domain="plone">
 
-    <div class="gw-banner">
+    <div class="gw-banner rounded">
 
         <tal:block tal:condition="context/image">
 
