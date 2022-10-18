@@ -19,7 +19,7 @@
                                   scale='preview').tag(css_class='image-inline rounded', alt='')">
             </a>
 
-            <a tal:condition="not:context/open_link_in_new_window" class="rounded"
+            <a tal:condition="not:context/open_link_in_new_window"
                tal:attributes="title context/title;
                                href context/remoteUrl">
 
@@ -34,7 +34,7 @@
 
             <div class="defaultBanner">
 
-                <a tal:condition="context/open_link_in_new_window" target="_blank"
+                <a tal:condition="context/open_link_in_new_window" target="_blank" class="rounded"
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
