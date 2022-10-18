@@ -67,6 +67,14 @@ class IGenwebUtils(Interface):
             language selector.
         """
 
+class IGenwebLoginUtils(Interface):
+    """ Marker describing the functionality of the convenience methods
+        placeholder genweb.utils view.
+    """
+
+    def view_login(self):
+        """ Returns the portal object """
+
 
 class IProtectedContent(Interface):
     """Marker interface for preventing dumb users to delete system configuration

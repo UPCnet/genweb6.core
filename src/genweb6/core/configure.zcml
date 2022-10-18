@@ -79,8 +79,8 @@
         name="genweb.login.utils"
         for="*"
         class=".utils.genwebLoginUtils"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="zope2.Public"
+        allowed_interface=".interfaces.IGenwebLoginUtils"
         />
 
     <browser:page
