@@ -51,6 +51,11 @@
 
                 <li class="" tal:attributes="class python:mode=='past' and 'selected select-past' or 'select-past'">
 
+                    <span class="fa-stack smaller">
+                        <i class="fa-regular fa-calendar fa-stack-2x"></i>
+                        <i class="fa-solid fa-arrow-left fa-stack-1x"></i>
+                    </span>
+
                     <a class="mode_past"
                        href="" tal:attributes="href view/mode_past_url"
                        i18n:domain="genweb" i18n:translate="mode_past_link">Past</a>
@@ -58,12 +63,22 @@
 
                 <li class="select-today">
 
+                    <span class="fa-stack smaller">
+                        <i class="fa-regular fa-calendar fa-stack-2x"></i>
+                        <p class="calendar-day" tal:content="view/today_day">0</p>
+                    </span>
+
                     <a class="today"
                        href="" tal:attributes="href view/today_url"
                        i18n:translate="today_link">Today</a>
                 </li>
 
                 <li class="" tal:attributes="class python:mode=='future' and 'selected select-future' or 'select-future'">
+
+                    <span class="fa-stack smaller">
+                        <i class="fa-regular fa-calendar fa-stack-2x"></i>
+                        <i class="fa-solid fa-arrow-right fa-stack-1x"></i>
+                    </span>
 
                     <a class="mode_future"
                        href="" tal:attributes="href view/mode_future_url"

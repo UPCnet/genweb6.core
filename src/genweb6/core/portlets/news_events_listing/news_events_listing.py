@@ -3,6 +3,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from calendar import monthrange
 from datetime import date
+from datetime import datetime
 from datetime import timedelta
 from plone import api
 from plone.app.event.base import guess_date_from
@@ -80,6 +81,9 @@ class Renderer(base.Renderer):
 
     def _data(self):
         return self.data
+
+    def today_day(self):
+        return datetime.now().day
 
     @property
     def date(self):
