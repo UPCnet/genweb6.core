@@ -11,7 +11,7 @@
 
       <div class="d-grid gap-2">
 
-        <a title="" href="" id="personaltools-login" data-pat-plone-modal="{'title': ''}"
+        <a title="" href="" id="personaltools-login" data-pat-plone-modal="position: center top; titleSelector: h1.card-title; buttons: ;"
            class="pat-plone-modal btn btn-primary"
            tal:attributes="href string:${site_url}/login_form"
            i18n:attributes="title label_start_session"
