@@ -144,7 +144,7 @@
       <property name="description" i18n:translate=""/>
       <property name="url_expr">python:f"{plone_portal_state.navigation_root_url()}/login"</property>
       <property name="link_target"/>
-      <property name="icon_expr"/>
+      <property name="icon_expr">string:bi bi-person-circle</property>
       <property name="available_expr">context/@@genweb.login.utils/view_login | nothing</property>
       <property name="permissions">
          <element value="View"/>
