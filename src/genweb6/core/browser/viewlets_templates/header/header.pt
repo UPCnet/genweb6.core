@@ -92,12 +92,17 @@
 
                 <li class="nav-item" tal:repeat="action view/user_actions">
 
-                  <a href=""
-                      tal:attributes="action"
-                      tal:content="action/title"
-                      i18n:translate="">
-                      action title
-                  </a>
+                    <a href=""
+                       tal:attributes="action">
+
+                       <i tal:condition="action/icon"
+                          tal:attributes="class action/icon"></i>
+
+                        <span tal:content="action/title"
+                              i18n:translate="">
+                            action title
+                        </span>
+                    </a>
 
                 </li>
 
@@ -216,12 +221,16 @@
 
                                 <li class="nav-item" tal:repeat="action view/user_actions">
 
-                                  <a href=""
-                                      tal:attributes="action"
-                                      tal:content="action/title"
-                                      i18n:translate="">
-                                      action title
-                                  </a>
+                                    <a href=""
+                                       tal:attributes="title action/title;
+                                                       href action/href;
+                                                       id action/id">
+
+                                        <span tal:content="action/title"
+                                              i18n:translate="">
+                                            action title
+                                        </span>
+                                    </a>
 
                                 </li>
 
