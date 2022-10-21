@@ -486,11 +486,11 @@ class setup(BrowserView):
         target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
         from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
         if 'navigation' not in target_manager_en_assignments:
-            target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
+            target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
         if 'navigation' not in target_manager_es_assignments:
-            target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
+            target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
         if 'navigation' not in target_manager_ca_assignments:
-            target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=1, bottomLevel=2)
+            target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
 
         # Blacklist the left column on:
         # portal_ca['noticies'] and portal_ca['esdeveniments'],
