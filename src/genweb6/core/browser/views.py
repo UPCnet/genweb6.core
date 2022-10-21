@@ -61,7 +61,7 @@ class TemplateList(BrowserView):
         plantilles = pc.searchResults(portal_type='Document',
                                       review_state=['published', 'intranet'],
                                       sort_on='getObjPositionInParent',
-                                      path=portal.absolute_url_path() + '/plantilles')
+                                      path='/'.join(portal.getPhysicalPath()) + '/plantilles')
 
         for plantilla in plantilles:
             results.append({'title': plantilla.Title,
