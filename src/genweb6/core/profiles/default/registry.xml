@@ -210,7 +210,6 @@
     </field>
     <value>
       <element>anchor</element>
-      <element>autosave</element>
       <element>charmap</element>
       <element>code</element>
       <element>fullpage</element>
@@ -250,6 +249,18 @@
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Editor width</title>
     </field>
     <value>100%</value>
+  </record>
+
+  <!-- Altres configuracions tinymce -->
+  <record name="plone.other_settings" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="other_settings">
+    <field type="plone.registry.field.Text">
+      <default>{}</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="hint_tinymce_other_settings">Other TinyMCE configuration formatted as JSON.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_other_settings">Other settings</title>
+    </field>
+    <value>{"toolbar_mode": "wrap",&#13;
+"templates": "/tinymce_template_list"}</value>
   </record>
 
   <!-- Tags HTML validos -->
