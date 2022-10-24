@@ -137,6 +137,121 @@
     <value>False</value>
   </record>
 
+  <!-- Barra eines tinymce -->
+  <record name="plone.toolbar" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
+    <field type="plone.registry.field.Text">
+      <default>ltr rtl | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | inserttable | unlink plonelink ploneimage</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_tinymce_toolbar">Enter how you would like the toolbar items to list.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_toolbar">Toolbar</title>
+    </field>
+    <value>fullscreen | code | save | newdocument | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | cut copy paste pastetext | searchreplace | bullist numlist | outdent indent blockquote | undo redo | plonelink unlink anchor | formatselect | styleselect | removeformat | ploneimage media | inserttable tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablesplitcells tablemergecells | superscript subscript | charmap</value>
+  </record>
+
+  <!-- Plugins tinymce -->
+  <record name="plone.plugins" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="plugins">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>fullscreen</element>
+        <element>hr</element>
+        <element>lists</element>
+        <element>media</element>
+        <element>nonbreaking</element>
+        <element>noneditable</element>
+        <element>pagebreak</element>
+        <element>paste</element>
+        <element>preview</element>
+        <element>print</element>
+        <element>searchreplace</element>
+        <element>tabfocus</element>
+        <element>table</element>
+        <element>visualchars</element>
+        <element>wordcount</element>
+        <element>code</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_tinymce_plugins">Select plugins to include with tinymce</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_plugins">Editor plugins</title>
+      <value_type type="plone.registry.field.Choice">
+        <values>
+          <element>advlist</element>
+          <element>anchor</element>
+          <element>autosave</element>
+          <element>charmap</element>
+          <element>code</element>
+          <element>colorpicker</element>
+          <element>contextmenu</element>
+          <element>directionality</element>
+          <element>emoticons</element>
+          <element>fullpage</element>
+          <element>fullscreen</element>
+          <element>hr</element>
+          <element>insertdatetime</element>
+          <element>layer</element>
+          <element>lists</element>
+          <element>media</element>
+          <element>nonbreaking</element>
+          <element>noneditable</element>
+          <element>pagebreak</element>
+          <element>paste</element>
+          <element>preview</element>
+          <element>print</element>
+          <element>searchreplace</element>
+          <element>tabfocus</element>
+          <element>table</element>
+          <element>textcolor</element>
+          <element>textpattern</element>
+          <element>template</element>
+          <element>visualblocks</element>
+          <element>visualchars</element>
+          <element>wordcount</element>
+        </values>
+      </value_type>
+    </field>
+    <value>
+      <element>anchor</element>
+      <element>autosave</element>
+      <element>charmap</element>
+      <element>code</element>
+      <element>fullpage</element>
+      <element>fullscreen</element>
+      <element>hr</element>
+      <element>lists</element>
+      <element>media</element>
+      <element>nonbreaking</element>
+      <element>noneditable</element>
+      <element>pagebreak</element>
+      <element>paste</element>
+      <element>preview</element>
+      <element>print</element>
+      <element>searchreplace</element>
+      <element>tabfocus</element>
+      <element>table</element>
+      <element>template</element>
+      <element>visualblocks</element>
+      <element>visualchars</element>
+      <element>wordcount</element>
+    </value>
+  </record>
+
+  <!-- Mides editor tinymce -->
+  <record name="plone.editor_height" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="editor_height">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This option gives you the ability to specify the height of the editor in pixels. If auto resize is enabled this value is used as minimum height.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Editor height</title>
+    </field>
+    <value>400</value>
+  </record>
+  <record name="plone.editor_width" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="editor_width">
+    <field type="plone.registry.field.TextLine">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This option gives you the ability to specify the width of the editor (like 100% or 400px).</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Editor width</title>
+    </field>
+    <value>100%</value>
+  </record>
+
   <!-- Tags HTML validos -->
   <record name="plone.valid_tags" interface="plone.base.interfaces.controlpanel.IFilterSchema" field="valid_tags">
     <field type="plone.registry.field.List">
