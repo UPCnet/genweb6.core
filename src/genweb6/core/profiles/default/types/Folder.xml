@@ -4,7 +4,6 @@
 
     <property name="view_methods">
         <element value="listing_view"/>
-        <element value="folder_extended"/>
         <element value="album_view"/>
         <element value="summary_view"/>
         <element value="tabular_view"/>
