@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <browser:page
+        name="migrationfixfolderviews"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_migration.migrationfixfolderviews"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
+</configure>

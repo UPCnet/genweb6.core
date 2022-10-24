@@ -8,6 +8,7 @@
     <include file="helpers_application.zcml" />
     <include file="helpers_touchers.zcml" />
     <include file="helpers_ldap.zcml" />
+    <include file="helpers_migration.zcml" />
 
     <browser:page
         name="clouseau"
