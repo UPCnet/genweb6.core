@@ -118,7 +118,7 @@
                       </tal:comment>
 
                       <img class="image-responsive"
-                           tal:attributes="src string:${item_link}/@@images/image/preview;
+                           tal:attributes="src string:${item_url}/@@images/image/preview;
                                            title item_title;
                                            alt item_title;" />
                     </a>
