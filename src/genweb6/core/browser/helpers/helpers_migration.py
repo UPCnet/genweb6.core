@@ -37,7 +37,7 @@ Exemples:
         target = self.request.form['new']
 
         msg = ''
-        for brain in self.context.portal_catalog(portal_type=('Folder', 'privateFolder')):
+        for brain in self.context.portal_catalog(portal_type=('Folder')):
             obj = brain.getObject()
             if getattr(obj, "layout", None) == original:
                 logger.info('- Actualitzat: ' + obj.absolute_url())
