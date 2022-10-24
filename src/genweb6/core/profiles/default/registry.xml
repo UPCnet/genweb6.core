@@ -144,7 +144,7 @@
       <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_tinymce_toolbar">Enter how you would like the toolbar items to list.</description>
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_toolbar">Toolbar</title>
     </field>
-    <value>fullscreen | code | save | newdocument | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | cut copy paste pastetext | searchreplace | bullist numlist | outdent indent blockquote | undo redo | plonelink unlink anchor | formatselect | styleselect | removeformat | ploneimage media | inserttable tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablesplitcells tablemergecells | superscript subscript | charmap</value>
+    <value>fullscreen | code | save | newdocument | template | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | cut copy paste pastetext | searchreplace | bullist numlist | outdent indent blockquote | undo redo | plonelink unlink anchor | formatselect | styleselect | removeformat | ploneimage media | inserttable tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablesplitcells tablemergecells | superscript subscript | charmap</value>
   </record>
 
   <!-- Plugins tinymce -->
