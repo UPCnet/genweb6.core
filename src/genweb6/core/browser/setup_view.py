@@ -36,13 +36,13 @@ from genweb6.core.interfaces import IProtectedContent
 import logging
 import pkg_resources
 
-NEWS_QUERY = [{'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.is', 'v': [u'News Item', u'Link']},
-              {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.is', 'v': [u'published']},
+NEWS_QUERY = [{'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.any', 'v': [u'News Item', u'Link']},
+              {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.any', 'v': [u'published', u'intranet']},
               {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath', 'v': u'..'}]
 QUERY_SORT_ON = u'effective'
-EVENT_QUERY = [{'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['Event']},
+EVENT_QUERY = [{'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.any', 'v': [u'Event']},
                {'i': 'start', 'o': 'plone.app.querystring.operation.date.afterToday', 'v': ''},
-               {'i': 'review_state', 'o': 'plone.app.querystring.operation.selection.is', 'v': ['published']}]
+               {'i': 'review_state', 'o': 'plone.app.querystring.operation.selection.any', 'v': [u'published', u'intranet']}]
 
 
 class setup(BrowserView):
@@ -186,9 +186,9 @@ class setup(BrowserView):
         col_noticies.reindexObject()
 
         # Set layout for news folders
-        news.setLayout('aggregator')
-        noticias.setLayout('aggregator')
-        noticies.setLayout('aggregator')
+        news.setDefaultPage('aggregator')
+        noticias.setDefaultPage('aggregator')
+        noticies.setDefaultPage('aggregator')
 
         self.link_translations([(col_news, 'en'), (col_noticias, 'es'), (col_noticies, 'ca')])
 
@@ -230,9 +230,9 @@ class setup(BrowserView):
         col_esdeveniments.reindexObject()
 
         # Set layout for news folders
-        events.setLayout('aggregator')
-        eventos.setLayout('aggregator')
-        esdeveniments.setLayout('aggregator')
+        events.setDefaultPage('aggregator')
+        eventos.setDefaultPage('aggregator')
+        esdeveniments.setDefaultPage('aggregator')
 
         self.link_translations([(col_events, 'en'), (col_eventos, 'es'), (col_esdeveniments, 'ca')])
 
