@@ -92,7 +92,7 @@
                     <a class="mode_ical"  href="" tal:attributes="href view/ical_url"
                        title="Download this event in iCal format"
                        i18n:attributes="title title_add_to_ical;">
-                    <i class="bi bi-download pe-1"></i>
+                    <i class="bi bi-calendar-plus pe-1"></i>
                     <span i18n:translate="label_add_to_ical">iCal</span></a>
                 </li>
             </ul>
