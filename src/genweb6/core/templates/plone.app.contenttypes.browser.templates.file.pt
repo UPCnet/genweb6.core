@@ -16,6 +16,10 @@
 
   <section class="section section-main">
 
+    <tal:comment replace="nothing">
+      Añadida previsualización de los PDF
+    </tal:comment>
+
     <div tal:condition="python:content_type == 'application/pdf'">
       <object type="application/pdf" width="100%" height="480"
             tal:define="filename context/file/filename"
@@ -38,19 +42,27 @@
       <div i18n:translate="embedded_audio_not_supported" class="small text-muted">Sorry, your browser doesn't support embedded audio.</div>
     </audio>
 
-    <div class="h5 mb-2">
-      <a href="${python:download_url}" tal:content="python: filename">Filename</a>
-    </div>
+    <tal:comment replace="nothing">
+      Hemos agrupado el filename con el content_type en un div
+    </tal:comment>
 
-    <div class="metadata d-flex justify-content-center text-muted small">
-      <div class="px-2">
-        <tal:icon tal:replace="structure python:icons.tag(mimetype_icon, tag_class='icon-inline', tag_alt=content_type)" />
-        <span tal:replace="python: content_type">image/jpeg</span>
+    <div class="file-description">
+
+      <div class="h5 mb-2">
+        <a href="${python:download_url}" tal:content="python: filename">Filename</a>
       </div>
-      <div class="px-2">
-        <tal:icon tal:replace="structure python:icons.tag('file-binary', tag_class='icon-inline', tag_alt='Size')" />
-        <span tal:define="size python: view.human_readable_size()" tal:content="python: size">1000 kB</span>
+
+      <div class="metadata d-flex justify-content-center text-muted small">
+        <div class="px-2">
+          <tal:icon tal:replace="structure python:icons.tag(mimetype_icon, tag_class='icon-inline', tag_alt=content_type)" />
+          <span tal:replace="python: content_type">image/jpeg</span>
+        </div>
+        <div class="px-2">
+          <tal:icon tal:replace="structure python:icons.tag('file-binary', tag_class='icon-inline', tag_alt='Size')" />
+          <span tal:define="size python: view.human_readable_size()" tal:content="python: size">1000 kB</span>
+        </div>
       </div>
+
     </div>
 
   </section>
