@@ -69,6 +69,7 @@ setup(
         'collective.easyform',
         'ftw.casauth',
         'collective.exportimport',
+        'collective.siteimprove',
     ],
 
     extras_require={
