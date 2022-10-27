@@ -129,6 +129,16 @@
     <value>True</value>
   </record>
 
+  <!-- Añadir Lunes como primer día de la semana -->
+  <record name="plone.first_weekday" interface="Products.CMFPlone.interfaces.controlpanel.IDateAndTimeSchema" field="first_weekday">
+    <field type="plone.registry.field.Choice">
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_first_weekday">First day in the week.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_first_weekday">First weekday</title>
+      <vocabulary>plone.app.vocabularies.Weekdays</vocabulary>
+    </field>
+    <value>0</value>
+  </record>
+
   <!-- Syndication enabled by default -->
   <record name="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings.default_enabled" interface="Products.CMFPlone.interfaces.syndication.ISiteSyndicationSettings" field="default_enabled">
     <field type="plone.registry.field.Bool">
