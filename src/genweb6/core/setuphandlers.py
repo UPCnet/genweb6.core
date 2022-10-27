@@ -2,6 +2,7 @@
 from Products.CMFPlone.interfaces import INonInstallable
 
 from plone import api
+from plone.app.multilingual.browser.setup import SetupMultilingualSite
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import implementer
@@ -94,6 +95,10 @@ def setupVarious(context):
     # Setup settings Plone
     registry = getUtility(IRegistry)
     registry["plone.navigation_depth"] = 2
+
+    # Para que guarde la configuracion de los idiomas al reinstalar paquete
+    setupTool = SetupMultilingualSite()
+    output = setupTool.setupSite(portal)
 
     # transforms = api.portal.get_tool(name='portal_transforms')
     # transform = getattr(transforms, 'safe_html')
