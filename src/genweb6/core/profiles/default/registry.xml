@@ -157,6 +157,47 @@
     <value>False</value>
   </record>
 
+  <!-- Tamaños de las miniaturas a mini -->
+  <record name="plone.thumb_scale_listing" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="thumb_scale_listing">
+    <field type="plone.registry.field.Choice">
+      <default>thumb</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">E.g. standard view; This default can be overriden individually.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Thumb scale for listings</title>
+      <vocabulary>plone.app.vocabularies.ImagesScales</vocabulary>
+    </field>
+    <value>mini</value>
+  </record>
+
+  <record name="plone.thumb_scale_portlet" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="thumb_scale_portlet">
+    <field type="plone.registry.field.Choice">
+      <default>icon</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This default can be overriden individually.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Thumb scale for portlets</title>
+      <vocabulary>plone.app.vocabularies.ImagesScales</vocabulary>
+    </field>
+    <value>mini</value>
+  </record>
+
+  <record name="plone.thumb_scale_summary" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="thumb_scale_summary">
+    <field type="plone.registry.field.Choice">
+      <default>mini</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This default can be overriden individually.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Thumb scale for summary view</title>
+      <vocabulary>plone.app.vocabularies.ImagesScales</vocabulary>
+    </field>
+    <value>mini</value>
+  </record>
+
+  <record name="plone.thumb_scale_table" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="thumb_scale_table">
+    <field type="plone.registry.field.Choice">
+      <default>tile</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">E.g., tabular view, folder content listing; This default can be overriden individually.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Thumb scale for tables</title>
+      <vocabulary>plone.app.vocabularies.ImagesScales</vocabulary>
+    </field>
+    <value>mini</value>
+  </record>
+
   <!-- Barra eines tinymce -->
   <record name="plone.toolbar" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
     <field type="plone.registry.field.Text">
