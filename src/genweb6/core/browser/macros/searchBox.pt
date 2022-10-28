@@ -23,7 +23,7 @@
                tal:attributes="value request/form/SearchableText|nothing;"
                class="searchField form-control me-3" />
 
-        <button class="searchButton" type="submit"
+        <button class="searchButton" type="submit" i18n:attributes="alt label_search"
                 i18n:translate="label_search;">
             <i class="bi bi-search"></i>
         </button>
