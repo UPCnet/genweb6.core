@@ -8,11 +8,11 @@
 
     <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
 
-        <div class="img col-md-4">
+        <div class="img col-md-5">
             <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
         </div>
 
-        <div class="txt col-md-8">
+        <div class="txt col-md-7">
             <block metal:use-macro="context/macros-genweb-portlets/it-txt"></block>
         </div>
     </li>
