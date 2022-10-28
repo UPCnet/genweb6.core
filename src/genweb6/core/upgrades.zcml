@@ -1,0 +1,16 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:i18n="http://namespaces.zope.org/i18n"
+  xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+  i18n_domain="genweb">
+
+  <genericsetup:upgradeStep
+      title="Reinstall genweb6.core"
+      description="Reinstall package genweb6.core"
+      source="*"
+      destination="*"
+      handler="genweb6.core.upgrades.upgrade_by_reinstall"
+      profile="genweb6.core:default"
+      />
+
+</configure>
