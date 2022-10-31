@@ -10,7 +10,7 @@
         <h1 tal:condition="not:new_style"
             tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
 
-        <div tal:condition="new_style">
+        <div tal:condition="new_style" role="heading" aria-level="1">
             <h1 tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
             <div class="line"></div>
             <h2 tal:content="python:getattr(header_config, 'html_description_' + pref_lang, '')"></h2>
