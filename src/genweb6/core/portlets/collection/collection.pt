@@ -1,76 +1,159 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      tal:omit-tag="">
+<tal:portlet i18n:domain="plone"
+             tal:define="plone_view context/@@plone;
+                         icons nocall:context/@@iconresolver;
+                         portal context/@@plone_portal_state/portal;
+                         normalizeString nocall:plone_view/normalizeString;
+                         toLocalizedTime nocall:plone_view/toLocalizedTime;
+                         viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();
+                         supress_icon view/data/no_icons;
+                         supress_thumb view/data/no_thumbs;">
 
-  <div class="card portlet portletCollection"
-      i18n:domain="plone"
-      tal:define="collection_url view/collection_url;
-                  plone_view context/@@plone;
-                  toLocalizedTime nocall:plone_view/toLocalizedTime;
-                  viewActions python:context.portal_registry.get('plone.types_use_view_action_in_listings', []);
-                  icons nocall:context/@@iconresolver;
-                  normalizeString nocall:plone_view/normalizeString;"
-      tal:attributes="class string:card portlet portletCollection ${view/css_class}">
+    <tal:sinimagen tal:condition="view/data/no_thumbs">
 
-    <div class="card-header">
-      <a tal:attributes="href collection_url" tal:omit-tag="not:view/data/show_more">
-        <span tal:content="view/data/header" />
-      </a>
-    </div>
+        <div class="portlet portlet-collection portlet-list"
+             tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
-    <div class="card-body">
-      <ul>
-        <tal:events tal:repeat="obj view/results">
-        <li class="portletItem"
-            tal:define="plone_layout context/@@plone_layout;
-                        portal context/@@plone_portal_state/portal;
-                        image_scale portal/@@image_scale;
-                        plone_view context/@@plone;
-                        oddrow repeat/obj/odd;
-                        useView python:obj.portal_type in viewActions;
-                        itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();
-                        item_wf_state obj/review_state;
-                        item_wf_state_class python:'state-' + plone_view.normalizeString(item_wf_state);
-                        item_type obj/portal_type;
-                        supress_icon    view/data/no_icons;
-                        supress_thumb   view/data/no_thumbs;
-                        thumb_scale view/thumb_scale;
-                        item_type_class python:('contenttype-' + plone_view.normalizeString(item_type)) if not supress_icon else ''"
-            tal:attributes="class python:oddrow and 'portletItem even' or 'portletItem odd'">
-          <a href="#"
-              tal:attributes="href itemUrl;
-                              class  string:tile $item_type_class $item_wf_state_class;
-                              title obj/Description">
+            <h2 class="portlet-title" tal:condition="view/data/header"
+                tal:content="view/data/header">Colleccio</h2>
 
-            <tal:icon tal:condition="python: not supress_icon and item_type != 'File'"
-                      tal:replace="structure python:icons.tag(f'contenttype/{normalizeString(item_type)}')" />
-            <tal:icon tal:condition="python: not supress_icon and item_type == 'File'"
-                      tal:replace="structure python:icons.tag(f'mimetype-{obj.mime_type}')" />
-            <img tal:condition="python: obj.getIcon and thumb_scale and not supress_thumb"
-                tal:replace="structure python:image_scale.tag(obj, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale)" />
+            <ul class="list-group list-group-flush mb-2">
 
-            <span tal:replace="obj/Title">Title</span>
-          </a>
-          <div class="portletItemDetails"
-               tal:condition="view/data/show_dates"
-               tal:define="obj_date python:obj.start and obj.start or obj.Date();"
-               tal:content="python:toLocalizedTime(obj_date)">May 5</div>
-        </li>
-        </tal:events>
-      </ul>
-    </div>
+                <tal:item tal:repeat="obj view/results">
 
-    <div class="card-footer"
-        tal:condition="python:showMore or view.include_empty_footer()"
-        tal:define="showMore view/data/show_more">
-      <a tal:condition="showMore" tal:attributes="href collection_url">
-        <!-- <span class="icon-rss"></span> -->
-        <span class="hiddenStructure"><span tal:replace="view/data/header" /> - </span>
-        <span i18n:translate="more_url">More&hellip;</span>
-      </a>
-    </div>
+                    <li tal:attributes="class string:list-group-item ps-0 contenttype-${obj/portal_type}"
+                        tal:define="item_type obj/portal_type;
+                                    useView python:item_type in viewActions;
+                                    itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
 
-  </div>
+                        <a href="#" class="d-block text-decoration-none"
+                           tal:attributes="href itemUrl;
+                                           title obj/Description">
 
-</html>
+                            <tal:icon tal:condition="python: not supress_icon and item_type != 'File'"
+                                      tal:replace="structure python:icons.tag(f'contenttype/{normalizeString(item_type)}')" />
+
+                            <tal:icon tal:condition="python: not supress_icon and item_type == 'File'"
+                                      tal:replace="structure python:icons.tag(f'mimetype-{obj.mime_type}')" />
+
+                            <span tal:replace="obj/title_or_id">Title</span>
+                        </a>
+
+                        <time tal:condition="view/data/show_dates" class="smaller"
+                              tal:define="date_item python:obj.effective if toLocalizedTime(obj.EffectiveDate) not in [None, ''] else obj.modified"
+                              tal:content="python:toLocalizedTime(date_item)">
+                            Date
+                        </time>
+
+                    </li>
+
+                </tal:item>
+
+            </ul>
+
+            <div tal:condition="view/data/show_more" class="portlet-footer">
+
+                <tal:block tal:condition="view/data/show_more">
+
+                    <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/collection_url">
+
+                        <span i18n:domain="genweb" i18n:translate="more_url">More</span>
+
+                    </a>
+
+                </tal:block>
+
+            </div>
+
+        </div>
+
+    </tal:sinimagen>
+
+    <tal:conimagen tal:condition="not:view/data/no_thumbs">
+
+        <div class="portlet portlet-collection portlet-collection-iutd"
+             tal:attributes="class string:portlet portlet-collection ${view/css_class}">
+
+            <h2 class="portlet-title" tal:condition="view/data/header"
+                tal:content="view/data/header">Colleccio</h2>
+
+            <ul class="ps-0 mb-2 row">
+
+                <tal:item tal:repeat="obj view/results">
+
+                    <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}"
+                        tal:define="item_type obj/portal_type;
+                                    useView python:item_type in viewActions;
+                                    itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
+
+                        <div class="img col-md-5">
+
+                            <a href="#"
+                               tal:attributes="href obj/getURL;
+                                               title obj/title">
+
+                                <img class="rounded"
+                                     tal:condition="obj/image"
+                                     tal:attributes="src string:${obj/getURL}/@@images/image/preview;
+                                                     title obj/title | nothing;
+                                                     alt obj/title | string: ;"/>
+
+                                <img class="rounded"
+                                     tal:condition="not:obj/image"
+                                     src="++theme++genweb6.theme/img/sample/default_image_sm.png"
+                                     tal:attributes="title obj/title | nothing;
+                                                     alt obj/title | string: ;"/>
+                            </a>
+
+                        </div>
+
+                        <div class="txt col-md-7">
+
+                            <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
+                               tal:content="obj/description">Description summary</p>
+
+                            <a href="#" class="title d-block text-decoration-none text-truncate-2"
+                               tal:attributes="href itemUrl;
+                                               title obj/title">
+
+                                <tal:icon tal:condition="python: not supress_icon and item_type != 'File'"
+                                          tal:replace="structure python:icons.tag(f'contenttype/{normalizeString(item_type)}')" />
+
+                                <tal:icon tal:condition="python: not supress_icon and item_type == 'File'"
+                                          tal:replace="structure python:icons.tag(f'mimetype-{obj.mime_type}')" />
+
+                                <span tal:replace="obj/title">Title</span>
+                            </a>
+
+                            <time tal:condition="view/data/show_dates" class="smaller"
+                                  tal:define="date_item python:obj.effective if toLocalizedTime(obj.EffectiveDate) not in [None, ''] else obj.modified"
+                                  tal:content="python:toLocalizedTime(date_item)">
+                                Date
+                            </time>
+
+                        </div>
+
+                    </li>
+
+                </tal:item>
+
+            </ul>
+
+            <div tal:condition="view/data/show_more" class="portlet-footer">
+
+                <tal:block tal:condition="view/data/show_more">
+
+                    <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/collection_url">
+
+                        <span i18n:domain="genweb" i18n:translate="more_url">More</span>
+
+                    </a>
+
+                </tal:block>
+
+            </div>
+
+        </div>
+
+    </tal:conimagen>
+
+</tal:portlet>
