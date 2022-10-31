@@ -21,7 +21,7 @@
 
   </div>
 
-  <ul id="cookies-buttons">
+  <div id="cookies-buttons">
 
     <button type="button" id="cookies-accept" class="btn btn-primary">
 
@@ -29,6 +29,6 @@
 
     </button>
 
-  </ul>
+  </div>
 
 </div>
