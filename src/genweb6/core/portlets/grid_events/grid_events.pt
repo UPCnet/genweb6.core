@@ -14,7 +14,7 @@
 
       <div class="list-agenda">
 
-        <ol class="row ps-0" metal:define-slot="entries">
+        <ol class="row ps-0 mb-0" metal:define-slot="entries">
 
           <tal:repeat repeat="item events" metal:define-macro="entries">
 
