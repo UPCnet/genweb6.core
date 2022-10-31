@@ -4,9 +4,9 @@
 
     <div id="hero" tal:attributes="class python:'new-style' if new_style else 'old-style'" tal:define="heroImage view/getHeroHeader">
 
-        <img alt="" title="" tal:attributes="src heroImage/hero_image;
-                                             alt heroImage/hero_image_alt;
-                                             title heroImage/hero_image_alt"></img>
+        <img alt="" title="" tal:attributes="src heroImage/src;
+                                             alt heroImage/alt;
+                                             title heroImage/title"></img>
         <h1 tal:condition="not:new_style"
             tal:content="python:getattr(header_config, 'html_title_' + pref_lang, '')"></h1>
 

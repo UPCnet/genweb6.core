@@ -224,8 +224,12 @@ class heroViewlet(viewletBase):
         else:
             img_url = '%s/++theme++genweb6.theme/img/hero-image.png' % portal_url
 
-        return {"hero_image": img_url,
-                "hero_image_alt": getattr(header_config, 'hero_image_alt', "")}
+        image_title = getattr(header_config, 'hero_image_alt', None)
+        image_alt = '' if image_title is None else image_title
+
+        return {"src": img_url,
+                "alt": image_alt,
+                "title": image_title}
 
 
 class logosFooterViewlet(viewletBase):
