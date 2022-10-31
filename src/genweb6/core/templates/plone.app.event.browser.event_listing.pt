@@ -47,74 +47,62 @@
 
             <tal:items repeat="data batch">
 
-              <article
-                  itemscope
-                  itemtype="https://schema.org/Event"
-                  class="vevent tileItem d-flex align-items-start mb-3"
-                  tal:define="startf python:view.date_speller(data.start)">
+              <tal:repeat repeat="item python:batch" metal:define-macro="entries">
+                <tal:block tal:define="item_url item/url;
+                    item_title item/title;
+                    item_description item/description;
+                    item_type python:item.context.portal_type;
+                    item_creator python:item.context.Creator();
+                    item_link python:item_url+'/view';
+                    item_has_image python:item.context.getIcon();
+                    ">
+                  <metal:block define-slot="entry">
 
-                <ul class="hiddenStructure">
-                  <li
-                      itemprop="startDate"
-                      class="dtstart"
-                      tal:content="data/start/isoformat">end</li>
-                  <li
-                      itemprop="endDate"
-                      class="dtend"
-                      tal:content="data/end/isoformat">end</li>
-                  <li
-                      class="location"
-                      itemscope
-                      itemprop="location"
-                      itemtype="http://schema.org/Place">
-                    <span
-                        itemprop="address"
-                        tal:content="data/location">location</span>
-                  </li>
-                </ul>
+                    <article class="mb-3 row">
 
-                <div class="cal_date card me-3 flex-shrink-0 text-center">
-                  <div
-                      class="cal_month card-header p-2"
-                      tal:content="string:${startf/month_name}">Oct.
-                  </div>
-                  <div class="card-body d-flex flex-column p-2">
-                    <h3
-                        class="cal_day card-title fs-1 m-0"
-                        tal:content="string:${startf/day}">15</h3>
-                    <span
-                        class="cal_wkday card-text"
-                        tal:content="python:startf['wkday_name']">Tue</span>
-                  </div>
-                </div>
+                      <div class="col" metal:define-macro="listitem">
 
-                <div class="cal_info clearfix">
-                  <h2 class="tileHeadline">
-                    <a
-                        href=""
-                        itemprop="url"
-                        class="url"
-                        tal:attributes="href data/url">
-                      <span
-                          itemprop="name"
-                          class="summary"
-                          tal:content="data/title">Title</span>
-                    </a>
-                  </h2>
-                  <div class="documentByLine">
-                    <tal:date tal:replace="structure python:view.formatted_date(data)" />
-                  </div>
+                          <div class="mb-1">
+                            <a class="contenttype-event url" tal:attributes="href python:item_link; title item_type" tal:content="python:item_title">
+                              Item Title
+                            </a>
+                          </div>
 
-                  <p
-                      itemprop="description"
-                      class="description"
-                      tal:condition="data/description"
-                      tal:content="data/description" />
+                          <metal:block metal:define-macro="document_byline">
+                          <div class="mb-1">
 
+                            <tal:date tal:replace="structure python:view.formatted_date(item.context)"/>
+                            <span tal:condition="item/context/location" i18n:translate="label_event_byline_location">
+                              &mdash;
+                              <span tal:content="item/context/location" class="location" i18n:name="location">Oslo</span>
+                            </span>
 
-                </div>
+                          </div>
+                          </metal:block>
 
-              </article>
+                          <p class="me-3" tal:condition="python:item_description" tal:content="python:item_description">
+                            description
+                          </p>
+                      </div>
+
+                      <div class="col-3 text-end" tal:condition="item_has_image">
+                        <a tal:attributes="href python:item_link;">
+
+                          <tal:comment replace="nothing">
+                            Cambiar tamaño de la imagen a preview, se cargaba con thumb
+                          </tal:comment>
+
+                          <img class="image-responsive"
+                               tal:attributes="src string:${item_url}/@@images/image/preview;
+                                               title item_title;
+                                               alt item_title;" />
+                        </a>
+                      </div>
+                    </article>
+
+                  </metal:block>
+                </tal:block>
+              </tal:repeat>
 
             </tal:items>
 
