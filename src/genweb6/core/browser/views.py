@@ -292,7 +292,7 @@ class FilteredContentsSearchView(BrowserView):
             tags += list(set(recurs.Subject))
 
         listTags = list(dict.fromkeys(tags))
-        listTags.sort(key=lambda key: unicodedata.normalize('NFKD', key.decode('utf-8')).encode('ascii', errors='ignore'))
+        listTags.sort(key=lambda key: unicodedata.normalize('NFKD', key).encode('ascii', errors='ignore'))
 
         return listTags
 
