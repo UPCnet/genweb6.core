@@ -1,13 +1,13 @@
 <section id="tagslist" tal:define="site_properties context/portal_properties/site_properties;
                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                    continguts view/get_contenttags_by_query">
-  <article class="tileItem visualIEFloatFix" tal:repeat="contingut continguts">
+  <article class="tileItem" tal:repeat="contingut continguts">
     <tal:block tal:define="item_type contingut/portal_type;
                            item_url contingut/getURL|contingut/absolute_url;
                            item_obj python:contingut.getObject();
                            item_has_image python:hasattr(item_obj, 'image');">
 
-      <div class="tileImage" tal:condition="item_has_image">
+      <div class="tileImageContainer" tal:condition="item_has_image">
         <a tal:attributes="href item_url">
           <img tal:define="scales item_obj/@@images;
                            scale python:scales.scale('image', 'thumb')"

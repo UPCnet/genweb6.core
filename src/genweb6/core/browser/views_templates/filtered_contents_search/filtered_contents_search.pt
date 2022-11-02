@@ -26,7 +26,7 @@
                           path python: view.get_container_path()">
 
     <div id="librarysearchpretty" class="filtered_contents_search_pretty row">
-      <div class="col-md-3">
+      <div class="col-md-3 pe-5">
         <h2 i18n:domain="genweb" i18n:translate="label_filters">Filters</h2>
         <div class="caixessearch">
           <div id="searchinputcontent">
@@ -49,14 +49,14 @@
       <div class="col-md-9">
         <section id="tagslist" tal:define="site_properties context/portal_properties/site_properties;
                                            use_view_action site_properties/typesUseViewActionInListings|python:()">
-          <article class="tileItem visualIEFloatFix" tal:repeat="contingut continguts">
+          <article class="tileItem" tal:repeat="contingut continguts">
 
             <tal:block tal:define="item_type contingut/portal_type;
                                    item_url contingut/getURL|contingut/absolute_url;
                                    item_obj python:contingut.getObject();
                                    item_has_image python:hasattr(item_obj, 'image');">
 
-              <div class="tileImage" tal:condition="item_has_image">
+              <div class="tileImageContainer" tal:condition="item_has_image">
                 <a tal:attributes="href item_url">
                   <img tal:define="scales item_obj/@@images;
                                    scale python:scales.scale('image', 'thumb')"
