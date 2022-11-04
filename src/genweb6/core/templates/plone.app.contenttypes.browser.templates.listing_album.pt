@@ -32,6 +32,9 @@
         <div class="card-body">
           <p class="card-text" tal:content="image/Description">Description</p>
         </div>
+        <tal:comment replace="nothing">
+          Separamos el enlace en otro contenedor
+        </tal:comment>
         <div class="card-link-container">
           <a class="card-link stretched-link" tal:attributes="href string:${image/getURL}/view; title image/Description" i18n:translate="label_view">View</a>
         </div>
@@ -50,6 +53,9 @@
         <div class="card-body">
           <p class="card-text" tal:content="album/Description">Description</p>
         </div>
+        <tal:comment replace="nothing">
+          Separamos el enlace en otro contenedor
+        </tal:comment>
         <div class="card-link-container">
           <a class="card-link stretched-link" tal:attributes="href string:${album/getURL}/view; title album/Description" i18n:translate="label_view">View</a>
         </div>
