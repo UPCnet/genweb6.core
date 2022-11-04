@@ -25,6 +25,7 @@
         <element value="plone.excludefromnavigation" />
         <element value="plone.locking" />
         <element value="collective.dexteritytextindexer" />
+        <element value="plone.versioning" />
     </property>
 
     <property name="default_view">subhome_view</property>
