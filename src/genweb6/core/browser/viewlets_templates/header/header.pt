@@ -96,12 +96,9 @@
                        tal:attributes="action">
 
                        <i tal:condition="action/icon"
-                          tal:attributes="class action/icon"></i>
-
-                        <span tal:content="action/title"
-                              i18n:translate="">
-                            action title
-                        </span>
+                          i18n:attributes="title action/title;
+                                           alt action/title"
+                          tal:attributes="class action/icon;"></i>
                     </a>
 
                 </li>
@@ -112,7 +109,6 @@
                 <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
                    i18n:domain="plone" i18n:translate="">Register</a>
             </li>
-
 
             <tal:languages tal:condition="languages/has_selector">
 
@@ -231,6 +227,13 @@
                                             action title
                                         </span>
                                     </a>
+
+                                </li>
+
+                                <li class="register nav-item" tal:condition="view/show_auto_register">
+
+                                    <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
+                                       i18n:domain="plone" i18n:translate="">Register</a>
 
                                 </li>
 
