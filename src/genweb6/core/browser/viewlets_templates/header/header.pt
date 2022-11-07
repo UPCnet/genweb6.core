@@ -107,23 +107,19 @@
 
             <tal:languages tal:condition="languages/has_selector">
 
-                <tal:selector tal:condition="languages/selected">
+               <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
+                    <a href="#" class="nav-link" aria-haspopup="true">
+                        <i class="bi bi-globe"></i>
+                    </a>
 
-                   <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
-                        <a href="#" class="nav-link" aria-haspopup="true">
-                            <i class="bi bi-globe"></i>
-                        </a>
-
-                        <ul class="has_subtree dropdown" tal:define="langs languages/others">
-                            <li tal:repeat="lang langs" class="nav-item">
-                                <a class="nav-link" tal:attributes="href lang/url">
-                                    <span tal:content="lang/native"></span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </tal:selector>
+                    <ul class="has_subtree dropdown" tal:define="langs languages/others">
+                        <li tal:repeat="lang langs" class="nav-item">
+                            <a class="nav-link" tal:attributes="href lang/url">
+                                <span tal:content="lang/native"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
             </tal:languages>
         </ul>
@@ -211,23 +207,18 @@
 
                             <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                            <tal:languages tal:condition="languages/has_selector">
+                            <tal:languages tal:condition="languages/has_selector"
+                                           tal:define="langs languages/others">
 
-                                <tal:multiplelangs tal:condition="languages/multiple_selector"
-                                                   tal:define="langs languages/others">
+                                <li tal:repeat="lang langs" class="nav-item">
 
+                                    <a class="nav-link" tal:attributes="href lang/url">
 
-                                    <li tal:repeat="lang langs" class="nav-item">
+                                        <span tal:content="lang/native"></span>
 
-                                        <a class="nav-link" tal:attributes="href lang/url">
+                                    </a>
 
-                                            <span tal:content="lang/native"></span>
-
-                                        </a>
-
-                                    </li>
-
-                                </tal:multiplelangs>
+                                </li>
 
                             </tal:languages>
 
