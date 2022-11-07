@@ -90,7 +90,7 @@
 
             <tal:block tal:condition="python:view.user_actions and view.anonymous">
 
-                <li class="nav-item" tal:repeat="action view/user_actions">
+                <li class="nav-item nav-action" tal:repeat="action view/user_actions">
 
                     <a href=""
                        tal:attributes="action">
@@ -105,46 +105,23 @@
 
             </tal:block>
 
-            <li class="register nav-item" tal:condition="view/show_auto_register">
-                <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
-                   i18n:domain="plone" i18n:translate="">Register</a>
-            </li>
-
             <tal:languages tal:condition="languages/has_selector">
 
                 <tal:selector tal:condition="languages/selected">
 
-                    <tal:simplelangs tal:condition="languages/simple_selector"
-                                     tal:define="langs languages/others">
+                   <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
+                        <a href="#" class="nav-link" aria-haspopup="true">
+                            <i class="bi bi-globe"></i>
+                        </a>
 
-                        <li tal:repeat="lang langs" class="nav-item">
-                            <a class="nav-link" tal:attributes="href lang/url">
-                                <i class="bi bi-globe"></i>
-                                <span tal:content="lang/native"></span>
-                            </a>
-                        </li>
-
-                    </tal:simplelangs>
-
-                    <tal:multiplelangs tal:condition="languages/multiple_selector">
-
-                       <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
-                            <a href="#" class="nav-link" aria-haspopup="true">
-                                <i class="bi bi-globe"></i>
-                                <span tal:content="selected/native"></span>
-                            </a>
-                            <label for="navitem-selector" role="button" aria-label="Selector language"></label>
-
-                            <ul class="has_subtree dropdown" tal:define="langs languages/others">
-                                <li tal:repeat="lang langs" class="nav-item">
-                                    <a class="nav-link" tal:attributes="href lang/url">
-                                        <span tal:content="lang/native"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </tal:multiplelangs>
+                        <ul class="has_subtree dropdown" tal:define="langs languages/others">
+                            <li tal:repeat="lang langs" class="nav-item">
+                                <a class="nav-link" tal:attributes="href lang/url">
+                                    <span tal:content="lang/native"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                 </tal:selector>
 
@@ -227,13 +204,6 @@
                                             action title
                                         </span>
                                     </a>
-
-                                </li>
-
-                                <li class="register nav-item" tal:condition="view/show_auto_register">
-
-                                    <a class="nav-link" tal:attributes="href string:${navigation_root_url}/@@register"
-                                       i18n:domain="plone" i18n:translate="">Register</a>
 
                                 </li>
 

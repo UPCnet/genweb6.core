@@ -193,9 +193,7 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet, Person
 
         result = {'selected': lang_selected,
                   'others': sorted(lang_others, key=index),
-                  'has_selector': len_others > 0 and self.context.portal_type != 'Plone Site',
-                  'simple_selector': len_others == 1,
-                  'multiple_selector': len_others > 1}
+                  'has_selector': len_others > 0 and self.context.portal_type != 'Plone Site'}
 
         return result
 
