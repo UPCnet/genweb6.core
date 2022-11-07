@@ -34,7 +34,10 @@ class IDocumentImage(model.Schema):
 
 @implementer(IDocumentImage)
 class DocumentImage(Item):
-    pass
+
+    @property
+    def b_icon_expr(self):
+        return "file-earmark-richtext"
 
 
 class View(BrowserView):
