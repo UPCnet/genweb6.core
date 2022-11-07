@@ -76,7 +76,7 @@
             <h2 class="portlet-title" tal:condition="view/data/header"
                 tal:content="view/data/header">Colleccio</h2>
 
-            <ul class="ps-0 mb-2 row">
+            <ul class="mb-2 row">
 
                 <tal:item tal:repeat="obj view/results">
 
