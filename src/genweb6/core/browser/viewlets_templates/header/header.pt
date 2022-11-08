@@ -107,7 +107,7 @@
 
             <tal:languages tal:condition="languages/has_selector">
 
-               <li class="has_subtree nav-item nav-lang" tal:define="selected languages/selected">
+               <li class="has_subtree nav-item nav-lang">
                     <a href="#" class="nav-link" aria-haspopup="true">
                         <i class="bi bi-globe"></i>
                     </a>
