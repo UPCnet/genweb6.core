@@ -63,7 +63,7 @@
 
                       <tal:icon tal:condition="not:b_icon_expr" tal:replace="structure python:icons.tag(item_type_class)" />
 
-                      <i tal:condition="b_icon_expr" tal:attributes="class string:bi bi-${b_icon_expr} fs-xxxs" />
+                      <i tal:condition="b_icon_expr" tal:attributes="class string:bi bi-${b_icon_expr} fs-s" />
 
                     </tal:icons>
 
