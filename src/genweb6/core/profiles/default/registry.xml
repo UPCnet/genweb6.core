@@ -273,6 +273,7 @@
       <element>anchor</element>
       <element>charmap</element>
       <element>code</element>
+      <element>contextmenu</element>
       <element>fullpage</element>
       <element>fullscreen</element>
       <element>hr</element>
