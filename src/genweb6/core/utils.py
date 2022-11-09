@@ -27,6 +27,7 @@ from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
+from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 import json
 import logging
@@ -44,6 +45,9 @@ if HAS_PAM:
 #     registry = queryUtility(IRegistry)
 #     return registry.forInterface(IGenwebControlPanelSettings)
 
+def create_simple_vocabulary(terms):
+    return SimpleVocabulary(
+        [SimpleTerm(value=term[0], title=term[1]) for term in terms])
 
 def havePermissionAtRoot():
     """Funcio que retorna si es Editor a l'arrel"""

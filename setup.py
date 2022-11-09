@@ -70,6 +70,8 @@ setup(
         'ftw.casauth',
         'collective.exportimport',
         'collective.siteimprove',
+        'plone.app.mosaic',
+        'collective.easyform',
     ],
 
     extras_require={
