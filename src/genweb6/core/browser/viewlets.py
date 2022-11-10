@@ -68,6 +68,11 @@ class cintilloViewlet(viewletBase):
 
 class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet, PersonalBarViewlet):
 
+    _opener_markup_template = (
+        '<input type="checkbox" class="opener" />'
+        '<label for="navitem-{uid}" role="button" aria-label="{title}"></label>'
+    )
+
     def getClass(self):
         default_class = 'd-flex align-items-center '
 
@@ -245,6 +250,59 @@ class logosFooterViewlet(viewletBase):
             el literal Obriu l'enllac en una finestra nova.
         """
         return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova')))
+
+
+class linksFooterViewlet(viewletBase, GlobalSectionsViewlet):
+
+    _opener_markup_template = ('')
+
+    def render(self):
+        config = genwebFooterConfig()
+        if config.enable_links and self.context.portal_type != 'Plone Site':
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
+    def getCustomLinks(self):
+        lang = self.pref_lang()
+        footer_config = genwebFooterConfig()
+
+        title = getattr(footer_config, 'title_links_' + lang, '')
+        if not title or title == '':
+            title = self.context.translate('Administració', domain='genweb', target_language=lang)
+
+        result = {'title': title,
+                  'links': []}
+
+        if footer_config.enable_login:
+            result['links'].append(
+                {
+                    'title': self.context.translate('Log in', domain='plone', target_language=lang),
+                    'link': self.context.absolute_url() + '/login',
+                    'external': False
+                }
+            )
+
+        if footer_config.enable_register:
+            portal = api.portal.get()
+            result['links'].append(
+                {
+                    'title': self.context.translate('Register', domain='plone', target_language=lang),
+                    'link': portal.absolute_url() + '/@@register',
+                    'external': False
+                }
+            )
+
+        for link in getattr(footer_config, 'table_links_' + lang, []):
+            result['links'].append(
+                {
+                    'title': link['title'],
+                    'link': link['link'],
+                    'external': True
+                }
+            )
+
+        return result
 
 
 class footerViewlet(viewletBase):

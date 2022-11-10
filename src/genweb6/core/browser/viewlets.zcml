@@ -45,6 +45,15 @@
         />
 
     <browser:viewlet
+        name="genweb.linksfooter"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.linksFooterViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/footer/linksfooter.pt"
+        />
+
+    <browser:viewlet
         name="genweb.footer"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
         class=".viewlets.footerViewlet"

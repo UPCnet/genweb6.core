@@ -87,7 +87,6 @@
             <navtree tal:condition="not:header_config/treu_menu_horitzontal"
                      tal:replace="structure render_globalnav" />
 
-
             <tal:block tal:condition="python:view.user_actions and view.anonymous">
 
                 <li class="nav-item nav-action" tal:repeat="action view/user_actions">

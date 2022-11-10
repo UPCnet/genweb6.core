@@ -995,11 +995,3 @@ def import_relations(self, data):
         relationhelper.purge_relations()
         relationhelper.cleanup_intids()
         relationhelper.restore_relations(all_relations=all_fixed_relations)
-
-
-# Eliminar id de los campos del menú superior para evitar el duplicado monitor/movil
-
-_opener_markup_template = (
-    '<input type="checkbox" class="opener" />'
-    '<label for="navitem-{uid}" role="button" aria-label="{title}"></label>'  # noqa: E 501
-)

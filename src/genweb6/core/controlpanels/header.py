@@ -3,6 +3,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
+from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedImageFieldWidget
@@ -75,7 +76,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo_alt='genweb.webmaster')
+    read_permission(logo_alt='genweb.manager')
+    write_permission(logo_alt='genweb.manager')
     hero_image_alt = schema.TextLine(
         title=_(u"hero_image_alt",
                 default=u"Text alternatiu del hero image"),
@@ -111,7 +113,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo='genweb.webmaster')
+    read_permission(logo='genweb.manager')
+    write_permission(logo='genweb.manager')
     directives.widget('logo', NamedImageFieldWidget)
     logo = schema.Bytes(
         title=_(u"Logo"),
@@ -126,7 +129,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo_responsive='genweb.webmaster')
+    read_permission(logo_responsive='genweb.manager')
+    write_permission(logo_responsive='genweb.manager')
     directives.widget('logo_responsive', NamedImageFieldWidget)
     logo_responsive = schema.Bytes(
         title=_(u"Logo petit"),
@@ -141,7 +145,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo_alt='genweb.webmaster')
+    read_permission(logo_alt='genweb.manager')
+    write_permission(logo_alt='genweb.manager')
     logo_alt = schema.TextLine(
         title=_(u"logo_alt",
                 default=u"Text alternatiu del logo"),
@@ -158,7 +163,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo_url='genweb.webmaster')
+    read_permission(logo_url='genweb.manager')
+    write_permission(logo_url='genweb.manager')
     logo_url = schema.TextLine(
         title=_(u"logo_url",
                 default=u"URL del logo"),
@@ -175,7 +181,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    write_permission(logo_external_url='genweb.webmaster')
+    read_permission(logo_external_url='genweb.manager')
+    write_permission(logo_external_url='genweb.manager')
     logo_external_url = schema.Bool(
         title=_(u"logo_external_url",
                 default=u"Es una URL externa?"),

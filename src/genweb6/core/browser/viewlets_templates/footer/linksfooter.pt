@@ -1,0 +1,51 @@
+<div id="footer-links" class="show-image"
+     tal:define="links view/getCustomLinks">
+
+  <div class="row">
+
+    <div class="col-md-9">
+
+      <ul class="navbar-nav-footer" tal:define="render_globalnav python:view.render_globalnav()">
+
+        <navtree tal:replace="structure render_globalnav" />
+
+      </ul>
+
+    </div>
+
+    <div class="col-md-3" tal:define="custom_links view/getCustomLinks">
+
+      <ul class="navbar-nav-footer" tal:condition="custom_links/links">
+
+        <li class="has_subtree">
+
+          <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Administració</p>
+          <p tal:content="custom_links/title"></p>
+
+          <ul>
+
+            <li tal:repeat="link custom_links/links">
+
+              <a tal:condition="link/external" target="_blank"
+                 class="nav-link"
+                 tal:attributes="href link/link"
+                 tal:content="link/title"></a>
+
+              <a tal:condition="not:link/external"
+                 class="nav-link"
+                 tal:attributes="href link/link"
+                 tal:content="link/title"></a>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

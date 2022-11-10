@@ -146,11 +146,4 @@
         replacement=".patches.import_relations"
         />
 
-    <monkey:patch
-        description="Eliminar id de los campos del menú superior para evitar el duplicado monitor/movil"
-        class="plone.app.layout.viewlets.common.GlobalSectionsViewlet"
-        original="_opener_markup_template"
-        replacement=".patches._opener_markup_template"
-        />
-
 </configure>

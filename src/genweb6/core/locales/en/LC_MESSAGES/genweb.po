@@ -19,6 +19,10 @@ msgstr ""
 msgid "Activate"
 msgstr "Activate"
 
+#: ../browser/viewlets_templates/footer/linksfooter.pt:25
+msgid "Administració"
+msgstr "Administration"
+
 #: genweb.theme/genweb/theme/portlets/esdeveniments.py:182
 msgid "Add Events Portlet"
 msgstr "Add Events Portlet"
