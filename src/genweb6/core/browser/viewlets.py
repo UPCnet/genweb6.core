@@ -46,6 +46,53 @@ class viewletBase(ViewletBase):
         return self.context.absolute_url()
 
 
+class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
+    # Customizamos el GlobalSectionsViewlet para añadirle a los enlaces externos target="_blank"
+
+    # Añadimos el target
+    _item_markup_template = (
+        '<li class="{id}{has_sub_class} nav-item">'
+        '<a href="{url}" target="{target}" class="state-{review_state} nav-link"{aria_haspopup}>{title}</a>{opener}'
+        "{sub}"
+        "</li>"
+    )
+
+    # Añadimos si es un enlace externo en caso de tenerlo habilitado en el tipo de contenido y no estas validado
+    # open_link_in_new_window
+    def customize_entry(self, entry, brain):
+        entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
+
+    def customize_tab(self, entry, tab):
+        brain = api.content.get(path='/' + api.portal.get().id + '/' + self.context.language + '/' + tab['id'])
+        entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
+
+    # Añadimos el target
+    def render_item(self, item, path):
+        sub = self.build_tree(item["path"], first_run=False)
+        if sub:
+            item.update(
+                {
+                    "sub": sub,
+                    "opener": self._opener_markup_template.format(**item),
+                    "aria_haspopup": ' aria-haspopup="true"',
+                    "has_sub_class": " has_subtree",
+                    "target": "_blank" if item["external_link"] else "_self"
+                }
+            )
+        else:
+            item.update(
+                {
+                    "sub": sub,
+                    "opener": "",
+                    "aria_haspopup": "",
+                    "has_sub_class": "",
+                    "target": "_blank" if item["external_link"] else "_self"
+                }
+            )
+
+        return self._item_markup_template.format(**item)
+
+
 class cintilloViewlet(viewletBase):
 
     def render(self):
@@ -66,7 +113,7 @@ class cintilloViewlet(viewletBase):
                 "text": getattr(cintillo_config, "text_" + lang, "")}
 
 
-class headerViewlet(viewletBase, SearchBoxViewlet, GlobalSectionsViewlet, PersonalBarViewlet):
+class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, PersonalBarViewlet):
 
     _opener_markup_template = (
         '<input type="checkbox" class="opener" />'
@@ -252,7 +299,7 @@ class logosFooterViewlet(viewletBase):
         return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova')))
 
 
-class linksFooterViewlet(viewletBase, GlobalSectionsViewlet):
+class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
     _opener_markup_template = ('')
 
