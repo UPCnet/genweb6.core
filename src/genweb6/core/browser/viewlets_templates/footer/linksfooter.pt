@@ -9,6 +9,16 @@
 
         <navtree tal:replace="structure render_globalnav" />
 
+        <li class="no-folders has_subtree nav-item">
+
+          <ul class="navbar-nav-footer-no-folders">
+
+            <navtree tal:replace="structure render_globalnav" />
+
+          </ul>
+
+        </li>
+
       </ul>
 
     </div>
