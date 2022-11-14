@@ -95,9 +95,9 @@
                        tal:attributes="action">
 
                        <i tal:condition="action/icon"
-                          i18n:attributes="title action/title;
-                                           alt action/title"
-                          tal:attributes="class action/icon;"></i>
+                          tal:attributes="class action/icon;
+                                          title action/title;
+                                          alt action/title"></i>
                     </a>
 
                 </li>
