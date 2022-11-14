@@ -1,61 +1,47 @@
 <div id="footer-links" class="show-image"
      tal:define="links view/getCustomLinks">
 
-  <div class="row">
+  <ul class="navbar-nav-footer" tal:define="render_globalnav python:view.render_globalnav();
+                                            custom_links view/getCustomLinks">
 
-    <div class="col-md-9">
+    <navtree tal:replace="structure render_globalnav" />
 
-      <ul class="navbar-nav-footer" tal:define="render_globalnav python:view.render_globalnav()">
+    <li class="no-folders has_subtree nav-item">
+
+      <ul class="navbar-nav-footer-no-folders">
 
         <navtree tal:replace="structure render_globalnav" />
 
-        <li class="no-folders has_subtree nav-item">
+      </ul>
 
-          <ul class="navbar-nav-footer-no-folders">
+    </li>
 
-            <navtree tal:replace="structure render_globalnav" />
+    <li class="custom-links has_subtree nav-item" tal:condition="custom_links/links">
 
-          </ul>
+      <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Administració</p>
+      <p tal:content="custom_links/title"></p>
+
+      <ul class="navbar-nav-footer-custom-links">
+
+        <li tal:repeat="link custom_links/links"
+            class="nav-item">
+
+          <a tal:condition="link/external" target="_blank"
+             class="nav-link"
+             tal:attributes="href link/link"
+             tal:content="link/title"></a>
+
+          <a tal:condition="not:link/external"
+             class="nav-link"
+             tal:attributes="href link/link"
+             tal:content="link/title"></a>
 
         </li>
 
       </ul>
 
-    </div>
+    </li>
 
-    <div class="col-md-3" tal:define="custom_links view/getCustomLinks">
-
-      <ul class="navbar-nav-footer" tal:condition="custom_links/links">
-
-        <li class="has_subtree">
-
-          <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Administració</p>
-          <p tal:content="custom_links/title"></p>
-
-          <ul>
-
-            <li tal:repeat="link custom_links/links">
-
-              <a tal:condition="link/external" target="_blank"
-                 class="nav-link"
-                 tal:attributes="href link/link"
-                 tal:content="link/title"></a>
-
-              <a tal:condition="not:link/external"
-                 class="nav-link"
-                 tal:attributes="href link/link"
-                 tal:content="link/title"></a>
-
-            </li>
-
-          </ul>
-
-        </li>
-
-      </ul>
-
-    </div>
-
-  </div>
+  </ul>
 
 </div>
