@@ -524,4 +524,73 @@
       <element>video</element>
     </value>
   </record>
+
+  <record name="plone.app.tiles">
+    <field type="plone.registry.field.List">
+      <title>Tiles</title>
+      <value_type type="plone.registry.field.TextLine" />
+    </field>
+    <value purge="false">
+      <element>plone.app.mosaic.app_tiles.destacats</element>
+      <element>plone.app.mosaic.app_tiles.formulari_existent</element>
+      <element>plone.app.mosaic.app_tiles.custom_video</element>
+    </value>
+  </record>
+
+  <records prefix="plone.app.mosaic.app_tiles.destacats"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">destacats</value>
+    <value key="label">Destacats Home</value>
+    <value key="category">advanced</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">80</value>
+  </records>
+
+  <records prefix="plone.app.mosaic.app_tiles.formulari_existent"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">formulari_existent</value>
+    <value key="label">Formulari Existent</value>
+    <value key="category">advanced</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">10</value>
+  </records>
+
+  <records prefix="plone.app.mosaic.app_tiles.custom_video"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">video</value>
+    <value key="label">Video</value>
+    <value key="category">media</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">20</value>
+  </records>
+
+  <records prefix="plone.app.mosaic.app_tiles.twitter"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">twitter</value>
+    <value key="label">Twitter</value>
+    <value key="category">advanced</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">20</value>
+  </records>
+
 </registry>
