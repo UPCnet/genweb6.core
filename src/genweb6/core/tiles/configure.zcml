@@ -1,0 +1,73 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <include package="plone.tiles" file="meta.zcml" />
+    <include package="plone.app.tiles" />
+    <include package="plone.app.standardtiles" />
+
+    <browser:page
+        name="macros-hometiles"
+        for="*"
+        permission="zope.Public"
+        template="macros.pt"
+        />
+
+    <plone:tile
+        name="destacats"
+        title="Destacats Home"
+        description="Tile used to show destacats in homepage"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".destacats.destacats.IDestacats"
+        class=".destacats.destacats.Destacats"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="destacats/destacats.pt"
+        />
+
+    <plone:tile
+        name="formulari_existent"
+        title="Formulari Existent"
+        description="Tile used to show easyform as tile"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".formulari_existent.formulari_existent.IFormulariExistent"
+        class=".formulari_existent.formulari_existent.FormulariExistent"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="formulari_existent/formulari_existent.pt"
+        />
+
+    <adapter
+        factory=".formulari_existent.formulari_existent.SameContentValidator" />
+
+    <plone:tile
+        name="video"
+        title="Custom Video"
+        description="Tile used to show custom video"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".video.video.ICustomVideo"
+        class=".video.video.CustomVideo"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="video/video.pt"
+        />
+
+    <plone:tile
+        name="twitter"
+        title="Twitter"
+        description="Tile used to show twitter widget"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".twitter.twitter.ITwitter"
+        class=".twitter.twitter.Twitter"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="twitter/twitter.pt"
+        />
+
+</configure>

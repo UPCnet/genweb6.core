@@ -12,7 +12,7 @@
         name="macros-genweb-portlets"
         for="*"
         permission="zope.Public"
-        template="macros-portlets.pt"
+        template="macros.pt"
         />
 
     <plone:portletRenderer
