@@ -80,6 +80,8 @@ class IFooterSettings(model.Schema):
         default=False,
     )
 
+    read_permission(enable_register='genweb.manager')
+    write_permission(enable_register='genweb.manager')
     enable_register = schema.Bool(
         title=_(u"Mostrar enllaç al registre"),
         description=_(u"Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"),
