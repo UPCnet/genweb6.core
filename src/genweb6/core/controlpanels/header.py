@@ -203,33 +203,6 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    model.fieldset('Logo dret', _(u'Logo dret'),
-                   fields=['right_logo_enabled', 'right_logo', 'right_logo_alt'])
-
-    right_logo_enabled = schema.Bool(
-        title=_(u"right_logo_enabled",
-                default=u"Mostrar logo dret"),
-        description=_(u"help_right_logo_enabled",
-                      default=u"Mostra o no el logo dret de la capçalera."),
-        required=False,
-        default=False,
-    )
-
-    directives.widget('right_logo', NamedImageFieldWidget)
-    right_logo = schema.Bytes(
-        title=_(u"Logo dret"),
-        description=_(u"Please upload an image"),
-        required=False,
-    )
-
-    right_logo_alt = schema.TextLine(
-        title=_(u"right_logo_alt",
-                default=u"Text alternatiu del logo dret"),
-        description=_(u"help_right_logo_alt",
-                      default=u"Afegiu el text alternatiu (alt) del logo dret de la capçalera."),
-        required=False,
-    )
-
     model.fieldset('Altres', _(u'Altres'),
                    fields=['treu_menu_horitzontal', 'amaga_identificacio',
                            'idiomes_publicats', 'languages_link_to_root'])
