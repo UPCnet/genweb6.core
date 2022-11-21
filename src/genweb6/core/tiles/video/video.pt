@@ -8,12 +8,13 @@
     i18n:domain="homeupc">
     <tal:block condition="view/get_video">
         <body tal:define="video_url view/get_video;
-            link view/link;
-            external view/external_links_open_new_window;
-            is_video view/is_video;
-            is_embed_video view/is_embed_video;
-            clar view/isFonsClarConfigured;
-            obscur view/isFonsObscurConfigured;">
+                          link view/link;
+                          external view/external_links_open_new_window;
+                          is_video view/is_video;
+                          is_embed_video view/is_embed_video;
+                          clar view/isFonsClarConfigured;
+                          obscur view/isFonsObscurConfigured;">
+
             <div class="container">
                 <section class="video-section hero-posicio-inferior-centre video-highlighted" style="outline-style: none;">
                     <video tal:condition="is_video" autoplay muted loop controls class='video_upc'>

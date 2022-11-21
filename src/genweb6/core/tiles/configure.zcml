@@ -9,7 +9,7 @@
     <include package="plone.app.standardtiles" />
 
     <browser:page
-        name="macros-hometiles"
+        name="macros-tiles"
         for="*"
         permission="zope.Public"
         template="macros.pt"

@@ -14,7 +14,8 @@
                        cinc_esquerra view/is5DestacatsEsquerraConfigured;
                        cinc_dreta view/is5DestacatsDretaConfigured;">
                         
-      <!-- hero -->
+      <tal:comment tal:replace="nothing"> HERO </tal:comment>
+
       <tal:1destacatprincipal condition="destacatprincipal">
         <section
           tal:define="item view/get1DestacatPrincipal;
@@ -22,102 +23,80 @@
                       upctv item/upctv|nothing;
                       video_id item/video_id|nothing;
                       youtube item/youtube|nothing;"
-                      id="hero"
-                      tal:condition="item"
-                      class="hero-posicio-cercle-dreta hero-color-negre content-highlighted">
-          <tal:others tal:define="tamany python:'' ">
-            <img tal:condition="item/imatge|nothing"
-              tal:attributes="src string:${item/url}/@@images/image" />
-          </tal:others>
+          tal:condition="item"
+          class="gw-tile hero hero-posicio-cercle-dreta hero-color-negre content-highlighted">
+
+          <img tal:condition="item/imatge|nothing"
+               tal:attributes="src string:${item/url}/@@images/image" />
+
           <article class='container'>
-            <tal:standard tal:condition="not: is_video">
+
+            <tal:standard tal:condition="not:is_video">
+
                 <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="no-bullet">
                   <h2 tal:content="item/title" class="event-title">Titol</h2>
-                  <p tal:content="structure item/description" class="lead event-description"></p>
-                  <tal:tags tal:condition="item/categories">
-                    <p tal:content="item/categories" class="event-category">Descripcio</p>
-                  </tal:tags>
                 </a>
+
             </tal:standard>
 
-            <tal:youtube tal:condition="youtube">
-                <!-- Button HTML (to Trigger Modal) -->
-                <a role="button" tal:attributes="href string:#${video_id}; target video_id" class="video-link video-youtube" data-toggle="modal">
-                  <block metal:use-macro="context/macros-hometiles/titol-video"></block>
-                </a>
-                <script>
-                  $('.video-youtube').click(function(){
-                    var target = $(this).attr('target');
-                    var myModal = "#" + target;
-                    var videoSrc = $(myModal + " iframe").attr("src");
+            <tal:video tal:condition="is_video">
 
-                    $(myModal).on('show.bs.modal', function () { // on opening the modal set the video to autostart
-                      $(myModal + " iframe").attr("src", videoSrc+"&autoplay=1");
-                    });
-                    $(myModal).on('hidden.bs.modal', function (e) { // on closing the modal
-                      // stop the video
-                      $(myModal + " iframe").attr("src", videoSrc);
-                    });
-                  });
-                </script>
-            </tal:youtube>
+              <tal:youtube tal:condition="youtube">
 
-            <tal:upctv tal:condition="upctv">
-                <!-- Button HTML (to Trigger Modal) -->
-                <a role="button" tal:attributes="href string:#${video_id}" class="video-link video-upctv" data-toggle="modal">
-                  <block metal:use-macro="context/macros-hometiles/titol-video"></block>
-                </a>
-                <script>
-                  $('.video-upctv').click(function(){
-                    var myModal = $(this).attr('href');
+                  <a role="button" tal:attributes="data-bs-target string:#${video_id}Toggle;"
+                     class="video-link video-youtube" data-bs-toggle="modal">
+                    <tal:block metal:use-macro="context/macros-tiles/titol-video"></tal:block>
+                  </a>
 
-                    $(myModal).on('show.bs.modal', function () { // on opening the modal set the video to autostart
-                      $(myModal + " video").get(0).play();
-                    });
-
-                    $(myModal).on('hidden.bs.modal', function (e) { // on closing the modal
-                      // stop the video
-                      $(myModal + " video").get(0).pause();
-                    });
-                  });
-                </script>
-            </tal:upctv>
-          </article>
-
-          <tal:youtube tal:condition="youtube">
-            <block metal:use-macro="context/macros-hometiles/video">
-              <block metal:fill-slot="video-container">
-                <iframe id="ytplayer"
+                  <tal:block metal:use-macro="context/macros-tiles/video">
+                    <tal:block metal:fill-slot="video-container">
+                      <iframe width="560" height="315"
                               class='video-modal'
                               type="text/html"
                               tal:attributes="src string:${item/url_video}?enablejsapi=1;"
                               frameborder="0"
                               allowfullscreen />
-              </block>
-            </block>
-          </tal:youtube>
+                    </tal:block>
+                  </tal:block>
 
-          <tal:upctv tal:condition="upctv">
-            <block metal:use-macro="context/macros-hometiles/video">
-              <block metal:fill-slot="video-container">
-                <video tal:attributes="src item/url_video" type="video/mp4" controls></video>
-              </block>
-            </block>
-          </tal:upctv>
+                  <script type="text/javascript"
+                          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/tiles/destacat_principal_youtube.min.js"></script>
+              </tal:youtube>
+
+              <tal:upctv tal:condition="upctv">
+
+                  <a role="button" tal:attributes="data-bs-target string:${video_id}Toggle;"
+                     class="video-link video-upctv" data-bs-toggle="modal">
+                    <tal:block metal:use-macro="context/macros-tiles/titol-video"></tal:block>
+                  </a>
+
+                  <tal:block metal:use-macro="context/macros-tiles/video">
+                    <tal:block metal:fill-slot="video-container">
+                      <video tal:attributes="src item/url_video" type="video/mp4" controls></video>
+                    </tal:block>
+                  </tal:block>
+
+                  <script type="text/javascript"
+                          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/tiles/destacat_principal_upctv.min.js"></script>
+              </tal:upctv>
+
+            </tal:video>
+
+          </article>
 
         </section>
       </tal:1destacatprincipal>
 
-          
-      <!-- 3destacats -->
+      <tal:comment tal:replace="nothing"> 3 DESTACATS </tal:comment>
+
       <tal:3destacats condition="tres_destacats">
-        <section class="container content-banners">
-          <block metal:use-macro="context/macros-hometiles/titol-destacats"></block>
+        <section class="gw-tile destacats3 container content-banners">
+          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
           <div tal:define="items view/get3Destacats" tal:condition="items"  class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
               <div tal:attributes="class item/class;">
                 <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
-                  <block metal:use-macro="context/macros-hometiles/2-3-4-destacats"></block>
+                  <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
                     <p tal:content="structure item/description" class="hotnews-description">Sala de premsa</p></div>
@@ -128,10 +107,10 @@
         </section>
       </tal:3destacats>
 
-     
-      <!-- 4destacats Esdeveniments -->
+      <tal:comment tal:replace="nothing"> 4 DESTACATS ESDEVENIMENTS </tal:comment>
+
       <tal:4destacats condition="quatre_destacats_esdeveniments">
-        <section class="container content-agenda">
+        <section class="gw-tile destacats4-esdeveniments container content-agenda">
           <div class='titling-line-container'>
             <h2 class="titling-line">
               <tal:omit-tag tal:content="view/title">Agenda</tal:omit-tag>
@@ -145,14 +124,14 @@
                                    class python: img_class;" >
                   <span class="event-time">
                     <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
-                      <block metal:use-macro="context/macros-hometiles/sameday_samemonth"></block>
-                      <block metal:use-macro="context/macros-hometiles/difday_samemonth"></block>
-                      <block metal:use-macro="context/macros-hometiles/difday_difmonth"></block>
+                      <tal:block metal:use-macro="context/macros-tiles/sameday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-tiles/difday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-tiles/difday_difmonth"></tal:block>
                     </span>
                   </span>
                   <h2 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h2>
                   <tal:img condition="item/imatge" tal:define="tamany string:preview">
-                    <block metal:use-macro="context/macros-hometiles/2-3-4-destacats"></block>
+                    <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
                   </tal:img>
                   <tal:category tal:condition="item/category">
                     <p class="event-category" tal:content="item/category">Jornades de portes obertes</p>
@@ -167,55 +146,58 @@
         </section>
       </tal:4destacats>
 
-      <!-- 5destacatsesquerra-->
+      <tal:comment tal:replace="nothing"> 5 DESTACATS ESQUERRA </tal:comment>
+
       <tal:5destacatsesquerra condition="cinc_esquerra">
-        <section class="container content-hotnews">
+        <section class="gw-tile destacats5 destacats5-esquerra container content-hotnews">
           <div class='titling-line-container'>
             <h2 class="titling-line">
               <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
             </h2>
           </div>
-          <div class="grid-container esquerra">
-            <block metal:use-macro="context/macros-hometiles/bigImageNews"></block>
-            <tal:block tal:condition="view/all4news" tal:define="items view/all4news">
-              <tal:block tal:repeat="item items;">
-                <block metal:use-macro="context/macros-hometiles/littelImageNews"></block>
+          <div class="grid-container esquerra"
+               tal:define="all4news view/all4news">
+            <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
+            <tal:block tal:condition="all4news" tal:define="items all4news">
+              <tal:block tal:repeat="item items">
+                <tal:block metal:use-macro="context/macros-tiles/littelImageNews"></tal:block>
               </tal:block>
             </tal:block>
           </div>
           <div tal:condition="view/link_title" class="link-tile-footer">
-            <a tal:attributes="href view/link | nothing" class="">
+            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
               <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
             </a>
           </div>
         </section>
       </tal:5destacatsesquerra>
 
-      <!-- 5destacatsdreta -->
+      <tal:comment tal:replace="nothing"> 5 DESTACATS DRETA </tal:comment>
+
       <tal:5destacatsdreta condition="cinc_dreta">
-        <section class="container content-hotnews">
+        <section class="gw-tile destacats5 destacats5-dreta container content-hotnews">
           <div class='titling-line-container'>
             <h2 class="titling-line">
               <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
             </h2>
           </div>
-          <div class="grid-container dreta">
-            <block metal:use-macro="context/macros-hometiles/bigImageNews"></block>
-            <tal:block tal:condition="view/all4news" tal:define="items view/all4news">
-              <tal:block tal:repeat="item items;">
-                <block metal:use-macro="context/macros-hometiles/littelImageNews"></block>
+          <div class="grid-container dreta"
+               tal:define="all4news view/all4news">
+            <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
+            <tal:block tal:condition="all4news" tal:define="items all4news">
+              <tal:block tal:repeat="item items">
+                <tal:block metal:use-macro="context/macros-tiles/littelImageNews"></tal:block>
               </tal:block>
             </tal:block>
           </div>
           <div tal:condition="view/link_title" class="link-tile-footer">
-            <a tal:attributes="href view/link | nothing" class="">
+            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
               <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
             </a>
           </div>
         </section>
       </tal:5destacatsdreta>
 
-      
     </tal:block>
   </body>
 </html>

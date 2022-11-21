@@ -8,7 +8,6 @@ from plone.app.uuid.utils import uuidToURL
 from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
 from plone.supermodel.model import Schema
 from plone.tiles.tile import Tile
-from random import randint
 from zope import schema
 from zope.i18nmessageid import MessageFactory
 
@@ -53,12 +52,12 @@ class IDestacats(Schema):
         required=False,
         value_type=schema.Choice(
             vocabulary=create_simple_vocabulary([
-                        ("Link", _PMF(u"Link")),
-                        ("Event", _PMF(u"Event")),
-                        ("Image", _PMF(u"Image")),
-                        ("News Item", _PMF(u"News Item")),
-                        ("genweb.upc.documentimage", _(u"Document Image"))
-                        ])
+                ("Link", _PMF(u"Link")),
+                ("Event", _PMF(u"Event")),
+                ("Image", _PMF(u"Image")),
+                ("News Item", _PMF(u"News Item")),
+                ("genweb.upc.documentimage", _(u"Document Image"))
+            ])
         )
     )
 
@@ -119,7 +118,6 @@ class Destacats(Tile):
                               sort_order='reverse',
                               sort_limit=1)
         elif self.tags and not self.portal_types:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
             subjects = [t for t in self.tags]
             results = catalog(Subject=subjects,
                               review_state=['published', 'private'],
@@ -141,7 +139,6 @@ class Destacats(Tile):
                                   sort_order='reverse',
                                   sort_limit=1)
         else:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
             subjects = [t for t in self.tags]
             if self.portal_types in [u'Image']:
                 results = catalog(portal_type=self.portal_types,
@@ -157,6 +154,7 @@ class Destacats(Tile):
                                   sort_on=('effective'),
                                   sort_order='reverse',
                                   sort_limit=1)
+
         return self.filterObjects(results)[0] if len(results) > 0 else None
 
     def get3Destacats(self):
@@ -169,7 +167,6 @@ class Destacats(Tile):
                               sort_order='reverse',
                               sort_limit=3)
         elif self.tags and not self.portal_types:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
             subjects = [t for t in self.tags]
             results = catalog(Subject=subjects,
                               review_state=['published', 'private'],
@@ -185,7 +182,6 @@ class Destacats(Tile):
                               sort_order='reverse',
                               sort_limit=3)
         else:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
             subjects = [t for t in self.tags]
             results = catalog(portal_type=self.portal_types,
                               Subject=subjects,
@@ -225,7 +221,6 @@ class Destacats(Tile):
                               sort_order='ascending',
                               sort_limit=4)
         else:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
             subjects = [t for t in self.tags]
             results = catalog(Subject=subjects,
                               portal_type=('Event'),
@@ -267,14 +262,12 @@ class Destacats(Tile):
             return None
 
     def all4news(self):
+        self.destacats = self.getNDestacats(limit=5)
         try:
-            return self.getNDestacats(limit=5)[1:5]
-        except:
-            return None
-
-    def all8news(self):
-        try:
-            return self.getNDestacats(limit=9)[1:9]
+            if len(self.destacats) >= 5:
+                return self.destacats[1:5]
+            else:
+                return self.destacats[1:]
         except:
             return None
 
@@ -285,57 +278,55 @@ class Destacats(Tile):
         # busquem la mes recent que tingui tag 'gran' mes el tag definit a la tile
         tags = self.tags[:]
         tags.append('#gran')
-        # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in tags]
         subjects = [t for t in self.tags]
+
+        review_states = ['published', 'private']
+
+        gran_dict = {'Subject': {'query': subjects, 'operator': 'and'},
+                     'Language': pref_lang(),
+                     'sort_on': ('effective'),
+                     'sort_order': 'reverse',
+                     'sort_limit': 1}
+
         if not self.portal_types:
-            item_gran = catalog(Subject={'query': subjects, 'operator': 'and'},
-                                review_state=['published', 'private'],
-                                Language=pref_lang(),
-                                sort_on=('effective'),
-                                sort_order='reverse',
-                                sort_limit=1)
+            gran_dict.update({'review_state': review_states})
+            item_gran = catalog(gran_dict)
         else:
-            item_gran = catalog(portal_type=self.portal_types,
-                                Subject={'query': subjects, 'operator': 'and'},
-                                review_state=['published', 'private'],
-                                Language=pref_lang(),
-                                sort_on=('effective'),
-                                sort_order='reverse',
-                                sort_limit=1)
+            gran_dict.update({'portal_type': self.portal_types})
+            if self.portal_types == ['Image']:
+                item_gran = catalog(gran_dict)
+            else:
+                gran_dict.update({'review_state': review_states})
+                item_gran = catalog(gran_dict)
 
         # busquem les N mes recent que tinguin el tag definit a la tile
+        normal_dict = {'Language': pref_lang(),
+                       'sort_on': ('effective'),
+                       'sort_order': 'reverse',
+                       'sort_limit': limit}
+
         if not self.tags and not self.portal_types:
-            items_normals = catalog(review_state=['published', 'private'],
-                                    Language=pref_lang(),
-                                    sort_on=('effective'),
-                                    sort_order='reverse',
-                                    sort_limit=limit)
+            normal_dict.update({'review_state': review_states})
+            items_normals = catalog(normal_dict)
         elif self.tags and not self.portal_types:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
-            subjects = [t for t in self.tags]
-            items_normals = catalog(Subject=subjects,
-                                    review_state=['published', 'private'],
-                                    Language=pref_lang(),
-                                    sort_on=('effective'),
-                                    sort_order='reverse',
-                                    sort_limit=limit)
+            normal_dict.update({'review_state': review_states})
+            normal_dict.update({'Subject': [t for t in self.tags]})
+            items_normals = catalog(normal_dict)
         elif not self.tags and self.portal_types:
-            items_normals = catalog(portal_type=self.portal_types,
-                                    review_state=['published', 'private'],
-                                    Language=pref_lang(),
-                                    sort_on=('effective'),
-                                    sort_order='reverse',
-                                    sort_limit=limit)
+            normal_dict.update({'portal_type': self.portal_types})
+            if self.portal_types == ['Image']:
+                items_normals = catalog(normal_dict)
+            else:
+                normal_dict.update({'review_state': review_states})
+                items_normals = catalog(normal_dict)
         else:
-            # subjects = [t.encode('utf-8') if isinstance(t, unicode) else t for t in self.tags]
-            subjects = [t for t in self.tags]
-            items_normals = catalog(portal_type=self.portal_types,
-                                    Subject=subjects,
-                                    review_state=['published', 'private'],
-                                    Language=pref_lang(),
-                                    sort_on=('effective'),
-                                    sort_order='reverse',
-                                    sort_limit=limit)
+            normal_dict.update({'Subject': [t for t in self.tags]})
+            normal_dict.update({'portal_type': self.portal_types})
+            if self.portal_types == ['Image']:
+                items_normals = catalog(normal_dict)
+            else:
+                normal_dict.update({'review_state': review_states})
+                items_normals = catalog(normal_dict)
 
         items = self.filterObjects(items_normals)
         # si n'hi ha una de gran:
@@ -369,7 +360,9 @@ class Destacats(Tile):
                 for t in tags:
                     if not t.startswith("#") and not t.startswith("@"):
                         categories += t + ' '
-                if obj.Type() == 'Event':
+
+                obj_type = obj.Type()
+                if obj_type == 'Event':
                     info = {
                         'url': result.getURL(),
                         'imatge': obj.image,
@@ -377,10 +370,10 @@ class Destacats(Tile):
                         'open_link_in_new_window': '_self',
                         'class': "",
                         'title': obj.title,
-                        'description': self.abrevia(obj.description) if obj.description else "",
+                        'description': obj.description,
                         'categories': categories,
                         }
-                elif obj.Type() == 'News Item':
+                elif obj_type in ['News Item', 'Document Image']:
                     data_efectiva = DateTime.strftime(obj.effective(), '%d/%m/%Y')
                     info = {
                         'url': result.getURL(),
@@ -389,12 +382,11 @@ class Destacats(Tile):
                         'open_link_in_new_window': '_self',
                         'class': "",
                         'title': obj.title,
-                        'description': self.abrevia(obj.description),
+                        'description': obj.description,
                         'categories': categories,
                         'data_efectiva': data_efectiva,
-                        'user_can_edit': self.check_user_permission(self.context),
                         }
-                elif obj.Type() == 'Link':
+                elif obj_type == 'Link':
                     upctv = False
                     youtube = False
                     video_id = 0
@@ -421,14 +413,15 @@ class Destacats(Tile):
                     if isVideo:
                         video = 'hotnews-video'
                         # per tal que hi pugui haver varis videos generem un id aleatori
-                        video_id = randint(0, 9999)
+                        video_id = 'video-' + obj.id
 
                     info = {
                         'url': result.getURL(),
+                        'imatge': None,
                         'open_link_in_new_window': open_link,
                         'class': video,
                         'title': obj.title,
-                        'description': self.abrevia(obj.description),
+                        'description': obj.description,
                         'categories': categories,
                         'is_video': isVideo,
                         'url_video': url_video,
@@ -437,9 +430,8 @@ class Destacats(Tile):
                         'video_id': video_id,
                         'link_extern_pdf': obj.remoteUrl,
                         'data_efectiva': data_efectiva,
-                        'user_can_edit': self.check_user_permission(self.context),
                         }
-                elif obj.Type() == 'Image':
+                elif obj_type == 'Image':
                     info = {
                         'url': result.getURL(),
                         'imatge': obj.image,
@@ -447,7 +439,7 @@ class Destacats(Tile):
                         'open_link_in_new_window': '_self',
                         'class': "",
                         'title': obj.title,
-                        'description': self.abrevia(obj.description) if obj.description else "",
+                        'description': obj.description,
                         'categories': categories,
                         }
                 else:
@@ -458,29 +450,13 @@ class Destacats(Tile):
                         'open_link_in_new_window': '_self',
                         'class': "",
                         'title': obj.title,
-                        'description': self.abrevia(obj.description) if obj.description else "",
+                        'description': obj.description,
                         'categories': categories,
                         }
                 items.append(info)
         else:
             items = None
         return items
-
-    def abrevia(self, desc):
-        if len(desc) > 40:
-            desc_text = desc[:40]
-            desc_text = desc_text[:desc_text.rfind(' ') - len(desc_text)]
-            desc_text = desc_text + '...'
-        else:
-            desc_text = desc
-        return desc_text
-
-    def check_user_permission(self, obj):
-        security_manager = getSecurityManager()
-        if not security_manager.checkPermission(ModifyPortalContent, obj):
-            return False
-
-        return True
 
     @property
     def title(self):

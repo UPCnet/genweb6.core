@@ -5,32 +5,36 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="plone">
 
-    <!-- hero -->
+    <tal:comment tal:replace="nothing"> HERO </tal:comment>
+
     <metal:block metal:define-macro="titol-video">
         <h2 tal:content="item/title" class="event-title">Titol</h2>
-        <p tal:content="structure item/description" class="lead event-description"></p>
-        <tal:tags tal:condition="item/categories">
-            <p tal:content="item/categories" class="event-category">Descripcio</p>
-        </tal:tags>
     </metal:block>
 
     <metal:block metal:define-macro="video">
-        <div class="modal fade" tal:attributes="id video_id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog video-modal-lg">
+
+        <div class="modal fade" aria-hidden="true"
+             tal:attributes="id string:${video_id}Toggle;
+                             aria-labelledby string:${video_id}ToggleLabel">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                        <h4 class="modal-title" id="myModalLabel" tal:content="item/title">Title</h4>
+                        <h4 class="modal-title fs-5"
+                            tal:attributes="id string:${video_id}ToggleLabel"
+                            tal:content="item/title">Modal title</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body video-modal-container">
-                        <block metal:define-slot="video-container">videocontainer</block>
+                    <div class="modal-body">
+                        <tal:block metal:define-slot="video-container">videocontainer</tal:block>
                     </div>
                 </div>
             </div>
         </div>
+
     </metal:block>
 
-    <!-- 4destacats -->
+    <tal:comment tal:replace="nothing"> 4 DESTACATS ESDEVENIMENTS </tal:comment>
+
     <metal:block metal:define-macro="time">
         <tal:omit-tag tal:content="day">22</tal:omit-tag>
         <span tal:content="month" class="sr-only">novembre</span>
@@ -38,13 +42,13 @@
 
     <metal:block metal:define-macro="firstday">
         <time class='event-days' tal:define="day item/firstday; month item/firstmonth">
-            <block metal:use-macro="context/macros-hometiles/time"></block>
+            <tal:block metal:use-macro="context/macros-tiles/time"></tal:block>
         </time>
     </metal:block>
 
     <metal:block metal:define-macro="lastday">
         <time class='event-days' tal:define="day item/lastday; month item/lastmonth">
-            <block metal:use-macro="context/macros-hometiles/time"></block>
+            <tal:block metal:use-macro="context/macros-tiles/time"></tal:block>
         </time>
     </metal:block>
 
@@ -54,75 +58,32 @@
 
     <metal:block metal:define-macro="sameday_samemonth">
         <tal:sameday_samemonth condition="python: type == 'sameday_samemonth'">
-            <block metal:use-macro="context/macros-hometiles/firstday"></block>
-            <block metal:use-macro="context/macros-hometiles/firstmonth"></block>
+            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
+            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
         </tal:sameday_samemonth>
     </metal:block>
 
     <metal:block metal:define-macro="difday_samemonth">
         <tal:difday_samemonth condition="python: type == 'difday_samemonth'">
-            <block metal:use-macro="context/macros-hometiles/firstday"></block>
+            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
             <span tal:content="item/connector" class='event-days event-days-connector'>/</span>
-            <block metal:use-macro="context/macros-hometiles/lastday"></block>
-            <block metal:use-macro="context/macros-hometiles/firstmonth"></block>
+            <tal:block metal:use-macro="context/macros-tiles/lastday"></tal:block>
+            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
         </tal:difday_samemonth>
     </metal:block>
 
     <metal:block metal:define-macro="difday_difmonth">
         <tal:difday_difmonth condition="python: type == 'difday_difmonth'">
-            <block metal:use-macro="context/macros-hometiles/firstday"></block>
-            <block metal:use-macro="context/macros-hometiles/firstmonth"></block>
+            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
+            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
             <span tal:content="item/connector" class="event-days event-days-connector">/</span>
-            <block metal:use-macro="context/macros-hometiles/lastday"></block>
+            <tal:block metal:use-macro="context/macros-tiles/lastday"></tal:block>
             <span role="presentation" aria-hidden="true" class="event-months" tal:attributes="title item/lastmonth" tal:content="item/abbrlastmonth">ultimmes</span>
         </tal:difday_difmonth>
     </metal:block>
 
-    <!-- 5 destacats -->
-    <metal:block metal:define-macro="noticia-destacada">
-        <div class="layout-table--cell layout-table--cell-rowspan">
-            <div tal:condition="destacat">
-                <div tal:attributes="class destacat/class;">
-                    <a tal:attributes="href destacat/url; target destacat/open_link_in_new_window;" class="hotnews hotnews-image hotnews-top">
-                        <img tal:condition="destacat/imatge|nothing"
-                            tal:attributes="src string:${destacat/url}/@@images/image/large;" alt="" />
-                        <div>
-                            <tal:tags tal:condition="destacat/categories">
-                                <p tal:content="destacat/categories" class="hotnews-category">Sala de premsa</p>
-                            </tal:tags>
-                            <h3 tal:content="destacat/title" class="hotnews-title">Les universitats públiques catalanes reclamen</h3>
-                            <div class="hotnews-description">
-                                <p tal:replace="structure destacat/description">En una declaració elaborada en el marc de l’ACUP (Associació Catalana d’Universitats Públiques)</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </metal:block>
+    <tal:comment tal:replace="nothing"> TITOL DESTACATS </tal:comment>
 
-    <metal:block metal:define-macro="fila">
-        <div tal:repeat="item items" class="layout-table--cell">
-            <tal:block define="img_setted item/img_setted; is_video item/class;" >
-                <a tal:condition="python: is_video == 'hotnews-video'" tal:attributes="href item/url; target item/open_link_in_new_window;" class="hotnews hotnews-image hotnews-highlighted hotnews-video">
-                    <block metal:use-macro="context/macros-hometiles/imatge"></block>
-                    <block metal:use-macro="context/macros-hometiles/text-noticia"></block>
-                </a>
-                <a tal:condition="python: is_video == '' and img_setted" tal:attributes="href item/url; target item/open_link_in_new_window;" class="hotnews hotnews-image">
-                    <block metal:use-macro="context/macros-hometiles/imatge"></block>
-                    <block metal:use-macro="context/macros-hometiles/text-noticia"></block>
-                </a>
-                <a tal:condition="python: is_video == '' and not img_setted" tal:attributes="href item/url; target item/open_link_in_new_window;" class="hotnews hotnews-highlighted">
-                    <block metal:use-macro="context/macros-hometiles/text-noticia"></block>
-                </a>
-                <a tal:condition="python: is_video == '' and not img_setted" tal:attributes="href item/url; target item/open_link_in_new_window;" class="hotnews">
-                    <block metal:use-macro="context/macros-hometiles/text-noticia"></block>
-                </a>
-            </tal:block>
-        </div>
-    </metal:block>
-
-    <!--  titol destacats -->
     <metal:block metal:define-macro="titol-destacats">
         <div class='titling-line-container'>
             <h2 class="titling-line">
@@ -134,7 +95,8 @@
         </div>
     </metal:block>
 
-    <!-- text noticia -->
+    <tal:comment tal:replace="nothing"> TEXT NOTICIA </tal:comment>
+
     <metal:block metal:define-macro="text-noticia">
         <div>
             <h3 tal:content="item/title" class="hotnews-title">Les universitats públiques catalanes reclamen</h3>
@@ -186,7 +148,7 @@
                 <div class="card-body">
                     <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="stretched-link">
                         <h3 class="card-title" tal:content="item/title">Títol de la notícia</h3>
-                        <p tal:replace="structure item/description">Escrit de la noticia</p>
+                        <p class="text-truncate-3" tal:content="structure item/description">Escrit de la noticia</p>
                     </a>
                 </div>
             </div>
