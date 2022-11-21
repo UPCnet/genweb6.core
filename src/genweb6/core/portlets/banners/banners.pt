@@ -5,7 +5,7 @@
 
     <div id="baners" class="portlet portlet-baners" role="complementary" aria-labelledby="titol-baners">
 
-        <h2 class="portlet-title" tal:condition="view/data/header"
+        <h2 class="portlet-title" tal:condition="view/data/header|nothing"
             tal:content="view/data/header">Accesos directes</h2>
 
         <tal:banners tal:repeat="banner banners">

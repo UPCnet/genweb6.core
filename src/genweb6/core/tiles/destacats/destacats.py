@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from AccessControl import getSecurityManager
 from DateTime.DateTime import DateTime
-from Products.CMFCore.permissions import ModifyPortalContent
 
 from plone import api
 from plone.app.uuid.utils import uuidToURL

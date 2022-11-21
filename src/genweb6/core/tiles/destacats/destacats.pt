@@ -92,10 +92,11 @@
       <tal:3destacats condition="tres_destacats">
         <section class="gw-tile destacats3 container content-banners">
           <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
-          <div tal:define="items view/get3Destacats" tal:condition="items"  class="row">
+          <div tal:define="items view/get3Destacats" tal:condition="items" class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
               <div tal:attributes="class item/class;">
-                <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
+                <a tal:attributes="href item/url; target item/open_link_in_new_window;"
+                   class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
                   <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
@@ -104,6 +105,7 @@
               </div>
             </div>
           </div>
+          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:3destacats>
 
@@ -150,11 +152,7 @@
 
       <tal:5destacatsesquerra condition="cinc_esquerra">
         <section class="gw-tile destacats5 destacats5-esquerra container content-hotnews">
-          <div class='titling-line-container'>
-            <h2 class="titling-line">
-              <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
-            </h2>
-          </div>
+          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
           <div class="grid-container esquerra"
                tal:define="all4news view/all4news">
             <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
@@ -164,11 +162,7 @@
               </tal:block>
             </tal:block>
           </div>
-          <div tal:condition="view/link_title" class="link-tile-footer">
-            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
-              <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
-            </a>
-          </div>
+          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:5destacatsesquerra>
 
@@ -176,11 +170,7 @@
 
       <tal:5destacatsdreta condition="cinc_dreta">
         <section class="gw-tile destacats5 destacats5-dreta container content-hotnews">
-          <div class='titling-line-container'>
-            <h2 class="titling-line">
-              <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
-            </h2>
-          </div>
+          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
           <div class="grid-container dreta"
                tal:define="all4news view/all4news">
             <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
@@ -190,11 +180,7 @@
               </tal:block>
             </tal:block>
           </div>
-          <div tal:condition="view/link_title" class="link-tile-footer">
-            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
-              <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
-            </a>
-          </div>
+          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:5destacatsdreta>
 

@@ -89,10 +89,17 @@
             <h2 class="titling-line">
                 <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
             </h2>
-            <a tal:condition="view/link_title" tal:attributes="href view/link | nothing" class="btn-mes">
-                <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
-            </a>
         </div>
+    </metal:block>
+
+    <tal:comment tal:replace="nothing"> PEU DESTACATS </tal:comment>
+
+    <metal:block metal:define-macro="peu-destacats">
+        <div tal:condition="view/link_title" class="link-tile-footer">
+            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
+              <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
+            </a>
+          </div>
     </metal:block>
 
     <tal:comment tal:replace="nothing"> TEXT NOTICIA </tal:comment>
