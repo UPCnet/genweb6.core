@@ -30,6 +30,7 @@ class Renderer(base.Renderer):
         page = {}
         pc = api.portal.get_tool('portal_catalog')
         result = pc.searchResults(object_provides=IHomePage.__identifier__,
+                                  portal_type='Document',
                                   Language=pref_lang())
         if not result:
             page['body'] = ''
