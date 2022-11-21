@@ -19,6 +19,11 @@ class IBannersPortlet(IPortletDataProvider):
     same.
     """
 
+    header = schema.TextLine(
+        title=_(u"Portlet header"),
+        description=_(u"Title of the rendered portlet"),
+        required=False)
+
     count = schema.Int(
         title=_(u'Number of banners to display'),
         description=_(u'How many banners to list.'),
