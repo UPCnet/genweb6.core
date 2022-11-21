@@ -1,4 +1,4 @@
-<div>
+<div class="portlet portlet-homepage mb-5">
   <div tal:define="frontpage view/getHomepage">
     <div tal:replace="structure frontpage/body">Cos de la pagina principal</div>
   </div>
