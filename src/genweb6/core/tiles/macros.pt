@@ -99,7 +99,7 @@
             <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
               <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
             </a>
-          </div>
+        </div>
     </metal:block>
 
     <tal:comment tal:replace="nothing"> TEXT NOTICIA </tal:comment>
@@ -111,9 +111,6 @@
                 <p tal:content="structure item/description">En una declaració elaborada en el marc de l’ACUP (Associació Catalana d’Universitats Públiques)</p>
             </div>
         </div>
-        <tal:tags tal:condition="item/categories">
-            <p tal:content="item/categories" class="hotnews-category">Sala de premsa</p>
-        </tal:tags>
     </metal:block>
 
     <!-- 2-3-4-destacats -->

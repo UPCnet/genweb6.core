@@ -230,11 +230,6 @@ class Destacats(Tile):
                               sort_limit=4)
         for event in results:
             obj = event.getObject()
-            categories = ""
-
-            tags = [s for s in obj.subject if not s.startswith("#") and not s.startswith("@")]
-            for t in tags:
-                categories += t.encode('utf-8') if isinstance(t, unicode) else t + ' '
 
             info = {'url': event.getURL(),
                     'firstday': obj.start.day,
@@ -245,7 +240,6 @@ class Destacats(Tile):
                     'abbrlastmonth': PLMF(ts.month_msgid(obj.end.month)),
                     'connector': ' to ' if pref_lang() == 'en' else ' a ',
                     'title': obj.title,
-                    'category': categories,
                     'imatge': obj.image,
                     'peu': obj.title,
                     'img_setted': obj.image is None,
@@ -356,11 +350,6 @@ class Destacats(Tile):
             items = []
             for result in results:
                 obj = result.getObject()
-                categories = ""
-                tags = [s for s in obj.subject]
-                for t in tags:
-                    if not t.startswith("#") and not t.startswith("@"):
-                        categories += t + ' '
 
                 obj_type = obj.Type()
                 if obj_type == 'Event':
@@ -372,7 +361,6 @@ class Destacats(Tile):
                         'class': "",
                         'title': obj.title,
                         'description': obj.description,
-                        'categories': categories,
                         }
                 elif obj_type in ['News Item', 'Document Image']:
                     data_efectiva = DateTime.strftime(obj.effective(), '%d/%m/%Y')
@@ -384,7 +372,6 @@ class Destacats(Tile):
                         'class': "",
                         'title': obj.title,
                         'description': obj.description,
-                        'categories': categories,
                         'data_efectiva': data_efectiva,
                         }
                 elif obj_type == 'Link':
@@ -423,7 +410,6 @@ class Destacats(Tile):
                         'class': video,
                         'title': obj.title,
                         'description': obj.description,
-                        'categories': categories,
                         'is_video': isVideo,
                         'url_video': url_video,
                         'youtube': youtube,
@@ -441,7 +427,6 @@ class Destacats(Tile):
                         'class': "",
                         'title': obj.title,
                         'description': obj.description,
-                        'categories': categories,
                         }
                 else:
                     info = {
@@ -452,7 +437,6 @@ class Destacats(Tile):
                         'class': "",
                         'title': obj.title,
                         'description': obj.description,
-                        'categories': categories,
                         }
                 items.append(info)
         else:

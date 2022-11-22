@@ -49,6 +49,7 @@ def create_simple_vocabulary(terms):
     return SimpleVocabulary(
         [SimpleTerm(value=term[0], title=term[1]) for term in terms])
 
+
 def havePermissionAtRoot():
     """Funcio que retorna si es Editor a l'arrel"""
     proot = portal()
