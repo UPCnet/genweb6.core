@@ -11,12 +11,12 @@ class ITwitter(Schema):
     twitter_account = schema.TextLine(
         title=_(u"Twitter Account"),
         description=_(u"Name of the Twitter account used to shown the tweets"),
-        default=u'la_UPC',
+        default=u'Twitter',
         required=True)
 
 
 class Twitter(Tile):
-    """The Twitter tile displays twitter widget of @la_UPC"""
+    """The Twitter tile displays twitter widget of @Twitter"""
 
     def __call__(self):
         return self.index()
