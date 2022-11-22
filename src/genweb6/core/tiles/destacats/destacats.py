@@ -231,9 +231,11 @@ class Destacats(Tile):
         for event in results:
             obj = event.getObject()
             categories = ""
+
             tags = [s for s in obj.subject if not s.startswith("#") and not s.startswith("@")]
             for t in tags:
                 categories += t.encode('utf-8') if isinstance(t, unicode) else t + ' '
+
             info = {'url': event.getURL(),
                     'firstday': obj.start.day,
                     'firstmonth': PLMF(ts.month_msgid(obj.start.month)),
@@ -248,6 +250,7 @@ class Destacats(Tile):
                     'peu': obj.title,
                     'img_setted': obj.image is None,
                     }
+
             events.append(info)
 
         return events

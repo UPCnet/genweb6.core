@@ -28,9 +28,9 @@
 
                     <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
 
-                      <block metal:use-macro="context/macros-genweb/sameday_samemonth"></block>
-                      <block metal:use-macro="context/macros-genweb/difday_samemonth"></block>
-                      <block metal:use-macro="context/macros-genweb/difday_difmonth"></block>
+                      <tal:block metal:use-macro="context/macros-genweb/sameday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-genweb/difday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-genweb/difday_difmonth"></tal:block>
 
                     </span>
 

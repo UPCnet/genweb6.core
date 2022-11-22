@@ -100,7 +100,7 @@
                   <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
-                    <p tal:content="structure item/description" class="hotnews-description">Sala de premsa</p></div>
+                    <p tal:content="structure item/description" class="hotnews-description text-truncate-3">Sala de premsa</p></div>
                 </a>
               </div>
             </div>
@@ -112,39 +112,28 @@
       <tal:comment tal:replace="nothing"> 4 DESTACATS ESDEVENIMENTS </tal:comment>
 
       <tal:4destacats condition="quatre_destacats_esdeveniments">
-        <section class="gw-tile destacats4-esdeveniments container content-agenda">
-          <div class='titling-line-container'>
-            <h2 class="titling-line">
-              <tal:omit-tag tal:content="view/title">Agenda</tal:omit-tag>
-            </h2>
-            <a tal:condition="view/link_title" tal:attributes="href view/link | nothing" class="btn-mes"><tal:omit-tag tal:content="view/link_title | nothing">Mes esdeveniments</tal:omit-tag></a>
-          </div>
-          <ol tal:define="items view/get4DestacatsEsdeveniments" tal:condition="items" class="list-agenda row">
-            <li tal:repeat="item items" class="col-md-3 col-sm-6 col-xs-12">
-              <tal:block define="img_class python:'' if item.get('img_setted') else 'event-img'; ">
-                <a tal:attributes="href item/url;
-                                   class python: img_class;" >
-                  <span class="event-time">
-                    <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
-                      <tal:block metal:use-macro="context/macros-tiles/sameday_samemonth"></tal:block>
-                      <tal:block metal:use-macro="context/macros-tiles/difday_samemonth"></tal:block>
-                      <tal:block metal:use-macro="context/macros-tiles/difday_difmonth"></tal:block>
+        <section class="gw-tile destacats4-esdeveniments container content-agenda list-agenda">
+          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+
+          <div class="list-agenda" tal:define="items view/get4DestacatsEsdeveniments" tal:condition="items">
+            <ol class="row ps-0 mb-0">
+              <tal:repeat repeat="item items">
+                <li class="col-md-3 col-sm-6 col-xs-12">
+                  <a class="card" tal:attributes="href item/url">
+                    <span class="event-time">
+                      <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
+                        <tal:block metal:use-macro="context/macros-tiles/sameday_samemonth"></tal:block>
+                        <tal:block metal:use-macro="context/macros-tiles/difday_samemonth"></tal:block>
+                        <tal:block metal:use-macro="context/macros-tiles/difday_difmonth"></tal:block>
+                      </span>
                     </span>
-                  </span>
-                  <h2 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h2>
-                  <tal:img condition="item/imatge" tal:define="tamany string:preview">
-                    <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
-                  </tal:img>
-                  <tal:category tal:condition="item/category">
-                    <p class="event-category" tal:content="item/category">Jornades de portes obertes</p>
-                  </tal:category>
-                  <tal:notcategory tal:condition="not: item/category">
-                    <p class="event-category">&nbsp;</p>
-                  </tal:notcategory>
-                </a>
-              </tal:block>
-            </li>
-          </ol>
+                    <h3 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h3>
+                  </a>
+                </li>
+              </tal:repeat>
+            </ol>
+          </div>
+          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:4destacats>
 
