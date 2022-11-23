@@ -4,11 +4,13 @@ from Products.statusmessages.interfaces import IStatusMessage
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.registry import DictRow
 from plone.app.registry.browser import controlpanel
+from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.supermodel import model
 from z3c.form import button
+from z3c.relationfield.schema import RelationChoice
 from zope import schema
 
 from genweb6.core import _
@@ -61,7 +63,7 @@ class IFooterSettings(model.Schema):
     )
 
     model.fieldset('Links', _(u'Links'),
-                   fields=['enable_links',
+                   fields=['enable_links', 'complete_custom_links',
                            'enable_login', 'enable_register',
                            'title_links_ca', 'title_links_es', 'title_links_en',
                            'table_links_ca', 'table_links_es', 'table_links_en'])
@@ -69,6 +71,13 @@ class IFooterSettings(model.Schema):
     enable_links = schema.Bool(
         title=_(u"Mostrar enllaços al peu"),
         description=_(u"Al marcar aquesta opció es mostrarà els enllaços als continguts i els enllaços personalitzats"),
+        required=False,
+        default=False,
+    )
+
+    complete_custom_links = schema.Bool(
+        title=_(u"Costumizar completament els enllaços"),
+        description=_(u"Al marcar aquesta opció es mostrarà la pàgina de enllaços personalitzats al peu, la pàgina ha d'estar publicada."),
         required=False,
         default=False,
     )

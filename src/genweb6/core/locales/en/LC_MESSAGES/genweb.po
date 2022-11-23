@@ -2165,3 +2165,6 @@ msgstr "Ha olvidado la contraseña?"
 
 msgid "more_url"
 msgstr "View more"
+
+msgid "Contacte amb nosaltres"
+msgstr "Contact us"

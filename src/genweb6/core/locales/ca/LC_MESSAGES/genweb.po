@@ -2283,3 +2283,6 @@ msgstr "Has oblidat la teva contrasenya?"
 
 msgid "more_url"
 msgstr "Veure més"
+
+msgid "Contacte amb nosaltres"
+msgstr "Contacte amb nosaltres"

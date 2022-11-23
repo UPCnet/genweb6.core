@@ -2193,3 +2193,6 @@ msgstr "Menú"
 
 msgid "more_url"
 msgstr "Ver más"
+
+msgid "Contacte amb nosaltres"
+msgstr "Contacta con nosotros"

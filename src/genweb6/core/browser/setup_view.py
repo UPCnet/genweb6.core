@@ -2,7 +2,6 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
-from Products.CMFPlone.utils import normalizeString
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -383,6 +382,34 @@ class setup(BrowserView):
         customizedcontact.exclude_from_nav = True
         contactopersonalizado.exclude_from_nav = True
         contactepersonalitzat.exclude_from_nav = True
+
+        links_string_ca = u"""Editeu a la pàgina "Enllaços personalitzats", que trobareu a l’arrel de català, els vostres enllaços del peu personalitzats. """
+        links_string_es = u"""Editad en la página "Enlaces personalizados", que encontraréis en la raíz de español, vuestros enlaces del pie personalizados. """
+        links_string_en = u"""Customize your links footer on page "custom links" . """
+
+        # Create default custom contact form info objects
+        if not getattr(portal_en, 'customizedlinks', False):
+            customizedlinks = self.create_content(portal_en, 'Document', 'customizedlinks', title='customizedlinks', publish=False)
+            customizedlinks.title = u'Custom links'
+            customizedlinks.text = RichTextValue(links_string_ca, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_es, 'enlacespersonalizados', False):
+            enlacespersonalizados = self.create_content(portal_es, 'Document', 'enlacespersonalizados', title='enlacespersonalizados', publish=False)
+            enlacespersonalizados.title = u'Enlaces personalizados'
+            enlacespersonalizados.text = RichTextValue(links_string_es, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_ca, 'enllacospersonalitzats', False):
+            enllacospersonalitzats = self.create_content(portal_ca, 'Document', 'enllacospersonalitzats', title='enllacospersonalitzats', publish=False)
+            enllacospersonalitzats.title = u'Enllaços personalitzats'
+            enllacospersonalitzats.text = RichTextValue(links_string_en, 'text/html', 'text/x-html-safe')
+
+        customizedlinks = portal_en['customizedlinks']
+        enlacespersonalizados = portal_es['enlacespersonalizados']
+        enllacospersonalitzats = portal_ca['enllacospersonalitzats']
+
+        self.link_translations([(enllacospersonalitzats, 'ca'), (enlacespersonalizados, 'es'), (customizedlinks, 'en')])
+
+        customizedlinks.exclude_from_nav = True
+        enlacespersonalizados.exclude_from_nav = True
+        enllacospersonalitzats.exclude_from_nav = True
 
         # Templates TinyMCE
         templates = self.create_content(portal, 'Folder', 'templates', title='Templates', description='Plantilles per defecte administrades per l\'SC.')

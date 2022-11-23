@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from AccessControl.SecurityManagement import getSecurityManager
+from Acquisition import aq_inner
 
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
@@ -357,6 +358,32 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
             )
 
         return result
+
+    def getLinksPersonalized(self):
+        return genwebFooterConfig().complete_custom_links
+
+    def getLinksPage(self):
+        """
+        Funcio que retorna la pagina de contacte personalitzada
+        """
+        context = aq_inner(self.context)
+        lang = self.context.Language()
+
+        if lang == 'ca':
+            customized_page = getattr(context, 'enllacospersonalitzats', False)
+        elif lang == 'es':
+            customized_page = getattr(context, 'enlacespersonalizados', False)
+        elif lang == 'en':
+            customized_page = getattr(context, 'customizedlinks', False)
+
+        try:
+            state = api.content.get_state(customized_page)
+            if state == 'published':
+                return customized_page.text.raw
+            else:
+                return ''
+        except:
+            return ''
 
 
 class footerViewlet(viewletBase):

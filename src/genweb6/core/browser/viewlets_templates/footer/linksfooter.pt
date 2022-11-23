@@ -1,8 +1,13 @@
 <div id="footer-links" class="show-image"
-     tal:define="links view/getCustomLinks">
+     tal:define="custom view/getLinksPersonalized">
 
-  <ul class="navbar-nav-footer" tal:define="render_globalnav python:view.render_globalnav();
-                                            custom_links view/getCustomLinks">
+  <div class="navbar-nav-footer custom" tal:condition="custom">
+    <tal:block tal:content="structure view/getLinksPage"></tal:block>
+  </div>
+
+  <ul class="navbar-nav-footer" tal:condition="not:custom"
+      tal:define="render_globalnav python:view.render_globalnav();
+                  custom_links view/getCustomLinks">
 
     <navtree tal:replace="structure render_globalnav" />
 

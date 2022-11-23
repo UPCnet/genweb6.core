@@ -17,9 +17,9 @@
                         <a tal:attributes="href link/url;
                                            target link/target"
                            accesskey="9"
-                           i18n:domain="plone"
-                           i18n:translate="Contact">
-                            Contact
+                           i18n:domain="genweb"
+                           i18n:translate="">
+                            Contacte amb nosaltres
                         </a>
                     </li>
 
