@@ -138,6 +138,7 @@
             <div class="container-fluid">
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        aria-label="Close"
                         data-bs-target="#gwMobileNavbar" aria-controls="gwMobileNavbar">
 
                   <span class="navbar-toggler-icon"></span>
