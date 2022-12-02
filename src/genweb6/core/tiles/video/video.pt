@@ -24,7 +24,12 @@
                         <source tal:attributes="src video_url" type='video/mp4'></source>
                     </video>
                     <tal:block condition="is_embed_video"><!-- check js -->
-                        <iframe class="video_upc embed" tal:attributes="src video_url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        <iframe class="video_upc embed"
+                                tal:attributes="src video_url;
+                                                title view/data/title"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
                         </iframe>
                     </tal:block>
                     <tal:clar condition="clar">
