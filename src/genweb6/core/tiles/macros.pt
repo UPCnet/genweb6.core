@@ -85,11 +85,9 @@
     <tal:comment tal:replace="nothing"> TITOL DESTACATS </tal:comment>
 
     <metal:block metal:define-macro="titol-destacats">
-        <div class='titling-line-container'>
-            <h2 class="titling-line">
-                <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
-            </h2>
-        </div>
+        <h2 class="portlet-title">
+            <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
+        </h2>
     </metal:block>
 
     <tal:comment tal:replace="nothing"> PEU DESTACATS </tal:comment>

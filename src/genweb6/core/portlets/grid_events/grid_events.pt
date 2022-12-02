@@ -4,13 +4,9 @@
 
     <div class="portlet portlet-grid-events" tal:condition="events">
 
-      <div class="titling-line-container">
-
-        <h2 class="titling-line" i18n:translate="">
-          Events
-        </h2>
-
-      </div>
+      <h2 class="portlet-title" i18n:translate="">
+        Events
+      </h2>
 
       <div class="list-agenda">
 
