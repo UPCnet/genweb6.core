@@ -16,7 +16,10 @@
                           obscur view/isFonsObscurConfigured;">
 
             <div class="container">
-                <section class="video-section hero-posicio-inferior-centre video-highlighted" style="outline-style: none;">
+                <section class="video-section hero-posicio-inferior-centre video-highlighted"
+                         style="outline-style: none;"
+                         tabindex="0">
+
                     <video tal:condition="is_video" autoplay muted loop controls class='video_upc'>
                         <source tal:attributes="src video_url" type='video/mp4'></source>
                     </video>
