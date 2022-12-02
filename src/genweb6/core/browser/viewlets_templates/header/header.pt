@@ -192,7 +192,7 @@
                                     <a href=""
                                        tal:attributes="title action/title;
                                                        href action/href;
-                                                       id action/id">
+                                                       id string:${action/id}-mobile">
 
                                         <span tal:content="action/title"
                                               i18n:translate="">
