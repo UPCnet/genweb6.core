@@ -53,12 +53,12 @@
 
           <a tal:attributes="href login_utils/cas_login_URL" id="linkCAS">
 
-            <h3 class="accordion-header accordion-button collapsed" id="headingCAS">
+            <h2 class="accordion-header accordion-button collapsed" id="headingCAS">
 
               <tal:block i18n:translate="">Entra amb la identificació única</tal:block>
               <tal:block tal:content="cas/login_text_btn"></tal:block>
 
-            </h3>
+            </h2>
 
           </a>
 
@@ -66,7 +66,7 @@
 
         <div class="accordion-item">
 
-          <h3 class="accordion-header" id="headingLogin">
+          <h2 class="accordion-header" id="headingLogin">
 
             <button class="accordion-button collapsed" type="button"
                     data-bs-toggle="collapse" aria-expanded="false"
@@ -77,7 +77,7 @@
               Log in only in this site
             </button>
 
-          </h3>
+          </h2>
 
           <div tal:attributes="id target" class="accordion-collapse collapse"
                aria-labelledby="headingLogin" data-bs-parent="#accordionLogin">
