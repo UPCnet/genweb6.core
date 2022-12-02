@@ -100,7 +100,7 @@
 
   <metal:block metal:define-macro="login">
 
-    <article id="content" class="login-wrapper">
+    <article id="content-login" class="login-wrapper">
 
       <div class="card">
 
