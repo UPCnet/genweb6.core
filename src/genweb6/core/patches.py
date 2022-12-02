@@ -36,6 +36,7 @@ from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
 from plone.app.users.utils import uuid_userid_generator
 from plone.base.interfaces.controlpanel import IMailSchema
+from plone.base.utils import pretty_title_or_id
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.view import memoize
@@ -995,3 +996,31 @@ def import_relations(self, data):
         relationhelper.purge_relations()
         relationhelper.cleanup_intids()
         relationhelper.restore_relations(all_relations=all_fixed_relations)
+
+
+# Añadimos el parametro long_format=1 para mostrar un formato de fecha largo en la vista de author
+def author_content(self):
+    results = []
+
+    plone_view = self.context.restrictedTraverse(
+        '@@plone'
+    )
+
+    brains = self.portal_catalog.searchResults(
+        Creator=self.username,
+        sort_on='created',
+        sort_order='reverse'
+    )
+
+    for brain in brains[:10]:
+        results.append({
+            'title': pretty_title_or_id(
+                self, brain
+            ),
+            'date': plone_view.toLocalizedTime(
+                brain.Date, long_format=1
+            ),
+            'url': brain.getURL()
+        })
+
+    return results

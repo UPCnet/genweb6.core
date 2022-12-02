@@ -146,4 +146,11 @@
         replacement=".patches.import_relations"
         />
 
+    <monkey:patch
+        description="Mostrar formato largo de fecha en los resultados de la vista author"
+        class="Products.CMFPlone.browser.author.AuthorView"
+        original="author_content"
+        replacement=".patches.author_content"
+        />
+
 </configure>
