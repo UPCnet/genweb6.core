@@ -16,52 +16,75 @@
 
   <metal:listingmacro define-macro="listing" tal:define="portal context/@@plone_portal_state/portal; image_scale portal/@@image_scale">
 
-  <div class="row">
+  <div class="row row-cols-auto g-4">
 
-  <tal:comment replace="nothing">
-    Se ha movido el título encima de la imagen
-  </tal:comment>
+    <tal:comment replace="nothing">
+      Restructuramos el HTML
+    </tal:comment>
 
-  <tal:images tal:repeat="image images">
-    <div class="col mb-5">
-      <div class="card h-100">
-        <div tal:define="scale python:image_scale.tag(image, 'image', scale='mini')" tal:condition="scale" class="card-image d-flex justify-content-center align-items-center" style="height: 14rem;">
-          <img tal:replace="structure scale" />
+    <tal:images tal:repeat="image images">
+
+      <div class="col">
+
+        <div class="card">
+
+          <div tal:define="scale python:image_scale.tag(image, 'image', scale='preview')"
+               tal:condition="scale" class="card-image-top text-center" >
+
+            <img tal:replace="structure scale" />
+
+          </div>
+
+          <div class="card-body">
+
+            <h5 class="card-title" tal:content="image/Title">Image title</h5>
+
+            <p class="card-text" tal:content="image/Description"
+               tal:condition="image/Description">Description</p>
+
+            <a class="btn btn-primary stretched-link"
+               tal:attributes="href string:${image/getURL}/view; title image/Description"
+               i18n:translate="label_view">View</a>
+
+          </div>
+
         </div>
-        <div class="card-body">
-          <h5 class="card-title" tal:content="image/Title">Image title</h5>
-          <p class="card-text" tal:content="image/Description">Description</p>
-        </div>
-        <tal:comment replace="nothing">
-          Separamos el enlace en otro contenedor
-        </tal:comment>
-        <div class="card-link-container">
-          <a class="card-link stretched-link" tal:attributes="href string:${image/getURL}/view; title image/Description" i18n:translate="label_view">View</a>
-        </div>
+
       </div>
-    </div>
-  </tal:images>
 
-  <tal:albums tal:repeat="album albums">
-    <div class="col mb-5">
-      <div class="card album h-100">
-        <div tal:define="scale python:image_scale.tag(album, 'image', scale='mini') if getattr(album, 'image', None) else None"
-         tal:condition="scale" class="card-image d-flex justify-content-center align-items-center" style="height: 14rem;">
-          <img tal:replace="structure scale" />
+    </tal:images>
+
+    <tal:albums tal:repeat="album albums">
+
+      <div class="col">
+
+        <div class="card album">
+
+          <div tal:define="scale python:image_scale.tag(album, 'image', scale='preview') if getattr(album, 'image', None) else None"
+               tal:condition="scale" class="card-image-top text-center">
+
+            <img tal:replace="structure scale" />
+
+          </div>
+
+          <div class="card-body">
+
+            <h5 class="card-title" tal:content="album/Title">Image title</h5>
+
+            <p class="card-text" tal:content="album/Description"
+               tal:condition="album/Description">Description</p>
+
+            <a class="btn btn-primary stretched-link"
+               tal:attributes="href string:${album/getURL}/view; title album/Description"
+               i18n:translate="label_view">View</a>
+
+          </div>
+
         </div>
-        <div class="card-body">
-          <h5 class="card-title" tal:content="album/Title">Image title</h5>
-          <p class="card-text" tal:content="album/Description">Description</p>
-        </div>
-        <tal:comment replace="nothing">
-          Separamos el enlace en otro contenedor
-        </tal:comment>
-        <div class="card-link-container">
-          <a class="card-link stretched-link" tal:attributes="href string:${album/getURL}/view; title album/Description" i18n:translate="label_view">View</a>
-        </div>
+
       </div>
-    </div>
-  </tal:albums>
+
+    </tal:albums>
 
   </div>
 
