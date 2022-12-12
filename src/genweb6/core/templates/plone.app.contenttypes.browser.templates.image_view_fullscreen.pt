@@ -15,7 +15,7 @@
 
       <tal:block define="referer request/HTTP_REFERER;
                          url_tool nocall:context/portal_url;
-                         referer python:referer if referer and url_tool.isURLInPortal(referer) else '';">
+                         referer python:referer if referer and url_tool.isURLInPortal(referer) else url_tool();">
 
         <a tal:attributes="href referer" tal:condition="referer">
 
