@@ -284,7 +284,7 @@ class heroViewlet(viewletBase):
         if getattr(header_config, 'hero_image', False):
             img_url = '{}/@@gw-hero'.format(portal_url)
         else:
-            img_url = '%s/++theme++genweb6.theme/img/hero-image.png' % portal_url
+            return False
 
         image_title = getattr(header_config, 'hero_image_alt', None)
         image_alt = '' if image_title is None else image_title
