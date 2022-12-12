@@ -267,11 +267,15 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
 class heroViewlet(viewletBase):
 
-    def render(self):
+    def style(self):
         if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
-            return super(viewletBase, self).render()
+            header_config = genwebHeaderConfig()
+            if header_config.new_style:
+                return 'new-style'
+            else:
+                return 'old-style'
 
-        return ""
+        return 'content-style'
 
     def getHeroHeader(self):
         header_config = genwebHeaderConfig()
