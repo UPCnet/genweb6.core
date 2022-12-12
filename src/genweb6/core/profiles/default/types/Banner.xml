@@ -23,6 +23,7 @@
         <element value="plone.namefromtitle" />
         <element value="plone.excludefromnavigation" />
         <element value="genweb.openlinkinnewwindow" />
+        <element value="genweb.imagealternativetext" />
         <element value="genweb.icon" />
     </property>
 

@@ -19,6 +19,7 @@
         <element value="plone.locking" />
         <element value="plone.versioning" />
         <element value="plone.textindexer"/>
+        <element value="genweb.imagealternativetext" />
     </property>
 
 </object>

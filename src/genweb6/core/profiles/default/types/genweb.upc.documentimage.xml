@@ -26,6 +26,7 @@
         <element value="plone.excludefromnavigation" />
         <element value="plone.relateditems" />
         <element value="plone.versioning" />
+        <element value="genweb.imagealternativetext" />
     </property>
 
     <property name="default_view">view</property>

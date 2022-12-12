@@ -22,4 +22,13 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+    <plone:behavior
+        name="genweb.imagealternativetext"
+        title="Add alternative text in images"
+        description="Add field to add alternative text in images."
+        provides=".behaviors.image_alternative_text.IImageAlternativeText"
+        factory=".behaviors.image_alternative_text.ImageAlternativeText"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
 </configure>

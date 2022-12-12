@@ -13,6 +13,7 @@
         <element value="plone.versioning"/>
         <element value="plone.translatable" />
         <element value="plone.locking"/>
+        <element value="genweb.imagealternativetext" />
     </property>
 
 </object>
