@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/@@blank_template/macros/master"
+      i18n:domain="plone">
+<body>
+  <metal:main metal:fill-slot="content" tal:condition="context/@@images">
+
+    <tal:comment replace="nothing">
+      Usamos la macro de blank_template que nos permite usar nuestros estilos
+    </tal:comment>
+
+    <div id="content-core" class="template-image_view_fullscreen">
+
+      <tal:block define="referer request/HTTP_REFERER;
+                         url_tool nocall:context/portal_url;
+                         referer python:referer if referer and url_tool.isURLInPortal(referer) else '';">
+
+        <a tal:attributes="href referer" tal:condition="referer">
+
+          <tal:block replace="structure context/@@images/image" />
+          <span i18n:translate="label_back_to_site">Back to site</span>
+
+        </a>
+
+        <a tal:attributes="href python:url_tool()" tal:condition="not: referer">
+
+          <tal:block replace="structure context/@@images/image" />
+          <span i18n:translate="label_home">Home</span>
+
+        </a>
+
+      </tal:block>
+
+    </div>
+
+  </metal:main>
+</body>
+</html>
