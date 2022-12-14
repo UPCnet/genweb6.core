@@ -422,7 +422,7 @@ class Destacats(Tile):
                         'url': result.getURL(),
                         'imatge': None,
                         'open_link_in_new_window': open_link,
-                        'class': video,
+                        'class': 'link-banner ' + video,
                         'title': obj.title,
                         'description': obj.description,
                         'is_video': isVideo,
