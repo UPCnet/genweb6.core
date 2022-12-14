@@ -158,36 +158,51 @@ class Destacats(Tile):
     def get3Destacats(self):
         """ Returns 3Destacats objects """
         catalog = api.portal.get_tool(name='portal_catalog')
-        if not self.tags and not self.portal_types:
-            results = catalog(review_state=['published', 'private'],
-                              Language=pref_lang(),
-                              sort_on=('effective'),
-                              sort_order='reverse',
-                              sort_limit=3)
-        elif self.tags and not self.portal_types:
-            subjects = [t for t in self.tags]
-            results = catalog(Subject=subjects,
-                              review_state=['published', 'private'],
-                              Language=pref_lang(),
-                              sort_on=('effective'),
-                              sort_order='reverse',
-                              sort_limit=3)
-        elif not self.tags and self.portal_types:
-            results = catalog(portal_type=self.portal_types,
-                              review_state=['published', 'private'],
-                              Language=pref_lang(),
-                              sort_on=('effective'),
-                              sort_order='reverse',
-                              sort_limit=3)
+        if self.portal_types in [u'Image']:
+            if self.tags:
+                subjects = [t for t in self.tags]
+                results = catalog(Subject=subjects,
+                                  portal_type=('Image'),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
+            else:
+                results = catalog(portal_type=('Image'),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
         else:
-            subjects = [t for t in self.tags]
-            results = catalog(portal_type=self.portal_types,
-                              Subject=subjects,
-                              review_state=['published', 'private'],
-                              Language=pref_lang(),
-                              sort_on=('effective'),
-                              sort_order='reverse',
-                              sort_limit=3)
+            if not self.tags and not self.portal_types:
+                results = catalog(review_state=['published', 'private'],
+                                  Language=pref_lang(),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
+            elif self.tags and not self.portal_types:
+                subjects = [t for t in self.tags]
+                results = catalog(Subject=subjects,
+                                  review_state=['published', 'private'],
+                                  Language=pref_lang(),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
+            elif not self.tags and self.portal_types:
+                results = catalog(portal_type=self.portal_types,
+                                  review_state=['published', 'private'],
+                                  Language=pref_lang(),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
+            else:
+                subjects = [t for t in self.tags]
+                results = catalog(portal_type=self.portal_types,
+                                  Subject=subjects,
+                                  review_state=['published', 'private'],
+                                  Language=pref_lang(),
+                                  sort_on=('effective'),
+                                  sort_order='reverse',
+                                  sort_limit=3)
+
         items = self.filterObjects(results)
         return items
 
