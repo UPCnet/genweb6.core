@@ -138,7 +138,7 @@ class Destacats(Tile):
                                   sort_limit=1)
         else:
             subjects = [t for t in self.tags]
-            if self.portal_types in [u'Image']:
+            if self.portal_types == [u'Image']:
                 results = catalog(portal_type=self.portal_types,
                                   Subject=subjects,
                                   sort_on=('effective'),
@@ -158,7 +158,7 @@ class Destacats(Tile):
     def get3Destacats(self):
         """ Returns 3Destacats objects """
         catalog = api.portal.get_tool(name='portal_catalog')
-        if self.portal_types in [u'Image']:
+        if self.portal_types == [u'Image']:
             if self.tags:
                 subjects = [t for t in self.tags]
                 results = catalog(Subject=subjects,
