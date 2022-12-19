@@ -108,7 +108,9 @@
 
                <li class="has_subtree nav-item nav-lang">
                     <a href="#" class="nav-link" aria-haspopup="true">
-                        <i class="bi bi-globe"></i>
+                        <i class="bi bi-globe" i18n:domain="plone"
+                           i18n:attributes="alt label_languages;
+                                            title label_languages;"></i>
                     </a>
 
                     <ul class="has_subtree dropdown" tal:define="langs languages/others">

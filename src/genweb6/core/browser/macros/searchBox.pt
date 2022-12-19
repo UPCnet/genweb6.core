@@ -28,7 +28,8 @@
         <button class="searchButton" type="submit"
                 i18n:attributes="alt label_search; aria-label label_search;"
                 i18n:translate="label_search;">
-            <i class="bi bi-search"></i>
+            <i class="bi bi-search"
+               i18n:attributes="alt label_search; title label_search;"></i>
         </button>
 
         <div id="portal-advanced-search" class="hiddenStructure"
