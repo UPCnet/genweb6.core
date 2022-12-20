@@ -6,14 +6,16 @@
     <div id="hero" tal:attributes="class style"
          tal:define="is_new_style python:style == 'new-style'">
 
-        <img alt="" title="" tal:condition="python:heroImage and style != 'content-style'"
+        <img alt="" title="" tal:condition="python:heroImage and 'content-style' not in style"
              tal:attributes="src heroImage/src;
                              alt heroImage/alt;
                              title heroImage/title"></img>
 
-        <h1 tal:condition="not:is_new_style">
-            <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
-        </h1>
+        <div class="site_title">
+            <h1 tal:condition="not:is_new_style">
+                <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+            </h1>
+        </div>
 
         <div tal:condition="is_new_style" role="heading" aria-level="1">
             <h1><tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block></h1>

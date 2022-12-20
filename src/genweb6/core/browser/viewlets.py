@@ -273,9 +273,12 @@ class heroViewlet(viewletBase):
             if header_config.new_style:
                 return 'new-style'
             else:
-                return 'old-style'
+                if getattr(header_config, 'hero_image', False):
+                    return 'old-style'
+                else:
+                    return 'old-style not-image'
 
-        return 'content-style'
+        return 'content-style not-image'
 
     def getHeroHeader(self):
         header_config = genwebHeaderConfig()
