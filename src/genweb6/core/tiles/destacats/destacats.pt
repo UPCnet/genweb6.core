@@ -95,8 +95,10 @@
           <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
           <div tal:define="items view/get3Destacats" tal:condition="items" class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
-              <div tal:attributes="class item/class;">
-                <a tal:attributes="href item/url; target item/open_link_in_new_window;"
+              <div tal:define="abaseclass string:btn-banner btn-banner-large btn-banner-stretch"
+                   tal:attributes="class item/class">
+                <a tal:attributes="href item/url; target item/open_link_in_new_window;
+                                   class python:abaseclass if item['imatge'] else abaseclass + ' notimage-banner';"
                    class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
                   <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
                   <div>
