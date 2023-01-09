@@ -1,18 +1,21 @@
 <tal:hero tal:define="pref_lang context/@@genweb.utils/pref_lang;
                       header_config context/@@genweb.utils/genwebHeaderConfig;
                       heroImage view/getHeroHeader;
-                      style view/style">
+                      style view/getClass">
 
-    <div id="hero" tal:attributes="class style"
-         tal:define="is_new_style python:style == 'new-style'">
+    <div id="hero"
+         tal:attributes="class style;
+                         style string:--bg-img-url: url(${heroImage/src})"
+         tal:condition="python:'nothing-hero' not in style"
+         tal:define="is_new_style python:'pretty-image-hero' in style">
 
-        <img alt="" title="" tal:condition="python:heroImage and 'content-style' not in style"
+        <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
              tal:attributes="src heroImage/src;
                              alt heroImage/alt;
                              title heroImage/title"></img>
 
-        <div class="site_title">
-            <h1 tal:condition="not:is_new_style">
+        <div class="site_title" tal:condition="not:is_new_style">
+            <h1>
                 <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
             </h1>
         </div>
@@ -22,6 +25,10 @@
             <div class="line"></div>
             <h2><tal:block tal:replace="structure python:getattr(header_config, 'html_description_' + pref_lang, '')"></tal:block></h2>
         </div>
+
+        <a href="#" class="down-hero" tal:condition="python:'full-pretty-image-hero' in style">
+            <i class="bi bi-arrow-down-circle-fill"></i>
+        </a>
 
     </div>
 

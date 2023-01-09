@@ -4,16 +4,22 @@ from Products.statusmessages.interfaces import IStatusMessage
 from collective.z3cform.datagridfield.datagridfield import DataGridFieldFactory
 from collective.z3cform.datagridfield.registry import DictRow
 from plone.app.registry.browser import controlpanel
-from plone.app.vocabularies.catalog import CatalogSource
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.supermodel import model
 from z3c.form import button
-from z3c.relationfield.schema import RelationChoice
 from zope import schema
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
+
+
+themeVocabulary = SimpleVocabulary([
+    SimpleTerm(value="light-theme", title=_(u'Clar')),
+    SimpleTerm(value="dark-theme", title=_(u'Oscur')),
+    SimpleTerm(value="image-theme", title=_(u'Imatge capçalera'))])
 
 
 class ICustomLinks(model.Schema):
@@ -31,11 +37,13 @@ class ICustomLinks(model.Schema):
 
 class IFooterSettings(model.Schema):
 
-    show_image = schema.Bool(
-        title=_(u"Mostrar imatge de fons al peu"),
-        description=_(u"Al marcar aquesta opció es mostrarà la imatge principal configurada en la capçalera com a fons del peu."),
-        required=False,
-        default=False,
+    read_permission(theme='genweb.webmaster')
+    write_permission(theme='genweb.manager')
+    theme = schema.Choice(
+        title=_(u'Tema'),
+        required=True,
+        vocabulary=themeVocabulary,
+        default='dark-theme'
     )
 
     read_permission(signatura_ca='genweb.webmaster')

@@ -129,14 +129,20 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
     )
 
     def getClass(self):
-        default_class = 'd-flex align-items-center '
+        header_config = genwebHeaderConfig()
+
+        default_class = 'd-flex align-items-center ' + \
+                        getattr(header_config, 'theme', 'light-to-dark-theme')
 
         if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
-            header_config = genwebHeaderConfig()
-            if header_config.new_style:
-                return default_class + 'new-style'
+            hero = getattr(header_config, 'main_hero_style', 'image-hero')
+        else:
+            hero = getattr(header_config, 'content_hero_style', 'image-hero')
 
-        return default_class + 'old-style'
+        if hero == 'nothing-hero':
+            default_class += ' bshadow'
+
+        return default_class
 
     def getLogosHeader(self):
         header_config = genwebHeaderConfig()
@@ -267,18 +273,14 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
 class heroViewlet(viewletBase):
 
-    def style(self):
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
-            header_config = genwebHeaderConfig()
-            if header_config.new_style:
-                return 'new-style'
-            else:
-                if getattr(header_config, 'hero_image', False):
-                    return 'old-style'
-                else:
-                    return 'old-style not-image'
+    def getClass(self):
+        header_config = genwebHeaderConfig()
+        theme = getattr(header_config, 'theme', 'light-to-dark-theme') + ' '
 
-        return 'content-style not-image'
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
+            return theme + getattr(header_config, 'main_hero_style', 'image-hero')
+
+        return theme + getattr(header_config, 'content_hero_style', 'image-hero')
 
     def getHeroHeader(self):
         header_config = genwebHeaderConfig()
@@ -394,6 +396,19 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
 
 class footerViewlet(viewletBase):
+
+    def getClass(self):
+        footer_config = genwebFooterConfig()
+        return getattr(footer_config, 'theme', 'dark-theme')
+
+    def getHeroURL(self):
+        header_config = genwebHeaderConfig()
+        portal_url = self.root_url()
+
+        if getattr(header_config, 'hero_image', False):
+            return '{}/@@gw-hero'.format(portal_url)
+        else:
+            return False
 
     def getSignatura(self):
         lang = self.pref_lang()

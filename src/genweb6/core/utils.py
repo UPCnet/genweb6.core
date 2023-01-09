@@ -401,10 +401,6 @@ class genwebUtils(BrowserView):
     def lit_open_in_new_window(self):
         return self.portal().translate(_('obrir_link_finestra_nova'))
 
-    def class_footer_image(self):
-        footer_config = genwebFooterConfig()
-        return 'show-image' if footer_config.show_image else ''
-
 
 @implementer(ICatalogFactory)
 class UserPropertiesSoupCatalogFactory(object):

@@ -14,17 +14,58 @@ from plone.supermodel import model
 from z3c.form import button
 from zope import schema
 from zope.component import queryUtility
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
 
 
+themeVocabulary = SimpleVocabulary([
+    SimpleTerm(value="light-theme", title=_(u'Clar')),
+    # SimpleTerm(value="dark-theme", title=_(u'Oscur')),
+    SimpleTerm(value="light-to-dark-theme", title=_(u'Clar a oscur'))])
+
+mainHeroStyleVocabulary = SimpleVocabulary([
+    SimpleTerm(value="text-hero", title=_(u'Només text')),
+    SimpleTerm(value="image-hero", title=_(u'Conservadora')),
+    SimpleTerm(value="pretty-image-hero", title=_(u'Innovadora')),
+    SimpleTerm(value="full-pretty-image-hero", title=_(u'Innovadora a pantalla sencera')),
+    SimpleTerm(value="nothing-hero", title=_(u'Sense'))])
+
+contentHeroStyleVocabulary = SimpleVocabulary([
+    SimpleTerm(value="text-hero", title=_(u'Només text')),
+    SimpleTerm(value="image-hero", title=_(u'Conservadora')),
+    SimpleTerm(value="nothing-hero", title=_(u'Sense'))])
+
+
 class IHeaderSettings(model.Schema):
 
-    new_style = schema.Bool(
-        title=_(u"Activar el nou estil"),
-        required=False,
-        default=False,
+    read_permission(theme='genweb.webmaster')
+    write_permission(theme='genweb.manager')
+    theme = schema.Choice(
+        title=_(u'Tema'),
+        required=True,
+        vocabulary=themeVocabulary,
+        default='light-to-dark-theme'
+    )
+
+    read_permission(main_hero_style='genweb.webmaster')
+    write_permission(main_hero_style='genweb.manager')
+    main_hero_style = schema.Choice(
+        title=_(u'Tipus de hero de la pàgina principal'),
+        required=True,
+        vocabulary=mainHeroStyleVocabulary,
+        default='image-hero'
+    )
+
+    read_permission(content_hero_style='genweb.webmaster')
+    write_permission(content_hero_style='genweb.manager')
+    content_hero_style = schema.Choice(
+        title=_(u'Tipus de hero dintre dels continguts'),
+        required=True,
+        vocabulary=contentHeroStyleVocabulary,
+        default='image-hero'
     )
 
     html_title_ca = schema.TextLine(

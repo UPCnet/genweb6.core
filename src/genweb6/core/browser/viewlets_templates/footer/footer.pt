@@ -1,5 +1,6 @@
 <div id="footer-complementary" i18n:domain="genweb"
-     tal:attributes="class context/@@genweb.utils/class_footer_image">
+     tal:attributes="data-class view/getClass;
+                     data-img view/getHeroURL">
 
     <div class="row">
 

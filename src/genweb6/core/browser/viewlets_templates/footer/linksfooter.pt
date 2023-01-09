@@ -1,4 +1,4 @@
-<div id="footer-links" class="show-image"
+<div id="footer-links"
      tal:define="custom view/getLinksPersonalized">
 
   <div class="navbar-nav-footer custom" tal:condition="custom">
