@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <object>
  <order manager="plone.abovecontent" skinname="Plone Default">
+  <viewlet name="genweb.hero"/>
   <viewlet name="plone.path_bar"/>
  </order>
  <order manager="plone.belowcontent" skinname="Plone Default">
