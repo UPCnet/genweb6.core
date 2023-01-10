@@ -3,11 +3,16 @@ from Products.CMFPlone.interfaces import INonInstallable
 
 from plone import api
 from plone.app.multilingual.browser.setup import SetupMultilingualSite
+from plone.formwidget.namedfile.converter import b64encode_file
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import implementer
 
+from genweb6.core.utils import genwebHeaderConfig
+
 import logging
+import pkg_resources
+import transaction
 
 
 PROFILE_ID = 'profile-genweb6.core:default'
@@ -99,6 +104,24 @@ def setupVarious(context):
     # Para que guarde la configuracion de los idiomas al reinstalar paquete
     setupTool = SetupMultilingualSite()
     output = setupTool.setupSite(portal)
+
+    # Setup logo + hero
+    egglocation = pkg_resources.get_distribution('genweb6.theme').location
+    header_settings = genwebHeaderConfig()
+
+    logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
+    encoded_data = b64encode_file(filename='logo.png', data=logo)
+    header_settings.logo = encoded_data
+
+    header_settings.logo_alt = "Universitat Politècnica de Catalunya"
+    header_settings.logo_url = "https://www.upc.edu/ca"
+    header_settings.logo_external_url = True
+
+    hero = open('{}/genweb6/theme/theme/img/capcalera.png'.format(egglocation), 'rb').read()
+    encoded_data = b64encode_file(filename='capcalera.png', data=hero)
+    header_settings.hero_image = encoded_data
+
+    transaction.commit()
 
     # transforms = api.portal.get_tool(name='portal_transforms')
     # transform = getattr(transforms, 'safe_html')
