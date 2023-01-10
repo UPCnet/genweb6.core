@@ -134,7 +134,7 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
         default_class = 'd-flex align-items-center ' + \
                         getattr(header_config, 'theme', 'light-to-dark-theme')
 
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
             hero = getattr(header_config, 'main_hero_style', 'image-hero')
         else:
             hero = getattr(header_config, 'content_hero_style', 'image-hero')
@@ -277,7 +277,7 @@ class heroViewlet(viewletBase):
         header_config = genwebHeaderConfig()
         theme = getattr(header_config, 'theme', 'light-to-dark-theme') + ' '
 
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2:
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
             return theme + getattr(header_config, 'main_hero_style', 'image-hero')
 
         return theme + getattr(header_config, 'content_hero_style', 'image-hero')
