@@ -16,12 +16,14 @@
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
 
-    <div id="interactive_template" tal:define="tipus context/type_template">
+    <div id="interactive_template"
+         tal:define="tipus context/type_template;
+                     token context/token">
 
         <tal:accordion tal:condition="python:tipus == 'accordion'"
                        tal:define="accordion_open_first context/accordion_open_first">
 
-            <div class="accordion" tal:attributes="id string:uid-${context/uuid}">
+            <div class="accordion" tal:attributes="id string:uid-${token}">
                 <tal:item tal:repeat="content context/contents">
                     <div class="accordion-item"
                          tal:define="first python:accordion_open_first and content['first'];">
@@ -38,7 +40,7 @@
 
                         <div tal:attributes="id string:content-${content/id};
                                              aria-labelledby string:heading-${content/id};
-                                             data-bs-parent python:'#uid-' + context.UID() if context.accordion_open_multiple else nothing;
+                                             data-bs-parent python:nothing if context.accordion_open_multiple else '#uid-' + token;
                                              class python:'accordion-collapse collapse show' if first else 'accordion-collapse collapse';">
                             <div class="accordion-body" tal:content="structure content/text">
                                 Content
@@ -86,7 +88,8 @@
         <tal:carousel tal:condition="python:tipus == 'carousel'"
                       tal:define="carousel_type context/carousel_type;
                                   contents context/contents;
-                                  id_carousel string:carousel-${context/uuid}">
+                                  id_carousel string:carousel-${token};
+                                  interval python:int(context.carousel_time) * 1000;">
 
             <div class="template-carousel" tal:condition="python:carousel_type == 'simple'">
 
@@ -110,8 +113,7 @@
                         </tal:item>
                     </div>
 
-                    <div class="carousel-inner"
-                         tal:define="interval python:int(context.carousel_time) * 1000">
+                    <div class="carousel-inner">
 
                         <tal:item tal:repeat="content contents">
                             <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
@@ -157,9 +159,58 @@
 
             </div>
 
-            <div tal:condition="python:carousel_type == 'complex'">
+            <div class="template-multiple-carousel" tal:condition="python:carousel_type == 'complex'">
 
-                carousel complex
+                <div class="mx-auto my-auto justify-content-center mb-2">
+                    <div class="carousel slide" data-bs-ride="carousel"
+                         tal:attributes="id id_carousel;
+                                         data-bs-ride python:'carousel' if context.carousel_auto else None;">
+                        <div class="carousel-inner" role="listbox">
+                            <tal:item tal:repeat="content contents">
+                                <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
+                                                     data-bs-interval interval">
+                                    <div class="w-100">
+                                        <div class="card-img-top">
+
+                                            <img class="d-block w-100 rounded"
+                                                 tal:attributes="src content/image;
+                                                                 alt content/title;
+                                                                 title content/title">
+
+                                        </div>
+                                        <div class="card-body mt-2">
+
+                                            <a href="#" class="title d-block text-decoration-none"
+                                               tal:condition="context/carousel_show_title"
+                                               tal:attributes="href content/url;
+                                                               title content/title">
+
+                                                <h6 class="text-truncate-2"
+                                                    tal:content="content/title">Title</h6>
+                                            </a>
+
+                                            <p tal:condition="context/carousel_show_description"
+                                               class="description text-truncate-4 mb-1"
+                                               tal:content="content/description">Description summary</p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </tal:item>
+                        </div>
+
+                        <a class="carousel-control-prev bg-transparent w-auto" type="button" data-bs-slide="prev"
+                           tal:attributes="data-bs-target string:#${id_carousel};">
+                            <i class="bi bi-arrow-left-short"></i>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next bg-transparent w-auto" type="button" data-bs-slide="next"
+                           tal:attributes="data-bs-target string:#${id_carousel};">
+                            <i class="bi bi-arrow-right-short"></i>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+                </div>
                 <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
             </div>
 
@@ -167,7 +218,7 @@
 
         <tal:slide tal:condition="python:tipus == 'imatge-slide'">
 
-            <div class="slider" tal:attributes="id string:uid-${context/uuid}">
+            <div class="slider" tal:attributes="id string:uid-${token}">
                 <div class="slide-track" tal:attributes="style string:--time: ${context/slide_time}s;">
                     <tal:item tal:repeat="image context/contents">
                         <div class="slide"

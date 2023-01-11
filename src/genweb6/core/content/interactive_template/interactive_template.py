@@ -22,6 +22,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 
+import secrets
+
 
 class IInteractiveTemplateContentJSWidget(ITextWidget):
     pass
@@ -161,6 +163,9 @@ class InteractiveTemplate(Container):
     @property
     def b_icon_expr(self):
         return "layout-wtf"
+
+    def token(self):
+        return secrets.token_hex(16)
 
     def elem_to_dict(self, index, first, elem):
         result = {
