@@ -325,6 +325,33 @@
 "templates": "/tinymce_template_list"}</value>
   </record>
 
+  <!-- Etiquetas no deseadas -->
+  <record name="plone.nasty_tags" interface="plone.base.interfaces.controlpanel.IFilterSchema" field="nasty_tags">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>style</element>
+        <element>object</element>
+        <element>embed</element>
+        <element>applet</element>
+        <element>script</element>
+        <element>meta</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">These tags and their content are completely blocked when a page is saved or rendered. They are only deleted if they are not marked as valid_tags</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Nasty tags</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>style</element>
+      <element>object</element>
+      <element>embed</element>
+      <element>applet</element>
+      <element>script</element>
+      <element>meta</element>
+    </value>
+  </record>
+
   <!-- Tags HTML validos -->
   <record name="plone.valid_tags" interface="plone.base.interfaces.controlpanel.IFilterSchema" field="valid_tags">
     <field type="plone.registry.field.List">
@@ -522,6 +549,46 @@
       <element>ul</element>
       <element>var</element>
       <element>video</element>
+    </value>
+  </record>
+
+  <!-- Atributos personalizados -->
+  <record name="plone.custom_attributes" interface="plone.base.interfaces.controlpanel.IFilterSchema" field="custom_attributes">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>style</element>
+        <element>controls</element>
+        <element>poster</element>
+        <element>autoplay</element>
+        <element>loading</element>
+        <element>srcset</element>
+        <element>sizes</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">These attributes are additionally allowed.</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Custom attributes</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>style</element>
+      <element>controls</element>
+      <element>poster</element>
+      <element>autoplay</element>
+      <element>loading</element>
+      <element>srcset</element>
+      <element>sizes</element>
+      <element>data-bs-toggle</element>
+      <element>aria-expanded</element>
+      <element>data-bs-target</element>
+      <element>aria-controls</element>
+      <element>aria-labelledby</element>
+      <element>data-bs-parent</element>
+      <element>role</element>
+      <element>xmlns</element>
+      <element>preserveAspectRatio</element>
+      <element>focusable</element>
+      <element>fill</element>
     </value>
   </record>
 
