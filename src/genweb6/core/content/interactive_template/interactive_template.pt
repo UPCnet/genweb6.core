@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:head fill-slot="javascript_head_slot">
+    <script type="text/javascript"
+            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/interactive_template_view.min.js">
+    </script>
+</metal:head>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+
+    <div id="interactive_template" tal:define="tipus context/type_template">
+
+        <tal:accordion tal:condition="python:tipus == 'accordion'"
+                       tal:define="accordion_open_first context/accordion_open_first">
+
+            <div class="accordion" tal:attributes="id string:uid-${context/uuid}">
+                <tal:item tal:repeat="content context/contents">
+                    <div class="accordion-item"
+                         tal:define="first python:accordion_open_first and content['first'];">
+                        <h2 class="accordion-header" tal:attributes="id string:heading-${content/id};">
+                            <button type="button" data-bs-toggle="collapse"
+                                    tal:content="content/title"
+                                    tal:attributes="data-bs-target string:#content-${content/id};
+                                                    aria-controls string:content-${content/id};
+                                                    class python:'accordion-button' if first else 'accordion-button collapsed';
+                                                    aria-expanded python:'true' if first else 'false';">
+                                Title
+                            </button>
+                        </h2>
+
+                        <div tal:attributes="id string:content-${content/id};
+                                             aria-labelledby string:heading-${content/id};
+                                             data-bs-parent python:'#uid-' + context.UID() if context.accordion_open_multiple else nothing;
+                                             class python:'accordion-collapse collapse show' if first else 'accordion-collapse collapse';">
+                            <div class="accordion-body" tal:content="structure content/text">
+                                Content
+                            </div>
+                        </div>
+                    </div>
+                </tal:item>
+            </div>
+
+        </tal:accordion>
+
+        <tal:nav tal:condition="python:tipus == 'nav'"
+                 tal:define="contents context/contents">
+
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <tal:item tal:repeat="content contents">
+                        <button data-bs-toggle="tab" type="button" role="tab"
+                                tal:attributes="class python:'nav-link active' if content['first'] else 'nav-link';
+                                                aria-selected python:'true' if content['first'] else 'false';
+                                                id string:nav-${content/id}-tab;
+                                                data-bs-target string:#nav-${content/id};
+                                                aria-controls string:nav-${content/id};"
+                                tal:content="content/title">
+                            Title
+                        </button>
+                    </tal:item>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <tal:item tal:repeat="content contents">
+                    <div role="tabpanel" tabindex="0"
+                         tal:attributes="class python:'tab-pane fade show active' if content['first'] else 'tab-pane fade';
+                                         id string:nav-${content/id};
+                                         aria-labelledby string:nav-${content/id}-tab">
+                        <div class="mt-3" tal:content="structure content/text">
+                            Content
+                        </div>
+                    </div>
+                </tal:item>
+            </div>
+
+        </tal:nav>
+
+        <tal:carousel tal:condition="python:tipus == 'carousel'"
+                      tal:define="carousel_type context/carousel_type;
+                                  contents context/contents;
+                                  id_carousel string:carousel-${context/uuid}">
+
+            <div class="template-carousel" tal:condition="python:carousel_type == 'simple'">
+
+                <div class="carousel carousel-dark slide mb-2"
+                     tal:attributes="id id_carousel;
+                                     data-bs-ride python:'carousel' if context.carousel_auto else None">
+
+                    <div class="carousel-indicators">
+                        <tal:item tal:repeat="content contents">
+                            <button type="button" class="active" aria-current="true"
+                                        tal:condition="content/first"
+                                        tal:attributes="data-bs-target string:#${id_carousel};
+                                                        data-bs-slide-to content/index;
+                                                        aria-label content/title"></button>
+
+                            <button type="button"
+                                    tal:condition="not:content/first"
+                                    tal:attributes="data-bs-target string:#${id_carousel};
+                                                    data-bs-slide-to content/index;
+                                                    aria-label content/title"></button>
+                        </tal:item>
+                    </div>
+
+                    <div class="carousel-inner"
+                         tal:define="interval python:int(context.carousel_time) * 1000">
+
+                        <tal:item tal:repeat="content contents">
+                            <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
+                                                 data-bs-interval interval">
+                                <img class="d-block w-100"
+                                     tal:attributes="src content/image;
+                                                     title content/title;
+                                                     alt content/title;">
+
+                                <div class="carousel-caption">
+                                    <p class="description text-truncate-2 mb-1"
+                                       tal:condition="context/carousel_show_description"
+                                       tal:content="structure content/description">Text</p>
+
+                                    <a class="title d-block text-decoration-none"
+                                       tal:condition="context/carousel_show_title"
+                                       tal:attributes="href content/url;
+                                                       title content/title">
+                                        <h5 class="text-truncate"
+                                            tal:content="content/title">Title</h5>
+                                    </a>
+                                </div>
+                            </div>
+                        </tal:item>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-slide="prev"
+                            tal:attributes="data-bs-target string:#${id_carousel};">
+
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-slide="next"
+                            tal:attributes="data-bs-target string:#${id_carousel};">
+
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+
+                    </button>
+                </div>
+
+            </div>
+
+            <div tal:condition="python:carousel_type == 'complex'">
+
+                carousel complex
+                <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+            </div>
+
+        </tal:carousel>
+
+        <tal:slide tal:condition="python:tipus == 'imatge-slide'">
+
+            <div class="slider" tal:attributes="id string:uid-${context/uuid}">
+                <div class="slide-track" tal:attributes="style string:--time: ${context/slide_time}s;">
+                    <tal:item tal:repeat="image context/contents">
+                        <div class="slide"
+                             tal:condition="image/image"
+                             tal:attributes="style string:--size: ${context/slide_size}px;">
+                            <img class="slide-image"
+                                 tal:attributes="src image/image;
+                                                 title image/title;
+                                                 alt image/description;
+                                                 heigth context/slide_size;
+                                                 style string:--size: ${context/slide_size}px;">
+
+                        </div>
+                    </tal:item>
+                </div>
+            </div>
+
+        </tal:slide>
+
+    </div>
+
+    <a id="copy_html" class="btn btn-primary mt-3" href="#" i18n:attributes="title Copy"
+       tal:condition="context/show_copy"
+       i18n:translate="">Copiar HTML</a>
+
+</metal:block>
+</metal:content-core>
+</body>
+</html>

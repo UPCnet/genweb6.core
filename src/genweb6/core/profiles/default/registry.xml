@@ -589,6 +589,13 @@
       <element>preserveAspectRatio</element>
       <element>focusable</element>
       <element>fill</element>
+      <element>aria-selected</element>
+      <element>tabindex</element>
+      <element>data-bs-ride</element>
+      <element>data-bs-slide-to</element>
+      <element>aria-label</element>
+      <element>data-bs-interval</element>
+      <element>data-bs-slide</element>
     </value>
   </record>
 
