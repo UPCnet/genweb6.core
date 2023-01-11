@@ -117,9 +117,10 @@ def setupVarious(context):
     header_settings.logo_url = "https://www.upc.edu/ca"
     header_settings.logo_external_url = True
 
-    hero = open('{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation), 'rb').read()
-    encoded_data = b64encode_file(filename='capcalera.jpg', data=hero)
-    header_settings.hero_image = encoded_data
+    if not header_settings.hero_image:
+        hero = open('{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation), 'rb').read()
+        encoded_data = b64encode_file(filename='capcalera.jpg', data=hero)
+        header_settings.hero_image = encoded_data
 
     transaction.commit()
 
