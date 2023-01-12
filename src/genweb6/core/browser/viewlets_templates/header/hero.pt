@@ -15,15 +15,19 @@
                              title heroImage/title"></img>
 
         <div class="site_title" tal:condition="not:is_new_style">
-            <h1>
+            <div class="h1">
                 <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
-            </h1>
+            </div>
         </div>
 
         <div tal:condition="is_new_style" role="heading" aria-level="1">
-            <h1><tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block></h1>
+            <div class="h1">
+                <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+            </div>
             <div class="line"></div>
-            <h2><tal:block tal:replace="structure python:getattr(header_config, 'html_description_' + pref_lang, '')"></tal:block></h2>
+            <div class="h2">
+                <tal:block tal:replace="structure python:getattr(header_config, 'html_description_' + pref_lang, '')"></tal:block>
+            </div>
         </div>
 
         <a href="#" class="down-hero" tal:condition="python:'full-pretty-image-hero' in style">
