@@ -49,7 +49,7 @@ typeTemplateVocabulary = SimpleVocabulary([
     SimpleTerm(value="accordion", title=_(u'Acordió')),
     SimpleTerm(value="nav", title=_(u'Pestañes')),
     SimpleTerm(value="carousel", title=_(u'Carousel')),
-    SimpleTerm(value="imatge-slide", title=_(u'Slider d\'imatges: només acepta continguts Imatge'))])
+    SimpleTerm(value="imatge-slide", title=_(u'Slider d\'imatges'))])
 
 
 contentVocabulary = SimpleVocabulary([
