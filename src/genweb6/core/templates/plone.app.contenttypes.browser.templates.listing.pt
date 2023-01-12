@@ -110,7 +110,7 @@
                       </p>
                   </div>
 
-                  <div class="col-3 text-end" tal:condition="item_has_image">
+                  <div class="col-4 text-end" tal:condition="item_has_image">
                     <a tal:attributes="href python:item_link;">
 
                       <tal:comment replace="nothing">
