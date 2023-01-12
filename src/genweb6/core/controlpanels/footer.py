@@ -18,7 +18,7 @@ from genweb6.core import _
 
 themeVocabulary = SimpleVocabulary([
     SimpleTerm(value="light-theme", title=_(u'Clar')),
-    SimpleTerm(value="dark-theme", title=_(u'Oscur')),
+    SimpleTerm(value="dark-theme", title=_(u'Fosc')),
     SimpleTerm(value="image-theme", title=_(u'Imatge capçalera'))])
 
 

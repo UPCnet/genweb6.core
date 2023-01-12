@@ -23,8 +23,8 @@ from genweb6.core.widgets import FieldsetFieldWidget
 
 themeVocabulary = SimpleVocabulary([
     SimpleTerm(value="light-theme", title=_(u'Clar')),
-    # SimpleTerm(value="dark-theme", title=_(u'Oscur')),
-    SimpleTerm(value="light-to-dark-theme", title=_(u'Clar a oscur'))])
+    # SimpleTerm(value="dark-theme", title=_(u'Fosc')),
+    SimpleTerm(value="light-to-dark-theme", title=_(u'Clar a fosc'))])
 
 mainHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),

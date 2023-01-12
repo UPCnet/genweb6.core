@@ -47,7 +47,7 @@ def InteractiveTemplateContentJSFieldWidget(field, request):
 
 typeTemplateVocabulary = SimpleVocabulary([
     SimpleTerm(value="accordion", title=_(u'Acordió')),
-    SimpleTerm(value="nav", title=_(u'Pestañes')),
+    SimpleTerm(value="nav", title=_(u'Pestanyes')),
     SimpleTerm(value="carousel", title=_(u'Carousel')),
     SimpleTerm(value="imatge-slide", title=_(u'Slider d\'imatges'))])
 
