@@ -49,6 +49,13 @@
 
     <browser:page
         for="*"
+        name="gw-full-hero"
+        class=".header.GWFullHero"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
         name="gw-logo"
         class=".header.GWLogo"
         permission="zope.Public"
@@ -72,13 +79,6 @@
         for="*"
         name="gw-secundary-logo-responsive"
         class=".header.GWSecundaryLogoResponsive"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        for="*"
-        name="gw-right-logo"
-        class=".header.GWRightLogo"
         permission="zope.Public"
         />
 

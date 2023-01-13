@@ -286,10 +286,21 @@ class heroViewlet(viewletBase):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
 
-        if getattr(header_config, 'hero_image', False):
-            img_url = '{}/@@gw-hero'.format(portal_url)
+        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
+            hero = getattr(header_config, 'main_hero_style', 'image-hero')
         else:
-            return False
+            hero = getattr(header_config, 'content_hero_style', 'image-hero')
+
+        if 'pretty-image-hero' in hero:
+            if getattr(header_config, 'full_hero_image', False):
+                img_url = '{}/@@gw-full-hero'.format(portal_url)
+            else:
+                return False
+        else:
+            if getattr(header_config, 'hero_image', False):
+                img_url = '{}/@@gw-hero'.format(portal_url)
+            else:
+                return False
 
         image_title = getattr(header_config, 'hero_image_alt', None)
         image_alt = '' if image_title is None else image_title
@@ -405,7 +416,9 @@ class footerViewlet(viewletBase):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
 
-        if getattr(header_config, 'hero_image', False):
+        if getattr(header_config, 'full_hero_image', False):
+            return '{}/@@gw-full-hero'.format(portal_url)
+        elif getattr(header_config, 'hero_image', False):
             return '{}/@@gw-hero'.format(portal_url)
         else:
             return False

@@ -112,8 +112,15 @@ class IHeaderSettings(model.Schema):
 
     directives.widget('hero_image', NamedImageFieldWidget)
     hero_image = schema.Bytes(
-        title=_(u"Imatge principal"),
-        description=_(u"És important pujar una imatge amb una resolució de ???, en el cas d'utilitzar el nou estil de Genweb la resolució haurà de ser de ???. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        title=_(u"Imatge principal conservadora"),
+        description=_(u"És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
+        required=False,
+    )
+
+    directives.widget('full_hero_image', NamedImageFieldWidget)
+    full_hero_image = schema.Bytes(
+        title=_(u"Imatge principal innovadora"),
+        description=_(u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 650px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
         required=False,
     )
 
@@ -337,6 +344,26 @@ class GWHero(Download):
         return self.data
 
 
+class GWFullHero(Download):
+
+    def __init__(self, context, request):
+        super(GWFullHero, self).__init__(context, request)
+        self.filename = None
+        self.data = None
+
+        registry = queryUtility(IRegistry)
+        header_config = registry.forInterface(IHeaderSettings)
+
+        if getattr(header_config, 'full_hero_image', False):
+            filename, data = b64decode_file(header_config.full_hero_image)
+            data = NamedImage(data=data, filename=filename)
+            self.data = data
+            self.filename = filename
+
+    def _getFile(self):
+        return self.data
+
+
 class GWLogo(Download):
 
     def __init__(self, context, request):
@@ -409,26 +436,6 @@ class GWSecundaryLogoResponsive(Download):
 
         if getattr(header_config, 'secundary_logo_responsive', False):
             filename, data = b64decode_file(header_config.secundary_logo_responsive)
-            data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
-
-    def _getFile(self):
-        return self.data
-
-
-class GWRightLogo(Download):
-
-    def __init__(self, context, request):
-        super(GWRightLogo, self).__init__(context, request)
-        self.filename = None
-        self.data = None
-
-        registry = queryUtility(IRegistry)
-        header_config = registry.forInterface(IHeaderSettings)
-
-        if getattr(header_config, 'right_logo', False):
-            filename, data = b64decode_file(header_config.right_logo)
             data = NamedImage(data=data, filename=filename)
             self.data = data
             self.filename = filename
