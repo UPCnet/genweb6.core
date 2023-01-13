@@ -32,7 +32,7 @@ class INewsEventsListingPortlet(IPortletDataProvider):
 @implementer(INewsEventsListingPortlet)
 class Assignment (base.Assignment):
 
-    def __init__(self, tags, typetag):
+    def __init__(self, tags=[], typetag='News'):
         self.tags = tags
         self.typetag = typetag
 
