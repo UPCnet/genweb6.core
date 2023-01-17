@@ -79,4 +79,18 @@
         <permission>Genweb: Manager Users</permission>
     </configlet>
 
+
+    <configlet
+        title="Resources"
+        action_id="genweb6.core.resources"
+        appId="genweb6.core.resources"
+        category="genweb-design"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@resources-controlpanel"
+        icon_expr="string:file"
+        visible="True">
+
+        <permission>Genweb: Manager Users</permission>
+    </configlet>
+
 </object>

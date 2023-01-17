@@ -17,6 +17,8 @@ from zope.component import queryUtility
 from zope.component.hooks import getSite
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 from genweb6.core import HAS_PAM
@@ -27,7 +29,7 @@ from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
+from genweb6.core.controlpanels.resources import IResourcesSettings
 
 import json
 import logging
@@ -206,6 +208,11 @@ def genwebLoginConfig():
     return registry.forInterface(ILoginSettings)
 
 
+def genwebResourcesConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IResourcesSettings)
+
+
 class LoginUtils():
 
     def cas_settings(self):
@@ -260,6 +267,9 @@ class genwebUtils(BrowserView):
 
     def genwebLoginConfig(self):
         return genwebLoginConfig()
+
+    def genwebResourcesConfig(self):
+        return genwebResourcesConfig()
 
     def havePermissionAtRoot(self):
         """Funcio que retorna si es Editor a l'arrel"""

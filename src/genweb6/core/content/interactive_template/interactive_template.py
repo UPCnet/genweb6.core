@@ -162,7 +162,7 @@ class InteractiveTemplate(Container):
 
     @property
     def b_icon_expr(self):
-        return "layout-wtf"
+        return "bootstrap"
 
     def token(self):
         return secrets.token_hex(16)

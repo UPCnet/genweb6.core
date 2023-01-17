@@ -11,6 +11,7 @@ from plone.app.multilingual.browser.selector import getPostPath
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
 from plone.uuid.interfaces import IUUID
+from plone.namedfile.file import NamedFile
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -19,6 +20,7 @@ from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
+from genweb6.core.utils import genwebResourcesConfig
 
 from plone.app.layout.viewlets.common import PersonalBarViewlet
 
@@ -494,3 +496,13 @@ class cookiesViewlet(viewletBase):
             return config.alternative_text_ca
 
         return False
+
+
+class resourcesViewlet(viewletBase):
+
+    def getCSS(self):
+        resources_config = genwebResourcesConfig()
+        if getattr(resources_config, 'file_css', False):
+            filename, data = b64decode_file(resources_config.file_css)
+            data = NamedFile(data=data, filename=filename)
+            return data._data._data

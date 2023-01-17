@@ -27,4 +27,8 @@
         interface="genweb6.core.controlpanels.footer.IFooterSettings"
         purge="False" />
 
+    <records
+        interface="genweb6.core.controlpanels.resources.IResourcesSettings"
+        purge="False" />
+
 </registry>

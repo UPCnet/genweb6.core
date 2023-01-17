@@ -96,4 +96,39 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="resources-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".resources.ResourcesSettingsControlPanel"
+        permission="genweb.webmaster"
+        />
+
+    <class class=".resources.ResourcesControlpanelJSWidget">
+        <require
+            permission="zope.Public"
+            interface=".resources.IResourcesControlpanelJSWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".resources.IResourcesControlpanelJSWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="widgets/resources_js.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="gw-css"
+        class=".resources.GWCSS"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="gw-js"
+        class=".resources.GWJS"
+        permission="zope.Public"
+        />
+
 </configure>
