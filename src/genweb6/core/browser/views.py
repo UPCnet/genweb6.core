@@ -55,23 +55,23 @@ class TemplateList(BrowserView):
     @json_response
     def __call__(self):
         default_templates = templates.copy()
-        portal = api.portal.get()
-        lang = pref_lang()
+        portal_url = api.portal.get().absolute_url()
 
+        lang = pref_lang()
         if lang not in ['ca', 'es', 'en']:
             lang = 'ca'
 
         results = []
         for template in default_templates:
-            results.append({'title': getattr(template, 'title-' + lang, '-'),
-                            'description': getattr(template, 'description-' + lang, ''),
-                            'url': portal.getPhysicalPath() + '/' + getattr(template, 'url', '')})
+            results.append({'title': template.get('title-' + lang, 'Error title'),
+                            'description': template.get('description-' + lang, ''),
+                            'url': portal_url + '/' + template.get('url', '')})
 
         pc = api.portal.get_tool(name='portal_catalog')
         plantilles = pc.searchResults(portal_type='Document',
                                       review_state=['published', 'intranet'],
                                       sort_on='getObjPositionInParent',
-                                      path='/'.join(portal.getPhysicalPath()) + '/plantilles')
+                                      path=portal_url + '/plantilles')
 
         for plantilla in plantilles:
             results.append({'title': plantilla.Title,

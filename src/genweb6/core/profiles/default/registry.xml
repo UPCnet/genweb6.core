@@ -324,7 +324,7 @@
     <value>{"cleanup": false,&#13;
 "valid_elements": "*[*]",&#13;
 "toolbar_mode": "wrap",&#13;
-"templates": "/tinymce_template_list"}</value>
+"templates": "tinymce_template_list"}</value>
   </record>
 
   <!-- Etiquetas no deseadas -->
