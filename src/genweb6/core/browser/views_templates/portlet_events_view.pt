@@ -9,7 +9,8 @@
 
     <div class="portlet portlet-esdeveniments" i18n:domain="plone">
 
-      <h2 i18n:domain="genweb" i18n:translate="genweb-agenda">Agenda
+      <h2 i18n:domain="genweb">
+        <tal:block i18n:translate="genweb-agenda">Agenda</tal:block>
         <span class="icon-calendar large-icon pull-right"></span>
       </h2>
 

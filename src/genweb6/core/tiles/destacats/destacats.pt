@@ -100,7 +100,7 @@
                 <a tal:attributes="href item/url; target item/open_link_in_new_window;
                                    class python:abaseclass if item['imatge'] else abaseclass + ' notimage-banner';"
                    class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
-                  <tal:block metal:use-macro="context/macros-tiles/2-3-4-destacats"></tal:block>
+                  <tal:block metal:use-macro="context/macros-tiles/multiple-destacats"></tal:block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
                     <p tal:content="structure item/description" class="hotnews-description text-truncate-3">Sala de premsa</p></div>

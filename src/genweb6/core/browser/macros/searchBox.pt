@@ -18,7 +18,7 @@
                i18n:translate="text_search">Search Site</label>
 
         <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
-               title="Search Site" laceholder="Search Site"
+               title="Search Site" placeholder="Search Site"
                i18n:attributes="title title_search_site;
                                 placeholder title_search_site"
                tal:attributes="id string:searchGadget${search_id};

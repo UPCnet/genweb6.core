@@ -54,7 +54,8 @@
                         </a>
                     </li>
 
-                    <li tal:define="link links/cookies"
+                    <li i18n:domain="plone"
+                        tal:define="link links/cookies"
                         tal:condition="link">
                         <a tal:attributes="href link/url;
                                            target link/target"

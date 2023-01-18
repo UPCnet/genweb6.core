@@ -112,7 +112,7 @@
     </metal:block>
 
     <!-- 2-3-4-destacats -->
-    <metal:block metal:define-macro="2-3-4-destacats">
+    <metal:block metal:define-macro="multiple-destacats">
         <picture tal:condition="python: item['imatge']">
             <source media="(min-width:992px)" tal:attributes="srcset string:${item/url}/@@images/image/preview" />
             <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/alt|nothing;" />

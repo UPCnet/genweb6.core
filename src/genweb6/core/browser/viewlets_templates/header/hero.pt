@@ -12,7 +12,7 @@
         <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
              tal:attributes="src heroImage/src;
                              alt heroImage/alt;
-                             title heroImage/title"></img>
+                             title heroImage/title" />
 
         <div class="site_title" tal:condition="not:is_new_style">
             <div class="h1">
