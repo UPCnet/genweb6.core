@@ -17,7 +17,7 @@
 
           <tal:block tal:condition="view/data/display_image">
 
-            <a href="#" tal:attributes="href item/url" target="_blink"
+            <a href="#" tal:attributes="href item/url" target="_blank"
                tal:condition="item/image">
 
               <div class="img mb-2">
@@ -34,7 +34,7 @@
 
           <div class="txt">
 
-            <a href="#" tal:attributes="href item/url" target="_blink"
+            <a href="#" tal:attributes="href item/url" target="_blank"
                class="title d-block text-decoration-none mb-1">
 
               <span tal:replace="item/title">Title</span>
@@ -72,7 +72,7 @@
     <div class="portlet-footer">
 
         <a class="portlet-show-more small text-decoration-none"
-           tal:attributes="href view/data/more_url" target="_blink"
+           tal:attributes="href view/data/more_url" target="_blank"
            tal:condition="view/data/more_url">
 
           <!-- <i class="bi bi-plus-circle-fill"></i> -->
@@ -89,7 +89,7 @@
 
           <a class="portlet-show-more small text-decoration-none"
              tal:condition="view/siteurl" tal:attributes="href view/siteurl"
-             target="_blink">
+             target="_blank">
 
             <!-- <i class="bi bi-plus-circle-fill"></i> -->
 

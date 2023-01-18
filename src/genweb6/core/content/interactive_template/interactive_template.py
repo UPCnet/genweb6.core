@@ -73,7 +73,7 @@ class IInteractiveTemplate(model.Schema):
 
     content = schema.Choice(
         title=_(u'Continguts que alimenten la plantilla'),
-        description=_(u'Podeu afegir continguts en aquest directori des de el següent <a target="_blink" href="folder_contents">enllaç</a>'),
+        description=_(u'Podeu afegir continguts en aquest directori des de el següent <a target="_blank" href="folder_contents">enllaç</a>'),
         required=True,
         vocabulary=contentVocabulary,
         default='inside'

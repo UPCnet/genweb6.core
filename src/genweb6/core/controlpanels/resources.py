@@ -56,13 +56,13 @@ class IResourcesSettings(model.Schema):
 
     text_css = schema.Text(
         title=_(u"Recurs CSS"),
-        description=_(u"<a href='https://codebeautify.org/cssvalidate' target='_blink'>Validar</a>"),
+        description=_(u"<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</a>"),
         required=False,
     )
 
     text_js = schema.Text(
         title=_(u"Recurs JS"),
-        description=_(u"<a href='https://codebeautify.org/jsvalidate' target='_blink'>Validar</a>"),
+        description=_(u"<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"),
         required=False,
     )
 

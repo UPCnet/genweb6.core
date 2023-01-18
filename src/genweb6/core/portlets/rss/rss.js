@@ -4,6 +4,6 @@ $(document).ready(function() {
     $(this).html($(this).text());
   });
 
-  $(".portlet.portlet-rss  a[rel='external']").attr("target", "_blink");
+  $(".portlet.portlet-rss  a[rel='external']").attr("target", "_blank");
 
 });

@@ -5,13 +5,14 @@ from Acquisition import aq_inner
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
+from plone.app.layout.viewlets.common import PersonalBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.app.multilingual.browser.selector import addQuery
 from plone.app.multilingual.browser.selector import getPostPath
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
-from plone.uuid.interfaces import IUUID
 from plone.namedfile.file import NamedFile
+from plone.uuid.interfaces import IUUID
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -21,8 +22,6 @@ from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
-
-from plone.app.layout.viewlets.common import PersonalBarViewlet
 
 
 class viewletBase(ViewletBase):
@@ -506,3 +505,51 @@ class resourcesViewlet(viewletBase):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
             return data._data._data
+
+
+class socialtoolsViewlet(viewletBase):
+
+    def data(self):
+        title = self.context.title
+        url = self.context.absolute_url()
+
+        return [
+            {
+                'title': 'Twitter',
+                'url': 'https://twitter.com/intent/tweet?tw_p=tweetbutton&url=' + url,
+                'icon': 'bi bi-twitter',
+                'action': False,
+            },
+            {
+                'title': 'Facebook',
+                'url': 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+                'icon': 'bi bi-facebook',
+                'action': False,
+            },
+            {
+                'title': 'Whatsapp',
+                'url': 'https://wa.me/?text=' + title + ' ' + url,
+                'icon': 'bi bi-whatsapp',
+                'action': False,
+            },
+            {
+                'title': 'Telegram',
+                'url': 'https://telegram.me/share/url?url=' + url + '&text=' + title,
+                'icon': 'bi bi-telegram',
+                'action': False,
+            },
+            {
+                'title': 'Linkedin',
+                'url': 'https://www.linkedin.com/shareArticle?url=' + url,
+                'icon': 'bi bi-linkedin',
+                'action': False,
+            },
+            {
+                'title': _(u"Copiar enllaç"),
+                'url': self.root_url() + '/resolveuid/' + IUUID(self.context),
+                'icon': 'bi bi-clipboard',
+                'action': True,
+                'id': 'copy-universal-link',
+                'tooltip': _(u"Copiat!"),
+            }
+        ]

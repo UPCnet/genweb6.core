@@ -80,4 +80,15 @@
         template="viewlets_templates/footer/resources.pt"
         />
 
+    <!-- CONTENT -->
+
+    <browser:viewlet
+        name="genweb.socialtools"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        class=".viewlets.socialtoolsViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/content/socialtools.pt"
+        />
+
 </configure>

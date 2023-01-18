@@ -1,0 +1,29 @@
+<div id="social_tags"
+     tal:define="socials view/data">
+
+  <tal:social tal:repeat="social socials">
+
+    <a target="_blank"
+       tal:condition="not:social/action"
+       tal:attributes="href social/url;
+                       title social/title">
+
+      <i tal:attributes="class social/icon"></i>
+
+    </a>
+
+    <a href="#" data-bs-toggle="tooltip"
+       tal:condition="social/action"
+       tal:attributes="id social/id;
+                       data-url social/url|nothing;
+                       aria-label social/tooltip|nothing;
+                       data-bs-title social/tooltip|nothing;
+                       data-bs-original-title social/title;">
+
+      <i tal:attributes="class social/icon"></i>
+
+    </a>
+
+  </tal:social>
+
+</div>
