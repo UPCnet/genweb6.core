@@ -321,7 +321,9 @@
       <required>False</required>
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_other_settings">Other settings</title>
     </field>
-    <value>{"toolbar_mode": "wrap",&#13;
+    <value>{"cleanup": false,&#13;
+"valid_elements": "*[*]",&#13;
+"toolbar_mode": "wrap",&#13;
 "templates": "/tinymce_template_list"}</value>
   </record>
 
@@ -596,6 +598,7 @@
       <element>aria-label</element>
       <element>data-bs-interval</element>
       <element>data-bs-slide</element>
+      <element>data-bs-dismiss</element>
     </value>
   </record>
 
