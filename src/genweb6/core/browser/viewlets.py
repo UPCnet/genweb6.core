@@ -68,7 +68,11 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
         entry.update({"current": False})
 
     def customize_tab(self, entry, tab):
-        path = '/' + api.portal.get().id + '/' + self.context.language + '/' + tab['id']
+        lang = self.context.language
+        if not lang:
+            lang = self.context.getPhysicalPath()[len(api.portal.get().getPhysicalPath())]
+
+        path = '/' + api.portal.get().id + '/' + lang + '/' + tab['id']
         brain = api.content.get(path=path)
         entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
         entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
