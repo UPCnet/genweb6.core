@@ -84,7 +84,7 @@
 
     <browser:viewlet
         name="genweb.socialtools"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".viewlets.socialtoolsViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
