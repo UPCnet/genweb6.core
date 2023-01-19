@@ -3,6 +3,7 @@ from AccessControl.SecurityManagement import getSecurityManager
 from Acquisition import aq_inner
 
 from plone import api
+from plone.app.contenttypes.interfaces import INewsItem
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
 from plone.app.layout.viewlets.common import PersonalBarViewlet
@@ -22,6 +23,7 @@ from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
+from genweb6.core.utils import toLocalizedTime
 
 
 class viewletBase(ViewletBase):
@@ -557,3 +559,18 @@ class socialtoolsViewlet(viewletBase):
                 'tooltip': _(u"Copiat!"),
             }
         ]
+
+
+class newsDateViewlet(viewletBase):
+
+    def render(self):
+        if INewsItem.providedBy(self.context):
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
+    def formatDate(self):
+        if self.context.effective_date:
+            return toLocalizedTime(self, self.context.effective_date)
+
+        return toLocalizedTime(self, self.context.modification_date)

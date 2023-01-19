@@ -1,0 +1,5 @@
+<div id="news_date">
+
+     <p tal:content="view/formatDate"></p>
+
+</div>
