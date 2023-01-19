@@ -11,7 +11,8 @@
 
     <navtree tal:replace="structure render_globalnav" />
 
-    <li class="no-folders has_subtree nav-item">
+    <li class="no-folders has_subtree nav-item"
+        tal:condition="render_globalnav">
 
       <ul class="navbar-nav-footer-no-folders">
 
