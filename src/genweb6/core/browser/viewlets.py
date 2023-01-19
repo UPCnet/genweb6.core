@@ -515,7 +515,7 @@ class socialtoolsViewlet(viewletBase):
 
     def data(self):
         title = self.context.title
-        url = self.context.absolute_url()
+        url = self.root_url() + '/resolveuid/' + IUUID(self.context)
 
         return [
             {
@@ -532,7 +532,7 @@ class socialtoolsViewlet(viewletBase):
             },
             {
                 'title': 'Whatsapp',
-                'url': 'https://wa.me/?text=' + title + '\n' + url,
+                'url': 'https://wa.me/?text=' + title + ' ' + url,
                 'icon': 'bi bi-whatsapp',
                 'action': False,
             },
@@ -550,7 +550,7 @@ class socialtoolsViewlet(viewletBase):
             # },
             {
                 'title': _(u"Copiar enllaç"),
-                'url': self.root_url() + '/resolveuid/' + IUUID(self.context),
+                'url': url,
                 'icon': 'fa-regular fa-copy',
                 'action': True,
                 'id': 'copy-universal-link',
