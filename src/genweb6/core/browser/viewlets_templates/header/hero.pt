@@ -16,7 +16,10 @@
 
         <div class="site_title" tal:condition="not:is_new_style">
             <div class="h1">
-                <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+                <a accesskey="1" class="text-decoration-none"
+                   tal:attributes="href string:${view/root_url}/${view/pref_lang}">
+                    <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+                </a>
             </div>
         </div>
 
