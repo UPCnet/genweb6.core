@@ -520,7 +520,7 @@ class socialtoolsViewlet(viewletBase):
         return [
             {
                 'title': 'Twitter',
-                'url': 'https://twitter.com/intent/tweet?tw_p=tweetbutton&url=' + url,
+                'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
                 'icon': 'bi bi-twitter',
                 'action': False,
             },
@@ -532,26 +532,26 @@ class socialtoolsViewlet(viewletBase):
             },
             {
                 'title': 'Whatsapp',
-                'url': 'https://wa.me/?text=' + title + ' ' + url,
+                'url': 'https://wa.me/?text=' + title + '\n' + url,
                 'icon': 'bi bi-whatsapp',
                 'action': False,
             },
-            {
-                'title': 'Telegram',
-                'url': 'https://telegram.me/share/url?url=' + url + '&text=' + title,
-                'icon': 'bi bi-telegram',
-                'action': False,
-            },
-            {
-                'title': 'Linkedin',
-                'url': 'https://www.linkedin.com/shareArticle?url=' + url,
-                'icon': 'bi bi-linkedin',
-                'action': False,
-            },
+            # {
+            #     'title': 'Telegram',
+            #     'url': 'https://telegram.me/share/url?url=' + url + '&text=' + title,
+            #     'icon': 'bi bi-telegram',
+            #     'action': False,
+            # },
+            # {
+            #     'title': 'Linkedin',
+            #     'url': 'https://www.linkedin.com/shareArticle?url=' + url,
+            #     'icon': 'bi bi-linkedin',
+            #     'action': False,
+            # },
             {
                 'title': _(u"Copiar enllaç"),
                 'url': self.root_url() + '/resolveuid/' + IUUID(self.context),
-                'icon': 'bi bi-clipboard',
+                'icon': 'fa-regular fa-copy',
                 'action': True,
                 'id': 'copy-universal-link',
                 'tooltip': _(u"Copiat!"),
