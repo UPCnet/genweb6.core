@@ -670,4 +670,25 @@
     <value key="weight">20</value>
   </records>
 
+  <record name="plone.content_css" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="content_css">
+    <field type="plone.registry.field.List">
+      <default/>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">This option enables you to specify CSS files that will be used within the the editable area of the editor (e.g. ++plone++mystyles/tinymce.css). These styles will also appear in the Format list of TinyMCE.In addition to what is listed here, the CSS file defined under 'tinymce-content-css' in a theme manifest.cfg is also added.</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Choose the CSS used in WYSIWYG Editor Area</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>++theme++barceloneta/tinymce/tinymce-formats.css</element>
+      <element>++theme++barceloneta/tinymce/tinymce-ui-content.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/fontawesome.min.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/brands.min.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/duotone.min.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/light.min.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/regular.min.css</element>
+      <element>++theme++genweb6.theme/fontawesome/css/solid.min.css</element>
+    </value>
+  </record>
+
 </registry>
