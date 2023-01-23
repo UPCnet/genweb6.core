@@ -78,7 +78,7 @@
 
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
             <li class="home nav-item">
-                <a class="state-visible nav-link" tal:attributes="href navigation_root_url"
+                <a class="nav-link" tal:attributes="href navigation_root_url"
                    i18n:domain="genweb" i18n:translate="">
                    Inici
                 </a>
