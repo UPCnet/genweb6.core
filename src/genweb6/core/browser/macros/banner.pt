@@ -16,7 +16,7 @@
 
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline rounded', alt='')">
+                                  scale='preview').tag(css_class='image-inline', alt='')">
             </a>
 
             <a tal:condition="not:context/open_link_in_new_window"
@@ -25,7 +25,7 @@
 
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline rounded', alt='')">
+                                  scale='preview').tag(css_class='image-inline', alt='')">
             </a>
 
         </tal:block>
@@ -34,7 +34,7 @@
 
             <div class="defaultBanner">
 
-                <a tal:condition="context/open_link_in_new_window" target="_blank" class="rounded"
+                <a tal:condition="context/open_link_in_new_window" target="_blank"
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
@@ -52,7 +52,7 @@
 
                 </a>
 
-                <a tal:condition="not:context/open_link_in_new_window" class="rounded"
+                <a tal:condition="not:context/open_link_in_new_window"
                    tal:attributes="title context/title;
                                    href context/remoteUrl">
 

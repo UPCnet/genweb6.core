@@ -172,7 +172,7 @@
                                     <div class="w-100">
                                         <div class="card-img-top">
 
-                                            <img class="d-block w-100 rounded"
+                                            <img class="d-block w-100"
                                                  tal:attributes="src content/image;
                                                                  alt content/title;
                                                                  title content/title">

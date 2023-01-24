@@ -22,8 +22,7 @@
 
               <div class="img mb-2">
 
-                <img class="rounded"
-                     tal:attributes="src item/image;
+                <img tal:attributes="src item/image;
                                      title item/title;
                                      alt item/title" />
               </div>

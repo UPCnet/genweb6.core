@@ -91,14 +91,12 @@
                                tal:attributes="href obj/getURL;
                                                title obj/title">
 
-                                <img class="rounded"
-                                     tal:condition="obj/image"
+                                <img tal:condition="obj/image"
                                      tal:attributes="src string:${obj/getURL}/@@images/image/preview;
                                                      title obj/title | nothing;
                                                      alt obj/title | string: ;"/>
 
-                                <img class="rounded"
-                                     tal:condition="not:obj/image"
+                                <img tal:condition="not:obj/image"
                                      src="++theme++genweb6.theme/img/sample/default_image_sm.png"
                                      tal:attributes="title obj/title | nothing;
                                                      alt obj/title | string: ;"/>
