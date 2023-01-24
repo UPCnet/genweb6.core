@@ -271,7 +271,7 @@ class AddForm(base.AddForm):
     schema = INewContentPortlet
     label = _(u"Afegeix portlet de contingut existent")
     description = _(
-        u"Aquest portlet mostra contingut ja existent en URL específica")
+        u"Aquest portlet mostra contingut ja existent en URL específica.")
 
     def create(self, data):
         # s'invoca despres de __init__ en clicar Desa
