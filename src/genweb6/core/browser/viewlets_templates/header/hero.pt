@@ -27,7 +27,6 @@
             <div class="h1">
                 <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
             </div>
-            <div class="line"></div>
             <div class="h2">
                 <tal:block tal:replace="structure python:getattr(header_config, 'html_description_' + pref_lang, '')"></tal:block>
             </div>
