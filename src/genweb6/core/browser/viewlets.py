@@ -515,6 +515,12 @@ class resourcesViewlet(viewletBase):
 
 class socialtoolsViewlet(viewletBase):
 
+    def render(self):
+        if api.user.is_anonymous():
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
     def data(self):
         title = self.context.title
         url = self.root_url() + '/resolveuid/' + IUUID(self.context)
