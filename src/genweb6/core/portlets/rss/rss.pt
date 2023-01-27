@@ -17,17 +17,17 @@
 
           <tal:block tal:condition="view/data/display_image">
 
-            <a href="#" tal:attributes="href item/url" target="_blank"
-               tal:condition="item/image">
+            <div class="img mb-2">
 
-              <div class="img mb-2">
+                <a href="#" tal:attributes="href item/url" target="_blank"
+                   tal:condition="item/image">
 
-                <img tal:attributes="src item/image;
-                                     title item/title;
-                                     alt item/title" />
-              </div>
+                    <img tal:attributes="src item/image;
+                                         title item/title;
+                                         alt item/title" />
+                </a>
 
-            </a>
+            </div>
 
           </tal:block>
 
