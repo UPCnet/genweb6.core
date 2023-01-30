@@ -8,10 +8,6 @@
         purge="False"/>
 
     <records
-        interface="genweb6.core.controlpanels.cookies.ICookiesSettings"
-        purge="False" />
-
-    <records
         interface="genweb6.core.controlpanels.login.ILoginSettings"
         purge="False" />
 

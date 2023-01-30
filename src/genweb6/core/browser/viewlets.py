@@ -19,7 +19,6 @@ from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebCintilloConfig
-from genweb6.core.utils import genwebCookiesConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
@@ -457,50 +456,6 @@ class footerViewlet(viewletBase):
                         "cookies":       {}}}
 
         return links[lang]
-
-
-class cookiesViewlet(viewletBase):
-
-    def render(self):
-        config = genwebCookiesConfig()
-        if config.disable:
-            return super(viewletBase, self).render()
-        else:
-            return ""
-
-    def urlCookies(self):
-        lang = self.pref_lang()
-
-        if lang == 'es':
-            return self.root_url() + '/politica-de-cookies-es'
-
-        if lang == 'en':
-            return self.root_url() + '/cookies-policy'
-
-        return self.root_url() + '/politica-de-cookies'
-
-    def notViewPDF(self):
-        try:
-            return 'application/pdf' not in self.request.environ['HTTP_ACCEPT']
-        except:
-            return True
-
-    def alternativeText(self):
-        config = genwebCookiesConfig()
-
-        if config.enable_alternative_text:
-
-            lang = self.pref_lang()
-
-            if lang == 'es':
-                return config.alternative_text_es
-
-            if lang == 'en':
-                return config.alternative_text_en
-
-            return config.alternative_text_ca
-
-        return False
 
 
 class resourcesViewlet(viewletBase):

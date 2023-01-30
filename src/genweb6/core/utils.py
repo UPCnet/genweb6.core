@@ -25,7 +25,6 @@ from genweb6.core import HAS_PAM
 from genweb6.core.cas.utils import getCASSettings
 from genweb6.core.cas.utils import login_URL
 from genweb6.core.controlpanels.cintillo import ICintilloSettings
-from genweb6.core.controlpanels.cookies import ICookiesSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
@@ -177,15 +176,11 @@ def toLocalizedTime(self, time):
     plone_view = getMultiAdapter((self.context, self.request), name=u"plone")
     return plone_view.toLocalizedTime(time)
 
+
 # class GWConfig(BrowserView):
 
 #     def render(self):
 #         return genweb_config()
-
-
-def genwebCookiesConfig():
-    registry = queryUtility(IRegistry)
-    return registry.forInterface(ICookiesSettings)
 
 
 def genwebCintilloConfig():
@@ -252,9 +247,6 @@ class genwebUtils(BrowserView):
     def portal_url_https(self):
         """Get the Plone portal URL in https mode """
         return self.portal_url().replace('http://', 'https://')
-
-    def genwebCookiesConfig(self):
-        return genwebCookiesConfig()
 
     def genwebCintilloConfig(self):
         return genwebCintilloConfig()

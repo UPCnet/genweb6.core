@@ -142,10 +142,6 @@ msgstr ""
 msgid "Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"
 msgstr ""
 
-#: ../controlpanels/cookies.py:55
-msgid "Al marcar esta opción se pillara la información de los siguientes campos de texto."
-msgstr ""
-
 #: ../browser/views_templates/download_files.pt:27
 msgid "All"
 msgstr ""
@@ -163,10 +159,6 @@ msgid "Apareixerà a la tile seleccionada"
 msgstr "Aparecerá en la Tile selecionada"
 
 #: ../portlets/new_existing_content/new_existing_content.py:273
-msgid "Aquest portlet mostra contingut ja existent en URL específica"
-msgstr ""
-
-#: ../portlets/new_existing_content/new_existing_content.py:285
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr ""
 
@@ -190,7 +182,7 @@ msgstr "Indica si se muestra la fecha en las noticias"
 
 #: ../cas/controlpanel.py:112
 #: ../controlpanels/cintillo.py:114
-#: ../controlpanels/cookies.py:108
+#: ../controlpanels/footer.py:172
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -206,10 +198,6 @@ msgstr ""
 msgid "Català"
 msgstr ""
 
-#: ../controlpanels/cookies.py:62
-msgid "Catalán"
-msgstr ""
-
 #: ../portlets/news_events_listing/news_events_listing.py:41
 #: ../profiles/default/portlets.xml
 msgid "Categories"
@@ -221,13 +209,13 @@ msgstr ""
 
 #: ../cas/controlpanel.py:114
 #: ../controlpanels/cintillo.py:116
-#: ../controlpanels/cookies.py:110
+#: ../controlpanels/footer.py:174
 msgid "Changes canceled."
 msgstr ""
 
 #: ../cas/controlpanel.py:109
 #: ../controlpanels/cintillo.py:111
-#: ../controlpanels/cookies.py:105
+#: ../controlpanels/footer.py:169
 msgid "Changes saved"
 msgstr "Cambios guardados"
 
@@ -292,15 +280,11 @@ msgstr ""
 msgid "Continguts que alimenten la plantilla"
 msgstr ""
 
-#: ../controlpanels/cookies.py:88
-msgid "Cookies Settings"
-msgstr ""
-
-#: ../browser/viewlets.py:554
+#: ../browser/viewlets.py:515
 msgid "Copiar enllaç"
 msgstr ""
 
-#: ../browser/viewlets.py:559
+#: ../browser/viewlets.py:520
 msgid "Copiat!"
 msgstr ""
 
@@ -322,14 +306,6 @@ msgstr ""
 
 #: ../controlpanels/header.py:102
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
-msgstr ""
-
-#: ../controlpanels/cookies.py:47
-msgid "Deshabilitar"
-msgstr ""
-
-#: ../controlpanels/cookies.py:48
-msgid "Deshabilitar el banner de les cookies"
 msgstr ""
 
 #: ../tiles/configure.zcml:29
@@ -464,10 +440,6 @@ msgstr ""
 msgid "Escull com es mostraran les noticies"
 msgstr "Como se mostrarán las noticias"
 
-#: ../controlpanels/cookies.py:69
-msgid "Español"
-msgstr ""
-
 #: ../portlets/grid_events/grid_events.pt:7
 msgid "Events"
 msgstr "Agenda"
@@ -577,10 +549,6 @@ msgstr "Grid agenda"
 msgid "GridEvents"
 msgstr ""
 
-#: ../controlpanels/cookies.py:54
-msgid "Habilita el texto alternativo"
-msgstr ""
-
 #: ../content/interactive_template/interactive_template.py:95
 msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 msgstr ""
@@ -654,10 +622,6 @@ msgstr ""
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:64
 msgid "Info"
 msgstr "Info"
-
-#: ../controlpanels/cookies.py:76
-msgid "Inglés"
-msgstr ""
 
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
@@ -955,7 +919,7 @@ msgstr ""
 
 #: ../cas/controlpanel.py:96
 #: ../controlpanels/cintillo.py:102
-#: ../controlpanels/cookies.py:96
+#: ../controlpanels/footer.py:160
 msgid "Save"
 msgstr "Guardar"
 
@@ -1288,26 +1252,6 @@ msgstr "Cancelar"
 #: ../cas/controlpanel.py:61
 msgid "cas_url"
 msgstr ""
-
-#. Default: "Política de cookies"
-#: ../browser/viewlets_templates/footer/cookies.pt:12
-#: ../controlpanels/widgets/cookies_preview.pt:13
-#, fuzzy
-msgid "cookie_policy"
-msgstr "Política de cookies"
-
-#. Default: "Acceptar"
-#: ../browser/viewlets_templates/footer/cookies.pt:28
-#: ../controlpanels/widgets/cookies_preview.pt:22
-msgid "cookie_policy_button"
-msgstr ""
-
-#. Default: "El lloc web de la Universitat Politècnica de Catalunya utilitza cookies pròpies i de tercers per millorar l’experiència de navegació i amb finalitats estadístiques. Per obtenir més informació sobre l'ús de les cookies podeu consultar la"
-#: ../browser/viewlets_templates/footer/cookies.pt:8
-#: ../controlpanels/widgets/cookies_preview.pt:10
-#, fuzzy
-msgid "cookie_policy_this_site"
-msgstr "El sitio web de la Universidad Politécnica de Cataluña utiliza cookies propias y de terceros para mejorar la experiencia de navegación y con fines estadísticos. Para obtener más información sobre el uso de las cookies puede consultar la "
 
 #. Default: "Delete"
 #: ../browser/views_templates/confirmation.pt:33
@@ -1727,7 +1671,7 @@ msgid "more_url"
 msgstr "Ver más"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:334
+#: ../browser/viewlets.py:333
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:80
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"

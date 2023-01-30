@@ -142,10 +142,6 @@ msgstr "En marcar aquesta opció es mostrarà un enllaç a l'inici de sessió en
 msgid "Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"
 msgstr "En marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si està activat a part l'autoregistre en la web."
 
-#: ../controlpanels/cookies.py:55
-msgid "Al marcar esta opción se pillara la información de los siguientes campos de texto."
-msgstr "En marcar està opció es pillarà la informació dels següents camps de text."
-
 #: ../browser/views_templates/download_files.pt:27
 msgid "All"
 msgstr "Tots"
@@ -186,7 +182,7 @@ msgstr "Indica si cal mostrar la data a les notícies"
 
 #: ../cas/controlpanel.py:112
 #: ../controlpanels/cintillo.py:114
-#: ../controlpanels/cookies.py:108
+#: ../controlpanels/footer.py:172
 msgid "Cancel"
 msgstr "Cancel·la"
 
@@ -202,10 +198,6 @@ msgstr "Castellà"
 msgid "Català"
 msgstr "Català"
 
-#: ../controlpanels/cookies.py:62
-msgid "Catalán"
-msgstr "Català"
-
 #: ../portlets/news_events_listing/news_events_listing.py:41
 #: ../profiles/default/portlets.xml
 msgid "Categories"
@@ -217,13 +209,13 @@ msgstr "Cerca una col·lecció"
 
 #: ../cas/controlpanel.py:114
 #: ../controlpanels/cintillo.py:116
-#: ../controlpanels/cookies.py:110
+#: ../controlpanels/footer.py:174
 msgid "Changes canceled."
 msgstr "Canvis cancelats"
 
 #: ../cas/controlpanel.py:109
 #: ../controlpanels/cintillo.py:111
-#: ../controlpanels/cookies.py:105
+#: ../controlpanels/footer.py:169
 msgid "Changes saved"
 msgstr "Canvis desats"
 
@@ -288,15 +280,11 @@ msgstr "Continguts de dintre d'aquest directori"
 msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
-#: ../controlpanels/cookies.py:88
-msgid "Cookies Settings"
-msgstr "Configuració Cookies"
-
-#: ../browser/viewlets.py:554
+#: ../browser/viewlets.py:515
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
-#: ../browser/viewlets.py:559
+#: ../browser/viewlets.py:520
 msgid "Copiat!"
 msgstr "Copiat!"
 
@@ -319,14 +307,6 @@ msgstr "Descripció del web amb HTML tags (negretes) [EN]"
 #: ../controlpanels/header.py:102
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
 msgstr "Descripció del web amb HTML tags (negretes) [ES]"
-
-#: ../controlpanels/cookies.py:47
-msgid "Deshabilitar"
-msgstr "Deshabilitar"
-
-#: ../controlpanels/cookies.py:48
-msgid "Deshabilitar el banner de les cookies"
-msgstr Deshabilitar el bàner de les cookies"
 
 #: ../tiles/configure.zcml:29
 msgid "Destacats Home"
@@ -457,10 +437,6 @@ msgstr "Error"
 msgid "Escull com es mostraran les noticies"
 msgstr "Seleccioni com es mostraran les notícies"
 
-#: ../controlpanels/cookies.py:69
-msgid "Español"
-msgstr "Espanyol"
-
 #: ../portlets/grid_events/grid_events.pt:7
 msgid "Events"
 msgstr "Agenda"
@@ -570,10 +546,6 @@ msgstr "Grid agenda"
 msgid "GridEvents"
 msgstr "Grid agenda"
 
-#: ../controlpanels/cookies.py:54
-msgid "Habilita el texto alternativo"
-msgstr "Habilita el text alternatiu"
-
 #: ../content/interactive_template/interactive_template.py:95
 msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 msgstr "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
@@ -647,10 +619,6 @@ msgstr ""
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:64
 msgid "Info"
 msgstr "Informació:"
-
-#: ../controlpanels/cookies.py:76
-msgid "Inglés"
-msgstr ""
 
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
@@ -945,7 +913,7 @@ msgstr ""
 
 #: ../cas/controlpanel.py:96
 #: ../controlpanels/cintillo.py:102
-#: ../controlpanels/cookies.py:96
+#: ../controlpanels/footer.py:160
 msgid "Save"
 msgstr "Desa"
 
@@ -1279,26 +1247,6 @@ msgstr "Cancel·la"
 #: ../cas/controlpanel.py:61
 msgid "cas_url"
 msgstr ""
-
-#. Default: "Política de cookies"
-#: ../browser/viewlets_templates/footer/cookies.pt:12
-#: ../controlpanels/widgets/cookies_preview.pt:13
-#, fuzzy
-msgid "cookie_policy"
-msgstr "Política de cookies"
-
-#. Default: "Acceptar"
-#: ../browser/viewlets_templates/footer/cookies.pt:28
-#: ../controlpanels/widgets/cookies_preview.pt:22
-msgid "cookie_policy_button"
-msgstr ""
-
-#. Default: "El lloc web de la Universitat Politècnica de Catalunya utilitza cookies pròpies i de tercers per millorar l’experiència de navegació i amb finalitats estadístiques. Per obtenir més informació sobre l'ús de les cookies podeu consultar la"
-#: ../browser/viewlets_templates/footer/cookies.pt:8
-#: ../controlpanels/widgets/cookies_preview.pt:10
-#, fuzzy
-msgid "cookie_policy_this_site"
-msgstr "El lloc web de la Universitat Politècnica de Catalunya utilitza cookies pròpies i de tercers per millorar l’experiència de navegació i amb finalitats estadístiques. Per obtenir més informació sobre l'ús de les cookies podeu consultar la "
 
 #. Default: "Delete"
 #: ../browser/views_templates/confirmation.pt:33
@@ -1730,7 +1678,7 @@ msgid "more_url"
 msgstr "Veure més"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:334
+#: ../browser/viewlets.py:333
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:80
 msgid "obrir_link_finestra_nova"
 msgstr "(obriu en una finestra nova)"

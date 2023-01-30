@@ -21,7 +21,6 @@
   <viewlet name="genweb.logosfooter"/>
   <viewlet name="genweb.linksfooter"/>
   <viewlet name="genweb.footer"/>
-  <viewlet name="genweb.cookies"/>
   <viewlet name="plone.analytics"/>
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>

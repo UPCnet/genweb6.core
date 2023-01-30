@@ -6,27 +6,6 @@
     i18n_domain="genweb">
 
     <browser:page
-        name="cookies-controlpanel"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".cookies.CookiesSettingsControlPanel"
-        permission="genweb.webmaster"
-        />
-
-    <class class=".cookies.CookiesSettingsPreviewWidget">
-        <require
-            permission="zope.Public"
-            interface=".cookies.ICookiesSettingsPreviewWidget"
-            />
-    </class>
-
-    <z3c:widgetTemplate
-        mode="input"
-        widget=".cookies.ICookiesSettingsPreviewWidget"
-        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
-        template="widgets/cookies_preview.pt"
-        />
-
-    <browser:page
         name="login-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".login.LoginSettingsControlPanel"
