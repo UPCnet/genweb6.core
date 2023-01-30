@@ -294,15 +294,15 @@ msgstr "Configuració Cookies"
 
 #: ../browser/viewlets.py:554
 msgid "Copiar enllaç"
-msgstr ""
+msgstr "Copiar enllaç"
 
 #: ../browser/viewlets.py:559
 msgid "Copiat!"
-msgstr ""
+msgstr "Copiat!"
 
 #: ../controlpanels/footer.py:87
 msgid "Costumizar completament els enllaços"
-msgstr ""
+msgstr "Costumitzar completament els enllaços"
 
 #: ../tiles/configure.zcml:58
 msgid "Custom Video"
@@ -310,23 +310,23 @@ msgstr "Vídeo personalitzat"
 
 #: ../controlpanels/header.py:96
 msgid "Descripció del web amb HTML tags (negretes) [CA]"
-msgstr ""
+msgstr "Descripció del web amb HTML tags (negretes) [CA]"
 
 #: ../controlpanels/header.py:108
 msgid "Descripció del web amb HTML tags (negretes) [EN]"
-msgstr ""
+msgstr "Descripció del web amb HTML tags (negretes) [EN]"
 
 #: ../controlpanels/header.py:102
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
-msgstr ""
+msgstr "Descripció del web amb HTML tags (negretes) [ES]"
 
 #: ../controlpanels/cookies.py:47
 msgid "Deshabilitar"
-msgstr ""
+msgstr "Deshabilitar"
 
 #: ../controlpanels/cookies.py:48
 msgid "Deshabilitar el banner de les cookies"
-msgstr ""
+msgstr Deshabilitar el bàner de les cookies"
 
 #: ../tiles/configure.zcml:29
 msgid "Destacats Home"
@@ -334,23 +334,20 @@ msgstr "Destacats Home"
 
 #: ../portlets/rss/rss.py:300
 msgid "Display categories"
-msgstr ""
+msgstr "Mostrar categories"
 
 #: ../portlets/rss/rss.py:282
 msgid "Display dates"
-msgstr ""
+msgstr "Mostrar dates"
 
 #: ../portlets/rss/rss.py:288
 msgid "Display descriptions"
-msgstr ""
+msgstr "Mostrar descripcions"
 
 #: ../portlets/rss/rss.py:294
 msgid "Display images"
-msgstr ""
+msgstr "Mostrar imatges"
 
-################
-# New contents #
-################
 #: ../browser/download_files.py:36
 #: ../profiles/default/types/genweb.upc.documentimage.xml
 #: ../tiles/destacats/destacats.py:57
@@ -363,28 +360,28 @@ msgstr "ERROR: Charset undefined"
 
 #: ../portlets/new_existing_content/new_existing_content.py:244
 msgid "ERROR. Review the portlet configuration."
-msgstr ""
+msgstr "ERROR. Comprova la configuració del portlet"
 
 #: ../portlets/new_existing_content/new_existing_content.py:247
 msgid "ERROR. There was a timeout."
-msgstr ""
+msgstr "ERROR. Temps d'espera superat"
 
 #: ../portlets/new_existing_content/new_existing_content.py:249
 msgid "ERROR. This URL does not exist"
-msgstr ""
+msgstr "ERROR. L'URL no existeix"
 
 #: ../portlets/new_existing_content/new_existing_content.py:227
 msgid "ERROR. This element does not exist:"
-msgstr ""
+msgstr "ERROR. L'element no existeix"
 
 #: ../portlets/new_existing_content/new_existing_content.py:116
 msgid "EXTERN: URL de la pàgina a mostrar"
-msgstr ""
+msgstr "EXTERN: URL de la pàgina a mostrar"
 
 #: ../profiles/default/types/BannerContainer.xml
 #: ../profiles/default/types/Logos_Container.xml
 msgid "Edit"
-msgstr ""
+msgstr "Edita"
 
 #: ../portlets/esdeveniments/esdeveniments.py:249
 msgid "Edit Events Portlet"
@@ -392,11 +389,11 @@ msgstr "Edita portlet d'agenda"
 
 #: ../portlets/grid_events/grid_events.py:150
 msgid "Edit Grid Events Portlet"
-msgstr "Editar portlet Grid Agenda"
+msgstr "Editar portlet de grid agenda"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:396
 msgid "Edit Multi-view Collection Portlet"
-msgstr "Edit Multi-view Collection Portlet"
+msgstr "Editar portlet de col·lecció multivista"
 
 #: ../portlets/fullnews/fullnews.py:288
 #: ../portlets/news/news.py:137
@@ -405,15 +402,15 @@ msgstr "Edita portlet de notícies"
 
 #: ../portlets/news_events_listing/news_events_listing.py:241
 msgid "Edit Tags Portlet"
-msgstr "Edita Tags Portlet"
+msgstr "Edita portlet de tags"
 
 #: ../portlets/banners/banners.py:103
 msgid "Edit banners portlet"
-msgstr "Edita portlet banners"
+msgstr "Edita portlet de bàners"
 
 #: ../portlets/new_existing_content/new_existing_content.py:284
 msgid "Edita portlet de contingut existent"
-msgstr "Edita Existing Content Portlet"
+msgstr "Edita portlet de contingut existent"
 
 #: ../tiles/destacats/destacats.py:77
 msgid "El contingut d'aquest camp només aplica en les tiles esmentades"
@@ -421,7 +418,7 @@ msgstr "El contingut d'aquest camp només aplica en les tiles esmentades"
 
 #: ../portlets/new_existing_content/new_existing_content.py:132
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
-msgstr ""
+msgstr "Element de la pàgina a mostrar, per defecte #content-core"
 
 #: ../tiles/video/video.py:78
 msgid "Enllaç extern per obrir en finestra nova"
@@ -437,24 +434,24 @@ msgstr "Enllaç per les tiles de 2, 3, 4 i 5 Destacats"
 
 #: ../controlpanels/footer.py:129
 msgid "Enllaços [CA]"
-msgstr ""
+msgstr "Enllaços [CA]"
 
 #: ../controlpanels/footer.py:143
 msgid "Enllaços [EN]"
-msgstr ""
+msgstr "Enllaços [EN]"
 
 #: ../controlpanels/footer.py:136
 msgid "Enllaços [ES]"
-msgstr ""
+msgstr "Enllaços [ES]"
 
 #: ../browser/macros/login.pt:58
 #: ../cas/login_preview.pt:9
 msgid "Entra amb la identificació única"
-msgstr ""
+msgstr "Entra amb la identificació única"
 
 #: ../browser/macros/login.pt:115
 msgid "Error"
-msgstr ""
+msgstr "Error"
 
 #: ../portlets/fullnews/fullnews.py:40
 msgid "Escull com es mostraran les noticies"
@@ -462,7 +459,7 @@ msgstr "Seleccioni com es mostraran les notícies"
 
 #: ../controlpanels/cookies.py:69
 msgid "Español"
-msgstr ""
+msgstr "Espanyol"
 
 #: ../portlets/grid_events/grid_events.pt:7
 msgid "Events"
@@ -470,7 +467,7 @@ msgstr "Agenda"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:115
 msgid "Exclude the Current Context"
-msgstr "Excloure el contexte actual"
+msgstr "Excloure el context actual"
 
 #: ../portlets/new_existing_content/new_existing_content.py:164
 msgid "Existing Content"
@@ -478,11 +475,11 @@ msgstr "Contingut existent"
 
 #: ../portlets/new_existing_content/new_existing_content.py:146
 msgid "Falta l'enllaç extern"
-msgstr ""
+msgstr "Falta l'enllaç extern"
 
 #: ../portlets/new_existing_content/new_existing_content.py:144
 msgid "Falta seleccionar el contingut intern"
-msgstr ""
+msgstr "Falta seleccionar el contingut intern"
 
 #: ../tiles/video/video.py:72
 msgid "Fer el títol enllaçable cap a algun contingut de la web"
@@ -494,11 +491,11 @@ msgstr "Fer el títol enllaçable cap a una altra web. NOTA: Si aquest camp est�
 
 #: ../browser/views_templates/download_files.pt:24
 msgid "File Types"
-msgstr ""
+msgstr "Tipus de fitxers"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:82
 msgid "Find the collection which provides the items to list"
-msgstr "Seleccioni la col.lecció."
+msgstr "Seleccioni la col·lecció."
 
 #: ../tiles/video/video.py:65
 msgid "Fons clar"
@@ -510,7 +507,7 @@ msgstr "Fons obscur"
 
 #: ../controlpanels/footer.py:152
 msgid "Footer Settings"
-msgstr ""
+msgstr "Configuració Peu"
 
 #: ../tiles/configure.zcml:42
 msgid "Formulari Existent"
@@ -518,7 +515,7 @@ msgstr "Formulari Existent"
 
 #: ../controlpanels/footer.py:21
 msgid "Fosc"
-msgstr ""
+msgstr "Fosc"
 
 #. Default: "Notícies amb foto"
 #: ../portlets/fullnews/fullnews.py:73
@@ -528,12 +525,12 @@ msgstr "Notícies amb foto"
 #: ../portlets/fullnews/fullnews.py:25
 #: ../portlets/multiviewcollection/multiviewcollection.py:45
 msgid "Full view"
-msgstr "Full view"
+msgstr "Amplada total"
 
 #: ../portlets/fullnews/fullnews.py:26
 #: ../portlets/multiviewcollection/multiviewcollection.py:48
 msgid "Full2cols view"
-msgstr "Full 2 columns view"
+msgstr "Amplada total a dues columnes: tres columnes amb imatge a dalt i text a sota"
 
 #: ../portlets/fullnews/fullnews.py:27
 #: ../portlets/multiviewcollection/multiviewcollection.py:51
@@ -551,11 +548,11 @@ msgstr "Notícies amb foto"
 
 #: ../patches.py:809
 msgid "Genweb Advanced"
-msgstr ""
+msgstr "Genweb Avançats"
 
 #: ../patches.py:808
 msgid "Genweb Design"
-msgstr ""
+msgstr "Genweb Disseny"
 
 #: ../portlets/banners/banners.py:53
 msgid "Genweb banners"
@@ -563,7 +560,7 @@ msgstr "Bàners"
 
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:56
 msgid "Go to parent folder"
-msgstr ""
+msgstr "Anar al directori pare"
 
 #: ../portlets/grid_events/grid_events.py:56
 msgid "Grid events"
@@ -571,19 +568,19 @@ msgstr "Grid agenda"
 
 #: ../profiles/default/portlets.xml
 msgid "GridEvents"
-msgstr ""
+msgstr "Grid agenda"
 
 #: ../controlpanels/cookies.py:54
 msgid "Habilita el texto alternativo"
-msgstr ""
+msgstr "Habilita el text alternatiu"
 
 #: ../content/interactive_template/interactive_template.py:95
 msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
-msgstr ""
+msgstr "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 
 #: ../controlpanels/header.py:297
 msgid "Header Settings"
-msgstr ""
+msgstr "Configuració Capçalera"
 
 #: ../portlets/banners/banners.py:29
 msgid "How many banners to list."
@@ -596,28 +593,28 @@ msgstr "Nombre d'elements a mostrar"
 #. Default: "INTERN: Existing content"
 #: ../portlets/new_existing_content/new_existing_content.py:123
 msgid "INTERN: Existing content"
-msgstr ""
+msgstr "INTERN: Contingut existent"
 
 #: ../behaviors/icon.py:26
 #: ../controlpanels/cintillo.py:34
 msgid "Icona"
-msgstr ""
+msgstr "Icona"
 
 #: ../behaviors/icon.py:19
 msgid "Icona gran?"
-msgstr ""
+msgstr "Icona gran?"
 
 #: ../behaviors/icon.py:27
 msgid "Icona que es mostrarà al costat del títol en cas de no afegir imatge, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-gear"
-msgstr ""
+msgstr "Icona que es mostrarà al costat del títol en cas de no afegir imatge, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-gear"
 
 #: ../controlpanels/cintillo.py:35
 msgid "Icona que es mostrarà al costat del títol, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-exclamation-diamond"
-msgstr ""
+msgstr "Icona que es mostrarà al costat del títol, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-exclamation-diamond"
 
 #: ../cas/controlpanel.py:88
 msgid "Identitat Digital Settings"
-msgstr ""
+msgstr "Configuració Identitat Digital"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:101
 msgid "If enabled, a more... link will appear in the footer of the portlet, linking to the underlying Collection."
@@ -637,7 +634,7 @@ msgstr "Si es selecciona, el llistat no mostrarà l'element actual."
 
 #: ../controlpanels/footer.py:22
 msgid "Imatge capçalera"
-msgstr ""
+msgstr "Imatge de capçalera"
 
 #: ../controlpanels/header.py:115
 msgid "Imatge principal conservadora"
