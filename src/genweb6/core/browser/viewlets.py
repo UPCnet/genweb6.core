@@ -355,24 +355,24 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
         result = {'title': title,
                   'links': []}
 
-        if footer_config.enable_login:
-            result['links'].append(
-                {
-                    'title': self.context.translate('Log in', domain='plone', target_language=lang),
-                    'link': self.context.absolute_url() + '/login',
-                    'external': False
-                }
-            )
+        # if footer_config.enable_login:
+        #     result['links'].append(
+        #         {
+        #             'title': self.context.translate('Log in', domain='plone', target_language=lang),
+        #             'link': self.context.absolute_url() + '/login',
+        #             'external': False
+        #         }
+        #     )
 
-        if footer_config.enable_register:
-            portal = api.portal.get()
-            result['links'].append(
-                {
-                    'title': self.context.translate('Register', domain='plone', target_language=lang),
-                    'link': portal.absolute_url() + '/@@register',
-                    'external': False
-                }
-            )
+        # if footer_config.enable_register:
+        #     portal = api.portal.get()
+        #     result['links'].append(
+        #         {
+        #             'title': self.context.translate('Register', domain='plone', target_language=lang),
+        #             'link': portal.absolute_url() + '/@@register',
+        #             'external': False
+        #         }
+        #     )
 
         for link in getattr(footer_config, 'table_links_' + lang, []):
             result['links'].append(

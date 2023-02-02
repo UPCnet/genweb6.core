@@ -24,7 +24,7 @@
 
     <li class="custom-links has_subtree nav-item" tal:condition="custom_links/links">
 
-      <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Administració</p>
+      <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Enllaços</p>
       <p tal:content="custom_links/title"></p>
 
       <ul class="navbar-nav-footer-custom-links">

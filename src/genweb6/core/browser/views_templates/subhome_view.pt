@@ -3,7 +3,7 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="genweb.upc">
+      i18n:domain="genweb">
 
 <body class="homepage">
 
@@ -32,7 +32,7 @@
           </div>
           <div class="col-md-9" tal:attributes="class python:have_portlets_slot1 and 'col-md-9' or 'col-md-12'">
             <tal:comment replace="nothing"> Fila 1 </tal:comment>
-            <p tal:replace="structure context/rich_description/output|nothing">Hola que tal</p>
+            <p tal:replace="structure context/rich_description/output|nothing">Text</p>
             <div class="row" tal:condition="have_portlets_slot2">
               <div class="col-md-12">
                 <span tal:replace="structure python:view.renderProviderByName('genweb.portlets.HomePortletManager2')" />
