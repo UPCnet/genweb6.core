@@ -66,7 +66,7 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
     # A parte comprobamos si estamos posicionados en la tab actual
     def customize_entry(self, entry, brain):
         entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
-        entry.update({"current": False})
+        entry.update({"current": entry['path'] in "/".join(self.context.getPhysicalPath())})
 
     def customize_tab(self, entry, tab):
         lang = self.context.language
