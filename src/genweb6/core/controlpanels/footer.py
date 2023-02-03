@@ -14,6 +14,7 @@ from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
+from genweb6.core.widgets import FieldsetFieldWidget
 
 
 themeVocabulary = SimpleVocabulary([
@@ -37,8 +38,6 @@ class ICustomLinks(model.Schema):
 
 class IFooterSettings(model.Schema):
 
-    read_permission(theme='genweb.webmaster')
-    write_permission(theme='genweb.manager')
     theme = schema.Choice(
         title=_(u'Tema'),
         required=True,
@@ -46,35 +45,11 @@ class IFooterSettings(model.Schema):
         default='dark-theme'
     )
 
-    read_permission(signatura_ca='genweb.webmaster')
-    write_permission(signatura_ca='genweb.manager')
-    signatura_ca = schema.TextLine(
-        title=_(u"signatura_ca", default=u"Signatura [CA]"),
-        description=_(u"help_signatura_ca", default=u"És el literal que apareix al peu de pàgina."),
+    directives.widget('fieldset_menu', FieldsetFieldWidget)
+    fieldset_menu = schema.Text(
+        default=_(u'Menú al peu'),
         required=False,
     )
-
-    read_permission(signatura_es='genweb.webmaster')
-    write_permission(signatura_es='genweb.manager')
-    signatura_es = schema.TextLine(
-        title=_(u"signatura_es", default=u"Signatura [ES]"),
-        description=_(u"help_signatura_es", default=u"És el literal que apareix al peu de pàgina."),
-        required=False,
-    )
-
-    read_permission(signatura_en='genweb.webmaster')
-    write_permission(signatura_en='genweb.manager')
-    signatura_en = schema.TextLine(
-        title=_(u"signatura_en", default=u"Signatura [EN]"),
-        description=_(u"help_signatura_en", default=u"És el literal que apareix al peu de pàgina."),
-        required=False,
-    )
-
-    model.fieldset('Links', _(u'Links'),
-                   fields=['enable_links', 'complete_custom_links',
-                           'enable_login', 'enable_register',
-                           'title_links_ca', 'title_links_es', 'title_links_en',
-                           'table_links_ca', 'table_links_es', 'table_links_en'])
 
     enable_links = schema.Bool(
         title=_(u"Mostrar enllaços al peu"),
@@ -90,58 +65,96 @@ class IFooterSettings(model.Schema):
         default=False,
     )
 
-    enable_login = schema.Bool(
-        title=_(u"Mostrar enllaç al login"),
-        description=_(u"Al marcar aquesta opció es mostrarà un enllaç al login en el apartat d'enllaços personalitats."),
+    directives.widget('fieldset_links', FieldsetFieldWidget)
+    fieldset_links = schema.Text(
+        default=_(u'Enllaços al peu'),
         required=False,
-        default=False,
     )
 
-    read_permission(enable_register='genweb.manager')
-    write_permission(enable_register='genweb.manager')
-    enable_register = schema.Bool(
-        title=_(u"Mostrar enllaç al registre"),
-        description=_(u"Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"),
-        required=False,
-        default=False,
-    )
+    # enable_login = schema.Bool(
+    #     title=_(u"Mostrar enllaç al login"),
+    #     description=_(u"Al marcar aquesta opció es mostrarà un enllaç al login en el apartat d'enllaços personalitats."),
+    #     required=False,
+    #     default=False,
+    # )
+
+    # read_permission(enable_register='genweb.manager')
+    # write_permission(enable_register='genweb.manager')
+    # enable_register = schema.Bool(
+    #     title=_(u"Mostrar enllaç al registre"),
+    #     description=_(u"Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"),
+    #     required=False,
+    #     default=False,
+    # )
 
     title_links_ca = schema.TextLine(
-        title=_(u"Títol del apartat de enllaços personalitzats [CA]"),
-        description=_(u"Per defecte: Administració"),
+        title=_(u"Nom de l’apartat [CA]"),
+        description=_(u"Per defecte: Enllaços"),
         required=False,
     )
 
     title_links_es = schema.TextLine(
-        title=_(u"Títol del apartat de enllaços personalitzats [ES]"),
-        description=_(u"Per defecte: Administración"),
+        title=_(u"Nom de l’apartat [ES]"),
+        description=_(u"Per defecte: Enlaces"),
         required=False,
     )
 
     title_links_en = schema.TextLine(
-        title=_(u"Títol del apartat de enllaços personalitzats [EN]"),
-        description=_(u"Per defecte: Administration"),
+        title=_(u"Nom de l’apartat [EN]"),
+        description=_(u"Per defecte: Links"),
         required=False,
     )
 
     directives.widget(table_links_ca=DataGridFieldFactory)
     table_links_ca = schema.List(
-        title=_(u'Enllaços [CA]'),
+        title=_(u'Llista d’enllaços [CA]'),
         value_type=DictRow(schema=ICustomLinks),
         required=False,
     )
 
     directives.widget(table_links_es=DataGridFieldFactory)
     table_links_es = schema.List(
-        title=_(u'Enllaços [ES]'),
+        title=_(u'Llista d’enllaços [ES]'),
         value_type=DictRow(schema=ICustomLinks),
         required=False,
     )
 
     directives.widget(table_links_en=DataGridFieldFactory)
     table_links_en = schema.List(
-        title=_(u'Enllaços [EN]'),
+        title=_(u'Llista d’enllaços [EN]'),
         value_type=DictRow(schema=ICustomLinks),
+        required=False,
+    )
+
+    read_permission(signatura_ca='genweb.manager')
+    write_permission(signatura_ca='genweb.manager')
+    directives.widget('fieldset_signatura', FieldsetFieldWidget)
+    fieldset_signatura = schema.Text(
+        default=_(u'Signatura'),
+        required=False,
+    )
+
+    read_permission(signatura_ca='genweb.manager')
+    write_permission(signatura_ca='genweb.manager')
+    signatura_ca = schema.TextLine(
+        title=_(u"signatura_ca", default=u"Signatura [CA]"),
+        description=_(u"help_signatura_ca", default=u"És el literal que apareix al peu de pàgina."),
+        required=False,
+    )
+
+    read_permission(signatura_es='genweb.manager')
+    write_permission(signatura_es='genweb.manager')
+    signatura_es = schema.TextLine(
+        title=_(u"signatura_es", default=u"Signatura [ES]"),
+        description=_(u"help_signatura_es", default=u"És el literal que apareix al peu de pàgina."),
+        required=False,
+    )
+
+    read_permission(signatura_en='genweb.manager')
+    write_permission(signatura_en='genweb.manager')
+    signatura_en = schema.TextLine(
+        title=_(u"signatura_en", default=u"Signatura [EN]"),
+        description=_(u"help_signatura_en", default=u"És el literal que apareix al peu de pàgina."),
         required=False,
     )
 

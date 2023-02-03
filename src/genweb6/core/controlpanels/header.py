@@ -30,16 +30,20 @@ mainHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),
     SimpleTerm(value="image-hero", title=_(u'Conservadora')),
     SimpleTerm(value="pretty-image-hero", title=_(u'Innovadora')),
-    SimpleTerm(value="full-pretty-image-hero", title=_(u'Innovadora a pantalla sencera')),
-    SimpleTerm(value="nothing-hero", title=_(u'Sense'))])
+    SimpleTerm(value="full-pretty-image-hero", title=_(u'Innovadora a pantalla sencera'))])
 
 contentHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),
-    SimpleTerm(value="image-hero", title=_(u'Conservadora')),
-    SimpleTerm(value="nothing-hero", title=_(u'Sense'))])
+    SimpleTerm(value="image-hero", title=_(u'Conservadora'))])
 
 
 class IHeaderSettings(model.Schema):
+
+    model.fieldset('Configuracions', _(u'Configuracions'),
+                   fields=['theme', 'main_hero_style', 'content_hero_style',
+                           'html_title_ca', 'html_title_es', 'html_title_en',
+                           'html_description_ca', 'html_description_es', 'html_description_en',
+                           'hero_image', 'full_hero_image', 'hero_image_alt'])
 
     read_permission(theme='genweb.webmaster')
     write_permission(theme='genweb.manager')
@@ -124,21 +128,12 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_alt='genweb.webmaster')
-    write_permission(logo_alt='genweb.manager')
     hero_image_alt = schema.TextLine(
         title=_(u"hero_image_alt",
                 default=u"Text alternatiu del hero image"),
         description=_(u"help_hero_image_alt",
                       default=u"Afegiu el text alternatiu (alt) del hero image."),
         required=False,
-    )
-
-    meta_author = schema.TextLine(
-        title=_(u'Meta author tag content'),
-        description=_(u'Contingut de la etiqueta meta \"author\"'),
-        required=False,
-        default=u'UPC. Universitat Politècnica de Catalunya'
     )
 
     model.fieldset('Logo', _(u'Logo'),
@@ -149,19 +144,23 @@ class IHeaderSettings(model.Schema):
                            'logo_url', 'secundary_logo_url',
                            'logo_external_url', 'secundary_logo_external_url'])
 
+    read_permission(fieldset_logo='genweb.manager')
+    write_permission(fieldset_logo='genweb.manager')
     directives.widget('fieldset_logo', FieldsetFieldWidget)
     fieldset_logo = schema.Text(
         default=_(u'Logo principal'),
         required=False,
     )
 
+    read_permission(fieldset_secundary_logo='genweb.manager')
+    write_permission(fieldset_secundary_logo='genweb.manager')
     directives.widget('fieldset_secundary_logo', FieldsetFieldWidget)
     fieldset_secundary_logo = schema.Text(
         default=_(u'Logo secundari'),
         required=False,
     )
 
-    read_permission(logo='genweb.webmaster')
+    read_permission(logo='genweb.manager')
     write_permission(logo='genweb.manager')
     directives.widget('logo', NamedImageFieldWidget)
     logo = schema.Bytes(
@@ -170,7 +169,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo='genweb.webmaster')
+    read_permission(secundary_logo='genweb.manager')
     write_permission(secundary_logo='genweb.manager')
     directives.widget('secundary_logo', NamedImageFieldWidget)
     secundary_logo = schema.Bytes(
@@ -179,7 +178,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_responsive='genweb.webmaster')
+    read_permission(logo_responsive='genweb.manager')
     write_permission(logo_responsive='genweb.manager')
     directives.widget('logo_responsive', NamedImageFieldWidget)
     logo_responsive = schema.Bytes(
@@ -188,7 +187,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo_responsive='genweb.webmaster')
+    read_permission(secundary_logo_responsive='genweb.manager')
     write_permission(secundary_logo_responsive='genweb.manager')
     directives.widget('secundary_logo_responsive', NamedImageFieldWidget)
     secundary_logo_responsive = schema.Bytes(
@@ -197,7 +196,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_alt='genweb.webmaster')
+    read_permission(logo_alt='genweb.manager')
     write_permission(logo_alt='genweb.manager')
     logo_alt = schema.TextLine(
         title=_(u"logo_alt",
@@ -207,7 +206,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo_alt='genweb.webmaster')
+    read_permission(secundary_logo_alt='genweb.manager')
     write_permission(secundary_logo_alt='genweb.manager')
     secundary_logo_alt = schema.TextLine(
         title=_(u"logo_alt",
@@ -217,7 +216,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_url='genweb.webmaster')
+    read_permission(logo_url='genweb.manager')
     write_permission(logo_url='genweb.manager')
     logo_url = schema.TextLine(
         title=_(u"logo_url",
@@ -227,7 +226,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo_url='genweb.webmaster')
+    read_permission(secundary_logo_url='genweb.manager')
     write_permission(secundary_logo_url='genweb.manager')
     secundary_logo_url = schema.TextLine(
         title=_(u"logo_url",
@@ -237,7 +236,7 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(logo_external_url='genweb.webmaster')
+    read_permission(logo_external_url='genweb.manager')
     write_permission(logo_external_url='genweb.manager')
     logo_external_url = schema.Bool(
         title=_(u"logo_external_url",
@@ -255,6 +254,8 @@ class IHeaderSettings(model.Schema):
                    fields=['treu_menu_horitzontal', 'amaga_identificacio',
                            'idiomes_publicats', 'languages_link_to_root'])
 
+    read_permission(treu_menu_horitzontal='genweb.manager')
+    write_permission(treu_menu_horitzontal='genweb.manager')
     treu_menu_horitzontal = schema.Bool(
         title=_(u"treu_menu_horitzontal",
                 default="Treu el menú horitzontal"),
@@ -264,6 +265,8 @@ class IHeaderSettings(model.Schema):
         default=False,
     )
 
+    read_permission(amaga_identificacio='genweb.manager')
+    write_permission(amaga_identificacio='genweb.manager')
     amaga_identificacio = schema.Bool(
         title=_(u"amaga_identificacio", default="Amaga de les eines l'enllaç d'identificació"),
         description=_(u"help_amaga_identificacio", default=u"Amaga de les eines l'enllaç d'identificació ..."),
@@ -271,6 +274,8 @@ class IHeaderSettings(model.Schema):
         default=False,
     )
 
+    read_permission(idiomes_publicats='genweb.manager')
+    write_permission(idiomes_publicats='genweb.manager')
     idiomes_publicats = schema.List(
         title=_(u"idiomes_publicats",
                 default=u"Idiomes publicats al web"),
@@ -281,6 +286,8 @@ class IHeaderSettings(model.Schema):
         default=['ca']
     )
 
+    read_permission(languages_link_to_root='genweb.manager')
+    write_permission(languages_link_to_root='genweb.manager')
     languages_link_to_root = schema.Bool(
         title=_(u"languages_link_to_root",
                 default=u"languages_link_to_root"),

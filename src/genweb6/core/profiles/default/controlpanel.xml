@@ -15,23 +15,10 @@
     </configlet>
 
     <configlet
-        title="Cookies"
-        action_id="genweb6.core.cookies"
-        appId="genweb6.core.cookies"
-        category="genweb-advanced"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@cookies-controlpanel"
-        icon_expr="string:gear"
-        visible="True">
-
-        <permission>Genweb: Webmaster Users</permission>
-    </configlet>
-
-    <configlet
         title="Cintillo"
         action_id="genweb6.core.cintillo"
         appId="genweb6.core.cintillo"
-        category="genweb-design"
+        category="genweb-configuration"
         condition_expr=""
         url_expr="string:${portal_url}/@@cintillo-controlpanel"
         icon_expr="string:exclamation-diamond"
@@ -44,7 +31,7 @@
         title="Header"
         action_id="genweb6.core.header"
         appId="genweb6.core.header"
-        category="genweb-design"
+        category="genweb-configuration"
         condition_expr=""
         url_expr="string:${portal_url}/@@header-controlpanel"
         icon_expr="string:border-top"
@@ -57,7 +44,7 @@
         title="Footer"
         action_id="genweb6.core.footer"
         appId="genweb6.core.footer"
-        category="genweb-design"
+        category="genweb-configuration"
         condition_expr=""
         url_expr="string:${portal_url}/@@footer-controlpanel"
         icon_expr="string:border-bottom"
@@ -84,7 +71,7 @@
         title="Resources"
         action_id="genweb6.core.resources"
         appId="genweb6.core.resources"
-        category="genweb-design"
+        category="genweb-configuration"
         condition_expr=""
         url_expr="string:${portal_url}/@@resources-controlpanel"
         icon_expr="string:file"

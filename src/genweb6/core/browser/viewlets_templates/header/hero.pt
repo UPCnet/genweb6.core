@@ -6,7 +6,6 @@
     <div id="hero"
          tal:attributes="class style;
                          style string:--bg-img-url: url(${heroImage/src})"
-         tal:condition="python:'nothing-hero' not in style"
          tal:define="is_new_style python:'pretty-image-hero' in style">
 
         <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"

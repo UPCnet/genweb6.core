@@ -140,14 +140,6 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
         default_class = 'd-flex align-items-center ' + \
                         getattr(header_config, 'theme', 'light-to-dark-theme')
 
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
-            hero = getattr(header_config, 'main_hero_style', 'image-hero')
-        else:
-            hero = getattr(header_config, 'content_hero_style', 'image-hero')
-
-        if hero == 'nothing-hero':
-            default_class += ' bshadow'
-
         return default_class
 
     def getLogosHeader(self):

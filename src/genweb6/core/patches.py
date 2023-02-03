@@ -805,7 +805,7 @@ gw_group = dict(
         ('plone-advanced', _CMFPlone('Advanced')),
         ('Plone', _CMFPlone('Plone Configuration')),
         ('Products', _CMFPlone('Add-on Configuration')),
-        ('genweb-design', _('Genweb Design')),  # Añadido
+        ('genweb-configuration', _('Genweb Configuration')),  # Añadido
         ('genweb-advanced', _('Genweb Advanced')),  # Añadido
         ('genweb-connection', _('Connections')),  # Añadido
     ]

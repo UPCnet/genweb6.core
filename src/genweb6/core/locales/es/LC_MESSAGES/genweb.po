@@ -118,35 +118,27 @@ msgstr "Dirección web del canal donde se encuentra el vídeo"
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
-#: ../controlpanels/header.py:97
+#: ../controlpanels/header.py:104
 msgid "Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."
-msgstr ""
+msgstr "Añada el reclamo del Genweb. Puede incluir tags HTML. Sólo será visible en los tipos de cabecera Half Hero y Full Hero."
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
 msgstr ""
 
-#: ../controlpanels/footer.py:81
+#: ../controlpanels/footer.py:56
 msgid "Al marcar aquesta opció es mostrarà els enllaços als continguts i els enllaços personalitzats"
-msgstr ""
+msgstr "Al marcar esta opción se mostrará el primer y segundo nivel del menú y los enlaces personalizados"
 
-#: ../controlpanels/footer.py:88
+#: ../controlpanels/footer.py:63
 msgid "Al marcar aquesta opció es mostrarà la pàgina de enllaços personalitzats al peu, la pàgina ha d'estar publicada."
-msgstr ""
-
-#: ../controlpanels/footer.py:95
-msgid "Al marcar aquesta opció es mostrarà un enllaç al login en el apartat d'enllaços personalitats."
-msgstr ""
-
-#: ../controlpanels/footer.py:104
-msgid "Al marcar aquesta opció es mostrarà un enllaç al registre, només funcionarà si esta activat a part el autoregistre en la web"
 msgstr ""
 
 #: ../browser/views_templates/download_files.pt:27
 msgid "All"
 msgstr ""
 
-#: ../controlpanels/header.py:254
+#: ../controlpanels/header.py:263
 msgid "Altres"
 msgstr ""
 
@@ -182,7 +174,7 @@ msgstr "Indica si se muestra la fecha en las noticias"
 
 #: ../cas/controlpanel.py:112
 #: ../controlpanels/cintillo.py:114
-#: ../controlpanels/footer.py:172
+#: ../controlpanels/footer.py:185
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -209,13 +201,13 @@ msgstr ""
 
 #: ../cas/controlpanel.py:114
 #: ../controlpanels/cintillo.py:116
-#: ../controlpanels/footer.py:174
+#: ../controlpanels/footer.py:187
 msgid "Changes canceled."
 msgstr ""
 
 #: ../cas/controlpanel.py:109
 #: ../controlpanels/cintillo.py:111
-#: ../controlpanels/footer.py:169
+#: ../controlpanels/footer.py:182
 msgid "Changes saved"
 msgstr "Cambios guardados"
 
@@ -227,7 +219,7 @@ msgstr "Escoger como se mostrará el portlet"
 msgid "Cintillo Settings"
 msgstr ""
 
-#: ../controlpanels/footer.py:20
+#: ../controlpanels/footer.py:21
 #: ../controlpanels/header.py:25
 msgid "Clar"
 msgstr ""
@@ -252,13 +244,17 @@ msgstr ""
 msgid "Complex"
 msgstr ""
 
+#: ../controlpanels/header.py:44
+msgid "Configuracions"
+msgstr "Configuraciones"
+
 #: ../patches.py:810
 msgid "Connections"
 msgstr ""
 
 #: ../controlpanels/header.py:31
 msgid "Conservadora"
-msgstr ""
+msgstr "Estándar"
 
 #: ../browser/viewlets_templates/footer/footer.pt:18
 msgid "Contacte amb nosaltres"
@@ -268,7 +264,7 @@ msgstr "Contacta con nosotros"
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-#: ../controlpanels/header.py:139
+#: ../controlpanels/header.py:144
 msgid "Contingut de la etiqueta meta \"author\""
 msgstr ""
 
@@ -288,25 +284,25 @@ msgstr ""
 msgid "Copiat!"
 msgstr ""
 
-#: ../controlpanels/footer.py:87
+#: ../controlpanels/footer.py:62
 msgid "Costumizar completament els enllaços"
-msgstr ""
+msgstr "Mostrar un menú alternativo"
 
 #: ../tiles/configure.zcml:58
 msgid "Custom Video"
 msgstr "Video personalizado"
 
-#: ../controlpanels/header.py:96
+#: ../controlpanels/header.py:103
 msgid "Descripció del web amb HTML tags (negretes) [CA]"
-msgstr ""
+msgstr "Reclamo de la web con HTML tags (negritas) [CA]"
 
-#: ../controlpanels/header.py:108
+#: ../controlpanels/header.py:115
 msgid "Descripció del web amb HTML tags (negretes) [EN]"
-msgstr ""
+msgstr "Reclamo de la web con HTML tags (negritas) [EN]"
 
-#: ../controlpanels/header.py:102
+#: ../controlpanels/header.py:109
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
-msgstr ""
+msgstr "Reclamo de la web con HTML tags (negritas) [ES]"
 
 #: ../tiles/configure.zcml:29
 msgid "Destacats Home"
@@ -415,17 +411,9 @@ msgstr "Enlace interno para abrir en la misma ventana"
 msgid "Enllaç per les tiles de 4 i 5 Destacats"
 msgstr "Enlace para las tiles de 2, 3, 4 y 5 destacados"
 
-#: ../controlpanels/footer.py:129
-msgid "Enllaços [CA]"
-msgstr ""
-
-#: ../controlpanels/footer.py:143
-msgid "Enllaços [EN]"
-msgstr ""
-
-#: ../controlpanels/footer.py:136
-msgid "Enllaços [ES]"
-msgstr ""
+#: ../controlpanels/footer.py:70
+msgid "Enllaços al peu"
+msgstr "Enlaces al pie"
 
 #: ../browser/macros/login.pt:58
 #: ../cas/login_preview.pt:9
@@ -484,7 +472,7 @@ msgstr "Fondo claro"
 msgid "Fons obscur"
 msgstr "Fondo oscuro"
 
-#: ../controlpanels/footer.py:152
+#: ../controlpanels/footer.py:165
 msgid "Footer Settings"
 msgstr ""
 
@@ -492,7 +480,7 @@ msgstr ""
 msgid "Formulari Existent"
 msgstr "Formulario Existente"
 
-#: ../controlpanels/footer.py:21
+#: ../controlpanels/footer.py:22
 msgid "Fosc"
 msgstr ""
 
@@ -530,8 +518,8 @@ msgid "Genweb Advanced"
 msgstr ""
 
 #: ../patches.py:808
-msgid "Genweb Design"
-msgstr ""
+msgid "Genweb Configuration"
+msgstr "Configuración Genweb"
 
 #: ../portlets/banners/banners.py:53
 msgid "Genweb banners"
@@ -553,7 +541,7 @@ msgstr ""
 msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 msgstr ""
 
-#: ../controlpanels/header.py:297
+#: ../controlpanels/header.py:314
 msgid "Header Settings"
 msgstr ""
 
@@ -607,17 +595,17 @@ msgstr "Seleccionar aleatoriamente los elementos"
 msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 msgstr "Excluir elemento actual"
 
-#: ../controlpanels/footer.py:22
+#: ../controlpanels/footer.py:23
 msgid "Imatge capçalera"
-msgstr ""
-
-#: ../controlpanels/header.py:115
-msgid "Imatge principal conservadora"
-msgstr ""
+msgstr "Imagen de cabecera"
 
 #: ../controlpanels/header.py:122
+msgid "Imatge principal conservadora"
+msgstr "Imagen estándar"
+
+#: ../controlpanels/header.py:129
 msgid "Imatge principal innovadora"
-msgstr ""
+msgstr "Imagen hero"
 
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:64
 msgid "Info"
@@ -625,7 +613,7 @@ msgstr "Info"
 
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
-msgstr ""
+msgstr "Inicio"
 
 #: ../content/interactive_template/interactive_template.py:124
 msgid "Iniciar automàticament (No recomenable segons la accesibilitat web)"
@@ -633,11 +621,11 @@ msgstr ""
 
 #: ../controlpanels/header.py:32
 msgid "Innovadora"
-msgstr ""
+msgstr "Half Hero"
 
 #: ../controlpanels/header.py:33
 msgid "Innovadora a pantalla sencera"
-msgstr ""
+msgstr "Full Hero"
 
 #: ../configure.zcml:48
 msgid "Installs the genweb6.core add-on."
@@ -679,35 +667,43 @@ msgstr ""
 msgid "Limit"
 msgstr "Límite"
 
-#: ../controlpanels/footer.py:33
+#: ../controlpanels/footer.py:34
 msgid "Link"
-msgstr ""
-
-#: ../controlpanels/footer.py:73
-msgid "Links"
 msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:39
 msgid "List view"
 msgstr "Vista lista"
 
+#: ../controlpanels/footer.py:110
+msgid "Llista d’enllaços [CA]"
+msgstr "Listado de enlaces [CA]"
+
+#: ../controlpanels/footer.py:124
+msgid "Llista d’enllaços [EN]"
+msgstr "Listado de enlaces [EN]"
+
+#: ../controlpanels/footer.py:117
+msgid "Llista d’enllaços [ES]"
+msgstr "Listado de enlaces [ES]"
+
 #: ../controlpanels/login.py:24
 msgid "Login Settings"
 msgstr ""
 
-#: ../controlpanels/header.py:144
+#: ../controlpanels/header.py:149
 msgid "Logo"
 msgstr ""
 
-#: ../controlpanels/header.py:186
+#: ../controlpanels/header.py:195
 msgid "Logo petit"
 msgstr ""
 
-#: ../controlpanels/header.py:154
+#: ../controlpanels/header.py:161
 msgid "Logo principal"
 msgstr ""
 
-#: ../controlpanels/header.py:160
+#: ../controlpanels/header.py:169
 msgid "Logo secundari"
 msgstr ""
 
@@ -732,9 +728,6 @@ msgstr "Mostrar el título del portlet"
 msgid "Maxim numero de esdeveniments a mostrar (d'1 a 16)"
 msgstr "Máximo número de eventos a mostrar (de 1 a 16)"
 
-######################
-# Portlet Full News #
-######################
 #: ../portlets/news/news.py:23
 msgid "Maxim numero de noticies a mostrar (5 o 7)"
 msgstr "Máximo número de noticias a mostrar (5 ó 7)"
@@ -743,7 +736,11 @@ msgstr "Máximo número de noticias a mostrar (5 ó 7)"
 msgid "Maxim numero de noticies a mostrar (d'1 a 14)"
 msgstr "Número máximo de noticias a mostrar (1-14)"
 
-#: ../controlpanels/header.py:138
+#: ../controlpanels/footer.py:50
+msgid "Menú al peu"
+msgstr "Menú en el pie"
+
+#: ../controlpanels/header.py:143
 msgid "Meta author tag content"
 msgstr ""
 
@@ -773,17 +770,9 @@ msgstr ""
 msgid "Mostrar descripció"
 msgstr ""
 
-#: ../controlpanels/footer.py:94
-msgid "Mostrar enllaç al login"
-msgstr ""
-
-#: ../controlpanels/footer.py:103
-msgid "Mostrar enllaç al registre"
-msgstr ""
-
-#: ../controlpanels/footer.py:80
+#: ../controlpanels/footer.py:55
 msgid "Mostrar enllaços al peu"
-msgstr ""
+msgstr "Mostrar el menú del sitio web"
 
 #: ../content/interactive_template/interactive_template.py:112
 msgid "Mostrar títol"
@@ -802,9 +791,21 @@ msgstr "Cuenta twitter"
 msgid "News"
 msgstr "Noticias"
 
+#: ../controlpanels/footer.py:91
+msgid "Nom de l’apartat [CA]"
+msgstr "Nombre del apartado [CA]"
+
+#: ../controlpanels/footer.py:103
+msgid "Nom de l’apartat [EN]"
+msgstr "Nombre del apartado [EN]"
+
+#: ../controlpanels/footer.py:97
+msgid "Nom de l’apartat [ES]"
+msgstr "Nombre del apartado [ES]"
+
 #: ../controlpanels/header.py:30
 msgid "Només text"
-msgstr ""
+msgstr "Sólo título"
 
 #: ../portlets/fullnews/fullnews.py:24
 #: ../portlets/multiviewcollection/multiviewcollection.py:42
@@ -859,17 +860,17 @@ msgstr "Omitir el contorno del portlet"
 msgid "Optional open link in a new window"
 msgstr ""
 
-#: ../controlpanels/footer.py:111
-msgid "Per defecte: Administració"
-msgstr ""
+#: ../controlpanels/footer.py:98
+msgid "Per defecte: Enlaces"
+msgstr "Por defecto: Enlaces"
 
-#: ../controlpanels/footer.py:117
-msgid "Per defecte: Administración"
-msgstr ""
+#: ../controlpanels/footer.py:92
+msgid "Per defecte: Enllaços"
+msgstr "Por defecto: Enllaços"
 
-#: ../controlpanels/footer.py:123
-msgid "Per defecte: Administration"
-msgstr ""
+#: ../controlpanels/footer.py:104
+msgid "Per defecte: Links"
+msgstr "Por defecto: Links"
 
 #: ../controlpanels/cintillo.py:52
 msgid "Permet introduir el text que es veurà a l'avís"
@@ -884,7 +885,7 @@ msgid "Picture"
 msgstr "Imagen"
 
 #: ../content/banner/banner.py:19
-#: ../controlpanels/header.py:169
+#: ../controlpanels/header.py:178
 msgid "Please upload an image"
 msgstr "Por favor, suba una imagen"
 
@@ -915,11 +916,11 @@ msgstr ""
 
 #: ../controlpanels/resources.py:88
 msgid "Resources Settings"
-msgstr ""
+msgstr "Estilos propios"
 
 #: ../cas/controlpanel.py:96
 #: ../controlpanels/cintillo.py:102
-#: ../controlpanels/footer.py:160
+#: ../controlpanels/footer.py:173
 msgid "Save"
 msgstr "Guardar"
 
@@ -954,6 +955,10 @@ msgstr ""
 #: ../behaviors/icon.py:20
 msgid "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
 msgstr ""
+
+#: ../controlpanels/footer.py:133
+msgid "Signatura"
+msgstr "Signatura"
 
 #: ../content/interactive_template/interactive_template.py:61
 msgid "Simple"
@@ -996,10 +1001,10 @@ msgstr "Colección"
 msgid "Tells if an object is marked as important"
 msgstr "Marcar importante"
 
-#: ../controlpanels/footer.py:43
-#: ../controlpanels/header.py:47
+#: ../controlpanels/footer.py:42
+#: ../controlpanels/header.py:54
 msgid "Tema"
-msgstr ""
+msgstr "Color"
 
 #: ../content/interactive_template/interactive_template.py:129
 msgid "Temps en cambiar al següent element automàticament en segons (5 - 30)"
@@ -1074,13 +1079,13 @@ msgstr "Muestra el widget twitter"
 msgid "Tipus de carousel"
 msgstr ""
 
-#: ../controlpanels/header.py:56
+#: ../controlpanels/header.py:63
 msgid "Tipus de hero de la pàgina principal"
-msgstr ""
+msgstr "Tipo de hero de la página principal"
 
-#: ../controlpanels/header.py:65
+#: ../controlpanels/header.py:72
 msgid "Tipus de hero dintre dels continguts"
-msgstr ""
+msgstr "Tipo de hero dentro de los contenidos"
 
 #: ../content/interactive_template/interactive_template.py:68
 msgid "Tipus de plantilla"
@@ -1090,7 +1095,7 @@ msgstr ""
 msgid "Tipus de vista"
 msgstr "Tipo de vista"
 
-#: ../controlpanels/footer.py:28
+#: ../controlpanels/footer.py:29
 #: ../tiles/destacats/destacats.py:34
 #: ../tiles/video/video.py:55
 msgid "Title"
@@ -1117,18 +1122,6 @@ msgstr "Cuenta Twitter"
 #: ../portlets/news_events_listing/news_events_listing.py:27
 msgid "Type"
 msgstr "Tipo"
-
-#: ../controlpanels/footer.py:110
-msgid "Títol del apartat de enllaços personalitzats [CA]"
-msgstr ""
-
-#: ../controlpanels/footer.py:122
-msgid "Títol del apartat de enllaços personalitzats [EN]"
-msgstr ""
-
-#: ../controlpanels/footer.py:116
-msgid "Títol del apartat de enllaços personalitzats [ES]"
-msgstr ""
 
 #: ../controlpanels/cintillo.py:46
 msgid "Títol del l'avís"
@@ -1229,7 +1222,7 @@ msgid "all_news"
 msgstr "Todas las notícias"
 
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:268
+#: ../controlpanels/header.py:281
 msgid "amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación"
 
@@ -1342,7 +1335,6 @@ msgstr "aquí para recuperarla."
 #. "genweb-si_heu_oblidat_la_contrasenya"
 #. Default: "If you have forgotten your password,"
 #: ../browser/macros/login.pt:21
-#, fuzzy
 msgid "genweb-si_heu_oblidat_la_contrasenya"
 msgstr "Si ha olvidado la contraseña, clique"
 
@@ -1380,7 +1372,7 @@ msgstr ""
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:269
+#: ../controlpanels/header.py:282
 msgid "help_amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación ..."
 
@@ -1402,32 +1394,32 @@ msgid "help_existing_content"
 msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del hero image."
-#: ../controlpanels/header.py:132
+#: ../controlpanels/header.py:137
 msgid "help_hero_image_alt"
 msgstr ""
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:74
+#: ../controlpanels/header.py:81
 msgid "help_html_title_ca"
 msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML."
-#: ../controlpanels/header.py:90
+#: ../controlpanels/header.py:97
 msgid "help_html_title_en"
 msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:82
+#: ../controlpanels/header.py:89
 msgid "help_html_title_es"
 msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
 
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:277
+#: ../controlpanels/header.py:292
 msgid "help_idiomes_publicats"
 msgstr "Estos serán los idiomas publicados en la web, los idiomas no espeficiados no serán públicos pero serán visibles para los gestores (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:287
+#: ../controlpanels/header.py:304
 msgid "help_languages_link_to_root"
 msgstr "Esta opción seleccionada hace que el desplegable de idiomas siempre redireccione a la raíz del sitio web."
 
@@ -1436,12 +1428,12 @@ msgid "help_login_text_btn"
 msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:205
+#: ../controlpanels/header.py:214
 msgid "help_logo_alt"
 msgstr ""
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:225
+#: ../controlpanels/header.py:234
 msgid "help_logo_url"
 msgstr ""
 
@@ -1450,20 +1442,17 @@ msgid "help_open_link_in_new_window"
 msgstr "Abrir en pestaña nueva"
 
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:53
-#, fuzzy
+#: ../controlpanels/footer.py:141
 msgid "help_signatura_ca"
 msgstr "Es el literal que aparece al pie de la página."
 
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:69
-#, fuzzy
+#: ../controlpanels/footer.py:157
 msgid "help_signatura_en"
 msgstr "Es el literal que aparece al pie de la página."
 
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:61
-#, fuzzy
+#: ../controlpanels/footer.py:149
 msgid "help_signatura_es"
 msgstr "Es el literal que aparece al pie de la página."
 
@@ -1480,12 +1469,12 @@ msgid "help_static_content_url_ca"
 msgstr "La URL completa de la página desde dónde queremos visualizar el contenido."
 
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:261
+#: ../controlpanels/header.py:272
 msgid "help_treu_menu_horitzontal"
 msgstr "Oculta el menú horizontal ..."
 
 #. Default: "Text alternatiu del hero image"
-#: ../controlpanels/header.py:130
+#: ../controlpanels/header.py:135
 msgid "hero_image_alt"
 msgstr ""
 
@@ -1514,22 +1503,22 @@ msgid "homeportlets_title_f3"
 msgstr "3a Fila"
 
 #. Default: "Títol del web amb HTML tags (negretes) [CA]"
-#: ../controlpanels/header.py:72
+#: ../controlpanels/header.py:79
 msgid "html_title_ca"
 msgstr "Título de la web con HTML tags (negritas) [CA]"
 
 #. Default: "Títol del web amb HTML tags (negretes) [EN]"
-#: ../controlpanels/header.py:88
+#: ../controlpanels/header.py:95
 msgid "html_title_en"
 msgstr "Título de la web con HTML tags (negritas) [EN]"
 
 #. Default: "Títol del web amb HTML tags (negretes) [ES]"
-#: ../controlpanels/header.py:80
+#: ../controlpanels/header.py:87
 msgid "html_title_es"
 msgstr "Título de la web con HTML tags (negritas) [ES]"
 
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:275
+#: ../controlpanels/header.py:290
 msgid "idiomes_publicats"
 msgstr "Idiomas publicados en la web"
 
@@ -1575,7 +1564,7 @@ msgid "label_start_session"
 msgstr "Iniciar sesión"
 
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:285
+#: ../controlpanels/header.py:302
 msgid "languages_link_to_root"
 msgstr "Redireccionar a la raíz del sitio web al clicar sobre los idiomas del portal"
 
@@ -1584,17 +1573,17 @@ msgid "login_text_btn"
 msgstr ""
 
 #. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:203
+#: ../controlpanels/header.py:212
 msgid "logo_alt"
 msgstr ""
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:243
+#: ../controlpanels/header.py:252
 msgid "logo_external_url"
 msgstr ""
 
 #. Default: "URL del logo"
-#: ../controlpanels/header.py:223
+#: ../controlpanels/header.py:232
 msgid "logo_url"
 msgstr ""
 
@@ -1616,7 +1605,6 @@ msgstr "Administrar portlets"
 #. "manage_subhomeportlets_link"
 #. Default: "Administra la graella de portlets"
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_subhome.pt:9
-#, fuzzy
 msgid "manage_subhomeportlets_link"
 msgstr "Administra el tablero de portlets"
 
@@ -1659,7 +1647,6 @@ msgstr "Semana"
 
 #. Default: "Més notícies"
 #: ../portlets/news/news.pt:44
-#, fuzzy
 msgid "more_news_link"
 msgstr "Más noticias"
 
@@ -1705,20 +1692,17 @@ msgid "return_to_view"
 msgstr "Regresa"
 
 #. Default: "Signatura [CA]"
-#: ../controlpanels/footer.py:52
-#, fuzzy
+#: ../controlpanels/footer.py:140
 msgid "signatura_ca"
 msgstr "Firma [CA]"
 
 #. Default: "Signatura [EN]"
-#: ../controlpanels/footer.py:68
-#, fuzzy
+#: ../controlpanels/footer.py:156
 msgid "signatura_en"
 msgstr "Firma [EN]"
 
 #. Default: "Signatura [ES]"
-#: ../controlpanels/footer.py:60
-#, fuzzy
+#: ../controlpanels/footer.py:148
 msgid "signatura_es"
 msgstr "Firma [ES]"
 
@@ -1753,7 +1737,7 @@ msgid "todays_upcoming_events"
 msgstr ""
 
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:259
+#: ../controlpanels/header.py:270
 msgid "treu_menu_horitzontal"
 msgstr "Oculta el menú horizontal"
 
@@ -1765,10 +1749,10 @@ msgstr "url"
 msgid "Àngles"
 msgstr ""
 
-#: ../controlpanels/header.py:116
+#: ../controlpanels/header.py:123
 msgid "És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
 msgstr ""
 
-#: ../controlpanels/header.py:123
+#: ../controlpanels/header.py:130
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 650px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr ""
