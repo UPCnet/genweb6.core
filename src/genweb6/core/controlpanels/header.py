@@ -244,6 +244,8 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
+    read_permission(secundary_logo_external_url='genweb.manager')
+    write_permission(secundary_logo_external_url='genweb.manager')
     secundary_logo_external_url = schema.Bool(
         title=_(u"logo_external_url",
                 default=u"Es una URL externa?"),
