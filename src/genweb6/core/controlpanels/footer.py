@@ -126,8 +126,8 @@ class IFooterSettings(model.Schema):
         required=False,
     )
 
-    read_permission(signatura_ca='genweb.manager')
-    write_permission(signatura_ca='genweb.manager')
+    read_permission(fieldset_signatura='genweb.manager')
+    write_permission(fieldset_signatura='genweb.manager')
     directives.widget('fieldset_signatura', FieldsetFieldWidget)
     fieldset_signatura = schema.Text(
         default=_(u'Signatura'),
