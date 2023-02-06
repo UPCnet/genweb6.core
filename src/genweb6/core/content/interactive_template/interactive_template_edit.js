@@ -46,6 +46,11 @@ function showElementsType() {
     var value = $('select#form-widgets-type_template').val();
 
     switch(value) {
+      case '--NOVALUE--':
+        showHideAccordion(false);
+        showHideCarousel(false);
+        showHideSlide(false);
+        showHideModal(false);
       case 'accordion':
         showHideAccordion(true);
         showHideCarousel(false);

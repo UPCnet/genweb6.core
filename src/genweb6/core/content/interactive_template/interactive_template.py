@@ -10,6 +10,7 @@ from z3c.form.browser.widget import addFieldClass
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
 from z3c.form.interfaces import ITextWidget
+from z3c.form.interfaces import NOVALUE
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
@@ -46,6 +47,7 @@ def InteractiveTemplateContentJSFieldWidget(field, request):
 
 
 typeTemplateVocabulary = SimpleVocabulary([
+    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="accordion", title=_(u'Acordió')),
     SimpleTerm(value="nav", title=_(u'Pestanyes')),
     SimpleTerm(value="carousel", title=_(u'Carousel')),
@@ -54,16 +56,19 @@ typeTemplateVocabulary = SimpleVocabulary([
 
 
 contentVocabulary = SimpleVocabulary([
+    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="inside", title=_(u'Continguts de dintre d\'aquest directori')),
     SimpleTerm(value="collection", title=_(u'Col·lecció'))])
 
 
 carouselTypeVocabulary = SimpleVocabulary([
+    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="simple", title=_(u'Simple')),
     SimpleTerm(value="complex", title=_(u'Complex'))])
 
 
 modalTypeBtnVocabulary = SimpleVocabulary([
+    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="primary", title='Primary'),
     SimpleTerm(value="secondary", title='Secondary'),
     SimpleTerm(value="success", title='Success'),
@@ -88,7 +93,6 @@ class IInteractiveTemplate(model.Schema):
         title=_(u'Tipus de plantilla'),
         required=True,
         vocabulary=typeTemplateVocabulary,
-        default='accordion'
     )
 
     content = schema.Choice(
@@ -96,7 +100,6 @@ class IInteractiveTemplate(model.Schema):
         description=_(u'Podeu afegir continguts en aquest directori des del següent <a target="_blank" href="folder_contents">enllaç</a>'),
         required=True,
         vocabulary=contentVocabulary,
-        default='inside'
     )
 
     directives.widget(
@@ -125,7 +128,6 @@ class IInteractiveTemplate(model.Schema):
         title=_(u'Tipus de carousel'),
         required=True,
         vocabulary=carouselTypeVocabulary,
-        default='simple'
     )
 
     carousel_show_title = schema.Bool(
@@ -171,7 +173,6 @@ class IInteractiveTemplate(model.Schema):
         title=_(u'Tipus de botó'),
         required=True,
         vocabulary=modalTypeBtnVocabulary,
-        default='primary'
     )
 
     show_copy = schema.Bool(
