@@ -37,9 +37,9 @@
           </div>
 
           <h3 i18n:translate="label_tags">Tags</h3>
-          <div class="searchbytagcontainer">
+          <div class="searchbytagcontainer" id="tags_list">
             <p tal:repeat="tag view/getTags">
-              <input type="checkbox" name="tag" tal:attributes="value tag;"  />
+              <input type="checkbox" name="tag" aria-labelledby="tags_list" tal:attributes="value tag;"  />
               <span tal:content="tag"></span>
             </p>
           </div>
