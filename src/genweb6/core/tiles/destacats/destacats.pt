@@ -27,7 +27,8 @@
           class="gw-tile hero hero-posicio-cercle-dreta hero-color-negre content-highlighted">
 
           <img tal:condition="item/imatge|nothing"
-               tal:attributes="src string:${item/url}/@@images/image" />
+               tal:attributes="src string:${item/url}/@@images/image;
+                               alt item/title" />
 
           <article class='container'>
 

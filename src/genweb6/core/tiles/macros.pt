@@ -115,7 +115,7 @@
     <metal:block metal:define-macro="multiple-destacats">
         <picture tal:condition="python: item['imatge']">
             <source media="(min-width:992px)" tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-            <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/alt|nothing;" />
+            <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
         </picture>
     </metal:block>
 
@@ -125,7 +125,7 @@
             <div tal:define="bigNew view/area_gran" class="card">
                 <picture tal:condition="python: bigNew['imatge']">
                     <source media="(max-width: 600px)" tal:attributes="srcset string:${bigNew/url}/@@images/image/preview" />
-                    <img tal:attributes="src string:${bigNew/url}/@@images/image/large; alt bigNew/alt|nothing;" />
+                    <img tal:attributes="src string:${bigNew/url}/@@images/image/large; alt bigNew/title|nothing;" />
                 </picture>
                 <div class="card-body">
                     <a tal:attributes="href bigNew/url; target bigNew/open_link_in_new_window;"
@@ -145,7 +145,7 @@
                 <picture tal:condition="python: item['imatge']">
                     <source media="(max-width: 992px and min-width: 600px)"
                         tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-                    <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/alt|nothing;" />
+                    <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
                 </picture>
                 <div class="card-body">
                     <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="stretched-link">
