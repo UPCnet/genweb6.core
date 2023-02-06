@@ -62,13 +62,11 @@ contentVocabulary = SimpleVocabulary([
 
 
 carouselTypeVocabulary = SimpleVocabulary([
-    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="simple", title=_(u'Simple')),
     SimpleTerm(value="complex", title=_(u'Complex'))])
 
 
 modalTypeBtnVocabulary = SimpleVocabulary([
-    SimpleTerm(value="--NOVALUE--", title=_(u'Selecciona una opció')),
     SimpleTerm(value="primary", title='Primary'),
     SimpleTerm(value="secondary", title='Secondary'),
     SimpleTerm(value="success", title='Success'),
@@ -128,6 +126,7 @@ class IInteractiveTemplate(model.Schema):
         title=_(u'Tipus de carousel'),
         required=True,
         vocabulary=carouselTypeVocabulary,
+        default="simple"
     )
 
     carousel_show_title = schema.Bool(
@@ -173,6 +172,7 @@ class IInteractiveTemplate(model.Schema):
         title=_(u'Tipus de botó'),
         required=True,
         vocabulary=modalTypeBtnVocabulary,
+        default="primary"
     )
 
     show_copy = schema.Bool(
