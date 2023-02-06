@@ -22,8 +22,9 @@
 
     <div tal:condition="python:content_type == 'application/pdf'">
       <object type="application/pdf" width="100%" height="480"
-            tal:define="filename context/file/filename"
-            tal:attributes="data string:${context/absolute_url}/@@display-file/file/${filename}"></object>
+              title="PDF Preview"
+              tal:define="filename context/file/filename"
+              tal:attributes="data string:${context/absolute_url}/@@display-file/file/${filename};"></object>
     </div>
 
     <div tal:condition="python: not view.is_videotype() and not view.is_audiotype() and content_type != 'application/pdf'">
