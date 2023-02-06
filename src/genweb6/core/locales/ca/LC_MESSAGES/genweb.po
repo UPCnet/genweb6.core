@@ -118,7 +118,7 @@ msgstr "Adreça web del canal on es troba el vídeo."
 msgid "Afegeix portlet de contingut existent"
 msgstr "Afegeix portlet de contingut existent"
 
-#: ../controlpanels/header.py:104
+#: ../controlpanels/header.py:101
 msgid "Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."
 msgstr "Afegiu el reclam del Genweb. Podeu incloure tags HTML. Només serà visible als tipus de capçalera Half Hero i Full Hero."
 
@@ -138,17 +138,21 @@ msgstr "En marcar aquesta opció es mostrarà la pàgina d'enllaços personalitz
 msgid "All"
 msgstr "Tots"
 
-#: ../controlpanels/header.py:263
+#: ../controlpanels/header.py:255
 msgid "Altres"
 msgstr "Altres"
 
-#: ../content/interactive_template/interactive_template.py:137
+#: ../content/interactive_template/interactive_template.py:158
 msgid "Alçada de les imatges en px (40 - 400)"
 msgstr "Alçada de les imatges en px (40 - 400)"
 
 #: ../tiles/destacats/destacats.py:84
 msgid "Apareixerà a la tile seleccionada"
 msgstr "Apareixerà a la tile seleccionada"
+
+#: ../content/interactive_template/interactive_template.pt:30
+msgid "Aquest element no es copiarà."
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:273
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
@@ -195,7 +199,7 @@ msgstr "Català"
 msgid "Categories"
 msgstr "Categories"
 
-#: ../content/interactive_template/interactive_template.py:89
+#: ../content/interactive_template/interactive_template.py:110
 msgid "Cerca una col·lecció"
 msgstr "Cerca una col·lecció"
 
@@ -228,6 +232,10 @@ msgstr "Clar"
 msgid "Clar a fosc"
 msgstr "Clar a fosc"
 
+#: ../content/interactive_template/interactive_template.pt:292
+msgid "Close"
+msgstr "Tancar"
+
 #: ../controlpanels/cintillo.py:22
 msgid "Color de fons de l'avís"
 msgstr "Color de fons de l'avís"
@@ -236,15 +244,15 @@ msgstr "Color de fons de l'avís"
 msgid "Color de la font de l'avís"
 msgstr "Color de la font de l'avís"
 
-#: ../content/interactive_template/interactive_template.py:57
+#: ../content/interactive_template/interactive_template.py:58
 msgid "Col·lecció"
 msgstr "Col·lecció"
 
-#: ../content/interactive_template/interactive_template.py:62
+#: ../content/interactive_template/interactive_template.py:63
 msgid "Complex"
 msgstr "Complex"
 
-#: ../controlpanels/header.py:44
+#: ../controlpanels/header.py:42
 msgid "Configuracions"
 msgstr "Configuracions"
 
@@ -264,23 +272,27 @@ msgstr "Contacte amb nosaltres"
 msgid "Content type"
 msgstr "Tipus d'element"
 
-#: ../controlpanels/header.py:144
-msgid "Contingut de la etiqueta meta \"author\""
-msgstr "Contingut de la etiqueta meta \"author\""
-
-#: ../content/interactive_template/interactive_template.py:56
+#: ../content/interactive_template/interactive_template.py:57
 msgid "Continguts de dintre d'aquest directori"
 msgstr "Continguts de dintre d'aquest directori"
 
-#: ../content/interactive_template/interactive_template.py:75
+#: ../content/interactive_template/interactive_template.py:96
 msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
-#: ../browser/viewlets.py:515
+#: ../content/interactive_template/interactive_template.pt:305
+msgid "Copiar HTML"
+msgstr "Copiar HTML"
+
+#: ../browser/viewlets.py:507
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
-#: ../browser/viewlets.py:520
+#: ../content/interactive_template/interactive_template.pt:305
+msgid "Copiat"
+msgstr "Copiat!"
+
+#: ../browser/viewlets.py:512
 msgid "Copiat!"
 msgstr "Copiat!"
 
@@ -292,15 +304,15 @@ msgstr "Mostrar un menú alternatiu"
 msgid "Custom Video"
 msgstr "Vídeo personalitzat"
 
-#: ../controlpanels/header.py:103
+#: ../controlpanels/header.py:100
 msgid "Descripció del web amb HTML tags (negretes) [CA]"
 msgstr "Reclam del web amb HTML tags (negretes) [CA]"
 
-#: ../controlpanels/header.py:115
+#: ../controlpanels/header.py:112
 msgid "Descripció del web amb HTML tags (negretes) [EN]"
 msgstr "Reclam del web amb HTML tags (negretes) [EN]"
 
-#: ../controlpanels/header.py:109
+#: ../controlpanels/header.py:106
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
 msgstr "Reclam del web amb HTML tags (negretes) [ES]"
 
@@ -534,11 +546,11 @@ msgstr "Grid agenda"
 msgid "GridEvents"
 msgstr "Grid agenda"
 
-#: ../content/interactive_template/interactive_template.py:95
+#: ../content/interactive_template/interactive_template.py:116
 msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 msgstr "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
 
-#: ../controlpanels/header.py:314
+#: ../controlpanels/header.py:306
 msgid "Header Settings"
 msgstr "Configuració Capçalera"
 
@@ -596,11 +608,11 @@ msgstr "Si es selecciona, el llistat no mostrarà l'element actual."
 msgid "Imatge capçalera"
 msgstr "Imatge de capçalera"
 
-#: ../controlpanels/header.py:122
+#: ../controlpanels/header.py:119
 msgid "Imatge principal conservadora"
 msgstr "Imatge estàndard"
 
-#: ../controlpanels/header.py:129
+#: ../controlpanels/header.py:126
 msgid "Imatge principal innovadora"
 msgstr "Imatge hero"
 
@@ -608,11 +620,15 @@ msgstr "Imatge hero"
 msgid "Info"
 msgstr "Informació:"
 
+#: ../content/interactive_template/interactive_template.pt:22
+msgid "Informació"
+msgstr ""
+
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
 msgstr "Inici"
 
-#: ../content/interactive_template/interactive_template.py:124
+#: ../content/interactive_template/interactive_template.py:145
 msgid "Iniciar automàticament (No recomenable segons la accesibilitat web)"
 msgstr "Iniciar automàticament (No recomenable segons la accesibilitat web)"
 
@@ -688,19 +704,19 @@ msgstr "Llista d’enllaços [ES]"
 msgid "Login Settings"
 msgstr "Configuració Login"
 
-#: ../controlpanels/header.py:149
+#: ../controlpanels/header.py:139
 msgid "Logo"
 msgstr "Logo"
 
-#: ../controlpanels/header.py:195
+#: ../controlpanels/header.py:185
 msgid "Logo petit"
 msgstr "Logo petit"
 
-#: ../controlpanels/header.py:161
+#: ../controlpanels/header.py:151
 msgid "Logo principal"
 msgstr "Logo principal"
 
-#: ../controlpanels/header.py:169
+#: ../controlpanels/header.py:159
 msgid "Logo secundari"
 msgstr "Logo secundari"
 
@@ -737,9 +753,9 @@ msgstr "Màxim némero de notícies a mostrar (d'1 a 14)"
 msgid "Menú al peu"
 msgstr "Menú al peu"
 
-#: ../controlpanels/header.py:143
-msgid "Meta author tag content"
-msgstr "Meta <author> tag"
+#: ../content/interactive_template/interactive_template.py:53
+msgid "Modal"
+msgstr ""
 
 #: ../portlets/rss/rss.py:306
 msgid "More link"
@@ -759,11 +775,11 @@ msgstr "Mostrar data?"
 msgid "Mostra el títol?"
 msgstr "Mostrar el títol?"
 
-#: ../content/interactive_template/interactive_template.py:151
+#: ../content/interactive_template/interactive_template.py:179
 msgid "Mostrar botó per copiar el HTML de la plantilla"
 msgstr "Mostrar el botó per copiar el HTML de la plantilla"
 
-#: ../content/interactive_template/interactive_template.py:118
+#: ../content/interactive_template/interactive_template.py:139
 msgid "Mostrar descripció"
 msgstr "Mostrar descripció"
 
@@ -771,7 +787,7 @@ msgstr "Mostrar descripció"
 msgid "Mostrar enllaços al peu"
 msgstr "Mostrar el menú del lloc web"
 
-#: ../content/interactive_template/interactive_template.py:112
+#: ../content/interactive_template/interactive_template.py:133
 msgid "Mostrar títol"
 msgstr "Mostrar títol"
 
@@ -845,7 +861,7 @@ msgstr "Número d'esdeveniments a mostrar"
 msgid "Numero de noticies a mostrar"
 msgstr "Número de notícies a mostrar"
 
-#: ../content/interactive_template/interactive_template.py:100
+#: ../content/interactive_template/interactive_template.py:121
 msgid "Obrir el primer acordió per defecte"
 msgstr ""
 
@@ -882,13 +898,17 @@ msgid "Picture"
 msgstr "Imatge"
 
 #: ../content/banner/banner.py:19
-#: ../controlpanels/header.py:178
+#: ../controlpanels/header.py:168
 msgid "Please upload an image"
 msgstr "Si us plau, pugeu una imatge"
 
-#: ../content/interactive_template/interactive_template.py:76
-msgid "Podeu afegir continguts en aquest directori des de el següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
-msgstr ""
+#: ../content/interactive_template/interactive_template.pt:24
+msgid "Podeu afegir continguts en aquest directori des del següent"
+msgstr "Podeu afegir continguts en aquest directori des del següent"
+
+#: ../content/interactive_template/interactive_template.py:97
+msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
+msgstr "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 
 #: ../portlets/banners/banners.py:23
 #: ../portlets/multiviewcollection/multiviewcollection.py:69
@@ -933,10 +953,6 @@ msgstr "Selecciona un contingut existent"
 msgid "Select random items"
 msgstr "Selecciona elements en ordre aleatori"
 
-#: ../controlpanels/header.py:34
-msgid "Sense"
-msgstr ""
-
 #: ../portlets/multiviewcollection/multiviewcollection.py:108
 msgid "Show dates"
 msgstr "Mostrar dates"
@@ -957,7 +973,7 @@ msgstr ""
 msgid "Signatura"
 msgstr "Signatura"
 
-#: ../content/interactive_template/interactive_template.py:61
+#: ../content/interactive_template/interactive_template.py:62
 msgid "Simple"
 msgstr ""
 
@@ -999,15 +1015,15 @@ msgid "Tells if an object is marked as important"
 msgstr "Indica si un element està marcat com a important"
 
 #: ../controlpanels/footer.py:42
-#: ../controlpanels/header.py:54
+#: ../controlpanels/header.py:51
 msgid "Tema"
 msgstr "Color"
 
-#: ../content/interactive_template/interactive_template.py:129
+#: ../content/interactive_template/interactive_template.py:150
 msgid "Temps en cambiar al següent element automàticament en segons (5 - 30)"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:144
+#: ../content/interactive_template/interactive_template.py:165
 msgid "Temps en recorrer totes les imatges en segons (5 - 120)"
 msgstr ""
 
@@ -1072,19 +1088,23 @@ msgstr "Tile per mostrar un formulari easyform com a tile"
 msgid "Tile used to show twitter widget"
 msgstr "Tile per mostrar el timeline de Twitter"
 
-#: ../content/interactive_template/interactive_template.py:105
+#: ../content/interactive_template/interactive_template.py:172
+msgid "Tipus de botó"
+msgstr ""
+
+#: ../content/interactive_template/interactive_template.py:126
 msgid "Tipus de carousel"
 msgstr ""
 
-#: ../controlpanels/header.py:63
+#: ../controlpanels/header.py:60
 msgid "Tipus de hero de la pàgina principal"
 msgstr "Tipus de hero de la pàgina principal"
 
-#: ../controlpanels/header.py:72
+#: ../controlpanels/header.py:69
 msgid "Tipus de hero dintre dels continguts"
 msgstr "Tipus de hero dintre dels continguts"
 
-#: ../content/interactive_template/interactive_template.py:68
+#: ../content/interactive_template/interactive_template.py:89
 msgid "Tipus de plantilla"
 msgstr ""
 
@@ -1220,7 +1240,7 @@ msgstr "Totes les notícies"
 
 #. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:281
+#: ../controlpanels/header.py:273
 msgid "amaga_identificacio"
 msgstr "Amaga l'enllaç d'identificació de les eines"
 
@@ -1272,6 +1292,10 @@ msgstr "Les cookies no estàn habilitades. Hi ha que habilitar-les antes de fer 
 #: ../cas/controlpanel.py:54
 msgid "enabled"
 msgstr ""
+
+#: ../content/interactive_template/interactive_template.pt:25
+msgid "enllaç"
+msgstr "enllaç"
 
 #. Default: "${from} until ${until}."
 #: ../browser/news_listing.py:300
@@ -1370,7 +1394,7 @@ msgstr ""
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:282
+#: ../controlpanels/header.py:274
 msgid "help_amaga_identificacio"
 msgstr "Amaga de les eines l'enllaç d'identificació ..."
 
@@ -1392,33 +1416,33 @@ msgid "help_existing_content"
 msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del hero image."
-#: ../controlpanels/header.py:137
+#: ../controlpanels/header.py:134
 msgid "help_hero_image_alt"
 msgstr ""
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:81
+#: ../controlpanels/header.py:78
 msgid "help_html_title_ca"
 msgstr "Afegiu el títol del Genweb. Podeu incloure tags HTML"
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML."
-#: ../controlpanels/header.py:97
+#: ../controlpanels/header.py:94
 msgid "help_html_title_en"
 msgstr "Afegiu el títol del Genweb. Podeu incloure tags HTML"
 
 #. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:89
+#: ../controlpanels/header.py:86
 msgid "help_html_title_es"
 msgstr "Afegiu el títol del Genweb. Podeu incloure tags HTML"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:292
+#: ../controlpanels/header.py:284
 msgid "help_idiomes_publicats"
 msgstr "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:304
+#: ../controlpanels/header.py:296
 msgid "help_languages_link_to_root"
 msgstr "Aquesta opció marcada fa que el desplegable d'idiomes, sempre redirigeixi a l'arrel del lloc web."
 
@@ -1427,12 +1451,12 @@ msgid "help_login_text_btn"
 msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:214
+#: ../controlpanels/header.py:204
 msgid "help_logo_alt"
 msgstr ""
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:234
+#: ../controlpanels/header.py:224
 msgid "help_logo_url"
 msgstr ""
 
@@ -1472,12 +1496,12 @@ msgstr "La URL completa de la pàgina d'on volem visualitzar el contingut"
 
 #. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:272
+#: ../controlpanels/header.py:264
 msgid "help_treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal ..."
 
 #. Default: "Text alternatiu del hero image"
-#: ../controlpanels/header.py:135
+#: ../controlpanels/header.py:132
 msgid "hero_image_alt"
 msgstr ""
 
@@ -1509,23 +1533,23 @@ msgstr "3a Fila"
 # Contact settings #
 ####################
 #. Default: "Títol del web amb HTML tags (negretes) [CA]"
-#: ../controlpanels/header.py:79
+#: ../controlpanels/header.py:76
 msgid "html_title_ca"
 msgstr "Títol del web amb HTML tags (negretes) [CA]"
 
 #. Default: "Títol del web amb HTML tags (negretes) [EN]"
-#: ../controlpanels/header.py:95
+#: ../controlpanels/header.py:92
 msgid "html_title_en"
 msgstr "Títol del web amb HTML tags (negretes) [EN]"
 
 #. Default: "Títol del web amb HTML tags (negretes) [ES]"
-#: ../controlpanels/header.py:87
+#: ../controlpanels/header.py:84
 msgid "html_title_es"
 msgstr "Títol del web amb HTML tags (negretes) [ES]"
 
 #. "Idiomes publicats al web"
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:290
+#: ../controlpanels/header.py:282
 msgid "idiomes_publicats"
 msgstr "Idiomes publicats al web"
 
@@ -1574,7 +1598,7 @@ msgstr "Inicia la sessió"
 # Contropanel option to redirect languages #
 #############################################
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:302
+#: ../controlpanels/header.py:294
 msgid "languages_link_to_root"
 msgstr "Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal"
 
@@ -1583,17 +1607,17 @@ msgid "login_text_btn"
 msgstr ""
 
 #. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:212
+#: ../controlpanels/header.py:202
 msgid "logo_alt"
 msgstr ""
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:252
+#: ../controlpanels/header.py:242
 msgid "logo_external_url"
 msgstr ""
 
 #. Default: "URL del logo"
-#: ../controlpanels/header.py:232
+#: ../controlpanels/header.py:222
 msgid "logo_url"
 msgstr ""
 
@@ -1668,7 +1692,7 @@ msgid "more_url"
 msgstr "Veure més"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:333
+#: ../browser/viewlets.py:325
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:80
 msgid "obrir_link_finestra_nova"
 msgstr "(obriu en una finestra nova)"
@@ -1751,7 +1775,7 @@ msgstr ""
 
 #. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:270
+#: ../controlpanels/header.py:262
 msgid "treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal"
 
@@ -1763,10 +1787,10 @@ msgstr "url"
 msgid "Àngles"
 msgstr ""
 
-#: ../controlpanels/header.py:123
-msgid "És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge hero."
+#: ../controlpanels/header.py:120
+msgid "És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
 msgstr ""
 
-#: ../controlpanels/header.py:130
+#: ../controlpanels/header.py:127
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 650px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr ""

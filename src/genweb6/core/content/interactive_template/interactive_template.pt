@@ -4,7 +4,7 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
     metal:use-macro="context/main_template/macros/master"
-    i18n:domain="plone">
+    i18n:domain="genweb">
 <body>
 
 <metal:head fill-slot="javascript_head_slot">
@@ -15,6 +15,22 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
+
+    <div class="alert alert-info" role="alert"
+         tal:define="how_content context/content"
+         tal:condition="python:how_content == 'inside'">
+        <h4 class="alert-heading" i18n:translate="">Informació</h4>
+        <p>
+            <span i18n:translate="">Podeu afegir continguts en aquest directori des del següent</span>
+            <a target="_blank" class="alert-link" i18n:translate=""
+               tal:attributes="href string:${context/absolute_url}/folder_contents">enllaç</a>
+        </p>
+        <tal:cond tal:condition="context/show_copy">
+            <hr>
+            <p class="mb-0" i18n:translate="">Aquest element no es copiarà.</p>
+        </tal:cond>
+
+    </div>
 
     <div id="interactive_template"
          tal:define="tipus context/type_template;
@@ -238,10 +254,60 @@
 
         </tal:slide>
 
+        <tal:modal tal:condition="python:tipus == 'modal'"
+                   tal:define="btn context/modal_type_btn">
+
+            <tal:repeat tal:repeat="content context/contents"
+                        tal:define="mtoken context/token">
+
+                <button type="button" class="btn btn-secondary me-4" data-bs-toggle="modal"
+                        tal:attributes="data-bs-target string:#${mtoken};
+                                        class string:btn btn-${btn} me-4"
+                        tal:content="content/title">
+                    Title button
+                </button>
+
+                <div class="modal fade" tabindex="-1" aria-hidden="true"
+                     tal:attributes="id mtoken;
+                                     aria-labelledby string:${mtoken}Label;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5"
+                                    tal:attributes="id string:${mtoken}Label;"
+                                    tal:content="content/title">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div tal:content="structure content/text">
+                                    Content
+                                </div>
+                                <img class="d-block w-100"
+                                     tal:condition="content/image"
+                                     tal:attributes="src content/image;
+                                                     title content/title;
+                                                     alt content/title;">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                        i18n:translate="">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </tal:repeat>
+
+        </tal:modal>
+
     </div>
 
-    <a id="copy_html" class="btn btn-primary mt-3" href="#" i18n:attributes="title Copy"
+    <a id="copy-html" class="btn btn-primary mt-3" href="#"
+       data-bs-toggle="tooltip"
        tal:condition="context/show_copy"
+       i18n:attributes="aria-label Copiat;
+                        data-bs-title Copiat;
+                        data-bs-original-title Copiat"
        i18n:translate="">Copiar HTML</a>
 
 </metal:block>

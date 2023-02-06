@@ -194,7 +194,7 @@ class Renderer(base.Renderer):
 
     @property
     def token(self):
-        return secrets.token_hex(16)
+        return 't' + secrets.token_hex(16)
 
     def showTitle(self):
         return self.data.show_title

@@ -49,7 +49,8 @@ typeTemplateVocabulary = SimpleVocabulary([
     SimpleTerm(value="accordion", title=_(u'Acordió')),
     SimpleTerm(value="nav", title=_(u'Pestanyes')),
     SimpleTerm(value="carousel", title=_(u'Carousel')),
-    SimpleTerm(value="imatge-slide", title=_(u'Slider d\'imatges'))])
+    SimpleTerm(value="imatge-slide", title=_(u'Slider d\'imatges')),
+    SimpleTerm(value="modal", title=_(u'Modal'))])
 
 
 contentVocabulary = SimpleVocabulary([
@@ -60,6 +61,25 @@ contentVocabulary = SimpleVocabulary([
 carouselTypeVocabulary = SimpleVocabulary([
     SimpleTerm(value="simple", title=_(u'Simple')),
     SimpleTerm(value="complex", title=_(u'Complex'))])
+
+
+modalTypeBtnVocabulary = SimpleVocabulary([
+    SimpleTerm(value="primary", title='Primary'),
+    SimpleTerm(value="secondary", title='Secondary'),
+    SimpleTerm(value="success", title='Success'),
+    SimpleTerm(value="danger", title='Danger'),
+    SimpleTerm(value="warning", title='Warning'),
+    SimpleTerm(value="info", title='Info'),
+    SimpleTerm(value="light", title='Light'),
+    SimpleTerm(value="dark", title='Dark'),
+    SimpleTerm(value="outline-primary", title='Outline Primary'),
+    SimpleTerm(value="outline-secondary", title='Outline Secondary'),
+    SimpleTerm(value="outline-success", title='Outline Success'),
+    SimpleTerm(value="outline-danger", title='Outline Danger'),
+    SimpleTerm(value="outline-warning", title='Outline Warning'),
+    SimpleTerm(value="outline-info", title='Outline Info'),
+    SimpleTerm(value="outline-light", title='Outline Light'),
+    SimpleTerm(value="outline-dark", title='Outline Dark')])
 
 
 class IInteractiveTemplate(model.Schema):
@@ -73,7 +93,7 @@ class IInteractiveTemplate(model.Schema):
 
     content = schema.Choice(
         title=_(u'Continguts que alimenten la plantilla'),
-        description=_(u'Podeu afegir continguts en aquest directori des de el següent <a target="_blank" href="folder_contents">enllaç</a>'),
+        description=_(u'Podeu afegir continguts en aquest directori des del següent <a target="_blank" href="folder_contents">enllaç</a>'),
         required=True,
         vocabulary=contentVocabulary,
         default='inside'
@@ -147,6 +167,13 @@ class IInteractiveTemplate(model.Schema):
         default=30,
     )
 
+    modal_type_btn = schema.Choice(
+        title=_(u'Tipus de botó'),
+        required=True,
+        vocabulary=modalTypeBtnVocabulary,
+        default='primary'
+    )
+
     show_copy = schema.Bool(
         title=_(u'Mostrar botó per copiar el HTML de la plantilla'),
         default=True,
@@ -165,7 +192,7 @@ class InteractiveTemplate(Container):
         return "bootstrap"
 
     def token(self):
-        return secrets.token_hex(16)
+        return 't' + secrets.token_hex(16)
 
     def elem_to_dict(self, index, first, elem):
         result = {

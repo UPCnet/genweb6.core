@@ -34,6 +34,14 @@ function showHideSlide(show) {
     }
 }
 
+function showHideModal(show) {
+    if (show) {
+        $('#formfield-form-widgets-modal_type_btn').show();
+    } else {
+        $('#formfield-form-widgets-modal_type_btn').hide();
+    }
+}
+
 function showElementsType() {
     var value = $('select#form-widgets-type_template').val();
 
@@ -42,21 +50,31 @@ function showElementsType() {
         showHideAccordion(true);
         showHideCarousel(false);
         showHideSlide(false);
+        showHideModal(false);
         break;
       case 'nav':
         showHideAccordion(false);
         showHideCarousel(false);
         showHideSlide(false);
+        showHideModal(false);
         break;
       case 'carousel':
         showHideAccordion(false);
         showHideCarousel(true);
         showHideSlide(false);
+        showHideModal(false);
         break;
       case 'imatge-slide':
         showHideAccordion(false);
         showHideCarousel(false);
         showHideSlide(true);
+        showHideModal(false);
+        break;
+      case 'modal':
+        showHideAccordion(false);
+        showHideCarousel(false);
+        showHideSlide(false);
+        showHideModal(true);
         break;
     }
 }
