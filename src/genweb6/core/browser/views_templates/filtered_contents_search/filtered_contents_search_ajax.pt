@@ -1,6 +1,6 @@
-<section id="tagslist" tal:define="site_properties context/portal_properties/site_properties;
-                                   use_view_action site_properties/typesUseViewActionInListings|python:();
-                                   continguts view/get_contenttags_by_query">
+<tal:block tal:define="site_properties context/portal_properties/site_properties;
+                       use_view_action site_properties/typesUseViewActionInListings|python:();
+                       continguts view/get_contenttags_by_query">
   <article class="tileItem" tal:repeat="contingut continguts">
     <tal:block tal:define="item_type contingut/portal_type;
                            item_url contingut/getURL|contingut/absolute_url;
@@ -46,4 +46,4 @@
       <div class="visualClear"></div>
     </tal:block>
   </article>
-</section>
+</tal:block>
