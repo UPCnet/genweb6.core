@@ -21,7 +21,6 @@
         <div class="visualClear"></div>
 
         <div class="alert alert-warning">
-            <button data-dismiss="alert" class="close" type="button">×</button>
             <strong i18n:translate="">
                 Warning
             </strong>
@@ -51,12 +50,12 @@
                 </table>
             </div>
             <form method="get" action="@@setup-view">
-                <input id="createcontent" class="context" type="submit" value="Crear contingut" name="createcontent"/>
-                <input id="createexamples" class="context" type="submit" value="Crear contingut de mostra" name="createexamples" />
+                <input id="createcontent" class="btn btn-primary me-3" type="submit" value="Crear contingut" name="createcontent"/>
+                <input id="createexamples" class="btn btn-secondary" type="submit" value="Crear contingut de mostra" name="createexamples" />
             </form>
 
             <form method="get" action="@@configure_site_cache" target="_blank">
-                <input id="configure_site_cache" class="context" type="submit" value="Configurar la caché" />
+                <input id="configure_site_cache" class="btn btn-primary mt-3" type="submit" value="Configurar la caché" />
             </form>
         </fieldset>
     </div>
