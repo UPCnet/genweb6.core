@@ -15,17 +15,17 @@
 
                 <li class="list-group-item ps-0">
 
+                    <time tal:condition="exists:item/updated" class="smaller"
+                          tal:content="python:toLocalizedTime(item['updated'])">
+                        Date
+                    </time>
+
                     <a href="#" class="d-block text-decoration-none"
                        tal:attributes="href item/url;
                                        title item/title">
 
                         <span tal:replace="item/title">Title</span>
                     </a>
-
-                    <time tal:condition="exists:item/updated" class="smaller"
-                          tal:content="python:toLocalizedTime(item['updated'])">
-                        Date
-                    </time>
 
                 </li>
 
@@ -39,7 +39,7 @@
 
                 <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/siteurl">
 
-                    <i class="bi bi-plus-circle-fill"></i>
+                    <!-- <i class="bi bi-plus-circle-fill"></i> -->
                     <span i18n:domain="genweb" i18n:translate="more_url">More</span>
 
                 </a>

@@ -60,7 +60,7 @@
 
             <a class="portlet-show-more small text-decoration-none" tal:attributes="href view/recently_modified_link">
 
-                <i class="bi bi-plus-circle-fill"></i>
+                <!-- <i class="bi bi-plus-circle-fill"></i> -->
                 <span i18n:translate="box_more_recently_changed">All recent changes</span>
 
             </a>
