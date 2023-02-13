@@ -18,17 +18,9 @@
   <section class="section section-main">
 
     <tal:comment replace="nothing">
-      Eliminamos el icono, añadimos replace="nothing" al div
+      Eliminamos el icono
     </tal:comment>
 
-    <div replace="nothing">
-      <tal:icon tal:condition="link"
-        tal:replace="structure python:icons.tag('plone-link', tag_class='icon-x4 mb-2')" />
-      <tal:icon tal:condition="external"
-        tal:replace="structure python:icons.tag('plone-link/external', tag_class='icon-x4 mb-2')" />
-      <tal:icon tal:condition="mail"
-        tal:replace="structure python:icons.tag('plone-link/mail', tag_class='icon-x4 mb-2')" />
-    </div>
     <div class="h5 mb-2">
       <a href="" tal:attributes="href python: view.absolute_target_url()"
          tal:content="python: display_link['title']">remote url</a>
