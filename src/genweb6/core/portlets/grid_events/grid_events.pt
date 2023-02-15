@@ -32,7 +32,7 @@
 
                   </span>
 
-                  <h3 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h3>
+                  <p class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</p>
 
                 </a>
 
