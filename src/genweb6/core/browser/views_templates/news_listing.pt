@@ -16,9 +16,9 @@
                             <li tal:repeat="data batch">
                                 <a href="" tal:attributes="href data/getURL">
                                     <img tal:condition="data/news_image_filename|nothing"
-                                         tal:attributes="src string:${data/getURL}/@@images/image/tile"
+                                         tal:attributes="src string:${data/getURL}/@@images/image/huge"
                                          alt=""
-                                         class="image-noticies" >  <!-- large, preview, mini, thumb, tile, icon -->
+                                         class="image-noticies">
                                 </a>
                                     <strong>
                                         <a href="" itemprop="url" class="url" tal:attributes="href data/getURL">
