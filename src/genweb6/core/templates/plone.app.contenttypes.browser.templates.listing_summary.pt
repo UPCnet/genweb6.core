@@ -23,11 +23,15 @@
 
           <div class="col">
 
-          <h2 metal:define-macro="listitem">
+          <tal:comment replace="nothing">
+            Quitamos el h2 y dejamos el a dentro de un div como en la vista estandard
+          </tal:comment>
+
+          <div class="mb-1">
             <a class="summary url" tal:attributes="href item_link; title item_type" tal:content="item_title">
               Item Title
             </a>
-          </h2>
+          </div>
 
           <div class="mb-3">
             <div metal:use-macro="context/@@listing_view/macros/document_byline"></div>
