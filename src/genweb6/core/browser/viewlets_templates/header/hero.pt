@@ -8,11 +8,6 @@
                          style string:--bg-img-url: url(${heroImage/src})"
          tal:define="is_new_style python:'pretty-image-hero' in style">
 
-        <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
-             tal:attributes="src heroImage/src;
-                             alt heroImage/alt;
-                             title heroImage/title" />
-
         <div class="site_title" tal:condition="not:is_new_style">
             <div class="h1">
                 <a accesskey="1" class="text-decoration-none"
@@ -21,6 +16,11 @@
                 </a>
             </div>
         </div>
+
+        <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
+             tal:attributes="src heroImage/src;
+                             alt heroImage/alt;
+                             title heroImage/title" />
 
         <div tal:condition="is_new_style" role="heading" aria-level="1">
             <div class="h1">
