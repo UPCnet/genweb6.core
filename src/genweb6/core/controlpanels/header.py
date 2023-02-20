@@ -124,7 +124,7 @@ class IHeaderSettings(model.Schema):
     directives.widget('full_hero_image', NamedImageFieldWidget)
     full_hero_image = schema.Bytes(
         title=_(u"Imatge principal innovadora"),
-        description=_(u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 650px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        description=_(u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
         required=False,
     )
 
