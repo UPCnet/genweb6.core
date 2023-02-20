@@ -6,14 +6,16 @@
     <div id="hero"
          tal:attributes="class style;
                          style string:--bg-img-url: url(${heroImage/src})"
-         tal:define="is_new_style python:'pretty-image-hero' in style">
+         tal:define="is_new_style python:'pretty-image-hero' in style;
+                     hero_title python:getattr(header_config, 'html_title_' + pref_lang, '');
+                     hero_description python:getattr(header_config, 'html_description_' + pref_lang, '')">
 
         <div tal:condition="is_new_style" role="heading" aria-level="1">
-            <div class="h1">
-                <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+            <div class="h1" tal:condition="hero_title">
+                <tal:block tal:replace="structure hero_title"></tal:block>
             </div>
-            <div class="h2">
-                <tal:block tal:replace="structure python:getattr(header_config, 'html_description_' + pref_lang, '')"></tal:block>
+            <div class="h2" tal:condition="hero_description">
+                <tal:block tal:replace="structure hero_description"></tal:block>
             </div>
         </div>
 
@@ -23,10 +25,10 @@
                              title heroImage/title" />
 
         <div class="site_title" tal:condition="not:is_new_style">
-            <div class="h1">
+            <div class="h1" tal:condition="hero_title">
                 <a accesskey="1" class="text-decoration-none"
                    tal:attributes="href string:${view/root_url}/${view/pref_lang}">
-                    <tal:block tal:replace="structure python:getattr(header_config, 'html_title_' + pref_lang, '')"></tal:block>
+                    <tal:block tal:replace="structure hero_title"></tal:block>
                 </a>
             </div>
         </div>
