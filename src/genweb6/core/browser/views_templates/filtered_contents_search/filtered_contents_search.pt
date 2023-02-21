@@ -31,16 +31,16 @@
         <div class="caixessearch">
           <div id="searchinputcontent">
             <div class="input-append">
-              <input class="searchInputPretty" type="text" placeholder="Cerca"
+              <input class="searchInputPretty form-control" type="text" placeholder="Cerca"
                      i18n:attributes="placeholder search"  tal:attributes="data-name path" />
             </div>
           </div>
 
           <h3 i18n:translate="label_tags">Tags</h3>
           <div class="searchbytagcontainer" id="tags_list">
-            <p tal:repeat="tag view/getTags">
-              <input type="checkbox" name="tag" aria-labelledby="tags_list" tal:attributes="value tag;"  />
-              <span tal:content="tag"></span>
+            <p class="mb-2 d-flex gap-2" tal:repeat="tag view/getTags">
+              <input class="form-check-input" type="checkbox" name="tag" aria-labelledby="tags_list" tal:attributes="value tag;"  />
+              <label class="form-check-label" tal:content="tag"></label>
             </p>
           </div>
         </div>
