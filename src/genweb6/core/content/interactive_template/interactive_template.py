@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser import BrowserView
 
+from plone import api
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -10,7 +11,6 @@ from z3c.form.browser.widget import addFieldClass
 from z3c.form.interfaces import IFieldWidget
 from z3c.form.interfaces import IFormLayer
 from z3c.form.interfaces import ITextWidget
-from z3c.form.interfaces import NOVALUE
 from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice
 from zope import schema

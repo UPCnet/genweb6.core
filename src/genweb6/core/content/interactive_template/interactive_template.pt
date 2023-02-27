@@ -14,23 +14,26 @@
 </metal:head>
 
 <metal:content-core fill-slot="content-core">
-<metal:block define-macro="content-core">
+<metal:block define-macro="content-core"
+             tal:define="gwutils context/@@genweb.utils">
 
-    <div class="alert alert-info" role="alert"
-         tal:define="how_content context/content"
-         tal:condition="python:how_content == 'inside'">
-        <h4 class="alert-heading" i18n:translate="">Informació</h4>
-        <p>
-            <span i18n:translate="">Podeu afegir continguts en aquest directori des del següent</span>
-            <a target="_blank" class="alert-link" i18n:translate=""
-               tal:attributes="href string:${context/absolute_url}/folder_contents">enllaç</a>
-        </p>
-        <tal:cond tal:condition="context/show_copy">
-            <hr>
-            <p class="mb-0" i18n:translate="">Aquest element no es copiarà.</p>
-        </tal:cond>
+    <tal:block tal:condition="gwutils/isEditor">
+        <div class="alert alert-info" role="alert"
+             tal:define="how_content context/content"
+             tal:condition="python:how_content == 'inside'">
+            <h4 class="alert-heading" i18n:translate="">Informació</h4>
+            <p>
+                <span i18n:translate="">Podeu afegir continguts en aquest directori des del següent</span>
+                <a target="_blank" class="alert-link" i18n:translate=""
+                   tal:attributes="href string:${context/absolute_url}/folder_contents">enllaç</a>
+            </p>
+            <tal:cond tal:condition="context/show_copy">
+                <hr>
+                <p class="mb-0" i18n:translate="">Aquest element no es copiarà.</p>
+            </tal:cond>
 
-    </div>
+        </div>
+    </tal:block>
 
     <div id="interactive_template"
          tal:define="tipus context/type_template;

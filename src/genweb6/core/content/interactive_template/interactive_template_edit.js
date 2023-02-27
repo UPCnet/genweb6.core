@@ -96,7 +96,7 @@ function showCollectionSelector() {
         }
         $('#formfield-form-widgets-collection').hide();
         break;
-      case 'collection':
+      default:
         $('#formfield-form-widgets-content .form-text').hide();
         $('#formfield-form-widgets-collection').show();
         break;
