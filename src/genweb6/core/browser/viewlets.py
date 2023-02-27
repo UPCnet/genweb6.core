@@ -271,11 +271,14 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
 class heroViewlet(viewletBase):
 
+    def isHomepage(self):
+        return IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage'
+
     def getClass(self):
         header_config = genwebHeaderConfig()
         theme = getattr(header_config, 'theme', 'light-to-dark-theme') + ' '
 
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
+        if self.isHomepage():
             return theme + getattr(header_config, 'main_hero_style', 'image-hero')
 
         return theme + getattr(header_config, 'content_hero_style', 'image-hero')
@@ -284,7 +287,7 @@ class heroViewlet(viewletBase):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
 
-        if IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage':
+        if self.isHomepage():
             hero = getattr(header_config, 'main_hero_style', 'image-hero')
         else:
             hero = getattr(header_config, 'content_hero_style', 'image-hero')
