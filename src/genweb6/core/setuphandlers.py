@@ -100,6 +100,7 @@ def setupVarious(context):
     # Setup settings Plone
     registry = getUtility(IRegistry)
     registry["plone.navigation_depth"] = 2
+    registry["plone.exposeDCMetaTags"] = True
 
     # Para que guarde la configuracion de los idiomas al reinstalar paquete
     setupTool = SetupMultilingualSite()
