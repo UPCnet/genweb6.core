@@ -312,6 +312,31 @@
     <value>100%</value>
   </record>
 
+  <!-- Estilos cabecera permitidos tinymce -->
+  <record name="plone.header_styles" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="header_styles">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>Header 1|h1</element>
+        <element>Header 2|h2</element>
+        <element>Header 3|h3</element>
+        <element>Header 4|h4</element>
+        <element>Header 5|h5</element>
+        <element>Header 6|h6</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Name|tag</description>
+      <missing_value/>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Header styles</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>Header 2|h2</element>
+      <element>Header 3|h3</element>
+      <element>Header 4|h4</element>
+      <element>Header 5|h5</element>
+      <element>Header 6|h6</element>
+    </value>
+  </record>
+
   <!-- Altres configuracions tinymce -->
   <record name="plone.other_settings" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="other_settings">
     <field type="plone.registry.field.Text">
