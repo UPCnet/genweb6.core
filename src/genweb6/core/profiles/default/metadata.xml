@@ -4,6 +4,8 @@
     <dependencies>
         <dependency>profile-plone.app.caching:default</dependency>
         <dependency>profile-plone.app.multilingual:default</dependency>
+        <dependency>profile-collective.easyform:default</dependency>
+        <dependency>profile-plone.app.mosaic:default</dependency>
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
     </dependencies>
 </metadata>
