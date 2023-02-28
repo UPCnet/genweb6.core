@@ -113,12 +113,12 @@ class IInteractiveTemplate(model.Schema):
     )
 
     accordion_open_multiple = schema.Bool(
-        title=_(u'Habilitar l\'opció de poder obrir variis acordió de la mateixa agrupació'),
+        title=_(u'Habilitar l\'opció de poder obrir múltiples panells de l’acordió'),
         required=False,
     )
 
     accordion_open_first = schema.Bool(
-        title=_(u'Obrir el primer acordió per defecte'),
+        title=_(u'Obrir el primer panell de l’acordió per defecte'),
         required=False,
     )
 
@@ -176,7 +176,7 @@ class IInteractiveTemplate(model.Schema):
     )
 
     show_copy = schema.Bool(
-        title=_(u'Mostrar botó per copiar el HTML de la plantilla'),
+        title=_(u'Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc.'),
         default=True,
         required=False,
     )

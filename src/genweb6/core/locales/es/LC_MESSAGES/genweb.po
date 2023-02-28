@@ -69,7 +69,7 @@ msgstr ""
 msgid "A footer logo"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:49
+#: ../content/interactive_template/interactive_template.py:51
 msgid "Acordió"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgstr ""
 msgid "Apareixerà a la tile seleccionada"
 msgstr "Aparecerá en la Tile selecionada"
 
-#: ../content/interactive_template/interactive_template.pt:30
+#: ../content/interactive_template/interactive_template.pt:32
 msgid "Aquest element no es copiarà."
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr "Indica si se muestra la fecha en las noticias"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../content/interactive_template/interactive_template.py:51
+#: ../content/interactive_template/interactive_template.py:53
 msgid "Carousel"
 msgstr ""
 
@@ -232,7 +232,7 @@ msgstr ""
 msgid "Clar a fosc"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:292
+#: ../content/interactive_template/interactive_template.pt:295
 msgid "Close"
 msgstr "Cerrar"
 
@@ -244,11 +244,11 @@ msgstr ""
 msgid "Color de la font de l'avís"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:58
+#: ../content/interactive_template/interactive_template.py:61
 msgid "Col·lecció"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:63
+#: ../content/interactive_template/interactive_template.py:66
 msgid "Complex"
 msgstr ""
 
@@ -272,27 +272,27 @@ msgstr "Contacta con nosotros"
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-#: ../content/interactive_template/interactive_template.py:57
+#: ../content/interactive_template/interactive_template.py:60
 msgid "Continguts de dintre d'aquest directori"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:96
+#: ../content/interactive_template/interactive_template.py:97
 msgid "Continguts que alimenten la plantilla"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:305
+#: ../content/interactive_template/interactive_template.pt:308
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:507
+#: ../browser/viewlets.py:510
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
-#: ../content/interactive_template/interactive_template.pt:305
+#: ../content/interactive_template/interactive_template.pt:308
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:512
+#: ../browser/viewlets.py:515
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -550,7 +550,7 @@ msgid "GridEvents"
 msgstr ""
 
 #: ../content/interactive_template/interactive_template.py:116
-msgid "Habilitar l'opció de poder obrir variis acordió de la mateixa agrupació"
+msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr ""
 
 #: ../controlpanels/header.py:306
@@ -623,7 +623,7 @@ msgstr "Imagen hero"
 msgid "Info"
 msgstr "Info"
 
-#: ../content/interactive_template/interactive_template.pt:22
+#: ../content/interactive_template/interactive_template.pt:24
 msgid "Informació"
 msgstr ""
 
@@ -756,7 +756,7 @@ msgstr "Número máximo de noticias a mostrar (1-14)"
 msgid "Menú al peu"
 msgstr "Menú en el pie"
 
-#: ../content/interactive_template/interactive_template.py:53
+#: ../content/interactive_template/interactive_template.py:55
 msgid "Modal"
 msgstr ""
 
@@ -778,10 +778,6 @@ msgstr "Mostrar fecha?"
 msgid "Mostra el títol?"
 msgstr "Mostar título?"
 
-#: ../content/interactive_template/interactive_template.py:179
-msgid "Mostrar botó per copiar el HTML de la plantilla"
-msgstr ""
-
 #: ../content/interactive_template/interactive_template.py:139
 msgid "Mostrar descripció"
 msgstr ""
@@ -792,6 +788,10 @@ msgstr "Mostrar el menú del sitio web"
 
 #: ../content/interactive_template/interactive_template.py:133
 msgid "Mostrar títol"
+msgstr ""
+
+#: ../content/interactive_template/interactive_template.py:179
+msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc."
 msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:30
@@ -865,7 +865,7 @@ msgid "Numero de noticies a mostrar"
 msgstr "Número de noticias a mostrar"
 
 #: ../content/interactive_template/interactive_template.py:121
-msgid "Obrir el primer acordió per defecte"
+msgid "Obrir el primer panell de l’acordió per defecte"
 msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:101
@@ -892,7 +892,7 @@ msgstr "Por defecto: Links"
 msgid "Permet introduir el text que es veurà a l'avís"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:50
+#: ../content/interactive_template/interactive_template.py:52
 msgid "Pestanyes"
 msgstr ""
 
@@ -905,11 +905,11 @@ msgstr "Imagen"
 msgid "Please upload an image"
 msgstr "Por favor, suba una imagen"
 
-#: ../content/interactive_template/interactive_template.pt:24
+#: ../content/interactive_template/interactive_template.pt:26
 msgid "Podeu afegir continguts en aquest directori des del següent"
 msgstr "Puede añadir contenidos en este directorio desde el siguiente"
 
-#: ../content/interactive_template/interactive_template.py:97
+#: ../content/interactive_template/interactive_template.py:98
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 msgstr "Puede añadir contenidos en este directorio desde el siguiente <a target=\"_blank\" href=\"folder_contents\">enlace</a> "
 
@@ -924,7 +924,7 @@ msgstr ""
 
 #: ../controlpanels/cintillo.py:17
 msgid "Publica el avis"
-msgstr ""
+msgstr "Publica el aviso"
 
 #: ../controlpanels/resources.py:58
 msgid "Recurs CSS"
@@ -948,6 +948,10 @@ msgstr "Guardar"
 msgid "Selecciona per pujar els recursos desde fitxers i no utilitzar el camps de text pla"
 msgstr ""
 
+#: ../content/interactive_template/interactive_template.py:50
+msgid "Selecciona una opció"
+msgstr ""
+
 #: ../tiles/formulari_existent/formulari_existent.py:68
 msgid "Select an existing content"
 msgstr "Seleccionar contenido existente"
@@ -964,7 +968,7 @@ msgstr "Mostrar fechas"
 msgid "Show more... link"
 msgstr "Mostrar enlace más..."
 
-#: ../browser/views_templates/setup_view.pt:28
+#: ../browser/views_templates/setup_view.pt:27
 msgid "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
 msgstr ""
 
@@ -976,7 +980,7 @@ msgstr ""
 msgid "Signatura"
 msgstr "Signatura"
 
-#: ../content/interactive_template/interactive_template.py:62
+#: ../content/interactive_template/interactive_template.py:65
 msgid "Simple"
 msgstr ""
 
@@ -985,7 +989,7 @@ msgstr ""
 msgid "Simple carousel view"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:52
+#: ../content/interactive_template/interactive_template.py:54
 msgid "Slider d'imatges"
 msgstr ""
 
@@ -1107,7 +1111,7 @@ msgstr "Tipo de hero de la página principal"
 msgid "Tipus de hero dintre dels continguts"
 msgstr "Tipo de hero dentro de los contenidos"
 
-#: ../content/interactive_template/interactive_template.py:89
+#: ../content/interactive_template/interactive_template.py:91
 msgid "Tipus de plantilla"
 msgstr ""
 
@@ -1198,7 +1202,7 @@ msgstr "Ver cómo descripción"
 msgid "View type"
 msgstr "Tipo de vista"
 
-#: ../browser/views_templates/setup_view.pt:25
+#: ../browser/views_templates/setup_view.pt:24
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:49
 #: ../portlets/manage_portlets/templates/managesubhome.pt:49
 msgid "Warning"
@@ -1295,7 +1299,7 @@ msgstr "Las cookies no están habilitadas. Tienes que habilitarlas antes de vali
 msgid "enabled"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:25
+#: ../content/interactive_template/interactive_template.pt:27
 msgid "enllaç"
 msgstr ""
 
@@ -1546,6 +1550,11 @@ msgstr "Título de la web con HTML tags (negritas) [ES]"
 msgid "idiomes_publicats"
 msgstr "Idiomas publicados en la web"
 
+#. Default: "Interactive template"
+#: ../profiles/default/types/genweb.core.interactivetemplate.xml
+msgid "interactivetemplate"
+msgstr "Plantilla interactiva"
+
 #. Default: "Add new…"
 #: ../patches.py:835
 msgid "label_add_new_item"
@@ -1682,7 +1691,7 @@ msgid "more_url"
 msgstr "Ver más"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:325
+#: ../browser/viewlets.py:328
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:80
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
@@ -1729,6 +1738,16 @@ msgstr "Firma [EN]"
 #: ../controlpanels/footer.py:148
 msgid "signatura_es"
 msgstr "Firma [ES]"
+
+#. Default: "Subhome"
+#: ../profiles/default/types/genweb.upc.subhome.xml
+msgid "subhome"
+msgstr "Tablero de portlets"
+
+#. Default: "Subhome Description"
+#: ../profiles/default/types/genweb.upc.subhome.xml
+msgid "subhome_desc"
+msgstr "Elemento que permite crear una página con contenidos de distintas partes de la web"
 
 #. Default: "Download this event in iCal format"
 #: ../portlets/news_events_listing/news_events_listing.pt:92

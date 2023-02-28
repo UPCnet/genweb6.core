@@ -4,7 +4,7 @@
   <div id="header-cintillo" class="cintillo" role="alert" tal:attributes="style info/style">
 
     <div>
-      <i tal:condition="info/icon" tal:attributes="class string:bi ${info/icon}"></i>
+      <i tal:condition="info/icon" tal:attributes="class string:bi ${info/icon} me-1"></i>
       <strong class="cintillo-title" tabindex="0" tal:content="structure info/title">Informació COVID-19</strong>
     </div>
 
