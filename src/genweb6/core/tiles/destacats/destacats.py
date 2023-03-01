@@ -50,9 +50,9 @@ class IDestacats(Schema):
         required=False,
         value_type=schema.Choice(
             vocabulary=create_simple_vocabulary([
-                ("Link", _PMF(u"Link")),
+                # ("Link", _PMF(u"Link")),
                 ("Event", _PMF(u"Event")),
-                ("Image", _PMF(u"Image")),
+                # ("Image", _PMF(u"Image")),
                 ("News Item", _PMF(u"News Item")),
                 ("genweb.upc.documentimage", _(u"Document Image"))
             ])
