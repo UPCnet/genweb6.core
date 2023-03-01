@@ -2,7 +2,7 @@
 <object name="genweb.upc.subhome" meta_type="Dexterity FTI" i18n:domain="genweb"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <property name="title" i18n:translate="subhome">Subhome</property>
+    <property name="title" i18n:translate="">Subhome</property>
     <property name="description" i18n:translate="subhome_desc">Subhome Description</property>
     <property name="icon_expr">string:columns-gap</property>
     <property name="allow_discussion">False</property>

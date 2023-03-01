@@ -654,6 +654,10 @@ msgstr ""
 msgid "Installs the genweb6.theme add-on."
 msgstr ""
 
+#: ../profiles/default/types/genweb.core.interactivetemplate.xml
+msgid "Interactive template"
+msgstr "Interactive template"
+
 #: ../controlpanels/cintillo.py:23
 msgid "Introdueix el codi de color. Ex: #CC3300"
 msgstr ""
@@ -999,6 +1003,10 @@ msgstr ""
 #: ../portlets/multiviewcollection/multiviewcollection.py:88
 msgid "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
 msgstr "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
+
+#: ../profiles/default/types/genweb.upc.subhome.xml
+msgid "Subhome"
+msgstr "Portlet grid"
 
 #: ../browser/views_templates/download_files.pt:15
 msgid "Submit the form below to download a .zip of files contained in this folder."
@@ -1559,11 +1567,6 @@ msgstr "Web title with HTML tags (bolds) [ES]"
 msgid "idiomes_publicats"
 msgstr "Languages activated on the website"
 
-#. Default: "Interactive template"
-#: ../profiles/default/types/genweb.core.interactivetemplate.xml
-msgid "interactivetemplate"
-msgstr "Interactive template"
-
 #. Default: "Add new…"
 #: ../patches.py:835
 msgid "label_add_new_item"
@@ -1751,11 +1754,6 @@ msgstr "Signature [EN]"
 #: ../controlpanels/footer.py:148
 msgid "signatura_es"
 msgstr "Signature [ES]"
-
-#. Default: "Subhome"
-#: ../profiles/default/types/genweb.upc.subhome.xml
-msgid "subhome"
-msgstr "Portlet grid"
 
 #. Default: "Subhome Description"
 #: ../profiles/default/types/genweb.upc.subhome.xml
