@@ -21,17 +21,8 @@
         <div class="alert alert-info" role="alert"
              tal:define="how_content context/content"
              tal:condition="python:how_content == 'inside'">
-            <h4 class="alert-heading" i18n:translate="">Informació</h4>
-            <p>
-                <span i18n:translate="">Podeu afegir continguts en aquest directori des del següent</span>
-                <a target="_blank" class="alert-link" i18n:translate=""
-                   tal:attributes="href string:${context/absolute_url}/folder_contents">enllaç</a>
-            </p>
-            <tal:cond tal:condition="context/show_copy">
-                <hr>
-                <p class="mb-0" i18n:translate="">Aquest element no es copiarà.</p>
-            </tal:cond>
-
+            <h4 class="alert-heading" i18n:translate=""><i class="bi bi-info-circle-fill me-1"></i> Passos per afegir continguts</h4>
+            <p class="mb-0" i18n:translate="">Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class="bi bi-plus-square-fill me-1"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva.</p>
         </div>
     </tal:block>
 

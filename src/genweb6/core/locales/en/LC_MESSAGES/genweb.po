@@ -61,6 +61,10 @@ msgstr ""
 msgid "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 msgstr ""
 
+#: ../content/interactive_template/interactive_template.pt:24
+msgid "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
+msgstr "<i class=\"bi bi-info-circle-fill me-1\"></i> Steps to add content"
+
 #: ../profiles/default/types/Banner.xml
 msgid "A Banner"
 msgstr ""
@@ -150,10 +154,6 @@ msgstr ""
 msgid "Apareixerà a la tile seleccionada"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:32
-msgid "Aquest element no es copiarà."
-msgstr ""
-
 #: ../portlets/new_existing_content/new_existing_content.py:273
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr ""
@@ -232,7 +232,7 @@ msgstr "Light"
 msgid "Clar a fosc"
 msgstr "Light to dark"
 
-#: ../content/interactive_template/interactive_template.pt:295
+#: ../content/interactive_template/interactive_template.pt:286
 msgid "Close"
 msgstr "Close"
 
@@ -280,7 +280,7 @@ msgstr ""
 msgid "Continguts que alimenten la plantilla"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:308
+#: ../content/interactive_template/interactive_template.pt:299
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
@@ -288,7 +288,7 @@ msgstr "Copy HTML"
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
-#: ../content/interactive_template/interactive_template.pt:308
+#: ../content/interactive_template/interactive_template.pt:299
 msgid "Copiat"
 msgstr "Copied!"
 
@@ -626,10 +626,6 @@ msgstr "Hero image"
 msgid "Info"
 msgstr "Info"
 
-#: ../content/interactive_template/interactive_template.pt:24
-msgid "Informació"
-msgstr ""
-
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
 msgstr "Home"
@@ -883,6 +879,10 @@ msgstr ""
 msgid "Optional open link in a new window"
 msgstr ""
 
+#: ../content/interactive_template/interactive_template.pt:25
+msgid "Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva."
+msgstr "To add contents within this interactive template directory: Go to the side menu, option [ <i class=\"bi bi-plus-square-fill me-1\"></i> Add new... ] while selecting one of the available resources. Each piece of content will become a piece of the interactive template."
+
 #: ../controlpanels/footer.py:98
 msgid "Per defecte: Enlaces"
 msgstr "By default: Enlaces"
@@ -911,10 +911,6 @@ msgstr "Picture"
 #: ../controlpanels/header.py:168
 msgid "Please upload an image"
 msgstr "Please upload an image"
-
-#: ../content/interactive_template/interactive_template.pt:26
-msgid "Podeu afegir continguts en aquest directori des del següent"
-msgstr "You can add contents to this directory from the following"
 
 #: ../content/interactive_template/interactive_template.py:98
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
@@ -1310,10 +1306,6 @@ msgstr "Cookies are not enabled. You must enable cookies before you can log in."
 
 #: ../cas/controlpanel.py:54
 msgid "enabled"
-msgstr ""
-
-#: ../content/interactive_template/interactive_template.pt:27
-msgid "enllaç"
 msgstr ""
 
 #. Default: "${from} until ${until}."

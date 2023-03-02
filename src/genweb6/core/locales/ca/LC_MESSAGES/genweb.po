@@ -61,6 +61,10 @@ msgstr "<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</
 msgid "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 msgstr "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 
+#: ../content/interactive_template/interactive_template.pt:24
+msgid "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
+msgstr "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
+
 #: ../profiles/default/types/Banner.xml
 msgid "A Banner"
 msgstr "Bàner"
@@ -150,10 +154,6 @@ msgstr "Alçada de les imatges en px (40 - 400)"
 msgid "Apareixerà a la tile seleccionada"
 msgstr "Apareixerà a la tile seleccionada"
 
-#: ../content/interactive_template/interactive_template.pt:32
-msgid "Aquest element no es copiarà."
-msgstr ""
-
 #: ../portlets/new_existing_content/new_existing_content.py:273
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "Aquest portlet mostra contingut ja existent en una URL específica."
@@ -232,7 +232,7 @@ msgstr "Clar"
 msgid "Clar a fosc"
 msgstr "Clar a fosc"
 
-#: ../content/interactive_template/interactive_template.pt:295
+#: ../content/interactive_template/interactive_template.pt:286
 msgid "Close"
 msgstr "Tancar"
 
@@ -280,7 +280,7 @@ msgstr "Continguts de dintre d'aquest directori"
 msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
-#: ../content/interactive_template/interactive_template.pt:308
+#: ../content/interactive_template/interactive_template.pt:299
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
@@ -288,7 +288,7 @@ msgstr "Copiar HTML"
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
-#: ../content/interactive_template/interactive_template.pt:308
+#: ../content/interactive_template/interactive_template.pt:299
 msgid "Copiat"
 msgstr "Copiat!"
 
@@ -620,10 +620,6 @@ msgstr "Imatge hero"
 msgid "Info"
 msgstr "Informació:"
 
-#: ../content/interactive_template/interactive_template.pt:24
-msgid "Informació"
-msgstr ""
-
 #: ../browser/viewlets_templates/header/header.pt:81
 msgid "Inici"
 msgstr "Inici"
@@ -877,6 +873,10 @@ msgstr "Omet el contorn del portlet"
 msgid "Optional open link in a new window"
 msgstr ""
 
+#: ../content/interactive_template/interactive_template.pt:25
+msgid "Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva."
+msgstr "Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva."
+
 #: ../controlpanels/footer.py:98
 msgid "Per defecte: Enlaces"
 msgstr "Per defecte: Enlaces"
@@ -905,10 +905,6 @@ msgstr "Imatge"
 #: ../controlpanels/header.py:168
 msgid "Please upload an image"
 msgstr "Si us plau, pugeu una imatge"
-
-#: ../content/interactive_template/interactive_template.pt:26
-msgid "Podeu afegir continguts en aquest directori des del següent"
-msgstr "Podeu afegir continguts en aquest directori des del següent"
 
 #: ../content/interactive_template/interactive_template.py:98
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
@@ -1304,10 +1300,6 @@ msgstr "Les cookies no estàn habilitades. Hi ha que habilitar-les antes de fer 
 #: ../cas/controlpanel.py:54
 msgid "enabled"
 msgstr ""
-
-#: ../content/interactive_template/interactive_template.pt:27
-msgid "enllaç"
-msgstr "enllaç"
 
 #. Default: "${from} until ${until}."
 #: ../browser/news_listing.py:300
