@@ -202,10 +202,10 @@
   <record name="plone.toolbar" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="toolbar">
     <field type="plone.registry.field.Text">
       <default>ltr rtl | undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | inserttable | unlink plonelink ploneimage</default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_tinymce_toolbar">Enter how you would like the toolbar items to list.</description>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_toolbar">Toolbar</title>
+      <description>Enter how you would like the toolbar items to list.</description>
+      <title>Toolbar</title>
     </field>
-    <value>fullscreen | code | save | newdocument | template | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | cut copy paste pastetext | searchreplace | bullist numlist | outdent indent blockquote | undo redo | plonelink unlink anchor | formatselect | styleselect | removeformat | ploneimage media | inserttable tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablesplitcells tablemergecells | superscript subscript | charmap</value>
+    <value>fullscreen | code | save | newdocument | template | bold italic underline strikethrough fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | cut copy paste pastetext | searchreplace | bullist numlist | outdent indent blockquote | undo redo | plonelink unlink anchor | styleselect | removeformat | ploneimage media | inserttable tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol | tablesplitcells tablemergecells | superscript subscript | emoticons charmap</value>
   </record>
 
   <!-- Plugins tinymce -->
@@ -274,19 +274,20 @@
       <element>charmap</element>
       <element>code</element>
       <element>contextmenu</element>
+      <element>emoticons</element>
       <element>fullscreen</element>
       <element>hr</element>
       <element>lists</element>
       <element>media</element>
       <element>nonbreaking</element>
       <element>noneditable</element>
-      <element>pagebreak</element>
       <element>paste</element>
       <element>preview</element>
       <element>print</element>
       <element>searchreplace</element>
       <element>tabfocus</element>
       <element>table</element>
+      <element>textcolor</element>
       <element>template</element>
       <element>visualblocks</element>
       <element>visualchars</element>
@@ -345,10 +346,7 @@
       <required>False</required>
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="label_tinymce_other_settings">Other settings</title>
     </field>
-    <value>{"cleanup": false,&#13;
-"valid_elements": "*[*]",&#13;
-"toolbar_mode": "wrap",&#13;
-"templates": "tinymce_template_list"}</value>
+    <value>{"cleanup": false, "valid_elements": "*[*]", "toolbar_mode": "wrap", "templates": "tinymce_template_list", "emoticons_database_url": "++theme++genweb6.theme/js/emojis.min.js"}</value>
   </record>
 
   <!-- Etiquetas no deseadas -->
@@ -787,6 +785,71 @@
       <element>++theme++genweb6.theme/fontawesome/css/light.min.css</element>
       <element>++theme++genweb6.theme/fontawesome/css/regular.min.css</element>
       <element>++theme++genweb6.theme/fontawesome/css/solid.min.css</element>
+    </value>
+  </record>
+
+  <record name="plone.formats" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="formats">
+    <field type="plone.registry.field.Text">
+      <default>{ "discreet": { "inline": "span", "classes": "discreet" }, "clearfix": { "block": "div", "classes": "clearfix" }, "alignleft": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-start" }, "aligncenter": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-center" }, "alignright": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-end" }, "alignjustify": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-justify" }, "textcolumns2": { "selector": "p", "classes": "text-columns-2" }, "textcolumns3": { "selector": "p", "classes": "text-columns-3" } }</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a JSON-formatted style format configuration. A format is for example the style that get applied when you press the bold button inside the editor. See https://www.tinymce.com/docs/configure/content-formatting/#formats</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Formats</title>
+    </field>
+    <value>{ "discreet": { "inline": "span", "classes": "discreet" }, "clearfix": { "block": "div", "classes": "clearfix" }, "alignleft": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-start" }, "aligncenter": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-center" }, "alignright": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-end" }, "alignjustify": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-justify" }, "textcolumns2": { "selector": "p", "classes": "text-columns-2" }, "textcolumns3": { "selector": "p", "classes": "text-columns-3" }, "h2borderb": { "block": "h2", "classes": "border-bottom pb-2" }, "h3borderb": { "block": "h3", "classes": "border-bottom pb-2" }, "h4borderb": { "block": "h4", "classes": "border-bottom pb-2" } }</value>
+  </record>
+
+  <record name="plone.inline_styles" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="inline_styles">
+  <field type="plone.registry.field.List">
+    <default>
+      <element>Bold|bold|bold</element>
+      <element>Italic|italic|italic</element>
+      <element>Underline|underline|underline</element>
+      <element>Strikethrough|strikethrough|strikethrough</element>
+      <element>Superscript|superscript|superscript</element>
+      <element>Subscript|subscript|subscript</element>
+      <element>Code|code|code</element>
+      <element>Text in 2 columns|textcolumns2</element>
+      <element>Text in 3 columns|textcolumns3</element>
+    </default>
+    <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Name|format|icon</description>
+    <missing_value/>
+    <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Inline styles</title>
+    <value_type type="plone.registry.field.TextLine"/>
+  </field>
+  <value>
+    <element>Bold|bold|bold</element>
+    <element>Italic|italic|italic</element>
+    <element>Underline|underline|underline</element>
+    <element>Strikethrough|strikethrough|strikethrough</element>
+    <element>Superscript|superscript|superscript</element>
+    <element>Subscript|subscript|subscript</element>
+    <element>Code|code|code</element>
+    <element>Text in 2 columns|textcolumns2</element>
+    <element>Text in 3 columns|textcolumns3</element>
+    <element>Header 2|h2borderb|underline</element>
+    <element>Header 3|h3borderb|underline</element>
+    <element>Header 4|h4borderb|underline</element>
+  </value>
+  </record>
+
+  <record name="plone.contains_objects" interface="plone.base.interfaces.controlpanel.ITinyMCEResourceTypesSchema" field="contains_objects">
+    <field type="plone.registry.field.List">
+      <default>
+        <element>Folder</element>
+        <element>Large Plone Folder</element>
+        <element>Plone Site</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a list of content types which can contain other objects. Format is one contenttype per line.</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Contains objects</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>Folder</element>
+      <element>Large Plone Folder</element>
+      <element>Plone Site</element>
+      <element>LIF</element>
+      <element>genweb.core.interactivetemplate</element>
     </value>
   </record>
 
