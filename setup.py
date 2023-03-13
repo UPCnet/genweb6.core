@@ -71,7 +71,7 @@ setup(
         'collective.exportimport',
         'collective.siteimprove',
         'plone.app.mosaic',
-        'collective.easyform',
+        'collective.easyform'
     ],
 
     extras_require={
