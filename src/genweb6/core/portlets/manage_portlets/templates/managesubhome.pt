@@ -40,35 +40,6 @@
 
   <div metal:fill-slot="main">
 
-    <tal:warning tal:condition="plone_view/isDefaultPageInFolder">
-
-      <div class="alert alert-info"
-           tal:attributes="class string:alert alert-warning">
-
-        <button data-dismiss="alert" class="close" type="button">×</button>
-        <strong i18n:translate="">Warning</strong>
-
-        <tal:msg i18n:translate="message_warning_footer_area_dt">
-          Is this really where you want to add portlets in the footer area?
-        </tal:msg>
-
-        <tal:msg i18n:translate="message_warning_footer_area_dd">
-
-          If you add portlets here, they will only appear on this item. If instead you want portlets to appear on all items in this folder,
-          <a href=""
-             tal:attributes="href string:${context/absolute_url}/@@manage-subhome"
-             i18n:name="manage-footerportlets_link">
-
-            <span i18n:translate="add_them_to_the_folder_itself">add them to the folder itself</span>
-
-          </a>
-
-        </tal:msg>
-
-      </div>
-
-    </tal:warning>
-
     <tal:ishp tal:condition="view/paginaPrincipal">
       <h1 class="documentFirstHeading" i18n:translate="manage_portlets_footer">Manage home portlets</h1>
     </tal:ishp>
