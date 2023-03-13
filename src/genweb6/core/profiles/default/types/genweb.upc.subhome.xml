@@ -24,7 +24,7 @@
         <element value="plone.namefromtitle" />
         <element value="plone.excludefromnavigation" />
         <element value="plone.locking" />
-        <!-- <element value="collective.dexteritytextindexer.behavior.IDexterityTextIndexer" /> -->
+        <element value="plone.textindexer" />
         <element value="plone.versioning" />
     </property>
 
