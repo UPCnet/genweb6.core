@@ -10,10 +10,13 @@ from plone.app.layout.viewlets.common import PersonalBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.app.multilingual.browser.selector import addQuery
 from plone.app.multilingual.browser.selector import getPostPath
+from plone.app.multilingual.interfaces import ITG
+from plone.app.multilingual.interfaces import NOTG
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.uuid.interfaces import IUUID
+from zope.component import queryAdapter
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -217,16 +220,14 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
         lang_others = []
 
         redirect_to_root = header_config.languages_link_to_root
-        if redirect_to_root:
-            try:
-                uuid = IUUID(self.context)
-                if uuid is None:
-                    uuid = 'nouuid'
-            except:
-                uuid = 'nouuid'
+        if not redirect_to_root:
+            translation_group = queryAdapter(self.context, ITG)
+            if translation_group is None:
+                translation_group = NOTG
         else:
-            uuid = 'nouuid'
+            translation_group = NOTG
 
+        portal_url = api.portal.get().absolute_url()
         for lang in languages:
             if redirect_to_root:
                 url = self.root_url() + '/' + lang['code'] + '?set_language=' + lang['code']
@@ -238,9 +239,9 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
                 url = addQuery(
                     self.request,
-                    self.context.absolute_url().rstrip('/') +
+                    portal_url +
                     '/@@multilingual-selector/%s/%s' % (
-                        uuid,
+                        translation_group,
                         lang['code']
                     ),
                     **query_extras
