@@ -178,7 +178,7 @@ class gwManagePortletsFallbackViewletMixin(object):
 
 
 class gwManagePortletsFallbackViewletForIHomePage(gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
-    """ The override for the manage_portlets_fallback viewlet for ISubhome
+    """ The override for the manage_portlets_fallback viewlet for IHomePage
     """
 
     index = ViewPageTemplateFile("templates/manage_portlets_fallback_homepage.pt")

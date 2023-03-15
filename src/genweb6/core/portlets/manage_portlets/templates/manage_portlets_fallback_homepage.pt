@@ -1,5 +1,5 @@
 <div tal:condition="view/available"
-     class="d-grid gap-2">
+     class="d-grid gap-2 mb-4">
 
   <a class="btn btn-secondary"
      tal:attributes="href view/managePortletsURL">
