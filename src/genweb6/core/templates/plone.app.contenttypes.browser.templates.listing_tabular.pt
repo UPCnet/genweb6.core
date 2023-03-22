@@ -22,7 +22,7 @@
 
       <div class="table-responsive">
 
-        <table class="table table-striped" tal:define="tabular_fields view/tabular_fields; thumb_scale_table python:view.get_thumb_scale_table(); img_class python:'thumb-%s float-end' % thumb_scale_table; showicons  python:view.show_icons();" summary="Content listing" i18n:attributes="summary summary_content_listing;">
+        <table class="table table-striped align-middle" tal:define="tabular_fields view/tabular_fields; thumb_scale_table python:view.get_thumb_scale_table(); img_class python:'thumb-%s float-end' % thumb_scale_table; showicons  python:view.show_icons();" summary="Content listing" i18n:attributes="summary summary_content_listing;">
 
           <thead>
             <tr>
@@ -75,7 +75,7 @@
                     <tal:block tal:replace="python: field_data.get('value')" />
                   </td>
 
-                  <td class="text-nowrap" tal:condition="python:field == 'Title'">
+                  <td class="min-vw-50" tal:condition="python:field == 'Title'">
                     <a tal:attributes="href python:item_link; class string:$item_type_class $item_wf_state_class url; title python:item_type" tal:content="python: item_title">
                       Item Title
                     </a>
