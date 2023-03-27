@@ -7,12 +7,6 @@
     i18n:domain="plone">
 <body>
 
-<metal:head fill-slot="javascript_head_slot">
-  <script type="text/javascript"
-          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/document_image.min.js">
-  </script>
-</metal:head>
-
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
     tal:define="templateId template/getId;
@@ -42,6 +36,9 @@
         tal:attributes="href python:'%s/@@download/image' % context.absolute_url()">
     </a>
   </div>
+
+  <script type="text/javascript"
+          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/document_image.min.js"></script>
 
 </metal:block>
 </metal:content-core>

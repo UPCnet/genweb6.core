@@ -6,10 +6,6 @@
       i18n:domain="plone">
 
 <head>
-  <metal:javascript fill-slot="javascript_head_slot" tal:omit-tag="">
-    <script type="text/javascript" src="++theme++genweb6.theme/js/views/filtered_contents_search.min.js"></script>
-  </metal:javascript>
-
   <metal:block fill-slot="top_slot">
     <tal:insert tal:replace="nothing"
                 tal:define="dummy python:request.set('enable_border', 1);
@@ -98,6 +94,9 @@
         </section>
       </div>
     </div>
+
+    <script type="text/javascript" src="++theme++genweb6.theme/js/views/filtered_contents_search.min.js"></script>
+
   </metal:main>
 </body>
 </html>
