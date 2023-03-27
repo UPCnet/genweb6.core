@@ -4,6 +4,30 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="genweb">
 
+<metal:block metal:define-macro="content_auto_banner" i18n:domain="plone">
+
+    <div class="d-flex flex-column">
+        <span class="title"
+              tal:content="context/title">Title</span>
+
+        <span class="description"
+              tal:condition="context/description"
+              tal:content="context/description">Description</span>
+
+    </div>
+
+    <tal:block tal:condition="context/icon | nothing">
+
+        <i tal:condition="not:context/icon_large"
+           tal:attributes="class string:bi ${context/icon}"></i>
+
+        <i tal:condition="context/icon_large"
+           tal:attributes="class string:bi ${context/icon} icon-large"></i>
+
+    </tal:block>
+
+</metal:block>
+
 <metal:block metal:define-macro="banner" i18n:domain="plone">
 
     <div class="gw-banner">
@@ -38,17 +62,7 @@
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
-                    <span tal:content="context/title">Title</span>
-
-                    <tal:block tal:condition="context/icon | nothing">
-
-                        <i tal:condition="not:context/icon_large"
-                           tal:attributes="class string:bi ${context/icon}"></i>
-
-                        <i tal:condition="context/icon_large"
-                           tal:attributes="class string:bi ${context/icon} icon-large"></i>
-
-                    </tal:block>
+                    <tal:content metal:use-macro="context/macros-genweb-banner/content_auto_banner"></tal:content>
 
                 </a>
 
@@ -56,17 +70,7 @@
                    tal:attributes="title context/title;
                                    href context/remoteUrl">
 
-                    <span tal:content="context/title">Title</span>
-
-                    <tal:block tal:condition="context/icon | nothing">
-
-                        <i tal:condition="not:context/icon_large"
-                           tal:attributes="class string:bi ${context/icon}"></i>
-
-                        <i tal:condition="context/icon_large"
-                           tal:attributes="class string:bi ${context/icon} icon-large"></i>
-
-                    </tal:block>
+                    <tal:content metal:use-macro="context/macros-genweb-banner/content_auto_banner"></tal:content>
 
                 </a>
 
@@ -77,4 +81,5 @@
     </div>
 
 </metal:block>
+
 </html>
