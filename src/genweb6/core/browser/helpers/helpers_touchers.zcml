@@ -151,7 +151,7 @@
 
     <browser:page
         name="bulk_change_creator"
-        for="plone.app.contenttypes.interfaces.IFolder"
+        for="zope.interface.Interface"
         class=".helpers_touchers.bulk_change_creator"
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
