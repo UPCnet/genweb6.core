@@ -7,23 +7,26 @@
 
     <metal:block fill-slot="content-core">
         <div class='well' id='folder-index-view'>
-            <ul class="level-1">
+            <ul class="level-1 list-unstyled">
                 <tal:block tal:repeat="item view/items">
-                    <li tal:condition="item/isVisible">
-                        <h3>
-                            <a tal:condition="not:item/isLink"
+                    <li class="mb-2" tal:condition="item/isVisible">
+                        <h3 class="mb-0">
+                            <a class="text-decoration-none"
+                               tal:condition="not:item/isLink"
                                tal:attributes="href item/getPath" tal:content="item/getTitle">Item Title</a>
 
                             <tal:block tal:condition="item/isLink"
                                        tal:define="gwutils context/@@genweb.utils">
-                                <a tal:condition="python:gwutils.link_redirect_blank(item.brain)"
+                                <a class="text-decoration-none"
+                                   tal:condition="python:gwutils.link_redirect_blank(item.brain)"
                                    tal:attributes="href item/getPath" target="_blank">
                                     <span tal:content="item/getTitle">Item Title</span>
                                     <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                          i18n:domain="genweb"
                                          i18n:attributes="alt obrir_link_finestra_nova">
                                 </a>
-                                <a tal:condition="python:not gwutils.link_redirect_blank(item.brain)"
+                                <a class="text-decoration-none"
+                                   tal:condition="python:not gwutils.link_redirect_blank(item.brain)"
                                    tal:attributes="href item/getPath" tal:content="item/getTitle">Item Title</a>
                             </tal:block>
                         </h3>
@@ -31,38 +34,44 @@
                             <tal:block tal:repeat="item2 item/getChildren">
                                 <li tal:condition="item2/isVisible">
 
-                                    <a tal:condition="not:item2/isLink"
+                                    <a class="text-decoration-none"
+                                       tal:condition="not:item2/isLink"
                                        tal:attributes="href item2/getPath" tal:content="item2/getTitle">Item Title</a>
 
                                     <tal:block tal:condition="item2/isLink"
                                                tal:define="gwutils context/@@genweb.utils">
-                                        <a tal:condition="python:gwutils.link_redirect_blank(item2.brain)"
+                                        <a class="text-decoration-none"
+                                           tal:condition="python:gwutils.link_redirect_blank(item2.brain)"
                                            tal:attributes="href item2/getPath" target="_blank">
                                             <span tal:content="item2/getTitle">Item Title</span>
                                             <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                                  i18n:domain="genweb"
                                                  i18n:attributes="alt obrir_link_finestra_nova">
                                         </a>
-                                        <a tal:condition="python:not gwutils.link_redirect_blank(item2.brain)"
+                                        <a class="text-decoration-none"
+                                           tal:condition="python:not gwutils.link_redirect_blank(item2.brain)"
                                            tal:attributes="href item2/getPath" tal:content="item2/getTitle">Item Title</a>
                                     </tal:block>
 
                                     <ul class="level-3" tal:condition="item2/isFolder" >
                                         <tal:block tal:repeat="item3 item2/getChildren">
                                             <li tal:condition="item3/isVisible">
-                                                <a tal:condition="not:item3/isLink"
+                                                <a class="text-decoration-none"
+                                                   tal:condition="not:item3/isLink"
                                                    tal:attributes="href item3/getPath" tal:content="item3/getTitle">Item Title</a>
 
                                                 <tal:block tal:condition="item3/isLink"
                                                            tal:define="gwutils context/@@genweb.utils">
-                                                    <a tal:condition="python:gwutils.link_redirect_blank(item3.brain)"
+                                                    <a class="text-decoration-none"
+                                                       tal:condition="python:gwutils.link_redirect_blank(item3.brain)"
                                                        tal:attributes="href item3/getPath" target="_blank">
                                                         <span tal:content="item3/getTitle">Item Title</span>
                                                         <img class="img_blank" src="++theme++genweb6.theme/img/blank_blau.png"
                                                              i18n:domain="genweb"
                                                              i18n:attributes="alt obrir_link_finestra_nova">
                                                     </a>
-                                                    <a tal:condition="python:not gwutils.link_redirect_blank(item3.brain)"
+                                                    <a class="text-decoration-none"
+                                                       tal:condition="python:not gwutils.link_redirect_blank(item3.brain)"
                                                        tal:attributes="href item3/getPath" tal:content="item3/getTitle">Item Title</a>
                                                 </tal:block>
                                             </li>
