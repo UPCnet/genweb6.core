@@ -62,7 +62,7 @@
 
       <div class="row">
 
-        <div class="col-md-2">
+        <div class="col-md-2 menu_l2">
 
           <h2 i18n:translate="homeportlets_title_1">Menu L2</h2>
           <span tal:replace="structure provider:genweb.portlets.HomePortletManager1" />
@@ -71,7 +71,7 @@
 
         <div class="col-md-10">
 
-          <div class="row">
+          <div class="row fila_1">
 
             <div class="col-md-12">
 
@@ -82,11 +82,11 @@
 
           </div>
 
-          <h2 class="liniaDalt" i18n:translate="homeportlets_title_f2">2a Fila</h2>
+          <h2 class="liniaDalt fila_2" i18n:translate="homeportlets_title_f2">2a Fila</h2>
 
-          <div class="row">
+          <div class="row fila_2">
 
-            <div class="col-md-3">
+            <div class="col-md-3 fila_2_col_1">
 
               <div class="clearfix">
 
@@ -109,7 +109,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 fila_2_col_2">
 
             <div class="clearfix">
 
@@ -132,7 +132,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 fila_2_col_3">
 
             <div class="clearfix">
 
@@ -155,7 +155,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 fila_2_col_4">
 
             <div class="clearfix">
 
@@ -178,9 +178,9 @@
 
           </div>
 
-          <h2 class="liniaDalt" i18n:translate="homeportlets_title_f3">3a Fila</h2>
+          <h2 class="liniaDalt fila_3" i18n:translate="homeportlets_title_f3">3a Fila</h2>
 
-          <div class="row">
+          <div class="row fila_3 fila_3_col_1">
 
             <div class="col-md-3">
 
@@ -205,7 +205,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3fila_3_col_2">
 
             <div class="clearfix">
 
@@ -228,7 +228,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 fila_3_col_3">
 
             <div class="clearfix">
 
@@ -251,7 +251,7 @@
 
           </div>
 
-          <div class="col-md-3">
+          <div class="col-md-3 fila_3_col_4">
 
             <div class="clearfix">
 
