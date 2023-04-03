@@ -61,7 +61,7 @@ msgstr "<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</
 msgid "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 msgstr "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 
-#: ../content/interactive_template/interactive_template.pt:24
+#: ../content/interactive_template/interactive_template.pt:18
 msgid "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
 msgstr "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
 
@@ -232,7 +232,7 @@ msgstr "Clar"
 msgid "Clar a fosc"
 msgstr "Clar a fosc"
 
-#: ../content/interactive_template/interactive_template.pt:286
+#: ../content/interactive_template/macros_interactive_template.pt:266
 msgid "Close"
 msgstr "Tancar"
 
@@ -264,7 +264,7 @@ msgstr "Connexions"
 msgid "Conservadora"
 msgstr "Estàndard"
 
-#: ../browser/viewlets_templates/footer/footer.pt:18
+#: ../browser/viewlets_templates/footer/footer.pt:32
 msgid "Contacte amb nosaltres"
 msgstr "Contacte amb nosaltres"
 
@@ -280,19 +280,19 @@ msgstr "Continguts de dintre d'aquest directori"
 msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
-#: ../content/interactive_template/interactive_template.pt:299
+#: ../content/interactive_template/interactive_template.pt:25
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:510
+#: ../browser/viewlets.py:516
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
-#: ../content/interactive_template/interactive_template.pt:299
+#: ../content/interactive_template/interactive_template.pt:25
 msgid "Copiat"
 msgstr "Copiat!"
 
-#: ../browser/viewlets.py:515
+#: ../browser/viewlets.py:521
 msgid "Copiat!"
 msgstr "Copiat!"
 
@@ -315,6 +315,10 @@ msgstr "Reclam del web amb HTML tags (negretes) [EN]"
 #: ../controlpanels/header.py:106
 msgid "Descripció del web amb HTML tags (negretes) [ES]"
 msgstr "Reclam del web amb HTML tags (negretes) [ES]"
+
+#: ../browser/viewlets_templates/footer/footer.pt:18
+msgid "Desenvolupat amb"
+msgstr ""
 
 #: ../tiles/configure.zcml:29
 msgid "Destacats Home"
@@ -873,7 +877,7 @@ msgstr "Omet el contorn del portlet"
 msgid "Optional open link in a new window"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:25
+#: ../content/interactive_template/interactive_template.pt:19
 msgid "Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva."
 msgstr "Per afegir continguts dintre d'aquest directori de la plantilla interactiva: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça de la plantilla interactiva."
 
@@ -1204,8 +1208,6 @@ msgid "View type"
 msgstr "Tipus de vista"
 
 #: ../browser/views_templates/setup_view.pt:24
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:49
-#: ../portlets/manage_portlets/templates/managesubhome.pt:49
 msgid "Warning"
 msgstr "ATENCIÓ"
 
@@ -1225,12 +1227,6 @@ msgstr ""
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:100
 msgid "action_convert_legacy_portlets"
 msgstr ""
-
-#. Default: "add them to the folder itself"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:62
-#: ../portlets/manage_portlets/templates/managesubhome.pt:62
-msgid "add_them_to_the_folder_itself"
-msgstr "Afegir-los a la pròpia carpeta"
 
 #######################
 # Delete confirmation #
@@ -1331,7 +1327,7 @@ msgid "future_events"
 msgstr ""
 
 #. Default: "Accessibilitat"
-#: ../browser/viewlets_templates/footer/footer.pt:40
+#: ../browser/viewlets_templates/footer/footer.pt:54
 msgid "genweb-accessibility"
 msgstr "Accessibilitat"
 
@@ -1342,7 +1338,7 @@ msgid "genweb-agenda"
 msgstr "Agenda"
 
 #. Default: "Disclaimer"
-#: ../browser/viewlets_templates/footer/footer.pt:50
+#: ../browser/viewlets_templates/footer/footer.pt:64
 msgid "genweb-disclaimer"
 msgstr "Avís legal"
 
@@ -1510,26 +1506,26 @@ msgid "hero_image_alt"
 msgstr ""
 
 #. Default: "Menu L2"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:96
-#: ../portlets/manage_portlets/templates/managesubhome.pt:96
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:67
+#: ../portlets/manage_portlets/templates/managesubhome.pt:67
 msgid "homeportlets_title_1"
 msgstr "Menu L2"
 
 #. Default: "1a Fila"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:107
-#: ../portlets/manage_portlets/templates/managesubhome.pt:107
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:78
+#: ../portlets/manage_portlets/templates/managesubhome.pt:78
 msgid "homeportlets_title_f1"
 msgstr "1a Fila"
 
 #. Default: "2a Fila"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:114
-#: ../portlets/manage_portlets/templates/managesubhome.pt:114
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:85
+#: ../portlets/manage_portlets/templates/managesubhome.pt:85
 msgid "homeportlets_title_f2"
 msgstr "2a Fila"
 
 #. Default: "3a Fila"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:210
-#: ../portlets/manage_portlets/templates/managesubhome.pt:210
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:181
+#: ../portlets/manage_portlets/templates/managesubhome.pt:181
 msgid "homeportlets_title_f3"
 msgstr "3a Fila"
 
@@ -1578,7 +1574,7 @@ msgid "label_convert_portlets"
 msgstr ""
 
 #. Default: "Filters"
-#: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:30
+#: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:26
 msgid "label_filters"
 msgstr "Filtres"
 
@@ -1632,8 +1628,8 @@ msgid "manage_homeportlets_link"
 msgstr "Administra pàgina principal"
 
 #. Default: "Manage home portlets"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:73
-#: ../portlets/manage_portlets/templates/managesubhome.pt:73
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:44
+#: ../portlets/manage_portlets/templates/managesubhome.pt:44
 msgid "manage_portlets_footer"
 msgstr ""
 
@@ -1645,18 +1641,6 @@ msgstr ""
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_subhome.pt:9
 msgid "manage_subhomeportlets_link"
 msgstr "Administra la graella de portlets"
-
-#. Default: "If you add portlets here, they will only appear on this item. If instead you want portlets to appear on all items in this folder, ${manage-footerportlets_link}"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:58
-#: ../portlets/manage_portlets/templates/managesubhome.pt:58
-msgid "message_warning_footer_area_dd"
-msgstr "Si afegiu portlets aquí, només apareixeran en aquest article. Si per contra desitja que els portlets apareguin en tots els elements d'aquesta carpeta, ${manage-footerportlets_link}"
-
-#. Default: "Is this really where you want to add portlets in the footer area?"
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:51
-#: ../portlets/manage_portlets/templates/managesubhome.pt:51
-msgid "message_warning_footer_area_dt"
-msgstr "És realment on vols afegir els portlets al peu de pàgina?"
 
 #. Default: "Day"
 #: ../portlets/news_events_listing/news_events_listing.pt:17
@@ -1696,8 +1680,8 @@ msgid "more_url"
 msgstr "Veure més"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:328
-#: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:80
+#: ../browser/viewlets.py:329
+#: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(obriu en una finestra nova)"
 
@@ -1724,8 +1708,8 @@ msgstr ""
 
 #. Default: "Return"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:45
-#: ../portlets/manage_portlets/templates/managehomeportlets.pt:86
-#: ../portlets/manage_portlets/templates/managesubhome.pt:86
+#: ../portlets/manage_portlets/templates/managehomeportlets.pt:57
+#: ../portlets/manage_portlets/templates/managesubhome.pt:57
 msgid "return_to_view"
 msgstr "Torna"
 
