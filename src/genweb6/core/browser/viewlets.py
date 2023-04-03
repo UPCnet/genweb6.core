@@ -439,19 +439,22 @@ class footerViewlet(viewletBase):
                         "sitemap":       {"url": self.root_url() + "/ca/sitemap", "target": '_self'},
                         "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {}},
+                        "cookies":       {},
+                        "logo":          {"url": "https://genweb.upc.edu/ca", "target": "_blank"}},
 
                  "es": {"contact":       {"url": self.root_url() + "/es/contact", "target": '_self'},
                         "sitemap":       {"url": self.root_url() + "/es/sitemap", "target": '_self'},
                         "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {}},
+                        "cookies":       {},
+                        "logo":          {"url": "https://genweb.upc.edu/ca", "target": "_blank"}},
 
                  "en": {"contact":       {"url": self.root_url() + "/en/contact", "target": '_self'},
                         "sitemap":       {"url": self.root_url() + "/en/sitemap", "target": '_self'},
                         "accessibility": {},
                         "disclaimer":    {},
-                        "cookies":       {}}}
+                        "cookies":       {},
+                        "logo":          {"url": "https://genweb.upc.edu/ca", "target": "_blank"}}}
 
         return links[lang]
 
