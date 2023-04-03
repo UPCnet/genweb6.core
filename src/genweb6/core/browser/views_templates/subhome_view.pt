@@ -33,14 +33,15 @@
           <div class="col-md-9" tal:attributes="class python:have_portlets_slot1 and 'col-md-9' or 'col-md-12'">
             <tal:comment replace="nothing"> Fila 1 </tal:comment>
             <p tal:replace="structure context/rich_description/output|nothing">Text</p>
-            <div class="row" tal:condition="have_portlets_slot2">
+            <div class="row gx-5" tal:condition="have_portlets_slot2">
               <div class="col-md-12">
                 <span tal:replace="structure python:view.renderProviderByName('genweb.portlets.HomePortletManager2')" />
               </div>
             </div>
 
             <tal:comment replace="nothing"> Fila 2 </tal:comment>
-            <div class="row" tal:condition="python:have_portlets_slot3 or have_portlets_slot4 or have_portlets_slot5 or have_portlets_slot6">
+            <div class="row gx-5"
+                 tal:condition="python:have_portlets_slot3 or have_portlets_slot4 or have_portlets_slot5 or have_portlets_slot6">
               <div class="col-md-3"
                    tal:condition="have_portlets_slot3"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager3"
@@ -68,7 +69,8 @@
             </div>
 
             <tal:comment replace="nothing"> Fila 3 </tal:comment>
-            <div class="row" tal:condition="python:have_portlets_slot7 or have_portlets_slot8 or have_portlets_slot9 or have_portlets_slot10">
+            <div class="row gx-5"
+                 tal:condition="python:have_portlets_slot7 or have_portlets_slot8 or have_portlets_slot9 or have_portlets_slot10">
               <div class="col-md-3"
                    tal:condition="have_portlets_slot7"
                    tal:define="manager_name string:genweb.portlets.HomePortletManager7"
