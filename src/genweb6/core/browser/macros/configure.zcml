@@ -39,4 +39,11 @@
         template="searchBox.pt"
         />
 
+    <browser:page
+        name="macros-genweb-hero"
+        for="*"
+        permission="zope.Public"
+        template="hero.pt"
+        />
+
 </configure>

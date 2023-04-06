@@ -17,19 +17,39 @@
                tal:attributes="for string:searchGadget${search_id}"
                i18n:translate="text_search">Search Site</label>
 
-        <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
-               title="Search Site" placeholder="Search Site"
-               i18n:attributes="title title_search_site;
-                                placeholder title_search_site"
-               tal:attributes="id string:searchGadget${search_id};
-                               value request/form/SearchableText|nothing;"
-               class="searchField form-control me-3" />
+        <tal:block tal:define="custom_search view/custom_search|nothing">
+
+            <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
+                   tal:condition="not:custom_search/literal"
+                   title="Search Site" placeholder="Search Site"
+                   i18n:attributes="title title_search_site;
+                                    placeholder title_search_site"
+                   tal:attributes="id string:searchGadget${search_id};
+                                   value request/form/SearchableText|nothing;"
+                   class="searchField form-control me-3" />
+
+            <input name="SearchableText" type="text" size="18" value="" id="searchGadget"
+                   tal:condition="custom_search/literal"
+                   tal:attributes="id string:searchGadget${search_id};
+                                   value request/form/SearchableText|nothing;
+                                   title custom_search/literal;
+                                   placeholder custom_search/literal"
+                   class="searchField form-control me-3" />
+
+            <input id="searchbox_currentfolder_only" class="d-none"  
+                   type="checkbox" name="path" checked="checked"
+                   tal:condition="custom_search/path"
+                   tal:attributes="value custom_search/path">
+
+        </tal:block>
 
         <button class="searchButton" type="submit"
                 i18n:attributes="alt label_search; aria-label label_search;"
                 i18n:translate="label_search;">
+
             <i class="bi bi-search"
                i18n:attributes="alt label_search; title label_search;"></i>
+
         </button>
 
         <div id="portal-advanced-search" class="hiddenStructure"

@@ -268,6 +268,11 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
             return False
 
         return lt.showFlags
+    
+    # Funcion para añadir a la busqueda un path o literal especifico, para customizarlo en algún paquete de cliente
+    def custom_search(self):
+        return {'literal': None,
+                'path': None}
 
 
 class heroViewlet(viewletBase):
