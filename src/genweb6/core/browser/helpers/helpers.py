@@ -99,9 +99,9 @@ Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
         dorsal = os.environ.get('dorsal', False)
         serverid = socket.gethostname()
         if dorsal == '':
-            return '<span style="color:#6b2508; font-size: 12vw;">NaN' + "<br/>[" + str(serverid) + "]</span>"
+            return str(serverid)
         else:
-            return '<span style="color:#6b2508; font-size: 12vw;">' + dorsal + "<br/>[" + str(serverid) + "]</span>"
+            return dorsal + "[" + str(serverid) + "]"
 
 
 class get_flavour_site(BrowserView):
