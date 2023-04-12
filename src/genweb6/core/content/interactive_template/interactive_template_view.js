@@ -1,7 +1,7 @@
 function copyToClipboard(element) {
     var $temp = $("<input>");
     $("body").append($temp);
-    $temp.val($(element).html()).select();
+    $temp.val("<iframe class='w-100 resizeIframe' src='" + $('body').attr('data-view-url') + "/simple'></iframe>").select();
     document.execCommand("copy");
     $temp.remove();
 }

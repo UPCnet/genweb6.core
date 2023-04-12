@@ -24,12 +24,28 @@
         />
 
     <browser:page
+        name="macros-genweb-interactive_template"
+        for="*"
+        permission="zope.Public"
+        template="interactive_template/macros_interactive_template.pt"
+        />
+
+    <browser:page
         name="view"
         for="genweb6.core.content.interactive_template.interactive_template.IInteractiveTemplate"
         class=".interactive_template.interactive_template.View"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="interactive_template/interactive_template.pt"
+        />
+
+    <browser:page
+        name="simple"
+        for="genweb6.core.content.interactive_template.interactive_template.IInteractiveTemplate"
+        class=".interactive_template.interactive_template.Simple"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="interactive_template/simple_interactive_template.pt"
         />
 
     <class class=".interactive_template.interactive_template.InteractiveTemplateContentJSWidget">

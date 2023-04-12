@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/@@blank_template/macros/master"
+      i18n:domain="genweb">
+
+<body>
+
+  <metal:main metal:fill-slot="content">
+
+    <tal:content metal:use-macro="context/macros-genweb-interactive_template/content"></tal:content>
+
+  </metal:main>
+
+</body>
+
+</html>

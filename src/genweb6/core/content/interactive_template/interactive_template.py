@@ -185,12 +185,7 @@ class IInteractiveTemplate(model.Schema):
     js = schema.Text(title=_(u""), required=False)
 
 
-@implementer(IInteractiveTemplate)
-class InteractiveTemplate(Container):
-
-    @property
-    def b_icon_expr(self):
-        return "bootstrap"
+class HelperInteractiveTemplate():
 
     def token(self):
         return 't' + secrets.token_hex(16)
@@ -241,5 +236,17 @@ class InteractiveTemplate(Container):
             return contents + contents
 
 
+@implementer(IInteractiveTemplate)
+class InteractiveTemplate(Container, HelperInteractiveTemplate):
+
+    @property
+    def b_icon_expr(self):
+        return "bootstrap"
+
+
 class View(BrowserView):
+    pass
+
+
+class Simple(BrowserView, HelperInteractiveTemplate):
     pass
