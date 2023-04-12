@@ -124,7 +124,41 @@
  </object>
 
  <object name="user" meta_type="CMF Action Category">
-  <property name="title">User actions</property>
+   <property name="title">User actions</property>
+
+   <object name="dashboard" remove="True" />
+   <object name="preferences" remove="True" />
+   <object name="plone_setup" remove="True" />
+   <object name="login" remove="True" />
+   <object name="join" remove="True" />
+   <object name="undo" remove="True" />
+   <object name="logout" remove="True" />
+
+   <object name="genweb-accesarrel" meta_type="CMF Action" i18n:domain="genweb">
+      <property name="title" i18n:translate="">genweb-accesarrel</property>
+      <property name="description" i18n:translate="" />
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/folder_contents</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr">context/@@genweb.utils/havePermissionAtRoot</property>
+      <property name="permissions">
+            <element value="View" />
+      </property>
+      <property name="visible">True</property>
+   </object>
+
+   <object name="preferences" meta_type="CMF Action" i18n:domain="plone">
+      <property name="title" i18n:translate="">Preferences</property>
+      <property name="description" i18n:translate="" />
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/@@personal-preferences</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+            <element value="View" />
+      </property>
+      <property name="visible">True</property>
+   </object>
 
    <object name="plone_setup" meta_type="CMF Action" i18n:domain="plone">
     <property name="title" i18n:translate="">Site Setup</property>
@@ -141,16 +175,15 @@
 
    <object name="login" meta_type="CMF Action" i18n:domain="plone">
       <property name="title" i18n:translate="">Log in</property>
-      <property name="description" i18n:translate=""/>
-      <property name="url_expr">python:f"{plone_portal_state.navigation_root_url()}/login"</property>
-      <property name="link_target"/>
-      <property name="icon_expr">string:bi bi-person-fill</property>
-      <property name="available_expr">context/@@genweb.login.utils/view_login | nothing</property>
+      <property name="description" i18n:translate="" />
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/login_form</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr">python:member is None</property>
       <property name="permissions">
-         <element value="View"/>
+            <element value="View" />
       </property>
-      <property name="visible">True</property>
-      <property name="modal" type="text">position: center top; titleSelector: h1.card-title; buttons: ;</property>
+      <property name="visible">False</property>
    </object>
 
    <object name="join" meta_type="CMF Action" i18n:domain="plone">
@@ -166,6 +199,32 @@
       <property name="visible">True</property>
    </object>
 
+   <object name="undo" meta_type="CMF Action" i18n:domain="plone">
+      <property name="title" i18n:translate="">Undo</property>
+      <property name="description" i18n:translate="" />
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/undo_form</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+            <element value="List undoable changes" />
+      </property>
+      <property name="visible">False</property>
+   </object>
+
+   <object name="logout" meta_type="CMF Action" i18n:domain="plone">
+      <property name="title" i18n:translate="">Log out</property>
+      <property name="description" i18n:translate="" />
+      <property name="url_expr">string:${globals_view/navigationRootUrl}/logout</property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr">python:member is not None</property>
+      <property name="permissions">
+            <element value="View" />
+      </property>
+      <property name="visible">True</property>
+   </object>
+   
  </object>
 
  <object name="portal_tabs" meta_type="CMF Action Category">
