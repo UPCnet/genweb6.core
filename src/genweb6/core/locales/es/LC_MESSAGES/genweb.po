@@ -232,7 +232,7 @@ msgstr ""
 msgid "Clar a fosc"
 msgstr ""
 
-#: ../content/interactive_template/macros_interactive_template.pt:266
+#: ../content/interactive_template/interactive_template.pt:280
 msgid "Close"
 msgstr "Cerrar"
 
@@ -280,19 +280,19 @@ msgstr ""
 msgid "Continguts que alimenten la plantilla"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:25
+#: ../content/interactive_template/interactive_template.pt:293
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:516
+#: ../browser/viewlets.py:521
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
-#: ../content/interactive_template/interactive_template.pt:25
+#: ../content/interactive_template/interactive_template.pt:293
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:521
+#: ../browser/viewlets.py:526
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -1270,6 +1270,11 @@ msgstr "Cancelar"
 msgid "cas_url"
 msgstr ""
 
+#. Default: "Cookie Policy"
+#: ../browser/viewlets_templates/footer/footer.pt:74
+msgid "cookie_policy"
+msgstr "Configuración de privacidad"
+
 #. Default: "Delete"
 #: ../browser/views_templates/confirmation.pt:33
 msgid "delete"
@@ -1670,7 +1675,7 @@ msgid "more_url"
 msgstr "Ver más"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:329
+#: ../browser/viewlets.py:334
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
