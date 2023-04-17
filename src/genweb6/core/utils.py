@@ -5,12 +5,14 @@ from Products.Five.browser import BrowserView
 
 from bs4 import BeautifulSoup
 from plone import api
+from plone.memoize import ram
 from plone.memoize.instance import memoize
 from plone.registry.interfaces import IRegistry
 from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
+from time import time
 from zope.component import getMultiAdapter
 from zope.component import provideUtility
 from zope.component import queryUtility
@@ -183,26 +185,31 @@ def toLocalizedTime(self, time):
 #         return genweb_config()
 
 
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebCintilloConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICintilloSettings)
 
 
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebHeaderConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IHeaderSettings)
 
 
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebFooterConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IFooterSettings)
 
 
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebLoginConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ILoginSettings)
 
 
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebResourcesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IResourcesSettings)

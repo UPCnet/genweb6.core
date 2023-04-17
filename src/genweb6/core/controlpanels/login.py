@@ -5,6 +5,7 @@ from plone.app.registry.browser import controlpanel
 from plone.supermodel import model
 from z3c.form import button
 from zope import schema
+from zope.ramcache import ram
 
 from genweb6.core import _
 
@@ -37,6 +38,7 @@ class LoginSettingsForm(controlpanel.RegistryEditForm):
             return
 
         self.applyChanges(data)
+        ram.caches.clear()
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())

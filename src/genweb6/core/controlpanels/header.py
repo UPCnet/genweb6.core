@@ -7,13 +7,16 @@ from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedImageFieldWidget
+from plone.memoize import ram
 from plone.namedfile.browser import Download
 from plone.namedfile.file import NamedImage
 from plone.registry.interfaces import IRegistry
 from plone.supermodel import model
+from time import time
 from z3c.form import button
 from zope import schema
 from zope.component import queryUtility
+from zope.ramcache import ram as ramcache
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
@@ -319,6 +322,7 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
             return
 
         self.applyChanges(data)
+        ramcache.caches.clear()
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
@@ -337,17 +341,24 @@ class GWHero(Download):
 
     def __init__(self, context, request):
         super(GWHero, self).__init__(context, request)
-        self.filename = None
         self.data = None
+        self.filename = None
 
+        filename, data = self.generate()
+
+        self.data = data
+        self.filename = filename
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
         if getattr(header_config, 'hero_image', False):
             filename, data = b64decode_file(header_config.hero_image)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            
+        return filename, data
 
     def _getFile(self):
         return self.data
@@ -360,14 +371,21 @@ class GWFullHero(Download):
         self.filename = None
         self.data = None
 
+        filename, data = self.generate()
+
+        self.filename = filename
+        self.data = data
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
-        if getattr(header_config, 'full_hero_image', False):
+        if getattr(header_config, 'hero_image', False):
             filename, data = b64decode_file(header_config.full_hero_image)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            
+        return filename, data
 
     def _getFile(self):
         return self.data
@@ -380,14 +398,21 @@ class GWLogo(Download):
         self.filename = None
         self.data = None
 
+        filename, data = self.generate()
+
+        self.filename = filename
+        self.data = data
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
         if getattr(header_config, 'logo', False):
             filename, data = b64decode_file(header_config.logo)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            
+        return filename, data
 
     def _getFile(self):
         return self.data
@@ -400,14 +425,21 @@ class GWLogoResponsive(Download):
         self.filename = None
         self.data = None
 
+        filename, data = self.generate()
+
+        self.filename = filename
+        self.data = data
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
         if getattr(header_config, 'logo_responsive', False):
             filename, data = b64decode_file(header_config.logo_responsive)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            
+        return filename, data
 
     def _getFile(self):
         return self.data
@@ -420,14 +452,21 @@ class GWSecundaryLogo(Download):
         self.filename = None
         self.data = None
 
+        filename, data = self.generate()
+
+        self.filename = filename
+        self.data = data
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
         if getattr(header_config, 'secundary_logo', False):
             filename, data = b64decode_file(header_config.secundary_logo)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            
+        return filename, data
 
     def _getFile(self):
         return self.data
@@ -440,14 +479,21 @@ class GWSecundaryLogoResponsive(Download):
         self.filename = None
         self.data = None
 
+        filename, data = self.generate()
+
+        self.data = data
+        self.filename = filename
+
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
         if getattr(header_config, 'secundary_logo_responsive', False):
-            filename, data = b64decode_file(header_config.secundary_logo_responsive)
             data = NamedImage(data=data, filename=filename)
-            self.data = data
-            self.filename = filename
+            filename, data = b64decode_file(header_config.secundary_logo_responsive)
+            
+        return filename, data
 
     def _getFile(self):
         return self.data

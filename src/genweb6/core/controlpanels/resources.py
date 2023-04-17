@@ -6,9 +6,11 @@ from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedFileFieldWidget
+from plone.memoize import ram
 from plone.namedfile.file import NamedFile
 from plone.registry.interfaces import IRegistry
 from plone.supermodel import model
+from time import time
 from z3c.form import button
 from z3c.form.browser.text import TextWidget
 from z3c.form.browser.widget import addFieldClass
@@ -21,6 +23,7 @@ from zope.component import adapter
 from zope.component import queryUtility
 from zope.interface import implementer
 from zope.interface import implementer_only
+from zope.ramcache import ram as ramcache
 from zope.schema.interfaces import IField
 
 from genweb6.core import _
@@ -100,6 +103,7 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
             self.status = self.formErrorsMessage
             return
 
+        ramcache.caches.clear()
         self.applyChanges(data)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
@@ -118,6 +122,10 @@ class ResourcesSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
 class GWCSS(BrowserView):
 
     def __call__(self):
+        return self.generate()
+        
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         resources_config = registry.forInterface(IResourcesSettings)
 
@@ -125,11 +133,16 @@ class GWCSS(BrowserView):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
             return data._data._data
+        return None
 
 
 class GWJS(BrowserView):
 
     def __call__(self):
+        return self.generate()
+        
+    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate(self):
         registry = queryUtility(IRegistry)
         resources_config = registry.forInterface(IResourcesSettings)
 
@@ -137,3 +150,4 @@ class GWJS(BrowserView):
             filename, data = b64decode_file(resources_config.file_js)
             data = NamedFile(data=data, filename=filename)
             return data._data._data
+        return None

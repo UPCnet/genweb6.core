@@ -10,9 +10,9 @@ from plone.autoform.directives import write_permission
 from plone.supermodel import model
 from z3c.form import button
 from zope import schema
+from zope.ramcache import ram
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
 
@@ -177,6 +177,7 @@ class FooterSettingsForm(controlpanel.RegistryEditForm):
             self.status = self.formErrorsMessage
             return
 
+        ram.caches.clear()
         self.applyChanges(data)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
