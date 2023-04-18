@@ -344,13 +344,13 @@ class GWHero(Download):
         self.data = None
         self.filename = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_hero_image()
 
         self.data = data
         self.filename = filename
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_hero_image(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
@@ -371,17 +371,17 @@ class GWFullHero(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_full_hero_image()
 
         self.filename = filename
         self.data = data
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_full_hero_image(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
-        if getattr(header_config, 'hero_image', False):
+        if getattr(header_config, 'full_hero_image', False):
             filename, data = b64decode_file(header_config.full_hero_image)
             data = NamedImage(data=data, filename=filename)
             
@@ -398,13 +398,13 @@ class GWLogo(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_logo()
 
         self.filename = filename
         self.data = data
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_logo(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
@@ -425,13 +425,13 @@ class GWLogoResponsive(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_logo_responsive()
 
         self.filename = filename
         self.data = data
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_logo_responsive(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
@@ -452,13 +452,13 @@ class GWSecundaryLogo(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_secundary_logo()
 
         self.filename = filename
         self.data = data
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_secundary_logo(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
@@ -479,13 +479,13 @@ class GWSecundaryLogoResponsive(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate()
+        filename, data = self.generate_secundary_logo_responsive()
 
         self.data = data
         self.filename = filename
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
+    def generate_secundary_logo_responsive(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
