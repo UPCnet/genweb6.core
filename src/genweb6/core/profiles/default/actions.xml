@@ -178,7 +178,7 @@
       <property name="description" i18n:translate="" />
       <property name="url_expr">string:${object_url}/login</property>
       <property name="link_target" />
-      <property name="icon_expr">string:plone-login</property>
+      <property name="icon_expr">string:person-fill</property>
       <property name="available_expr">context/@@genweb.login.utils/view_login | nothing</property>
       <property name="permissions">
             <element value="View" />
@@ -191,7 +191,7 @@
       <property name="description" i18n:translate=""/>
       <property name="url_expr">string:${globals_view/navigationRootUrl}/@@register</property>
       <property name="link_target"/>
-      <property name="icon_expr">string:plone-register</property>
+      <property name="icon_expr">string:person-plus-fill</property>
       <property name="available_expr">python:member is None</property>
       <property name="permissions">
          <element value="Add portal member"/>
@@ -217,7 +217,7 @@
       <property name="description" i18n:translate="" />
       <property name="url_expr">string:${globals_view/navigationRootUrl}/logout</property>
       <property name="link_target" />
-      <property name="icon_expr">string:plone-logout</property>
+      <property name="icon_expr">string:box-arrow-right</property>
       <property name="available_expr">python:member is not None</property>
       <property name="permissions">
             <element value="View" />

@@ -95,7 +95,7 @@
                        tal:attributes="action">
 
                        <i tal:condition="action/icon"
-                          tal:attributes="class action/icon;
+                          tal:attributes="class string:bi bi-${action/icon};
                                           title action/title;
                                           alt action/title"></i>
                     </a>
