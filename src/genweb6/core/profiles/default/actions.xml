@@ -179,7 +179,7 @@
       <property name="url_expr">string:${object_url}/login</property>
       <property name="link_target" />
       <property name="icon_expr">string:plone-login</property>
-      <property name="available_expr">python:member is None</property>
+      <property name="available_expr">context/@@genweb.login.utils/view_login | nothing</property>
       <property name="permissions">
             <element value="View" />
       </property>
