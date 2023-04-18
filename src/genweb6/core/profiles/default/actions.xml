@@ -176,7 +176,7 @@
    <object name="login" meta_type="CMF Action" i18n:domain="plone">
       <property name="title" i18n:translate="">Log in</property>
       <property name="description" i18n:translate="" />
-      <property name="url_expr">string:${globals_view/navigationRootUrl}/login_form</property>
+      <property name="url_expr">string:${object_url}/login</property>
       <property name="link_target" />
       <property name="icon_expr">string:plone-login</property>
       <property name="available_expr">python:member is None</property>
