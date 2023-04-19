@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from bs4 import BeautifulSoup
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.autoform import directives
@@ -252,6 +253,14 @@ class Renderer(base.Renderer):
                 content = _(u"ERROR. Charset undefined")
             else:
                 content = _(u"")
+
+        soup = BeautifulSoup(clean_html, "html.parser")
+        body = soup.find_all("body")
+        if body:
+            class_body = body[0].get("class", [])
+            valid_class = [valid for valid in class_body if valid.startswith('template-') or valid.startswith('portaltype-')]
+            content = str('<div class="existing-content ' + ' '.join(valid_class) + '">' + content + '</div>')
+
         return content
 
     def getTitle(self):
