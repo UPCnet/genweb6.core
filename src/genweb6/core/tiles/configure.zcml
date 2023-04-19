@@ -27,6 +27,19 @@
         layer="*"
         template="destacats/destacats.pt"
         />
+    
+    <plone:tile
+        name="tres_destacats"
+        title="3 Destacats"
+        description="Tile used to show 3 destacats in homepage"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".destacats.tres_destacats.tres_destacats.ITresDestacats"
+        class=".destacats.tres_destacats.tres_destacats.TresDestacats"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="destacats/tres_destacats/tres_destacats.pt"
+        />
 
     <plone:tile
         name="formulari_existent"
