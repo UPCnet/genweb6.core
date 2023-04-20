@@ -5,155 +5,66 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="plone">
 
-    <tal:comment tal:replace="nothing"> HERO </tal:comment>
-
-    <metal:block metal:define-macro="titol-video">
-        <h2 tal:content="item/title" class="event-title">Titol</h2>
-    </metal:block>
-
-    <metal:block metal:define-macro="video">
-
-        <div class="modal fade" aria-hidden="true"
-             tal:attributes="id string:${video_id}Toggle;
-                             aria-labelledby string:${video_id}ToggleLabel">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title fs-5"
-                            tal:attributes="id string:${video_id}ToggleLabel"
-                            tal:content="item/title">Modal title</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <tal:block metal:define-slot="video-container">videocontainer</tal:block>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </metal:block>
-
-    <tal:comment tal:replace="nothing"> 4 DESTACATS ESDEVENIMENTS </tal:comment>
-
-    <metal:block metal:define-macro="time">
-        <tal:omit-tag tal:content="day">22</tal:omit-tag>
-        <span tal:content="month" class="sr-only">novembre</span>
-    </metal:block>
-
-    <metal:block metal:define-macro="firstday">
-        <time class='event-days' tal:define="day item/firstday; month item/firstmonth">
-            <tal:block metal:use-macro="context/macros-tiles/time"></tal:block>
-        </time>
-    </metal:block>
-
-    <metal:block metal:define-macro="lastday">
-        <time class='event-days' tal:define="day item/lastday; month item/lastmonth">
-            <tal:block metal:use-macro="context/macros-tiles/time"></tal:block>
-        </time>
-    </metal:block>
-
-    <metal:block metal:define-macro="firstmonth">
-        <span role="presentation" aria-hidden="true" class="event-months" tal:attributes="title item/firstmonth" tal:content="item/abbrfirstmonth">primermes</span>
-    </metal:block>
-
-    <metal:block metal:define-macro="sameday_samemonth">
-        <tal:sameday_samemonth condition="python: type == 'sameday_samemonth'">
-            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
-            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
-        </tal:sameday_samemonth>
-    </metal:block>
-
-    <metal:block metal:define-macro="difday_samemonth">
-        <tal:difday_samemonth condition="python: type == 'difday_samemonth'">
-            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
-            <span tal:content="item/connector" class='event-days event-days-connector'>/</span>
-            <tal:block metal:use-macro="context/macros-tiles/lastday"></tal:block>
-            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
-        </tal:difday_samemonth>
-    </metal:block>
-
-    <metal:block metal:define-macro="difday_difmonth">
-        <tal:difday_difmonth condition="python: type == 'difday_difmonth'">
-            <tal:block metal:use-macro="context/macros-tiles/firstday"></tal:block>
-            <tal:block metal:use-macro="context/macros-tiles/firstmonth"></tal:block>
-            <span tal:content="item/connector" class="event-days event-days-connector">/</span>
-            <tal:block metal:use-macro="context/macros-tiles/lastday"></tal:block>
-            <span role="presentation" aria-hidden="true" class="event-months" tal:attributes="title item/lastmonth" tal:content="item/abbrlastmonth">ultimmes</span>
-        </tal:difday_difmonth>
-    </metal:block>
-
-    <tal:comment tal:replace="nothing"> TITOL DESTACATS </tal:comment>
-
+    <!--  titol destacats -->
     <metal:block metal:define-macro="titol-destacats">
-        <h2 class="portlet-title">
-            <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
-        </h2>
-    </metal:block>
-
-    <tal:comment tal:replace="nothing"> PEU DESTACATS </tal:comment>
-
-    <metal:block metal:define-macro="peu-destacats">
-        <div tal:condition="view/link_title" class="link-tile-footer">
-            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
-              <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
-            </a>
-        </div>
-    </metal:block>
-
-    <tal:comment tal:replace="nothing"> TEXT NOTICIA </tal:comment>
-
-    <metal:block metal:define-macro="text-noticia">
-        <div>
-            <h3 tal:content="item/title" class="hotnews-title">Les universitats públiques catalanes reclamen</h3>
-            <div class="hotnews-description">
-                <p tal:content="structure item/description">En una declaració elaborada en el marc de l’ACUP (Associació Catalana d’Universitats Públiques)</p>
-            </div>
+        <div class='titling-line-container'>
+            <h2 class="titling-line portlet-title gray-300 mt-0">
+                <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
+            </h2>
         </div>
     </metal:block>
 
     <!-- 2-3-4-destacats -->
-    <metal:block metal:define-macro="multiple-destacats">
-        <picture tal:condition="python: item['imatge']">
-            <source media="(min-width:992px)" tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-            <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
+    <metal:block metal:define-macro="n-destacats">
+        <picture tal:condition="python: item['image']">
+            <source  tal:attributes="srcset string:${item/url}/@@images/image/preview" />
+            <img tal:attributes="data-src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
         </picture>
     </metal:block>
 
     <!-- bigImageNews -->
     <metal:block metal:define-macro="bigImageNews">
-        <div class="area-gran">
-            <div tal:define="bigNew view/area_gran" class="card">
-                <picture tal:condition="python: bigNew['imatge']">
-                    <source media="(max-width: 600px)" tal:attributes="srcset string:${bigNew/url}/@@images/image/preview" />
-                    <img tal:attributes="src string:${bigNew/url}/@@images/image/large; alt bigNew/title|nothing;" />
-                </picture>
-                <div class="card-body">
-                    <a tal:attributes="href bigNew/url; target bigNew/open_link_in_new_window;"
-                        class="stretched-link">
-                        <h3 class="card-title" tal:content="bigNew/title">Títol de la notícia</h3>    
-                        <p tal:content="structure bigNew/description">Escrit de la noticia</p>
-                    </a>
-                </div>
+          <div class="area-gran" tal:condition="destacats">
+            <div tal:define="bigNew python:destacats[0]" class="card">
+              <picture tal:condition="bigNew/image|nothing">
+                <source tal:attributes="srcset string:${bigNew/url}/@@images/image/preview" />
+                <img tal:attributes="data-src string:${bigNew/url}/@@images/image/large; alt bigNew/althome|nothing;"
+                  class="card-img-top">
+              </picture>
+              <div class="card-body">
+                <a tal:attributes="href bigNew/url; target bigNew/open_link_in_new_window;" class="stretched-link">
+                  <h3 class="card-title" tal:content="bigNew/title">Títol de la notícia</h3>
+                  <p tal:content="structure bigNew/description">Escrit de la noticia</p>
+                </a>
+              </div>
             </div>
-        </div>
+          </div>
     </metal:block>
 
     <!-- littelImageNews -->
     <metal:block metal:define-macro="littelImageNews">
         <div tal:attributes="class item/class">
             <div class="card">
-                <picture tal:condition="python: item['imatge']">
-                    <source media="(max-width: 992px and min-width: 600px)"
-                        tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-                    <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
+                <picture tal:condition="item/image|nothing">
+                    <source
+                        tal:attributes="srcset string:${item/url}/@@images/image/large" />
+                    <img tal:attributes="data-src string:${item/url}/@@images/image/preview; alt item/althome|nothing;" />
                 </picture>
                 <div class="card-body">
                     <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="stretched-link">
                         <h3 class="card-title" tal:content="item/title">Títol de la notícia</h3>
-                        <p class="text-truncate-3" tal:content="structure item/description">Escrit de la noticia</p>
+                        <p tal:content="structure item/description" class="text-truncate-4">Escrit de la noticia</p>
                     </a>
                 </div>
             </div>
+        </div>
+    </metal:block>
+
+    <metal:block metal:define-macro="peu-destacats">
+        <div tal:condition="view/link_title" class="link-tile-footer">
+            <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
+              <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
+            </a>
         </div>
     </metal:block>
 

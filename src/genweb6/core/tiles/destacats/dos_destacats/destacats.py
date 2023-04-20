@@ -10,11 +10,12 @@ class IDestacats(IDestacatsBase):
     """ Destacats schema """
     pass
 
+
 class Destacats(DestacatsBase):
     """ Destacats tile displays a different kind of templates configured by subjects """
 
     def getNDestacats(self, limit):
-        """ Returns 3 destacats object """
+        """ Returns 2 destacats object """
         catalog = api.portal.get_tool(name='portal_catalog')
 
         params = {

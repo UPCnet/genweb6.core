@@ -16,30 +16,56 @@
         />
 
     <plone:tile
-        name="destacats"
-        title="Destacats Home"
+        name="un_destacat"
+        title="1 Destacat Principal"
         description="Tile used to show destacats in homepage"
         add_permission="cmf.ModifyPortalContent"
-        schema=".destacats.destacats.IDestacats"
-        class=".destacats.destacats.Destacats"
+        schema=".destacats.un_destacat.destacats.IDestacats"
+        class=".destacats.un_destacat.destacats.Destacats"
         permission="zope2.View"
         for="*"
         layer="*"
-        template="destacats/destacats.pt"
+        template="destacats/un_destacat/destacats.pt"
         />
+
+    <plone:tile
+        name="dos_destacats"
+        title="2 Destacats"
+        description="Tile used to show destacats in homepage"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".destacats.dos_destacats.destacats.IDestacats"
+        class=".destacats.dos_destacats.destacats.Destacats"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="destacats/dos_destacats/destacats.pt"
+        />   
     
     <plone:tile
         name="tres_destacats"
         title="3 Destacats"
         description="Tile used to show 3 destacats in homepage"
         add_permission="cmf.ModifyPortalContent"
-        schema=".destacats.tres_destacats.tres_destacats.ITresDestacats"
-        class=".destacats.tres_destacats.tres_destacats.TresDestacats"
+        schema=".destacats.tres_destacats.tres_destacats.IDestacats"
+        class=".destacats.tres_destacats.tres_destacats.Destacats"
         permission="zope2.View"
         for="*"
         layer="*"
         template="destacats/tres_destacats/tres_destacats.pt"
         />
+
+    <plone:tile
+        name="cinc_destacats"
+        title="5 Destacats"
+        description="Tile used to show destacats in homepage"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".destacats.cinc_destacats.destacats.IDestacats"
+        class=".destacats.cinc_destacats.destacats.Destacats"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="destacats/cinc_destacats/destacats.pt"
+        />    
 
     <plone:tile
         name="formulari_existent"

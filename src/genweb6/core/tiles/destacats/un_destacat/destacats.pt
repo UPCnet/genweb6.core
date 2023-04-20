@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+  <body>
+    <tal:block tal:define="item python:view.getNDestacats(1);" tal:condition="item">
+              
+      <div tal:define="heroTextPosition view/heroTextPosition">
+        <section
+          tal:attributes="class string:hero-posicio-${heroTextPosition} gw-tile hero hero-color-negre content-highlighted">
+
+          <img tal:condition="item/image|nothing"
+               tal:attributes="src string:${item/url}/@@images/image;
+                               alt item/title" />
+
+          <article class='container'>
+
+                <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="no-bullet">
+                  <h2 tal:content="item/title" class="event-title mb-0">Titol</h2>
+                </a>
+
+          </article>
+
+        </section>
+      </div>
+
+    </tal:block>
+  </body>
+</html>
+

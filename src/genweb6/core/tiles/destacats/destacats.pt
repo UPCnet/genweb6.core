@@ -8,6 +8,9 @@
       i18n:domain="homeupc">
 
   <body>
+
+    <!-- SIN USO -->
+
     <tal:block define="destacatprincipal view/is1DestacatPrincipalConfigured;
                        tres_destacats view/is3DestacatsConfigured;
                        quatre_destacats_esdeveniments view/is4DestacatsEsdevenimentsConfigured;

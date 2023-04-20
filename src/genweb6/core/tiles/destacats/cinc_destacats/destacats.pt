@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal"
+  xmlns:metal="http://xml.zope.org/namespaces/metal" xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  i18n:domain="homeupc">
+
+<body>
+  <tal:block define="destacats python:view.getNDestacats(limit=5)">
+
+    <div condition="destacats">
+      <section class="gw-tile destacats5 container content-hotnews">
+        <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+        <div tal:attributes="class string:${view/imatgeGranPosition} grid-container">
+          <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
+
+          <tal:block tal:condition="items" tal:define="items python:destacats[1:]">
+            <tal:block tal:repeat="item items">
+              <tal:block metal:use-macro="context/macros-tiles/littelImageNews"></tal:block>
+            </tal:block>
+          </tal:block>
+        </div>
+        <!-- tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block> -->
+        <div tal:condition="view/link_title" class="link-tile-footer">
+          <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
+            <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
+          </a>
+        </div>
+      </section>
+    </div>
+
+  </tal:block>
+</body>
+
+</html>

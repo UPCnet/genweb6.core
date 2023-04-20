@@ -16,6 +16,8 @@ from genweb6.core.utils import pref_lang
 import re
 
 
+#SIN USO
+
 class CatalogSource(CatalogSourceBase):
     """ExistingContentTile specific catalog source to allow targeted widget
     """
@@ -255,7 +257,7 @@ class Destacats(Tile):
                     'abbrlastmonth': PLMF(ts.month_msgid(obj.end.month)),
                     'connector': ' to ' if pref_lang() == 'en' else ' a ',
                     'title': obj.title,
-                    'imatge': obj.image,
+                    'image': obj.image,
                     'peu': obj.title,
                     'img_setted': obj.image is None,
                     }
@@ -370,7 +372,7 @@ class Destacats(Tile):
                 if obj_type == 'Event':
                     info = {
                         'url': result.getURL(),
-                        'imatge': obj.image,
+                        'image': obj.image,
                         'img_setted': obj.image is not None,
                         'open_link_in_new_window': '_self',
                         'class': "",
@@ -381,7 +383,7 @@ class Destacats(Tile):
                     data_efectiva = DateTime.strftime(obj.effective(), '%d/%m/%Y')
                     info = {
                         'url': result.getURL(),
-                        'imatge': obj.image,
+                        'image': obj.image,
                         'img_setted': obj.image is not None,
                         'open_link_in_new_window': '_self',
                         'class': "",
@@ -436,7 +438,7 @@ class Destacats(Tile):
                 elif obj_type == 'Image':
                     info = {
                         'url': result.getURL(),
-                        'imatge': obj.image,
+                        'image': obj.image,
                         'img_setted': obj.image is not None,
                         'open_link_in_new_window': '_self',
                         'class': "",

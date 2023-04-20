@@ -28,8 +28,13 @@ msgstr "${items} could not be deleted."
 msgid "${items} deleted."
 msgstr "${items} deleted."
 
+#: ../tiles/configure.zcml:42
 #: ../tiles/destacats/destacats.py:67
 msgid "1 Destacat Principal"
+msgstr ""
+
+#: ../tiles/configure.zcml:55
+msgid "2 Destacats"
 msgstr ""
 
 #: ../tiles/destacats/destacats.py:68
@@ -38,6 +43,10 @@ msgstr ""
 
 #: ../tiles/destacats/destacats.py:69
 msgid "4 Destacats Esdeveniments"
+msgstr ""
+
+#: ../tiles/configure.zcml:68
+msgid "5 Destacats"
 msgstr ""
 
 #: ../tiles/destacats/destacats.py:71
@@ -171,6 +180,14 @@ msgstr ""
 msgid "BannerContainer"
 msgstr ""
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:62
+msgid "Big image"
+msgstr ""
+
+#: ../tiles/destacats/cinc_destacats/destacats.py:63
+msgid "Big image position"
+msgstr ""
+
 #: ../portlets/fullnews/fullnews.py:56
 #: ../portlets/news/news.py:32
 msgid "Boolea que indica si s'ha de mostrar la data en les noticies"
@@ -268,9 +285,15 @@ msgstr "Standard"
 msgid "Contacte amb nosaltres"
 msgstr "Contact us"
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:49
 #: ../tiles/destacats/destacats.py:48
+#: ../tiles/destacats/dos_destacats/destacats.py:47
 msgid "Content type"
 msgstr ""
+
+#: ../tiles/destacats/un_destacat/destacats.py:61
+msgid "Content's title position"
+msgstr "Content's title position"
 
 #: ../content/interactive_template/interactive_template.py:60
 msgid "Continguts de dintre d'aquest directori"
@@ -300,7 +323,7 @@ msgstr "Copied!"
 msgid "Costumizar completament els enllaços"
 msgstr "Show an alternative menu"
 
-#: ../tiles/configure.zcml:58
+#: ../tiles/configure.zcml:97
 msgid "Custom Video"
 msgstr ""
 
@@ -345,7 +368,7 @@ msgstr ""
 ################
 #: ../browser/download_files.py:36
 #: ../profiles/default/types/genweb.upc.documentimage.xml
-#: ../tiles/destacats/destacats.py:57
+#: ../tiles/destacats/cinc_destacats/destacats.py:56
 msgid "Document Image"
 msgstr "Document with image"
 
@@ -492,7 +515,7 @@ msgstr ""
 msgid "Footer Settings"
 msgstr ""
 
-#: ../tiles/configure.zcml:42
+#: ../tiles/configure.zcml:81
 msgid "Formulari Existent"
 msgstr ""
 
@@ -1016,11 +1039,15 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:41
 #: ../tiles/destacats/destacats.py:40
+#: ../tiles/destacats/dos_destacats/destacats.py:39
 msgid "Tags field"
 msgstr ""
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:42
 #: ../tiles/destacats/destacats.py:41
+#: ../tiles/destacats/dos_destacats/destacats.py:40
 msgid "Tags field description"
 msgstr ""
 
@@ -1049,11 +1076,17 @@ msgstr ""
 msgid "Text per l'avís"
 msgstr ""
 
+#: ../tiles/destacats/un_destacat/destacats.py:60
+msgid "Text position"
+msgstr "Text position"
+
 #: ../portlets/rss/rss.py:314
 msgid "Text to show more content."
 msgstr ""
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:50
 #: ../tiles/destacats/destacats.py:49
+#: ../tiles/destacats/dos_destacats/destacats.py:48
 msgid "The content type to check for."
 msgstr ""
 
@@ -1090,7 +1123,7 @@ msgstr "This portlet lists upcoming Events."
 msgid "This process may take a while. If the request times out, the zip file will still be created in this folder. Check for the new file in"
 msgstr ""
 
-#: ../tiles/configure.zcml:58
+#: ../tiles/configure.zcml:97
 msgid "Tile used to show custom video"
 msgstr ""
 
@@ -1098,11 +1131,11 @@ msgstr ""
 msgid "Tile used to show destacats in homepage"
 msgstr ""
 
-#: ../tiles/configure.zcml:42
+#: ../tiles/configure.zcml:81
 msgid "Tile used to show easyform as tile"
 msgstr ""
 
-#: ../tiles/configure.zcml:71
+#: ../tiles/configure.zcml:110
 msgid "Tile used to show twitter widget"
 msgstr ""
 
@@ -1131,8 +1164,8 @@ msgid "Tipus de vista"
 msgstr "View"
 
 #: ../controlpanels/footer.py:29
+#: ../tiles/destacats/cinc_destacats/destacats.py:35
 #: ../tiles/destacats/destacats.py:34
-#: ../tiles/video/video.py:55
 msgid "Title"
 msgstr ""
 
@@ -1141,12 +1174,13 @@ msgstr ""
 msgid "Title of the rendered portlet"
 msgstr "Title of the rendered portlet"
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:36
 #: ../tiles/destacats/destacats.py:35
-#: ../tiles/video/video.py:56
+#: ../tiles/destacats/dos_destacats/destacats.py:34
 msgid "Title of the tile"
 msgstr ""
 
-#: ../tiles/configure.zcml:71
+#: ../tiles/configure.zcml:110
 msgid "Twitter"
 msgstr ""
 
@@ -1275,6 +1309,22 @@ msgstr "Cancel"
 msgid "cas_url"
 msgstr ""
 
+#: ../tiles/destacats/un_destacat/destacats.py:64
+msgid "centre"
+msgstr "Center"
+
+#: ../tiles/destacats/un_destacat/destacats.py:72
+msgid "cercle-centre"
+msgstr "Circle Center"
+
+#: ../tiles/destacats/un_destacat/destacats.py:73
+msgid "cercle-dreta"
+msgstr "Circle Right"
+
+#: ../tiles/destacats/un_destacat/destacats.py:71
+msgid "cercle-esquerra"
+msgstr "Circle Left"
+
 #. Default: "Cookie Policy"
 #: ../browser/viewlets_templates/footer/footer.pt:74
 msgid "cookie_policy"
@@ -1336,6 +1386,10 @@ msgstr ""
 #. Default: "Future events"
 #: ../browser/news_listing.py:289
 msgid "future_events"
+msgstr ""
+
+#: ../profiles/default/actions.xml
+msgid "genweb-accesarrel"
 msgstr ""
 
 #. Default: "Accessibilitat"
@@ -1560,6 +1614,30 @@ msgstr "Web title with HTML tags (bolds) [ES]"
 msgid "idiomes_publicats"
 msgstr "Languages activated on the website"
 
+#: ../tiles/destacats/cinc_destacats/destacats.py:67
+msgid "imatge-gran-dreta"
+msgstr "Big image right"
+
+#: ../tiles/destacats/cinc_destacats/destacats.py:66
+msgid "imatge-gran-esquerra"
+msgstr "Big image left"
+
+#: ../tiles/destacats/un_destacat/destacats.py:69
+msgid "inferior-centre"
+msgstr "Bottom Center"
+
+#: ../tiles/destacats/un_destacat/destacats.py:70
+msgid "inferior-dreta"
+msgstr "Bottom Right"
+
+#: ../tiles/destacats/un_destacat/destacats.py:68
+msgid "inferior-esquerra"
+msgstr "Bottom Left"
+
+#: ../tiles/destacats/un_destacat/destacats.py:74
+msgid "invisible"
+msgstr "Invisible"
+
 #. Default: "Add new…"
 #: ../patches.py:835
 msgid "label_add_new_item"
@@ -1740,6 +1818,18 @@ msgstr "Signature [ES]"
 #: ../profiles/default/types/genweb.upc.subhome.xml
 msgid "subhome_desc"
 msgstr "Element for display a page with various contents from the web"
+
+#: ../tiles/destacats/un_destacat/destacats.py:66
+msgid "superior-centre"
+msgstr "Top Center"
+
+#: ../tiles/destacats/un_destacat/destacats.py:67
+msgid "superior-dreta"
+msgstr "Top Right"
+
+#: ../tiles/destacats/un_destacat/destacats.py:65
+msgid "superior-esquerra"
+msgstr "Top Left"
 
 #. Default: "Download this event in iCal format"
 #: ../portlets/news_events_listing/news_events_listing.pt:92

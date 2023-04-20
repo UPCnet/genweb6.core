@@ -8,34 +8,18 @@
       i18n:domain="homeupc">
 
   <body>
-    <tal:block>
-      <tal:3destacats>
+    <tal:block tal:define="items python:view.getNDestacats(3)" tal:condition="items">
+      <div>
         <section class="gw-tile destacats3 container content-banners">
-          <!-- aqui empieza la macro titol-detacats
-            <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block> 
-          -->
-          <tal:block>
-            <h2 class="portlet-title">
-                <tal:omit-tag tal:content="view/title">Actualitat</tal:omit-tag>
-            </h2>
-          </tal:block>
-          <!-- aqui acaba la macro titol-detacats -->
-          <div tal:define="items view/get3Destacats" tal:condition="items" class="row">
+            <tal:block metal:use-macro="context/macros-tiles/titol-destacats">
+          <div class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
               <div tal:define="abaseclass string:btn-banner btn-banner-large btn-banner-stretch"
                    tal:attributes="class item/class">
                 <a tal:attributes="href item/url; target item/open_link_in_new_window;
-                                   class python:abaseclass if item['imatge'] else abaseclass + ' notimage-banner';"
+                                   class python:abaseclass if item['image'] else abaseclass + ' notimage-banner';"
                    class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
-                  <!--aqui empieza la macro multiple-destacats 
-                    <tal:block metal:use-macro="context/macros-tiles/multiple-destacats"></tal:block> -->
-                  <tal:block>
-                    <picture tal:condition="python: item['imatge']">
-                        <source media="(min-width:992px)" tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-                        <img tal:attributes="src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
-                    </picture>
-                  </tal:block>
-                  <!-- aqui acaba la macro multiple-destacats -->
+                    <block metal:use-macro="context/macros-tiles/n-destacats"></block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
                     <p tal:content="structure item/description" class="hotnews-description text-truncate-3">Sala de premsa</p></div>
@@ -43,10 +27,8 @@
               </div>
             </div>
           </div>
-          <!-- esta la quito porque usa link y link_title que ya no tenemos
-            <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block> -->
         </section>
-      </tal:3destacats>
+      </div>
     </tal:block>
   </body>
 </html>
