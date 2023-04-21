@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from plone import api
 from zope import schema
-
 from genweb6.core import _
 from genweb6.core.utils import create_simple_vocabulary
 from genweb6.core.utils import pref_lang
@@ -37,28 +35,26 @@ class Destacats(DestacatsBase):
 
     def getNDestacats(self, limit):
         """ Returns DestacatPrincipal object """
-        catalog = api.portal.get_tool(name='portal_catalog')
 
         params = {
-            'review_state': ['published', 'private'],
+            'review_state': ['published',],
             'Language': pref_lang(),
             'sort_on': ('effective'),
-            'sort_order': 'reverse',
-            'sort_limit': limit,
-            'portal_type': self.portal_types if self.portal_types else ['News Item', 'Document Image', 'Event'],
-        }
+            'sort_order': 'reverse', 'sort_limit': limit,
+            'portal_type': self.portal_types
+            if self.portal_types else self.types_to_find, }
 
         if self.tags:
             params['Subject'] = self.tags
 
-        results = catalog.searchResults(**params)
+        results = self.catalog.searchResults(**params)
         items = self.filterObjects(results)
-        
+
         if not items:
             return []
-        
+
         return items[0]
-    
+
     @property
     def heroTextPosition(self):
         return self.data.get('heroTextPosition', '')

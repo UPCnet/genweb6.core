@@ -4,7 +4,7 @@ from plone.supermodel.model import Schema
 from plone.tiles.tile import Tile
 from zope import schema
 from zope.i18nmessageid import MessageFactory
-
+from plone import api
 from genweb6.core import _
 from genweb6.core.utils import create_simple_vocabulary
 
@@ -102,3 +102,12 @@ class DestacatsBase(Tile, ABC):
     @property
     def portal_types(self):
         return self.data.get('portal_types', '')
+    
+    @property
+    def catalog(self):
+        return api.portal.get_tool(name='portal_catalog')
+    
+    @property
+    def types_to_find(self):
+        return ['News Item', 'Document Image', 'Event']
+    

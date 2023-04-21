@@ -60,6 +60,7 @@
         </div>
     </metal:block>
 
+    <!--  Peu Destacats -->
     <metal:block metal:define-macro="peu-destacats">
         <div tal:condition="view/link_title" class="link-tile-footer">
             <a tal:attributes="href view/link | nothing" class="small text-decoration-none">

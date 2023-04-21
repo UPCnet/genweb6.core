@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from plone import api
 from zope import schema
 from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
 from plone.app.uuid.utils import uuidToURL
@@ -12,6 +11,7 @@ from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase, DestacatsB
 class CatalogSource(CatalogSourceBase):
     """ExistingContentTile specific catalog source to allow targeted widget
     """
+
     def __contains__(self, value):
         return True  # Always contains to allow lazy handling of removed objs
 
@@ -35,7 +35,7 @@ class IDestacats(IDestacatsBase):
         description=_(u"Afegfeix un botó a l'enllaç afegit en aquest camp"),
         required=False,
         source=CatalogSource(),
-        )
+    )
 
     link_title = schema.TextLine(
         title=_(u"Títol per l'enllaç"),
@@ -43,30 +43,24 @@ class IDestacats(IDestacatsBase):
         required=False)
 
 
-
 class Destacats(DestacatsBase):
     """ Destacats tile displays a different kind of templates configured by subjects """
 
     def getNDestacats(self, limit):
         """ Returns N Destacats objects """
-        catalog = api.portal.get_tool(name='portal_catalog')
         subjects = self.tags + ['@gran']
 
         params = {
-            'Subject': {
-                'query': subjects, 
-                'operator': 'and'
-            },
+            'Subject': {'query': subjects, 'operator': 'and'},
             'Language': pref_lang(),
             'sort_on': ('effective'),
-            'sort_order': 'reverse',
-            'sort_limit': 1,
-            'review_state': ['published', 'private'],
-            'portal_type': self.portal_types if self.portal_types else ['News Item', 'Document Image', 'Event']
-            }
+            'sort_order': 'reverse', 'sort_limit': 1,
+            'review_state': ['published',],
+            'portal_type': self.portal_types
+            if self.portal_types else self.types_to_find}
 
-        #Find Big item
-        item_gran = catalog.searchResults(**params)
+        # Find Big item
+        item_gran = self.catalog.searchResults(**params)
         next_limit = limit if not item_gran else limit + 1
 
         params['sort_limit'] = next_limit
@@ -76,10 +70,10 @@ class Destacats(DestacatsBase):
         else:
             params.pop('Subject', None)
 
-        # Find N Destacats 
-        items_normals = catalog.searchResults(**params)
+        # Find N Destacats
+        items_normals = self.catalog.searchResults(**params)
         items = self.filterObjects(items_normals)
-    
+
         if item_gran:
             item_gran = self.filterObjects(item_gran)[0]
             if item_gran in items:
@@ -90,8 +84,8 @@ class Destacats(DestacatsBase):
 
         if not items:
             return []
-        
-        for index, item in enumerate(items):   
+
+        for index, item in enumerate(items):
             if item_gran and index == 0:
                 continue
             compose_class = 'area' + str(index)
@@ -103,7 +97,7 @@ class Destacats(DestacatsBase):
     @property
     def imatgeGranPosition(self):
         return self.data.get('imatgeGranPosition', '')
-    
+
     @property
     def link(self):
         """ Return tile link"""
@@ -118,4 +112,3 @@ class Destacats(DestacatsBase):
     def link_title(self):
         """ Return tile link_title"""
         return self.data.get('link_title', '')
-
