@@ -50,7 +50,7 @@ class Destacats(DestacatsBase):
     def getNDestacats(self, limit):
         """ Returns N Destacats objects """
         catalog = api.portal.get_tool(name='portal_catalog')
-        subjects = self.tags + ['#gran']
+        subjects = self.tags + ['@gran']
 
         params = {
             'Subject': {
@@ -70,7 +70,7 @@ class Destacats(DestacatsBase):
         next_limit = limit if not item_gran else limit + 1
 
         params['sort_limit'] = next_limit
-        subjects.remove('#gran')
+        subjects.remove('@gran')
         if subjects:
             params['Subject'] = subjects
         else:
