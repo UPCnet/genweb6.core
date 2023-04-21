@@ -46,12 +46,12 @@
         title="3 Destacats"
         description="Tile used to show 3 destacats in homepage"
         add_permission="cmf.ModifyPortalContent"
-        schema=".destacats.tres_destacats.tres_destacats.IDestacats"
-        class=".destacats.tres_destacats.tres_destacats.Destacats"
+        schema=".destacats.tres_destacats.destacats.IDestacats"
+        class=".destacats.tres_destacats.destacats.Destacats"
         permission="zope2.View"
         for="*"
         layer="*"
-        template="destacats/tres_destacats/tres_destacats.pt"
+        template="destacats/tres_destacats/destacats.pt"
         />
 
     <plone:tile
