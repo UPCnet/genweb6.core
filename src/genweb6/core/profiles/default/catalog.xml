@@ -4,4 +4,9 @@
     <column value="news_image_filename"/>
     <column value="is_important"/>
     <column value="gwuuid"/>
+    <column value="output"/>
+
+    <index name="output" meta_type="FieldIndex">
+        <indexed_attr value="output"/>
+    </index>
 </object>

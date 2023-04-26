@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone.app.contenttypes.interfaces import INewsItem
+from plone.dexterity.interfaces import IDexterityContent
 from plone.indexer import indexer
 
 
@@ -9,3 +10,8 @@ def newsImageFile(context):
     populate the ``context.filename`` value and index it.
     """
     return context.image.filename
+
+
+@indexer(IDexterityContent)
+def outputIndexer(context):
+    return context.text.output

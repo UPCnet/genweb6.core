@@ -32,10 +32,12 @@ class Renderer(base.Renderer):
         result = pc.searchResults(object_provides=IHomePage.__identifier__,
                                   portal_type='Document',
                                   Language=pref_lang())
-        if not result:
-            page['body'] = ''
-        else:
-            page['body'] = result[0].getObject().text.output
+        page['body'] = ''
+        if result:
+            try:
+                page['body'] = result[0].output
+            except:
+                pass
 
         return page
 
