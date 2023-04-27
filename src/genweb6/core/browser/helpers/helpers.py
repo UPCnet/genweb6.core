@@ -474,9 +474,9 @@ Retorna les dades de contacte
 #             cl_enable_en = unicodedata.normalize(
 #                 'NFKD', gwcps.cl_enable_en).encode('utf-8', errors='ignore')
 
-#         output = """Títol del web amb HTML tags (negretes) [CA]: {}<br/>
-#                      Títol del web amb HTML tags (negretes) [ES]: {}<br/>
-#                      Títol del web amb HTML tags (negretes) [EN]: {}<br/>
+#         output = """Títol del web [CA]: {}<br/>
+#                      Títol del web [ES]: {}<br/>
+#                      Títol del web [EN]: {}<br/>
 #                      Signatura de la unitat [CA]: {}<br/>
 #                      Signatura de la unitat [ES]: {}<br/>
 #                      Signatura de la unitat [EN]: {}<br/>

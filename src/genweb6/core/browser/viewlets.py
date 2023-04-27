@@ -268,7 +268,7 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
             return False
 
         return lt.showFlags
-    
+
     # Funcion para añadir a la busqueda un path o literal especifico, para customizarlo en algún paquete de cliente
     def custom_search(self):
         return {'literal': None,
@@ -309,12 +309,7 @@ class heroViewlet(viewletBase):
             else:
                 return False
 
-        image_title = getattr(header_config, 'hero_image_alt', None)
-        image_alt = '' if image_title is None else image_title
-
-        return {"src": img_url,
-                "alt": image_alt,
-                "title": image_title}
+        return img_url
 
 
 class logosFooterViewlet(viewletBase):

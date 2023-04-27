@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Language: es\n"
 
-#: ../portlets/new_existing_content/new_existing_content.py:135
+#: ../portlets/new_existing_content/new_existing_content.py:136
 msgid "#content-core"
 msgstr "#content-core"
 
@@ -28,20 +28,21 @@ msgstr "${items} no han podido ser eliminados."
 msgid "${items} deleted."
 msgstr "${items} eliminado."
 
-#: ../tiles/configure.zcml:42
-#: ../tiles/destacats/destacats.py:67
+#: ../tiles/configure.zcml:29
+#: ../tiles/destacats/destacats.py:69
 msgid "1 Destacat Principal"
 msgstr "1 Destacado Principal"
 
-#: ../tiles/configure.zcml:55
+#: ../tiles/configure.zcml:42
 msgid "2 Destacats"
 msgstr ""
 
-#: ../tiles/destacats/destacats.py:68
+#: ../tiles/configure.zcml:55
+#: ../tiles/destacats/destacats.py:70
 msgid "3 Destacats"
 msgstr "3 Destacados"
 
-#: ../tiles/destacats/destacats.py:69
+#: ../tiles/destacats/destacats.py:71
 msgid "4 Destacats Esdeveniments"
 msgstr "4 Destacados Eventos"
 
@@ -49,11 +50,11 @@ msgstr "4 Destacados Eventos"
 msgid "5 Destacats"
 msgstr ""
 
-#: ../tiles/destacats/destacats.py:71
+#: ../tiles/destacats/destacats.py:73
 msgid "5 Destacats Dreta"
 msgstr "5 Destacados Derecha"
 
-#: ../tiles/destacats/destacats.py:70
+#: ../tiles/destacats/destacats.py:72
 msgid "5 Destacats Esquerra"
 msgstr "5 Destacados Izquierda"
 
@@ -62,11 +63,11 @@ msgstr "5 Destacados Izquierda"
 msgid "7days_events"
 msgstr ""
 
-#: ../controlpanels/resources.py:59
+#: ../controlpanels/resources.py:62
 msgid "<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</a>"
 msgstr ""
 
-#: ../controlpanels/resources.py:65
+#: ../controlpanels/resources.py:68
 msgid "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 msgstr ""
 
@@ -127,13 +128,13 @@ msgstr ""
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Dirección web del canal donde se encuentra el vídeo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:272
+#: ../portlets/new_existing_content/new_existing_content.py:281
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
-#: ../controlpanels/header.py:101
-msgid "Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."
-msgstr "Añada el reclamo del Genweb. Puede incluir tags HTML. Sólo será visible en los tipos de cabecera Half Hero y Full Hero."
+#: ../tiles/destacats/cinc_destacats/destacats.py:35
+msgid "Afegfeix un botó a l'enllaç afegit en aquest camp"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
@@ -151,7 +152,7 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../controlpanels/header.py:255
+#: ../controlpanels/header.py:244
 msgid "Altres"
 msgstr ""
 
@@ -159,11 +160,12 @@ msgstr ""
 msgid "Alçada de les imatges en px (40 - 400)"
 msgstr ""
 
-#: ../tiles/destacats/destacats.py:84
+#: ../tiles/destacats/cinc_destacats/destacats.py:42
+#: ../tiles/destacats/destacats.py:86
 msgid "Apareixerà a la tile seleccionada"
 msgstr "Aparecerá en la Tile selecionada"
 
-#: ../portlets/new_existing_content/new_existing_content.py:273
+#: ../portlets/new_existing_content/new_existing_content.py:282
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr ""
 
@@ -180,11 +182,11 @@ msgstr "Baner"
 msgid "BannerContainer"
 msgstr ""
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:62
+#: ../tiles/destacats/cinc_destacats/destacats.py:23
 msgid "Big image"
 msgstr ""
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:63
+#: ../tiles/destacats/cinc_destacats/destacats.py:24
 msgid "Big image position"
 msgstr ""
 
@@ -194,8 +196,8 @@ msgid "Boolea que indica si s'ha de mostrar la data en les noticies"
 msgstr "Indica si se muestra la fecha en las noticias"
 
 #: ../cas/controlpanel.py:112
-#: ../controlpanels/cintillo.py:114
-#: ../controlpanels/footer.py:185
+#: ../controlpanels/cintillo.py:116
+#: ../controlpanels/footer.py:186
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -203,11 +205,11 @@ msgstr "Cancelar"
 msgid "Carousel"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:58
+#: ../controlpanels/cintillo.py:59
 msgid "Castellà"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:41
+#: ../controlpanels/cintillo.py:42
 msgid "Català"
 msgstr ""
 
@@ -221,14 +223,14 @@ msgid "Cerca una col·lecció"
 msgstr ""
 
 #: ../cas/controlpanel.py:114
-#: ../controlpanels/cintillo.py:116
-#: ../controlpanels/footer.py:187
+#: ../controlpanels/cintillo.py:118
+#: ../controlpanels/footer.py:188
 msgid "Changes canceled."
 msgstr ""
 
 #: ../cas/controlpanel.py:109
-#: ../controlpanels/cintillo.py:111
-#: ../controlpanels/footer.py:182
+#: ../controlpanels/cintillo.py:113
+#: ../controlpanels/footer.py:183
 msgid "Changes saved"
 msgstr "Cambios guardados"
 
@@ -236,16 +238,16 @@ msgstr "Cambios guardados"
 msgid "Choose how the portlet must be rendered"
 msgstr "Escoger como se mostrará el portlet"
 
-#: ../controlpanels/cintillo.py:94
+#: ../controlpanels/cintillo.py:95
 msgid "Cintillo Settings"
 msgstr ""
 
 #: ../controlpanels/footer.py:21
-#: ../controlpanels/header.py:25
+#: ../controlpanels/header.py:28
 msgid "Clar"
 msgstr ""
 
-#: ../controlpanels/header.py:27
+#: ../controlpanels/header.py:30
 msgid "Clar a fosc"
 msgstr ""
 
@@ -253,13 +255,17 @@ msgstr ""
 msgid "Close"
 msgstr "Cerrar"
 
-#: ../controlpanels/cintillo.py:22
+#: ../controlpanels/cintillo.py:23
 msgid "Color de fons de l'avís"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:28
+#: ../controlpanels/cintillo.py:29
 msgid "Color de la font de l'avís"
 msgstr ""
+
+#: ../controlpanels/header.py:102
+msgid "Color de transició del menú quan fem scroll"
+msgstr "Color de transición del menú cuando hacemos scroll"
 
 #: ../content/interactive_template/interactive_template.py:61
 msgid "Col·lecció"
@@ -269,7 +275,7 @@ msgstr ""
 msgid "Complex"
 msgstr ""
 
-#: ../controlpanels/header.py:42
+#: ../controlpanels/header.py:45
 msgid "Configuracions"
 msgstr "Configuraciones"
 
@@ -277,7 +283,7 @@ msgstr "Configuraciones"
 msgid "Connections"
 msgstr ""
 
-#: ../controlpanels/header.py:31
+#: ../controlpanels/header.py:34
 msgid "Conservadora"
 msgstr "Estándar"
 
@@ -285,13 +291,12 @@ msgstr "Estándar"
 msgid "Contacte amb nosaltres"
 msgstr "Contacta con nosotros"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:49
-#: ../tiles/destacats/destacats.py:48
-#: ../tiles/destacats/dos_destacats/destacats.py:47
+#: ../tiles/destacats/destacatbase.py:37
+#: ../tiles/destacats/destacats.py:50
 msgid "Content type"
 msgstr "Tipo de contenido"
 
-#: ../tiles/destacats/un_destacat/destacats.py:61
+#: ../tiles/destacats/un_destacat/destacats.py:14
 msgid "Content's title position"
 msgstr "Posición del título del contenido"
 
@@ -307,7 +312,7 @@ msgstr ""
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:521
+#: ../browser/viewlets.py:516
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
@@ -315,7 +320,7 @@ msgstr "Copiar enlace"
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:526
+#: ../browser/viewlets.py:521
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -327,25 +332,9 @@ msgstr "Mostrar un menú alternativo"
 msgid "Custom Video"
 msgstr "Video personalizado"
 
-#: ../controlpanels/header.py:100
-msgid "Descripció del web amb HTML tags (negretes) [CA]"
-msgstr "Reclamo de la web con HTML tags (negritas) [CA]"
-
-#: ../controlpanels/header.py:112
-msgid "Descripció del web amb HTML tags (negretes) [EN]"
-msgstr "Reclamo de la web con HTML tags (negritas) [EN]"
-
-#: ../controlpanels/header.py:106
-msgid "Descripció del web amb HTML tags (negretes) [ES]"
-msgstr "Reclamo de la web con HTML tags (negritas) [ES]"
-
 #: ../browser/viewlets_templates/footer/footer.pt:18
 msgid "Desenvolupat amb"
 msgstr ""
-
-#: ../tiles/configure.zcml:29
-msgid "Destacats Home"
-msgstr "Destacados Home"
 
 #: ../portlets/rss/rss.py:300
 msgid "Display categories"
@@ -368,31 +357,31 @@ msgstr ""
 ################
 #: ../browser/download_files.py:36
 #: ../profiles/default/types/genweb.upc.documentimage.xml
-#: ../tiles/destacats/cinc_destacats/destacats.py:56
+#: ../tiles/destacats/destacatbase.py:44
 msgid "Document Image"
 msgstr "Página con imagen"
 
-#: ../portlets/new_existing_content/new_existing_content.py:252
+#: ../portlets/new_existing_content/new_existing_content.py:253
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../portlets/new_existing_content/new_existing_content.py:244
+#: ../portlets/new_existing_content/new_existing_content.py:245
 msgid "ERROR. Review the portlet configuration."
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:247
+#: ../portlets/new_existing_content/new_existing_content.py:248
 msgid "ERROR. There was a timeout."
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:249
+#: ../portlets/new_existing_content/new_existing_content.py:250
 msgid "ERROR. This URL does not exist"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:227
+#: ../portlets/new_existing_content/new_existing_content.py:228
 msgid "ERROR. This element does not exist:"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:116
+#: ../portlets/new_existing_content/new_existing_content.py:117
 msgid "EXTERN: URL de la pàgina a mostrar"
 msgstr ""
 
@@ -426,15 +415,15 @@ msgstr "Editar portlet de etiquetas"
 msgid "Edit banners portlet"
 msgstr "Editar portlet báners"
 
-#: ../portlets/new_existing_content/new_existing_content.py:284
+#: ../portlets/new_existing_content/new_existing_content.py:293
 msgid "Edita portlet de contingut existent"
 msgstr "Editar portlet de contenido existente"
 
-#: ../tiles/destacats/destacats.py:77
+#: ../tiles/destacats/destacats.py:79
 msgid "El contingut d'aquest camp només aplica en les tiles esmentades"
 msgstr "Este campo sólo se aplica a las tiles correspondientes"
 
-#: ../portlets/new_existing_content/new_existing_content.py:132
+#: ../portlets/new_existing_content/new_existing_content.py:133
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr ""
 
@@ -446,9 +435,13 @@ msgstr "Enlace externo para abrir en ventana nueva"
 msgid "Enllaç intern per obrir en la mateixa finestra"
 msgstr "Enlace interno para abrir en la misma ventana"
 
-#: ../tiles/destacats/destacats.py:76
+#: ../tiles/destacats/destacats.py:78
 msgid "Enllaç per les tiles de 4 i 5 Destacats"
 msgstr "Enlace para las tiles de 2, 3, 4 y 5 destacados"
+
+#: ../tiles/destacats/cinc_destacats/destacats.py:34
+msgid "Enllaç per les tiles de 5 Destacats"
+msgstr ""
 
 #: ../controlpanels/footer.py:70
 msgid "Enllaços al peu"
@@ -475,15 +468,15 @@ msgstr "Agenda"
 msgid "Exclude the Current Context"
 msgstr "Exclude the Current Context"
 
-#: ../portlets/new_existing_content/new_existing_content.py:164
+#: ../portlets/new_existing_content/new_existing_content.py:165
 msgid "Existing Content"
 msgstr "Contenido existente"
 
-#: ../portlets/new_existing_content/new_existing_content.py:146
+#: ../portlets/new_existing_content/new_existing_content.py:147
 msgid "Falta l'enllaç extern"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:144
+#: ../portlets/new_existing_content/new_existing_content.py:145
 msgid "Falta seleccionar el contingut intern"
 msgstr ""
 
@@ -522,6 +515,18 @@ msgstr "Formulario Existente"
 #: ../controlpanels/footer.py:22
 msgid "Fosc"
 msgstr ""
+
+#: ../controlpanels/header.py:87
+msgid "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [CA]"
+msgstr "Frase publicitaria que se visualiza bajo el título de la web en los tipos de cabecera con imagen hero [CA]"
+
+#: ../controlpanels/header.py:97
+msgid "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [EN]"
+msgstr "Frase publicitaria que se visualiza bajo el título de la web en los tipos de cabecera con imagen hero [EN]"
+
+#: ../controlpanels/header.py:92
+msgid "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [ES]"
+msgstr "Frase publicitaria que se visualiza bajo el título de la web en los tipos de cabecera con imagen hero [ES]"
 
 #: ../portlets/fullnews/fullnews.py:73
 msgid "Full News"
@@ -580,7 +585,7 @@ msgstr ""
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr ""
 
-#: ../controlpanels/header.py:306
+#: ../controlpanels/header.py:295
 msgid "Header Settings"
 msgstr ""
 
@@ -593,12 +598,12 @@ msgid "How many items to list."
 msgstr "Número de elementos a mostrar"
 
 #. Default: "INTERN: Existing content"
-#: ../portlets/new_existing_content/new_existing_content.py:123
+#: ../portlets/new_existing_content/new_existing_content.py:124
 msgid "INTERN: Existing content"
 msgstr ""
 
 #: ../behaviors/icon.py:26
-#: ../controlpanels/cintillo.py:34
+#: ../controlpanels/cintillo.py:35
 msgid "Icona"
 msgstr ""
 
@@ -610,7 +615,7 @@ msgstr ""
 msgid "Icona que es mostrarà al costat del títol en cas de no afegir imatge, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-gear"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:35
+#: ../controlpanels/cintillo.py:36
 msgid "Icona que es mostrarà al costat del títol, podeu trobar tots els identificadors en el <a href='https://icons.getbootstrap.com/' target='_blank'>següent enllaç</a>. Ex: bi-exclamation-diamond"
 msgstr ""
 
@@ -638,11 +643,11 @@ msgstr "Excluir elemento actual"
 msgid "Imatge capçalera"
 msgstr "Imagen de cabecera"
 
-#: ../controlpanels/header.py:119
+#: ../controlpanels/header.py:123
 msgid "Imatge principal conservadora"
 msgstr "Imagen estándar"
 
-#: ../controlpanels/header.py:126
+#: ../controlpanels/header.py:116
 msgid "Imatge principal innovadora"
 msgstr "Imagen hero"
 
@@ -658,11 +663,11 @@ msgstr "Inicio"
 msgid "Iniciar automàticament (No recomenable segons la accesibilitat web)"
 msgstr ""
 
-#: ../controlpanels/header.py:32
+#: ../controlpanels/header.py:35
 msgid "Innovadora"
 msgstr "Half Hero"
 
-#: ../controlpanels/header.py:33
+#: ../controlpanels/header.py:36
 msgid "Innovadora a pantalla sencera"
 msgstr "Full Hero"
 
@@ -678,11 +683,11 @@ msgstr ""
 msgid "Interactive template"
 msgstr "Plantilla interactiva"
 
-#: ../controlpanels/cintillo.py:23
+#: ../controlpanels/cintillo.py:24
 msgid "Introdueix el codi de color. Ex: #CC3300"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:29
+#: ../controlpanels/cintillo.py:30
 msgid "Introdueix el codi de color. Ex: #FFFFFF"
 msgstr ""
 
@@ -730,23 +735,23 @@ msgstr "Listado de enlaces [EN]"
 msgid "Llista d’enllaços [ES]"
 msgstr "Listado de enlaces [ES]"
 
-#: ../controlpanels/login.py:24
+#: ../controlpanels/login.py:25
 msgid "Login Settings"
 msgstr ""
 
-#: ../controlpanels/header.py:139
+#: ../controlpanels/header.py:128
 msgid "Logo"
 msgstr ""
 
-#: ../controlpanels/header.py:185
+#: ../controlpanels/header.py:174
 msgid "Logo petit"
 msgstr ""
 
-#: ../controlpanels/header.py:151
+#: ../controlpanels/header.py:140
 msgid "Logo principal"
 msgstr ""
 
-#: ../controlpanels/header.py:159
+#: ../controlpanels/header.py:148
 msgid "Logo secundari"
 msgstr ""
 
@@ -758,12 +763,12 @@ msgstr ""
 msgid "Logos_Footer"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:102
+#: ../portlets/new_existing_content/new_existing_content.py:103
 msgid "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
 msgstr "Mostra sin cabecera, contorno ni pie"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:75
-#: ../portlets/new_existing_content/new_existing_content.py:94
+#: ../portlets/new_existing_content/new_existing_content.py:95
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
 msgstr "Mostrar el título del portlet"
 
@@ -801,7 +806,7 @@ msgid "Mostra data?"
 msgstr "Mostrar fecha?"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:74
-#: ../portlets/new_existing_content/new_existing_content.py:93
+#: ../portlets/new_existing_content/new_existing_content.py:94
 msgid "Mostra el títol?"
 msgstr "Mostar título?"
 
@@ -846,7 +851,7 @@ msgstr "Nombre del apartado [EN]"
 msgid "Nom de l’apartat [ES]"
 msgstr "Nombre del apartado [ES]"
 
-#: ../controlpanels/header.py:30
+#: ../controlpanels/header.py:33
 msgid "Només text"
 msgstr "Sólo título"
 
@@ -895,7 +900,7 @@ msgstr "Número de noticias a mostrar"
 msgid "Obrir el primer panell de l’acordió per defecte"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:101
+#: ../portlets/new_existing_content/new_existing_content.py:102
 msgid "Omet el contorn del portlet"
 msgstr "Omitir el contorno del portlet"
 
@@ -919,7 +924,7 @@ msgstr "Por defecto: Enllaços"
 msgid "Per defecte: Links"
 msgstr "Por defecto: Links"
 
-#: ../controlpanels/cintillo.py:52
+#: ../controlpanels/cintillo.py:53
 msgid "Permet introduir el text que es veurà a l'avís"
 msgstr ""
 
@@ -932,7 +937,7 @@ msgid "Picture"
 msgstr "Imagen"
 
 #: ../content/banner/banner.py:19
-#: ../controlpanels/header.py:168
+#: ../controlpanels/header.py:157
 msgid "Please upload an image"
 msgstr "Por favor, suba una imagen"
 
@@ -949,29 +954,33 @@ msgstr "Cabecera del portlet"
 msgid "Pretty RSS"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:17
+#: ../controlpanels/cintillo.py:18
 msgid "Publica el avis"
 msgstr "Publica el aviso"
 
-#: ../controlpanels/resources.py:58
+#: ../controlpanels/header.py:110
+msgid "Pujada d’imatges"
+msgstr "Subida de imágenes"
+
+#: ../controlpanels/resources.py:61
 msgid "Recurs CSS"
 msgstr ""
 
-#: ../controlpanels/resources.py:64
+#: ../controlpanels/resources.py:67
 msgid "Recurs JS"
 msgstr ""
 
-#: ../controlpanels/resources.py:88
+#: ../controlpanels/resources.py:91
 msgid "Resources Settings"
 msgstr "Estilos propios"
 
 #: ../cas/controlpanel.py:96
-#: ../controlpanels/cintillo.py:102
+#: ../controlpanels/cintillo.py:103
 #: ../controlpanels/footer.py:173
 msgid "Save"
 msgstr "Guardar"
 
-#: ../controlpanels/resources.py:52
+#: ../controlpanels/resources.py:55
 msgid "Selecciona per pujar els recursos desde fitxers i no utilitzar el camps de text pla"
 msgstr ""
 
@@ -1036,15 +1045,13 @@ msgstr ""
 msgid "Tags"
 msgstr "Etiquetas"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:41
-#: ../tiles/destacats/destacats.py:40
-#: ../tiles/destacats/dos_destacats/destacats.py:39
+#: ../tiles/destacats/destacatbase.py:29
+#: ../tiles/destacats/destacats.py:42
 msgid "Tags field"
 msgstr "Etiquetas"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:42
-#: ../tiles/destacats/destacats.py:41
-#: ../tiles/destacats/dos_destacats/destacats.py:40
+#: ../tiles/destacats/destacatbase.py:30
+#: ../tiles/destacats/destacats.py:43
 msgid "Tags field description"
 msgstr "Descripción etiquetas"
 
@@ -1057,7 +1064,6 @@ msgid "Tells if an object is marked as important"
 msgstr "Marcar importante"
 
 #: ../controlpanels/footer.py:42
-#: ../controlpanels/header.py:51
 msgid "Tema"
 msgstr "Color"
 
@@ -1069,11 +1075,11 @@ msgstr ""
 msgid "Temps en recorrer totes les imatges en segons (5 - 120)"
 msgstr ""
 
-#: ../controlpanels/cintillo.py:51
+#: ../controlpanels/cintillo.py:52
 msgid "Text per l'avís"
 msgstr ""
 
-#: ../tiles/destacats/un_destacat/destacats.py:60
+#: ../tiles/destacats/un_destacat/destacats.py:13
 msgid "Text position"
 msgstr "Posición del texto"
 
@@ -1081,13 +1087,12 @@ msgstr "Posición del texto"
 msgid "Text to show more content."
 msgstr ""
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:50
-#: ../tiles/destacats/destacats.py:49
-#: ../tiles/destacats/dos_destacats/destacats.py:48
+#: ../tiles/destacats/destacatbase.py:38
+#: ../tiles/destacats/destacats.py:51
 msgid "The content type to check for."
 msgstr "Tipo de contenido"
 
-#: ../portlets/new_existing_content/new_existing_content.py:38
+#: ../portlets/new_existing_content/new_existing_content.py:39
 msgid "This is an inner link"
 msgstr ""
 
@@ -1120,6 +1125,10 @@ msgstr "Este porlet muestra los próximos eventos"
 msgid "This process may take a while. If the request times out, the zip file will still be created in this folder. Check for the new file in"
 msgstr ""
 
+#: ../tiles/configure.zcml:55
+msgid "Tile used to show 3 destacats in homepage"
+msgstr ""
+
 #: ../tiles/configure.zcml:97
 msgid "Tile used to show custom video"
 msgstr "Tile usada para mostrar un video personalizado"
@@ -1144,14 +1153,6 @@ msgstr ""
 msgid "Tipus de carousel"
 msgstr ""
 
-#: ../controlpanels/header.py:60
-msgid "Tipus de hero de la pàgina principal"
-msgstr "Tipo de hero de la página principal"
-
-#: ../controlpanels/header.py:69
-msgid "Tipus de hero dintre dels continguts"
-msgstr "Tipo de hero dentro de los contenidos"
-
 #: ../content/interactive_template/interactive_template.py:91
 msgid "Tipus de plantilla"
 msgstr ""
@@ -1160,9 +1161,17 @@ msgstr ""
 msgid "Tipus de vista"
 msgstr "Tipo de vista"
 
+#: ../controlpanels/header.py:52
+msgid "Tipus d’imatge a les pàgines principals"
+msgstr "Tipo de imagen en las páginas principales"
+
+#: ../controlpanels/header.py:59
+msgid "Tipus d’imatge als continguts"
+msgstr "Tipo de imagen en los contenidos"
+
 #: ../controlpanels/footer.py:29
-#: ../tiles/destacats/cinc_destacats/destacats.py:35
-#: ../tiles/destacats/destacats.py:34
+#: ../tiles/destacats/destacatbase.py:23
+#: ../tiles/destacats/destacats.py:36
 msgid "Title"
 msgstr "Título"
 
@@ -1171,9 +1180,9 @@ msgstr "Título"
 msgid "Title of the rendered portlet"
 msgstr "Título del portlete"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:36
-#: ../tiles/destacats/destacats.py:35
-#: ../tiles/destacats/dos_destacats/destacats.py:34
+#: ../tiles/destacats/destacatbase.py:24
+#: ../tiles/destacats/destacats.py:37
+#: ../tiles/video/video.py:56
 msgid "Title of the tile"
 msgstr "Título de la tile"
 
@@ -1189,19 +1198,20 @@ msgstr "Cuenta Twitter"
 msgid "Type"
 msgstr "Tipo"
 
-#: ../controlpanels/cintillo.py:46
+#: ../controlpanels/cintillo.py:47
 msgid "Títol del l'avís"
 msgstr ""
 
-#: ../portlets/new_existing_content/new_existing_content.py:86
+#: ../portlets/new_existing_content/new_existing_content.py:87
 msgid "Títol del portlet"
 msgstr ""
 
-#: ../tiles/destacats/destacats.py:83
+#: ../tiles/destacats/cinc_destacats/destacats.py:41
+#: ../tiles/destacats/destacats.py:85
 msgid "Títol per l'enllaç"
 msgstr "Título para el enlace"
 
-#: ../controlpanels/login.py:15
+#: ../controlpanels/login.py:16
 msgid "URL Canvi de contrasenya"
 msgstr ""
 
@@ -1230,12 +1240,12 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: ../tiles/destacats/destacats.py:63
+#: ../tiles/destacats/destacats.py:65
 #: ../tiles/video/video.py:61
 msgid "View as"
 msgstr "Ver cómo"
 
-#: ../tiles/destacats/destacats.py:64
+#: ../tiles/destacats/destacats.py:66
 #: ../tiles/video/video.py:62
 msgid "View as description"
 msgstr "Ver cómo descripción"
@@ -1280,7 +1290,7 @@ msgid "all_news"
 msgstr "Todas las notícias"
 
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:273
+#: ../controlpanels/header.py:262
 msgid "amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación"
 
@@ -1304,19 +1314,19 @@ msgstr "Cancelar"
 msgid "cas_url"
 msgstr ""
 
-#: ../tiles/destacats/un_destacat/destacats.py:64
+#: ../tiles/destacats/un_destacat/destacats.py:17
 msgid "centre"
 msgstr "Centro"
 
-#: ../tiles/destacats/un_destacat/destacats.py:72
+#: ../tiles/destacats/un_destacat/destacats.py:25
 msgid "cercle-centre"
 msgstr "Círculo Centro"
 
-#: ../tiles/destacats/un_destacat/destacats.py:73
+#: ../tiles/destacats/un_destacat/destacats.py:26
 msgid "cercle-dreta"
 msgstr "Círculo Derecha"
 
-#: ../tiles/destacats/un_destacat/destacats.py:71
+#: ../tiles/destacats/un_destacat/destacats.py:24
 msgid "cercle-esquerra"
 msgstr "Círculo Izquierda"
 
@@ -1455,7 +1465,7 @@ msgstr ""
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:274
+#: ../controlpanels/header.py:263
 msgid "help_amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación ..."
 
@@ -1472,37 +1482,17 @@ msgid "help_enabled"
 msgstr ""
 
 #. Default: "You may search for and choose an existing content"
-#: ../portlets/new_existing_content/new_existing_content.py:125
+#: ../portlets/new_existing_content/new_existing_content.py:126
 msgid "help_existing_content"
 msgstr ""
 
-#. Default: "Afegiu el text alternatiu (alt) del hero image."
-#: ../controlpanels/header.py:134
-msgid "help_hero_image_alt"
-msgstr ""
-
-#. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:78
-msgid "help_html_title_ca"
-msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
-
-#. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML."
-#: ../controlpanels/header.py:94
-msgid "help_html_title_en"
-msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
-
-#. Default: "Afegiu el títol del Genweb. Podeu incloure tags HTML"
-#: ../controlpanels/header.py:86
-msgid "help_html_title_es"
-msgstr "Añade el titulo de Genweb. Se pueden incluir tags HTML"
-
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:284
+#: ../controlpanels/header.py:273
 msgid "help_idiomes_publicats"
 msgstr "Estos serán los idiomas publicados en la web, los idiomas no espeficiados no serán públicos pero serán visibles para los gestores (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:296
+#: ../controlpanels/header.py:285
 msgid "help_languages_link_to_root"
 msgstr "Esta opción seleccionada hace que el desplegable de idiomas siempre redireccione a la raíz del sitio web."
 
@@ -1511,12 +1501,12 @@ msgid "help_login_text_btn"
 msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:204
+#: ../controlpanels/header.py:193
 msgid "help_logo_alt"
 msgstr ""
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:224
+#: ../controlpanels/header.py:213
 msgid "help_logo_url"
 msgstr ""
 
@@ -1539,27 +1529,22 @@ msgstr "Es el literal que aparece al pie de la página."
 msgid "help_signatura_es"
 msgstr "Es el literal que aparece al pie de la página."
 
-#: ../portlets/new_existing_content/new_existing_content.py:133
+#: ../portlets/new_existing_content/new_existing_content.py:134
 msgid "help_static_content_element_ca"
 msgstr "Aquí se puede introducir un id, clase o elemento html. Por ejemplo, en una página genweb típica, todo el contenido está dentro de #content, y todo el contenido sin el título dentro de #content-core"
 
-#: ../portlets/new_existing_content/new_existing_content.py:87
+#: ../portlets/new_existing_content/new_existing_content.py:88
 msgid "help_static_content_title_ca"
 msgstr "Opcional: título del portlet"
 
-#: ../portlets/new_existing_content/new_existing_content.py:117
+#: ../portlets/new_existing_content/new_existing_content.py:118
 msgid "help_static_content_url_ca"
 msgstr "La URL completa de la página desde dónde queremos visualizar el contenido."
 
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:264
+#: ../controlpanels/header.py:253
 msgid "help_treu_menu_horitzontal"
 msgstr "Oculta el menú horizontal ..."
-
-#. Default: "Text alternatiu del hero image"
-#: ../controlpanels/header.py:132
-msgid "hero_image_alt"
-msgstr ""
 
 #. Default: "Menu L2"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:67
@@ -1585,47 +1570,47 @@ msgstr "2a Fila"
 msgid "homeportlets_title_f3"
 msgstr "3a Fila"
 
-#. Default: "Títol del web amb HTML tags (negretes) [CA]"
-#: ../controlpanels/header.py:76
+#. Default: "Títol del web [CA]"
+#: ../controlpanels/header.py:68
 msgid "html_title_ca"
-msgstr "Título de la web con HTML tags (negritas) [CA]"
+msgstr "Título de la web [CA]"
 
-#. Default: "Títol del web amb HTML tags (negretes) [EN]"
-#: ../controlpanels/header.py:92
+#. Default: "Títol del web [EN]"
+#: ../controlpanels/header.py:82
 msgid "html_title_en"
-msgstr "Título de la web con HTML tags (negritas) [EN]"
+msgstr "Título de la web [EN]"
 
-#. Default: "Títol del web amb HTML tags (negretes) [ES]"
-#: ../controlpanels/header.py:84
+#. Default: "Títol del web [ES]"
+#: ../controlpanels/header.py:75
 msgid "html_title_es"
-msgstr "Título de la web con HTML tags (negritas) [ES]"
+msgstr "Título de la web [ES]"
 
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:282
+#: ../controlpanels/header.py:271
 msgid "idiomes_publicats"
 msgstr "Idiomas publicados en la web"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:67
+#: ../tiles/destacats/cinc_destacats/destacats.py:28
 msgid "imatge-gran-dreta"
 msgstr "Imagen grande derecha"
 
-#: ../tiles/destacats/cinc_destacats/destacats.py:66
+#: ../tiles/destacats/cinc_destacats/destacats.py:27
 msgid "imatge-gran-esquerra"
 msgstr "Imagen grande izquierda"
 
-#: ../tiles/destacats/un_destacat/destacats.py:69
+#: ../tiles/destacats/un_destacat/destacats.py:22
 msgid "inferior-centre"
 msgstr "Inferior Centro"
 
-#: ../tiles/destacats/un_destacat/destacats.py:70
+#: ../tiles/destacats/un_destacat/destacats.py:23
 msgid "inferior-dreta"
 msgstr "Inferior Derecha"
 
-#: ../tiles/destacats/un_destacat/destacats.py:68
+#: ../tiles/destacats/un_destacat/destacats.py:21
 msgid "inferior-esquerra"
 msgstr "Inferior Izquierda"
 
-#: ../tiles/destacats/un_destacat/destacats.py:74
+#: ../tiles/destacats/un_destacat/destacats.py:27
 msgid "invisible"
 msgstr "Invisible"
 
@@ -1671,7 +1656,7 @@ msgid "label_start_session"
 msgstr "Iniciar sesión"
 
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:294
+#: ../controlpanels/header.py:283
 msgid "languages_link_to_root"
 msgstr "Redireccionar a la raíz del sitio web al clicar sobre los idiomas del portal"
 
@@ -1680,17 +1665,17 @@ msgid "login_text_btn"
 msgstr ""
 
 #. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:202
+#: ../controlpanels/header.py:191
 msgid "logo_alt"
 msgstr ""
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:242
+#: ../controlpanels/header.py:231
 msgid "logo_external_url"
 msgstr ""
 
 #. Default: "URL del logo"
-#: ../controlpanels/header.py:222
+#: ../controlpanels/header.py:211
 msgid "logo_url"
 msgstr ""
 
@@ -1753,7 +1738,7 @@ msgid "more_url"
 msgstr "Ver más"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:334
+#: ../browser/viewlets.py:329
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
@@ -1806,15 +1791,15 @@ msgstr "Firma [ES]"
 msgid "subhome_desc"
 msgstr "Elemento que permite crear una página con contenidos de distintas partes de la web"
 
-#: ../tiles/destacats/un_destacat/destacats.py:66
+#: ../tiles/destacats/un_destacat/destacats.py:19
 msgid "superior-centre"
 msgstr ""
 
-#: ../tiles/destacats/un_destacat/destacats.py:67
+#: ../tiles/destacats/un_destacat/destacats.py:20
 msgid "superior-dreta"
 msgstr ""
 
-#: ../tiles/destacats/un_destacat/destacats.py:65
+#: ../tiles/destacats/un_destacat/destacats.py:18
 msgid "superior-esquerra"
 msgstr ""
 
@@ -1849,7 +1834,7 @@ msgid "todays_upcoming_events"
 msgstr ""
 
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:262
+#: ../controlpanels/header.py:251
 msgid "treu_menu_horitzontal"
 msgstr "Oculta el menú horizontal"
 
@@ -1857,14 +1842,14 @@ msgstr "Oculta el menú horizontal"
 msgid "url"
 msgstr "url"
 
-#: ../controlpanels/cintillo.py:75
+#: ../controlpanels/cintillo.py:76
 msgid "Àngles"
 msgstr ""
 
-#: ../controlpanels/header.py:120
-msgid "És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
-msgstr ""
+#: ../controlpanels/header.py:124
+msgid "És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
+msgstr "Es importante subir una imagen con una resolución de 2000 x 100 px. Esta imagen, aparte, se utilizará para el fondo del pie de página si no existe una imagen principal innovadora."
 
-#: ../controlpanels/header.py:127
+#: ../controlpanels/header.py:117
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
-msgstr ""
+msgstr "Es importante subir una imagen con una resolución de 2000 x 900 px para el modelo de pantalla entera o de 2000 x 500 px. Esta imagen, aparte, se utilizará para el fondo del pie de página."

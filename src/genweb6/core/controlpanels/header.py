@@ -43,84 +43,71 @@ contentHeroStyleVocabulary = SimpleVocabulary([
 class IHeaderSettings(model.Schema):
 
     model.fieldset('Configuracions', _(u'Configuracions'),
-                   fields=['theme', 'main_hero_style', 'content_hero_style',
+                   fields=['main_hero_style', 'content_hero_style',
                            'html_title_ca', 'html_title_es', 'html_title_en',
                            'html_description_ca', 'html_description_es', 'html_description_en',
-                           'hero_image', 'full_hero_image', 'hero_image_alt'])
+                           'theme', 'fieldset_image', 'full_hero_image', 'hero_image'])
 
-    read_permission(theme='genweb.webmaster')
-    write_permission(theme='genweb.manager')
-    theme = schema.Choice(
-        title=_(u'Tema'),
-        required=True,
-        vocabulary=themeVocabulary,
-        default='light-to-dark-theme'
-    )
-
-    read_permission(main_hero_style='genweb.webmaster')
-    write_permission(main_hero_style='genweb.manager')
     main_hero_style = schema.Choice(
-        title=_(u'Tipus de hero de la pàgina principal'),
+        title=_(u'Tipus d’imatge a les pàgines principals'),
         required=True,
         vocabulary=mainHeroStyleVocabulary,
         default='image-hero'
     )
 
-    read_permission(content_hero_style='genweb.webmaster')
-    write_permission(content_hero_style='genweb.manager')
     content_hero_style = schema.Choice(
-        title=_(u'Tipus de hero dintre dels continguts'),
+        title=_(u'Tipus d’imatge als continguts'),
         required=True,
         vocabulary=contentHeroStyleVocabulary,
         default='image-hero'
     )
 
+    read_permission(html_title_ca='genweb.webmaster')
+    write_permission(html_title_ca='genweb.manager')
     html_title_ca = schema.TextLine(
-        title=_(u"html_title_ca",
-                default=u"Títol del web amb HTML tags (negretes) [CA]"),
-        description=_(u"help_html_title_ca",
-                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML"),
+        title=_(u"html_title_ca", default=u"Títol del web [CA]"),
         required=False,
     )
 
+    read_permission(html_title_es='genweb.webmaster')
+    write_permission(html_title_es='genweb.manager')
     html_title_es = schema.TextLine(
-        title=_(u"html_title_es",
-                default=u"Títol del web amb HTML tags (negretes) [ES]"),
-        description=_(u"help_html_title_es",
-                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML"),
+        title=_(u"html_title_es", default=u"Títol del web [ES]"),
         required=False,
     )
 
+    read_permission(html_title_en='genweb.webmaster')
+    write_permission(html_title_en='genweb.manager')
     html_title_en = schema.TextLine(
-        title=_(u"html_title_en",
-                default=u"Títol del web amb HTML tags (negretes) [EN]"),
-        description=_(u"help_html_title_en",
-                      default=u"Afegiu el títol del Genweb. Podeu incloure tags HTML."),
+        title=_(u"html_title_en", default=u"Títol del web [EN]"),
         required=False,
     )
 
     html_description_ca = schema.TextLine(
-        title=_(u"Descripció del web amb HTML tags (negretes) [CA]"),
-        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [CA]"),
         required=False,
     )
 
     html_description_es = schema.TextLine(
-        title=_(u"Descripció del web amb HTML tags (negretes) [ES]"),
-        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [ES]"),
         required=False,
     )
 
     html_description_en = schema.TextLine(
-        title=_(u"Descripció del web amb HTML tags (negretes) [EN]"),
-        description=_(u"Afegiu la descripció del Genweb. Podeu incloure tags HTML. Només es veurà visible amb el nou estil activat."),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [EN]"),
         required=False,
     )
 
-    directives.widget('hero_image', NamedImageFieldWidget)
-    hero_image = schema.Bytes(
-        title=_(u"Imatge principal conservadora"),
-        description=_(u"És important pujar una imatge amb una resolució de 2000 x 180px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
+    theme = schema.Choice(
+        title=_(u'Color de transició del menú quan fem scroll'),
+        required=True,
+        vocabulary=themeVocabulary,
+        default='light-to-dark-theme'
+    )
+
+    directives.widget('fieldset_image', FieldsetFieldWidget)
+    fieldset_image = schema.Text(
+        default=_(u'Pujada d’imatges'),
         required=False,
     )
 
@@ -131,11 +118,10 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    hero_image_alt = schema.TextLine(
-        title=_(u"hero_image_alt",
-                default=u"Text alternatiu del hero image"),
-        description=_(u"help_hero_image_alt",
-                      default=u"Afegiu el text alternatiu (alt) del hero image."),
+    directives.widget('hero_image', NamedImageFieldWidget)
+    hero_image = schema.Bytes(
+        title=_(u"Imatge principal conservadora"),
+        description=_(u"És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
         required=False,
     )
 
@@ -357,7 +343,7 @@ class GWHero(Download):
         if getattr(header_config, 'hero_image', False):
             filename, data = b64decode_file(header_config.hero_image)
             data = NamedImage(data=data, filename=filename)
-            
+
         return filename, data
 
     def _getFile(self):
@@ -384,7 +370,7 @@ class GWFullHero(Download):
         if getattr(header_config, 'full_hero_image', False):
             filename, data = b64decode_file(header_config.full_hero_image)
             data = NamedImage(data=data, filename=filename)
-            
+
         return filename, data
 
     def _getFile(self):
@@ -411,7 +397,7 @@ class GWLogo(Download):
         if getattr(header_config, 'logo', False):
             filename, data = b64decode_file(header_config.logo)
             data = NamedImage(data=data, filename=filename)
-            
+
         return filename, data
 
     def _getFile(self):
@@ -438,7 +424,7 @@ class GWLogoResponsive(Download):
         if getattr(header_config, 'logo_responsive', False):
             filename, data = b64decode_file(header_config.logo_responsive)
             data = NamedImage(data=data, filename=filename)
-            
+
         return filename, data
 
     def _getFile(self):
@@ -465,7 +451,7 @@ class GWSecundaryLogo(Download):
         if getattr(header_config, 'secundary_logo', False):
             filename, data = b64decode_file(header_config.secundary_logo)
             data = NamedImage(data=data, filename=filename)
-            
+
         return filename, data
 
     def _getFile(self):
@@ -492,7 +478,7 @@ class GWSecundaryLogoResponsive(Download):
         if getattr(header_config, 'secundary_logo_responsive', False):
             data = NamedImage(data=data, filename=filename)
             filename, data = b64decode_file(header_config.secundary_logo_responsive)
-            
+
         return filename, data
 
     def _getFile(self):
