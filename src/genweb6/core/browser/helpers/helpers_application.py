@@ -21,6 +21,15 @@ else:
     CSRF = True
 
 
+class ping(BrowserView):
+    """
+Vista de comoditat per al programari de monitorització.
+    """
+
+    def __call__(self):
+        return '1'
+
+
 def listPloneSites(zope):
     """
 Llista els plonesites disponibles

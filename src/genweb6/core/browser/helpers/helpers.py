@@ -57,15 +57,6 @@ Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
         self.context.getOwner()
 
 
-class ping(BrowserView):
-    """
-Vista de comoditat per al programari de monitorització.
-    """
-
-    def __call__(self):
-        return '1'
-
-
 class protectContent(BrowserView):
     """
 Fa que el context sigui un contingut protegit.

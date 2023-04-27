@@ -5,6 +5,13 @@
     i18n_domain="genweb">
 
     <browser:page
+        name="ping"
+        for="OFS.interfaces.IApplication"
+        class=".helpers_application.ping"
+        permission="zope2.View"
+        />
+
+    <browser:page
         name="list_plone_sites"
         for="OFS.interfaces.IApplication"
         class=".helpers_application.list_plone_sites"

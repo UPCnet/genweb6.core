@@ -13,14 +13,6 @@
         />
 
     <browser:page
-        name="ping"
-        for="*"
-        class=".helpers.ping"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
-        />
-
-    <browser:page
         name="protectContent"
         for="zope.interface.Interface"
         class=".helpers.protectContent"
