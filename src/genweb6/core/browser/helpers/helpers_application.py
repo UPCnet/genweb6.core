@@ -153,7 +153,9 @@ Paràmetre:
                     '/'.join(plonesite.getPhysicalPath()) + '/{}?{}'.format(view_name, quoted_args))
                 output.append(
                     """<br/>-- Executed view {} in site {} --""".format(view_name, plonesite.id))
-                output.append(response.getBody())
+                result = response.getBody()
+                output.append(result.decode('utf-8') if isinstance(result, bytes) else result)
+
         return '\n'.join(output)
 
 
