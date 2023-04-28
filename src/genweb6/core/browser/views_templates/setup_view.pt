@@ -52,6 +52,7 @@
             <form method="get" action="@@setup-view">
                 <input id="createcontent" class="btn btn-primary me-3" type="submit" value="Crear contingut" name="createcontent"/>
                 <input id="createexamples" class="btn btn-secondary" type="submit" value="Crear contingut de mostra" name="createexamples" />
+                <input id="createcontentmigration" class="btn btn-outline-primary ms-3" type="submit" value="Crear contingut després de la migració" name="createcontentmigration"/>
             </form>
 
             <form method="get" action="@@configure_site_cache" target="_blank">

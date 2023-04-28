@@ -67,6 +67,12 @@ class setup(BrowserView):
                 self.request.response.redirect(base_url)
                 # self.setGenwebProperties()
 
+            if 'createcontentmigration' in query:
+                logger = logging.getLogger('Genweb: Executing setup-view on site -')
+                logger.info('%s' % self.context.id)
+                self.createContentMigration()
+                self.request.response.redirect(base_url)
+
             if 'createexamples' in query:
                 logger = logging.getLogger('Genweb: Executing setup-view Examples on site -')
                 logger.info('%s' % self.context.id)
@@ -81,7 +87,6 @@ class setup(BrowserView):
                    ('Banners', [('banners-ca', 'ca'), ('banners-es', 'es'), ('banners-en', 'en')]),
                    ('LogosFooter', [('logosfooter-ca', 'ca'), ('logosfooter-es', 'es'), ('logosfooter-en', 'en')]),
                    ('Homepage', [('benvingut', 'ca'), ('bienvenido', 'es'), ('welcome', 'en')]),
-                   ('Templates', [('templates', 'root')]),
                    ('Plantilles', [('plantilles', 'root')]),
                    ]
 
@@ -108,6 +113,165 @@ class setup(BrowserView):
     def setup_multilingual(self):
         setupTool = SetupMultilingualSite()
         setupTool.setupSite(self.context, False)
+
+    def createContentMigration(self):
+        portal = api.portal.get()
+        portal_ca = portal['ca']
+        portal_en = portal['en']
+        portal_es = portal['es']
+
+        welcome = portal_en['welcome']
+        bienvenido = portal_es['bienvenido']
+        benvingut = portal_ca['benvingut']
+
+        import ipdb; ipdb.set_trace()
+
+        self.link_translations([(benvingut, 'ca'), (bienvenido, 'es'), (welcome, 'en')])
+
+        alsoProvides(portal_ca, IHomePage)
+        alsoProvides(portal_en, IHomePage)
+        alsoProvides(portal_es, IHomePage)
+
+        alsoProvides(benvingut, IHomePage)
+        alsoProvides(bienvenido, IHomePage)
+        alsoProvides(welcome, IHomePage)
+
+        benvingut.exclude_from_nav = True
+        bienvenido.exclude_from_nav = True
+        welcome.exclude_from_nav = True
+
+        benvingut.reindexObject()
+        bienvenido.reindexObject()
+        welcome.reindexObject()
+
+        portal_en.setLayout('homepage')
+        portal_es.setLayout('homepage')
+        portal_ca.setLayout('homepage')
+
+        portal_en.reindexObject()
+        portal_es.reindexObject()
+        portal_ca.reindexObject()
+
+        links_string_ca = u"""Editeu a la pàgina "Enllaços personalitzats", que trobareu a l’arrel de català, els vostres enllaços del peu personalitzats."""
+        links_string_es = u"""Editad en la página "Enlaces personalizados", que encontraréis en la raíz de español, vuestros enlaces del pie personalizados."""
+        links_string_en = u"""Customize your links footer on page "custom links"."""
+
+        # Create default custom contact form info objects
+        if not getattr(portal_en, 'customizedlinks', False):
+            customizedlinks = self.create_content(portal_en, 'Document', 'customizedlinks', title='customizedlinks', publish=False)
+            customizedlinks.title = u'Custom links'
+            customizedlinks.text = RichTextValue(links_string_ca, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_es, 'enlacespersonalizados', False):
+            enlacespersonalizados = self.create_content(portal_es, 'Document', 'enlacespersonalizados', title='enlacespersonalizados', publish=False)
+            enlacespersonalizados.title = u'Enlaces personalizados'
+            enlacespersonalizados.text = RichTextValue(links_string_es, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_ca, 'enllacospersonalitzats', False):
+            enllacospersonalitzats = self.create_content(portal_ca, 'Document', 'enllacospersonalitzats', title='enllacospersonalitzats', publish=False)
+            enllacospersonalitzats.title = u'Enllaços personalitzats'
+            enllacospersonalitzats.text = RichTextValue(links_string_en, 'text/html', 'text/x-html-safe')
+
+        customizedlinks = portal_en['customizedlinks']
+        enlacespersonalizados = portal_es['enlacespersonalizados']
+        enllacospersonalitzats = portal_ca['enllacospersonalitzats']
+
+        self.link_translations([(enllacospersonalitzats, 'ca'), (enlacespersonalizados, 'es'), (customizedlinks, 'en')])
+
+        customizedlinks.exclude_from_nav = True
+        enlacespersonalizados.exclude_from_nav = True
+        enllacospersonalitzats.exclude_from_nav = True
+
+        alsoProvides(portal_ca, IProtectedContent)
+        alsoProvides(portal_en, IProtectedContent)
+        alsoProvides(portal_es, IProtectedContent)
+
+        alsoProvides(benvingut, IProtectedContent)
+        alsoProvides(bienvenido, IProtectedContent)
+        alsoProvides(welcome, IProtectedContent)
+
+        if getattr(portal_ca, 'noticies', False):
+            noticies = portal_ca['noticies']
+            alsoProvides(noticies, IProtectedContent)
+
+            if getattr(noticies, 'aggregator', False):
+                alsoProvides(noticies['aggregator'], IProtectedContent)
+
+        if getattr(portal_es, 'noticias', False):
+            noticias = portal_es['noticias']
+            alsoProvides(noticias, IProtectedContent)
+
+            if getattr(noticias, 'aggregator', False):
+                alsoProvides(noticias['aggregator'], IProtectedContent)
+
+        if getattr(portal_en, 'news', False):
+            news = portal_en['news']
+            alsoProvides(news, IProtectedContent)
+
+            if getattr(news, 'aggregator', False):
+                alsoProvides(news['aggregator'], IProtectedContent)
+
+        if getattr(portal_ca, 'esdeveniments', False):
+            esdeveniments = portal_ca['esdeveniments']
+            alsoProvides(esdeveniments, IProtectedContent)
+
+            if getattr(esdeveniments, 'aggregator', False):
+                alsoProvides(esdeveniments['aggregator'], IProtectedContent)
+
+        if getattr(portal_es, 'eventos', False):
+            eventos = portal_es['eventos']
+            alsoProvides(eventos, IProtectedContent)
+
+            if getattr(eventos, 'aggregator', False):
+                alsoProvides(eventos['aggregator'], IProtectedContent)
+
+        if getattr(portal_en, 'events', False):
+            events = portal_en['events']
+            alsoProvides(events, IProtectedContent)
+
+            if getattr(events, 'aggregator', False):
+                alsoProvides(events['aggregator'], IProtectedContent)
+
+        if getattr(portal_ca, 'banners-ca', False):
+            alsoProvides(portal_ca['banners-ca'], IProtectedContent)
+
+        if getattr(portal_es, 'banners-en', False):
+            alsoProvides(portal_es['banners-en'], IProtectedContent)
+
+        if getattr(portal_en, 'banners-es', False):
+            alsoProvides(portal_en['banners-es'], IProtectedContent)
+
+        if getattr(portal_ca, 'logosfooter-ca', False):
+            alsoProvides(portal_ca['logosfooter-ca'], IProtectedContent)
+
+        if getattr(portal_es, 'logosfooter-es', False):
+            alsoProvides(portal_es['logosfooter-es'], IProtectedContent)
+
+        if getattr(portal_en, 'logosfooter-en', False):
+            alsoProvides(portal_en['logosfooter-en'], IProtectedContent)
+
+        if getattr(portal_ca, 'contactepersonalitzat', False):
+            alsoProvides(portal_ca['contactepersonalitzat'], IProtectedContent)
+
+        if getattr(portal_es, 'contactopersonalizado', False):
+            alsoProvides(portal_es['contactopersonalizado'], IProtectedContent)
+
+        if getattr(portal_en, 'customizedcontact', False):
+            alsoProvides(portal_en['customizedcontact'], IProtectedContent)
+
+        alsoProvides(enllacospersonalitzats, IProtectedContent)
+        alsoProvides(enlacespersonalizados, IProtectedContent)
+        alsoProvides(customizedlinks, IProtectedContent)
+
+        if getattr(portal_ca, 'shared', False):
+            alsoProvides(portal_ca['shared'], IProtectedContent)
+
+        if getattr(portal_es, 'shared', False):
+            alsoProvides(portal_es['shared'], IProtectedContent)
+
+        if getattr(portal_en, 'shared', False):
+            alsoProvides(portal_en['shared'], IProtectedContent)
+
+        if getattr(portal, 'plantilles', False):
+            alsoProvides(portal['plantilles'], IProtectedContent)
 
     def createContent(self):
         """ Method that creates all the default content """
@@ -146,11 +310,6 @@ class setup(BrowserView):
             api.content.delete(obj=portal_es['media'])
         if getattr(portal_en, 'media', False):
             api.content.delete(obj=portal_en['media'])
-
-        pc = api.portal.get_tool('portal_catalog')
-        pc.clearFindAndRebuild()
-
-        # Let's create folders and collections, linked by language, the first language is the canonical one
 
         # Setup portal news folder
         news = self.create_content(portal_en, 'Folder', 'news', title='News', description=u'Site news')
@@ -355,9 +514,9 @@ class setup(BrowserView):
         portal_es.setLayout('homepage')
         portal_ca.setLayout('homepage')
 
-        contact_string_ca = u"""Editeu a la pàgina "Contacte personalitzat", que trobareu a l’arrel de català, les vostres dades personalitzades de contacte. """
-        contact_string_es = u"""Editad en la página "Contacto personalizado", que encontraréis en la raíz de español, vuestros datos personalizados de contacto. """
-        contact_string_en = u"""Customize your contact details on page "custom contact" . """
+        contact_string_ca = u"""Editeu a la pàgina "Contacte personalitzat", que trobareu a l’arrel de català, les vostres dades personalitzades de contacte."""
+        contact_string_es = u"""Editad en la página "Contacto personalizado", que encontraréis en la raíz de español, vuestros datos personalizados de contacto."""
+        contact_string_en = u"""Customize your contact details on page "custom contact"."""
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedcontact', False):
@@ -383,9 +542,9 @@ class setup(BrowserView):
         contactopersonalizado.exclude_from_nav = True
         contactepersonalitzat.exclude_from_nav = True
 
-        links_string_ca = u"""Editeu a la pàgina "Enllaços personalitzats", que trobareu a l’arrel de català, els vostres enllaços del peu personalitzats. """
-        links_string_es = u"""Editad en la página "Enlaces personalizados", que encontraréis en la raíz de español, vuestros enlaces del pie personalizados. """
-        links_string_en = u"""Customize your links footer on page "custom links" . """
+        links_string_ca = u"""Editeu a la pàgina "Enllaços personalitzats", que trobareu a l’arrel de català, els vostres enllaços del peu personalitzats."""
+        links_string_es = u"""Editad en la página "Enlaces personalizados", que encontraréis en la raíz de español, vuestros enlaces del pie personalizados."""
+        links_string_en = u"""Customize your links footer on page "custom links"."""
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedlinks', False):
@@ -412,19 +571,8 @@ class setup(BrowserView):
         enllacospersonalitzats.exclude_from_nav = True
 
         # Templates TinyMCE
-        templates = self.create_content(portal, 'Folder', 'templates', title='Templates', description='Plantilles per defecte administrades per l\'SC.')
         plantilles = self.create_content(portal, 'Folder', 'plantilles', title='Plantilles', description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
-
-        templates.exclude_from_nav = True
         plantilles.exclude_from_nav = True
-
-        templates.reindexObject()
-
-        try:
-            api.content.transition(obj=templates, transition='restrict')
-        except:
-            pass
-
         api.content.transition(obj=plantilles, transition='retracttointranet')
         api.content.transition(obj=plantilles, transition='publish')
         plantilles.reindexObject()
@@ -485,11 +633,14 @@ class setup(BrowserView):
         alsoProvides(contactopersonalizado, IProtectedContent)
         alsoProvides(contactepersonalitzat, IProtectedContent)
 
+        alsoProvides(customizedlinks, IProtectedContent)
+        alsoProvides(enlacespersonalizados, IProtectedContent)
+        alsoProvides(enllacospersonalitzats, IProtectedContent)
+
         alsoProvides(shared, IProtectedContent)
         alsoProvides(compartidos, IProtectedContent)
         alsoProvides(compartits, IProtectedContent)
 
-        alsoProvides(templates, IProtectedContent)
         alsoProvides(plantilles, IProtectedContent)
 
         # Mark also the special folders
@@ -502,6 +653,7 @@ class setup(BrowserView):
         alsoProvides(events, IEventFolder)
 
         # transaction.commit()
+        pc = api.portal.get_tool('portal_catalog')
         pc.clearFindAndRebuild()
 
         # Put navigation portlets in place
@@ -511,6 +663,7 @@ class setup(BrowserView):
         target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
         target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
         target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
+
         from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
         if 'navigation' not in target_manager_en_assignments:
             target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
