@@ -6,8 +6,16 @@ runs:
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11.1'
-        cache: pip
-      
+    
+    - name: Cache venv
+      id: cache-venv
+      uses: actions/cache@v3
+      with:
+        key:
+          ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('requirements.txt') }}
+        path: 
+          ./venv
+
     - run: | 
         which python
         which pip 
@@ -17,3 +25,4 @@ runs:
         source venv/bin/activate
         which python
       shell: bash
+      if: ${{ steps.cache-venv.outputs.cache-hit != 'true' }}
