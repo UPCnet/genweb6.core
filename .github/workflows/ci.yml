@@ -27,11 +27,23 @@ jobs:
       
       - name: Preapre python environment
         uses: ./.github/actions/setup_python_environment
+      
+      - name: Cache buildout
+        id: cache-buildout
+        uses: actions/cache@v3
+        with:
+          key:
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+          path: |
+            ./eggs
+            ./bin
+            ./parts
 
       - name: Run buildout
         run: |
-          echo "environment prepared"
-          which python
+          source venv/bin/activate
+          buildout -N -c buildout.cfg
+        if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
 
   test:
     needs: buildout
@@ -43,10 +55,21 @@ jobs:
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
       
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: actions/cache/restore@v3
+        with:
+          key:
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+          path: |
+            ./eggs
+            ./bin
+            ./parts
+
       - name: Run tests
         run: |
-          echo "environment prepared"
-          which python
+          tox -e py311-test
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit != 'true' }}
   
   lint:
     needs: buildout
@@ -58,10 +81,21 @@ jobs:
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
       
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: actions/cache/restore@v3
+        with:
+          key:
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+          path: |
+            ./eggs
+            ./bin
+            ./parts
+
       - name: Run linter
         run: |
-          echo "environment prepared"
-          which python
+          tox -e py311-lint
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit != 'true' }}
   
   report:
     needs: [test, lint]
