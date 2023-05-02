@@ -23,7 +23,7 @@ jobs:
       # Le decimos al runner que tiene que hacer un checkout de la rama 
       # para acceder a los ficheros y poder hacer el buildout
       - uses: actions/checkout@v3
-      - uses: ./.github/composite_actions/setup_environment
+      - uses: ./.github/actions/setup_python_environment
 
       - name: Run buildout
         run: |
