@@ -16,17 +16,64 @@ jobs:
   buildout:
     # Especificamos en que runner se ejecutará 
     # En este caso una máquina ubuntu en alguno de los servidores de GitHub
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Estos son los pasos que tiene que seguir la terea para completarse
     steps:
       # Le decimos al runner que tiene que hacer un checkout de la rama 
       # para acceder a los ficheros y poder hacer el buildout
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/setup_python_environment
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      
+      - name: Preapre python environment
+        uses: ./.github/actions/setup_python_environment
 
       - name: Run buildout
         run: |
           echo "environment prepared"
           which python
 
+  test:
+    needs: buildout
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Run tests
+        run: |
+          echo "environment prepared"
+          which python
+  
+  lint:
+    needs: buildout
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Run linter
+        run: |
+          echo "environment prepared"
+          which python
+  
+  report:
+    needs: [test, lint]
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Run linter
+        run: |
+          echo "environment prepared"
+          which python
