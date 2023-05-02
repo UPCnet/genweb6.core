@@ -1,32 +1,32 @@
-# This is a basic workflow that is manually triggered
+# Nombre del workflow que se mostrará en la UI de GitHub
 
-name: Manual workflow
+name: Buildout and QA
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
+# Especificamos que queremos que se ejecute cada push 
 on:
-  workflow_dispatch:
-    # Inputs the workflow accepts.
-    inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
-        required: true
-        # The data type of the input
-        type: string
+  push:
+    branches:
+      - cicd
+      - master
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+# Aquí especificamos la lista de tareas que tiene que hacer en este workflow
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  # Empezamos con la tarea buildout que monatará el paquete para usarlo en los tests
+  buildout:
+    # Especificamos en que runner se ejecutará 
+    # En este caso una máquina ubuntu en alguno de los servidores de GitHub
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Estos son los pasos que tiene que seguir la terea para completarse
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      # Le decimos al runner que tiene que hacer un checkout de la rama 
+      # para acceder a los ficheros y poder hacer el buildout
+      - uses: actions/checkout@v3
+      - uses: ./.github/composite_actions/setup_environment
+
+      - name: Run buildout
+        run: |
+          echo "environment prepared"
+          which python
+
