@@ -38,6 +38,13 @@ jobs:
             ./eggs
             ./bin
             ./parts
+      
+      - name: Install system libraries # needed for compiling eggs
+        run: |
+          sudo apt-get install -y build-essential xsltproc libncurses5-dev zip libffi-dev libjpeg-dev libtk-img-dev libopenjp2-7-dev liblcms2-dev libfreetype6-dev libwebp-dev libtiff-dev zlib1g-dev libreadline-dev libsqlite3-dev libssl-dev libxslt1-dev libbz2-dev libldap2-dev libsasl2-dev libpcre3-dev wv poppler-utils
+        shell: bash
+        # No need if buildout is cached
+        if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
 
       - name: Run buildout
         run: |
@@ -60,7 +67,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
           path: |
             ./eggs
             ./bin
@@ -86,7 +93,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
           path: |
             ./eggs
             ./bin
