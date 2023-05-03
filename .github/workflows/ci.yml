@@ -115,7 +115,7 @@ jobs:
           path: reports/flake8
         if: always()
   
-  report:
+  coverage:
     needs: [test, lint]
     runs-on: ubuntu-22.04
     steps:
@@ -147,6 +147,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: linter-report
+          name: coverage-report
           path: htmlcov
         if: always()
