@@ -78,7 +78,7 @@ jobs:
       - name: Run tests
         run: |
           source venv/bin/activate
-          tox -e py311-test || true # TODO quitar eso, está para ignorar errores
+          tox -e py311-test
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
   
   lint:
