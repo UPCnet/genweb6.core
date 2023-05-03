@@ -49,6 +49,8 @@ jobs:
       - name: Run buildout
         run: |
           source venv/bin/activate
+          which pip
+          pip freeze
           buildout -N -c buildout.cfg
         if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
 
