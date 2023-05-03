@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
           path: |
             ./eggs
             ./bin
