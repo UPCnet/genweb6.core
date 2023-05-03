@@ -1,6 +1,5 @@
 -r constraints.txt
 # setuptools
 # zc.buildout
-virtualenv
 flake8
 tox
