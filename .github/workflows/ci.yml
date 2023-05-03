@@ -148,5 +148,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: linter-report
-          path: reports/flake8
+          path: htmlcov
         if: always()
