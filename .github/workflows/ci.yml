@@ -107,6 +107,12 @@ jobs:
           source venv/bin/activate
           tox -e py311-lint
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linter-report
+          path: reports/flake8
   
   report:
     needs: [test, lint]
@@ -117,8 +123,22 @@ jobs:
         
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
+
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: actions/cache/restore@v3
+        with:
+          key:
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
+          path: |
+            ./eggs
+            ./bin
+            ./parts
       
-      - name: Run linter
+      - name: Run coverage report
         run: |
-          echo "environment prepared"
-          which python
+          source venv/bin/activate
+          bin/createcoverage
+          bin/coverage html
+          bin/coverage report --fail-under=75
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
