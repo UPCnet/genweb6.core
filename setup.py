@@ -67,11 +67,12 @@ setup(
         'pdfkit',
         'plone.formwidget.recaptcha',
         'collective.easyform',
+        'collective.z3cform.datagridfield',
         'ftw.casauth',
         'collective.exportimport',
         'collective.siteimprove',
         'plone.app.mosaic',
-        'collective.easyform'
+        'genweb6.theme',
     ],
 
     extras_require={
