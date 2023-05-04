@@ -103,6 +103,7 @@ jobs:
             ./parts
 
       - name: Run linter
+        id: lint
         run: |
           source venv/bin/activate
           tox -e py311-lint
@@ -111,7 +112,7 @@ jobs:
       
       - name: Create warning annotation
         run: echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
-        if: failure()
+        if: ${{ steps.lint.outcome != 'success' }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -160,7 +161,7 @@ jobs:
 
       - name: Create error annotation
         run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
-        if: failure()
+        if: ${{ steps.report.outcome != 'success' }}
 
       - name: Create warning annotation
         run: echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
