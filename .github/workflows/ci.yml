@@ -157,11 +157,10 @@ jobs:
           fi
           echo "warn=$warn" >> "$GITHUB_OUTPUT"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
-        continue-on-error: true
 
       - name: Create error annotation
         run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
-        if: ${{ steps.report.outcome != 'success' }}
+        if: failure()
 
       - name: Create warning annotation
         run: echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
