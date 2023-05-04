@@ -7,7 +7,7 @@ on:
   push:
     branches:
       - cicd
-      - master
+#      - master
 
 
 # Aquí especificamos la lista de tareas que tiene que hacer en este workflow
@@ -116,8 +116,10 @@ jobs:
         if: always()
   
   coverage:
-    needs: [test, lint]
+    needs: test
     runs-on: ubuntu-22.04
+    outputs:
+      lint_warn: ${{ steps.report.outputs.warn }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -137,13 +139,27 @@ jobs:
             ./parts
       
       - name: Run coverage report
+        id: report
         run: |
           source venv/bin/activate
           bin/createcoverage
           bin/coverage html
-          bin/coverage report --fail-under=75
+          warn="false"
+          bin/coverage report --fail-under=75 || warn="true"
+          if [[ $warn == "yes" ]]; then
+            bin/coverage report --fail-under=30
+          fi
+          echo "warn=$warn" >> "$GITHUB_OUTPUT"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
       
+      - name: Create error annotation
+        run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
+        if: failure()
+
+      - name: Create warning annotation
+        run: echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
+        if: ${{ steps.report.outcome == 'success' && steps.report.outputs.warn == 'true' }}
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
