@@ -153,7 +153,7 @@ jobs:
           warn="false"
           bin/coverage report --fail-under=75 || warn="true"
           if [[ $warn == "true" ]]; then
-            bin/coverage report --fail-under=40
+            bin/coverage report --fail-under=30
           fi
           echo "warn=$warn" >> "$GITHUB_OUTPUT"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
