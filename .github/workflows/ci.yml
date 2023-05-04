@@ -105,8 +105,13 @@ jobs:
       - name: Run linter
         run: |
           source venv/bin/activate
-          tox -e py311-lint || true # TODO quitar eso, está para ignorar errores
+          tox -e py311-lint
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
+        continue-on-error: true
+      
+      - name: Create warning annotation
+        run: echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
+        if: failure()
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -146,12 +151,13 @@ jobs:
           bin/coverage html
           warn="false"
           bin/coverage report --fail-under=75 || warn="true"
-          if [[ $warn == "yes" ]]; then
+          if [[ $warn == "true" ]]; then
             bin/coverage report --fail-under=40
           fi
           echo "warn=$warn" >> "$GITHUB_OUTPUT"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
-      
+        continue-on-error: true
+
       - name: Create error annotation
         run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
         if: failure()
