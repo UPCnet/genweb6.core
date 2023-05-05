@@ -84,6 +84,8 @@ jobs:
   lint:
     needs: buildout
     runs-on: ubuntu-22.04
+    outputs:
+      lint_warn: ${{ steps.lint.outputs.warn }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -106,13 +108,14 @@ jobs:
         id: lint
         run: |
           source venv/bin/activate
-          tox -e py311-lint
+          warn="false"
+          tox -e py311-lint || warn="true"
+          echo "warn=$warn" >> "$GITHUB_OUTPUT"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
-        continue-on-error: true
       
       - name: Create warning annotation
         run: echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
-        if: ${{ steps.lint.outcome != 'success' }}
+        if: ${{ steps.lint.outputs.warn != 'true' }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -125,7 +128,7 @@ jobs:
     needs: test
     runs-on: ubuntu-22.04
     outputs:
-      lint_warn: ${{ steps.report.outputs.warn }}
+      coverage_warn: ${{ steps.report.outputs.warn }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
