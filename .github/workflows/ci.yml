@@ -115,7 +115,7 @@ jobs:
       
       - name: Create warning annotation
         run: echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
-        if: ${{ steps.lint.outputs.warn != 'true' }}
+        if: ${{ steps.lint.outputs.warn == 'true' }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
