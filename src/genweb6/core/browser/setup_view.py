@@ -124,8 +124,6 @@ class setup(BrowserView):
         bienvenido = portal_es['bienvenido']
         benvingut = portal_ca['benvingut']
 
-        import ipdb; ipdb.set_trace()
-
         self.link_translations([(benvingut, 'ca'), (bienvenido, 'es'), (welcome, 'en')])
 
         alsoProvides(portal_ca, IHomePage)
