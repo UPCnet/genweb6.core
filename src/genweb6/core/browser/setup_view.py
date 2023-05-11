@@ -76,7 +76,9 @@ class setup(BrowserView):
             if 'createexamples' in query:
                 logger = logging.getLogger('Genweb: Executing setup-view Examples on site -')
                 logger.info('%s' % self.context.id)
-                self.createExampleContent()
+                self.createExampleContentCA()
+                self.createExampleContentES()
+                self.createExampleContentEN()
                 self.request.response.redirect(base_url)
 
             return self.render()
@@ -695,11 +697,9 @@ class setup(BrowserView):
             del target_manager_root_assignments['navigation']
         return True
 
-    def createExampleContent(self):
+    def createExampleContentCA(self):
         portal = api.portal.get()
-
-        folder_ca = portal['ca']
-        pagina_mostra_ca = self.create_content(folder_ca, 'Document', 'pagina-principal-mostra', title='Pàgina principal mostra', exclude_from_nav=True)
+        benvingut_ca = portal['ca']['benvingut']
 
         pagebody_sample = """
 <div>
@@ -710,16 +710,16 @@ class setup(BrowserView):
 <p> </p>
 <p> </p>
 <div class="row">
-<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
+<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
 <p> </p>
-<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Exemples de Genweb. Portfolio</span><br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
-<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentació Genweb</span><br /><span class="btnsubtitolsuccess">Tot el que necessites saber</span></a>
+<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Exemples de Genweb. Portfolio</span><br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentació Genweb</span><br /><span class="btnsubtitolsuccess">Tot el que necessites saber</span></a>
 <p> </p>
-<a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
+<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
 </div>"""
 
-        pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
-        pagina_mostra_ca.reindexObject()
+        benvingut_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
+        benvingut_ca.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
         newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
@@ -757,20 +757,16 @@ class setup(BrowserView):
             event_sample_ca.reindexObject()
 
         portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
         spanstorage = getMultiAdapter((portal['ca']['benvingut'], portletManager), ISpanStorage)
         spanstorage.span = '12'
 
         managerAssignments = getMultiAdapter((portal['ca']['benvingut'], portletManager), IPortletAssignmentMapping)
 
-        from genweb6.core.portlets.new_existing_content.new_existing_content import Assignment as newExistingContentAssignment
-        if 'pagina_principal' not in managerAssignments:
-            managerAssignments['pagina_principal'] = newExistingContentAssignment(
-                ptitle='Pàgina principal',
-                show_title=False,
-                hide_footer=True,
-                content_or_url='INTERN',
-                external_url='',
-                own_content=create_relation('/'.join(pagina_mostra_ca.getPhysicalPath())))
+        from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
+        if 'benvingut' not in managerAssignments:
+            managerAssignments['benvingut'] = homepageAssignment()
 
         from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
         if 'noticies' not in managerAssignments:
@@ -780,6 +776,166 @@ class setup(BrowserView):
         from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
         if 'esdeveniments' not in managerAssignments:
             managerAssignments['esdeveniments'] = gridEventsAssignment()
+
+    def createExampleContentES(self):
+        portal = api.portal.get()
+        bienvenido = portal['es']['bienvenido']
+
+        pagebody_sample = """
+<div>
+<div class="box">
+<h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Genweb 6</strong>, el nuevo diseño de tú genweb <span class="fa fa-quote-right"></span></h2>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div class="row">
+<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
+<p> </p>
+<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Ejemplos de Genweb. Portafolio</span><br /><span class="btnsubtitoldanger">Para inspirarse</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentación Genweb</span><br /><span class="btnsubtitolsuccess">Todo lo que necesitas saber</span></a>
+<p> </p>
+<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutoriales Genweb</span><br />Canal del Área TIC</a></div>
+</div>"""
+
+        bienvenido.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
+        bienvenido.reindexObject()
+
+        egglocation = pkg_resources.get_distribution('genweb6.theme').location
+        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
+
+        noticias = portal['es']['noticias']
+        for i in range(1, 4):
+            noticia_muestra = self.create_content(noticias,
+                                                  'News Item',
+                                                  'noticia-de-muestra-' + str(i),
+                                                  title='Noticia de muestra ' + str(i),
+                                                  image=NamedBlobImage(data=newsimg_sample,
+                                                                       filename=u'news_sample.jpg',
+                                                                       contentType=u'image/jpeg'),
+                                                  description='Descripción noticia')
+
+            noticia_muestra.text = RichTextValue("Contenido noticia", 'text/html', 'text/x-html-safe')
+            noticia_muestra.reindexObject()
+
+        eventos = portal['es']['eventos']
+        now = localized_now().replace(minute=0, second=0, microsecond=0)
+        far = now + timedelta(days=14600)
+        for i in range(1, 5):
+            evento_ejemplo = self.create_content(eventos,
+                                                 'Event',
+                                                 'evento-de-muestra-' + str(i),
+                                                 title='Evento de muestra ' + str(i))
+
+            evento_ejemplo.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
+            evento_ejemplo.location = "Lugar del evento"
+            evento_ejemplo.start = now
+            evento_ejemplo.end = far
+            evento_ejemplo.timezone = 'Europe/Madrid'
+            evento_ejemplo.contact_email = 'adreca@noreply.com'
+            evento_ejemplo.contact_name = 'Responsable del evento'
+            evento_ejemplo.reindexObject()
+
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter((portal['es']['bienvenido'], portletManager), ISpanStorage)
+        spanstorage.span = '12'
+
+        managerAssignments = getMultiAdapter((portal['es']['bienvenido'], portletManager), IPortletAssignmentMapping)
+
+        from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
+        if 'bienvenido' not in managerAssignments:
+            managerAssignments['bienvenido'] = homepageAssignment()
+
+        from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
+        if 'noticias' not in managerAssignments:
+            managerAssignments['noticias'] = fullnewsAssignment(
+                view_type='id_full_3cols')
+
+        from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
+        if 'eventos' not in managerAssignments:
+            managerAssignments['eventos'] = gridEventsAssignment()
+
+    def createExampleContentEN(self):
+        portal = api.portal.get()
+        welcome = portal['en']['welcome']
+
+        pagebody_sample = """
+<div>
+<div class="box">
+<h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Genweb 6</strong>, the new design of your genweb <span class="fa fa-quote-right"></span></h2>
+</div>
+</div>
+<p> </p>
+<p> </p>
+<div class="row">
+<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">The UPC website generator</span></a>
+<p> </p>
+<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Examples from Genweb. Briefcase</span><br /><span class="btnsubtitoldanger">To be inspired</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Genweb documentation</span><br /><span class="btnsubtitolsuccess">All you need to know</span></a>
+<p> </p>
+<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Genweb video tutorials</span><br />ICT Area Channel</a></div>
+</div>"""
+
+        welcome.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
+        welcome.reindexObject()
+
+        egglocation = pkg_resources.get_distribution('genweb6.theme').location
+        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
+
+        news = portal['en']['news']
+        for i in range(1, 4):
+            sample_new = self.create_content(news,
+                                            'News Item',
+                                            'sample-new-' + str(i),
+                                            title='Sample new ' + str(i),
+                                            image=NamedBlobImage(data=newsimg_sample,
+                                                                 filename=u'news_sample.jpg',
+                                                                 contentType=u'image/jpeg'),
+                                            description='Description new')
+
+            sample_new.text = RichTextValue("Content new", 'text/html', 'text/x-html-safe')
+            sample_new.reindexObject()
+
+        events = portal['en']['events']
+        now = localized_now().replace(minute=0, second=0, microsecond=0)
+        far = now + timedelta(days=14600)
+        for i in range(1, 5):
+            sample_event = self.create_content(events,
+                                              'Event',
+                                              'sample-event-' + str(i),
+                                              title='Sample event ' + str(i))
+
+            sample_event.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
+            sample_event.location = "Place of the event"
+            sample_event.start = now
+            sample_event.end = far
+            sample_event.timezone = 'Europe/Madrid'
+            sample_event.contact_email = 'adreca@noreply.com'
+            sample_event.contact_name = 'Responsible for the event'
+            sample_event.reindexObject()
+
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+
+        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter((portal['en']['welcome'], portletManager), ISpanStorage)
+        spanstorage.span = '12'
+
+        managerAssignments = getMultiAdapter((portal['en']['welcome'], portletManager), IPortletAssignmentMapping)
+
+        from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
+        if 'welcome' not in managerAssignments:
+            managerAssignments['welcome'] = homepageAssignment()
+
+        from genweb6.core.portlets.fullnews.fullnews import Assignment as fullnewsAssignment
+        if 'news' not in managerAssignments:
+            managerAssignments['news'] = fullnewsAssignment(
+                view_type='id_full_3cols')
+
+        from genweb6.core.portlets.grid_events.grid_events import Assignment as gridEventsAssignment
+        if 'events' not in managerAssignments:
+            managerAssignments['events'] = gridEventsAssignment()
 
     def create_content(self, container, portal_type, id, publish=True, **kwargs):
         if not getattr(container, id, False):
