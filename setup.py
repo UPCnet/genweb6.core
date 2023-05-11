@@ -83,7 +83,7 @@ setup(
             'plone.testing',
             'plone.app.contenttypes',
             'mock',
-            'plone.app.robotframework[debug]'
+            'plone.app.robotframework[debug]',
         ],
     },
     entry_points="""

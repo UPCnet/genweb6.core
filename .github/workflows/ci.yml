@@ -149,13 +149,13 @@ jobs:
             ./bin
             ./parts
             ./src/genweb6.theme
-                  
+
       - name: Run coverage report
         id: report
         run: |
           source venv/bin/activate
           bin/createcoverage
-          bin/coverage html
+          bin/coverage html -i
           warn="false"
           bin/coverage report --fail-under=75 || warn="true"
           if [[ $warn == "true" ]]; then
