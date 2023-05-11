@@ -38,6 +38,7 @@ jobs:
             ./eggs
             ./bin
             ./parts
+            ./src/genweb6.theme
       
       - name: Install system libraries # needed for compiling eggs
         run: |
@@ -74,6 +75,7 @@ jobs:
             ./eggs
             ./bin
             ./parts
+            ./src/genweb6.theme
 
       - name: Run tests
         run: |
@@ -146,7 +148,8 @@ jobs:
             ./eggs
             ./bin
             ./parts
-      
+            ./src/genweb6.theme
+                  
       - name: Run coverage report
         id: report
         run: |
