@@ -710,12 +710,12 @@ class setup(BrowserView):
 <p> </p>
 <p> </p>
 <div class="row">
-<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/lestructura-i-els-tipus-de-contingut/opcions-de-configuracio/clean-vs-standard" target="_self"><span class="btntitolblau">Coneix els tres dissenys de Genweb</span><br /><span class="btnsubtitolblau">Standard, Clean Theme i Rob Theme</span></a>
+<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
 <p> </p>
-<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca" target="_self"><span class="btntitoldanger">Exemple de pàgina principal amb estil Rob Theme</span> <br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
-<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/treballant-continguts/plantilles/les-plantilles" target="_self"> <span class="btntitolsuccess">Totes les plantilles de Genweb</span><br /><span class="btnsubtitolsuccess">Incloses  les noves de Rob Theme</span></a>
+<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Exemples de Genweb. Portfolio</span><br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentació Genweb</span><br /><span class="btnsubtitolsuccess">Tot el que necessites saber</span></a>
 <p> </p>
-<a class="link-bannerwarning external-link" href="https://genweb.upc.edu/ca/documentacio/manual-per-a-editors/recursos-grafics/llistat-estils-CSS" target="_self"><span class="btntitolwarning">Llistat de tots els estils de Genweb</span><br /><span class="btnsubtitolwarning">Us ajudarà a fer pàgines més atractives</span></a></div>
+<a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
 </div>"""
 
         pagina_mostra_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
