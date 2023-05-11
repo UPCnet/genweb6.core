@@ -154,7 +154,7 @@ jobs:
         id: report
         run: |
           source venv/bin/activate
-          bin/createcoverage
+          bin/coverage run bin/test
           bin/coverage html -i
           warn="false"
           bin/coverage report --fail-under=75 || warn="true"
