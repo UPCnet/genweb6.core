@@ -20,7 +20,12 @@ class Genweb6CoreLayer(PloneSandboxLayer):
         # layer.
         import plone.restapi
         self.loadZCML(package=plone.restapi)
+        import collective.easyform
+        self.loadZCML(package=collective.easyform)
+        import plone.app.mosaic
+        self.loadZCML(package=plone.app.mosaic)
         self.loadZCML(package=genweb6.core)
+        
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'genweb6.core:default')

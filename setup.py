@@ -82,8 +82,8 @@ setup(
             # plone_coredev tests as of 2016-04-01.
             'plone.testing',
             'plone.app.contenttypes',
-            'mock'
-            #'plone.app.robotframework[debug]',
+            'mock',
+            'plone.app.robotframework[debug]'
         ],
     },
     entry_points="""

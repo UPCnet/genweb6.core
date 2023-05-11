@@ -32,6 +32,7 @@
     <include package=".widgets" />
 
     <include package="souper.plone" />
+    <include package="z3c.jbot" file="meta.zcml" />
 
     <browser:jbot
         directory="templates"
