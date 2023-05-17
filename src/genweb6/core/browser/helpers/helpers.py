@@ -13,6 +13,7 @@ from zope.interface import alsoProvides
 from genweb6.core import HAS_PAM
 from genweb6.core.interfaces import IProtectedContent
 
+import json
 import logging
 import os
 import pkg_resources
@@ -628,3 +629,42 @@ Paràmetre:
                 return 'OK\n'
         else:
             return 'Error parameter product_name, not defined'
+
+
+class get_contents_type(BrowserView):
+    """
+Retorna tots els continguts del tipus pasats per parametre
+
+Exemples:
+- get_contents_type?portal_type=Document
+- get_contents_type?portal_type=Document,Link
+    """
+
+    def __call__(self):
+        if 'portal_type' not in self.request.form:
+            return "Mandatory parameter 'portal_type' was not specified"
+
+        pt = self.request.form['portal_type'].split(',')
+
+        catalog = api.portal.get_tool('portal_catalog')
+        pw =  api.portal.get_tool('portal_workflow')
+
+        results_dict = {}
+
+        for ct in pt:
+            results_dict[ct] = {}
+            results = catalog.searchResults(portal_type=ct)
+            results_dict[ct].update({'total': len(results)})
+
+            if results:
+                results_dict[ct].update({'state': {}})
+
+            for content in results:
+                obj = content.getObject()
+                rs = pw.getInfoFor(obj, 'review_state')
+                if rs not in results_dict[ct]['state']:
+                    results_dict[ct]['state'][rs] = []
+
+                results_dict[ct]['state'][rs].append(obj.absolute_url())
+
+        return json.dumps(results_dict)
