@@ -1,0 +1,6 @@
+[report]
+include =
+    src/genweb6/*
+omit =
+    /test
+    /upgrades/

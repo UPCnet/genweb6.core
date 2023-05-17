@@ -8,7 +8,7 @@ on:
     branches:
       - cicd
 #      - master
-
+  workflow_dispatch:
 
 # Aquí especificamos la lista de tareas que tiene que hacer en este workflow
 jobs:
@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
           path: |
             ./eggs
             ./bin
@@ -111,13 +111,9 @@ jobs:
         run: |
           source venv/bin/activate
           warn="false"
-          tox -e py311-lint || warn="true"
-          echo "warn=$warn" >> "$GITHUB_OUTPUT"
+          tox -e py311-lint || \
+            echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"           
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
-      
-      - name: Create warning annotation
-        run: echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
-        if: ${{ steps.lint.outputs.warn == 'true' }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
@@ -154,23 +150,21 @@ jobs:
         id: report
         run: |
           source venv/bin/activate
-          bin/coverage run bin/test
-          bin/coverage html -i
+          bin/createcoverage
+          bin/coverage html
           warn="false"
-          bin/coverage report -i --fail-under=75 || warn="true"
+          bin/coverage report --fail-under=75 || warn="true"
           if [[ $warn == "true" ]]; then
-            bin/coverage report -i --fail-under=30
+            bin/coverage report --fail-under=30
+            echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
           fi
-          echo "warn=$warn" >> "$GITHUB_OUTPUT"
+
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
 
       - name: Create error annotation
         run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
         if: failure()
 
-      - name: Create warning annotation
-        run: echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
-        if: ${{ steps.report.outcome == 'success' && steps.report.outputs.warn == 'true' }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
