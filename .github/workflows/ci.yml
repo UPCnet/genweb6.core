@@ -70,7 +70,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
           path: |
             ./eggs
             ./bin
@@ -100,7 +100,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
           path: |
             ./eggs
             ./bin
@@ -139,7 +139,7 @@ jobs:
         uses: actions/cache/restore@v3
         with:
           key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg') }}
+            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
           path: |
             ./eggs
             ./bin
