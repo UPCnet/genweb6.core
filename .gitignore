@@ -1,6 +1,7 @@
 bin/
 .mr.developer.cfg
 .vscode
+src/genweb6.theme/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
