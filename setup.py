@@ -57,7 +57,7 @@ setup(
         'plone.app.dexterity',
         'ipdb',
         'souper.plone',
-        'Products.PloneLDAP',
+        'Products.PloneLDAP==2.0.0a1',
         'Products.LDAPUserFolder',
         'Products.LDAPMultiPlugins',
         'dataflake.fakeldap',
