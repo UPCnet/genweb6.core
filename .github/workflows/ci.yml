@@ -104,6 +104,7 @@ jobs:
             ./eggs
             ./bin
             ./parts
+            ./src/genweb6.theme
 
       - name: Run linter
         id: lint
