@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - cicd
-#      - master
   workflow_dispatch:
 
 # Aquí especificamos la lista de tareas que tiene que hacer en este workflow
