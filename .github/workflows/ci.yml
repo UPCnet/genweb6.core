@@ -61,7 +61,7 @@ jobs:
         id: cache-buildout-restore
         uses: ./.github/actions/cache_buildout
         with:
-          action: restore
+          action: resftore
 
       - name: Run tests
         run: |
