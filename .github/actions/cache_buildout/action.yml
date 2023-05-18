@@ -64,13 +64,13 @@ runs:
       run: |
         case  ${{ inputs.action }} in
           save_and_restore)
-            echo "cache-hit:${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
             ;;
           save)
-            echo "cache-hit:${{ steps.cache-save.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-save.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
             ;;
           restore)
-            echo "cache-hit:${{ steps.cache-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
             ;;
           *)
             echo "::error title=Cache action error::invalid action ${{ inputs.action }}"
