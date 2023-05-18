@@ -29,15 +29,9 @@ jobs:
       
       - name: Cache buildout
         id: cache-buildout
-        uses: actions/cache@v3
+        uses: ./.github/actions/cache_buildout
         with:
-          key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
-          path: |
-            ./eggs
-            ./bin
-            ./parts
-            ./src/genweb6.theme
+          action: save
       
       - name: Install system libraries # needed for compiling eggs
         run: |
@@ -66,15 +60,9 @@ jobs:
       
       - name: Restore cache buildout
         id: cache-buildout-restore
-        uses: actions/cache/restore@v3
+        uses: ./.github/actions/cache_buildout
         with:
-          key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
-          path: |
-            ./eggs
-            ./bin
-            ./parts
-            ./src/genweb6.theme
+          action: restore
 
       - name: Run tests
         run: |
@@ -85,8 +73,6 @@ jobs:
   lint:
     needs: buildout
     runs-on: ubuntu-22.04
-    outputs:
-      lint_warn: ${{ steps.lint.outputs.warn }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -96,15 +82,9 @@ jobs:
       
       - name: Restore cache buildout
         id: cache-buildout-restore
-        uses: actions/cache/restore@v3
+        uses: ./.github/actions/cache_buildout
         with:
-          key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
-          path: |
-            ./eggs
-            ./bin
-            ./parts
-            ./src/genweb6.theme
+          action: restore
 
       - name: Run linter
         id: lint
@@ -125,8 +105,6 @@ jobs:
   coverage:
     needs: test
     runs-on: ubuntu-22.04
-    outputs:
-      coverage_warn: ${{ steps.report.outputs.warn }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -136,15 +114,9 @@ jobs:
 
       - name: Restore cache buildout
         id: cache-buildout-restore
-        uses: actions/cache/restore@v3
+        uses: ./.github/actions/cache_buildout
         with:
-          key:
-            ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
-          path: |
-            ./eggs
-            ./bin
-            ./parts
-            ./src/genweb6.theme
+          action: restore
 
       - name: Run coverage report
         id: report
