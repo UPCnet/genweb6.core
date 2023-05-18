@@ -36,8 +36,7 @@ runs:
       id: cache-save-and-restore
       uses: actions/cache@v3
       with:
-        key:
-          ${{ inputs.key }}
+        key: ${{ inputs.key }}
         path: ${{ inputs.path }}
       if: ${{ inputs.action == 'save_and_restore' }}
 
@@ -45,8 +44,7 @@ runs:
       id: cache-save
       uses: actions/cache/save@v3
       with:
-        key:
-          ${{ inputs.key }}
+        key: ${{ inputs.key }}
         path: ${{ inputs.path }}
       if: ${{ inputs.action == 'save' }}
 
@@ -54,8 +52,7 @@ runs:
       id: cache-restore
       uses: actions/cache/restore@v3
       with:
-        key:
-          ${{ inputs.key }}
+        key: ${{ inputs.key }}
         path: ${{ inputs.path }}
       if: ${{ inputs.action == 'restore' }}
 
@@ -64,13 +61,13 @@ runs:
       run: |
         case ${{ inputs.action }} in
           save_and_restore)
-            echo "cache-hit=${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
             ;;
           save)
-            echo "cache-hit=${{ steps.cache-save.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-save.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
             ;;
           restore)
-            echo "cache-hit=${{ steps.cache-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
+            echo "cache-hit=${{ steps.cache-restore.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
             ;;
           *)
             echo "::error title=Cache action error::invalid action ${{ inputs.action }}"
