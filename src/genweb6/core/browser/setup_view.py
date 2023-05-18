@@ -68,6 +68,7 @@ class setup(BrowserView):
                 logger = logging.getLogger('Genweb: Executing setup-view on site -')
                 logger.info('%s' % self.context.id)
                 self.apply_default_language_settings()
+                self.setup_multilingual()
                 self.createContentMigration()
                 self.request.response.redirect(base_url)
 
