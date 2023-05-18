@@ -31,8 +31,6 @@ jobs:
       - name: Cache buildout
         id: cache-buildout
         uses: ./.github/actions/cache_buildout
-        with:
-          action: save
       
       - name: Install system libraries # needed for compiling eggs
         run: |
