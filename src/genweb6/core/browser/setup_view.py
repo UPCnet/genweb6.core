@@ -59,9 +59,6 @@ class setup(BrowserView):
                 logger = logging.getLogger('Genweb: Executing setup-view on site -')
                 logger.info('%s' % self.context.id)
                 self.apply_default_language_settings()
-                # if not api.portal.get_registry_record(name='genweb.hidden_settings.languages_applied'):
-                #     self.apply_default_language_settings()
-                #     api.portal.set_registry_record('genweb.hidden_settings.languages_applied', True)
                 self.setup_multilingual()
                 self.createContent()
                 self.request.response.redirect(base_url)
@@ -70,6 +67,7 @@ class setup(BrowserView):
             if 'createcontentmigration' in query:
                 logger = logging.getLogger('Genweb: Executing setup-view on site -')
                 logger.info('%s' % self.context.id)
+                self.apply_default_language_settings()
                 self.createContentMigration()
                 self.request.response.redirect(base_url)
 
