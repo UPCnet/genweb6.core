@@ -116,10 +116,216 @@ class setup(BrowserView):
         setupTool.setupSite(self.context, False)
 
     def createContentMigration(self):
+        """ Method that creates all the default content """
         portal = api.portal.get()
         portal_ca = portal['ca']
         portal_en = portal['en']
         portal_es = portal['es']
+
+        # Let's configure mail
+        mail = IMailSchema(portal)
+        mail.smtp_host = u'localhost'
+        if mail.email_from_address in ('noreply@upc.edu', 'no-reply@upcnet.es'):
+            mail.email_from_name = "Administrador del Genweb"
+            mail.email_from_address = "noreply@upc.edu"
+
+        # Get rid of the original page
+        if getattr(portal_en, 'front-page', False):
+            api.content.delete(obj=portal['front-page'])
+
+        # Hide 'Members' folder
+        if getattr(portal, 'Members', False):
+            api.content.delete(obj=portal['Members'])
+
+        # Rename the original 'news' and 'events' folders for using it at the setup
+        if getattr(portal, 'news', False):
+            api.content.delete(obj=portal['news'])
+            # api.content.rename(obj=portal['news'], new_id='news_setup')
+        if getattr(portal, 'events', False):
+            api.content.delete(obj=portal['events'])
+            # api.content.rename(obj=portal['events'], new_id='events_setup')
+
+        # Remove LFI Media folder
+        if getattr(portal_ca, 'media', False):
+            api.content.delete(obj=portal_ca['media'])
+        if getattr(portal_es, 'media', False):
+            api.content.delete(obj=portal_es['media'])
+        if getattr(portal_en, 'media', False):
+            api.content.delete(obj=portal_en['media'])
+
+        # Setup portal news folder
+        news = self.create_content(portal_en, 'Folder', 'news', title='News', description=u'Site news')
+        noticias = self.create_content(portal_es, 'Folder', 'noticias', title='Noticias', description=u'Noticias del sitio')
+        noticies = self.create_content(portal_ca, 'Folder', 'noticies', title='Notícies', description=u'Notícies del lloc')
+        self.link_translations([(news, 'en'), (noticias, 'es'), (noticies, 'ca')])
+
+        news.exclude_from_nav = True
+        noticias.exclude_from_nav = True
+        noticies.exclude_from_nav = True
+
+        # Create the aggregator
+        col_news = self.create_content(news, 'Collection', 'aggregator', title='aggregator', description=u'Site news')
+        col_news.title = 'News'
+        col_news.query = NEWS_QUERY
+        col_news.sort_on = QUERY_SORT_ON
+
+        col_news.reindexObject()
+
+        col_noticias = self.create_content(noticias, 'Collection', 'aggregator', title='aggregator', description=u'Notícias del sitio')
+        col_noticias.title = 'Noticias'
+        col_noticias.query = NEWS_QUERY
+        col_noticias.sort_on = QUERY_SORT_ON
+
+        col_noticias.reindexObject()
+
+        col_noticies = self.create_content(noticies, 'Collection', 'aggregator', title='aggregator', description=u'Notícies del lloc')
+        col_noticies.title = 'Notícies'
+        col_noticies.query = NEWS_QUERY
+        col_noticies.sort_on = QUERY_SORT_ON
+
+        col_noticies.reindexObject()
+
+        # Set layout for news folders
+        news.setDefaultPage('aggregator')
+        noticias.setDefaultPage('aggregator')
+        noticies.setDefaultPage('aggregator')
+
+        self.link_translations([(col_news, 'en'), (col_noticias, 'es'), (col_noticies, 'ca')])
+
+        self.constrain_content_types(news, ('News Item', 'Folder', 'Image', 'Link'))
+        self.constrain_content_types(noticias, ('News Item', 'Folder', 'Image', 'Link'))
+        self.constrain_content_types(noticies, ('News Item', 'Folder', 'Image', 'Link'))
+
+        # Setup portal events folder
+        events = self.create_content(portal_en, 'Folder', 'events', title='Events', description=u'Site events')
+        eventos = self.create_content(portal_es, 'Folder', 'eventos', title='Eventos', description=u'Eventos del sitio')
+        esdeveniments = self.create_content(portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments', description=u'Esdeveniments del lloc')
+        self.link_translations([(events, 'en'), (eventos, 'es'), (esdeveniments, 'ca')])
+
+        events.exclude_from_nav = True
+        eventos.exclude_from_nav = True
+        esdeveniments.exclude_from_nav = True
+
+        # Create the aggregator
+        # original_col_events = original_events['aggregator']
+        col_events = self.create_content(events, 'Collection', 'aggregator', title='aggregator', description=u'Site events')
+        col_events.title = 'Events'
+        col_events.query = EVENT_QUERY
+        col_events.sort_on = QUERY_SORT_ON
+
+        col_events.reindexObject()
+
+        col_eventos = self.create_content(eventos, 'Collection', 'aggregator', title='aggregator', description=u'Eventos del sitio')
+        col_eventos.title = 'Eventos'
+        col_eventos.query = EVENT_QUERY
+        col_eventos.sort_on = QUERY_SORT_ON
+
+        col_eventos.reindexObject()
+
+        col_esdeveniments = self.create_content(esdeveniments, 'Collection', 'aggregator', title='aggregator', description=u'Esdeveniments del lloc')
+        col_esdeveniments.title = 'Esdeveniments'
+        col_esdeveniments.query = EVENT_QUERY
+        col_esdeveniments.sort_on = QUERY_SORT_ON
+
+        col_esdeveniments.reindexObject()
+
+        # Set layout for news folders
+        events.setDefaultPage('aggregator')
+        eventos.setDefaultPage('aggregator')
+        esdeveniments.setDefaultPage('aggregator')
+
+        self.link_translations([(col_events, 'en'), (col_eventos, 'es'), (col_esdeveniments, 'ca')])
+
+        self.constrain_content_types(events, ('Event', 'Folder', 'Image'))
+        self.constrain_content_types(eventos, ('Event', 'Folder', 'Image'))
+        self.constrain_content_types(esdeveniments, ('Event', 'Folder', 'Image'))
+
+        # Create banners folders
+        banners_en = self.create_content(portal_en, 'BannerContainer', 'banners-en', title='banners-en', description=u'English Banners')
+        banners_en.title = 'Banners'
+        banners_es = self.create_content(portal_es, 'BannerContainer', 'banners-es', title='banners-es', description=u'Banners en Español')
+        banners_es.title = 'Banners'
+        banners_ca = self.create_content(portal_ca, 'BannerContainer', 'banners-ca', title='banners-ca', description=u'Banners en Català')
+        banners_ca.title = 'Banners'
+        self.link_translations([(banners_ca, 'ca'), (banners_es, 'es'), (banners_en, 'en')])
+
+        banners_en.exclude_from_nav = True
+        banners_es.exclude_from_nav = True
+        banners_ca.exclude_from_nav = True
+
+        banners_en.reindexObject()
+        banners_es.reindexObject()
+        banners_ca.reindexObject()
+
+        # Create logosfooter folders
+        logosfooter_en = self.create_content(portal_en, 'Logos_Container', 'logosfooter-en', title='logosfooter-en', description=u'English footer logos')
+        logosfooter_en.title = 'Footer Logos'
+        logosfooter_es = self.create_content(portal_es, 'Logos_Container', 'logosfooter-es', title='logosfooter-es', description=u'Logos en español del pie de página')
+        logosfooter_es.title = 'Logos pie'
+        logosfooter_ca = self.create_content(portal_ca, 'Logos_Container', 'logosfooter-ca', title='logosfooter-ca', description=u'Logos en català del peu de pàgina')
+        logosfooter_ca.title = 'Logos peu'
+        self.link_translations([(logosfooter_ca, 'ca'), (logosfooter_es, 'es'), (logosfooter_en, 'en')])
+
+        logosfooter_en.exclude_from_nav = True
+        logosfooter_es.exclude_from_nav = True
+        logosfooter_ca.exclude_from_nav = True
+
+        logosfooter_en.reindexObject()
+        logosfooter_es.reindexObject()
+        logosfooter_ca.reindexObject()
+
+        # welcome pages
+        welcome_string_ca = u"""<div class="box">
+            <div>
+            <div class="destacatBandejat">
+            <p class="xxl" style="text-align: center; ">Contingut de la pàgina "Benvingut"</p>
+            </div>
+            <p> </p>
+            </div>
+            <div>Personalitzeu aquest contingut a la pàgina "Benvingut" que trobareu a l'arrel del vostre web.</div>
+            <div>
+            <ul class="list list-highlighted">
+            <li><a class="external-link" href="http://genweb.upc.edu/ca/documentacio" target="_blank" title="">Documentació Genweb v4</a></li>
+            </ul>
+            </div>
+            <p> </p>
+            <p> </p>
+            </div>
+            """
+
+        welcome_string_es = u"""<div class="box">
+            <div>
+            <div class="destacatBandejat">
+            <p class="xxl" style="text-align: center; "><span>Contenido de la página "Bienvenido"</span></p>
+            </div>
+            <p> </p>
+            </div>
+            <div>Personalizad este contenido en la página "Bienvenido" que encontraréis en la raíz del árbol de navegación en castellano.</div>
+            <p> </p>
+            <p> </p>
+            </div> """
+
+        welcome_string_en = u"""<div class="box">
+            <div>
+            <div class="destacatBandejat">
+            <p class="xxl" style="text-align: center; "><span>"Welcome" page content</span></p>
+            </div>
+            <p> </p>
+            <p>Update on page "Welcome" the content you want in your website home page.</p>
+            </div>
+            <p> </p>
+            <p> </p>
+            </div> """
+
+        if not getattr(portal_en, 'welcome', False):
+            welcome = self.create_content(portal_en, 'Document', 'welcome', title='Welcome')
+            welcome.text = RichTextValue(welcome_string_en, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_es, 'bienvenido', False):
+            bienvenido = self.create_content(portal_es, 'Document', 'bienvenido', title='Bienvenido')
+            bienvenido.text = RichTextValue(welcome_string_es, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_ca, 'benvingut', False):
+            benvingut = self.create_content(portal_ca, 'Document', 'benvingut', title='Benvingut')
+            benvingut.text = RichTextValue(welcome_string_ca, 'text/html', 'text/x-html-safe')
 
         welcome = portal_en['welcome']
         bienvenido = portal_es['bienvenido']
@@ -127,6 +333,7 @@ class setup(BrowserView):
 
         self.link_translations([(benvingut, 'ca'), (bienvenido, 'es'), (welcome, 'en')])
 
+        # Mark all homes with IHomePage marker interface
         alsoProvides(portal_ca, IHomePage)
         alsoProvides(portal_en, IHomePage)
         alsoProvides(portal_es, IHomePage)
@@ -139,17 +346,43 @@ class setup(BrowserView):
         bienvenido.exclude_from_nav = True
         welcome.exclude_from_nav = True
 
+        # Reindex them to update object_provides index
         benvingut.reindexObject()
         bienvenido.reindexObject()
         welcome.reindexObject()
 
+        # Set the default pages to the homepage view
         portal_en.setLayout('homepage')
         portal_es.setLayout('homepage')
         portal_ca.setLayout('homepage')
 
-        portal_en.reindexObject()
-        portal_es.reindexObject()
-        portal_ca.reindexObject()
+        contact_string_ca = u"""Editeu a la pàgina "Contacte personalitzat", que trobareu a l’arrel de català, les vostres dades personalitzades de contacte."""
+        contact_string_es = u"""Editad en la página "Contacto personalizado", que encontraréis en la raíz de español, vuestros datos personalizados de contacto."""
+        contact_string_en = u"""Customize your contact details on page "custom contact"."""
+
+        # Create default custom contact form info objects
+        if not getattr(portal_en, 'customizedcontact', False):
+            customizedcontact = self.create_content(portal_en, 'Document', 'customizedcontact', title='customizedcontact', publish=False)
+            customizedcontact.title = u'Custom contact'
+            customizedcontact.text = RichTextValue(contact_string_en, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_es, 'contactopersonalizado', False):
+            contactopersonalizado = self.create_content(portal_es, 'Document', 'contactopersonalizado', title='contactopersonalizado', publish=False)
+            contactopersonalizado.title = u'Contacto personalizado'
+            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html', 'text/x-html-safe')
+        if not getattr(portal_ca, 'contactepersonalitzat', False):
+            contactepersonalitzat = self.create_content(portal_ca, 'Document', 'contactepersonalitzat', title='contactepersonalitzat', publish=False)
+            contactepersonalitzat.title = u'Contacte personalitzat'
+            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html', 'text/x-html-safe')
+
+        customizedcontact = portal_en['customizedcontact']
+        contactopersonalizado = portal_es['contactopersonalizado']
+        contactepersonalitzat = portal_ca['contactepersonalitzat']
+
+        self.link_translations([(contactepersonalitzat, 'ca'), (contactopersonalizado, 'es'), (customizedcontact, 'en')])
+
+        customizedcontact.exclude_from_nav = True
+        contactopersonalizado.exclude_from_nav = True
+        contactepersonalitzat.exclude_from_nav = True
 
         links_string_ca = u"""Editeu a la pàgina "Enllaços personalitzats", que trobareu a l’arrel de català, els vostres enllaços del peu personalitzats."""
         links_string_es = u"""Editad en la página "Enlaces personalizados", que encontraréis en la raíz de español, vuestros enlaces del pie personalizados."""
@@ -179,6 +412,33 @@ class setup(BrowserView):
         enlacespersonalizados.exclude_from_nav = True
         enllacospersonalitzats.exclude_from_nav = True
 
+        # Templates TinyMCE
+        plantilles = self.create_content(portal, 'Folder', 'plantilles', title='Plantilles', description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
+        plantilles.exclude_from_nav = True
+        api.content.transition(obj=plantilles, transition='retracttointranet')
+        api.content.transition(obj=plantilles, transition='publish')
+        plantilles.reindexObject()
+
+        # Create the shared folders for files and images
+        compartits = self.create_content(portal_ca, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartits.title = 'Fitxers compartits'
+        shared = self.create_content(portal_en, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        shared.title = 'Shared files'
+        compartidos = self.create_content(portal_es, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartidos.title = 'Ficheros compartidos'
+        self.constrain_content_types(compartits, ('File', 'Folder', 'Image'))
+        self.constrain_content_types(shared, ('File', 'Folder', 'Image'))
+        self.constrain_content_types(compartidos, ('File', 'Folder', 'Image'))
+
+        compartits.exclude_from_nav = True
+        shared.exclude_from_nav = True
+        compartidos.exclude_from_nav = True
+
+        compartits.reindexObject()
+        shared.reindexObject()
+        compartidos.reindexObject()
+
+        # Mark all protected content with the protected marker interface
         alsoProvides(portal_ca, IProtectedContent)
         alsoProvides(portal_en, IProtectedContent)
         alsoProvides(portal_es, IProtectedContent)
@@ -187,90 +447,52 @@ class setup(BrowserView):
         alsoProvides(bienvenido, IProtectedContent)
         alsoProvides(welcome, IProtectedContent)
 
-        if getattr(portal_ca, 'noticies', False):
-            noticies = portal_ca['noticies']
-            alsoProvides(noticies, IProtectedContent)
+        alsoProvides(noticies, IProtectedContent)
+        alsoProvides(noticias, IProtectedContent)
+        alsoProvides(news, IProtectedContent)
 
-            if getattr(noticies, 'aggregator', False):
-                alsoProvides(noticies['aggregator'], IProtectedContent)
+        alsoProvides(col_noticies, IProtectedContent)
+        alsoProvides(col_noticias, IProtectedContent)
+        alsoProvides(col_news, IProtectedContent)
 
-        if getattr(portal_es, 'noticias', False):
-            noticias = portal_es['noticias']
-            alsoProvides(noticias, IProtectedContent)
+        alsoProvides(esdeveniments, IProtectedContent)
+        alsoProvides(eventos, IProtectedContent)
+        alsoProvides(events, IProtectedContent)
 
-            if getattr(noticias, 'aggregator', False):
-                alsoProvides(noticias['aggregator'], IProtectedContent)
+        alsoProvides(col_esdeveniments, IProtectedContent)
+        alsoProvides(col_eventos, IProtectedContent)
+        alsoProvides(col_events, IProtectedContent)
 
-        if getattr(portal_en, 'news', False):
-            news = portal_en['news']
-            alsoProvides(news, IProtectedContent)
+        alsoProvides(banners_ca, IProtectedContent)
+        alsoProvides(banners_en, IProtectedContent)
+        alsoProvides(banners_es, IProtectedContent)
 
-            if getattr(news, 'aggregator', False):
-                alsoProvides(news['aggregator'], IProtectedContent)
+        alsoProvides(logosfooter_ca, IProtectedContent)
+        alsoProvides(logosfooter_es, IProtectedContent)
+        alsoProvides(logosfooter_en, IProtectedContent)
 
-        if getattr(portal_ca, 'esdeveniments', False):
-            esdeveniments = portal_ca['esdeveniments']
-            alsoProvides(esdeveniments, IProtectedContent)
+        alsoProvides(customizedcontact, IProtectedContent)
+        alsoProvides(contactopersonalizado, IProtectedContent)
+        alsoProvides(contactepersonalitzat, IProtectedContent)
 
-            if getattr(esdeveniments, 'aggregator', False):
-                alsoProvides(esdeveniments['aggregator'], IProtectedContent)
-
-        if getattr(portal_es, 'eventos', False):
-            eventos = portal_es['eventos']
-            alsoProvides(eventos, IProtectedContent)
-
-            if getattr(eventos, 'aggregator', False):
-                alsoProvides(eventos['aggregator'], IProtectedContent)
-
-        if getattr(portal_en, 'events', False):
-            events = portal_en['events']
-            alsoProvides(events, IProtectedContent)
-
-            if getattr(events, 'aggregator', False):
-                alsoProvides(events['aggregator'], IProtectedContent)
-
-        if getattr(portal_ca, 'banners-ca', False):
-            alsoProvides(portal_ca['banners-ca'], IProtectedContent)
-
-        if getattr(portal_es, 'banners-en', False):
-            alsoProvides(portal_es['banners-en'], IProtectedContent)
-
-        if getattr(portal_en, 'banners-es', False):
-            alsoProvides(portal_en['banners-es'], IProtectedContent)
-
-        if getattr(portal_ca, 'logosfooter-ca', False):
-            alsoProvides(portal_ca['logosfooter-ca'], IProtectedContent)
-
-        if getattr(portal_es, 'logosfooter-es', False):
-            alsoProvides(portal_es['logosfooter-es'], IProtectedContent)
-
-        if getattr(portal_en, 'logosfooter-en', False):
-            alsoProvides(portal_en['logosfooter-en'], IProtectedContent)
-
-        if getattr(portal_ca, 'contactepersonalitzat', False):
-            alsoProvides(portal_ca['contactepersonalitzat'], IProtectedContent)
-
-        if getattr(portal_es, 'contactopersonalizado', False):
-            alsoProvides(portal_es['contactopersonalizado'], IProtectedContent)
-
-        if getattr(portal_en, 'customizedcontact', False):
-            alsoProvides(portal_en['customizedcontact'], IProtectedContent)
-
-        alsoProvides(enllacospersonalitzats, IProtectedContent)
-        alsoProvides(enlacespersonalizados, IProtectedContent)
         alsoProvides(customizedlinks, IProtectedContent)
+        alsoProvides(enlacespersonalizados, IProtectedContent)
+        alsoProvides(enllacospersonalitzats, IProtectedContent)
 
-        if getattr(portal_ca, 'shared', False):
-            alsoProvides(portal_ca['shared'], IProtectedContent)
+        alsoProvides(shared, IProtectedContent)
+        alsoProvides(compartidos, IProtectedContent)
+        alsoProvides(compartits, IProtectedContent)
 
-        if getattr(portal_es, 'shared', False):
-            alsoProvides(portal_es['shared'], IProtectedContent)
+        alsoProvides(plantilles, IProtectedContent)
 
-        if getattr(portal_en, 'shared', False):
-            alsoProvides(portal_en['shared'], IProtectedContent)
+        # Mark also the special folders
+        alsoProvides(noticies, INewsFolder)
+        alsoProvides(noticias, INewsFolder)
+        alsoProvides(news, INewsFolder)
 
-        if getattr(portal, 'plantilles', False):
-            alsoProvides(portal['plantilles'], IProtectedContent)
+        alsoProvides(esdeveniments, IEventFolder)
+        alsoProvides(eventos, IEventFolder)
+        alsoProvides(events, IEventFolder)
 
     def createContent(self):
         """ Method that creates all the default content """
