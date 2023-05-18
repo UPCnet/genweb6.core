@@ -62,7 +62,7 @@ runs:
     - name: Cache result
       id: cache-result
       run: |
-        case  ${{ inputs.action }} in
+        case ${{ inputs.action }} in
           save_and_restore)
             echo "cache-hit=${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> $"GITHUB_OUTPUT"
             ;;
