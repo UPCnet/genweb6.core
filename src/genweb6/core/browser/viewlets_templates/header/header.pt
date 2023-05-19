@@ -17,22 +17,12 @@
                                      alt logos/logo_alt;
                                      title logos/logo_alt;">
 
-                <img alt="" title="" class="img-responsive"
-                     tal:attributes="src logos/logo_responsive;
-                                     alt logos/logo_alt;
-                                     title logos/logo_alt;">
-
             </a>
 
             <tal:condition condition="not:logos/logo_url">
 
                 <img alt="" title="" class="img-desktop"
                      tal:attributes="src logos/logo;
-                                     alt logos/logo_alt;
-                                     title logos/logo_alt;">
-
-                <img alt="" title="" class="img-responsive"
-                     tal:attributes="src logos/logo_responsive;
                                      alt logos/logo_alt;
                                      title logos/logo_alt;">
 
@@ -51,22 +41,12 @@
                                      alt logos/secundary_logo_alt;
                                      title logos/secundary_logo_alt;">
 
-                <img alt="" title="" class="img-responsive"
-                     tal:attributes="src logos/secundary_logo_responsive;
-                                     alt logos/secundary_logo_alt;
-                                     title logos/secundary_logo_alt;">
-
             </a>
 
             <tal:condition condition="not:logos/secundary_logo_url">
 
                 <img alt="" title="" class="img-desktop"
                      tal:attributes="src logos/secundary_logo;
-                                     alt logos/secundary_logo_alt;
-                                     title logos/secundary_logo_alt;">
-
-                <img alt="" title="" class="img-responsive"
-                     tal:attributes="src logos/secundary_logo_responsive;
                                      alt logos/secundary_logo_alt;
                                      title logos/secundary_logo_alt;">
 

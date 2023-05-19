@@ -128,7 +128,6 @@ class IHeaderSettings(model.Schema):
     model.fieldset('Logo', _(u'Logo'),
                    fields=['fieldset_logo', 'fieldset_secundary_logo',
                            'logo', 'secundary_logo',
-                           'logo_responsive', 'secundary_logo_responsive',
                            'logo_alt', 'secundary_logo_alt',
                            'logo_url', 'secundary_logo_url',
                            'logo_external_url', 'secundary_logo_external_url'])
@@ -163,24 +162,6 @@ class IHeaderSettings(model.Schema):
     directives.widget('secundary_logo', NamedImageFieldWidget)
     secundary_logo = schema.Bytes(
         title=_(u"Logo"),
-        description=_(u"Please upload an image"),
-        required=False,
-    )
-
-    read_permission(logo_responsive='genweb.manager')
-    write_permission(logo_responsive='genweb.manager')
-    directives.widget('logo_responsive', NamedImageFieldWidget)
-    logo_responsive = schema.Bytes(
-        title=_(u"Logo petit"),
-        description=_(u"Please upload an image"),
-        required=False,
-    )
-
-    read_permission(secundary_logo_responsive='genweb.manager')
-    write_permission(secundary_logo_responsive='genweb.manager')
-    directives.widget('secundary_logo_responsive', NamedImageFieldWidget)
-    secundary_logo_responsive = schema.Bytes(
-        title=_(u"Logo petit"),
         description=_(u"Please upload an image"),
         required=False,
     )
@@ -404,33 +385,6 @@ class GWLogo(Download):
         return self.data
 
 
-class GWLogoResponsive(Download):
-
-    def __init__(self, context, request):
-        super(GWLogoResponsive, self).__init__(context, request)
-        self.filename = None
-        self.data = None
-
-        filename, data = self.generate_logo_responsive()
-
-        self.filename = filename
-        self.data = data
-
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate_logo_responsive(self):
-        registry = queryUtility(IRegistry)
-        header_config = registry.forInterface(IHeaderSettings)
-
-        if getattr(header_config, 'logo_responsive', False):
-            filename, data = b64decode_file(header_config.logo_responsive)
-            data = NamedImage(data=data, filename=filename)
-
-        return filename, data
-
-    def _getFile(self):
-        return self.data
-
-
 class GWSecundaryLogo(Download):
 
     def __init__(self, context, request):
@@ -451,33 +405,6 @@ class GWSecundaryLogo(Download):
         if getattr(header_config, 'secundary_logo', False):
             filename, data = b64decode_file(header_config.secundary_logo)
             data = NamedImage(data=data, filename=filename)
-
-        return filename, data
-
-    def _getFile(self):
-        return self.data
-
-
-class GWSecundaryLogoResponsive(Download):
-
-    def __init__(self, context, request):
-        super(GWSecundaryLogoResponsive, self).__init__(context, request)
-        self.filename = None
-        self.data = None
-
-        filename, data = self.generate_secundary_logo_responsive()
-
-        self.data = data
-        self.filename = filename
-
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate_secundary_logo_responsive(self):
-        registry = queryUtility(IRegistry)
-        header_config = registry.forInterface(IHeaderSettings)
-
-        if getattr(header_config, 'secundary_logo_responsive', False):
-            data = NamedImage(data=data, filename=filename)
-            filename, data = b64decode_file(header_config.secundary_logo_responsive)
 
         return filename, data
 
