@@ -42,22 +42,8 @@
 
     <browser:page
         for="*"
-        name="gw-logo-responsive"
-        class=".header.GWLogoResponsive"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        for="*"
         name="gw-secundary-logo"
         class=".header.GWSecundaryLogo"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        for="*"
-        name="gw-secundary-logo-responsive"
-        class=".header.GWSecundaryLogoResponsive"
         permission="zope.Public"
         />
 
