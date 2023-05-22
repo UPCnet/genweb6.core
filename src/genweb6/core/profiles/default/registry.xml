@@ -1011,6 +1011,8 @@
     <value>
       <element>Banner</element>
       <element>BannerContainer</element>
+      <element>Collection</element>
+      <element>genweb.upc.documentimage</element>
       <element>EasyForm</element>
       <element>Event</element>
       <element>File</element>
@@ -1020,6 +1022,9 @@
       <element>Logos_Footer</element>
       <element>News Item</element>
       <element>Document</element>
+      <element>Plone Site</element>
+      <element>genweb.upc.subhome</element>
+      <element>packet</element>
     </value>
   </record>
   <record name="plone.app.caching.interfaces.IPloneCacheSettings.templateRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="templateRulesetMapping">
