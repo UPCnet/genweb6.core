@@ -1023,7 +1023,7 @@ class setup(BrowserView):
         bienvenido.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
-        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
+        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.webp'.format(egglocation), 'rb').read()
 
         noticias = portal['es']['noticias']
         for i in range(1, 4):
@@ -1032,8 +1032,8 @@ class setup(BrowserView):
                                                   'noticia-de-muestra-' + str(i),
                                                   title='Noticia de muestra ' + str(i),
                                                   image=NamedBlobImage(data=newsimg_sample,
-                                                                       filename=u'news_sample.jpg',
-                                                                       contentType=u'image/jpeg'),
+                                                                       filename=u'news_sample.webp',
+                                                                       contentType=u'image/webp'),
                                                   description='Descripción noticia')
 
             noticia_muestra.text = RichTextValue("Contenido noticia", 'text/html', 'text/x-html-safe')
