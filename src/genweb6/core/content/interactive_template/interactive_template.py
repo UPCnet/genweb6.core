@@ -141,6 +141,11 @@ class IInteractiveTemplate(model.Schema):
         required=False,
     )
 
+    carousel_enable_auto_proportions = schema.Bool(
+        title=_(u'Habilitar proporcions automàtiques de les imatges'),
+        required=False,
+    )
+
     carousel_auto = schema.Bool(
         title=_(u'Iniciar automàticament (No recomenable segons la accesibilitat web)'),
         required=False,
@@ -208,7 +213,7 @@ class InteractiveTemplate(Container):
         if self.type_template != 'carousel':
             result.update({'image': elem.absolute_url() + '/@@images/image/preview' if getattr(elem, 'image', False) else ''})
         else:
-            result.update({'image': elem.absolute_url() + '/@@images/image/huge' if getattr(elem, 'image', False) else '++theme++genweb6.theme/img/sample/default_image_sm.png'})
+            result.update({'image': elem.absolute_url() + '/@@images/image/huge' if getattr(elem, 'image', False) else '++theme++genweb6.theme/img/sample/default_image_sm.webp'})
 
         return result
 

@@ -156,7 +156,7 @@ msgstr ""
 msgid "Altres"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:158
+#: ../content/interactive_template/interactive_template.py:163
 msgid "Alçada de les imatges en px (40 - 400)"
 msgstr ""
 
@@ -251,7 +251,7 @@ msgstr ""
 msgid "Clar a fosc"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:280
+#: ../content/interactive_template/interactive_template.pt:295
 msgid "Close"
 msgstr "Cerrar"
 
@@ -308,7 +308,7 @@ msgstr ""
 msgid "Continguts que alimenten la plantilla"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.pt:293
+#: ../content/interactive_template/interactive_template.pt:308
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
@@ -316,7 +316,7 @@ msgstr "Copiar HTML"
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
-#: ../content/interactive_template/interactive_template.pt:293
+#: ../content/interactive_template/interactive_template.pt:308
 msgid "Copiat"
 msgstr "Copiado!"
 
@@ -335,6 +335,10 @@ msgstr "Video personalizado"
 #: ../browser/viewlets_templates/footer/footer.pt:18
 msgid "Desenvolupat amb"
 msgstr ""
+
+#: ../content/interactive_template/interactive_template.py:145
+msgid "Habilitar proporcions automàtiques de les imatges"
+msgstr "Habilitar proporciones automáticas de las imágenes"
 
 #: ../portlets/rss/rss.py:300
 msgid "Display categories"
@@ -659,7 +663,7 @@ msgstr "Info"
 msgid "Inici"
 msgstr "Inicio"
 
-#: ../content/interactive_template/interactive_template.py:145
+#: ../content/interactive_template/interactive_template.py:150
 msgid "Iniciar automàticament (No recomenable segons la accesibilitat web)"
 msgstr ""
 
@@ -671,7 +675,7 @@ msgstr "Half Hero"
 msgid "Innovadora a pantalla sencera"
 msgstr "Full Hero"
 
-#: ../configure.zcml:48
+#: ../configure.zcml:50
 msgid "Installs the genweb6.core add-on."
 msgstr ""
 
@@ -822,7 +826,7 @@ msgstr "Mostrar el menú del sitio web"
 msgid "Mostrar títol"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:179
+#: ../content/interactive_template/interactive_template.py:184
 msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc."
 msgstr ""
 
@@ -1067,11 +1071,11 @@ msgstr "Marcar importante"
 msgid "Tema"
 msgstr "Color"
 
-#: ../content/interactive_template/interactive_template.py:150
+#: ../content/interactive_template/interactive_template.py:155
 msgid "Temps en cambiar al següent element automàticament en segons (5 - 30)"
 msgstr ""
 
-#: ../content/interactive_template/interactive_template.py:165
+#: ../content/interactive_template/interactive_template.py:170
 msgid "Temps en recorrer totes les imatges en segons (5 - 120)"
 msgstr ""
 
@@ -1145,7 +1149,7 @@ msgstr "Muestra un formulario en una tile"
 msgid "Tile used to show twitter widget"
 msgstr "Muestra el widget twitter"
 
-#: ../content/interactive_template/interactive_template.py:172
+#: ../content/interactive_template/interactive_template.py:177
 msgid "Tipus de botó"
 msgstr ""
 
@@ -1223,7 +1227,7 @@ msgstr "URL del vídeo"
 msgid "URL to open"
 msgstr "URL para abrir"
 
-#: ../configure.zcml:57
+#: ../configure.zcml:59
 msgid "Uninstalls the genweb6.core add-on."
 msgstr ""
 
@@ -1437,11 +1441,11 @@ msgstr "Si ha olvidado la contraseña, clique"
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
 msgstr "¿Ha olvidado la contraseña?"
 
-#: ../configure.zcml:48
+#: ../configure.zcml:50
 msgid "genweb6.core"
 msgstr ""
 
-#: ../configure.zcml:57
+#: ../configure.zcml:59
 msgid "genweb6.core (uninstall)"
 msgstr ""
 

@@ -13,12 +13,14 @@ function showHideCarousel(show) {
         $('#formfield-form-widgets-carousel_type').show();
         $('#formfield-form-widgets-carousel_show_title').show();
         $('#formfield-form-widgets-carousel_show_description').show();
+        $('#formfield-form-widgets-carousel_enable_auto_proportions').show();
         $('#formfield-form-widgets-carousel_auto').show();
         $('#formfield-form-widgets-carousel_time').show();
     } else {
         $('#formfield-form-widgets-carousel_type').hide();
         $('#formfield-form-widgets-carousel_show_title').hide();
         $('#formfield-form-widgets-carousel_show_description').hide();
+        $('#formfield-form-widgets-carousel_enable_auto_proportions').hide();
         $('#formfield-form-widgets-carousel_auto').hide();
         $('#formfield-form-widgets-carousel_time').hide();
     }

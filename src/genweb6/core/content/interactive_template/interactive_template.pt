@@ -122,7 +122,15 @@
                         <tal:item tal:repeat="content contents">
                             <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
                                                  data-bs-interval interval">
+
                                 <img class="d-block w-100"
+                                     tal:condition="context/carousel_enable_auto_proportions"
+                                     tal:attributes="src content/image;
+                                                     title content/title;
+                                                     alt content/title;">
+
+                                <img class="d-block w-100 disable-auto-proportions"
+                                     tal:condition="not:context/carousel_enable_auto_proportions"
                                      tal:attributes="src content/image;
                                                      title content/title;
                                                      alt content/title;">
@@ -177,6 +185,13 @@
                                         <div class="card-img-top">
 
                                             <img class="d-block w-100"
+                                                 tal:condition="not:context/carousel_disable_auto_proportions"
+                                                 tal:attributes="src content/image;
+                                                                 alt content/title;
+                                                                 title content/title">
+
+                                            <img class="d-block w-100 disable-auto-proportions"
+                                                 tal:condition="context/carousel_disable_auto_proportions"
                                                  tal:attributes="src content/image;
                                                                  alt content/title;
                                                                  title content/title">
