@@ -821,12 +821,7 @@
     <value>
       <element>++theme++barceloneta/tinymce/tinymce-formats.css</element>
       <element>++theme++barceloneta/tinymce/tinymce-ui-content.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/fontawesome.min.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/brands.min.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/duotone.min.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/light.min.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/regular.min.css</element>
-      <element>++theme++genweb6.theme/fontawesome/css/solid.min.css</element>
+      <element>++theme++genweb6.theme/stylesheets/fa.min.css</element>
     </value>
   </record>
 
