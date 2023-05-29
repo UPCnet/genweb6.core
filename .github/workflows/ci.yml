@@ -1,8 +1,7 @@
-# Nombre del workflow que se mostrará en la UI de GitHub
-
 name: Buildout and QA
 
-# Especificamos que queremos que se ejecute cada push 
+
+
 on:
   push:
     branches:
@@ -10,18 +9,11 @@ on:
       - cicd_cache_action
   workflow_dispatch:
 
-# Aquí especificamos la lista de tareas que tiene que hacer en este workflow
 jobs:
-  # Empezamos con la tarea buildout que monatará el paquete para usarlo en los tests
   buildout:
-    # Especificamos en que runner se ejecutará 
-    # En este caso una máquina ubuntu en alguno de los servidores de GitHub
     runs-on: ubuntu-22.04
 
-    # Estos son los pasos que tiene que seguir la terea para completarse
     steps:
-      # Le decimos al runner que tiene que hacer un checkout de la rama 
-      # para acceder a los ficheros y poder hacer el buildout
       - name: Checkout repo
         uses: actions/checkout@v3
       
@@ -36,7 +28,6 @@ jobs:
         run: |
           sudo apt-get install -y build-essential xsltproc libncurses5-dev zip libffi-dev libjpeg-dev libtk-img-dev libopenjp2-7-dev liblcms2-dev libfreetype6-dev libwebp-dev libtiff-dev zlib1g-dev libreadline-dev libsqlite3-dev libssl-dev libxslt1-dev libbz2-dev libldap2-dev libsasl2-dev libpcre3-dev wv poppler-utils
         shell: bash
-        # No need if buildout is cached
         if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
 
       - name: Run buildout
