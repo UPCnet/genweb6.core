@@ -4,6 +4,7 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 from plone import api
 from zope.component import getMultiAdapter, getAdapter
+import Zope2
 
 class ViewsIntegrationTest(unittest.TestCase):
     layer = GENWEB_INTEGRATION_TESTING
@@ -14,10 +15,9 @@ class ViewsIntegrationTest(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
     
     def test_ping(self):
-        print(self.portal.keys())
         view = api.content.get_view(
                 name='ping',
-                context=self.portal,
+                context=Zope2.app(), 
                 request=self.request
             )
         self.assertEqual('1', view())
