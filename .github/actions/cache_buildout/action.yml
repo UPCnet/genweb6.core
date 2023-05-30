@@ -1,0 +1,79 @@
+name: "Cache buildout files"
+description: "Manages buildout cache. Uploads or retrieves"
+inputs:
+  action:
+    description: Cache action to do - save, restore or save_and_restore. Defaults to save_and_restore
+    required: true
+    default: save_and_restore
+  
+# Please change the default here and avoid using it in the actual workflow
+# It is defined as an input for parametrization purposes
+  path:
+    description: Path to data to save or restore from cache.
+    required: true
+    default: | 
+      ./eggs
+      ./bin
+      ./parts
+      ./src/genweb6.theme
+
+# Please change the default here and avoid using it in the actual workflow
+# It is defined as an input for parametrization purposes
+  key:
+    description: Cache key to identify data
+    required: true
+    default: ${{ runner.os }}-build-${{ hashFiles('buildout.cfg', 'test_plone60.cfg', 'base.cfg', 'versions.cfg', 'setup.py') }}
+
+outputs:
+  cache-hit:
+    description: Cache for current buildout already exists
+    value: ${{ steps.cache-result.outputs.cache-hit }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Cache save and restore
+      id: cache-save-and-restore
+      uses: actions/cache@v3
+      with:
+        key: ${{ inputs.key }}
+        path: ${{ inputs.path }}
+      if: ${{ inputs.action == 'save_and_restore' }}
+
+    - name: Cache save only
+      id: cache-save
+      uses: actions/cache/save@v3
+      with:
+        key: ${{ inputs.key }}
+        path: ${{ inputs.path }}
+      if: ${{ inputs.action == 'save' }}
+
+    - name: Cache restore only
+      id: cache-restore
+      uses: actions/cache/restore@v3
+      with:
+        key: ${{ inputs.key }}
+        path: ${{ inputs.path }}
+      if: ${{ inputs.action == 'restore' }}
+
+    - name: Cache result
+      id: cache-result
+      run: |
+        case ${{ inputs.action }} in
+          save_and_restore)
+            echo "cache-hit=${{ steps.cache-save-and-restore.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
+            ;;
+          save)
+            echo "cache-hit=${{ steps.cache-save.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
+            ;;
+          restore)
+            echo "cache-hit=${{ steps.cache-restore.outputs.cache-hit }}" >> "$GITHUB_OUTPUT"
+            ;;
+          *)
+            echo "::error title=Cache action error::invalid action ${{ inputs.action }}"
+            exit 1
+            ;;
+        esac
+      shell: bash
+
+    

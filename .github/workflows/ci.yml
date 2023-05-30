@@ -1,0 +1,134 @@
+name: Buildout and QA
+
+
+
+on:
+  push:
+    branches:
+      - cicd
+      - cicd_cache_action
+  workflow_dispatch:
+
+jobs:
+  buildout:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      
+      - name: Preapre python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Cache buildout
+        id: cache-buildout
+        uses: ./.github/actions/cache_buildout
+      
+      - name: Install system libraries # needed for compiling eggs
+        run: |
+          sudo apt-get install -y build-essential xsltproc libncurses5-dev zip libffi-dev libjpeg-dev libtk-img-dev libopenjp2-7-dev liblcms2-dev libfreetype6-dev libwebp-dev libtiff-dev zlib1g-dev libreadline-dev libsqlite3-dev libssl-dev libxslt1-dev libbz2-dev libldap2-dev libsasl2-dev libpcre3-dev wv poppler-utils
+        shell: bash
+        if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
+
+      - name: Run buildout
+        run: |
+          source venv/bin/activate
+          which pip
+          pip freeze
+          buildout -N -c buildout.cfg
+        if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
+
+  test:
+    needs: buildout
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: ./.github/actions/cache_buildout
+
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          tox -e py311-test
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
+  
+  lint:
+    needs: buildout
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+      
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: ./.github/actions/cache_buildout
+        with:
+          action: restore
+
+      - name: Run linter
+        id: lint
+        run: |
+          source venv/bin/activate
+          warn="false"
+          tox -e py311-lint || \
+            echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"           
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: linter-report
+          path: reports/flake8
+        if: always()
+  
+  coverage:
+    needs: test
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      - name: Preapare python environment
+        uses: ./.github/actions/setup_python_environment
+
+      - name: Restore cache buildout
+        id: cache-buildout-restore
+        uses: ./.github/actions/cache_buildout
+        with:
+          action: restore
+
+      - name: Run coverage report
+        id: report
+        run: |
+          source venv/bin/activate
+          bin/createcoverage
+          bin/coverage html
+          warn="false"
+          bin/coverage report --fail-under=75 || warn="true"
+          if [[ $warn == "true" ]]; then
+            bin/coverage report --fail-under=30
+            echo "::warning title=Coverage Warning::Your code has less than 75% coverage"
+          fi
+
+        if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
+
+      - name: Create error annotation
+        run: echo "::error title=Coverage Error::Your code has less that 30% coverage"
+        if: failure()
+
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: htmlcov
+        if: always()
