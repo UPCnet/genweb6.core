@@ -9,9 +9,10 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
-             tal:define="gwutils context/@@genweb.utils">
+             tal:define="gwutils context/@@genweb.utils;
+                         isEditor gwutils/isEditor;">
 
-    <tal:block tal:condition="gwutils/isEditor">
+    <tal:block tal:condition="isEditor">
         <div class="alert alert-info" role="alert"
              tal:define="how_content context/content"
              tal:condition="python:how_content == 'inside'">
@@ -305,17 +306,21 @@
 
     </div>
 
-    <a id="copy-html" class="btn btn-primary mt-3" href="#"
-       data-bs-toggle="tooltip"
-       tal:condition="context/show_copy"
-       i18n:attributes="aria-label Copiat;
-                        data-bs-title Copiat;
-                        data-bs-original-title Copiat"
-       i18n:translate="">Copiar HTML</a>
+    <tal:cond tal:condition="isEditor">
 
-    <script type="text/javascript"
-            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/interactive_template_view.min.js">
-    </script>
+        <a id="copy-html" class="btn btn-primary mt-3" href="#"
+        data-bs-toggle="tooltip"
+        tal:condition="context/show_copy"
+        i18n:attributes="aria-label Copiat;
+                            data-bs-title Copiat;
+                            data-bs-original-title Copiat"
+        i18n:translate="">Copiar HTML</a>
+
+        <script type="text/javascript"
+                tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/interactive_template_view.min.js">
+        </script>
+
+    </tal:cond>
 
 </metal:block>
 </metal:content-core>
