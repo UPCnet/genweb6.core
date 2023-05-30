@@ -931,12 +931,12 @@ class setup(BrowserView):
 <p> </p>
 <p> </p>
 <div class="row">
-<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
+<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
 <p> </p>
-<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Exemples de Genweb. Portfolio</span><br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
-<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentació Genweb</span><br /><span class="btnsubtitolsuccess">Tot el que necessites saber</span></a>
+<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Exemples de Genweb. Portfolio</span><br /><span class="btnsubtitoldanger">Per inspirar-vos</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentació Genweb</span><br /><span class="btnsubtitolsuccess">Tot el que necessites saber</span></a>
 <p> </p>
-<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
+<a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
 </div>"""
 
         benvingut_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
@@ -1011,12 +1011,12 @@ class setup(BrowserView):
 <p> </p>
 <p> </p>
 <div class="row">
-<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
+<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
 <p> </p>
-<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Ejemplos de Genweb. Portafolio</span><br /><span class="btnsubtitoldanger">Para inspirarse</span></a></div>
-<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentación Genweb</span><br /><span class="btnsubtitolsuccess">Todo lo que necesitas saber</span></a>
+<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Ejemplos de Genweb. Portafolio</span><br /><span class="btnsubtitoldanger">Para inspirarse</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Documentación Genweb</span><br /><span class="btnsubtitolsuccess">Todo lo que necesitas saber</span></a>
 <p> </p>
-<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutoriales Genweb</span><br />Canal del Área TIC</a></div>
+<a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutoriales Genweb</span><br />Canal del Área TIC</a></div>
 </div>"""
 
         bienvenido.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
@@ -1091,12 +1091,12 @@ class setup(BrowserView):
 <p> </p>
 <p> </p>
 <div class="row">
-<div class="col-md-6"><a class="link-bannerblau external-link border border-secondary" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">The UPC website generator</span></a>
+<div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">The UPC website generator</span></a>
 <p> </p>
-<a class="link-bannerdanger external-link border border-secondary" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Examples from Genweb. Briefcase</span><br /><span class="btnsubtitoldanger">To be inspired</span></a></div>
-<div class="col-md-6"><a class="link-bannersuccess external-link border border-secondary" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Genweb documentation</span><br /><span class="btnsubtitolsuccess">All you need to know</span></a>
+<a class="link-bannerdanger external-link" href="https://genweb.upc.edu/ca/genweb-4/portfolio" target="_blank"><span class="btntitoldanger">Examples from Genweb. Briefcase</span><br /><span class="btnsubtitoldanger">To be inspired</span></a></div>
+<div class="col-md-6"><a class="link-bannersuccess external-link" href="https://genweb.upc.edu/ca/documentacio" target="_blank"> <span class="btntitolsuccess">Genweb documentation</span><br /><span class="btnsubtitolsuccess">All you need to know</span></a>
 <p> </p>
-<a class="link-bannerwarning external-link border border-secondary" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Genweb video tutorials</span><br />ICT Area Channel</a></div>
+<a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Genweb video tutorials</span><br />ICT Area Channel</a></div>
 </div>"""
 
         welcome.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
