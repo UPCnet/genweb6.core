@@ -4,9 +4,9 @@ name: Buildout and QA
 
 on:
   push:
-    branches:
-      - cicd
-      - cicd_cache_action
+    # branches: any branch for now
+    #   - cicd
+    #   - master 
   workflow_dispatch:
 
 jobs:
