@@ -5,6 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 
+from plone import api
 from plone.subrequest import subrequest
 from urllib.parse import urlencode
 from zope.interface import alsoProvides
@@ -56,11 +57,15 @@ Retorna una llista amb els plonesites disponibles en aquest Zope
         out = []
         for item in context.values():
             if IPloneSiteRoot.providedBy(item):
-                out.append(item.id)
+                registry_tool = getToolByName(item, "portal_registry")
+                defaultLanguage = registry_tool['plone.default_language']
+                out.append({'site': item.id, 'lang': defaultLanguage})
             elif IFolder.providedBy(item):
                 for site in item.values():
                     if IPloneSiteRoot.providedBy(site):
-                        out.append(item.id + '/' + site.id)
+                        registry_tool = getToolByName(site, "portal_registry")
+                        defaultLanguage = registry_tool['plone.default_language']
+                        out.append({'site': item.id + '/' + site.id, 'lang': defaultLanguage})
         return json.dumps(out)
 
 
@@ -82,22 +87,21 @@ Retorna l'última capa instal·lada per a cada plonesite
 class get_languages_sites(BrowserView):
     """
 Retorna els idiomes soportats per a cada lloc
-DA ERROR REVISAR
     """
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
         out = {}
         for plonesite in plonesites:
-            portal_languages = getToolByName(plonesite, 'portal_languages')
-            out[plonesite.id] = portal_languages.getSupportedLanguages()
+            registry_tool = getToolByName(plonesite, "portal_registry")
+            supportedLanguages = registry_tool['plone.available_languages']
+            out[plonesite.id] = supportedLanguages
         return json.dumps(out)
 
 
 class get_default_language_sites(BrowserView):
     """
 Retorna l'idioma predeterminat per a cada lloc
-DA ERROR REVISAR
     """
 
     def __call__(self):
@@ -105,8 +109,9 @@ DA ERROR REVISAR
         plonesites = listPloneSites(context)
         out = {}
         for plonesite in plonesites:
-            portal_languages = getToolByName(plonesite, 'portal_languages')
-            out[plonesite.id] = portal_languages.getDefaultLanguage()
+            registry_tool = getToolByName(plonesite, "portal_registry")
+            defaultLanguage = registry_tool['plone.default_language']
+            out[plonesite.id] = defaultLanguage
         return json.dumps(out)
 
 
