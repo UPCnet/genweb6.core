@@ -1,0 +1,29 @@
+name: "Setup environment"
+description: "Setups the environment for CI jobs"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11.1'
+    
+    - name: Cache venv
+      id: cache-venv
+      uses: actions/cache@v3
+      with:
+        key:
+          ${{ runner.os }}-build-${{ hashFiles('requirements.txt', 'constraints_plone60.txt') }}
+        path: 
+          ./venv
+
+    - run: | 
+        which python  # info para debugar
+        which pip     # info para debugar
+        python -V     # info para debugar
+        pip install virtualenv
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+        which python  # info para debugar
+      shell: bash
+      if: ${{ steps.cache-venv.outputs.cache-hit != 'true' }}
