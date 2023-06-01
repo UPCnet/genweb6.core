@@ -92,11 +92,13 @@
                                                title obj/title">
 
                                 <img tal:condition="obj/image"
+                                     loading="lazy"
                                      tal:attributes="src string:${obj/getURL}/@@images/image/preview;
                                                      title obj/title | nothing;
                                                      alt obj/title | string: ;"/>
 
                                 <img tal:condition="not:obj/image"
+                                     loading="lazy"
                                      src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
                                      tal:attributes="title obj/title | nothing;
                                                      alt obj/title | string: ;"/>

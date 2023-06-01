@@ -41,12 +41,14 @@
        tal:attributes="href obj/url;
                        title obj/title">
 
-        <img tal:condition="obj/image"
+        <img loading="lazy"
+             tal:condition="obj/image"
              tal:attributes="src obj/image_src;
                              title obj/title | nothing;
                              alt obj/title | string: ;"/>
 
-        <img tal:condition="not:obj/image"
+        <img loading="lazy"
+             tal:condition="not:obj/image"
              src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
              tal:attributes="title obj/title | nothing;
                              alt obj/title | string: ;"/>

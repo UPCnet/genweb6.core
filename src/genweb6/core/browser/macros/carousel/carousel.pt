@@ -65,12 +65,13 @@
 
 <metal:block metal:define-macro="carousel_content" i18n:domain="plone">
 
-    <img tal:condition="obj/image" class="d-block w-100"
+    <img tal:condition="obj/image" class="d-block w-100" loading="lazy"
          tal:attributes="src string:${obj/url}/@@images/image;
                          alt obj/image_caption;
                          title obj/title">
 
-    <img tal:condition="not:obj/image" class="d-block w-100" src="++theme++genweb6.theme/img/sample/default_image.webp"
+    <img tal:condition="not:obj/image" class="d-block w-100" loading="lazy"
+         src="++theme++genweb6.theme/img/sample/default_image.webp"
          tal:attributes="alt obj/title;
                          title obj/title">
 
@@ -148,12 +149,12 @@
 
         <div class="card-img-top">
 
-            <img tal:condition="obj/image_src" class="d-block w-100"
+            <img tal:condition="obj/image_src" class="d-block w-100" loading="lazy"
                  tal:attributes="src obj/image_src;
                                  alt obj/image_caption;
                                  title obj/title">
 
-            <img tal:condition="not:obj/image_src" class="d-block w-100"
+            <img tal:condition="not:obj/image_src" class="d-block w-100" loading="lazy"
                  src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
                  tal:attributes="alt obj/title;
                                  title obj/title">

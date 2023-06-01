@@ -22,7 +22,8 @@
                 <a href="#" tal:attributes="href item/url" target="_blank"
                    tal:condition="item/image">
 
-                    <img tal:attributes="src item/image;
+                    <img loading="lazy"
+                         tal:attributes="src item/image;
                                          title item/title;
                                          alt item/title" />
                 </a>

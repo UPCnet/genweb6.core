@@ -57,13 +57,13 @@
                         <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
                                              data-bs-interval interval">
 
-                            <img class="d-block w-100"
+                            <img class="d-block w-100" loading="lazy"
                                  tal:condition="context/carousel_enable_auto_proportions"
                                  tal:attributes="src content/image;
                                                  title content/title;
                                                  alt content/title;">
 
-                            <img class="d-block w-100 disable-auto-proportions"
+                            <img class="d-block w-100 disable-auto-proportions" loading="lazy"
                                  tal:condition="not:context/carousel_enable_auto_proportions"
                                  tal:attributes="src content/image;
                                                  title content/title;
@@ -118,13 +118,13 @@
                                 <div class="w-100">
                                     <div class="card-img-top">
 
-                                        <img class="d-block w-100"
+                                        <img class="d-block w-100" loading="lazy"
                                              tal:condition="context/carousel_enable_auto_proportions"
                                              tal:attributes="src content/image;
                                                              alt content/title;
                                                              title content/title">
 
-                                        <img class="d-block w-100 disable-auto-proportions"
+                                        <img class="d-block w-100 disable-auto-proportions" loading="lazy"
                                              tal:condition="not:context/carousel_enable_auto_proportions"
                                              tal:attributes="src content/image;
                                                              alt content/title;
@@ -165,25 +165,6 @@
                 </div>
             </div>
             <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
-        </div>
-
-        <div class="slider" tal:attributes="id string:uid-${token}"
-              tal:condition="python:carousel_type == 'slider'">
-            <div class="slide-track" tal:attributes="style string:--time: ${context/slide_time}s;">
-                <tal:item tal:repeat="image context/contents">
-                    <div class="slide"
-                          tal:condition="image/image"
-                          tal:attributes="style string:--size: ${context/slide_size}px;">
-                        <img class="slide-image"
-                              tal:attributes="src image/image;
-                                              title image/title;
-                                              alt image/description;
-                                              heigth context/slide_size;
-                                              style string:--size: ${context/slide_size}px;">
-
-                    </div>
-                </tal:item>
-            </div>
         </div>
     </div>
 
