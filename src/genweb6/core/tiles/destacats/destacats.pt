@@ -16,7 +16,7 @@
                        quatre_destacats_esdeveniments view/is4DestacatsEsdevenimentsConfigured;
                        cinc_esquerra view/is5DestacatsEsquerraConfigured;
                        cinc_dreta view/is5DestacatsDretaConfigured;">
-                        
+
       <tal:comment tal:replace="nothing"> HERO </tal:comment>
 
       <tal:1destacatprincipal condition="destacatprincipal">
@@ -29,7 +29,8 @@
           tal:condition="item"
           class="gw-tile hero hero-posicio-cercle-dreta hero-color-negre content-highlighted">
 
-          <img tal:condition="item/imatge|nothing"
+          <img loading="lazy"
+               tal:condition="item/imatge|nothing"
                tal:attributes="src string:${item/url}/@@images/image;
                                alt item/title" />
 
@@ -55,7 +56,7 @@
                   <tal:block metal:use-macro="context/macros-tiles/video">
                     <tal:block metal:fill-slot="video-container">
                       <iframe width="560" height="315"
-                              class='video-modal'
+                              class='video-modal' loading="lazy"
                               type="text/html"
                               tal:attributes="src string:${item/url_video}?enablejsapi=1;
                                               title item/title"
@@ -183,4 +184,3 @@
     </tal:block>
   </body>
 </html>
-

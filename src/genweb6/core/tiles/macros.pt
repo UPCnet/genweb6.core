@@ -1,4 +1,4 @@
-<html 
+<html
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:tal="http://xml.zope.org/namespaces/tal"
@@ -18,7 +18,8 @@
     <metal:block metal:define-macro="n-destacats">
         <picture tal:condition="python: item['image']">
             <source  tal:attributes="srcset string:${item/url}/@@images/image/preview" />
-            <img tal:attributes="data-src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
+            <img loading="lazy"
+                 tal:attributes="data-src string:${item/url}/@@images/image/large; alt item/title|nothing;" />
         </picture>
     </metal:block>
 
@@ -28,8 +29,8 @@
             <div tal:define="bigNew python:destacats[0]" class="card">
               <picture tal:condition="bigNew/image|nothing">
                 <source tal:attributes="srcset string:${bigNew/url}/@@images/image/preview" />
-                <img tal:attributes="data-src string:${bigNew/url}/@@images/image/large; alt bigNew/althome|nothing;"
-                  class="card-img-top">
+                <img class="card-img-top" loading="lazy"
+                     tal:attributes="data-src string:${bigNew/url}/@@images/image/large; alt bigNew/althome|nothing;">
               </picture>
               <div class="card-body">
                 <a tal:attributes="href bigNew/url; target bigNew/open_link_in_new_window;" class="stretched-link">
@@ -46,9 +47,9 @@
         <div tal:attributes="class item/class">
             <div class="card">
                 <picture tal:condition="item/image|nothing">
-                    <source
-                        tal:attributes="srcset string:${item/url}/@@images/image/large" />
-                    <img tal:attributes="data-src string:${item/url}/@@images/image/preview; alt item/althome|nothing;" />
+                    <source tal:attributes="srcset string:${item/url}/@@images/image/large" />
+                    <img loading="lazy"
+                         tal:attributes="data-src string:${item/url}/@@images/image/preview; alt item/althome|nothing;" />
                 </picture>
                 <div class="card-body">
                     <a tal:attributes="href item/url; target item/open_link_in_new_window;" class="stretched-link">

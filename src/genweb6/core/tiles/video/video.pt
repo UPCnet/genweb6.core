@@ -24,7 +24,7 @@
                         <source tal:attributes="src video_url" type='video/mp4'></source>
                     </video>
                     <tal:block condition="is_embed_video"><!-- check js -->
-                        <iframe class="video_upc embed"
+                        <iframe class="video_upc embed" loading="lazy"
                                 tal:attributes="src video_url;
                                                 title view/data/title"
                                 frameborder="0"

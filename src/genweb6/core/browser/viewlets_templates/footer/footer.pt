@@ -22,7 +22,7 @@
                         </span>
                         <a tal:attributes="href link/url;
                                            target link/target">
-                            <img title="genweb UPC" alt="genweb UPC" class="logoGenwebUPC"
+                            <img title="genweb UPC" alt="genweb UPC" class="logoGenwebUPC" loading="lazy"
                                  tal:attributes="src string:${view/root_url}/++theme++genweb6.theme/img/genwebUPC.webp" />
                         </a>
                     </li>
