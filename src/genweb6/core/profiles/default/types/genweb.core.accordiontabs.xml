@@ -1,26 +1,24 @@
 <?xml version="1.0"?>
-<object name="genweb.core.interactivetemplate" meta_type="Dexterity FTI" i18n:domain="genweb"
+<object name="genweb.core.accordiontabs" meta_type="Dexterity FTI" i18n:domain="genweb"
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
-    <property name="title" i18n:translate="">Interactive template</property>
-    <property name="description" i18n:translate=""></property>
-    <property name="icon_expr">string:bootstrap</property>
+    <property name="title" i18n:translate="">Acordió / Pestanyes</property>
+    <property name="description" i18n:translate="">Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya.</property>
+    <property name="icon_expr">string:segmented-nav</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types">
         <element value="Document"/>
-        <element value="genweb.upc.documentimage"/>
-        <element value="Image"/>
     </property>
 
-    <property name="schema">genweb6.core.content.interactive_template.interactive_template.IInteractiveTemplate</property>
-    <property name="klass">genweb6.core.content.interactive_template.interactive_template.InteractiveTemplate</property>
+    <property name="schema">genweb6.core.content.accordion_tabs.accordion_tabs.IAccordionTabs</property>
+    <property name="klass">genweb6.core.content.accordion_tabs.accordion_tabs.AccordionTabs</property>
     <property name="add_permission">cmf.AddPortalContent</property>
-    <property name="factory">genweb.core.interactivetemplate</property>
+    <property name="factory">genweb.core.accordiontabs</property>
     <property name="link_target"></property>
     <property name="immediate_view">view</property>
-    <property name="add_view_expr">string:${folder_url}/++add++genweb.core.interactivetemplate</property>
+    <property name="add_view_expr">string:${folder_url}/++add++genweb.core.accordiontabs</property>
     <property name="schema_policy">dexterity</property>
 
     <property name="behaviors">

@@ -25,25 +25,50 @@
 
     <browser:page
         name="view"
-        for="genweb6.core.content.interactive_template.interactive_template.IInteractiveTemplate"
-        class=".interactive_template.interactive_template.View"
+        for="genweb6.core.content.accordion_tabs.accordion_tabs.IAccordionTabs"
+        class=".accordion_tabs.accordion_tabs.View"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
-        template="interactive_template/interactive_template.pt"
+        template="accordion_tabs/accordion_tabs.pt"
         />
 
-    <class class=".interactive_template.interactive_template.InteractiveTemplateContentJSWidget">
+    <class class=".accordion_tabs.accordion_tabs.AccordionTabsJSWidget">
         <require
             permission="zope.Public"
-            interface=".interactive_template.interactive_template.IInteractiveTemplateContentJSWidget"
+            interface=".accordion_tabs.accordion_tabs.IAccordionTabsJSWidget"
             />
     </class>
 
     <z3c:widgetTemplate
         mode="input"
-        widget=".interactive_template.interactive_template.IInteractiveTemplateContentJSWidget"
+        widget=".accordion_tabs.accordion_tabs.IAccordionTabsJSWidget"
         layer="plone.app.z3cform.interfaces.IPloneFormLayer"
-        template="interactive_template/js.pt"
+        template="accordion_tabs/js.pt"
         />
+
+    <browser:page
+        name="view"
+        for="genweb6.core.content.carousel.carousel.ICarousel"
+        class=".carousel.carousel.View"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="carousel/carousel.pt"
+        />
+
+    <class class=".carousel.carousel.CarouselJSWidget">
+        <require
+            permission="zope.Public"
+            interface=".carousel.carousel.ICarouselJSWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".carousel.carousel.ICarouselJSWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="carousel/js.pt"
+        />
+
+
 
 </configure>

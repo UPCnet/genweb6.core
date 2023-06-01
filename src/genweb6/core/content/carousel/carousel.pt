@@ -1,0 +1,209 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="genweb">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core"
+             tal:define="gwutils context/@@genweb.utils;
+                         isEditor gwutils/isEditor;">
+
+    <tal:block tal:condition="isEditor">
+        <tal:comment tal:replace="nothing">
+            tal:define="how_content context/content"
+            tal:condition="python:how_content == 'inside'"
+        </tal:comment>
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading" i18n:translate=""><i class="bi bi-info-circle-fill me-1"></i> Passos per afegir continguts</h4>
+            <p class="mb-0" i18n:translate="">Per afegir continguts dintre d'aquest directori de carrusel: Dirigiu-vos al menú lateral, opció [ <i class="bi bi-plus-square-fill me-1"></i> Afegeix... ].</p>        </div>
+    </tal:block>
+
+    <div id="copy_content"
+         tal:define="token context/token;
+                     carousel_type context/carousel_type;
+                     contents context/contents;
+                     id_carousel string:carousel-${token};
+                     interval python:int(context.carousel_time) * 1000;">
+
+        <div class="template-carousel" tal:condition="python:carousel_type == 'simple'">
+
+            <div class="carousel carousel-dark slide mb-2"
+                  tal:attributes="id id_carousel;
+                                  data-bs-ride python:'carousel' if context.carousel_auto else None">
+
+                <div class="carousel-indicators">
+                    <tal:item tal:repeat="content contents">
+                        <button type="button" class="active" aria-current="true"
+                                    tal:condition="content/first"
+                                    tal:attributes="data-bs-target string:#${id_carousel};
+                                                    data-bs-slide-to content/index;
+                                                    aria-label content/title"></button>
+
+                        <button type="button"
+                                tal:condition="not:content/first"
+                                tal:attributes="data-bs-target string:#${id_carousel};
+                                                data-bs-slide-to content/index;
+                                                aria-label content/title"></button>
+                    </tal:item>
+                </div>
+
+                <div class="carousel-inner">
+
+                    <tal:item tal:repeat="content contents">
+                        <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
+                                             data-bs-interval interval">
+
+                            <img class="d-block w-100"
+                                 tal:condition="context/carousel_enable_auto_proportions"
+                                 tal:attributes="src content/image;
+                                                 title content/title;
+                                                 alt content/title;">
+
+                            <img class="d-block w-100 disable-auto-proportions"
+                                 tal:condition="not:context/carousel_enable_auto_proportions"
+                                 tal:attributes="src content/image;
+                                                 title content/title;
+                                                 alt content/title;">
+
+                            <div class="carousel-caption">
+                                <p class="description text-truncate-2 mb-1"
+                                   tal:condition="context/carousel_show_description"
+                                   tal:content="structure content/description">Text</p>
+
+                                <a class="title d-block text-decoration-none"
+                                   tal:condition="context/carousel_show_title"
+                                   tal:attributes="href content/url;
+                                                   title content/title">
+                                    <h5 class="text-truncate"
+                                        tal:content="content/title">Title</h5>
+                                </a>
+                            </div>
+                        </div>
+                    </tal:item>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-slide="prev"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-slide="next"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+
+                </button>
+            </div>
+
+        </div>
+
+        <div class="template-multiple-carousel" tal:condition="python:carousel_type == 'complex'">
+
+            <div class="mx-auto my-auto justify-content-center mb-2">
+                <div class="carousel slide" data-bs-ride="carousel"
+                      tal:attributes="id id_carousel;
+                                      data-bs-ride python:'carousel' if context.carousel_auto else None;">
+                    <div class="carousel-inner" role="listbox">
+                        <tal:item tal:repeat="content contents">
+                            <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
+                                                  data-bs-interval interval">
+                                <div class="w-100">
+                                    <div class="card-img-top">
+
+                                        <img class="d-block w-100"
+                                             tal:condition="context/carousel_enable_auto_proportions"
+                                             tal:attributes="src content/image;
+                                                             alt content/title;
+                                                             title content/title">
+
+                                        <img class="d-block w-100 disable-auto-proportions"
+                                             tal:condition="not:context/carousel_enable_auto_proportions"
+                                             tal:attributes="src content/image;
+                                                             alt content/title;
+                                                             title content/title">
+
+                                    </div>
+                                    <div class="card-body mt-2">
+
+                                        <a href="#" class="title d-block text-decoration-none"
+                                           tal:condition="context/carousel_show_title"
+                                           tal:attributes="href content/url;
+                                                           title content/title">
+
+                                            <h6 class="text-truncate-2"
+                                                tal:content="content/title">Title</h6>
+                                        </a>
+
+                                        <p tal:condition="context/carousel_show_description"
+                                           class="description text-truncate-4 mb-1"
+                                           tal:content="content/description">Description summary</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </tal:item>
+                    </div>
+
+                    <a class="carousel-control-prev bg-transparent w-auto" type="button" data-bs-slide="prev"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+                        <i class="bi bi-arrow-left-short"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next bg-transparent w-auto" type="button" data-bs-slide="next"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+                        <i class="bi bi-arrow-right-short"></i>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+            </div>
+            <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+        </div>
+
+        <div class="slider" tal:attributes="id string:uid-${token}"
+              tal:condition="python:carousel_type == 'slider'">
+            <div class="slide-track" tal:attributes="style string:--time: ${context/slide_time}s;">
+                <tal:item tal:repeat="image context/contents">
+                    <div class="slide"
+                          tal:condition="image/image"
+                          tal:attributes="style string:--size: ${context/slide_size}px;">
+                        <img class="slide-image"
+                              tal:attributes="src image/image;
+                                              title image/title;
+                                              alt image/description;
+                                              heigth context/slide_size;
+                                              style string:--size: ${context/slide_size}px;">
+
+                    </div>
+                </tal:item>
+            </div>
+        </div>
+    </div>
+
+    <tal:cond tal:condition="isEditor">
+
+        <a id="copy-html" class="btn btn-primary mt-3" href="#"
+           data-bs-toggle="tooltip"
+           tal:condition="context/show_copy"
+           i18n:attributes="aria-label Copiat;
+                            data-bs-title Copiat;
+                            data-bs-original-title Copiat"
+           i18n:translate="">Copiar HTML</a>
+
+    </tal:cond>
+
+    <script type="text/javascript"
+            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/carousel_view.min.js">
+    </script>
+
+</metal:block>
+</metal:content-core>
+</body>
+</html>

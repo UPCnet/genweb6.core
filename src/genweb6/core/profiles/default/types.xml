@@ -7,7 +7,8 @@
     <object name="Logos_Footer" meta_type="Dexterity FTI" />
     <object name="Logos_Container" meta_type="Dexterity FTI" />
 
-    <object name="genweb.core.interactivetemplate" meta_type="Dexterity FTI" />
+    <object name="genweb.core.accordiontabs" meta_type="Dexterity FTI" />
+    <object name="genweb.core.carousel" meta_type="Dexterity FTI" />
 
     <object name="genweb.upc.subhome" meta_type="Dexterity FTI" />
     <object name="genweb.upc.documentimage" meta_type="Dexterity FTI" />

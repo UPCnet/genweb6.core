@@ -886,7 +886,8 @@
       <element>Large Plone Folder</element>
       <element>Plone Site</element>
       <element>LIF</element>
-      <element>genweb.core.interactivetemplate</element>
+      <element>genweb.core.accordiontabs</element>
+      <element>genweb.core.carousel</element>
     </value>
   </record>
 
@@ -917,7 +918,8 @@
       <element>Link</element>
       <element>Event</element>
       <element>File</element>
-      <element>genweb.core.interactivetemplate</element>
+      <element>genweb.core.accordiontabs</element>
+      <element>genweb.core.carousel</element>
       <element>News Item</element>
       <element>Document</element>
       <element>genweb.upc.documentimage</element>

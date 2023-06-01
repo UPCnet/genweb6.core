@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      tal:omit-tag=""
+      lang="ca"
+      i18n:domain="genweb">
+
+  <script type="text/javascript"
+          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/accordion_tabs_edit.min.js"></script>
+
+</html>
