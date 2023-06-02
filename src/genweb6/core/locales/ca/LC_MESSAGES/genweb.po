@@ -828,8 +828,8 @@ msgstr "Mostrar títol"
 
 #: ../content/accordion_tabs/accordion_tabs.py:102
 #: ../content/carousel/carousel.py:121
-msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc."
-msgstr "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc."
+msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
+msgstr "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 
 #: ../portlets/fullnews/fullnews.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:60

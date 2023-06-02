@@ -118,7 +118,7 @@ class ICarousel(model.Schema):
     )
 
     show_copy = schema.Bool(
-        title=_(u'Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat de la plantilla interactiva per a poder inserir-ho en una altre lloc.'),
+        title=_(u'Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc.'),
         default=True,
         required=False,
     )
