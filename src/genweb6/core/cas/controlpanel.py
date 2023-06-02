@@ -52,28 +52,24 @@ class ICASSettings(Interface):
 
     enabled = schema.Bool(
         title=_(u"enabled"),
-        description=_(u"help_enabled"),
         required=False,
         default=False,
     )
 
     url = schema.TextLine(
         title=_(u"cas_url"),
-        description=_(u"help_cas_url"),
         required=False,
         default=u"",
     )
 
     app_name = schema.TextLine(
         title=_(u"app_name"),
-        description=_(u"help_app_name"),
         required=False,
         default=u"genweb",
     )
 
     login_text_btn = schema.TextLine(
         title=_(u"login_text_btn"),
-        description=_(u"help_login_text_btn"),
         required=False,
         default=u"",
     )

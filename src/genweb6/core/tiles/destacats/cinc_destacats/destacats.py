@@ -32,7 +32,7 @@ class IDestacats(IDestacatsBase):
 
     link = schema.Choice(
         title=_(u"Enllaç per les tiles de 5 Destacats"),
-        description=_(u"Afegfeix un botó a l'enllaç afegit en aquest camp"),
+        description=_(u"Afegeix un botó a l'enllaç afegit en aquest camp"),
         required=False,
         source=CatalogSource(),
     )

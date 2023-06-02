@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2022-05-09 10:0+0000\n"
+"PO-Revision-Date: 2022-05-09 10:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: ca\n"
+"Language-Name: Catalan\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: ca\n"
+
+msgid "description_accessibility_info"
+msgstr "Aquest portal utilitza el sistema de gestor de continguts ${plone} que és programari lliure. Compleix les Directrius per a l'accessibilitat del contingut web (<a href=\"https://www.w3.org/Translations/WCAG20-ca/\">${wcag} v2.0</a>) nivell 'AA' per a persones amb discapacitat, incloses les persones cegues i amb baixa visió, sordes i amb pèrdua auditiva, amb trastorns de l'aprenentatge, amb limitacions cognitives, amb moviment limitat, amb dificultats en la parla, fotosensibles i amb qualsevol combinació de les discapacitats anteriors."
+
+msgid "description_wcag_aa_rating"
+msgstr "Hi ha unes quantes directrius de ${wcag} 2.0 i ${atag} 2.0 que són subjectives; potser hi ha instàncies en què les interpretacions varien."
+
+msgid "heading_dashboard"
+msgstr "Escriptori de ${user_name}"
+
+msgid "help_domains"
+msgstr "<p> Si més amunt heu activat <em>La reescriptura dels dominis virtuals es fa abans que el proxy amb memòria cau</em>, i el portal és visible des de diversos dominis (p.ex. <code>http://example.com:80</code> i <code>http://www.example.com:80</code>), introduïu aquí tots els dominis disponibles, un per línia. Això assegura que les sol·licituds purge s'envien a tots els dominis quan sigui aplicable. Noteu que és més eficient de configurar el servidor web frontal perquè redirigeixi totes les sol·licituds a només un domini, i d'aquesta manera Zope només \"veu\" un domini. </p> <p> Podeu deixar aquesta llista en blanc sense cap problema: si no utilitzeu un proxy amb memòria cau, si no utilitzeu dominis virtuals, si la reescriptura dels dominis virtuals es fa després del proxy amb memòria cau, o si només hi ha un domini virtual. </p>"
+
+msgid "help_effective_date"
+msgstr "La data en què es publicarà l'element. Si no s'indica cap data es publicarà immediatament."
+
+msgid "help_expiration_date"
+msgstr "La data en què vencerà l'element. Això farà que automàticament l'element deixi de ser visible per a altres en aquesta data.  Si no s'escull cap data, l'element no vencerà mai."
+
+msgid "help_inherit_local_roles"
+msgstr "Per defecte, els permisos del contenidor d'aquest element són heretats. Si es desactiva, només seran vàlids els permisos de compartició definits explícitament. A la vista general, el símbol ${image_confirm_icon} indica un valor heretat. De la mateixa manera, el símbol ${image_link_icon} indica un rol global, que és gestionat per l'administrador del lloc."
+
+msgid "label_apply_changes"
+msgstr "Aplica els canvis"
+
+msgid "label_click_to_view_full_image"
+msgstr "Feu clic per a visualitzar la imatge a mida completa…"
+
+msgid "label_contentrules_rule_event"
+msgstr "esdeveniment"
+
+msgid "label_contentrules_rule_listing"
+msgstr "Regla de contingut"
+
+msgid "label_description"
+msgstr "Descripció"
+
+msgid "label_event_byline_location"
+msgstr "— ${location},"
+
+msgid "label_plone_org_description"
+msgstr "documentació, complements, suport, comunitat."
+
+msgid "label_powered_by_plone"
+msgstr "Powered by Plone & Python"
+
+msgid "label_remove_selected_users"
+msgstr "Suprimeix els usuaris / grups seleccionats"
+
+msgid "label_required"
+msgstr "(Necessari)"
+
+msgid "label_search_entry"
+msgstr "Cerca una entrada del registre d'errors <span class=\"formHelp\"> (per exemple \"1257962690.640.49636048561\")</span>"
+
+msgid "label_users"
+msgstr "Usuaris"
+
+msgid "listingheader_group_name"
+msgstr "Nom del grup"
+
+msgid "summary_exception_log"
+msgstr "Registre d'errors (els més recents primer)"
+
+msgid "types_controlpanel_new_state"
+msgstr "Nou estat"
+
+msgid "types_controlpanel_old_state"
+msgstr "Estat antic"

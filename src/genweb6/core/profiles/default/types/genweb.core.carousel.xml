@@ -3,7 +3,7 @@
         xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
     <property name="title" i18n:translate="">Carousel</property>
-    <property name="description" i18n:translate="">Aquest formulari crea una carpeta dins la qual heu d'afegiR les imatges que formin part del carrusel</property>
+    <property name="description" i18n:translate="">Aquest formulari crea una carpeta dins la qual heu d'afegir les imatges que formin part del carrusel</property>
     <property name="icon_expr">string:images</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
