@@ -52,7 +52,7 @@ def ResourcesControlpanelJSFieldWidget(field, request):
 class IResourcesSettings(model.Schema):
 
     upload_files = schema.Bool(
-        title=_(u'Selecciona per pujar els recursos desde fitxers i no utilitzar el camps de text pla'),
+        title=_(u'Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla'),
         required=False,
         default=False
     )
@@ -123,7 +123,7 @@ class GWCSS(BrowserView):
 
     def __call__(self):
         return self.generate()
-        
+
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate(self):
         registry = queryUtility(IRegistry)
@@ -140,7 +140,7 @@ class GWJS(BrowserView):
 
     def __call__(self):
         return self.generate()
-        
+
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate(self):
         registry = queryUtility(IRegistry)
