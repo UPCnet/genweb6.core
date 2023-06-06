@@ -11,7 +11,7 @@
     <tal:block tal:define="items python:view.getNDestacats(3)" tal:condition="items">
       <div>
         <section class="gw-tile destacats3 container content-banners">
-            <tal:block metal:use-macro="context/macros-tiles/titol-destacats">
+            <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
           <div class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
               <div tal:define="abaseclass string:btn-banner btn-banner-large btn-banner-stretch"
