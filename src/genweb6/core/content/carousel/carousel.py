@@ -105,7 +105,7 @@ class ICarousel(model.Schema):
 
     directives.mode(carousel_auto='hidden')
     carousel_auto = schema.Bool(
-        title=_(u'Iniciar automàticament (No recomenable segons la accesibilitat web)'),
+        title=_(u'Iniciar automàticament (No recomanable segons la accesibilitat web)'),
         required=False,
     )
 

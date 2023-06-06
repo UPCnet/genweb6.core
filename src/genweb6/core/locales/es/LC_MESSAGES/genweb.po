@@ -679,7 +679,7 @@ msgid "Inici"
 msgstr "Inicio"
 
 #: ../content/carousel/carousel.py:108
-msgid "Iniciar automàticament (No recomenable segons la accesibilitat web)"
+msgid "Iniciar automàticament (No recomanable segons la accesibilitat web)"
 msgstr "Iniciar automáticamente (No recomendable según la accesibilidad web)"
 
 #: ../controlpanels/header.py:35
