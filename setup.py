@@ -72,6 +72,7 @@ setup(
         'collective.exportimport',
         'collective.siteimprove',
         'plone.app.mosaic',
+        'PyYAML',
         'genweb6.theme',
     ],
 
