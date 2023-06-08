@@ -42,6 +42,7 @@ from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from urllib.parse import quote_plus
+from zExceptions import NotFound
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
@@ -1024,3 +1025,42 @@ def author_content(self):
         })
 
     return results
+
+
+# Traducimos el título del portlet para que se ordenen alfabéticamente
+def addable_portlets(self):
+    baseUrl = self.baseUrl()
+    addviewbase = baseUrl.replace(self.context_url(), "")
+
+    def sort_key(v):
+        return v.get("title")
+
+    def check_permission(p):
+        addview = p.addview
+        if not addview:
+            return False
+
+        addview = "{}/+/{}".format(
+            addviewbase,
+            addview,
+        )
+        if addview.startswith("/"):
+            addview = addview[1:]
+        try:
+            self.context.restrictedTraverse(str(addview))
+        except (AttributeError, KeyError, Unauthorized, NotFound):
+            return False
+        return True
+
+    portlets = [
+        {
+            "title": self.context.translate(p.title, domain="plone"),  # Aplicamos la traducción
+            "description": p.description,
+            "addview": f"{addviewbase}/+/{p.addview}",
+        }
+        for p in self.manager.getAddablePortletTypes()
+        if check_permission(p)
+    ]
+
+    portlets.sort(key=sort_key)
+    return portlets

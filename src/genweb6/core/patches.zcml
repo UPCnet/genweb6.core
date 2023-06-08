@@ -153,4 +153,11 @@
         replacement=".patches.author_content"
         />
 
+    <monkey:patch
+        description="Ordenar portlets"
+        class="plone.app.portlets.browser.editmanager.EditPortletManagerRenderer"
+        original="addable_portlets"
+        replacement=".patches.addable_portlets"
+        />
+
 </configure>
