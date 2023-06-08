@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2022-05-09 10:00+0100\n"
+"Last-Translator: \n"
+"Language-Team: Plone Team@UPCnet <plone.team@upcnet.es>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: plone\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: en\n"
+
+msgid "Collection portlet"
+msgstr "Collection portlet"
+
+msgid "portlet_banners_title"
+msgstr "Banners"
+
+msgid "AgendaGW"
+msgstr "Events"
+
+msgid "FullNews"
+msgstr "News with photo"
+
+msgid "GridEvents"
+msgstr "Grid Events"
+
+msgid "portlet_homepage_title"
+msgstr "Welcome"
+
+msgid "portlet_multiviewcollection_title"
+msgstr "Multi-view collection"
+
+msgid "Nou Contingut existent"
+msgstr "New Existing Content"
+
+msgid "NoticiesPropi"
+msgstr "News"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Pretty RSS"
+msgstr "RSS Feed Advanced"

@@ -84,3 +84,36 @@ msgstr "Nou estat"
 
 msgid "types_controlpanel_old_state"
 msgstr "Estat antic"
+
+msgid "Collection portlet"
+msgstr "Col·lecció"
+
+msgid "portlet_banners_title"
+msgstr "Bàners"
+
+msgid "AgendaGW"
+msgstr "Agenda"
+
+msgid "FullNews"
+msgstr "Notícies amb foto"
+
+msgid "GridEvents"
+msgstr "Grid agenda"
+
+msgid "portlet_homepage_title"
+msgstr "Benvingut"
+
+msgid "portlet_multiviewcollection_title"
+msgstr "Col·lecció multi-vista"
+
+msgid "Nou Contingut existent"
+msgstr "Nou Contingut existent"
+
+msgid "NoticiesPropi"
+msgstr "Notícies"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Pretty RSS"
+msgstr "Canal RSS avançat"
