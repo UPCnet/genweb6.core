@@ -322,7 +322,7 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:173
+#: ../content/carousel/carousel.pt:181
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
@@ -331,7 +331,7 @@ msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:173
+#: ../content/carousel/carousel.pt:181
 msgid "Copiat"
 msgstr "Copiat!"
 

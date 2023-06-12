@@ -322,7 +322,7 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Content that feeds the template"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:173
+#: ../content/carousel/carousel.pt:181
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
@@ -331,7 +331,7 @@ msgid "Copiar enllaç"
 msgstr "Copy link"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:173
+#: ../content/carousel/carousel.pt:181
 msgid "Copiat"
 msgstr "Copied!"
 
@@ -1473,7 +1473,7 @@ msgstr "Hide tools with identification link ..."
 #. Default: "You may search for and choose an existing content"
 #: ../portlets/new_existing_content/new_existing_content.py:126
 msgid "help_existing_content"
-msgstr "You may search for and choose an existing content""
+msgstr "You may search for and choose an existing content"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
