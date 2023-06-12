@@ -117,3 +117,6 @@ msgstr "Categories"
 
 msgid "Pretty RSS"
 msgstr "Canal RSS avançat"
+
+msgid "homepage"
+msgstr "Pàgina principal"

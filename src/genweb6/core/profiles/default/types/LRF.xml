@@ -11,6 +11,7 @@
         <element value="tabular_view"/>
         <element value="full_view"/>
         <element value="album_view"/>
+        <element value="homepage"/>
     </property>
 
  </object>

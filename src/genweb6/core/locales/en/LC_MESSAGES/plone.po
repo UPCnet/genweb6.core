@@ -48,3 +48,6 @@ msgstr "Categories"
 
 msgid "Pretty RSS"
 msgstr "RSS Feed Advanced"
+
+msgid "homepage"
+msgstr "Homepage"
