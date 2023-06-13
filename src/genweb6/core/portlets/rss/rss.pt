@@ -75,8 +75,6 @@
            tal:attributes="href view/data/more_url" target="_blank"
            tal:condition="view/data/more_url">
 
-          <!-- <i class="bi bi-plus-circle-fill"></i> -->
-
           <span tal:condition="view/data/more_text"
                 tal:replace="view/data/more_text">Més notícies</span>
 
@@ -90,8 +88,6 @@
           <a class="portlet-show-more small text-decoration-none"
              tal:condition="view/siteurl" tal:attributes="href view/siteurl"
              target="_blank">
-
-            <!-- <i class="bi bi-plus-circle-fill"></i> -->
 
             <span tal:condition="view/data/more_text"
                   tal:replace="view/data/more_text">Més notícies</span>
