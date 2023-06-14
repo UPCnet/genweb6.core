@@ -3,7 +3,7 @@
     <tal:text tal:condition="not:resources_config/upload_files">
 
         <style tal:condition="resources_config/text_css"
-               tal:content="resources_config/text_css"></style>
+               tal:replace="structure view/getTextCSS"></style>
 
         <script type="text/javascript"
                 tal:condition="resources_config/text_js"
@@ -14,7 +14,7 @@
     <tal:file tal:condition="resources_config/upload_files">
 
         <style tal:condition="resources_config/file_css"
-               tal:content="view/getCSS"></style>
+               tal:content="view/getFileCSS"></style>
 
         <script type="text/javascript"
                 tal:condition="resources_config/file_js"

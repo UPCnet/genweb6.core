@@ -461,12 +461,16 @@ class footerViewlet(viewletBase):
 
 class resourcesViewlet(viewletBase):
 
-    def getCSS(self):
+    def getFileCSS(self):
         resources_config = genwebResourcesConfig()
         if getattr(resources_config, 'file_css', False):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
             return data._data._data
+
+    def getTextCSS(self):
+        resources_config = genwebResourcesConfig()
+        return "<style>" + resources_config.text_css + "</style>"
 
 
 class socialtoolsViewlet(viewletBase):
