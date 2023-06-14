@@ -13,7 +13,7 @@
 
     <tal:file tal:condition="resources_config/upload_files">
 
-        <style tal:condition="resources_config/text_css"
+        <style tal:condition="resources_config/file_css"
                tal:content="view/getCSS"></style>
 
         <script type="text/javascript"
