@@ -55,7 +55,6 @@ Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
 
         import ipdb
         ipdb.set_trace()
-        self.context.getOwner()
 
 
 class protectContent(BrowserView):
