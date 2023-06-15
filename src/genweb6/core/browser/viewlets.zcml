@@ -4,6 +4,17 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="genweb">
 
+    <!-- HEAD -->
+
+    <browser:viewlet
+        name="genweb.resources.css"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.resourcesViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/head/resources.pt"
+        />
+
     <!-- HEADER -->
 
     <browser:viewlet
@@ -63,9 +74,9 @@
         />
 
     <browser:viewlet
-        name="genweb.resources"
+        name="genweb.resources.js"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class=".viewlets.resourcesViewlet"
+        class=".viewlets.viewletBase"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/footer/resources.pt"
