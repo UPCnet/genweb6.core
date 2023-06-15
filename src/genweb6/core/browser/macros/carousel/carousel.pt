@@ -43,6 +43,14 @@
 
         </div>
 
+        <button class="carousel-control-pause" type="button"
+                tal:attributes="data-bs-target string:#${id_carousel};">
+
+            <i class="bi bi-pause-fill text-dark"></i>
+            <span class="visually-hidden">Stop automatic slide show</span>
+
+        </button>
+
         <button class="carousel-control-prev" type="button" data-bs-slide="prev"
                 tal:attributes="data-bs-target string:#${id_carousel};">
 

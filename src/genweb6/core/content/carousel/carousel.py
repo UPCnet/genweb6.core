@@ -103,20 +103,6 @@ class ICarousel(model.Schema):
         required=False,
     )
 
-    directives.mode(carousel_auto='hidden')
-    carousel_auto = schema.Bool(
-        title=_(u'Iniciar automàticament (No recomanable segons la accesibilitat web)'),
-        required=False,
-    )
-
-    carousel_time = schema.Int(
-        title=_(u'Temps en cambiar al següent element automàticament en segons (5 - 30)'),
-        description=_(u''),
-        min=5,
-        max=30,
-        default=10,
-    )
-
     show_copy = schema.Bool(
         title=_(u'Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc.'),
         default=True,
