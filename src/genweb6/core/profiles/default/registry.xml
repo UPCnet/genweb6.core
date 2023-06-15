@@ -679,6 +679,8 @@
       <element>fill</element>
       <element>focusable</element>
       <element>loading</element>
+      <element>loop</element>
+      <element>muted</element>
       <element>poster</element>
       <element>preserveAspectRatio</element>
       <element>role</element>
