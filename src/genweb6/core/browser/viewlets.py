@@ -10,6 +10,7 @@ from plone.app.layout.viewlets.common import PersonalBarViewlet
 from plone.app.layout.viewlets.common import SearchBoxViewlet
 from plone.app.multilingual.browser.selector import addQuery
 from plone.app.multilingual.browser.selector import getPostPath
+from plone.app.multilingual.interfaces import ILanguageRootFolder
 from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
 from plone.formwidget.namedfile.converter import b64decode_file
@@ -278,7 +279,18 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 class heroViewlet(viewletBase):
 
     def isHomepage(self):
-        return IHomePage.providedBy(self.context) and len(self.context.id) == 2 and self.request.steps[-1] == 'homepage'
+        if IHomePage.providedBy(self.context):
+
+            # Homepage normal
+            if ILanguageRootFolder.providedBy(self.context) and self.request.steps[-1] == 'homepage':
+                return True
+
+            # Homepage con tiles
+            parent = self.context.aq_parent
+            if ILanguageRootFolder.providedBy(parent) and parent.default_page == self.context.id and self.request.steps[-1] == 'layout_view':
+                return True
+
+        return False
 
     def getClass(self):
         header_config = genwebHeaderConfig()
