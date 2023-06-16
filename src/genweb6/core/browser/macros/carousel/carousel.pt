@@ -6,7 +6,7 @@
 
 <metal:block metal:define-macro="carousel" i18n:domain="plone">
 
-    <div class="carousel carousel-dark slide mb-2" data-bs-ride="carousel"
+    <div class="carousel carousel-dark slide mb-2"
          tal:attributes="id id_carousel">
 
         <div class="carousel-indicators">
@@ -31,25 +31,17 @@
 
             <tal:item tal:repeat="obj result_dicts">
 
-                <div tal:condition="obj/active" class="carousel-item active" data-bs-interval="10000">
+                <div tal:condition="obj/active" class="carousel-item active">
                     <block metal:use-macro="context/macros-genweb-carousel/carousel_content"></block>
                 </div>
 
-                <div tal:condition="not:obj/active" class="carousel-item" data-bs-interval="5000">
+                <div tal:condition="not:obj/active" class="carousel-item">
                     <block metal:use-macro="context/macros-genweb-carousel/carousel_content"></block>
                 </div>
 
             </tal:item>
 
         </div>
-
-        <button class="carousel-control-pause" type="button"
-                tal:attributes="data-bs-target string:#${id_carousel};">
-
-            <i class="bi bi-pause-fill text-dark"></i>
-            <span class="visually-hidden">Stop automatic slide show</span>
-
-        </button>
 
         <button class="carousel-control-prev" type="button" data-bs-slide="prev"
                 tal:attributes="data-bs-target string:#${id_carousel};">
