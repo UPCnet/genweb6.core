@@ -233,7 +233,7 @@ msgstr "Catalán"
 #: ../portlets/news_events_listing/news_events_listing.py:41
 #: ../profiles/default/portlets.xml
 msgid "Categories"
-msgstr "Categorias"
+msgstr "Categorías"
 
 #: ../content/accordion_tabs/accordion_tabs.py:86
 #: ../content/carousel/carousel.py:84
@@ -574,7 +574,7 @@ msgstr "Anchura total a cuatro columnas: cuatro columnas con imagen arriba y tex
 #. Default: "Notícies amb foto"
 #: ../profiles/default/portlets.xml
 msgid "FullNews"
-msgstr "Noticias con foto"
+msgstr "Notícias con foto"
 
 #: ../patches.py:809
 msgid "Genweb Advanced"
@@ -594,11 +594,11 @@ msgstr "Ir al directorio padre"
 
 #: ../portlets/grid_events/grid_events.py:56
 msgid "Grid events"
-msgstr "Grid agenda"
+msgstr "Parrilla de Agenda"
 
 #: ../profiles/default/portlets.xml
 msgid "GridEvents"
-msgstr "Grid agenda"
+msgstr "Parrilla de Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
@@ -874,7 +874,7 @@ msgstr "Noticias"
 
 #: ../profiles/default/portlets.xml
 msgid "Nou Contingut existent"
-msgstr "Nuevo Contenido existente"
+msgstr "Contenido existente"
 
 #: ../portlets/banners/banners.py:28
 msgid "Number of banners to display"
@@ -965,7 +965,7 @@ msgstr "Cabecera del portlet"
 
 #: ../profiles/default/portlets.xml
 msgid "Pretty RSS"
-msgstr "RSS avanzado"
+msgstr "Canal RSS avanzado"
 
 #: ../controlpanels/cintillo.py:18
 msgid "Publica el avis"
@@ -1740,7 +1740,7 @@ msgstr "Banners"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_homepage_title"
-msgstr "Bienvenida"
+msgstr "Bienvenido"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollection_title"

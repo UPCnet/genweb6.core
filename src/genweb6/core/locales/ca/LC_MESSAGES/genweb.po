@@ -591,11 +591,11 @@ msgstr "Anar al directori pare"
 
 #: ../portlets/grid_events/grid_events.py:56
 msgid "Grid events"
-msgstr "Grid agenda"
+msgstr "Parrilla d'Agenda"
 
 #: ../profiles/default/portlets.xml
 msgid "GridEvents"
-msgstr "Grid agenda"
+msgstr "Parrilla d'Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
@@ -871,7 +871,7 @@ msgstr "Notícies"
 
 #: ../profiles/default/portlets.xml
 msgid "Nou Contingut existent"
-msgstr "Nou Contingut existent"
+msgstr "Contingut existent"
 
 #: ../portlets/banners/banners.py:28
 msgid "Number of banners to display"
@@ -962,7 +962,7 @@ msgstr "Capçalera del portlet"
 
 #: ../profiles/default/portlets.xml
 msgid "Pretty RSS"
-msgstr "RSS avançat"
+msgstr "Canal RSS avançat"
 
 #: ../controlpanels/cintillo.py:18
 msgid "Publica el avis"
@@ -1750,7 +1750,7 @@ msgstr "Bàners"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_homepage_title"
-msgstr "Benvinguda"
+msgstr "Benvingut"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollection_title"

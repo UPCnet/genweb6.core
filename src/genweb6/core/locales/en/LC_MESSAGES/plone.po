@@ -17,7 +17,7 @@ msgstr ""
 "Language: en\n"
 
 msgid "Collection portlet"
-msgstr "Collection portlet"
+msgstr "Collection"
 
 msgid "portlet_banners_title"
 msgstr "Banners"
@@ -26,7 +26,7 @@ msgid "AgendaGW"
 msgstr "Events"
 
 msgid "FullNews"
-msgstr "News with photo"
+msgstr "News with picture"
 
 msgid "GridEvents"
 msgstr "Grid Events"
@@ -35,10 +35,10 @@ msgid "portlet_homepage_title"
 msgstr "Welcome"
 
 msgid "portlet_multiviewcollection_title"
-msgstr "Multi-view collection"
+msgstr "Multiview Collection"
 
 msgid "Nou Contingut existent"
-msgstr "New Existing Content"
+msgstr "Existing content"
 
 msgid "NoticiesPropi"
 msgstr "News"
@@ -47,7 +47,7 @@ msgid "Categories"
 msgstr "Categories"
 
 msgid "Pretty RSS"
-msgstr "RSS Feed Advanced"
+msgstr "RSS Advanced Channel"
 
 msgid "homepage"
 msgstr "Homepage"

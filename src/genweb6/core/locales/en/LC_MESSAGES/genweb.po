@@ -143,7 +143,7 @@ msgstr "Add a button to the link added in this field"
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
-msgstr "Agenda"
+msgstr "Events"
 
 #: ../controlpanels/footer.py:56
 msgid "Al marcar aquesta opció es mostrarà els enllaços als continguts i els enllaços personalitzats"
@@ -577,7 +577,7 @@ msgstr "Full 4 columns: four columns of full image size and text below"
 #. Default: "Notícies amb foto"
 #: ../profiles/default/portlets.xml
 msgid "FullNews"
-msgstr "News with image"
+msgstr "News with picture"
 
 #: ../patches.py:809
 msgid "Genweb Advanced"
@@ -877,7 +877,7 @@ msgstr "News"
 
 #: ../profiles/default/portlets.xml
 msgid "Nou Contingut existent"
-msgstr "New Existing Content"
+msgstr "Existing content"
 
 #: ../portlets/banners/banners.py:28
 msgid "Number of banners to display"
@@ -968,7 +968,7 @@ msgstr "Portlet header"
 
 #: ../profiles/default/portlets.xml
 msgid "Pretty RSS"
-msgstr "Pretty RSS"
+msgstr "RSS Advanced Channel"
 
 #: ../controlpanels/cintillo.py:18
 msgid "Publica el avis"
@@ -1749,11 +1749,11 @@ msgstr "Banners"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_homepage_title"
-msgstr "Homepage"
+msgstr "Welcome"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollection_title"
-msgstr "Multiview collection"
+msgstr "Multiview Collection"
 
 #. Default: "Return"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:45

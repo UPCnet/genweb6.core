@@ -98,7 +98,7 @@ msgid "FullNews"
 msgstr "Notícies amb foto"
 
 msgid "GridEvents"
-msgstr "Grid agenda"
+msgstr "Parrilla d'Agenda"
 
 msgid "portlet_homepage_title"
 msgstr "Benvingut"
@@ -107,7 +107,7 @@ msgid "portlet_multiviewcollection_title"
 msgstr "Col·lecció multi-vista"
 
 msgid "Nou Contingut existent"
-msgstr "Nou Contingut existent"
+msgstr "Contingut existent"
 
 msgid "NoticiesPropi"
 msgstr "Notícies"

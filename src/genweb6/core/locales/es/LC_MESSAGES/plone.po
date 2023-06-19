@@ -26,19 +26,19 @@ msgid "AgendaGW"
 msgstr "Agenda"
 
 msgid "FullNews"
-msgstr "Noticias con foto"
+msgstr "Notícias con foto"
 
 msgid "GridEvents"
-msgstr "Grid agenda"
+msgstr "Parrilla de Agenda"
 
 msgid "portlet_homepage_title"
-msgstr "Bienvenida"
+msgstr "Bienvenido"
 
 msgid "portlet_multiviewcollection_title"
 msgstr "Colección multivista"
 
 msgid "Nou Contingut existent"
-msgstr "Nuevo Contenido existente"
+msgstr "Contenido existente"
 
 msgid "NoticiesPropi"
 msgstr "Noticias"
@@ -47,7 +47,7 @@ msgid "Categories"
 msgstr "Categorías"
 
 msgid "Pretty RSS"
-msgstr "Fuente RSS avanzado"
+msgstr "Canal RSS avanzado"
 
 msgid "homepage"
 msgstr "Página principal"
