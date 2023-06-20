@@ -287,7 +287,7 @@ class heroViewlet(viewletBase):
 
             # Homepage con tiles
             parent = self.context.aq_parent
-            if ILanguageRootFolder.providedBy(parent) and parent.default_page == self.context.id and self.request.steps[-1] == 'layout_view':
+            if ILanguageRootFolder.providedBy(parent) and hasattr(parent, 'default_page') and parent.default_page == self.context.id and self.request.steps[-1] == 'layout_view':
                 return True
 
         return False
