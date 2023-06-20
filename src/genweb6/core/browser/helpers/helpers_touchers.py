@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from Products.CMFPlone.controlpanel.browser.quickinstaller import InstallerView
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -214,7 +215,7 @@ Paràmetre:
         return 'Error parameter product_name, not defined'
 
 
-class reinstall_product(BrowserView):
+class reinstall_product(InstallerView):
     """
 Reinstal·la un paquet
 
@@ -235,8 +236,7 @@ Paràmetre:
             qi = get_installer(self.context)
 
             if qi.is_product_installed(product_name):
-                qi.uninstall_product(product_name)
-                qi.install_product(product_name)
+                qi.upgrade_product(product_name)
                 output.append('{}: Successfully reinstalled {}'.format(
                     portal.id, product_name))
             return '\n'.join(output)
