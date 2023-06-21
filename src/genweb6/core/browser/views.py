@@ -143,7 +143,9 @@ class HomePageBase(BrowserView):
 
     def getColValueForManager(self, manager):
         portletManager = getUtility(IPortletManager, manager)
-        spanstorage = getMultiAdapter((self.portlet_container, portletManager), ISpanStorage)
+        spanstorage = getMultiAdapter(
+            (self.portlet_container, portletManager),
+            ISpanStorage)
         span = spanstorage.span
         if span:
             return span
@@ -166,9 +168,13 @@ class HomePageBase(BrowserView):
         if manager is None:
             return False
 
-        renderer = queryMultiAdapter((context, self.request, view, manager), IPortletManagerRenderer)
+        renderer = queryMultiAdapter(
+            (context, self.request, view, manager),
+            IPortletManagerRenderer)
         if renderer is None:
-            renderer = getMultiAdapter((context, self.request, self, manager), IPortletManagerRenderer)
+            renderer = getMultiAdapter(
+                (context, self.request, self, manager),
+                IPortletManagerRenderer)
 
         return renderer.visible
 
@@ -261,7 +267,7 @@ class PortletEventsView(BrowserView):
                 local_end.strftime('%m'), month_format='a'),
             title=event.Title,
             url=event.absolute_url(),
-            )
+        )
 
     def get_month_name(self, month, month_format=''):
         context = aq_inner(self.context)
@@ -271,7 +277,8 @@ class PortletEventsView(BrowserView):
 
     def all_events_link(self):
         pc = api.portal.get_tool('portal_catalog')
-        events_folder = pc.searchResults(object_provides=IEventFolder.__identifier__, Language=pref_lang())
+        events_folder = pc.searchResults(
+            object_provides=IEventFolder.__identifier__, Language=pref_lang())
 
         if events_folder:
             return '%s' % events_folder[0].getURL()
@@ -296,13 +303,16 @@ class FilteredContentsSearchView(BrowserView):
         portal = getSite()
         pc = getToolByName(portal, "portal_catalog")
         tags = []
-        results = pc.searchResults(path={'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1},
-                                   exclude_from_nav=False)
+        results = pc.searchResults(
+            path={'query': '/'.join(self.context.getPhysicalPath()),
+                  'depth': 1},
+            exclude_from_nav=False)
         for recurs in results:
             tags += list(set(recurs.Subject))
 
         listTags = list(dict.fromkeys(tags))
-        listTags.sort(key=lambda key: unicodedata.normalize('NFKD', key).encode('ascii', errors='ignore'))
+        listTags.sort(key=lambda key: unicodedata.normalize(
+            'NFKD', key).encode('ascii', errors='ignore'))
 
         return listTags
 
@@ -342,28 +352,44 @@ class FilteredContentsSearchView(BrowserView):
             query = quote_bad_chars(query) + '*'
 
             if self.tags:
-                tmp_results = pc.searchResults(path={'query': path, 'depth': 1},
-                                               exclude_from_nav=False,
-                                               SearchableText=query,
-                                               Subject={'query': self.tags, 'operator': 'and'},
-                                               sort_on='getObjPositionInParent')
+                tmp_results = pc.searchResults(
+                    path={'query': path, 'depth': 1},
+                    exclude_from_nav=False, SearchableText=query,
+                    Subject={'query': self.tags, 'operator': 'and'},
+                    sort_on='getObjPositionInParent')
 
                 # BUSCAR PER ETIQUETES
-                r_results = [item for item in tmp_results if all(unicodedata.normalize('NFKD', x) in unicodedata.normalize('NFKD', item.Title + " " + item.Description).lower() + " " + unicodedata.normalize('NFKD', ' '.join(item.Subject)).lower() for x in self.query.split())]
+                r_results = [item for item in tmp_results
+                             if
+                             all(
+                                 unicodedata.normalize('NFKD', x)
+                                 in unicodedata.normalize(
+                                     'NFKD', item.Title + " " + item.Description).lower()
+                                 + " " + unicodedata.normalize(
+                                     'NFKD', ' '.join(item.Subject)).lower()
+                                 for x in self.query.split())]
             else:
                 tmp_results = pc.searchResults(path={'query': path, 'depth': 1},
                                                exclude_from_nav=False,
                                                SearchableText=query,
                                                sort_on='getObjPositionInParent')
 
-                r_results = [item for item in tmp_results if all(unicodedata.normalize('NFKD', x).lower() in unicodedata.normalize('NFKD', item.Title + " " + item.Description).lower() + " " + unicodedata.normalize('NFKD', ' '.join(item.Subject)).lower() for x in self.query.split())]
+                r_results = [
+                    item for item in tmp_results
+                    if
+                    all(
+                        unicodedata.normalize('NFKD', x).
+                        lower() in unicodedata.normalize(
+                            'NFKD', item.Title + " " + item.Description).lower() + " " +
+                        unicodedata.normalize('NFKD', ' '.join(item.Subject)).lower()
+                        for x in self.query.split())]
 
             return r_results
         else:
-            r_results = pc.searchResults(path={'query': path, 'depth': 1},
-                                         exclude_from_nav=False,
-                                         Subject={'query': self.tags, 'operator': 'and'},
-                                         sort_on='getObjPositionInParent')
+            r_results = pc.searchResults(
+                path={'query': path, 'depth': 1},
+                exclude_from_nav=False, Subject={'query': self.tags, 'operator': 'and'},
+                sort_on='getObjPositionInParent')
 
             return r_results
             # return self.get_batched_contenttags(query=None, batch=True, b_size=10, b_start=0)
@@ -395,7 +421,8 @@ class FilteredContentsSearchView(BrowserView):
 
             return r_results
         else:
-            return self.get_batched_contenttags(query=None, batch=True, b_size=10, b_start=0)
+            return self.get_batched_contenttags(
+                query=None, batch=True, b_size=10, b_start=0)
 
     def get_container_path(self):
         return self.context.absolute_url() + '/search_filtered_content_pretty'
@@ -444,11 +471,11 @@ class FilteredContentsSearchCompleteView(FilteredContentsSearchView):
             query = quote_bad_chars(query) + '*'
 
             if self.tags:
-                results = pc.searchResults(path={'query': path, 'depth': 1},
-                                           exclude_from_nav=False,
-                                           SearchableText=query,
-                                           Subject={'query': self.tags, 'operator': 'and'},
-                                           sort_on='getObjPositionInParent')
+                results = pc.searchResults(
+                    path={'query': path, 'depth': 1},
+                    exclude_from_nav=False, SearchableText=query,
+                    Subject={'query': self.tags, 'operator': 'and'},
+                    sort_on='getObjPositionInParent')
 
             else:
                 results = pc.searchResults(path={'query': path, 'depth': 1},
@@ -498,7 +525,9 @@ class FolderIndexView(BrowserView):
 
     def find_items_in_path(self, folder_path, level):
         # find items in folder sorted manually by user
-        query_results = self.catalog(path={'query': folder_path, 'depth': 1}, sort_on='getObjPositionInParent')
+        query_results = self.catalog(
+            path={'query': folder_path, 'depth': 1},
+            sort_on='getObjPositionInParent')
         # list of objects (brain, results2) results2 only has value if item is a Folder
         results = []
         for item in query_results:

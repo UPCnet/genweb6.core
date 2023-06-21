@@ -43,10 +43,10 @@ contentHeroStyleVocabulary = SimpleVocabulary([
 class IHeaderSettings(model.Schema):
 
     model.fieldset('Configuracions', _(u'Configuracions'),
-                   fields=['main_hero_style', 'content_hero_style',
-                           'html_title_ca', 'html_title_es', 'html_title_en',
-                           'html_description_ca', 'html_description_es', 'html_description_en',
-                           'theme', 'fieldset_image', 'full_hero_image', 'hero_image'])
+                   fields=['main_hero_style', 'content_hero_style', 'html_title_ca',
+                           'html_title_es', 'html_title_en', 'html_description_ca',
+                           'html_description_es', 'html_description_en', 'theme',
+                           'fieldset_image', 'full_hero_image', 'hero_image'])
 
     main_hero_style = schema.Choice(
         title=_(u'Tipus d’imatge a les pàgines principals'),
@@ -84,19 +84,19 @@ class IHeaderSettings(model.Schema):
     )
 
     html_description_ca = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [CA]"),
-        required=False,
-    )
+        title=_(
+            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [CA]"),
+        required=False,)
 
     html_description_es = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [ES]"),
-        required=False,
-    )
+        title=_(
+            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [ES]"),
+        required=False,)
 
     html_description_en = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [EN]"),
-        required=False,
-    )
+        title=_(
+            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [EN]"),
+        required=False,)
 
     theme = schema.Choice(
         title=_(u'Color de transició del menú quan fem scroll'),
@@ -114,16 +114,16 @@ class IHeaderSettings(model.Schema):
     directives.widget('full_hero_image', NamedImageFieldWidget)
     full_hero_image = schema.Bytes(
         title=_(u"Imatge principal innovadora"),
-        description=_(u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
-        required=False,
-    )
+        description=_(
+            u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        required=False,)
 
     directives.widget('hero_image', NamedImageFieldWidget)
     hero_image = schema.Bytes(
         title=_(u"Imatge principal conservadora"),
-        description=_(u"És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
-        required=False,
-    )
+        description=_(
+            u"És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
+        required=False,)
 
     model.fieldset('Logo', _(u'Logo'),
                    fields=['fieldset_logo', 'fieldset_secundary_logo',
@@ -169,22 +169,20 @@ class IHeaderSettings(model.Schema):
     read_permission(logo_alt='genweb.manager')
     write_permission(logo_alt='genweb.manager')
     logo_alt = schema.TextLine(
-        title=_(u"logo_alt",
-                default=u"Text alternatiu del logo"),
-        description=_(u"help_logo_alt",
-                      default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
-        required=False,
-    )
+        title=_(u"logo_alt", default=u"Text alternatiu del logo"),
+        description=_(
+            u"help_logo_alt",
+            default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
+        required=False,)
 
     read_permission(secundary_logo_alt='genweb.manager')
     write_permission(secundary_logo_alt='genweb.manager')
     secundary_logo_alt = schema.TextLine(
-        title=_(u"logo_alt",
-                default=u"Text alternatiu del logo"),
-        description=_(u"help_logo_alt",
-                      default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
-        required=False,
-    )
+        title=_(u"logo_alt", default=u"Text alternatiu del logo"),
+        description=_(
+            u"help_logo_alt",
+            default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
+        required=False,)
 
     read_permission(logo_url='genweb.manager')
     write_permission(logo_url='genweb.manager')
@@ -240,23 +238,24 @@ class IHeaderSettings(model.Schema):
     read_permission(amaga_identificacio='genweb.manager')
     write_permission(amaga_identificacio='genweb.manager')
     amaga_identificacio = schema.Bool(
-        title=_(u"amaga_identificacio", default="Amaga de les eines l'enllaç d'identificació"),
-        description=_(u"help_amaga_identificacio", default=u"Amaga de les eines l'enllaç d'identificació ..."),
-        required=False,
-        default=False,
-    )
+        title=_(
+            u"amaga_identificacio",
+            default="Amaga de les eines l'enllaç d'identificació"),
+        description=_(
+            u"help_amaga_identificacio",
+            default=u"Amaga de les eines l'enllaç d'identificació ..."),
+        required=False, default=False,)
 
     read_permission(idiomes_publicats='genweb.manager')
     write_permission(idiomes_publicats='genweb.manager')
     idiomes_publicats = schema.List(
-        title=_(u"idiomes_publicats",
-                default=u"Idiomes publicats al web"),
-        description=_(u"help_idiomes_publicats",
-                      default=u"Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."),
-        value_type=schema.Choice(vocabulary='plone.app.vocabularies.SupportedContentLanguages'),
-        required=False,
-        default=['ca']
-    )
+        title=_(u"idiomes_publicats", default=u"Idiomes publicats al web"),
+        description=_(
+            u"help_idiomes_publicats",
+            default=u"Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."),
+        value_type=schema.Choice(
+            vocabulary='plone.app.vocabularies.SupportedContentLanguages'),
+        required=False, default=['ca'])
 
     read_permission(languages_link_to_root='genweb.manager')
     write_permission(languages_link_to_root='genweb.manager')
@@ -297,7 +296,8 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
     @button.buttonAndHandler(_("Cancel"), name='cancel')
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(_("Changes canceled."), "info")
-        self.request.response.redirect(self.context.absolute_url() + '/' + self.control_panel_view)
+        self.request.response.redirect(
+            self.context.absolute_url() + '/' + self.control_panel_view)
 
 
 class HeaderSettingsControlPanel(controlpanel.ControlPanelFormWrapper):

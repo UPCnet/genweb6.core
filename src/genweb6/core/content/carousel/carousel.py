@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.Five.browser import BrowserView
 
-from plone import api
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container

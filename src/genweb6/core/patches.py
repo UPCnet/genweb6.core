@@ -551,9 +551,6 @@ def chooseName(self, name, obj):
 def html_results(self, query):
     """html results, used for in the edit screen of a collection,
        used in the live update results"""
-    item_count = 30
-    if hasattr(self.context, 'item_count'):
-        item_count = self.context.item_count
 
     options = dict(original_context=self.context)
     results = self(query, sort_on=self.request.get('sort_on', None),

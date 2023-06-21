@@ -61,25 +61,28 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
         '<li class="{id}{has_sub_class}{current} nav-item">'
         '<a href="{url}" target="{target}" class="state-{review_state} nav-link"{aria_haspopup}>{title}</a>{opener}'
         "{sub}"
-        "</li>"
-    )
+        "</li>")
 
     # Añadimos si es un enlace externo en caso de tenerlo habilitado en el tipo de contenido y no estas validado
     # open_link_in_new_window
     #
     # A parte comprobamos si estamos posicionados en la tab actual
     def customize_entry(self, entry, brain):
-        entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
-        entry.update({"current": entry['path'] in "/".join(self.context.getPhysicalPath())})
+        entry.update({"external_link": bool(
+            getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
+        entry.update({"current": entry['path']
+                     in "/".join(self.context.getPhysicalPath())})
 
     def customize_tab(self, entry, tab):
         lang = self.context.language
         if not lang:
-            lang = self.context.getPhysicalPath()[len(api.portal.get().getPhysicalPath())]
+            lang = self.context.getPhysicalPath()[
+                len(api.portal.get().getPhysicalPath())]
 
         path = '/' + api.portal.get().id + '/' + lang + '/' + tab['id']
         brain = api.content.get(path=path)
-        entry.update({"external_link": bool(getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
+        entry.update({"external_link": bool(
+            getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
         entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
 
     # Añadimos target y current al dict
@@ -131,7 +134,8 @@ class cintilloViewlet(viewletBase):
                 "text": getattr(cintillo_config, "text_" + lang, "")}
 
 
-class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, PersonalBarViewlet):
+class headerViewlet(
+        viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, PersonalBarViewlet):
 
     _opener_markup_template = (
         '<input type="checkbox" class="opener" />'
@@ -170,7 +174,8 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
         if getattr(header_config, 'secundary_logo_responsive', False):
             filename, data = b64decode_file(header_config.secundary_logo_responsive)
-            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive'.format(portal_url)
+            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive'.format(
+                portal_url)
         else:
             secundary_logo_responsive = secundary_logo
 
@@ -231,7 +236,8 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
         portal_url = api.portal.get().absolute_url()
         for lang in languages:
             if redirect_to_root:
-                url = self.root_url() + '/' + lang['code'] + '?set_language=' + lang['code']
+                url = self.root_url(
+                ) + '/' + lang['code'] + '?set_language=' + lang['code']
             else:
                 query_extras = {'set_language': lang['code']}
                 post_path = getPostPath(self.context, self.request)
@@ -257,9 +263,10 @@ class headerViewlet(viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, Pers
 
         len_others = len(lang_others)
 
-        result = {'selected': lang_selected,
-                  'others': sorted(lang_others, key=index),
-                  'has_selector': len_others > 0 and self.context.portal_type != 'Plone Site'}
+        result = {'selected': lang_selected, 'others': sorted(
+            lang_others, key=index),
+            'has_selector': len_others > 0 and self.context.portal_type !=
+            'Plone Site'}
 
         return result
 
@@ -338,7 +345,8 @@ class logosFooterViewlet(viewletBase):
         """ Funcio que extreu idioma actiu i afegeix al alt i al title de les imatges del banner
             el literal Obriu l'enllac en una finestra nova.
         """
-        return '%s, %s' % (altortitle, self.portal().translate(_('obrir_link_finestra_nova')))
+        return '%s, %s' % (altortitle, self.portal().translate(
+            _('obrir_link_finestra_nova')))
 
 
 class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
@@ -358,7 +366,8 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
         title = getattr(footer_config, 'title_links_' + lang, '')
         if not title or title == '':
-            title = self.context.translate('Administració', domain='genweb', target_language=lang)
+            title = self.context.translate(
+                'Administració', domain='genweb', target_language=lang)
 
         result = {'title': title,
                   'links': []}

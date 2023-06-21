@@ -73,6 +73,7 @@ setup(
         'plone.app.mosaic',
         'PyYAML',
         'genweb6.theme',
+        'ipdb',
     ],
 
     extras_require={

@@ -5,7 +5,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.Five.browser import BrowserView
 
-from plone import api
 from plone.subrequest import subrequest
 from urllib.parse import urlencode
 from zope.interface import alsoProvides

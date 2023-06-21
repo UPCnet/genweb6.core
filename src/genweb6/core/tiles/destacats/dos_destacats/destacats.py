@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from genweb6.core import _
 from genweb6.core.utils import pref_lang
 from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase, DestacatsBase
 

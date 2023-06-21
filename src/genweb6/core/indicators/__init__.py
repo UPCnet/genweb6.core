@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from genweb6.core.indicators.client import Client
 from genweb6.core.indicators.client import ClientException
 

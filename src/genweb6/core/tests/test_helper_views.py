@@ -3,7 +3,6 @@ from genweb6.core.testing import GENWEB_INTEGRATION_TESTING
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 from plone import api
-from zope.component import getMultiAdapter, getAdapter
 import Zope2
 
 class ViewsIntegrationTest(unittest.TestCase):

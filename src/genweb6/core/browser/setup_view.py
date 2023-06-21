@@ -19,7 +19,6 @@ from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.registry.interfaces import IRegistry
 from urllib.parse import parse_qs
-from z3c.relationfield.relation import create_relation
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
@@ -35,13 +34,20 @@ from genweb6.core.interfaces import IProtectedContent
 import logging
 import pkg_resources
 
-NEWS_QUERY = [{'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.any', 'v': [u'News Item', u'Link']},
-              {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.any', 'v': [u'published', u'intranet']},
-              {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath', 'v': u'..'}]
+NEWS_QUERY = [
+    {'i': u'portal_type', 'o': u'plone.app.querystring.operation.selection.any',
+     'v': [u'News Item', u'Link']},
+    {'i': u'review_state', 'o': u'plone.app.querystring.operation.selection.any',
+     'v': [u'published', u'intranet']},
+    {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath',
+     'v': u'..'}]
 QUERY_SORT_ON = u'effective'
-EVENT_QUERY = [{'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.any', 'v': [u'Event']},
-               {'i': 'start', 'o': 'plone.app.querystring.operation.date.afterToday', 'v': ''},
-               {'i': 'review_state', 'o': 'plone.app.querystring.operation.selection.any', 'v': [u'published', u'intranet']}]
+EVENT_QUERY = [
+    {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.any',
+     'v': [u'Event']},
+    {'i': 'start', 'o': 'plone.app.querystring.operation.date.afterToday', 'v': ''},
+    {'i': 'review_state', 'o': 'plone.app.querystring.operation.selection.any',
+     'v': [u'published', u'intranet']}]
 
 
 class setup(BrowserView):
@@ -49,7 +55,8 @@ class setup(BrowserView):
     render = ViewPageTemplateFile("views_templates/setup_view.pt")
 
     def __call__(self):
-        base_url = "%s/@@setup-view" % str(getMultiAdapter((self.context, self.request), name='absolute_url'))
+        base_url = "%s/@@setup-view" % str(getMultiAdapter(
+            (self.context, self.request), name='absolute_url'))
         qs = self.request.get('QUERY_STRING', None)
 
         if qs is not None:
@@ -73,7 +80,8 @@ class setup(BrowserView):
                 self.request.response.redirect(base_url)
 
             if 'createexamples' in query:
-                logger = logging.getLogger('Genweb: Executing setup-view Examples on site -')
+                logger = logging.getLogger(
+                    'Genweb: Executing setup-view Examples on site -')
                 logger.info('%s' % self.context.id)
                 self.createExampleContentCA()
                 self.createExampleContentES()
@@ -101,7 +109,8 @@ class setup(BrowserView):
                     tr.append(getattr(portal, td, False) and 'Creat' or 'No existeix')
                 else:
                     if getattr(portal, lang, False):
-                        tr.append(getattr(portal[lang], td, False) and 'Creat' or 'No existeix')
+                        tr.append(getattr(portal[lang], td, False)
+                                  and 'Creat' or 'No existeix')
                     else:
                         tr.append('No existeix')
             result.append(tr)
@@ -154,9 +163,14 @@ class setup(BrowserView):
             api.content.delete(obj=portal_en['media'])
 
         # Setup portal news folder
-        news = self.create_content(portal_en, 'Folder', 'news', title='News', description=u'Site news')
-        noticias = self.create_content(portal_es, 'Folder', 'noticias', title='Noticias', description=u'Noticias del sitio')
-        noticies = self.create_content(portal_ca, 'Folder', 'noticies', title='Notícies', description=u'Notícies del lloc')
+        news = self.create_content(portal_en, 'Folder', 'news',
+                                   title='News', description=u'Site news')
+        noticias = self.create_content(
+            portal_es, 'Folder', 'noticias', title='Noticias',
+            description=u'Noticias del sitio')
+        noticies = self.create_content(
+            portal_ca, 'Folder', 'noticies', title='Notícies',
+            description=u'Notícies del lloc')
         self.link_translations([(news, 'en'), (noticias, 'es'), (noticies, 'ca')])
 
         news.exclude_from_nav = True
@@ -164,21 +178,27 @@ class setup(BrowserView):
         noticies.exclude_from_nav = True
 
         # Create the aggregator
-        col_news = self.create_content(news, 'Collection', 'aggregator', title='aggregator', description=u'Site news')
+        col_news = self.create_content(
+            news, 'Collection', 'aggregator', title='aggregator',
+            description=u'Site news')
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
 
         col_news.reindexObject()
 
-        col_noticias = self.create_content(noticias, 'Collection', 'aggregator', title='aggregator', description=u'Notícias del sitio')
+        col_noticias = self.create_content(
+            noticias, 'Collection', 'aggregator', title='aggregator',
+            description=u'Notícias del sitio')
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
 
         col_noticias.reindexObject()
 
-        col_noticies = self.create_content(noticies, 'Collection', 'aggregator', title='aggregator', description=u'Notícies del lloc')
+        col_noticies = self.create_content(
+            noticies, 'Collection', 'aggregator', title='aggregator',
+            description=u'Notícies del lloc')
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
@@ -190,16 +210,24 @@ class setup(BrowserView):
         noticias.setDefaultPage('aggregator')
         noticies.setDefaultPage('aggregator')
 
-        self.link_translations([(col_news, 'en'), (col_noticias, 'es'), (col_noticies, 'ca')])
+        self.link_translations(
+            [(col_news, 'en'),
+             (col_noticias, 'es'),
+             (col_noticies, 'ca')])
 
         self.constrain_content_types(news, ('News Item', 'Folder', 'Image', 'Link'))
         self.constrain_content_types(noticias, ('News Item', 'Folder', 'Image', 'Link'))
         self.constrain_content_types(noticies, ('News Item', 'Folder', 'Image', 'Link'))
 
         # Setup portal events folder
-        events = self.create_content(portal_en, 'Folder', 'events', title='Events', description=u'Site events')
-        eventos = self.create_content(portal_es, 'Folder', 'eventos', title='Eventos', description=u'Eventos del sitio')
-        esdeveniments = self.create_content(portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments', description=u'Esdeveniments del lloc')
+        events = self.create_content(
+            portal_en, 'Folder', 'events', title='Events', description=u'Site events')
+        eventos = self.create_content(
+            portal_es, 'Folder', 'eventos', title='Eventos',
+            description=u'Eventos del sitio')
+        esdeveniments = self.create_content(
+            portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments',
+            description=u'Esdeveniments del lloc')
         self.link_translations([(events, 'en'), (eventos, 'es'), (esdeveniments, 'ca')])
 
         events.exclude_from_nav = True
@@ -208,21 +236,27 @@ class setup(BrowserView):
 
         # Create the aggregator
         # original_col_events = original_events['aggregator']
-        col_events = self.create_content(events, 'Collection', 'aggregator', title='aggregator', description=u'Site events')
+        col_events = self.create_content(
+            events, 'Collection', 'aggregator', title='aggregator',
+            description=u'Site events')
         col_events.title = 'Events'
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
 
         col_events.reindexObject()
 
-        col_eventos = self.create_content(eventos, 'Collection', 'aggregator', title='aggregator', description=u'Eventos del sitio')
+        col_eventos = self.create_content(
+            eventos, 'Collection', 'aggregator', title='aggregator',
+            description=u'Eventos del sitio')
         col_eventos.title = 'Eventos'
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
 
         col_eventos.reindexObject()
 
-        col_esdeveniments = self.create_content(esdeveniments, 'Collection', 'aggregator', title='aggregator', description=u'Esdeveniments del lloc')
+        col_esdeveniments = self.create_content(
+            esdeveniments, 'Collection', 'aggregator', title='aggregator',
+            description=u'Esdeveniments del lloc')
         col_esdeveniments.title = 'Esdeveniments'
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
@@ -234,20 +268,32 @@ class setup(BrowserView):
         eventos.setDefaultPage('aggregator')
         esdeveniments.setDefaultPage('aggregator')
 
-        self.link_translations([(col_events, 'en'), (col_eventos, 'es'), (col_esdeveniments, 'ca')])
+        self.link_translations(
+            [(col_events, 'en'),
+             (col_eventos, 'es'),
+             (col_esdeveniments, 'ca')])
 
         self.constrain_content_types(events, ('Event', 'Folder', 'Image'))
         self.constrain_content_types(eventos, ('Event', 'Folder', 'Image'))
         self.constrain_content_types(esdeveniments, ('Event', 'Folder', 'Image'))
 
         # Create banners folders
-        banners_en = self.create_content(portal_en, 'BannerContainer', 'banners-en', title='banners-en', description=u'English Banners')
+        banners_en = self.create_content(
+            portal_en, 'BannerContainer', 'banners-en', title='banners-en',
+            description=u'English Banners')
         banners_en.title = 'Banners'
-        banners_es = self.create_content(portal_es, 'BannerContainer', 'banners-es', title='banners-es', description=u'Banners en Español')
+        banners_es = self.create_content(
+            portal_es, 'BannerContainer', 'banners-es', title='banners-es',
+            description=u'Banners en Español')
         banners_es.title = 'Banners'
-        banners_ca = self.create_content(portal_ca, 'BannerContainer', 'banners-ca', title='banners-ca', description=u'Banners en Català')
+        banners_ca = self.create_content(
+            portal_ca, 'BannerContainer', 'banners-ca', title='banners-ca',
+            description=u'Banners en Català')
         banners_ca.title = 'Banners'
-        self.link_translations([(banners_ca, 'ca'), (banners_es, 'es'), (banners_en, 'en')])
+        self.link_translations(
+            [(banners_ca, 'ca'),
+             (banners_es, 'es'),
+             (banners_en, 'en')])
 
         banners_en.exclude_from_nav = True
         banners_es.exclude_from_nav = True
@@ -258,13 +304,22 @@ class setup(BrowserView):
         banners_ca.reindexObject()
 
         # Create logosfooter folders
-        logosfooter_en = self.create_content(portal_en, 'Logos_Container', 'logosfooter-en', title='logosfooter-en', description=u'English footer logos')
+        logosfooter_en = self.create_content(
+            portal_en, 'Logos_Container', 'logosfooter-en', title='logosfooter-en',
+            description=u'English footer logos')
         logosfooter_en.title = 'Footer Logos'
-        logosfooter_es = self.create_content(portal_es, 'Logos_Container', 'logosfooter-es', title='logosfooter-es', description=u'Logos en español del pie de página')
+        logosfooter_es = self.create_content(
+            portal_es, 'Logos_Container', 'logosfooter-es', title='logosfooter-es',
+            description=u'Logos en español del pie de página')
         logosfooter_es.title = 'Logos pie'
-        logosfooter_ca = self.create_content(portal_ca, 'Logos_Container', 'logosfooter-ca', title='logosfooter-ca', description=u'Logos en català del peu de pàgina')
+        logosfooter_ca = self.create_content(
+            portal_ca, 'Logos_Container', 'logosfooter-ca', title='logosfooter-ca',
+            description=u'Logos en català del peu de pàgina')
         logosfooter_ca.title = 'Logos peu'
-        self.link_translations([(logosfooter_ca, 'ca'), (logosfooter_es, 'es'), (logosfooter_en, 'en')])
+        self.link_translations(
+            [(logosfooter_ca, 'ca'),
+             (logosfooter_es, 'es'),
+             (logosfooter_en, 'en')])
 
         logosfooter_en.exclude_from_nav = True
         logosfooter_es.exclude_from_nav = True
@@ -318,14 +373,20 @@ class setup(BrowserView):
             </div> """
 
         if not getattr(portal_en, 'welcome', False):
-            welcome = self.create_content(portal_en, 'Document', 'welcome', title='Welcome')
-            welcome.text = RichTextValue(welcome_string_en, 'text/html', 'text/x-html-safe')
+            welcome = self.create_content(
+                portal_en, 'Document', 'welcome', title='Welcome')
+            welcome.text = RichTextValue(
+                welcome_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'bienvenido', False):
-            bienvenido = self.create_content(portal_es, 'Document', 'bienvenido', title='Bienvenido')
-            bienvenido.text = RichTextValue(welcome_string_es, 'text/html', 'text/x-html-safe')
+            bienvenido = self.create_content(
+                portal_es, 'Document', 'bienvenido', title='Bienvenido')
+            bienvenido.text = RichTextValue(
+                welcome_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'benvingut', False):
-            benvingut = self.create_content(portal_ca, 'Document', 'benvingut', title='Benvingut')
-            benvingut.text = RichTextValue(welcome_string_ca, 'text/html', 'text/x-html-safe')
+            benvingut = self.create_content(
+                portal_ca, 'Document', 'benvingut', title='Benvingut')
+            benvingut.text = RichTextValue(
+                welcome_string_ca, 'text/html', 'text/x-html-safe')
 
         welcome = portal_en['welcome']
         bienvenido = portal_es['bienvenido']
@@ -362,23 +423,35 @@ class setup(BrowserView):
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedcontact', False):
-            customizedcontact = self.create_content(portal_en, 'Document', 'customizedcontact', title='customizedcontact', publish=False)
+            customizedcontact = self.create_content(
+                portal_en, 'Document', 'customizedcontact', title='customizedcontact',
+                publish=False)
             customizedcontact.title = u'Custom contact'
-            customizedcontact.text = RichTextValue(contact_string_en, 'text/html', 'text/x-html-safe')
+            customizedcontact.text = RichTextValue(
+                contact_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'contactopersonalizado', False):
-            contactopersonalizado = self.create_content(portal_es, 'Document', 'contactopersonalizado', title='contactopersonalizado', publish=False)
+            contactopersonalizado = self.create_content(
+                portal_es, 'Document', 'contactopersonalizado',
+                title='contactopersonalizado', publish=False)
             contactopersonalizado.title = u'Contacto personalizado'
-            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html', 'text/x-html-safe')
+            contactopersonalizado.text = RichTextValue(
+                contact_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'contactepersonalitzat', False):
-            contactepersonalitzat = self.create_content(portal_ca, 'Document', 'contactepersonalitzat', title='contactepersonalitzat', publish=False)
+            contactepersonalitzat = self.create_content(
+                portal_ca, 'Document', 'contactepersonalitzat',
+                title='contactepersonalitzat', publish=False)
             contactepersonalitzat.title = u'Contacte personalitzat'
-            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html', 'text/x-html-safe')
+            contactepersonalitzat.text = RichTextValue(
+                contact_string_ca, 'text/html', 'text/x-html-safe')
 
         customizedcontact = portal_en['customizedcontact']
         contactopersonalizado = portal_es['contactopersonalizado']
         contactepersonalitzat = portal_ca['contactepersonalitzat']
 
-        self.link_translations([(contactepersonalitzat, 'ca'), (contactopersonalizado, 'es'), (customizedcontact, 'en')])
+        self.link_translations(
+            [(contactepersonalitzat, 'ca'),
+             (contactopersonalizado, 'es'),
+             (customizedcontact, 'en')])
 
         customizedcontact.exclude_from_nav = True
         contactopersonalizado.exclude_from_nav = True
@@ -390,41 +463,61 @@ class setup(BrowserView):
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedlinks', False):
-            customizedlinks = self.create_content(portal_en, 'Document', 'customizedlinks', title='customizedlinks', publish=False)
+            customizedlinks = self.create_content(
+                portal_en, 'Document', 'customizedlinks', title='customizedlinks',
+                publish=False)
             customizedlinks.title = u'Custom links'
-            customizedlinks.text = RichTextValue(links_string_ca, 'text/html', 'text/x-html-safe')
+            customizedlinks.text = RichTextValue(
+                links_string_ca, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'enlacespersonalizados', False):
-            enlacespersonalizados = self.create_content(portal_es, 'Document', 'enlacespersonalizados', title='enlacespersonalizados', publish=False)
+            enlacespersonalizados = self.create_content(
+                portal_es, 'Document', 'enlacespersonalizados',
+                title='enlacespersonalizados', publish=False)
             enlacespersonalizados.title = u'Enlaces personalizados'
-            enlacespersonalizados.text = RichTextValue(links_string_es, 'text/html', 'text/x-html-safe')
+            enlacespersonalizados.text = RichTextValue(
+                links_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'enllacospersonalitzats', False):
-            enllacospersonalitzats = self.create_content(portal_ca, 'Document', 'enllacospersonalitzats', title='enllacospersonalitzats', publish=False)
+            enllacospersonalitzats = self.create_content(
+                portal_ca, 'Document', 'enllacospersonalitzats',
+                title='enllacospersonalitzats', publish=False)
             enllacospersonalitzats.title = u'Enllaços personalitzats'
-            enllacospersonalitzats.text = RichTextValue(links_string_en, 'text/html', 'text/x-html-safe')
+            enllacospersonalitzats.text = RichTextValue(
+                links_string_en, 'text/html', 'text/x-html-safe')
 
         customizedlinks = portal_en['customizedlinks']
         enlacespersonalizados = portal_es['enlacespersonalizados']
         enllacospersonalitzats = portal_ca['enllacospersonalitzats']
 
-        self.link_translations([(enllacospersonalitzats, 'ca'), (enlacespersonalizados, 'es'), (customizedlinks, 'en')])
+        self.link_translations(
+            [(enllacospersonalitzats, 'ca'),
+             (enlacespersonalizados, 'es'),
+             (customizedlinks, 'en')])
 
         customizedlinks.exclude_from_nav = True
         enlacespersonalizados.exclude_from_nav = True
         enllacospersonalitzats.exclude_from_nav = True
 
         # Templates TinyMCE
-        plantilles = self.create_content(portal, 'Folder', 'plantilles', title='Plantilles', description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
+        plantilles = self.create_content(
+            portal, 'Folder', 'plantilles', title='Plantilles',
+            description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
         plantilles.exclude_from_nav = True
         api.content.transition(obj=plantilles, transition='retracttointranet')
         api.content.transition(obj=plantilles, transition='publish')
         plantilles.reindexObject()
 
         # Create the shared folders for files and images
-        compartits = self.create_content(portal_ca, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartits = self.create_content(
+            portal_ca, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         compartits.title = 'Fitxers compartits'
-        shared = self.create_content(portal_en, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        shared = self.create_content(
+            portal_en, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         shared.title = 'Shared files'
-        compartidos = self.create_content(portal_es, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartidos = self.create_content(
+            portal_es, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         compartidos.title = 'Ficheros compartidos'
         self.constrain_content_types(compartits, ('File', 'Folder', 'Image'))
         self.constrain_content_types(shared, ('File', 'Folder', 'Image'))
@@ -533,9 +626,14 @@ class setup(BrowserView):
             api.content.delete(obj=portal_en['media'])
 
         # Setup portal news folder
-        news = self.create_content(portal_en, 'Folder', 'news', title='News', description=u'Site news')
-        noticias = self.create_content(portal_es, 'Folder', 'noticias', title='Noticias', description=u'Noticias del sitio')
-        noticies = self.create_content(portal_ca, 'Folder', 'noticies', title='Notícies', description=u'Notícies del lloc')
+        news = self.create_content(portal_en, 'Folder', 'news',
+                                   title='News', description=u'Site news')
+        noticias = self.create_content(
+            portal_es, 'Folder', 'noticias', title='Noticias',
+            description=u'Noticias del sitio')
+        noticies = self.create_content(
+            portal_ca, 'Folder', 'noticies', title='Notícies',
+            description=u'Notícies del lloc')
         self.link_translations([(news, 'en'), (noticias, 'es'), (noticies, 'ca')])
 
         news.exclude_from_nav = True
@@ -543,21 +641,27 @@ class setup(BrowserView):
         noticies.exclude_from_nav = True
 
         # Create the aggregator
-        col_news = self.create_content(news, 'Collection', 'aggregator', title='aggregator', description=u'Site news')
+        col_news = self.create_content(
+            news, 'Collection', 'aggregator', title='aggregator',
+            description=u'Site news')
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
 
         col_news.reindexObject()
 
-        col_noticias = self.create_content(noticias, 'Collection', 'aggregator', title='aggregator', description=u'Notícias del sitio')
+        col_noticias = self.create_content(
+            noticias, 'Collection', 'aggregator', title='aggregator',
+            description=u'Notícias del sitio')
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
 
         col_noticias.reindexObject()
 
-        col_noticies = self.create_content(noticies, 'Collection', 'aggregator', title='aggregator', description=u'Notícies del lloc')
+        col_noticies = self.create_content(
+            noticies, 'Collection', 'aggregator', title='aggregator',
+            description=u'Notícies del lloc')
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
@@ -569,16 +673,24 @@ class setup(BrowserView):
         noticias.setDefaultPage('aggregator')
         noticies.setDefaultPage('aggregator')
 
-        self.link_translations([(col_news, 'en'), (col_noticias, 'es'), (col_noticies, 'ca')])
+        self.link_translations(
+            [(col_news, 'en'),
+             (col_noticias, 'es'),
+             (col_noticies, 'ca')])
 
         self.constrain_content_types(news, ('News Item', 'Folder', 'Image', 'Link'))
         self.constrain_content_types(noticias, ('News Item', 'Folder', 'Image', 'Link'))
         self.constrain_content_types(noticies, ('News Item', 'Folder', 'Image', 'Link'))
 
         # Setup portal events folder
-        events = self.create_content(portal_en, 'Folder', 'events', title='Events', description=u'Site events')
-        eventos = self.create_content(portal_es, 'Folder', 'eventos', title='Eventos', description=u'Eventos del sitio')
-        esdeveniments = self.create_content(portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments', description=u'Esdeveniments del lloc')
+        events = self.create_content(
+            portal_en, 'Folder', 'events', title='Events', description=u'Site events')
+        eventos = self.create_content(
+            portal_es, 'Folder', 'eventos', title='Eventos',
+            description=u'Eventos del sitio')
+        esdeveniments = self.create_content(
+            portal_ca, 'Folder', 'esdeveniments', title='Esdeveniments',
+            description=u'Esdeveniments del lloc')
         self.link_translations([(events, 'en'), (eventos, 'es'), (esdeveniments, 'ca')])
 
         events.exclude_from_nav = True
@@ -587,21 +699,27 @@ class setup(BrowserView):
 
         # Create the aggregator
         # original_col_events = original_events['aggregator']
-        col_events = self.create_content(events, 'Collection', 'aggregator', title='aggregator', description=u'Site events')
+        col_events = self.create_content(
+            events, 'Collection', 'aggregator', title='aggregator',
+            description=u'Site events')
         col_events.title = 'Events'
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
 
         col_events.reindexObject()
 
-        col_eventos = self.create_content(eventos, 'Collection', 'aggregator', title='aggregator', description=u'Eventos del sitio')
+        col_eventos = self.create_content(
+            eventos, 'Collection', 'aggregator', title='aggregator',
+            description=u'Eventos del sitio')
         col_eventos.title = 'Eventos'
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
 
         col_eventos.reindexObject()
 
-        col_esdeveniments = self.create_content(esdeveniments, 'Collection', 'aggregator', title='aggregator', description=u'Esdeveniments del lloc')
+        col_esdeveniments = self.create_content(
+            esdeveniments, 'Collection', 'aggregator', title='aggregator',
+            description=u'Esdeveniments del lloc')
         col_esdeveniments.title = 'Esdeveniments'
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
@@ -613,20 +731,32 @@ class setup(BrowserView):
         eventos.setDefaultPage('aggregator')
         esdeveniments.setDefaultPage('aggregator')
 
-        self.link_translations([(col_events, 'en'), (col_eventos, 'es'), (col_esdeveniments, 'ca')])
+        self.link_translations(
+            [(col_events, 'en'),
+             (col_eventos, 'es'),
+             (col_esdeveniments, 'ca')])
 
         self.constrain_content_types(events, ('Event', 'Folder', 'Image'))
         self.constrain_content_types(eventos, ('Event', 'Folder', 'Image'))
         self.constrain_content_types(esdeveniments, ('Event', 'Folder', 'Image'))
 
         # Create banners folders
-        banners_en = self.create_content(portal_en, 'BannerContainer', 'banners-en', title='banners-en', description=u'English Banners')
+        banners_en = self.create_content(
+            portal_en, 'BannerContainer', 'banners-en', title='banners-en',
+            description=u'English Banners')
         banners_en.title = 'Banners'
-        banners_es = self.create_content(portal_es, 'BannerContainer', 'banners-es', title='banners-es', description=u'Banners en Español')
+        banners_es = self.create_content(
+            portal_es, 'BannerContainer', 'banners-es', title='banners-es',
+            description=u'Banners en Español')
         banners_es.title = 'Banners'
-        banners_ca = self.create_content(portal_ca, 'BannerContainer', 'banners-ca', title='banners-ca', description=u'Banners en Català')
+        banners_ca = self.create_content(
+            portal_ca, 'BannerContainer', 'banners-ca', title='banners-ca',
+            description=u'Banners en Català')
         banners_ca.title = 'Banners'
-        self.link_translations([(banners_ca, 'ca'), (banners_es, 'es'), (banners_en, 'en')])
+        self.link_translations(
+            [(banners_ca, 'ca'),
+             (banners_es, 'es'),
+             (banners_en, 'en')])
 
         banners_en.exclude_from_nav = True
         banners_es.exclude_from_nav = True
@@ -637,13 +767,22 @@ class setup(BrowserView):
         banners_ca.reindexObject()
 
         # Create logosfooter folders
-        logosfooter_en = self.create_content(portal_en, 'Logos_Container', 'logosfooter-en', title='logosfooter-en', description=u'English footer logos')
+        logosfooter_en = self.create_content(
+            portal_en, 'Logos_Container', 'logosfooter-en', title='logosfooter-en',
+            description=u'English footer logos')
         logosfooter_en.title = 'Footer Logos'
-        logosfooter_es = self.create_content(portal_es, 'Logos_Container', 'logosfooter-es', title='logosfooter-es', description=u'Logos en español del pie de página')
+        logosfooter_es = self.create_content(
+            portal_es, 'Logos_Container', 'logosfooter-es', title='logosfooter-es',
+            description=u'Logos en español del pie de página')
         logosfooter_es.title = 'Logos pie'
-        logosfooter_ca = self.create_content(portal_ca, 'Logos_Container', 'logosfooter-ca', title='logosfooter-ca', description=u'Logos en català del peu de pàgina')
+        logosfooter_ca = self.create_content(
+            portal_ca, 'Logos_Container', 'logosfooter-ca', title='logosfooter-ca',
+            description=u'Logos en català del peu de pàgina')
         logosfooter_ca.title = 'Logos peu'
-        self.link_translations([(logosfooter_ca, 'ca'), (logosfooter_es, 'es'), (logosfooter_en, 'en')])
+        self.link_translations(
+            [(logosfooter_ca, 'ca'),
+             (logosfooter_es, 'es'),
+             (logosfooter_en, 'en')])
 
         logosfooter_en.exclude_from_nav = True
         logosfooter_es.exclude_from_nav = True
@@ -697,14 +836,20 @@ class setup(BrowserView):
             </div> """
 
         if not getattr(portal_en, 'welcome', False):
-            welcome = self.create_content(portal_en, 'Document', 'welcome', title='Welcome')
-            welcome.text = RichTextValue(welcome_string_en, 'text/html', 'text/x-html-safe')
+            welcome = self.create_content(
+                portal_en, 'Document', 'welcome', title='Welcome')
+            welcome.text = RichTextValue(
+                welcome_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'bienvenido', False):
-            bienvenido = self.create_content(portal_es, 'Document', 'bienvenido', title='Bienvenido')
-            bienvenido.text = RichTextValue(welcome_string_es, 'text/html', 'text/x-html-safe')
+            bienvenido = self.create_content(
+                portal_es, 'Document', 'bienvenido', title='Bienvenido')
+            bienvenido.text = RichTextValue(
+                welcome_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'benvingut', False):
-            benvingut = self.create_content(portal_ca, 'Document', 'benvingut', title='Benvingut')
-            benvingut.text = RichTextValue(welcome_string_ca, 'text/html', 'text/x-html-safe')
+            benvingut = self.create_content(
+                portal_ca, 'Document', 'benvingut', title='Benvingut')
+            benvingut.text = RichTextValue(
+                welcome_string_ca, 'text/html', 'text/x-html-safe')
 
         welcome = portal_en['welcome']
         bienvenido = portal_es['bienvenido']
@@ -741,23 +886,35 @@ class setup(BrowserView):
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedcontact', False):
-            customizedcontact = self.create_content(portal_en, 'Document', 'customizedcontact', title='customizedcontact', publish=False)
+            customizedcontact = self.create_content(
+                portal_en, 'Document', 'customizedcontact', title='customizedcontact',
+                publish=False)
             customizedcontact.title = u'Custom contact'
-            customizedcontact.text = RichTextValue(contact_string_en, 'text/html', 'text/x-html-safe')
+            customizedcontact.text = RichTextValue(
+                contact_string_en, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'contactopersonalizado', False):
-            contactopersonalizado = self.create_content(portal_es, 'Document', 'contactopersonalizado', title='contactopersonalizado', publish=False)
+            contactopersonalizado = self.create_content(
+                portal_es, 'Document', 'contactopersonalizado',
+                title='contactopersonalizado', publish=False)
             contactopersonalizado.title = u'Contacto personalizado'
-            contactopersonalizado.text = RichTextValue(contact_string_es, 'text/html', 'text/x-html-safe')
+            contactopersonalizado.text = RichTextValue(
+                contact_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'contactepersonalitzat', False):
-            contactepersonalitzat = self.create_content(portal_ca, 'Document', 'contactepersonalitzat', title='contactepersonalitzat', publish=False)
+            contactepersonalitzat = self.create_content(
+                portal_ca, 'Document', 'contactepersonalitzat',
+                title='contactepersonalitzat', publish=False)
             contactepersonalitzat.title = u'Contacte personalitzat'
-            contactepersonalitzat.text = RichTextValue(contact_string_ca, 'text/html', 'text/x-html-safe')
+            contactepersonalitzat.text = RichTextValue(
+                contact_string_ca, 'text/html', 'text/x-html-safe')
 
         customizedcontact = portal_en['customizedcontact']
         contactopersonalizado = portal_es['contactopersonalizado']
         contactepersonalitzat = portal_ca['contactepersonalitzat']
 
-        self.link_translations([(contactepersonalitzat, 'ca'), (contactopersonalizado, 'es'), (customizedcontact, 'en')])
+        self.link_translations(
+            [(contactepersonalitzat, 'ca'),
+             (contactopersonalizado, 'es'),
+             (customizedcontact, 'en')])
 
         customizedcontact.exclude_from_nav = True
         contactopersonalizado.exclude_from_nav = True
@@ -769,41 +926,61 @@ class setup(BrowserView):
 
         # Create default custom contact form info objects
         if not getattr(portal_en, 'customizedlinks', False):
-            customizedlinks = self.create_content(portal_en, 'Document', 'customizedlinks', title='customizedlinks', publish=False)
+            customizedlinks = self.create_content(
+                portal_en, 'Document', 'customizedlinks', title='customizedlinks',
+                publish=False)
             customizedlinks.title = u'Custom links'
-            customizedlinks.text = RichTextValue(links_string_ca, 'text/html', 'text/x-html-safe')
+            customizedlinks.text = RichTextValue(
+                links_string_ca, 'text/html', 'text/x-html-safe')
         if not getattr(portal_es, 'enlacespersonalizados', False):
-            enlacespersonalizados = self.create_content(portal_es, 'Document', 'enlacespersonalizados', title='enlacespersonalizados', publish=False)
+            enlacespersonalizados = self.create_content(
+                portal_es, 'Document', 'enlacespersonalizados',
+                title='enlacespersonalizados', publish=False)
             enlacespersonalizados.title = u'Enlaces personalizados'
-            enlacespersonalizados.text = RichTextValue(links_string_es, 'text/html', 'text/x-html-safe')
+            enlacespersonalizados.text = RichTextValue(
+                links_string_es, 'text/html', 'text/x-html-safe')
         if not getattr(portal_ca, 'enllacospersonalitzats', False):
-            enllacospersonalitzats = self.create_content(portal_ca, 'Document', 'enllacospersonalitzats', title='enllacospersonalitzats', publish=False)
+            enllacospersonalitzats = self.create_content(
+                portal_ca, 'Document', 'enllacospersonalitzats',
+                title='enllacospersonalitzats', publish=False)
             enllacospersonalitzats.title = u'Enllaços personalitzats'
-            enllacospersonalitzats.text = RichTextValue(links_string_en, 'text/html', 'text/x-html-safe')
+            enllacospersonalitzats.text = RichTextValue(
+                links_string_en, 'text/html', 'text/x-html-safe')
 
         customizedlinks = portal_en['customizedlinks']
         enlacespersonalizados = portal_es['enlacespersonalizados']
         enllacospersonalitzats = portal_ca['enllacospersonalitzats']
 
-        self.link_translations([(enllacospersonalitzats, 'ca'), (enlacespersonalizados, 'es'), (customizedlinks, 'en')])
+        self.link_translations(
+            [(enllacospersonalitzats, 'ca'),
+             (enlacespersonalizados, 'es'),
+             (customizedlinks, 'en')])
 
         customizedlinks.exclude_from_nav = True
         enlacespersonalizados.exclude_from_nav = True
         enllacospersonalitzats.exclude_from_nav = True
 
         # Templates TinyMCE
-        plantilles = self.create_content(portal, 'Folder', 'plantilles', title='Plantilles', description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
+        plantilles = self.create_content(
+            portal, 'Folder', 'plantilles', title='Plantilles',
+            description='En aquesta carpeta podeu posar les plantilles per ser usades a l\'editor.')
         plantilles.exclude_from_nav = True
         api.content.transition(obj=plantilles, transition='retracttointranet')
         api.content.transition(obj=plantilles, transition='publish')
         plantilles.reindexObject()
 
         # Create the shared folders for files and images
-        compartits = self.create_content(portal_ca, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartits = self.create_content(
+            portal_ca, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         compartits.title = 'Fitxers compartits'
-        shared = self.create_content(portal_en, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        shared = self.create_content(
+            portal_en, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         shared.title = 'Shared files'
-        compartidos = self.create_content(portal_es, 'LIF', 'shared', title='shared', description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
+        compartidos = self.create_content(
+            portal_es, 'LIF', 'shared', title='shared',
+            description='En aquesta carpeta podeu posar els fitxers i imatges que siguin compartits per tots o alguns idiomes.')
         compartidos.title = 'Ficheros compartidos'
         self.constrain_content_types(compartits, ('File', 'Folder', 'Image'))
         self.constrain_content_types(shared, ('File', 'Folder', 'Image'))
@@ -878,42 +1055,71 @@ class setup(BrowserView):
         pc.clearFindAndRebuild()
 
         # Put navigation portlets in place
-        target_manager_en = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_en)
-        target_manager_en_assignments = getMultiAdapter((portal_en, target_manager_en), IPortletAssignmentMapping)
-        target_manager_es = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_es)
-        target_manager_es_assignments = getMultiAdapter((portal_es, target_manager_es), IPortletAssignmentMapping)
-        target_manager_ca = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal_ca)
-        target_manager_ca_assignments = getMultiAdapter((portal_ca, target_manager_ca), IPortletAssignmentMapping)
+        target_manager_en = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal_en)
+        target_manager_en_assignments = getMultiAdapter(
+            (portal_en, target_manager_en), IPortletAssignmentMapping)
+        target_manager_es = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal_es)
+        target_manager_es_assignments = getMultiAdapter(
+            (portal_es, target_manager_es), IPortletAssignmentMapping)
+        target_manager_ca = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal_ca)
+        target_manager_ca_assignments = getMultiAdapter(
+            (portal_ca, target_manager_ca), IPortletAssignmentMapping)
 
         from plone.app.portlets.portlets.navigation import Assignment as navigationAssignment
         if 'navigation' not in target_manager_en_assignments:
-            target_manager_en_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
+            target_manager_en_assignments['navigation'] = navigationAssignment(
+                topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
         if 'navigation' not in target_manager_es_assignments:
-            target_manager_es_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
+            target_manager_es_assignments['navigation'] = navigationAssignment(
+                topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
         if 'navigation' not in target_manager_ca_assignments:
-            target_manager_ca_assignments['navigation'] = navigationAssignment(topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
+            target_manager_ca_assignments['navigation'] = navigationAssignment(
+                topLevel=2, bottomLevel=0, no_icons=True, no_thumbs=True)
 
         # Blacklist the left column on:
         # portal_ca['noticies'] and portal_ca['esdeveniments'],
         # portal_es['noticias'] and portal_es['eventos'],
         # portal_en['news'] and portal_en['events']
         left_manager = queryUtility(IPortletManager, name=u'plone.leftcolumn')
-        blacklist_ca = getMultiAdapter((portal_ca['noticies'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_ca = getMultiAdapter(
+            (portal_ca['noticies'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_ca = getMultiAdapter((portal_ca['esdeveniments'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_ca = getMultiAdapter(
+            (portal_ca['esdeveniments'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_ca.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter((portal_es['noticias'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_es = getMultiAdapter(
+            (portal_es['noticias'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_es = getMultiAdapter((portal_es['eventos'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_es = getMultiAdapter(
+            (portal_es['eventos'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_es.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter((portal_en['news'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_en = getMultiAdapter(
+            (portal_en['news'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
-        blacklist_en = getMultiAdapter((portal_en['events'], left_manager), ILocalPortletAssignmentManager)
+        blacklist_en = getMultiAdapter(
+            (portal_en['events'],
+             left_manager),
+            ILocalPortletAssignmentManager)
         blacklist_en.setBlacklistStatus(CONTEXT_CATEGORY, True)
 
         # Delete default Navigation portlet on root
-        target_manager_root = queryUtility(IPortletManager, name='plone.leftcolumn', context=portal)
-        target_manager_root_assignments = getMultiAdapter((portal, target_manager_root), IPortletAssignmentMapping)
+        target_manager_root = queryUtility(
+            IPortletManager, name='plone.leftcolumn', context=portal)
+        target_manager_root_assignments = getMultiAdapter(
+            (portal, target_manager_root), IPortletAssignmentMapping)
         if 'navigation' in target_manager_root_assignments:
             del target_manager_root_assignments['navigation']
         return True
@@ -939,36 +1145,40 @@ class setup(BrowserView):
 <a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutorials Genweb</span><br />Canal de l'Àrea TIC</a></div>
 </div>"""
 
-        benvingut_ca.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
+        benvingut_ca.text = RichTextValue(
+            pagebody_sample, 'text/html', 'text/x-html-safe')
         benvingut_ca.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
-        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
+        newsimg_sample = open(
+            '{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation),
+            'rb').read()
 
         noticies = portal['ca']['noticies']
         for i in range(1, 4):
-            noticia_mostra_ca = self.create_content(noticies,
-                                                    'News Item',
-                                                    'noticia-de-mostra-' + str(i),
-                                                    title='Notícia de mostra ' + str(i),
-                                                    image=NamedBlobImage(data=newsimg_sample,
-                                                                         filename=u'news_sample.jpg',
-                                                                         contentType=u'image/jpeg'),
-                                                    description='Descripció notícia')
+            noticia_mostra_ca = self.create_content(
+                noticies, 'News Item', 'noticia-de-mostra-' + str(i),
+                title='Notícia de mostra ' + str(i),
+                image=NamedBlobImage(
+                    data=newsimg_sample, filename=u'news_sample.jpg',
+                    contentType=u'image/jpeg'),
+                description='Descripció notícia')
 
-            noticia_mostra_ca.text = RichTextValue("Contingut notícia", 'text/html', 'text/x-html-safe')
+            noticia_mostra_ca.text = RichTextValue(
+                "Contingut notícia", 'text/html', 'text/x-html-safe')
             noticia_mostra_ca.reindexObject()
 
         esdeveniments = portal['ca']['esdeveniments']
         now = localized_now().replace(minute=0, second=0, microsecond=0)
         far = now + timedelta(days=14600)
         for i in range(1, 5):
-            event_sample_ca = self.create_content(esdeveniments,
-                                                  'Event',
-                                                  'esdeveniment-de-mostra-' + str(i),
-                                                  title='Esdeveniment de mostra ' + str(i))
+            event_sample_ca = self.create_content(
+                esdeveniments, 'Event', 'esdeveniment-de-mostra-' + str(i),
+                title='Esdeveniment de mostra ' + str(i))
 
-            event_sample_ca.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
+            event_sample_ca.text = RichTextValue(
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.",
+                'text/html', 'text/x-html-safe')
             event_sample_ca.location = "Lloc de l'esdeveniment"
             event_sample_ca.start = now
             event_sample_ca.end = far
@@ -977,13 +1187,19 @@ class setup(BrowserView):
             event_sample_ca.contact_name = 'Responsable esdeveniment'
             event_sample_ca.reindexObject()
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
-        spanstorage = getMultiAdapter((portal['ca']['benvingut'], portletManager), ISpanStorage)
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter(
+            (portal['ca']['benvingut'], portletManager), ISpanStorage)
         spanstorage.span = '12'
 
-        managerAssignments = getMultiAdapter((portal['ca']['benvingut'], portletManager), IPortletAssignmentMapping)
+        managerAssignments = getMultiAdapter(
+            (portal['ca']['benvingut'],
+             portletManager),
+            IPortletAssignmentMapping)
 
         from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
         if 'benvingut' not in managerAssignments:
@@ -1019,24 +1235,27 @@ class setup(BrowserView):
 <a class="link-bannerwarning external-link" href="https://youtube.com/playlist?list=PLf-YeP3BONET2sMB_ZcZpe7I0NUVtksBz" target="_blank"><span class="btntitolwarning">Videotutoriales Genweb</span><br />Canal del Área TIC</a></div>
 </div>"""
 
-        bienvenido.text = RichTextValue(pagebody_sample, 'text/html', 'text/x-html-safe')
+        bienvenido.text = RichTextValue(
+            pagebody_sample, 'text/html', 'text/x-html-safe')
         bienvenido.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
-        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.webp'.format(egglocation), 'rb').read()
+        newsimg_sample = open(
+            '{}/genweb6/theme/theme/img/sample/news_sample_2.webp'.format(egglocation),
+            'rb').read()
 
         noticias = portal['es']['noticias']
         for i in range(1, 4):
-            noticia_muestra = self.create_content(noticias,
-                                                  'News Item',
-                                                  'noticia-de-muestra-' + str(i),
-                                                  title='Noticia de muestra ' + str(i),
-                                                  image=NamedBlobImage(data=newsimg_sample,
-                                                                       filename=u'news_sample.webp',
-                                                                       contentType=u'image/webp'),
-                                                  description='Descripción noticia')
+            noticia_muestra = self.create_content(
+                noticias, 'News Item', 'noticia-de-muestra-' + str(i),
+                title='Noticia de muestra ' + str(i),
+                image=NamedBlobImage(
+                    data=newsimg_sample, filename=u'news_sample.webp',
+                    contentType=u'image/webp'),
+                description='Descripción noticia')
 
-            noticia_muestra.text = RichTextValue("Contenido noticia", 'text/html', 'text/x-html-safe')
+            noticia_muestra.text = RichTextValue(
+                "Contenido noticia", 'text/html', 'text/x-html-safe')
             noticia_muestra.reindexObject()
 
         eventos = portal['es']['eventos']
@@ -1048,7 +1267,9 @@ class setup(BrowserView):
                                                  'evento-de-muestra-' + str(i),
                                                  title='Evento de muestra ' + str(i))
 
-            evento_ejemplo.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
+            evento_ejemplo.text = RichTextValue(
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.",
+                'text/html', 'text/x-html-safe')
             evento_ejemplo.location = "Lugar del evento"
             evento_ejemplo.start = now
             evento_ejemplo.end = far
@@ -1057,13 +1278,19 @@ class setup(BrowserView):
             evento_ejemplo.contact_name = 'Responsable del evento'
             evento_ejemplo.reindexObject()
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
-        spanstorage = getMultiAdapter((portal['es']['bienvenido'], portletManager), ISpanStorage)
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter(
+            (portal['es']['bienvenido'], portletManager), ISpanStorage)
         spanstorage.span = '12'
 
-        managerAssignments = getMultiAdapter((portal['es']['bienvenido'], portletManager), IPortletAssignmentMapping)
+        managerAssignments = getMultiAdapter(
+            (portal['es']['bienvenido'],
+             portletManager),
+            IPortletAssignmentMapping)
 
         from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
         if 'bienvenido' not in managerAssignments:
@@ -1103,20 +1330,22 @@ class setup(BrowserView):
         welcome.reindexObject()
 
         egglocation = pkg_resources.get_distribution('genweb6.theme').location
-        newsimg_sample = open('{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation), 'rb').read()
+        newsimg_sample = open(
+            '{}/genweb6/theme/theme/img/sample/news_sample_2.jpg'.format(egglocation),
+            'rb').read()
 
         news = portal['en']['news']
         for i in range(1, 4):
-            sample_new = self.create_content(news,
-                                            'News Item',
-                                            'sample-new-' + str(i),
-                                            title='Sample new ' + str(i),
-                                            image=NamedBlobImage(data=newsimg_sample,
-                                                                 filename=u'news_sample.jpg',
-                                                                 contentType=u'image/jpeg'),
-                                            description='Description new')
+            sample_new = self.create_content(
+                news, 'News Item', 'sample-new-' + str(i),
+                title='Sample new ' + str(i),
+                image=NamedBlobImage(
+                    data=newsimg_sample, filename=u'news_sample.jpg',
+                    contentType=u'image/jpeg'),
+                description='Description new')
 
-            sample_new.text = RichTextValue("Content new", 'text/html', 'text/x-html-safe')
+            sample_new.text = RichTextValue(
+                "Content new", 'text/html', 'text/x-html-safe')
             sample_new.reindexObject()
 
         events = portal['en']['events']
@@ -1124,11 +1353,13 @@ class setup(BrowserView):
         far = now + timedelta(days=14600)
         for i in range(1, 5):
             sample_event = self.create_content(events,
-                                              'Event',
-                                              'sample-event-' + str(i),
-                                              title='Sample event ' + str(i))
+                                               'Event',
+                                               'sample-event-' + str(i),
+                                               title='Sample event ' + str(i))
 
-            sample_event.text = RichTextValue("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.", 'text/html', 'text/x-html-safe')
+            sample_event.text = RichTextValue(
+                "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.",
+                'text/html', 'text/x-html-safe')
             sample_event.location = "Place of the event"
             sample_event.start = now
             sample_event.end = far
@@ -1137,13 +1368,19 @@ class setup(BrowserView):
             sample_event.contact_name = 'Responsible for the event'
             sample_event.reindexObject()
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
 
-        portletManager = getUtility(IPortletManager, 'genweb.portlets.HomePortletManager3')
-        spanstorage = getMultiAdapter((portal['en']['welcome'], portletManager), ISpanStorage)
+        portletManager = getUtility(
+            IPortletManager, 'genweb.portlets.HomePortletManager3')
+        spanstorage = getMultiAdapter(
+            (portal['en']['welcome'], portletManager), ISpanStorage)
         spanstorage.span = '12'
 
-        managerAssignments = getMultiAdapter((portal['en']['welcome'], portletManager), IPortletAssignmentMapping)
+        managerAssignments = getMultiAdapter(
+            (portal['en']['welcome'],
+             portletManager),
+            IPortletAssignmentMapping)
 
         from genweb6.core.portlets.homepage.homepage import Assignment as homepageAssignment
         if 'welcome' not in managerAssignments:
@@ -1160,7 +1397,8 @@ class setup(BrowserView):
 
     def create_content(self, container, portal_type, id, publish=True, **kwargs):
         if not getattr(container, id, False):
-            obj = createContentInContainer(container, portal_type, checkConstraints=False, **kwargs)
+            obj = createContentInContainer(
+                container, portal_type, checkConstraints=False, **kwargs)
             if publish:
                 self.publish_content(obj)
         return getattr(container, id)
@@ -1214,7 +1452,10 @@ class setup(BrowserView):
         object_workflow = pw.getWorkflowsFor(context)[0].id
         object_status = pw.getStatusOf(object_workflow, context)
         if object_status:
-            api.content.transition(obj=context, transition={'genweb_simple': 'publish', 'genweb_review': 'publicaalaintranet'}[object_workflow])
+            api.content.transition(
+                obj=context,
+                transition={'genweb_simple': 'publish',
+                            'genweb_review': 'publicaalaintranet'}[object_workflow])
 
     def setGenwebProperties(self):
         """ Set default configuration in genweb properties """

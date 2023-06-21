@@ -51,12 +51,13 @@ def setSetupLDAPUPC():
                 portal.acl_users.manage_delObjects('ldapexterns')
 
             manage_addPloneLDAPMultiPlugin(
-                portal.acl_users, 'ldapUPC',
-                title='ldapUPC', LDAP_server='ldap.upc.edu', login_attr='cn', uid_attr='cn',
-                users_base='ou=Users,dc=upc,dc=edu', users_scope=2, roles='Authenticated',
-                groups_base='ou=Groups,dc=upc,dc=edu', groups_scope=2,
-                binduid='cn=ldap.serveis,ou=users,dc=upc,dc=edu', bindpwd=LDAP_PASSWORD, binduid_usage=1,
-                rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
+                portal.acl_users, 'ldapUPC', title='ldapUPC',
+                LDAP_server='ldap.upc.edu', login_attr='cn', uid_attr='cn',
+                users_base='ou=Users,dc=upc,dc=edu', users_scope=2,
+                roles='Authenticated', groups_base='ou=Groups,dc=upc,dc=edu',
+                groups_scope=2, binduid='cn=ldap.serveis,ou=users,dc=upc,dc=edu',
+                bindpwd=LDAP_PASSWORD, binduid_usage=1, rdn_attr='cn', local_groups=0,
+                use_ssl=1, encryption='SSHA', read_only=True)
 
             portal.acl_users.ldapUPC.acl_users.manage_edit(
                 'ldapUPC', 'cn', 'cn', 'ou=Users,dc=upc,dc=edu', 2, 'Authenticated',
@@ -78,7 +79,8 @@ def setSetupLDAPUPC():
                 portal.acl_users.ldapUPC.acl_users, ldap_names=['sn'], REQUEST=None)
 
             LDAPUserFolder.manage_addLDAPSchemaItem(
-                portal.acl_users.ldapUPC.acl_users, ldap_name='sn', friendly_name='Last Name', public_name='name')
+                portal.acl_users.ldapUPC.acl_users, ldap_name='sn',
+                friendly_name='Last Name', public_name='name')
 
             # Move the ldapUPC to the top of the active plugins.
             # Otherwise member.getProperty('email') won't work properly.
@@ -90,7 +92,8 @@ def setSetupLDAPUPC():
             getAdapter(portal, IUserGroupsSettingsSchema).set_many_users(True)
 
         except:
-            logger.debug('Something bad happened and the LDAP has not been created properly')
+            logger.debug(
+                'Something bad happened and the LDAP has not been created properly')
 
         try:
             plugin = portal.acl_users['ldapUPC']
@@ -98,14 +101,17 @@ def setSetupLDAPUPC():
 
             portal_role_manager = portal.acl_users['portal_role_manager']
             portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPC.Plone.Admins')
-            portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.Plone.Admins')
+            portal_role_manager.assignRolesToPrincipal(
+                ['Manager'], 'UPCnet.Plone.Admins')
             portal_role_manager.assignRolesToPrincipal(['Manager'], 'UPCnet.ATIC')
 
         except:
-            logger.debug('Something bad happened and the LDAP has not been configured properly')
+            logger.debug(
+                'Something bad happened and the LDAP has not been configured properly')
 
     else:
-        logger.debug('You do not have LDAP libraries in your current buildout configuration. POSOK.')
+        logger.debug(
+            'You do not have LDAP libraries in your current buildout configuration. POSOK.')
 
         # try:
         # Fora el sistema de cookies que fan buscar al LDAP cn=*
@@ -155,17 +161,20 @@ Paràmetre:
 
             # try:
             manage_addPloneLDAPMultiPlugin(
-                    portal.acl_users, 'ldapexterns',
-                    title='ldapexterns', LDAP_server='ldap.upcnet.es', login_attr='cn', uid_attr='cn',
-                    users_base='ou=users,ou=' + branch + ',dc=upcnet,dc=es', users_scope=2, roles='Authenticated',
-                    groups_base='ou=groups,ou=' + branch + ',dc=upcnet,dc=es', groups_scope=2,
-                    binduid='cn=ldap,ou=' + branch + ',dc=upcnet,dc=es', bindpwd=LDAP_PASSWORD, binduid_usage=1,
-                    rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA', read_only=True)
+                portal.acl_users, 'ldapexterns', title='ldapexterns',
+                LDAP_server='ldap.upcnet.es', login_attr='cn', uid_attr='cn',
+                users_base='ou=users,ou=' + branch + ',dc=upcnet,dc=es', users_scope=2,
+                roles='Authenticated', groups_base='ou=groups,ou=' + branch +
+                ',dc=upcnet,dc=es', groups_scope=2, binduid='cn=ldap,ou=' + branch +
+                ',dc=upcnet,dc=es', bindpwd=LDAP_PASSWORD, binduid_usage=1,
+                rdn_attr='cn', local_groups=0, use_ssl=1, encryption='SSHA',
+                read_only=True)
 
             portal.acl_users.ldapexterns.acl_users.manage_edit(
-                'ldapexterns', 'cn', 'cn', 'ou=users,ou=upcnet,dc=upcnet,dc=es', 2, 'Authenticated,Member',
-                'ou=groups,ou=upcnet,dc=upcnet,dc=es', 2, 'cn=ldap,ou=upcnet,dc=upcnet,dc=es',
-                LDAP_PASSWORD, 1, 'cn', 'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
+                'ldapexterns', 'cn', 'cn', 'ou=users,ou=upcnet,dc=upcnet,dc=es', 2,
+                'Authenticated,Member', 'ou=groups,ou=upcnet,dc=upcnet,dc=es', 2,
+                'cn=ldap,ou=upcnet,dc=upcnet,dc=es', LDAP_PASSWORD, 1, 'cn',
+                'top,person,inetOrgPerson', 0, 0, 'SSHA', 0, '')
 
             plugin = portal.acl_users['ldapexterns']
 
@@ -191,10 +200,12 @@ Paràmetre:
                 portal.acl_users.ldapexterns.acl_users, ldap_names=['cn'], REQUEST=None)
 
             LDAPUserFolder.manage_addLDAPSchemaItem(
-                portal.acl_users.ldapexterns.acl_users, ldap_name='sn', friendly_name='Last Name', public_name='fullname')
+                portal.acl_users.ldapexterns.acl_users, ldap_name='sn',
+                friendly_name='Last Name', public_name='fullname')
 
             LDAPUserFolder.manage_addLDAPSchemaItem(
-                portal.acl_users.ldapexterns.acl_users, ldap_name='cn', friendly_name='Canonical Name')
+                portal.acl_users.ldapexterns.acl_users, ldap_name='cn',
+                friendly_name='Canonical Name')
 
             # Update the preference of the plugins
             portal.acl_users.plugins.movePluginsUp(IUserAdderPlugin, ['ldapexterns'])
@@ -209,10 +220,12 @@ Paràmetre:
             user_groups_query = u'(&(objectClass=groupOfUniqueNames)(uniqueMember=%s))'
 
             api.portal.set_registry_record(
-                'genweb6.controlpanel.core.IGenwebCoreControlPanelSettings.groups_query', groups_query)
+                'genweb6.controlpanel.core.IGenwebCoreControlPanelSettings.groups_query',
+                groups_query)
 
             api.portal.set_registry_record(
-                'genweb6.controlpanel.core.IGenwebCoreControlPanelSettings.user_groups_query', user_groups_query)
+                'genweb6.controlpanel.core.IGenwebCoreControlPanelSettings.user_groups_query',
+                user_groups_query)
 
             return 'Done. groupOfUniqueNames in LDAP Controlpanel Search'
 
@@ -307,7 +320,8 @@ Paràmetres:
             ldap_acl_users, ldap_names=['cn'], REQUEST=None)
 
         LDAPUserFolder.manage_addLDAPSchemaItem(
-            ldap_acl_users, ldap_name='sn', friendly_name='Last Name', public_name='fullname')
+            ldap_acl_users, ldap_name='sn', friendly_name='Last Name',
+            public_name='fullname')
 
         LDAPUserFolder.manage_addLDAPSchemaItem(
             ldap_acl_users, ldap_name='cn', friendly_name='Canonical Name')

@@ -29,7 +29,7 @@ def login_URL(context, request):
 
     if plugin:
         cas_settings = getCASSettings()
-        current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
+        # current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
 
         # if current_url[-6:] == '/login' or current_url[-11:] == '/login_form' or 'require_login' in current_url or 'popup_login_form' in current_url:
         #     camefrom = getattr(request, 'came_from', '')

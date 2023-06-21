@@ -8,7 +8,6 @@ from plone.app.layout.navigation.interfaces import INavtreeStrategy
 from plone.app.layout.navigation.navtree import NavtreeStrategyBase
 from plone.app.portlets.portlets.navigation import Renderer as NavigationRenderer
 from plone.base.defaultpage import check_default_page_via_view
-from plone.base.interfaces import INavigationSchema
 from plone.base.interfaces.controlpanel import INavigationSchema
 from plone.memoize.instance import memoize
 from plone.registry.interfaces import IRegistry

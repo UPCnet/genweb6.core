@@ -51,7 +51,7 @@ Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
 
-        context = aq_inner(self.context)
+        # context = aq_inner(self.context)
 
         import ipdb
         ipdb.set_trace()
