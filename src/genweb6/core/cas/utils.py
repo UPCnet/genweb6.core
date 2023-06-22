@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
@@ -10,6 +11,7 @@ from zope.component import queryUtility
 from genweb6.core.cas.controlpanel import ICASSettings
 from genweb6.core.cas import PLUGIN_CAS
 
+from time import time
 
 def secureURL(url):
     """ Secures an URL (given http, returns https) """
@@ -61,7 +63,7 @@ def logout(context, request):
     else:
         return '%s/logout' % portal.absolute_url()
 
-
+@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def getCASSettings():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICASSettings)
