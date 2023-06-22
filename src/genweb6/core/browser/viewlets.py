@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from AccessControl.SecurityManagement import getSecurityManager
 from Acquisition import aq_inner
 
 from plone import api
@@ -40,6 +39,7 @@ class viewletBase(ViewletBase):
     def portal(self):
         return api.portal.get()
 
+    @memoize_contextless
     def pref_lang(self):
         lt = api.portal.get_tool(name='portal_languages')
         lang = lt.getPreferredLanguage()
@@ -124,6 +124,7 @@ class cintilloViewlet(viewletBase):
         else:
             return ""
 
+    @memoize_contextless
     def info_cintillo(self):
         cintillo_config = genwebCintilloConfig()
         lang = self.pref_lang()
@@ -291,6 +292,7 @@ class heroViewlet(viewletBase):
 
         return False
 
+    @memoize_contextless
     def getClass(self):
         header_config = genwebHeaderConfig()
         theme = getattr(header_config, 'theme', 'light-to-dark-theme') + ' '
@@ -300,6 +302,7 @@ class heroViewlet(viewletBase):
 
         return theme + getattr(header_config, 'content_hero_style', 'image-hero')
 
+    @memoize_contextless
     def getHeroHeader(self):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
