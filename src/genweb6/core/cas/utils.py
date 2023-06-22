@@ -3,6 +3,7 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone import api
 from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
@@ -31,18 +32,16 @@ def login_URL(context, request):
 
     if plugin:
         cas_settings = getCASSettings()
-        # current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
+        current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
 
-        # if current_url[-6:] == '/login' or current_url[-11:] == '/login_form' or 'require_login' in current_url or 'popup_login_form' in current_url:
-        #     camefrom = getattr(request, 'came_from', '')
-        #     if not camefrom:
-        #         camefrom = portal.absolute_url()
+        camefrom = getattr(request, 'came_from', None)
+        if camefrom:
+            catalog = api.portal.get_tool("portal_catalog")
+            results = catalog.unrestrictedSearchResults(path=camefrom)
+            if results:
+                return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(results[0]._unrestrictedGetObject().absolute_url()))
 
-        #     url = '%s/login?idApp=%s&service=%s/logged_in?came_from=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(portal.absolute_url()), secureURL(camefrom))
-        # else:
-        url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(context.absolute_url()))
-
-        return url
+        return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(context.absolute_url()))
     else:
         return '%s/login_form' % portal.absolute_url()
 
