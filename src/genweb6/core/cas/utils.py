@@ -3,7 +3,6 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 
-from plone import api
 from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
@@ -13,6 +12,8 @@ from genweb6.core.cas.controlpanel import ICASSettings
 from genweb6.core.cas import PLUGIN_CAS
 
 from time import time
+from urllib import parse
+
 
 def secureURL(url):
     """ Secures an URL (given http, returns https) """
@@ -34,12 +35,9 @@ def login_URL(context, request):
         cas_settings = getCASSettings()
         current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
 
-        camefrom = getattr(request, 'came_from', None)
-        if camefrom:
-            catalog = api.portal.get_tool("portal_catalog")
-            results = catalog.unrestrictedSearchResults(path=camefrom)
-            if results:
-                return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(results[0]._unrestrictedGetObject().absolute_url()))
+        came_from = getattr(request, 'came_from', None)
+        if came_from:
+            return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(parse.urljoin(portal.absolute_url() + '/', came_from)))
 
         return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(context.absolute_url()))
     else:
