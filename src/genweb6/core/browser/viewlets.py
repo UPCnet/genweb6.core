@@ -15,6 +15,7 @@ from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize_contextless
+from plone.memoize.view import memoize
 from plone.namedfile.file import NamedFile
 from plone.uuid.interfaces import IUUID
 from zope.component import queryAdapter
@@ -142,6 +143,7 @@ class headerViewlet(
         '<label for="navitem-{uid}" role="button" aria-label="{title}"></label>'
     )
 
+    @memoize
     def getClass(self):
         header_config = genwebHeaderConfig()
 
@@ -150,6 +152,7 @@ class headerViewlet(
 
         return default_class
 
+    @memoize
     def getLogosHeader(self):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
@@ -191,11 +194,7 @@ class headerViewlet(
                 "secundary_logo_url": getattr(header_config, 'secundary_logo_url', None),
                 "secundary_logo_target": "_blank" if header_config.secundary_logo_external_url else "_self"}
 
-    def show_auto_register(self):
-        if self.isAnonymous():
-            return getSecurityManager().checkPermission("Add portal member", self.context)
-        return False
-
+    @memoize
     def languages(self):
         lt = api.portal.get_tool(name='portal_languages')
         if lt is None:
@@ -270,13 +269,6 @@ class headerViewlet(
 
         return result
 
-    def showFlags(self):
-        lt = api.portal.get_tool(name='portal_languages')
-        if lt is None:
-            return False
-
-        return lt.showFlags
-
     # Funcion para añadir a la busqueda un path o literal especifico, para customizarlo en algún paquete de cliente
     def custom_search(self):
         return {'literal': None,
@@ -333,6 +325,7 @@ class heroViewlet(viewletBase):
 
 class logosFooterViewlet(viewletBase):
 
+    @memoize
     def getLogosFooter(self):
         catalog = api.portal.get_tool(name='portal_catalog')
         lang = utils.pref_lang()
@@ -360,6 +353,7 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
         else:
             return ""
 
+    @memoize
     def getCustomLinks(self):
         lang = self.pref_lang()
         footer_config = genwebFooterConfig()
@@ -404,9 +398,11 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
         return result
 
+    @memoize
     def getLinksPersonalized(self):
         return genwebFooterConfig().complete_custom_links
 
+    @memoize
     def getLinksPage(self):
         """
         Funcio que retorna la pagina de contacte personalitzada
@@ -433,10 +429,12 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
 class footerViewlet(viewletBase):
 
+    @memoize
     def getClass(self):
         footer_config = genwebFooterConfig()
         return getattr(footer_config, 'theme', 'dark-theme')
 
+    @memoize
     def getHeroURL(self):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
@@ -448,11 +446,13 @@ class footerViewlet(viewletBase):
         else:
             return False
 
+    @memoize
     def getSignatura(self):
         lang = self.pref_lang()
         footer_config = genwebFooterConfig()
         return getattr(footer_config, 'signatura_' + lang, '')
 
+    @memoize
     def getLinksPeu(self):
         lang = self.pref_lang()
 
@@ -482,6 +482,7 @@ class footerViewlet(viewletBase):
 
 class resourcesViewlet(viewletBase):
 
+    @memoize
     def getFileCSS(self):
         resources_config = genwebResourcesConfig()
         if getattr(resources_config, 'file_css', False):
@@ -489,6 +490,7 @@ class resourcesViewlet(viewletBase):
             data = NamedFile(data=data, filename=filename)
             return data._data._data
 
+    @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
         return "<style>" + resources_config.text_css + "</style>"
@@ -502,6 +504,7 @@ class socialtoolsViewlet(viewletBase):
         else:
             return ""
 
+    @memoize
     def data(self):
         title = self.context.title
         url = self.root_url() + '/resolveuid/' + IUUID(self.context)

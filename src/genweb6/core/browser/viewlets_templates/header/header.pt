@@ -1,215 +1,215 @@
 <tal:content tal:define="navigation_root_url view/navigation_root_url;
                          header_config context/@@genweb.utils/genwebHeaderConfig;
                          languages view/languages;
-                         render_globalnav python:view.render_globalnav()">
+                         render_globalnav view/render_globalnav">
 
-<div id="header" tal:attributes="class view/getClass">
+    <div id="header" tal:attributes="class view/getClass">
 
-    <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
-        <div id="logo-primary">
+        <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
+            <div id="logo-primary">
 
-            <a tal:condition="logos/logo_url"
-               tal:attributes="href logos/logo_url;
-                               target logos/logo_target;">
+                <a tal:condition="logos/logo_url"
+                tal:attributes="href logos/logo_url;
+                                target logos/logo_target;">
 
-                <img alt="" title="" class="img-desktop"
-                     tal:attributes="src logos/logo;
-                                     alt logos/logo_alt;
-                                     title logos/logo_alt;">
+                    <img alt="" title="" class="img-desktop"
+                        tal:attributes="src logos/logo;
+                                        alt logos/logo_alt;
+                                        title logos/logo_alt;">
 
-            </a>
-
-            <tal:condition condition="not:logos/logo_url">
-
-                <img alt="" title="" class="img-desktop"
-                     tal:attributes="src logos/logo;
-                                     alt logos/logo_alt;
-                                     title logos/logo_alt;">
-
-            </tal:condition>
-
-        </div>
-
-        <div id="logo-secundary" class="ms-4" tal:condition="logos/secundary_logo">
-
-            <a tal:condition="logos/secundary_logo_url"
-               tal:attributes="href logos/secundary_logo_url;
-                               target logos/secundary_logo_target;">
-
-                <img alt="" title="" class="img-desktop"
-                     tal:attributes="src logos/secundary_logo;
-                                     alt logos/secundary_logo_alt;
-                                     title logos/secundary_logo_alt;">
-
-            </a>
-
-            <tal:condition condition="not:logos/secundary_logo_url">
-
-                <img alt="" title="" class="img-desktop"
-                     tal:attributes="src logos/secundary_logo;
-                                     alt logos/secundary_logo_alt;
-                                     title logos/secundary_logo_alt;">
-
-            </tal:condition>
-        </div>
-    </div>
-
-    <nav id="portal-navbar" role="navigation" class="global-navigation ms-auto">
-
-        <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
-            <li class="home nav-item">
-                <a class="nav-link" tal:attributes="href navigation_root_url"
-                   i18n:domain="genweb" i18n:translate="">
-                   Inici
                 </a>
-            </li>
 
-            <navtree tal:condition="not:header_config/treu_menu_horitzontal"
-                     tal:replace="structure render_globalnav" />
+                <tal:condition condition="not:logos/logo_url">
 
-            <tal:block tal:condition="python:view.user_actions and view.anonymous">
+                    <img alt="" title="" class="img-desktop"
+                        tal:attributes="src logos/logo;
+                                        alt logos/logo_alt;
+                                        title logos/logo_alt;">
 
-                <li class="nav-item nav-action" tal:repeat="action view/user_actions">
+                </tal:condition>
 
-                    <a href=""
-                       tal:attributes="action">
+            </div>
 
-                       <i tal:condition="action/icon"
-                          tal:attributes="class string:bi bi-${action/icon};
-                                          title action/title;
-                                          alt action/title"></i>
+            <div id="logo-secundary" class="ms-4" tal:condition="logos/secundary_logo">
+
+                <a tal:condition="logos/secundary_logo_url"
+                tal:attributes="href logos/secundary_logo_url;
+                                target logos/secundary_logo_target;">
+
+                    <img alt="" title="" class="img-desktop"
+                        tal:attributes="src logos/secundary_logo;
+                                        alt logos/secundary_logo_alt;
+                                        title logos/secundary_logo_alt;">
+
+                </a>
+
+                <tal:condition condition="not:logos/secundary_logo_url">
+
+                    <img alt="" title="" class="img-desktop"
+                        tal:attributes="src logos/secundary_logo;
+                                        alt logos/secundary_logo_alt;
+                                        title logos/secundary_logo_alt;">
+
+                </tal:condition>
+            </div>
+        </div>
+
+        <nav id="portal-navbar" role="navigation" class="global-navigation ms-auto">
+
+            <ul class="navbar-nav mb-2 mb-lg-0 align-items-center" id="portal-globalnav">
+                <li class="home nav-item">
+                    <a class="nav-link" tal:attributes="href navigation_root_url"
+                    i18n:domain="genweb" i18n:translate="">
+                    Inici
                     </a>
-
                 </li>
 
-            </tal:block>
+                <navtree tal:condition="not:header_config/treu_menu_horitzontal"
+                        tal:replace="structure render_globalnav" />
 
-            <tal:languages tal:condition="languages/has_selector">
+                <tal:block tal:condition="python:view.user_actions and view.anonymous">
 
-               <li class="has_subtree nav-item nav-lang">
-                    <a href="#" class="nav-link" aria-haspopup="true">
-                        <i class="bi bi-globe" i18n:domain="plone"
-                           i18n:attributes="alt label_languages;
-                                            title label_languages;"></i>
-                    </a>
+                    <li class="nav-item nav-action" tal:repeat="action view/user_actions">
 
-                    <ul class="has_subtree dropdown" tal:define="langs languages/others">
-                        <li tal:repeat="lang langs" class="nav-item">
-                            <a class="nav-link" tal:attributes="href lang/url">
-                                <span tal:content="lang/native"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                        <a href=""
+                        tal:attributes="action">
 
-            </tal:languages>
-        </ul>
-    </nav>
+                        <i tal:condition="action/icon"
+                            tal:attributes="class string:bi bi-${action/icon};
+                                            title action/title;
+                                            alt action/title"></i>
+                        </a>
 
-    <div id="portal-searchbox" class="nav-item" i18n:domain="plone">
+                    </li>
 
-        <block tal:define="id_searchBox string:"
-               metal:use-macro="context/macros-genweb-searchBox/search"></block>
+                </tal:block>
 
-    </div>
+                <tal:languages tal:condition="languages/has_selector">
 
-    <div id="portal-navbar-mobile" class="d-none ms-auto" role="navigation">
+                <li class="has_subtree nav-item nav-lang">
+                        <a href="#" class="nav-link" aria-haspopup="true">
+                            <i class="bi bi-globe" i18n:domain="plone"
+                            i18n:attributes="alt label_languages;
+                                                title label_languages;"></i>
+                        </a>
 
-        <nav class="navbar navbar-dark">
+                        <ul class="has_subtree dropdown" tal:define="langs languages/others">
+                            <li tal:repeat="lang langs" class="nav-item">
+                                <a class="nav-link" tal:attributes="href lang/url">
+                                    <span tal:content="lang/native"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-            <div class="container-fluid">
+                </tal:languages>
+            </ul>
+        </nav>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        aria-label="Close"
-                        data-bs-target="#gwMobileNavbar" aria-controls="gwMobileNavbar">
+        <div id="portal-searchbox" class="nav-item" i18n:domain="plone">
 
-                  <span class="navbar-toggler-icon"></span>
+            <block tal:define="id_searchBox string:"
+                metal:use-macro="context/macros-genweb-searchBox/search"></block>
 
-                </button>
+        </div>
 
-                <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
-                     id="gwMobileNavbar" aria-labelledby="gwMobileNavbarLabel">
+        <div id="portal-navbar-mobile" class="d-none ms-auto" role="navigation">
 
-                    <div class="offcanvas-header">
+            <nav class="navbar navbar-dark">
 
-                        <h5 i18n:translate="">Menú</h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <div class="container-fluid">
 
-                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                            aria-label="Close"
+                            data-bs-target="#gwMobileNavbar" aria-controls="gwMobileNavbar">
 
-                    <div class="offcanvas-body">
+                    <span class="navbar-toggler-icon"></span>
 
-                        <div class="d-flex mt-3 mb-2" role="search">
+                    </button>
 
-                            <div id="portal-searchbox-mobile" class="nav-item" i18n:domain="plone">
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1"
+                        id="gwMobileNavbar" aria-labelledby="gwMobileNavbarLabel">
 
-                                <block tal:define="id_searchBox string:_mobile"
-                                       metal:use-macro="context/macros-genweb-searchBox/search"></block>
+                        <div class="offcanvas-header">
 
-                            </div>
+                            <h5 i18n:translate="">Menú</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
                         </div>
 
-                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <div class="offcanvas-body">
 
-                            <li class="nav-item">
+                            <div class="d-flex mt-3 mb-2" role="search">
 
-                                <a class="nav-link" tal:attributes="href navigation_root_url"
-                                   i18n:domain="genweb" i18n:translate="">
-                                    Inici
-                                </a>
+                                <div id="portal-searchbox-mobile" class="nav-item" i18n:domain="plone">
 
-                            </li>
+                                    <block tal:define="id_searchBox string:_mobile"
+                                        metal:use-macro="context/macros-genweb-searchBox/search"></block>
 
-                            <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                </div>
 
-                            <navtree tal:condition="not:header_config/treu_menu_horitzontal"
-                                     tal:replace="structure render_globalnav" />
+                            </div>
 
-                            <tal:block tal:condition="python:view.user_actions and view.anonymous">
+                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                                <li class="nav-item">
+
+                                    <a class="nav-link" tal:attributes="href navigation_root_url"
+                                    i18n:domain="genweb" i18n:translate="">
+                                        Inici
+                                    </a>
+
+                                </li>
 
                                 <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                <li class="nav-item" tal:repeat="action view/user_actions">
+                                <navtree tal:condition="not:header_config/treu_menu_horitzontal"
+                                        tal:replace="structure render_globalnav" />
 
-                                    <a href=""
-                                       tal:attributes="title action/title;
-                                                       href action/href;
-                                                       id string:${action/id}-mobile">
+                                <tal:block tal:condition="python:view.user_actions and view.anonymous">
 
-                                        <span tal:content="action/title"
-                                              i18n:translate="">
-                                            action title
-                                        </span>
-                                    </a>
+                                    <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                </li>
+                                    <li class="nav-item" tal:repeat="action view/user_actions">
 
-                            </tal:block>
+                                        <a href=""
+                                        tal:attributes="title action/title;
+                                                        href action/href;
+                                                        id string:${action/id}-mobile">
 
-                            <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                            <span tal:content="action/title"
+                                                i18n:translate="">
+                                                action title
+                                            </span>
+                                        </a>
 
-                            <tal:languages tal:condition="languages/has_selector"
-                                           tal:define="langs languages/others">
+                                    </li>
 
-                                <li tal:repeat="lang langs" class="nav-item">
+                                </tal:block>
 
-                                    <a class="nav-link" tal:attributes="href lang/url">
+                                <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                        <span tal:content="lang/native"></span>
+                                <tal:languages tal:condition="languages/has_selector"
+                                            tal:define="langs languages/others">
 
-                                    </a>
+                                    <li tal:repeat="lang langs" class="nav-item">
 
-                                </li>
+                                        <a class="nav-link" tal:attributes="href lang/url">
 
-                            </tal:languages>
+                                            <span tal:content="lang/native"></span>
 
-                        </ul>
+                                        </a>
+
+                                    </li>
+
+                                </tal:languages>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </div>
-</div>
 
 </tal:content>
