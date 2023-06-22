@@ -36,6 +36,10 @@ from genweb6.theme.theme.tinymce_templates.templates import templates
 import unicodedata
 
 PLMF = MessageFactory('plonelocales')
+import time
+import logging
+
+LOGGER = logging.getLogger("genweb6.core")
 
 
 class GetDXDocumentText(BrowserView):
@@ -114,6 +118,7 @@ class HomePageBase(BrowserView):
         self.portlet_container = self.getPortletContainer()
 
     def getPortletContainer(self):
+        # inicio = time.time()
         context = aq_inner(self.context)
         container = context
 
@@ -129,24 +134,31 @@ class HomePageBase(BrowserView):
             if result:
                 # Return the object without forcing a getObject()
                 container = getattr(context, result[0].id, context)
-
+        # elapsed_fin= time.time() - inicio
+        # LOGGER.error("Tiempo /genweb6/core/browser/views.py getPortletContainer Elapsed time: %0.10f seconds." % elapsed_fin)
         return container
 
     def renderProviderByName(self, provider_name):
+        #ini_render = time.time()
         provider = queryMultiAdapter(
             (self.portlet_container, self.request, self),
             interfaces.IContentProvider, provider_name)
-
         provider.update()
+        valor = provider.render()
+        #elapsed_fin_render= time.time() - ini_render
+        #LOGGER.error("Tiempo /genweb6/core/browser/views.py renderProviderByName Elapsed time: %0.10f seconds." % elapsed_fin_render)
 
-        return provider.render()
+        return valor
 
     def getColValueForManager(self, manager):
+        #ini_getcol = time.time()
         portletManager = getUtility(IPortletManager, manager)
         spanstorage = getMultiAdapter(
             (self.portlet_container, portletManager),
             ISpanStorage)
         span = spanstorage.span
+        #elapsed_fin_getcol= time.time() - ini_getcol
+        #LOGGER.error("Tiempo /genweb6/core/browser/views.py getColValueForManager Elapsed time: %0.10f seconds." % elapsed_fin_getcol)
         if span:
             return span
         else:
@@ -156,6 +168,7 @@ class HomePageBase(BrowserView):
         """Determine whether a column should be shown. The left column is called
         plone.leftcolumn; the right column is called plone.rightcolumn.
         """
+        #ini_havep = time.time()
         force_disable = self.request.get('disable_' + manager_name, None)
         if force_disable is not None:
             return not bool(force_disable)
@@ -175,7 +188,8 @@ class HomePageBase(BrowserView):
             renderer = getMultiAdapter(
                 (context, self.request, self, manager),
                 IPortletManagerRenderer)
-
+        #elapsed_fin_havep= time.time() - ini_havep
+        #LOGGER.error("Tiempo /genweb6/core/browser/views.py have_portlets Elapsed time: %0.10f seconds." % elapsed_fin_havep)
         return renderer.visible
 
     def is_visible(self):
@@ -183,10 +197,13 @@ class HomePageBase(BrowserView):
             user has the permission to view it. If it doesn't raises an
             unauthorized (login)
         """
+        #ini_visible = time.time()
         portal = api.portal.get()
         pc = api.portal.get_tool('portal_catalog')
         result = pc.unrestrictedSearchResults(object_provides=IHomePage.__identifier__,
                                               Language=pref_lang())
+        #elapsed_fin_visible= time.time() - ini_visible
+        #LOGGER.error("Tiempo /genweb6/core/browser/views.py is_visible Elapsed time: %0.10f seconds." % elapsed_fin_visible)
         if result:
             portal.restrictedTraverse(result[0].getPath())
             return True
