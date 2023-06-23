@@ -126,11 +126,11 @@ class IHeaderSettings(model.Schema):
         required=False,)
 
     model.fieldset('Logo', _(u'Logo'),
-                   fields=['fieldset_logo', 'fieldset_secundary_logo',
-                           'logo', 'secundary_logo',
-                           'logo_alt', 'secundary_logo_alt',
-                           'logo_url', 'secundary_logo_url',
-                           'logo_external_url', 'secundary_logo_external_url'])
+                   fields=['fieldset_logo', 'fieldset_secondary_logo',
+                           'logo', 'secondary_logo',
+                           'logo_alt', 'secondary_logo_alt',
+                           'logo_url', 'secondary_logo_url',
+                           'logo_external_url', 'secondary_logo_external_url'])
 
     read_permission(fieldset_logo='genweb.manager')
     write_permission(fieldset_logo='genweb.manager')
@@ -140,10 +140,10 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(fieldset_secundary_logo='genweb.manager')
-    write_permission(fieldset_secundary_logo='genweb.manager')
-    directives.widget('fieldset_secundary_logo', FieldsetFieldWidget)
-    fieldset_secundary_logo = schema.Text(
+    read_permission(fieldset_secondary_logo='genweb.manager')
+    write_permission(fieldset_secondary_logo='genweb.manager')
+    directives.widget('fieldset_secondary_logo', FieldsetFieldWidget)
+    fieldset_secondary_logo = schema.Text(
         default=_(u'Logo secundari'),
         required=False,
     )
@@ -157,10 +157,10 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo='genweb.manager')
-    write_permission(secundary_logo='genweb.manager')
-    directives.widget('secundary_logo', NamedImageFieldWidget)
-    secundary_logo = schema.Bytes(
+    read_permission(secondary_logo='genweb.manager')
+    write_permission(secondary_logo='genweb.manager')
+    directives.widget('secondary_logo', NamedImageFieldWidget)
+    secondary_logo = schema.Bytes(
         title=_(u"Logo"),
         description=_(u"Please upload an image"),
         required=False,
@@ -175,9 +175,9 @@ class IHeaderSettings(model.Schema):
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,)
 
-    read_permission(secundary_logo_alt='genweb.manager')
-    write_permission(secundary_logo_alt='genweb.manager')
-    secundary_logo_alt = schema.TextLine(
+    read_permission(secondary_logo_alt='genweb.manager')
+    write_permission(secondary_logo_alt='genweb.manager')
+    secondary_logo_alt = schema.TextLine(
         title=_(u"logo_alt", default=u"Text alternatiu del logo"),
         description=_(
             u"help_logo_alt",
@@ -194,9 +194,9 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo_url='genweb.manager')
-    write_permission(secundary_logo_url='genweb.manager')
-    secundary_logo_url = schema.TextLine(
+    read_permission(secondary_logo_url='genweb.manager')
+    write_permission(secondary_logo_url='genweb.manager')
+    secondary_logo_url = schema.TextLine(
         title=_(u"logo_url",
                 default=u"URL del logo"),
         description=_(u"help_logo_url",
@@ -212,9 +212,9 @@ class IHeaderSettings(model.Schema):
         required=False,
     )
 
-    read_permission(secundary_logo_external_url='genweb.manager')
-    write_permission(secundary_logo_external_url='genweb.manager')
-    secundary_logo_external_url = schema.Bool(
+    read_permission(secondary_logo_external_url='genweb.manager')
+    write_permission(secondary_logo_external_url='genweb.manager')
+    secondary_logo_external_url = schema.Bool(
         title=_(u"logo_external_url",
                 default=u"Es una URL externa?"),
         required=False,
@@ -392,18 +392,18 @@ class GWSecundaryLogo(Download):
         self.filename = None
         self.data = None
 
-        filename, data = self.generate_secundary_logo()
+        filename, data = self.generate_secondary_logo()
 
         self.filename = filename
         self.data = data
 
     @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate_secundary_logo(self):
+    def generate_secondary_logo(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
 
-        if getattr(header_config, 'secundary_logo', False):
-            filename, data = b64decode_file(header_config.secundary_logo)
+        if getattr(header_config, 'secondary_logo', False):
+            filename, data = b64decode_file(header_config.secondary_logo)
             data = NamedImage(data=data, filename=filename)
 
         return filename, data

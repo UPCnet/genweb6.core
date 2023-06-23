@@ -170,18 +170,18 @@ class headerViewlet(
         else:
             logo_responsive = logo
 
-        if getattr(header_config, 'secundary_logo', False):
-            filename, data = b64decode_file(header_config.secundary_logo)
-            secundary_logo = '{}/@@gw-secundary-logo'.format(portal_url)
+        if getattr(header_config, 'secondary_logo', False):
+            filename, data = b64decode_file(header_config.secondary_logo)
+            secondary_logo = '{}/@@gw-secondary-logo'.format(portal_url)
         else:
-            secundary_logo = None
+            secondary_logo = None
 
-        if getattr(header_config, 'secundary_logo_responsive', False):
-            filename, data = b64decode_file(header_config.secundary_logo_responsive)
-            secundary_logo_responsive = '{}/@@gw-secundary-logo-responsive'.format(
+        if getattr(header_config, 'secondary_logo_responsive', False):
+            filename, data = b64decode_file(header_config.secondary_logo_responsive)
+            secondary_logo_responsive = '{}/@@gw-secondary-logo-responsive'.format(
                 portal_url)
         else:
-            secundary_logo_responsive = secundary_logo
+            secondary_logo_responsive = secondary_logo
 
         return {"logo": logo,
                 "logo_responsive": logo_responsive,
@@ -189,11 +189,11 @@ class headerViewlet(
                 "logo_url": getattr(header_config, 'logo_url', None),
                 "logo_target": "_blank" if header_config.logo_external_url else "_self",
                 "logo_responsive": logo_responsive,
-                "secundary_logo": secundary_logo,
-                "secundary_logo_responsive": secundary_logo_responsive,
-                "secundary_logo_alt": getattr(header_config, 'secundary_logo_alt', ""),
-                "secundary_logo_url": getattr(header_config, 'secundary_logo_url', None),
-                "secundary_logo_target": "_blank" if header_config.secundary_logo_external_url else "_self"}
+                "secondary_logo": secondary_logo,
+                "secondary_logo_responsive": secondary_logo_responsive,
+                "secondary_logo_alt": getattr(header_config, 'secondary_logo_alt', ""),
+                "secondary_logo_url": getattr(header_config, 'secondary_logo_url', None),
+                "secondary_logo_target": "_blank" if header_config.secondary_logo_external_url else "_self"}
 
     @memoize
     def languages(self):

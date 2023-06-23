@@ -30,25 +30,25 @@
 
             </div>
 
-            <div id="logo-secundary" class="ms-4" tal:condition="logos/secundary_logo">
+            <div id="logo-secondary" class="ms-4" tal:condition="logos/secondary_logo">
 
-                <a tal:condition="logos/secundary_logo_url"
-                tal:attributes="href logos/secundary_logo_url;
-                                target logos/secundary_logo_target;">
+                <a tal:condition="logos/secondary_logo_url"
+                tal:attributes="href logos/secondary_logo_url;
+                                target logos/secondary_logo_target;">
 
                     <img alt="" title="" class="img-desktop"
-                        tal:attributes="src logos/secundary_logo;
-                                        alt logos/secundary_logo_alt;
-                                        title logos/secundary_logo_alt;">
+                        tal:attributes="src logos/secondary_logo;
+                                        alt logos/secondary_logo_alt;
+                                        title logos/secondary_logo_alt;">
 
                 </a>
 
-                <tal:condition condition="not:logos/secundary_logo_url">
+                <tal:condition condition="not:logos/secondary_logo_url">
 
                     <img alt="" title="" class="img-desktop"
-                        tal:attributes="src logos/secundary_logo;
-                                        alt logos/secundary_logo_alt;
-                                        title logos/secundary_logo_alt;">
+                        tal:attributes="src logos/secondary_logo;
+                                        alt logos/secondary_logo_alt;
+                                        title logos/secondary_logo_alt;">
 
                 </tal:condition>
             </div>

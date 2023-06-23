@@ -42,7 +42,7 @@
 
     <browser:page
         for="*"
-        name="gw-secundary-logo"
+        name="gw-secondary-logo"
         class=".header.GWSecundaryLogo"
         permission="zope.Public"
         />
