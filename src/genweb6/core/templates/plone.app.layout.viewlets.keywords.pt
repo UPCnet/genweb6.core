@@ -15,7 +15,7 @@
       Meter condicion para no mostrar etiquetas que empiecen por @ o #
     </tal:comment>
 
-    <a href="#" rel="nofollow" class="btn btn-sm btn-outline-primary"
+    <a href="#" rel="nofollow" class="btn btn-sm btn-outline-primary mb-1"
       tal:condition="python:not category.startswith('#') and not category.startswith('@')"
       tal:define="quotedCat python:url_quote(category)"
       tal:attributes="href string:${context/@@plone_portal_state/navigation_root_url}/@@search?Subject%3Alist=${quotedCat}">
