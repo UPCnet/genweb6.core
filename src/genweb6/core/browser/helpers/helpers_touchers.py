@@ -215,7 +215,7 @@ Paràmetre:
         return 'Error parameter product_name, not defined'
 
 
-class reinstall_product(InstallerView):
+class reinstall_product(BrowserView):
     """
 Reinstal·la un paquet
 
@@ -239,10 +239,43 @@ Paràmetre:
                 qi.upgrade_product(product_name)
                 output.append('{}: Successfully reinstalled {}'.format(
                     portal.id, product_name))
+
             return '\n'.join(output)
 
         return 'Error parameter product_name, not defined'
 
+
+class force_reinstall_product(BrowserView):
+    """
+Força la reinstal·lacio d'un paquet
+
+Paràmetre:
+- product_name: id del paquet
+    """
+
+    def __call__(self, portal=None):
+        from plone.protect.interfaces import IDisableCSRFProtection
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        if 'product_name' in self.request.form:
+            if not portal:
+                portal = api.portal.get()
+
+            product_name = self.request.form['product_name']
+            output = []
+            qi = get_installer(self.context)
+
+            if qi.is_product_installed(product_name):
+                qi.upgrade_product(product_name)
+                output.append('{}: Successfully reinstalled {}'.format(
+                    portal.id, product_name))
+            else:
+                qi.install_product(product_name)
+                output.append('{}: Successfully install {}'.format(
+                    portal.id, product_name))
+            return '\n'.join(output)
+
+        return 'Error parameter product_name, not defined'
 
 class uninstall_product(BrowserView):
     """
