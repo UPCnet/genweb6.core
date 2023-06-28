@@ -21,19 +21,9 @@
   <viewlet name="genweb.logosfooter"/>
   <viewlet name="genweb.linksfooter"/>
   <viewlet name="genweb.footer"/>
-  <viewlet name="plone.analytics"/>
-  <viewlet name="plone.footer"/>
-  <viewlet name="plone.colophon"/>
-  <viewlet name="plone.site_actions"/>
  </order>
  <order manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.favicon"/>
-  <viewlet name="plone.app.multilingual.languageselector"/>
-  <viewlet name="plone.anontools"/>
-  <viewlet name="plone.logo"/>
-  <viewlet name="plone.membertools"/>
-  <viewlet name="plone.searchbox"/>
-  <viewlet name="plone.app.i18n.locales.languageselector"/>
   <viewlet name="genweb.cintillo"/>
   <viewlet name="genweb.header"/>
  </order>
@@ -51,7 +41,7 @@
   <viewlet name="plone.footer"/>
   <viewlet name="plone.colophon"/>
   <viewlet name="plone.site_actions"/>
-  <viewlet name="genweb.footer"/>
+  <viewlet name="plone.analytics"/>
  </hidden>
  <hidden manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.app.multilingual.languageselector"/>
