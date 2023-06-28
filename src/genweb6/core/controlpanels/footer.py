@@ -13,6 +13,7 @@ from zope import schema
 from zope.ramcache import ram
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
 
