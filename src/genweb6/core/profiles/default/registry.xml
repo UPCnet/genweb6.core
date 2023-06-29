@@ -595,6 +595,7 @@
       <value_type type="plone.registry.field.TextLine"/>
     </field>
     <value>
+      <element>allowfullscreen</element>
       <element>aria-activedescendant</element>
       <element>aria-atomic</element>
       <element>aria-autocomplete</element>
