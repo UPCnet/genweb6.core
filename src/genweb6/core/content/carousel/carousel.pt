@@ -27,8 +27,7 @@
          tal:define="token context/token;
                      carousel_type context/carousel_type;
                      contents context/contents;
-                     id_carousel string:carousel-${token};
-                     interval python:int(context.carousel_time) * 1000;"
+                     id_carousel string:carousel-${token};"
          tal:condition="contents">
 
         <div class="template-carousel" tal:condition="python:carousel_type == 'simple'">
@@ -87,8 +86,7 @@
                 </div>
 
                 <button class="carousel-control-prev" type="button" data-bs-slide="prev"
-                        tal:attributes="data-bs-target string:#${id_carousel};
-                                        data-interval interval">
+                        tal:attributes="data-bs-target string:#${id_carousel};">
 
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
@@ -96,8 +94,7 @@
                 </button>
 
                 <button class="carousel-control-next" type="button" data-bs-slide="next"
-                        tal:attributes="data-bs-target string:#${id_carousel};
-                                        data-interval interval">
+                        tal:attributes="data-bs-target string:#${id_carousel};">
 
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
