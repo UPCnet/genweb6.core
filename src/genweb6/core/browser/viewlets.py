@@ -351,7 +351,7 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
 
     def render(self):
         config = genwebFooterConfig()
-        if config.enable_links and self.context.portal_type != 'Plone Site':
+        if (config.enable_links or config.complete_custom_links) and self.context.portal_type != 'Plone Site':
             return super(viewletBase, self).render()
         else:
             return ""
