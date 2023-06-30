@@ -423,7 +423,7 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
         try:
             state = api.content.get_state(customized_page)
             if state == 'published':
-                return customized_page.text.raw
+                return customized_page.text.output
             else:
                 return ''
         except:
