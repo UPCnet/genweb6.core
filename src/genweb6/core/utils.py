@@ -34,6 +34,7 @@ from genweb6.core.controlpanels.resources import IResourcesSettings
 
 import json
 import logging
+import re
 
 logger = logging.getLogger(__name__)
 
@@ -177,6 +178,14 @@ def abreviaPlainText(summary, sumlenght):
 def toLocalizedTime(self, time):
     plone_view = getMultiAdapter((self.context, self.request), name=u"plone")
     return plone_view.toLocalizedTime(time)
+
+
+def remove_html_tags(text):
+    """Remove html tags from a string"""
+    if text:
+        clean = re.compile('<.*?>')
+        return re.sub(clean, '', text)
+    return None
 
 
 # class GWConfig(BrowserView):
@@ -409,6 +418,9 @@ class genwebUtils(BrowserView):
 
     def lit_open_in_new_window(self):
         return self.portal().translate(_('obrir_link_finestra_nova'))
+
+    def remove_html_tags(self, text):
+        return remove_html_tags(text)
 
 
 @implementer(ICatalogFactory)
