@@ -132,7 +132,7 @@
 
                         <div class="offcanvas-header">
 
-                            <h5 i18n:translate="">Menú</h5>
+                            <p class="h5" i18n:translate="">Menú</p>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 
                         </div>
