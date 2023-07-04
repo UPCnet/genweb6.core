@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from DateTime import DateTime
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
+from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IMutableUUID
 from souper.soup import get_soup
+from zope.component import getUtility
 from zope.interface import alsoProvides
 
 from genweb6.core import HAS_PAM
+from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.interfaces import IProtectedContent
 
 import json
@@ -44,7 +48,7 @@ else:
 
 class debug(BrowserView):
     """
-Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
+    Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
     """
 
     def __call__(self):
@@ -59,8 +63,8 @@ Vista de comoditat per a una depuració més ràpida. Cal ser gestor.
 
 class protectContent(BrowserView):
     """
-Fa que el context sigui un contingut protegit.
-Només els gestors poden suprimir-lo.
+    Fa que el context sigui un contingut protegit.
+    Només els gestors poden suprimir-lo.
     """
 
     def __call__(self):
@@ -72,7 +76,7 @@ Només els gestors poden suprimir-lo.
 
 class instanceindevelmode(BrowserView):
     """
-Posa aquesta instància en mode de desenvolupament
+    Posa aquesta instància en mode de desenvolupament
     """
 
     __allow_access_to_unprotected_subobjects__ = True
@@ -83,7 +87,7 @@ Posa aquesta instància en mode de desenvolupament
 
 class get_zope(BrowserView):
     """
-Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
+    Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
     """
 
     def __call__(self):
@@ -98,7 +102,7 @@ Aquesta vista s'utilitza per conèixer el dorsal de l'entorn de Genweb
 
 class get_flavour_site(BrowserView):
     """
-Retorna l'última capa instal·lada en aquest lloc
+    Retorna l'última capa instal·lada en aquest lloc
     """
 
     def __call__(self):
@@ -108,7 +112,7 @@ Retorna l'última capa instal·lada en aquest lloc
 
 class mirror_uids(BrowserView):
     """
-Retorna el UID del path que li dones
+    Retorna el UID del path que li dones
     """
 
     render = ViewPageTemplateFile("templates/origin_root_path.pt")
@@ -146,7 +150,7 @@ Retorna el UID del path que li dones
 
 class mirror_states(BrowserView):
     """
-mirror_states
+    mirror_states
     """
 
     def __call__(self):
@@ -193,7 +197,7 @@ mirror_states
 
 class change_events_view(BrowserView):
     """
-Canvia la vista per defecte dels directoris d'esdeveniments
+    Canvia la vista per defecte dels directoris d'esdeveniments
     """
 
     def __call__(self, portal=None):
@@ -218,7 +222,7 @@ Canvia la vista per defecte dels directoris d'esdeveniments
 
 class list_last_login(BrowserView):
     """
-Llista la informació last_login per a tots els usuaris
+    Llista la informació last_login per a tots els usuaris
     """
 
     def __call__(self):
@@ -233,13 +237,13 @@ Llista la informació last_login per a tots els usuaris
                 if not fullname:
                     fullname = wrapped_user.getProperty('id')
                 last_login = wrapped_user.getProperty('last_login_time')
-                output.append('{}; {}'.format(fullname, last_login))
+                output.append('{}; {}'.format(last_login, fullname))
         return '\n'.join(output)
 
 
 class check_cache_settings(BrowserView):
     """
-Comproba la configuració de la caché
+    Comproba la configuració de la caché
     """
 
     def __call__(self, portal=None):
@@ -251,7 +255,7 @@ Comproba la configuració de la caché
 
 class list_domains_cache(BrowserView):
     """
-Retorna els dominis de plone.app.caching
+    Retorna els dominis de plone.app.caching
     """
 
     def __call__(self, portal=None):
@@ -271,7 +275,7 @@ Retorna els dominis de plone.app.caching
 
 class get_contact_data(BrowserView):
     """
-Retorna les dades de contacte
+    Retorna les dades de contacte
     """
 
     def __call__(self, portal=None):
@@ -529,7 +533,7 @@ Retorna les dades de contacte
 
 class get_used_groups(BrowserView):
     """
-Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
+    Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte plone
     """
 
     def __call__(self, portal=None):
@@ -557,7 +561,7 @@ Retorna tots els usuaris dels grups ldap que tenen permisos en qualsevol objecte
 
 class get_collection_default_pages(BrowserView):
     """
-Llista el valor de la propietat 'default_page' (si està definida) per als continguts Col·lecció.
+    Llista el valor de la propietat 'default_page' (si està definida) per als continguts Col·lecció.
     """
 
     REPORT_TABLE = """
@@ -613,10 +617,10 @@ Llista el valor de la propietat 'default_page' (si està definida) per als conti
 
 class check_product_is_installed(BrowserView):
     """
-Comproba si un paquet està instal·lat
+    Comproba si un paquet està instal·lat
 
-Paràmetre:
-- product_name: id del paquet
+    Paràmetre:
+    - product_name: id del paquet
     """
 
     def __call__(self):
@@ -632,11 +636,11 @@ Paràmetre:
 
 class get_contents_type(BrowserView):
     """
-Retorna tots els continguts del tipus pasats per parametre
+    Retorna tots els continguts del tipus pasats per parametre
 
-Exemples:
-- get_contents_type?portal_type=Document
-- get_contents_type?portal_type=Document,Link
+    Exemples:
+    - get_contents_type?portal_type=Document
+    - get_contents_type?portal_type=Document,Link
     """
 
     def __call__(self):
@@ -666,4 +670,39 @@ Exemples:
 
                 results_dict[ct]['state'][rs].append(obj.absolute_url())
 
-        return json.dumps(results_dict)
+        return json.dumps(results_dict, indent=4)
+    
+
+class genwebStats(BrowserView):
+    """
+    Retorna algunes estadístiques per al GWManager.
+    """
+    
+    def __call__(self):
+        context = aq_inner(self.context)
+        last_login = DateTime('2023/01/01 16:00:00.111111 GMT+2')
+        membership = api.portal.get_tool(name='portal_membership')
+        for user in membership.searchForMembers():
+            llt = user.getProperty('last_login_time')
+            if llt > last_login:
+                last_login = llt
+
+        contact_email = api.portal.get_registry_record('plone.email_from_address')
+        registry = getUtility(IRegistry)
+        header_config = registry.forInterface(IHeaderSettings)
+        last_access = last_login.timeTime()
+        # Restem la diferencia de les dates en segons i obtenim els minuts /60
+        minutes = int((DateTime().timeTime() - last_access)/60.0)
+        # Els dies son els minuts per hora i les hores per dia
+        days = int(minutes/60/24)
+        unitat = api.portal.get_registry_record('genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
+
+        stats = {
+            'contact_email': contact_email,
+            'inactivity_days': days,
+            'titol': header_config.html_title_ca,
+            'titulo': header_config.html_title_es,
+            'title': header_config.html_title_en,
+            'unitat': unitat,
+        }
+        return json.dumps(stats, indent=4)

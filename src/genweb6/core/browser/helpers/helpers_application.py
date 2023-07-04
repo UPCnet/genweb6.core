@@ -23,7 +23,7 @@ else:
 
 class ping(BrowserView):
     """
-Vista de comoditat per al programari de monitorització.
+    Vista de comoditat per al programari de monitorització.
     """
 
     def __call__(self):
@@ -32,7 +32,7 @@ Vista de comoditat per al programari de monitorització.
 
 def listPloneSites(zope):
     """
-Llista els plonesites disponibles
+    Llista els plonesites disponibles
     """
 
     out = []
@@ -48,7 +48,7 @@ Llista els plonesites disponibles
 
 class list_plone_sites(BrowserView):
     """
-Retorna una llista amb els plonesites disponibles en aquest Zope
+    Retorna una llista amb els plonesites disponibles en aquest Zope
     """
 
     def __call__(self):
@@ -64,13 +64,14 @@ Retorna una llista amb els plonesites disponibles en aquest Zope
                     if IPloneSiteRoot.providedBy(site):
                         registry_tool = getToolByName(site, "portal_registry")
                         defaultLanguage = registry_tool['plone.default_language']
-                        out.append({'site': item.id + '/' + site.id, 'lang': defaultLanguage})
+                        out.append({'site': item.id + '/' + site.id,
+                                    'lang': defaultLanguage})
         return json.dumps(out)
 
 
 class get_flavour_sites(BrowserView):
     """
-Retorna l'última capa instal·lada per a cada plonesite
+    Retorna l'última capa instal·lada per a cada plonesite
     """
 
     def __call__(self):
@@ -85,8 +86,9 @@ Retorna l'última capa instal·lada per a cada plonesite
 
 class get_languages_sites(BrowserView):
     """
-Retorna els idiomes soportats per a cada lloc
+    Retorna els idiomes soportats per a cada lloc
     """
+
     def __call__(self):
         context = aq_inner(self.context)
         plonesites = listPloneSites(context)
@@ -100,7 +102,7 @@ Retorna els idiomes soportats per a cada lloc
 
 class get_default_language_sites(BrowserView):
     """
-Retorna l'idioma predeterminat per a cada lloc
+    Retorna l'idioma predeterminat per a cada lloc
     """
 
     def __call__(self):
@@ -116,7 +118,7 @@ Retorna l'idioma predeterminat per a cada lloc
 
 class get_default_wfsites(BrowserView):
     """
-Retorna el workflow predeterminat per a cada lloc
+    Retorna el workflow predeterminat per a cada lloc
     """
 
     def __call__(self):
@@ -131,11 +133,11 @@ Retorna el workflow predeterminat per a cada lloc
 
 class bulk_action(BrowserView):
     """
-Executeu una vista en totes les instancies
+    Executeu una vista en totes les instancies
 
-Paràmetre:
-- view: vista a executar
-- exclude_sites: sites a excluir, ex: Plone
+    Paràmetre:
+    - view: vista a executar
+    - exclude_sites: sites a excluir, ex: Plone
     """
 
     def __call__(self):
@@ -158,18 +160,19 @@ Paràmetre:
                 output.append(
                     """<br/>-- Executed view {} in site {} --""".format(view_name, plonesite.id))
                 result = response.getBody()
-                output.append(result.decode('utf-8') if isinstance(result, bytes) else result)
+                output.append(result.decode('utf-8')
+                              if isinstance(result, bytes) else result)
 
         return '\n'.join(output)
 
 
 class nsp_bulk_action(BrowserView):
     """
-Executeu una vista en totes les instancies, utilitzat només
-en cas que alguna cosa no funcioni fent una subrequest!
+    Executeu una vista en totes les instancies, utilitzat només
+    en cas que alguna cosa no funcioni fent una subrequest!
 
-Paràmetre:
-- view: vista a executar
+    Paràmetre:
+    - view: vista a executar
     """
 
     def __call__(self):
@@ -188,7 +191,7 @@ Paràmetre:
 
 class list_ldap_info(BrowserView):
     """
-Llista l'informació del LDAP de cada plonesite
+    Llista l'informació del LDAP de cada plonesite
     """
 
     def __call__(self):

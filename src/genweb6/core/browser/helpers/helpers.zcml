@@ -142,4 +142,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="genweb_stats"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.genwebStats"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
+
 </configure>
