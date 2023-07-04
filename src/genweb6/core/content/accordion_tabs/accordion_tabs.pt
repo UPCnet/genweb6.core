@@ -45,7 +45,8 @@
                             </button>
                         </h2>
 
-                        <div tal:attributes="id string:content-${content/id};
+                        <div role="region"
+                             tal:attributes="id string:content-${content/id};
                                              aria-labelledby string:heading-${content/id};
                                              data-bs-parent python:nothing if context.accordion_open_multiple else '#uid-' + token;
                                              class python:'accordion-collapse collapse show' if first else 'accordion-collapse collapse';">
