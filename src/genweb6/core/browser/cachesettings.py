@@ -112,7 +112,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
@@ -135,7 +134,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
@@ -166,7 +164,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
@@ -197,7 +194,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
@@ -459,7 +455,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
@@ -482,7 +477,6 @@ cacheprofile = """
     <value>
       <element>userid</element>
       <element>userLanguage</element>
-      <element>gzip</element>
       <element>locked</element>
       <element>resourceRegistries</element>
       <element>catalogCounter</element>
