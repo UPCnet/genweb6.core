@@ -5,49 +5,53 @@
     <tal:block tal:content="structure view/getLinksPage"></tal:block>
   </div>
 
-  <ul class="navbar-nav-footer" tal:condition="not:custom"
-      tal:define="render_globalnav python:view.render_globalnav();
-                  custom_links view/getCustomLinks">
+  <tal:block tal:condition="not:custom"
+             tal:define="render_globalnav python:view.render_globalnav();
+                         custom_links view/getCustomLinks">
 
-    <navtree tal:replace="structure render_globalnav" />
+    <ul class="navbar-nav-footer" tal:condition="python:render_globalnav or custom_links['links']">
 
-    <li class="no-folders has_subtree nav-item"
-        tal:condition="render_globalnav">
+      <navtree tal:replace="structure render_globalnav" />
 
-      <ul class="navbar-nav-footer-no-folders">
+      <li class="no-folders has_subtree nav-item"
+          tal:condition="render_globalnav">
 
-        <navtree tal:replace="structure render_globalnav" />
+        <ul class="navbar-nav-footer-no-folders">
 
-      </ul>
+          <navtree tal:replace="structure render_globalnav" />
 
-    </li>
+        </ul>
 
-    <li class="custom-links has_subtree nav-item" tal:condition="custom_links/links">
+      </li>
 
-      <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Enllaços</p>
-      <p tal:content="custom_links/title"></p>
+      <li class="custom-links has_subtree nav-item" tal:condition="custom_links/links">
 
-      <ul class="navbar-nav-footer-custom-links">
+        <p tal:replace="nothing" i18n:domain="genweb" i18n:translate="">Enllaços</p>
+        <p tal:content="custom_links/title"></p>
 
-        <li tal:repeat="link custom_links/links"
-            class="nav-item">
+        <ul class="navbar-nav-footer-custom-links">
 
-          <a tal:condition="link/external" target="_blank"
-             class="nav-link"
-             tal:attributes="href link/link"
-             tal:content="link/title"></a>
+          <li tal:repeat="link custom_links/links"
+              class="nav-item">
 
-          <a tal:condition="not:link/external"
-             class="nav-link"
-             tal:attributes="href link/link"
-             tal:content="link/title"></a>
+            <a tal:condition="link/external" target="_blank"
+              class="nav-link"
+              tal:attributes="href link/link"
+              tal:content="link/title"></a>
 
-        </li>
+            <a tal:condition="not:link/external"
+              class="nav-link"
+              tal:attributes="href link/link"
+              tal:content="link/title"></a>
 
-      </ul>
+          </li>
 
-    </li>
+        </ul>
 
-  </ul>
+      </li>
+
+    </ul>
+
+  </tal:block>
 
 </div>
