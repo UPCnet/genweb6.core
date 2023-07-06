@@ -496,7 +496,7 @@ class resourcesViewletCSS(viewletBase):
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        return "<script>" + resources_config.text_css + "</style>"
+        return "<style>" + resources_config.text_css + "</style>"
 
 
 class resourcesViewletJS(viewletBase):
