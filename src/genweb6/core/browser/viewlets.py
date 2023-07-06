@@ -483,7 +483,7 @@ class footerViewlet(viewletBase):
         return links[lang]
 
 
-class resourcesViewlet(viewletBase):
+class resourcesViewletCSS(viewletBase):
 
     @memoize
     def getFileCSS(self):
@@ -496,7 +496,15 @@ class resourcesViewlet(viewletBase):
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        return "<style>" + resources_config.text_css + "</style>"
+        return "<script>" + resources_config.text_css + "</style>"
+
+
+class resourcesViewletJS(viewletBase):
+
+    @memoize
+    def getTextJS(self):
+        resources_config = genwebResourcesConfig()
+        return "<script type='text/javascript'>" + resources_config.text_js + "</script>"
 
 
 class socialtoolsViewlet(viewletBase):

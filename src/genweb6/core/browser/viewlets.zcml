@@ -9,7 +9,7 @@
     <browser:viewlet
         name="genweb.resources.css"
         manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        class=".viewlets.resourcesViewlet"
+        class=".viewlets.resourcesViewletCSS"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/head/resources.pt"
@@ -76,7 +76,7 @@
     <browser:viewlet
         name="genweb.resources.js"
         manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
-        class=".viewlets.viewletBase"
+        class=".viewlets.resourcesViewletJS"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/footer/resources.pt"

@@ -4,7 +4,7 @@
 
         <script type="text/javascript"
                 tal:condition="resources_config/text_js"
-                tal:content="resources_config/text_js"></script>
+                tal:replace="structure view/getTextJS"></script>
 
     </tal:text>
 
