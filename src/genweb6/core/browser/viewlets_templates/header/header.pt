@@ -5,6 +5,9 @@
 
     <div id="header" tal:attributes="class view/getClass">
 
+        <a href="#main-container" class="d-none"
+           i18n:domain="genweb" i18n:translate="">Anar al contingut principal</a>
+
         <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
             <div id="logo-primary">
 

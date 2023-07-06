@@ -84,7 +84,7 @@ msgstr "A Banner"
 msgid "A footer logo"
 msgstr "A footer logo"
 
-#: ../content/accordion_tabs/accordion_tabs.py:51
+#: ../content/accordion_tabs/accordion_tabs.py:50
 msgid "Acordió"
 msgstr "Accordion"
 
@@ -145,11 +145,11 @@ msgstr "Add a button to the link added in this field"
 msgid "AgendaGW"
 msgstr "Events"
 
-#: ../controlpanels/footer.py:56
+#: ../controlpanels/footer.py:57
 msgid "Al marcar aquesta opció es mostrarà els enllaços als continguts i els enllaços personalitzats"
 msgstr "Checking this option will show the first and second level of the menu and custom links"
 
-#: ../controlpanels/footer.py:63
+#: ../controlpanels/footer.py:64
 msgid "Al marcar aquesta opció es mostrarà la pàgina de enllaços personalitzats al peu, la pàgina ha d'estar publicada."
 msgstr "Checking this option will display the custom links page in the footer, the page must be published."
 
@@ -157,9 +157,13 @@ msgstr "Checking this option will display the custom links page in the footer, t
 msgid "All"
 msgstr "All"
 
-#: ../controlpanels/header.py:225
+#: ../controlpanels/header.py:223
 msgid "Altres"
 msgstr "Others"
+
+#: ../browser/viewlets_templates/header/header.pt:8
+msgid "Anar al contingut principal"
+msgstr "Go to main content"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:42
 #: ../tiles/destacats/destacats.py:86
@@ -206,7 +210,7 @@ msgstr "Boolean indicating whether to display the date in the news"
 
 #: ../cas/controlpanel.py:108
 #: ../controlpanels/cintillo.py:116
-#: ../controlpanels/footer.py:186
+#: ../controlpanels/footer.py:187
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -214,11 +218,11 @@ msgstr "Cancel"
 msgid "Carousel"
 msgstr "Carousel"
 
-#: ../content/carousel/carousel.py:35
+#: ../content/carousel/carousel.py:34
 msgid "Carrusel amb quatre imatges en pantalla, en dispositius mòbils es redueix a una"
 msgstr "Carousel with four images on screen, on mobile devices it is reduced to one"
 
-#: ../content/carousel/carousel.py:34
+#: ../content/carousel/carousel.py:33
 msgid "Carrusel amb una imatge en pantalla"
 msgstr "Carousel with an image on the screen"
 
@@ -235,20 +239,20 @@ msgstr "Catalan"
 msgid "Categories"
 msgstr "Categories"
 
-#: ../content/accordion_tabs/accordion_tabs.py:86
-#: ../content/carousel/carousel.py:84
+#: ../content/accordion_tabs/accordion_tabs.py:85
+#: ../content/carousel/carousel.py:83
 msgid "Cerca una col·lecció"
 msgstr "Search a collection"
 
 #: ../cas/controlpanel.py:110
 #: ../controlpanels/cintillo.py:118
-#: ../controlpanels/footer.py:188
+#: ../controlpanels/footer.py:189
 msgid "Changes canceled."
 msgstr "Changes canceled."
 
 #: ../cas/controlpanel.py:105
 #: ../controlpanels/cintillo.py:113
-#: ../controlpanels/footer.py:183
+#: ../controlpanels/footer.py:184
 msgid "Changes saved"
 msgstr "Changes saved"
 
@@ -260,7 +264,7 @@ msgstr "Choose how the portlet must be rendered"
 msgid "Cintillo Settings"
 msgstr "Cintillo Settings"
 
-#: ../controlpanels/footer.py:21
+#: ../controlpanels/footer.py:22
 #: ../controlpanels/header.py:28
 msgid "Clar"
 msgstr "Light"
@@ -281,8 +285,8 @@ msgstr "Notice font color"
 msgid "Color de transició del menú quan fem scroll"
 msgstr "Transition color of the menu when we scroll"
 
-#: ../content/accordion_tabs/accordion_tabs.py:58
-#: ../content/carousel/carousel.py:31
+#: ../content/accordion_tabs/accordion_tabs.py:57
+#: ../content/carousel/carousel.py:30
 msgid "Col·lecció"
 msgstr "Collection"
 
@@ -290,7 +294,7 @@ msgstr "Collection"
 msgid "Configuracions"
 msgstr "Configurations"
 
-#: ../patches.py:810
+#: ../patches.py:808
 msgid "Connections"
 msgstr "Connections"
 
@@ -311,35 +315,35 @@ msgstr "Content type"
 msgid "Content's title position"
 msgstr "Content's title position"
 
-#: ../content/accordion_tabs/accordion_tabs.py:57
-#: ../content/carousel/carousel.py:30
+#: ../content/accordion_tabs/accordion_tabs.py:56
+#: ../content/carousel/carousel.py:29
 msgid "Continguts de dintre d'aquest directori"
 msgstr "Contents of this directory"
 
-#: ../content/accordion_tabs/accordion_tabs.py:72
-#: ../content/carousel/carousel.py:70
+#: ../content/accordion_tabs/accordion_tabs.py:71
+#: ../content/carousel/carousel.py:69
 msgid "Continguts que alimenten la plantilla"
 msgstr "Content that feeds the template"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:181
+#: ../content/accordion_tabs/accordion_tabs.pt:100
+#: ../content/carousel/carousel.pt:171
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
-#: ../browser/viewlets.py:516
+#: ../browser/viewlets.py:555
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:99
-#: ../content/carousel/carousel.pt:181
+#: ../content/accordion_tabs/accordion_tabs.pt:100
+#: ../content/carousel/carousel.pt:171
 msgid "Copiat"
 msgstr "Copied!"
 
-#: ../browser/viewlets.py:521
+#: ../browser/viewlets.py:560
 msgid "Copiat!"
 msgstr "Copied!"
 
-#: ../controlpanels/footer.py:62
+#: ../controlpanels/footer.py:63
 msgid "Costumizar completament els enllaços"
 msgstr "Show an alternative menu"
 
@@ -458,7 +462,7 @@ msgstr "Link for tiles of 4 and 5 Featured"
 msgid "Enllaç per les tiles de 5 Destacats"
 msgstr "Link for the 5 Featured tiles"
 
-#: ../controlpanels/footer.py:70
+#: ../controlpanels/footer.py:71
 msgid "Enllaços al peu"
 msgstr "Footer links"
 
@@ -519,7 +523,7 @@ msgstr "Clear background"
 msgid "Fons obscur"
 msgstr "Dark background"
 
-#: ../controlpanels/footer.py:165
+#: ../controlpanels/footer.py:166
 msgid "Footer Settings"
 msgstr "Footer Settings"
 
@@ -527,11 +531,11 @@ msgstr "Footer Settings"
 msgid "Formulari Existent"
 msgstr "Existing Form"
 
-#: ../content/carousel/carousel.py:102
+#: ../content/carousel/carousel.py:101
 msgid "Forçar les proporcions de les imatges"
 msgstr "Force image proportions"
 
-#: ../controlpanels/footer.py:22
+#: ../controlpanels/footer.py:23
 msgid "Fosc"
 msgstr "Dark"
 
@@ -579,11 +583,11 @@ msgstr "Full 4 columns: four columns of full image size and text below"
 msgid "FullNews"
 msgstr "News with picture"
 
-#: ../patches.py:809
+#: ../patches.py:807
 msgid "Genweb Advanced"
 msgstr "Genweb Advanced"
 
-#: ../patches.py:808
+#: ../patches.py:806
 msgid "Genweb Configuration"
 msgstr "Genweb Configuration"
 
@@ -603,11 +607,11 @@ msgstr "Grid events"
 msgid "GridEvents"
 msgstr "Grid Events"
 
-#: ../content/accordion_tabs/accordion_tabs.py:92
+#: ../content/accordion_tabs/accordion_tabs.py:91
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr "Enable the option to be able to open multiple accordion panels"
 
-#: ../controlpanels/header.py:276
+#: ../controlpanels/header.py:275
 msgid "Header Settings"
 msgstr "Header Settings"
 
@@ -661,7 +665,7 @@ msgstr "If enabled, items will be selected randomly from the collection, rather 
 msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 msgstr "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 
-#: ../controlpanels/footer.py:23
+#: ../controlpanels/footer.py:24
 msgid "Imatge capçalera"
 msgstr "Header image"
 
@@ -677,13 +681,9 @@ msgstr "Hero image"
 msgid "Info"
 msgstr "Info"
 
-#: ../browser/viewlets_templates/header/header.pt:61
+#: ../browser/viewlets_templates/header/header.pt:64
 msgid "Inici"
 msgstr "Home"
-
-#: ../content/carousel/carousel.py:108
-msgid "Iniciar automàticament (No recomanable segons la accesibilitat web)"
-msgstr "Start automatically (Not recommended based on web accessibility)"
 
 #: ../controlpanels/header.py:35
 msgid "Innovadora"
@@ -693,7 +693,7 @@ msgstr "Half Hero"
 msgid "Innovadora a pantalla sencera"
 msgstr "Full Hero"
 
-#: ../configure.zcml:51
+#: ../configure.zcml:49
 msgid "Installs the genweb6.core add-on."
 msgstr "Installs the genweb6.core add-on."
 
@@ -713,11 +713,11 @@ msgstr "Enter the color code. Ex: #FFFFFF"
 msgid "Items in which workflow state to show."
 msgstr "Items in which workflow state to show."
 
-#: ../browser/views.py:91
+#: ../browser/views.py:96
 msgid "L'element s'ha desmarcat com important"
 msgstr "The item has been marked as important"
 
-#: ../browser/views.py:94
+#: ../browser/views.py:99
 msgid "L'element s'ha marcat com important"
 msgstr "The item has been unmarked as important"
 
@@ -733,7 +733,7 @@ msgstr "Lead Image Caption"
 msgid "Limit"
 msgstr "Limit"
 
-#: ../controlpanels/footer.py:34
+#: ../controlpanels/footer.py:35
 msgid "Link"
 msgstr "Link"
 
@@ -741,15 +741,15 @@ msgstr "Link"
 msgid "List view"
 msgstr "List view"
 
-#: ../controlpanels/footer.py:110
+#: ../controlpanels/footer.py:111
 msgid "Llista d’enllaços [CA]"
 msgstr "List of links [CA]"
 
-#: ../controlpanels/footer.py:124
+#: ../controlpanels/footer.py:125
 msgid "Llista d’enllaços [EN]"
 msgstr "List of links [EN]"
 
-#: ../controlpanels/footer.py:117
+#: ../controlpanels/footer.py:118
 msgid "Llista d’enllaços [ES]"
 msgstr "List of links [ES]"
 
@@ -798,7 +798,7 @@ msgstr "Maximum number of news show (5 or 7)"
 msgid "Maxim numero de noticies a mostrar (d'1 a 14)"
 msgstr "Maximum number of news items to display (from 1 to 14)"
 
-#: ../controlpanels/footer.py:50
+#: ../controlpanels/footer.py:51
 msgid "Menú al peu"
 msgstr "Footer menu"
 
@@ -820,20 +820,20 @@ msgstr "Show date?"
 msgid "Mostra el títol?"
 msgstr "Show title?"
 
-#: ../content/carousel/carousel.py:96
+#: ../content/carousel/carousel.py:95
 msgid "Mostrar descripció"
 msgstr "Show description"
 
-#: ../controlpanels/footer.py:55
+#: ../controlpanels/footer.py:56
 msgid "Mostrar enllaços al peu"
 msgstr "Show website menu"
 
-#: ../content/carousel/carousel.py:90
+#: ../content/carousel/carousel.py:89
 msgid "Mostrar títol"
 msgstr "Show title"
 
-#: ../content/accordion_tabs/accordion_tabs.py:102
-#: ../content/carousel/carousel.py:121
+#: ../content/accordion_tabs/accordion_tabs.py:101
+#: ../content/carousel/carousel.py:106
 msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 msgstr "Show a button (Copy HTML) that allows you to copy the generated html code to be able to insert it elsewhere."
 
@@ -850,15 +850,15 @@ msgstr "Name of the Twitter account used to shown the tweets"
 msgid "News"
 msgstr "News"
 
-#: ../controlpanels/footer.py:91
+#: ../controlpanels/footer.py:92
 msgid "Nom de l’apartat [CA]"
 msgstr "Name of the section [CA]"
 
-#: ../controlpanels/footer.py:103
+#: ../controlpanels/footer.py:104
 msgid "Nom de l’apartat [EN]"
 msgstr "Name of the section [EN]"
 
-#: ../controlpanels/footer.py:97
+#: ../controlpanels/footer.py:98
 msgid "Nom de l’apartat [ES]"
 msgstr "Name of the section [ES]"
 
@@ -907,7 +907,7 @@ msgstr "Number of events to show"
 msgid "Numero de noticies a mostrar"
 msgstr "Number of news to display"
 
-#: ../content/accordion_tabs/accordion_tabs.py:97
+#: ../content/accordion_tabs/accordion_tabs.py:96
 msgid "Obrir el primer panell de l’acordió per defecte"
 msgstr "Open the first accordion panel by default"
 
@@ -927,15 +927,15 @@ msgstr "To add content within this accordion / tabs directory: Go to the side me
 msgid "Per afegir continguts dintre d'aquest directori de carrusel: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ]."
 msgstr "To add contents within this carousel directory: Go to the side menu, option [ <i class=\"bi bi-plus-square-fill me-1\"></i> Add... ]."
 
-#: ../controlpanels/footer.py:98
+#: ../controlpanels/footer.py:99
 msgid "Per defecte: Enlaces"
 msgstr "By default: Enlaces"
 
-#: ../controlpanels/footer.py:92
+#: ../controlpanels/footer.py:93
 msgid "Per defecte: Enllaços"
 msgstr "By default: Enllaços"
 
-#: ../controlpanels/footer.py:104
+#: ../controlpanels/footer.py:105
 msgid "Per defecte: Links"
 msgstr "By default: Links"
 
@@ -943,7 +943,7 @@ msgstr "By default: Links"
 msgid "Permet introduir el text que es veurà a l'avís"
 msgstr "Allows you to enter the text that will be seen in the notice"
 
-#: ../content/accordion_tabs/accordion_tabs.py:52
+#: ../content/accordion_tabs/accordion_tabs.py:51
 msgid "Pestanyes"
 msgstr "Tabs"
 
@@ -956,8 +956,8 @@ msgstr "Picture"
 msgid "Please upload an image"
 msgstr "Please upload an image"
 
-#: ../content/accordion_tabs/accordion_tabs.py:73
-#: ../content/carousel/carousel.py:71
+#: ../content/accordion_tabs/accordion_tabs.py:72
+#: ../content/carousel/carousel.py:70
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 msgstr "You can add contents to this directory from the following <a target=\"_blank\" href=\"folder_contents\">link</a>"
 
@@ -992,7 +992,7 @@ msgstr "Own styles"
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:103
-#: ../controlpanels/footer.py:173
+#: ../controlpanels/footer.py:174
 msgid "Save"
 msgstr "Save"
 
@@ -1000,8 +1000,8 @@ msgstr "Save"
 msgid "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
 msgstr "Select to upload resources from files and not use plain text fields"
 
-#: ../content/accordion_tabs/accordion_tabs.py:50
-#: ../content/carousel/carousel.py:29
+#: ../content/accordion_tabs/accordion_tabs.py:49
+#: ../content/carousel/carousel.py:28
 msgid "Selecciona una opció"
 msgstr "Select an option"
 
@@ -1029,7 +1029,7 @@ msgstr "If the process is run again after the objects have been created, some ob
 msgid "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
 msgstr "If you check this option the icon will be displayed bigger, like a background."
 
-#: ../controlpanels/footer.py:133
+#: ../controlpanels/footer.py:134
 msgid "Signatura"
 msgstr "Sign"
 
@@ -1072,13 +1072,9 @@ msgstr "Target collection"
 msgid "Tells if an object is marked as important"
 msgstr "Tells if an object is marked as important"
 
-#: ../controlpanels/footer.py:42
+#: ../controlpanels/footer.py:43
 msgid "Tema"
 msgstr "Color"
-
-#: ../content/carousel/carousel.py:113
-msgid "Temps en cambiar al següent element automàticament en segons (5 - 30)"
-msgstr "Time to automatically switch to next item in seconds (5 - 30)"
 
 #: ../controlpanels/cintillo.py:52
 msgid "Text per l'avís"
@@ -1150,11 +1146,11 @@ msgstr "Tile used to show easyform as tile"
 msgid "Tile used to show twitter widget"
 msgstr "Tile used to show twitter widget"
 
-#: ../content/carousel/carousel.py:61
+#: ../content/carousel/carousel.py:60
 msgid "Tipus de carousel"
 msgstr "Carousel type"
 
-#: ../content/accordion_tabs/accordion_tabs.py:64
+#: ../content/accordion_tabs/accordion_tabs.py:63
 msgid "Tipus de plantilla"
 msgstr "Template type"
 
@@ -1170,7 +1166,7 @@ msgstr "Image type on main pages"
 msgid "Tipus d’imatge als continguts"
 msgstr "Type of image in the contents"
 
-#: ../controlpanels/footer.py:29
+#: ../controlpanels/footer.py:30
 #: ../tiles/destacats/destacatbase.py:23
 #: ../tiles/destacats/destacats.py:36
 msgid "Title"
@@ -1224,7 +1220,7 @@ msgstr "Video URL"
 msgid "URL to open"
 msgstr "URL to open"
 
-#: ../configure.zcml:60
+#: ../configure.zcml:58
 msgid "Uninstalls the genweb6.core add-on."
 msgstr "Uninstalls the genweb6.core add-on."
 
@@ -1293,7 +1289,7 @@ msgstr "All News"
 
 #. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:243
+#: ../controlpanels/header.py:241
 msgid "amaga_identificacio"
 msgstr "Hide tools with identification link"
 
@@ -1303,7 +1299,7 @@ msgstr "APP name"
 
 #. Default: "Més esdeveniments"
 #: ../browser/views_templates/portlet_events_view.pt:49
-#: ../portlets/esdeveniments/esdeveniments.pt:38
+#: ../portlets/esdeveniments/esdeveniments.pt:34
 #: ../portlets/grid_events/grid_events.pt:51
 msgid "box_upcoming_events"
 msgstr "All events"
@@ -1438,11 +1434,11 @@ msgstr "If you have forgotten your password,"
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
 msgstr "Ha olvidado la contraseña?"
 
-#: ../configure.zcml:51
+#: ../configure.zcml:49
 msgid "genweb6.core"
 msgstr "genweb6.core"
 
-#: ../configure.zcml:60
+#: ../configure.zcml:58
 msgid "genweb6.core (uninstall)"
 msgstr "genweb6.core (uninstall)"
 
@@ -1460,7 +1456,7 @@ msgstr "genweb6.theme (uninstall)"
 msgid "genweb_loginlocal"
 msgstr "Log in only in this site"
 
-#: ../cas/utils.py:55
+#: ../cas/utils.py:54
 msgid "heading_signed_out"
 msgstr "The session has been disconnected."
 
@@ -1477,22 +1473,22 @@ msgstr "You may search for and choose an existing content"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:254
+#: ../controlpanels/header.py:253
 msgid "help_idiomes_publicats"
 msgstr "These languages will be published on the website, languages not specified not be public but will be visible to managers (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:266
+#: ../controlpanels/header.py:265
 msgid "help_languages_link_to_root"
 msgstr "Selecting this option makes that all the clicks on the languages combo always redirects to the site root."
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:174
+#: ../controlpanels/header.py:173
 msgid "help_logo_alt"
 msgstr "Add the alt text (alt) of the header logo."
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:194
+#: ../controlpanels/header.py:192
 msgid "help_logo_url"
 msgstr "Add the logo URL."
 
@@ -1502,19 +1498,19 @@ msgstr "You must include http:// at the beginning to make an external link"
 
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:141
+#: ../controlpanels/footer.py:142
 msgid "help_signatura_ca"
 msgstr "It is the literal that appears at the bottom of the page."
 
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:157
+#: ../controlpanels/footer.py:158
 msgid "help_signatura_en"
 msgstr "It is the literal that appears at the bottom of the page."
 
 #. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
-#: ../controlpanels/footer.py:149
+#: ../controlpanels/footer.py:150
 msgid "help_signatura_es"
 msgstr "It is the literal that appears at the bottom of the page."
 
@@ -1532,7 +1528,7 @@ msgstr "The complete URL of the content's page."
 
 #. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:234
+#: ../controlpanels/header.py:232
 msgid "help_treu_menu_horitzontal"
 msgstr "Hide horizontal menu ..."
 
@@ -1606,7 +1602,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:835
+#: ../patches.py:833
 msgid "label_add_new_item"
 msgstr "Add new…"
 
@@ -1616,7 +1612,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:832
+#: ../patches.py:830
 msgid "label_choose_template"
 msgstr "Display"
 
@@ -1647,7 +1643,7 @@ msgid "label_start_session"
 msgstr "Log in"
 
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:264
+#: ../controlpanels/header.py:263
 msgid "languages_link_to_root"
 msgstr "Redirect to site root when the user clicks on the languages availables on the site"
 
@@ -1661,12 +1657,12 @@ msgid "logo_alt"
 msgstr "Alternative logo text"
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:212
+#: ../controlpanels/header.py:210
 msgid "logo_external_url"
 msgstr "Is it an external URL?"
 
 #. Default: "URL del logo"
-#: ../controlpanels/header.py:192
+#: ../controlpanels/header.py:190
 msgid "logo_url"
 msgstr "Logo URL"
 
@@ -1717,19 +1713,20 @@ msgid "mode_week_link"
 msgstr "Week"
 
 #. Default: "Més notícies"
-#: ../portlets/news/news.pt:44
+#: ../portlets/fullnews/templates/macros.pt:19
+#: ../portlets/news/news.pt:40
 msgid "more_news_link"
 msgstr "More news"
 
 #. Default: "More"
 #: ../portlets/collection/collection.pt:59
 #: ../portlets/multiviewcollection/templates/macros.pt:23
-#: ../templates/plone.app.portlets.portlets.rss.pt:43
+#: ../templates/plone.app.portlets.portlets.rss.pt:42
 msgid "more_url"
 msgstr "View more"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:329
+#: ../browser/viewlets.py:345
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(open link in a new window)"
@@ -1765,19 +1762,19 @@ msgstr "Return"
 #########
 #. "Signatura de la unitat [CA]"
 #. Default: "Signatura [CA]"
-#: ../controlpanels/footer.py:140
+#: ../controlpanels/footer.py:141
 msgid "signatura_ca"
 msgstr "Signature [CA]"
 
 #. "Signatura de la unitat [EN]"
 #. Default: "Signatura [EN]"
-#: ../controlpanels/footer.py:156
+#: ../controlpanels/footer.py:157
 msgid "signatura_en"
 msgstr "Signature [EN]"
 
 #. "Signatura de la unitat [ES]"
 #. Default: "Signatura [ES]"
-#: ../controlpanels/footer.py:148
+#: ../controlpanels/footer.py:149
 msgid "signatura_es"
 msgstr "Signature [ES]"
 
@@ -1830,7 +1827,7 @@ msgstr "Todays upcoming events"
 
 #. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:232
+#: ../controlpanels/header.py:230
 msgid "treu_menu_horitzontal"
 msgstr "Hide horizontal menu"
 
