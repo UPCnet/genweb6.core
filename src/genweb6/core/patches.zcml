@@ -160,4 +160,11 @@
         replacement=".patches.addable_portlets"
         />
 
+    <monkey:patch
+        description="TinyMCE Modificamos el path del parámetro prependToUrl para no generar ../resolveuid"
+        class="Products.CMFPlone.patterns.settings.PatternSettingsAdapter"
+        original="tinymce"
+        replacement=".patches.tinymce"
+        />
+
 </configure>

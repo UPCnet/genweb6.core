@@ -2,9 +2,11 @@
 from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
+from Acquisition import aq_parent
 from BTrees.OOBTree import OOBTree
-from Products.CMFCore.MemberDataTool import _marker
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
+from Products.CMFCore.MemberDataTool import _marker
+from Products.CMFCore.interfaces._content import IFolderish
 from Products.CMFCore.permissions import ManageUsers
 from Products.CMFCore.utils import _checkPermission
 from Products.CMFCore.utils import getToolByName
@@ -14,7 +16,9 @@ from Products.CMFPlone.browser.syndication.adapters import FolderFeed
 from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces import ISocialMediaSchema
 from Products.CMFPlone.interfaces.syndication import IFeedItem
+from Products.CMFPlone.patterns.tinymce import TinyMCESettingsGenerator
 from Products.CMFPlone.utils import getSiteLogo
+from Products.CMFPlone.utils import get_portal
 from Products.CMFPlone.utils import normalizeString
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
 from Products.LDAPUserFolder.LDAPUser import NonexistingUser
@@ -24,6 +28,7 @@ from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 
+from borg.localrole.interfaces import IFactoryTempFolder
 from hashlib import sha1
 from io import StringIO
 from operator import itemgetter
@@ -35,12 +40,16 @@ from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
 from plone.app.users.utils import uuid_userid_generator
+from plone.app.widgets.utils import get_relateditems_options
+from plone.app.z3cform.utils import call_callables
+from plone.base.interfaces import IPloneSiteRoot
 from plone.base.interfaces.controlpanel import IMailSchema
 from plone.base.utils import pretty_title_or_id
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
 from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
+from plone.uuid.interfaces import IUUID
 from urllib.parse import quote_plus
 from zExceptions import NotFound
 from zope.component import getMultiAdapter
@@ -55,6 +64,7 @@ from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
 
+import json
 import logging
 import requests
 import six
@@ -1061,3 +1071,82 @@ def addable_portlets(self):
 
     portlets.sort(key=sort_key)
     return portlets
+
+
+# Modificamos el path del parámetro prependToUrl para no generar ../resolveuid
+def tinymce(self):
+    """
+    data-pat-tinymce : JSON.stringify({
+        relatedItems: {
+            vocabularyUrl: config.portal_url +
+            '/@@getVocabulary?name=plone.app.vocabularies.Catalog'
+        },
+        tiny: config,
+        prependToUrl: 'resolveuid/',
+        linkAttribute: 'UID',
+        prependToScalePart: '/@@images/image/'
+        })
+    """
+
+    generator = TinyMCESettingsGenerator(self.context, self.request)
+    settings = generator.settings
+    folder = aq_inner(self.context)
+
+    # Test if we are currently creating an Archetype object
+    if IFactoryTempFolder.providedBy(aq_parent(folder)):
+        folder = aq_parent(aq_parent(aq_parent(folder)))
+    if not IFolderish.providedBy(folder):
+        folder = aq_parent(folder)
+
+    if IPloneSiteRoot.providedBy(folder):
+        initial = None
+    else:
+        initial = IUUID(folder, None)
+
+    portal = get_portal()
+    portal_url = portal.absolute_url()
+    current_path = folder.absolute_url()[len(portal_url) :]
+
+    image_types = settings.image_objects or []
+
+    server_url = self.request.get("SERVER_URL", "")
+    site_path = portal_url[len(server_url) :]
+
+    related_items_config = get_relateditems_options(
+        context=self.context,
+        value=None,
+        separator=";",
+        vocabulary_name="plone.app.vocabularies.Catalog",
+        vocabulary_view="@@getVocabulary",
+        field_name=None,
+    )
+    related_items_config = call_callables(related_items_config, self.context)
+
+    configuration = {
+        "base_url": self.context.absolute_url(),
+        "imageTypes": image_types,
+        # Keep imageScales at least until https://github.com/plone/mockup/pull/1156
+        # is merged and plone.staticresources is updated.
+        "imageScales": self.image_scales,
+        "pictureVariants": self.picture_variants,
+        "imageCaptioningEnabled": self.image_captioning,
+        "linkAttribute": "UID",
+        # This is for loading the languages on tinymce
+        "loadingBaseUrl": "{}/++plone++static/components/tinymce-builded/"
+        "js/tinymce".format(portal_url),
+        "relatedItems": related_items_config,
+        "prependToScalePart": "/@@images/image/",
+        "prependToUrl": "resolveuid/",  # Moficamos el path para no genererar ../
+        "inline": settings.inline,
+        "tiny": generator.get_tiny_config(),
+        "upload": {
+            "baseUrl": portal_url,
+            "currentPath": current_path,
+            "initialFolder": initial,
+            "maxFiles": 1,
+            "relativePath": "@@fileUpload",
+            "showTitle": False,
+            "uploadMultiple": False,
+        },
+    }
+    return {"data-pat-tinymce": json.dumps(configuration)}
