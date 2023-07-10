@@ -120,3 +120,13 @@ msgstr "Canal RSS avançat"
 
 msgid "homepage"
 msgstr "Pàgina principal"
+
+#. Default: "Related content"
+#: plone.app.layout/plone/app/layout/viewlets/document_relateditems.pt:14
+msgid "section_related_heading"
+msgstr "Elements relacionats"
+
+#. Default: "Related Items"
+#: plone.app.relationfield/plone/app/relationfield/behavior.py:17
+msgid "label_related_items"
+msgstr "Elements relacionats"
