@@ -696,7 +696,6 @@ class genwebStats(BrowserView):
         # Els dies son els minuts per hora i les hores per dia
         days = int(minutes/60/24)
         unitat = api.portal.get_registry_record('genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
-
         stats = {
             'contact_email': contact_email,
             'inactivity_days': days,
@@ -705,4 +704,4 @@ class genwebStats(BrowserView):
             'title': header_config.html_title_en,
             'unitat': unitat,
         }
-        return json.dumps(stats, indent=4)
+        return json.dumps(stats, indent=4, ensure_ascii=False)
