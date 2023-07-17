@@ -9,6 +9,7 @@ from datetime import timedelta
 from plone import api
 from plone.app.event.base import localized_now
 from plone.app.multilingual.browser.setup import SetupMultilingualSite
+from plone.app.multilingual.interfaces import ILanguageIndependentFolder
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.textfield.value import RichTextValue
 from plone.dexterity.utils import createContentInContainer
@@ -132,9 +133,12 @@ class setup(BrowserView):
         portal_es = portal['es']
 
         # Remove recursos / assets folders
-        api.content.delete(portal_ca['recursos'])
-        api.content.delete(portal_en['assets'])
-        api.content.delete(portal_es['recursos'])
+        if ILanguageIndependentFolder.providedBy(portal_ca['recursos']):
+            api.content.delete(portal_ca['recursos'])
+        if ILanguageIndependentFolder.providedBy(portal_en['assets']):
+            api.content.delete(portal_en['assets'])
+        if ILanguageIndependentFolder.providedBy(portal_es['recursos']):
+            api.content.delete(portal_es['recursos'])
 
         # Let's configure mail
         mail = IMailSchema(portal)
@@ -600,9 +604,12 @@ class setup(BrowserView):
         portal_es = portal['es']
 
         # Remove recursos / assets folders
-        api.content.delete(portal_ca['recursos'])
-        api.content.delete(portal_en['assets'])
-        api.content.delete(portal_es['recursos'])
+        if ILanguageIndependentFolder.providedBy(portal_ca['recursos']):
+            api.content.delete(portal_ca['recursos'])
+        if ILanguageIndependentFolder.providedBy(portal_en['assets']):
+            api.content.delete(portal_en['assets'])
+        if ILanguageIndependentFolder.providedBy(portal_es['recursos']):
+            api.content.delete(portal_es['recursos'])
 
         # Let's configure mail
         mail = IMailSchema(portal)
