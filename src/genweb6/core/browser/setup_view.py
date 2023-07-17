@@ -131,6 +131,11 @@ class setup(BrowserView):
         portal_en = portal['en']
         portal_es = portal['es']
 
+        # Remove recursos / assets folders
+        api.content.delete(portal_ca['recursos'])
+        api.content.delete(portal_en['assets'])
+        api.content.delete(portal_es['recursos'])
+
         # Let's configure mail
         mail = IMailSchema(portal)
         mail.smtp_host = u'localhost'
@@ -593,6 +598,11 @@ class setup(BrowserView):
         portal_ca = portal['ca']
         portal_en = portal['en']
         portal_es = portal['es']
+
+        # Remove recursos / assets folders
+        api.content.delete(portal_ca['recursos'])
+        api.content.delete(portal_en['assets'])
+        api.content.delete(portal_es['recursos'])
 
         # Let's configure mail
         mail = IMailSchema(portal)
