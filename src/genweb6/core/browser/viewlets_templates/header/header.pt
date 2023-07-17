@@ -78,9 +78,9 @@
                         tal:attributes="action">
 
                         <i tal:condition="action/icon"
-                            tal:attributes="class string:bi bi-${action/icon};
-                                            title action/title;
-                                            alt action/title"></i>
+                           tal:attributes="class string:bi bi-${action/icon};
+                                           title action/title;
+                                           alt action/title"></i>
                         </a>
 
                     </li>
@@ -89,7 +89,8 @@
 
                 <tal:languages tal:condition="languages/has_selector">
 
-                <li class="has_subtree nav-item nav-lang">
+                    <li class="has_subtree nav-item nav-lang">
+
                         <a href="#" class="nav-link" aria-haspopup="true">
                             <i class="bi bi-globe" i18n:domain="plone"
                             i18n:attributes="alt label_languages;
@@ -164,46 +165,62 @@
 
                                 </li>
 
-                                <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                <tal:menu tal:condition="not:header_config/treu_menu_horitzontal">
 
-                                <navtree tal:condition="not:header_config/treu_menu_horitzontal"
-                                        tal:replace="structure render_globalnav" />
+                                    <tal:block tal:condition="render_globalnav">
 
-                                <tal:block tal:condition="python:view.user_actions and view.anonymous">
+                                        <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                    <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                        <navtree tal:replace="structure render_globalnav" />
 
-                                    <li class="nav-item" tal:repeat="action view/user_actions">
+                                    </tal:block>
 
-                                        <a href=""
-                                        tal:attributes="title action/title;
-                                                        href action/href;
-                                                        id string:${action/id}-mobile">
+                                </tal:menu>
 
-                                            <span tal:content="action/title"
-                                                i18n:translate="">
-                                                action title
-                                            </span>
-                                        </a>
+                                <tal:actions tal:condition="python:view.user_actions and view.anonymous"
+                                             tal:define="user_actions view/user_actions">
 
-                                    </li>
+                                    <tal:block tal:condition="user_actions">
 
-                                </tal:block>
+                                        <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                        <li class="nav-item" tal:repeat="action user_actions">
+
+                                            <a href=""
+                                            tal:attributes="title action/title;
+                                                            href action/href;
+                                                            id string:${action/id}-mobile">
+
+                                                <span tal:content="action/title"
+                                                    i18n:translate="">
+                                                    action title
+                                                </span>
+                                            </a>
+
+                                        </li>
+
+                                    </tal:block>
+
+                                </tal:actions>
 
                                 <tal:languages tal:condition="languages/has_selector"
-                                            tal:define="langs languages/others">
+                                               tal:define="langs languages/others">
 
-                                    <li tal:repeat="lang langs" class="nav-item">
+                                    <tal:block tal:condition="langs">
 
-                                        <a class="nav-link" tal:attributes="href lang/url">
+                                        <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                            <span tal:content="lang/native"></span>
+                                        <li tal:repeat="lang langs" class="nav-item">
 
-                                        </a>
+                                            <a class="nav-link" tal:attributes="href lang/url">
 
-                                    </li>
+                                                <span tal:content="lang/native"></span>
+
+                                            </a>
+
+                                        </li>
+
+                                    </tal:block>
 
                                 </tal:languages>
 
