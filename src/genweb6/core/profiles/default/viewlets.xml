@@ -4,6 +4,11 @@
   <viewlet name="genweb.hero"/>
   <viewlet name="plone.path_bar"/>
  </order>
+ <order manager="plone.abovecontenttitle" skinname="Plone Default">
+  <viewlet name="plone.socialtags"/>
+  <viewlet name="contentleadimage"/>
+  <viewlet name="genweb.socialtools"/>
+ </order>
  <order manager="plone.belowcontent" skinname="Plone Default">
   <viewlet name="plone.documentactions"/>
   <viewlet name="plone.nextprevious"/>
