@@ -1,12 +1,14 @@
 <div class="portlet portlet-collection portlet-collection-iltr"
      i18n:domain="plone"
+     tal:define="result_dicts view/result_dicts"
+     tal:condition="result_dicts"
      tal:attributes="class string:portlet portlet-collection portlet-collection-iltr ${view/css_class}">
 
     <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
     <ul class="list-group list-group-flush mb-2">
 
-        <tal:item tal:repeat="obj view/result_dicts">
+        <tal:item tal:repeat="obj result_dicts">
 
             <block metal:use-macro="context/macros-genweb-portlets/img_left_title_right"></block>
 

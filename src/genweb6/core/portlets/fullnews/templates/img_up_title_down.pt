@@ -1,11 +1,13 @@
 <div class="portlet portlet-fullnews portlet-collection portlet-collection-iutd"
+     tal:define="result_dicts view/result_dicts"
+     tal:condition="result_dicts"
      i18n:domain="plone">
 
     <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
 
     <ul class="ps-0 mb-2 row">
 
-        <tal:item tal:repeat="obj view/result_dicts">
+        <tal:item tal:repeat="obj result_dicts">
 
             <block metal:use-macro="context/macros-genweb-portlets/img_up_title_down"></block>
 

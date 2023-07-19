@@ -1,16 +1,17 @@
 <div class="portlet portlet-collection portlet-list"
      i18n:domain="plone"
-     tal:define="plone_view context/@@plone;
-                 normalizeString nocall:plone_view/normalizeString;
-                 toLocalizedTime nocall:plone_view/toLocalizedTime;
-                 viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();"
+     tal:define="results view/results"
+     tal:condition="results"
      tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
     <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
-    <ul class="list-group list-group-flush mb-2">
+    <ul class="list-group list-group-flush mb-2"
+        tal:define="plone_view context/@@plone;
+                    toLocalizedTime nocall:plone_view/toLocalizedTime;
+                    viewActions here/portal_properties/site_properties/typesUseViewActionInListings|python:();">
 
-        <tal:item tal:repeat="obj view/results">
+        <tal:item tal:repeat="obj results">
 
             <li tal:attributes="class string:list-group-item ps-0 contenttype-${obj/portal_type}"
                 tal:define="useView python:obj.portal_type in viewActions;
