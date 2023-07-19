@@ -32,7 +32,7 @@ class Renderer(base.Renderer):
         result = pc.searchResults(object_provides=IHomePage.__identifier__,
                                   portal_type='Document',
                                   Language=pref_lang())
-        page['body'] = ''
+        page['body'] = None
         if result:
             try:
                 page['body'] = result[0].output
