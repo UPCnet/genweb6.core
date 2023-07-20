@@ -35,7 +35,7 @@ class Renderer(base.Renderer):
         page['body'] = None
         if result:
             try:
-                page['body'] = result[0].output
+                page['body'] = result[0].getObject().text.output
             except:
                 pass
 
