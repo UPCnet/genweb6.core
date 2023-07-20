@@ -28,6 +28,5 @@
     <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
     <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
     <adapter factory=".content.banner.banner.getRemoteUrl" name="getRemoteUrl" />
-    <adapter factory=".indexes.outputIndexer" name="output" />
 
 </configure>

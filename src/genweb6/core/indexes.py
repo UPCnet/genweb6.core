@@ -10,8 +10,3 @@ def newsImageFile(context):
     populate the ``context.filename`` value and index it.
     """
     return context.image.filename
-
-
-@indexer(IDexterityContent)
-def outputIndexer(context):
-    return context.text.output
