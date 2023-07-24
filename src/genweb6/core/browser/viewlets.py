@@ -2,6 +2,8 @@
 from Acquisition import aq_inner
 
 from plone import api
+from plone.app.contenttypes.interfaces import IFile
+from plone.app.contenttypes.interfaces import IImage
 from plone.app.contenttypes.interfaces import INewsItem
 from plone.app.layout.viewlets import ViewletBase
 from plone.app.layout.viewlets.common import GlobalSectionsViewlet
@@ -13,8 +15,8 @@ from plone.app.multilingual.interfaces import ILanguageRootFolder
 from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
 from plone.formwidget.namedfile.converter import b64decode_file
-from plone.memoize.view import memoize_contextless
 from plone.memoize.view import memoize
+from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.uuid.interfaces import IUUID
 from zope.component import queryAdapter
@@ -518,6 +520,15 @@ class socialtoolsViewlet(viewletBase):
     @memoize
     def data(self):
         title = self.context.title
+
+        # En caso de que no tenga título el contenido comprobamos si es un fichero o una
+        # imagen para pillar el nombre del anexo
+        if not title:
+            if IFile.providedBy(self.context) or IImage.providedBy(self.context):
+                title = self.context.file.filename
+            else:
+                return []
+
         url = self.root_url() + '/resolveuid/' + IUUID(self.context)
 
         return [
