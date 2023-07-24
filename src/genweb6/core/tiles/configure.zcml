@@ -39,8 +39,8 @@
         for="*"
         layer="*"
         template="destacats/dos_destacats/destacats.pt"
-        />   
-    
+        />
+
     <plone:tile
         name="tres_destacats"
         title="3 Destacats"
@@ -65,7 +65,7 @@
         for="*"
         layer="*"
         template="destacats/cinc_destacats/destacats.pt"
-        />    
+        />
 
     <plone:tile
         name="formulari_existent"
@@ -96,7 +96,7 @@
         template="video/video.pt"
         />
 
-    <plone:tile
+    <!-- <plone:tile
         name="twitter"
         title="Twitter"
         description="Tile used to show twitter widget"
@@ -107,6 +107,6 @@
         for="*"
         layer="*"
         template="twitter/twitter.pt"
-        />
+        /> -->
 
 </configure>
