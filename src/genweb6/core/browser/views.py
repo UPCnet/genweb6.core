@@ -129,9 +129,14 @@ class HomePageBase(BrowserView):
             pc = api.portal.get_tool(name='portal_catalog')
             # Add the use case of mixin types of IHomepages. The main ones of a
             # non PAM-enabled site and the possible inner ones.
-            result = pc.searchResults(object_provides=IHomePage.__identifier__,
-                                      portal_type='Document',
-                                      Language=pref_lang())
+
+            # isAnom = api.user.is_anonymous()
+            # Por ahora dejo unrestricted y los estados, tenemos un problema con esta vista.
+            # El user siempre es anonymous aunque este authenticated PDTE REVISAR
+            result = pc.unrestrictedSearchResults(object_provides=IHomePage.__identifier__,
+                                                  portal_type='Document',
+                                                  review_state=['published', 'intranet'],
+                                                  Language=pref_lang())
             if result:
                 # Return the object without forcing a getObject()
                 container = getattr(context, result[0].id, context)
