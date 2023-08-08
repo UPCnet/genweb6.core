@@ -81,6 +81,7 @@
       <element>genweb.portlets.HomePortletManager10</element>
       <element>plone.footerportlets</element>
       <element>plone.rightcolumn</element>
+      <element>plone.app.standardtiles.portletManager</element>
     </value>
   </record>
 
