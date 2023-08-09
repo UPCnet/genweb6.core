@@ -922,7 +922,6 @@
       <element>EasyForm</element>
       <element>Link</element>
       <element>Event</element>
-      <element>File</element>
       <element>genweb.core.accordiontabs</element>
       <element>genweb.core.carousel</element>
       <element>News Item</element>
