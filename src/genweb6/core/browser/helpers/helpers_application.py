@@ -160,7 +160,7 @@ class bulk_action(BrowserView):
                 output.append(
                     """<br/>-- Executed view {} in site {} --""".format(view_name, plonesite.id))
                 result = response.getBody()
-                output.append(result
+                output.append(str(result, 'utf-8')
                               if isinstance(result, bytes) else result)
 
         return '\n'.join(output)
