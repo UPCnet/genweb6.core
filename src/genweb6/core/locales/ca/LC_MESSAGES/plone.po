@@ -130,3 +130,13 @@ msgstr "Elements relacionats"
 #: plone.app.relationfield/plone/app/relationfield/behavior.py:17
 msgid "label_related_items"
 msgstr "Elements relacionats"
+
+#: CMFPlone/controlpanel/browser/actions.pt:25
+msgid "Add new action"
+msgstr "Afegeix una nova acció"
+
+#: plone.app.contenttypes/plone/app/contenttypes/behaviors/tableofcontents.py:13
+#: plone.app.contenttypes/plone/app/contenttypes/behaviors/thumb_icon.py:15
+#: plone.app.dexterity/plone/app/dexterity/behaviors/discussion.py:25
+msgid "Settings"
+msgstr "Configuració"

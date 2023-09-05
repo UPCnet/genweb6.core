@@ -56,7 +56,7 @@ msgstr "Configura camps"
 #: collective/easyform/configure.zcml:28
 #: collective/easyform/profiles/default/types/EasyForm.xml
 msgid "EasyForm"
-msgstr "EasyForm"
+msgstr "Carpeta de Formulari"
 
 #: collective/easyform/configure.zcml:36
 msgid "EasyForm (uninstall)"
@@ -830,3 +830,47 @@ msgstr "Dia/Hora de l'enviament"
 #: collective/easyform/vocabularies.py:64
 msgid "vocabulary_tsv_text"
 msgstr "Arxiu TSV (separat per tabulacions)"
+
+#: collective/easyform/interfaces/easyform.py:197
+#: collective/easyform/interfaces/fields.py:62
+msgid "Advanced"
+msgstr "Avançat"
+
+#: collective/easyform/profiles/default/types/EasyForm.xml
+msgid "A web-form builder"
+msgstr "Un constructor de formularis web"
+
+#: collective/easyform/default_schemata/fields_default.xml
+msgid "Your E-Mail Address"
+msgstr "La seva adreça de correu electrònic"
+
+#: collective/easyform/default_schemata/fields_default.xml
+msgid "Comments"
+msgstr "Comentaris"
+
+#: collective/easyform/default_schemata/fields_default.xml
+msgid "Subject"
+msgstr "Assumpte"
+
+#: collective/easyform/browser/actions.py:292
+msgid "Add new action"
+msgstr "Afegeix una nova acció..."
+
+#. Default: "Mailer"
+#: collective/easyform/actions.py:900
+msgid "label_mailer_action"
+msgstr "Remitent"
+
+#: collective/easyform/default_schemata/actions_default.xml
+msgid "Mailer"
+msgstr "Remitent"
+
+#. Default: "Custom Script"
+#: collective/easyform/actions.py:905
+msgid "label_customscript_action"
+msgstr "Script personalitzat"
+
+#. Default: "Save Data"
+#: collective/easyform/actions.py:910
+msgid "label_savedata_action"
+msgstr "Guardar dades"
