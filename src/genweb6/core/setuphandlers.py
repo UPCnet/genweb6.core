@@ -7,6 +7,7 @@ from plone.formwidget.namedfile.converter import b64encode_file
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import implementer
+from zope.ramcache import ram
 
 from genweb6.core.utils import genwebHeaderConfig
 
@@ -108,6 +109,7 @@ def setupVarious(context):
 
     # Setup logo + hero
     egglocation = pkg_resources.get_distribution('genweb6.theme').location
+    ram.caches.clear()
     header_settings = genwebHeaderConfig()
 
     logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
