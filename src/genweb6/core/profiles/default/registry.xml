@@ -966,6 +966,15 @@
 
   <!-- Caching Varnish Inicio -->
 
+    <record name="plone.caching.interfaces.ICacheSettings.enabled" interface="plone.caching.interfaces.ICacheSettings" field="enabled">
+     <field type="plone.registry.field.Bool">
+       <default>True</default>
+       <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">If not set, no caching operations will be attempted</description>
+       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Globally enabled</title>
+     </field>
+     <value>True</value>
+    </record>
+
     <record name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="cacheStopRequestVariables">
     <field type="plone.registry.field.Tuple">
       <default>

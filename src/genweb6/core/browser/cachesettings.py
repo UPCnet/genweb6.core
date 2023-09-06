@@ -1,5 +1,13 @@
 cacheprofile = """
 <registry>
+    <record name="plone.caching.interfaces.ICacheSettings.enabled" interface="plone.caching.interfaces.ICacheSettings" field="enabled">
+     <field type="plone.registry.field.Bool">
+       <default>True</default>
+       <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">If not set, no caching operations will be attempted</description>
+       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Globally enabled</title>
+     </field>
+     <value>True</value>
+    </record>
     <record name="plone.app.caching.interfaces.IPloneCacheSettings.cacheStopRequestVariables" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="cacheStopRequestVariables">
     <field type="plone.registry.field.Tuple">
       <default>
@@ -52,22 +60,30 @@ cacheprofile = """
       </value_type>
     </field>
     <value>
+      <element>genweb.core.accordiontabs</element>
       <element>Banner</element>
       <element>BannerContainer</element>
+      <element>genweb.core.carousel</element>
       <element>Collection</element>
       <element>genweb.upc.documentimage</element>
       <element>EasyForm</element>
       <element>Event</element>
       <element>File</element>
+      <element>Folder</element>
       <element>Image</element>
       <element>Link</element>
       <element>Logos_Container</element>
       <element>Logos_Footer</element>
       <element>News Item</element>
+      <element>notificaciotic</element>
       <element>Document</element>
       <element>Plone Site</element>
+      <element>serveitic</element>
       <element>genweb.upc.subhome</element>
       <element>packet</element>
+      <element>genweb.tfemarket.application</element>
+      <element>genweb.tfemarket.market</element>
+      <element>genweb.tfemarket.offer</element>
     </value>
   </record>
   <record name="plone.app.caching.interfaces.IPloneCacheSettings.templateRulesetMapping" interface="plone.app.caching.interfaces.IPloneCacheSettings" field="templateRulesetMapping">
@@ -525,7 +541,7 @@ cacheprofile = """
       <element key="plone.content.dynamic">plone.app.caching.terseCaching</element>
       <element key="plone.content.feed">plone.app.caching.noCaching</element>
       <element key="plone.content.file">plone.app.caching.moderateCaching</element>
-      <element key="plone.content.folderView">plone.app.caching.moderateCaching</element>
+      <element key="plone.content.folderView">plone.app.caching.weakCaching</element>
       <element key="plone.content.itemView">plone.app.caching.moderateCaching</element>
       <element key="plone.resource">plone.app.caching.strongCaching</element>
       <element key="plone.stableResource">plone.app.caching.strongCaching</element>
