@@ -140,3 +140,33 @@ msgstr "Afegeix una nova acció"
 #: plone.app.dexterity/plone/app/dexterity/behaviors/discussion.py:25
 msgid "Settings"
 msgstr "Configuració"
+
+msgid "getObjPositionInParent"
+msgstr "GetObjPositionInParent"
+
+msgid "path"
+msgstr "Path"
+
+msgid "is_default_page"
+msgstr "Es pàgina per defecte"
+
+msgid "TranslationGroup"
+msgstr "TranslationGroup"
+
+msgid "layout"
+msgstr "Layout"
+
+msgid "open_link_in_new_window"
+msgstr "Obrir en una finestra nova"
+
+msgid "is_important"
+msgstr "És important"
+
+msgid "news_image_filename"
+msgstr "Nom de l'imatge de la notícia"
+
+msgid "gwuuid"
+msgstr "GWUUID"
+
+msgid "output"
+msgstr "Output"

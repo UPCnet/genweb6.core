@@ -51,3 +51,33 @@ msgstr "RSS Advanced Channel"
 
 msgid "homepage"
 msgstr "Homepage"
+
+msgid "getObjPositionInParent"
+msgstr "GetObjPositionInParent"
+
+msgid "path"
+msgstr "Path"
+
+msgid "is_default_page"
+msgstr "Es página por defecto"
+
+msgid "TranslationGroup"
+msgstr "TranslationGroup"
+
+msgid "layout"
+msgstr "Layout"
+
+msgid "open_link_in_new_window"
+msgstr "Abrir en una ventata nueva"
+
+msgid "is_important"
+msgstr "Es importante"
+
+msgid "news_image_filename"
+msgstr "Nombre de la imagen de la notícia"
+
+msgid "gwuuid"
+msgstr "GWUUID"
+
+msgid "output"
+msgstr "Output"
