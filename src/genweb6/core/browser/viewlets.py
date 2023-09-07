@@ -535,7 +535,7 @@ class socialtoolsViewlet(viewletBase):
             {
                 'title': 'Twitter',
                 'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
-                'icon': 'bi bi-twitter',
+                'icon': 'fa-brands fa-x-twitter',
                 'action': False,
             },
             {
