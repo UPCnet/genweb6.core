@@ -88,6 +88,13 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
             getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
         entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
 
+        # Si tenemos una url con resolveuid la cambiamos por la url del objeto
+        internal = True if 'resolveuid' in entry['url'] else False
+        if internal:
+            uid = entry['url'].split('/resolveuid/')[1]
+            next_obj = api.content.get(UID=uid)
+            entry['url'] = next_obj.absolute_url()
+
     # Añadimos target y current al dict
     def render_item(self, item, path):
         sub = self.build_tree(item["path"], first_run=False)
@@ -535,7 +542,7 @@ class socialtoolsViewlet(viewletBase):
             {
                 'title': 'Twitter',
                 'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
-                'icon': 'fa-brands fa-x-twitter',
+                'icon': 'bi bi-twitter',
                 'action': False,
             },
             {
