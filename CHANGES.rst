@@ -2,17 +2,19 @@ Changelog
 =========
 
 
-1.1 (unreleased)
+1.1 (2023-09-14)
 ----------------
 
-- Nothing changed yet.
-
+* Twitter X [Iago López]
+* Si tenemos una url con resolveuid la cambiamos por la url del objeto [Iago López]
+* Cambiar logo twitter a X [Iago López]
 
 1.0 (2023-09-07)
 ----------------
 
-- Nothing changed yet.
-
+* Twitter X [Iago López]
+* Si tenemos una url con resolveuid la cambiamos por la url del objeto [Iago López]
+* Cambiar logo twitter a X [Iago López]
 
 1.0 (2023-09-07)
 ----------------
