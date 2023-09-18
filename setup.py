@@ -72,6 +72,7 @@ setup(
         'collective.siteimprove',
         'plone.app.mosaic',
         'PyYAML',
+        'pyScss',
         'genweb6.theme',
         'ipdb',
     ],

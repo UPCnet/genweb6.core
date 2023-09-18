@@ -19,6 +19,7 @@ from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.uuid.interfaces import IUUID
+from scss import Scss
 from zope.component import queryAdapter
 
 from genweb6.core import _
@@ -500,12 +501,14 @@ class resourcesViewletCSS(viewletBase):
         if getattr(resources_config, 'file_css', False):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
-            return data._data._data
+            css = Scss()
+            return css.compile(data._data._data)
 
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        return "<style>" + resources_config.text_css + "</style>"
+        css = Scss()
+        return "<style>" + css.compile(resources_config.text_css) + "</style>"
 
 
 class resourcesViewletJS(viewletBase):
