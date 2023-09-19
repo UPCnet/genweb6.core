@@ -6,10 +6,11 @@ from plone.app.multilingual.browser.setup import SetupMultilingualSite
 from plone.formwidget.namedfile.converter import b64encode_file
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+from zope.component import queryUtility
 from zope.interface import implementer
 from zope.ramcache import ram
 
-from genweb6.core.utils import genwebHeaderConfig
+from genweb6.core.controlpanels.header import IHeaderSettings
 
 import logging
 import pkg_resources
@@ -110,7 +111,9 @@ def setupVarious(context):
     # Setup logo + hero
     egglocation = pkg_resources.get_distribution('genweb6.theme').location
     ram.caches.clear()
-    header_settings = genwebHeaderConfig()
+
+    registry = queryUtility(IRegistry)
+    header_settings = registry.forInterface(IHeaderSettings)
 
     logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
     encoded_data = b64encode_file(filename='logo.png', data=logo)
