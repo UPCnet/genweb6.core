@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.3 (unreleased)
+1.3 (2023-09-20)
 ----------------
 
-- Nothing changed yet.
-
+* [UPD] setuphandlers [Iago López]
+* Dar soporte scss en los estilos personalizados [Iago López]
 
 1.2 (2023-09-14)
 ----------------
