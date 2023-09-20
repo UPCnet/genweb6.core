@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from zope import schema
-from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
 from plone.app.uuid.utils import uuidToURL
+from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
+from zope import schema
+
 from genweb6.core import _
+from genweb6.core.tiles.destacats.destacatbase import DestacatsBase
+from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase
 from genweb6.core.utils import create_simple_vocabulary
 from genweb6.core.utils import pref_lang
-from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase, DestacatsBase
 
 
 class CatalogSource(CatalogSourceBase):
@@ -54,7 +56,8 @@ class Destacats(DestacatsBase):
             'Subject': {'query': subjects, 'operator': 'and'},
             'Language': pref_lang(),
             'sort_on': ('effective'),
-            'sort_order': 'reverse', 'sort_limit': 1,
+            'sort_order': 'reverse',
+            'sort_limit': 1,
             'review_state': ['published',],
             'portal_type': self.portal_types
             if self.portal_types else self.types_to_find}

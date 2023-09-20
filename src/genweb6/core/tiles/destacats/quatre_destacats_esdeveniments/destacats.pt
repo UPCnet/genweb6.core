@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+  <body>
+    <tal:block tal:define="items python:view.getNDestacats(view.count)"
+               tal:condition="items">
+
+      <section class="gw-tile destacats4-esdeveniments container content-agenda list-agenda">
+        <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+
+        <div class="list-agenda">
+          <ol class="row ps-0 mb-0">
+            <tal:repeat repeat="item items">
+              <li tal:attributes="class view/get_col">
+                <a class="card" tal:attributes="href item/url">
+                  <span class="event-time">
+                    <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
+                      <tal:block metal:use-macro="context/macros-genweb/sameday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-genweb/difday_samemonth"></tal:block>
+                      <tal:block metal:use-macro="context/macros-genweb/difday_difmonth"></tal:block>
+                    </span>
+                  </span>
+                  <h3 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h3>
+                </a>
+              </li>
+            </tal:repeat>
+          </ol>
+        </div>
+        <!-- <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block> -->
+        <div tal:condition="view/link_title" class="link-tile-footer">
+          <a tal:attributes="href view/link | nothing" class="small text-decoration-none">
+            <tal:omit-tag tal:content="view/link_title | nothing">Mes noticies</tal:omit-tag>
+          </a>
+        </div>
+      </section>
+
+    </tal:block>
+  </body>
+</html>

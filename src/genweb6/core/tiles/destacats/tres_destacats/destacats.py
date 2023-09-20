@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from genweb6.core.utils import pref_lang
-from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase, DestacatsBase
+from genweb6.core.tiles.destacats.destacatbase import DestacatsBase
+from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase
 
 
 class IDestacats(IDestacatsBase):
@@ -19,7 +20,8 @@ class Destacats(DestacatsBase):
             'sort_on': ('effective'),
             'sort_order': 'reverse',
             'sort_limit': limit,
-            'portal_type': self.portal_types if self.portal_types else self.types_to_find,
+            'portal_type': self.portal_types
+            if self.portal_types else self.types_to_find,
         }
 
         if self.tags:
@@ -30,6 +32,5 @@ class Destacats(DestacatsBase):
 
         if not items:
             return []
-        
+
         return items
-        

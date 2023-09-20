@@ -753,7 +753,7 @@
     </value>
   </record>
 
-    <records prefix="plone.app.mosaic.app_tiles.un_destacat"
+  <records prefix="plone.app.mosaic.app_tiles.un_destacat"
            interface="plone.app.mosaic.interfaces.ITile">
     <value key="name">un_destacat</value>
     <value key="label">1 Destacat Principal</value>
@@ -781,10 +781,24 @@
     <value key="weight">80</value>
   </records>
 
-    <records prefix="plone.app.mosaic.app_tiles.tres_destacats"
+  <records prefix="plone.app.mosaic.app_tiles.tres_destacats"
            interface="plone.app.mosaic.interfaces.ITile">
     <value key="name">tres_destacats</value>
     <value key="label">3 Destacats</value>
+    <value key="category">advanced</value>
+    <value key="tile_type">app</value>
+    <value key="default_value"></value>
+    <value key="read_only">false</value>
+    <value key="settings">true</value>
+    <value key="favorite">false</value>
+    <value key="rich_text">false</value>
+    <value key="weight">80</value>
+  </records>
+
+  <records prefix="plone.app.mosaic.app_tiles.quatre_destacats_esdeveniments"
+           interface="plone.app.mosaic.interfaces.ITile">
+    <value key="name">quatre_destacats_esdeveniments</value>
+    <value key="label">4 Destacats Esdeveniments</value>
     <value key="category">advanced</value>
     <value key="tile_type">app</value>
     <value key="default_value"></value>

@@ -5,11 +5,11 @@
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="ge">
+      i18n:domain="genweb">
 
   <body>
     <tal:block tal:define="items python:view.getNDestacats(2)" tal:condition="items">
-                        
+
       <div>
         <section class="section-dos-destacats mb-5">
           <div class="container">
@@ -32,4 +32,3 @@
     </tal:block>
   </body>
 </html>
-

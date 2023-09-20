@@ -31,7 +31,7 @@
     <plone:tile
         name="dos_destacats"
         title="2 Destacats"
-        description="Tile used to show destacats in homepage"
+        description="Tile used to show 2 destacats in homepage"
         add_permission="cmf.ModifyPortalContent"
         schema=".destacats.dos_destacats.destacats.IDestacats"
         class=".destacats.dos_destacats.destacats.Destacats"
@@ -55,9 +55,22 @@
         />
 
     <plone:tile
+        name="quatre_destacats_esdeveniments"
+        title="4 Destacats Esdeveniments"
+        description="Tile used to show 4 destacats events in homepage"
+        add_permission="cmf.ModifyPortalContent"
+        schema=".destacats.quatre_destacats_esdeveniments.destacats.IDestacats"
+        class=".destacats.quatre_destacats_esdeveniments.destacats.Destacats"
+        permission="zope2.View"
+        for="*"
+        layer="*"
+        template="destacats/quatre_destacats_esdeveniments/destacats.pt"
+        />
+
+    <plone:tile
         name="cinc_destacats"
         title="5 Destacats"
-        description="Tile used to show destacats in homepage"
+        description="Tile used to show 5 destacats in homepage"
         add_permission="cmf.ModifyPortalContent"
         schema=".destacats.cinc_destacats.destacats.IDestacats"
         class=".destacats.cinc_destacats.destacats.Destacats"

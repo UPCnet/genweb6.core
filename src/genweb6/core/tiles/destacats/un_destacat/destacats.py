@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from zope import schema
+
 from genweb6.core import _
+from genweb6.core.tiles.destacats.destacatbase import DestacatsBase
+from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase
 from genweb6.core.utils import create_simple_vocabulary
 from genweb6.core.utils import pref_lang
-from genweb6.core.tiles.destacats.destacatbase import IDestacatsBase, DestacatsBase
 
 
 class IDestacats(IDestacatsBase):
@@ -40,7 +42,8 @@ class Destacats(DestacatsBase):
             'review_state': ['published',],
             'Language': pref_lang(),
             'sort_on': ('effective'),
-            'sort_order': 'reverse', 'sort_limit': limit,
+            'sort_order': 'reverse',
+            'sort_limit': limit,
             'portal_type': self.portal_types
             if self.portal_types else self.types_to_find, }
 
