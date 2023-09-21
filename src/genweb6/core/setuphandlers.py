@@ -6,7 +6,6 @@ from plone.app.multilingual.browser.setup import SetupMultilingualSite
 from plone.formwidget.namedfile.converter import b64encode_file
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
-from zope.component import queryUtility
 from zope.interface import implementer
 from zope.ramcache import ram
 
@@ -112,7 +111,6 @@ def setupVarious(context):
     egglocation = pkg_resources.get_distribution('genweb6.theme').location
     ram.caches.clear()
 
-    registry = queryUtility(IRegistry)
     header_settings = registry.forInterface(IHeaderSettings)
 
     logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()

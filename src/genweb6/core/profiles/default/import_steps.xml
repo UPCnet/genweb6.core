@@ -6,5 +6,7 @@
                  title="Genweb: miscellaneous import steps">
         Various import steps that are not handled by GS import/export handlers.
 
+        <dependency step="various" />
+
     </import-step>
 </import-steps>
