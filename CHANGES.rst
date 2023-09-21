@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.4 (unreleased)
+1.4 (2023-09-21)
 ----------------
 
-- Nothing changed yet.
-
+* setuphandlers [Iago López]
+* Tile 4 destacats esdeveniments [Iago López]
 
 1.3 (2023-09-20)
 ----------------
