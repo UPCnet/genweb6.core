@@ -69,8 +69,8 @@ class setup(BrowserView):
                 self.apply_default_language_settings()
                 self.setup_multilingual()
                 self.createContent()
+                self.setGenwebProperties()
                 self.request.response.redirect(base_url)
-                # self.setGenwebProperties()
 
             if 'createcontentmigration' in query:
                 logger = logging.getLogger('Genweb: Executing setup-view on site -')
@@ -1477,13 +1477,14 @@ class setup(BrowserView):
     def setGenwebProperties(self):
         """ Set default configuration in genweb properties """
         gwheader = utils.genwebHeaderConfig()
+        gwheader.amaga_identificacio = True
         gwheader.languages_link_to_root = True
 
-        portal = getToolByName(self, 'portal_url').getPortalObject()
-        site_props = portal.portal_properties.site_properties
-        site_props.exposeDCMetaTags = True
-        navtree_props = portal.portal_properties.navtree_properties
-        navtree_props.sitemapDepth = 4
+        # portal = getToolByName(self, 'portal_url').getPortalObject()
+        # site_props = portal.portal_properties.site_properties
+        # site_props.exposeDCMetaTags = True
+        # navtree_props = portal.portal_properties.navtree_properties
+        # navtree_props.sitemapDepth = 4
 
 
 def get_portlet_assignments(context, name):
