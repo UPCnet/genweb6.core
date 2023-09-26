@@ -1509,4 +1509,14 @@
 
   <!-- Caching Varnish Fin -->
 
+  <record name="plone.enable_sitemap" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="enable_sitemap">
+    <field type="plone.registry.field.Bool">
+      <default>False</default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Exposes your content as a file according to the <a href='http://sitemaps.org'>sitemaps.org</a> standard. You can submit this to compliant search engines like Google, Yahoo and Microsoft. It allows these search engines to more intelligently crawl your site.</description>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Expose sitemap.xml.gz</title>
+    </field>
+    <value>True</value>
+  </record>
+
 </registry>
