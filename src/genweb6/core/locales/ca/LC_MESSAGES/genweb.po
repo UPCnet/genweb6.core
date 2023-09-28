@@ -151,7 +151,7 @@ msgstr "En marcar aquesta opció es mostrarà el primer i segon nivell del menú
 
 #: ../controlpanels/footer.py:64
 msgid "Al marcar aquesta opció es mostrarà la pàgina de enllaços personalitzats al peu, la pàgina ha d'estar publicada."
-msgstr "En marcar aquesta opció es mostrarà la pàgina d'enllaços personalitzats al peu, la pàgina ha d'estar publicada. Podeu editar-la des de les següents pàgines: <a target='_blank' href='/ca/enllacospersonalitzats'>Català</a> | <a target='_blank' href='/en/customizedlinks'>Àngles</a> | <a target='_blank' href='/es/enlacespersonalizados'>Castellà</a>"
+msgstr "En marcar aquesta opció es mostrarà la pàgina d'enllaços personalitzats al peu, la pàgina ha d'estar publicada. Podeu editar-la des de les següents pàgines: <a target='_blank' href='ca/enllacospersonalitzats'>Català</a> | <a target='_blank' href='en/customizedlinks'>Àngles</a> | <a target='_blank' href='es/enlacespersonalizados'>Castellà</a>"
 
 #: ../browser/views_templates/download_files.pt:27
 msgid "All"
