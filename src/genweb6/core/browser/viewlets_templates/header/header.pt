@@ -165,17 +165,13 @@
 
                                 </li>
 
-                                <tal:menu tal:condition="not:header_config/treu_menu_horitzontal">
+                                <tal:block tal:condition="render_globalnav">
 
-                                    <tal:block tal:condition="render_globalnav">
+                                    <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                        <li class="ps-3"><hr class="mt-1 mb-1"></li>
+                                    <navtree tal:replace="structure render_globalnav" />
 
-                                        <navtree tal:replace="structure render_globalnav" />
-
-                                    </tal:block>
-
-                                </tal:menu>
+                                </tal:block>
 
                                 <tal:actions tal:condition="python:view.user_actions and view.anonymous"
                                              tal:define="user_actions view/user_actions">
