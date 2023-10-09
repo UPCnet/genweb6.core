@@ -19,6 +19,7 @@
             <role name="Editor" />
             <role name="Reader" />
             <role name="Site Administrator" />
+            <role name="WebMaster" />
         </permission>
         <permission name="Access inactive portal content" acquire="True">
             <role name="Owner" />
@@ -351,6 +352,7 @@
             <role name="Editor" />
             <role name="Reader" />
             <role name="Site Administrator" />
+            <role name="WebMaster" />
         </permission>
         <permission name="View Groups" acquire="True">
             <role name="Manager" />
