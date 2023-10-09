@@ -19,6 +19,7 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="True" />
         <permission-map name="Change portal events" acquired="False">
@@ -26,12 +27,14 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Delete objects" acquired="False">
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="List folder contents" acquired="True" />
         <permission-map name="Modify portal content" acquired="False">
@@ -39,6 +42,7 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="View" acquired="False">
             <permission-role>Editor</permission-role>
@@ -46,6 +50,7 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
     </state>
 
@@ -106,6 +111,7 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="True" />
         <permission-map name="Change portal events" acquired="False">
@@ -114,12 +120,14 @@
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
             <permission-role>WebMaster</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Delete objects" acquired="False">
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="List folder contents" acquired="True" />
         <permission-map name="Modify portal content" acquired="False">
@@ -135,6 +143,7 @@
             <permission-role>Owner</permission-role>
             <permission-role>Reader</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
     </state>
 
@@ -179,6 +188,7 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Add portal content" acquired="True" />
         <permission-map name="Change portal events" acquired="False">
@@ -187,12 +197,14 @@
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
             <permission-role>WebMaster</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="Delete objects" acquired="False">
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="List folder contents" acquired="True" />
         <permission-map name="Modify portal content" acquired="False">
@@ -200,12 +212,14 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="View" acquired="False">
             <permission-role>Editor</permission-role>
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
     </state>
 
@@ -224,6 +238,7 @@
         <guard>
             <guard-role>Manager</guard-role>
             <guard-role>Editor</guard-role>
+            <permission-role>WebMaster</permission-role>
         </guard>
     </transition>
 
@@ -234,6 +249,7 @@
             <guard-role>Manager</guard-role>
             <guard-role>Editor</guard-role>
             <guard-role>Owner</guard-role>
+            <permission-role>WebMaster</permission-role>
         </guard>
     </transition>
 
@@ -244,6 +260,7 @@
             <guard-role>Manager</guard-role>
             <guard-role>Editor</guard-role>
             <guard-role>Owner</guard-role>
+            <permission-role>WebMaster</permission-role>
         </guard>
     </transition>
 
@@ -261,6 +278,7 @@
         <guard>
             <guard-role>Manager</guard-role>
             <guard-role>Editor</guard-role>
+            <permission-role>WebMaster</permission-role>
         </guard>
     </transition>
 
@@ -270,6 +288,7 @@
         <guard>
             <guard-role>Manager</guard-role>
             <guard-role>Editor</guard-role>
+            <permission-role>WebMaster</permission-role>
         </guard>
     </transition>
 
