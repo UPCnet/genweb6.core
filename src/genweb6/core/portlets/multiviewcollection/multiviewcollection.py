@@ -4,7 +4,8 @@ from Products.CMFPlone.utils import normalizeString
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.app.portlets.portlets import base
-from plone.app.vocabularies.catalog import CatalogSource
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
@@ -77,11 +78,18 @@ class IMultiviewCollectionPortlet(IPortletDataProvider):
         required=False,
         default=True)
 
+    directives.widget(
+        "target_collection",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "selectableTypes": ["Collection"],
+        },
+    )
     target_collection = RelationChoice(
         title=_(u"Target collection"),
         description=_(u"Find the collection which provides the items to list"),
         required=True,
-        source=CatalogSource(portal_type=['Topic', 'Collection']))
+        vocabulary="plone.app.vocabularies.Catalog")
 
     limit = schema.Int(
         title=_(u"Limit"),
@@ -123,6 +131,7 @@ class IMultiviewCollectionPortlet(IPortletDataProvider):
         title=_(u'View type'),
         description=_(u'Choose how the portlet must be rendered'),
         required=True,
+
         vocabulary=vocabulary_view_type,
         default=VIEW_TYPE_LIST)
 
