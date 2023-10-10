@@ -2,11 +2,18 @@ Changelog
 =========
 
 
-1.5 (unreleased)
+1.5 (2023-10-10)
 ----------------
 
-- Nothing changed yet.
-
+* Permisos webmaster portlets [Iago López]
+* Fix multiviewcollection [Iago López]
+* Permisos workflows Webmaster [Iago López]
+* Permisos Webmaster [Iago López]
+* Modificar enlace setup [Iago López]
+* En movil siempre se ve el menú de enlaces [Iago López]
+* Fix traducción [Iago López]
+* No mostrar link login por defecto [Iago López]
+* Enable sitemap.xml.gz [Iago López]
 
 1.4 (2023-09-21)
 ----------------
