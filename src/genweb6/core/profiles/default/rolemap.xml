@@ -286,6 +286,16 @@
             <role name="Site Administrator" />
             <role name="WebMaster" />
         </permission>
+        <permission name="plone.portlet.collection: Add collection portlet" acquire="True">
+            <role name="Manager"/>
+            <role name="Site Administrator" />
+            <role name="WebMaster"/>
+        </permission>
+        <permission name="plone.portlet.static: Add static portlet" acquire="True">
+            <role name="Manager"/>
+            <role name="Site Administrator" />
+            <role name="WebMaster"/>
+        </permission>
         <permission name="Reply to item" acquire="False">
             <role name="Authenticated" />
         </permission>
