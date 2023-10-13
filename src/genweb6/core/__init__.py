@@ -7,25 +7,10 @@ import subprocess
 import sys
 
 try:
-    pkg_resources.get_distribution('upcnet.cas')
-except pkg_resources.DistributionNotFound:
-    HAS_CAS = False
-else:
-    HAS_CAS = True
-
-try:
-    pkg_resources.get_distribution('plone.app.contenttypes')
-except pkg_resources.DistributionNotFound:
-    HAS_DXCT = False
-else:
-    HAS_DXCT = True
-
-try:
     pkg_resources.get_distribution('plone.app.multilingual')
+    HAS_PAM = True
 except pkg_resources.DistributionNotFound:
     HAS_PAM = False
-else:
-    HAS_PAM = True
 
 _ = GenwebMessageFactory = MessageFactory('genweb')
 

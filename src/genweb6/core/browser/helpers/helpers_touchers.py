@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
-from Products.CMFPlone.controlpanel.browser.quickinstaller import InstallerView
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PortalTransforms.transforms.pdf_to_text import pdf_to_text
 
 from plone import api
+from plone.app.contenttypes.interfaces import IFolder
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
+from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
 from plone.uuid import interfaces
 from plone.uuid.interfaces import IMutableUUID
@@ -21,24 +22,13 @@ from zope.component import getUtility
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 
-from genweb6.core import HAS_DXCT
 from genweb6.core.interfaces import IHomePage
 
 import logging
 import os
-import pkg_resources
 import transaction
 
 logger = logging.getLogger(__name__)
-
-
-try:
-    pkg_resources.get_distribution('plone4.csrffixes')
-except pkg_resources.DistributionNotFound:
-    CSRF = False
-else:
-    from plone.protect.interfaces import IDisableCSRFProtection
-    CSRF = True
 
 
 class make_me_a_homepage(BrowserView):
@@ -48,10 +38,8 @@ Habilita el layout de homepage en el contingut, ha de ser una carpeta
 
     def __call__(self):
         alsoProvides(self.context, IHomePage)
-        if HAS_DXCT:
-            from plone.app.contenttypes.interfaces import IFolder
-            if IFolder.providedBy(self.context):
-                self.context.setLayout('homepage')
+        if IFolder.providedBy(self.context):
+            self.context.setLayout('homepage')
         return self.request.response.redirect(self.context.absolute_url())
 
 
@@ -62,10 +50,8 @@ Habilita el layout de subhomepage en el contingut, ha de ser una carpeta
 
     def __call__(self):
         alsoProvides(self.context, IHomePage)
-        if HAS_DXCT:
-            from plone.app.contenttypes.interfaces import IFolder
-            if IFolder.providedBy(self.context):
-                self.context.setLayout('subhomepage')
+        if IFolder.providedBy(self.context):
+            self.context.setLayout('subhomepage')
         return self.request.response.redirect(self.context.absolute_url())
 
 
@@ -76,9 +62,7 @@ LRF -> Language Root Folder
     """
 
     def __call__(self):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
-
         from Products.CMFPlone.interfaces import ILanguage
         context = aq_inner(self.context)
         pc = api.portal.get_tool('portal_catalog')
@@ -192,7 +176,6 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
@@ -224,7 +207,6 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
@@ -254,7 +236,6 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
@@ -286,7 +267,6 @@ Paràmetre:
     """
 
     def __call__(self, portal=None):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         if 'product_name' in self.request.form:
@@ -311,7 +291,6 @@ Upgrada a la última versió de Plone
     """
 
     def __call__(self, portal=None):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         if not portal:
@@ -332,7 +311,6 @@ setup_pam_again
     """
 
     def __call__(self):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         from plone.app.multilingual.browser.setup import SetupMultilingualSite
@@ -371,8 +349,7 @@ Paràmetres:
     DEFAULT_PROFILE_TYPE = 'default'
 
     def __call__(self):
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        alsoProvides(self.request, IDisableCSRFProtection)
 
         ps = api.portal.get_tool(name='portal_setup')
         params = self._parse_params()
@@ -642,7 +619,6 @@ preserveUUIDs
     """
 
     def __call__(self):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         portal = api.portal.get()
@@ -665,7 +641,6 @@ rebuildUUIDs
     """
 
     def __call__(self):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         portal = api.portal.get()
@@ -692,7 +667,6 @@ Vista que configura la caché
     """
 
     def __call__(self):
-        from plone.protect.interfaces import IDisableCSRFProtection
         alsoProvides(self.request, IDisableCSRFProtection)
 
         context = aq_inner(self.context)
@@ -753,9 +727,7 @@ Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
     """
 
     def __call__(self):
-        from zope.component import getUtility
-        if CSRF:
-            alsoProvides(self.request, IDisableCSRFProtection)
+        alsoProvides(self.request, IDisableCSRFProtection)
         output = []
         site = self.context.portal_registry
         registry = getUtility(IRegistry)
@@ -766,6 +738,7 @@ Soluciona el problema de KeyError quan la plonesite es mou del Zeo original
                 rec[k]
             except:
                 output.append('{}, '.format(k))
+                output.append('{}, '.format(site.portal_registry.records._values[k]))
                 del site.portal_registry.records._values[k]
                 del site.portal_registry.records._fields[k]
         return "S'han purgat les entrades del registre: {}".format(output)
