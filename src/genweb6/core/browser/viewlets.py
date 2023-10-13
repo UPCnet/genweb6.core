@@ -401,13 +401,14 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
         table = getattr(footer_config, 'table_links_' + lang, [])
         if table:
             for link in table:
-                result['links'].append(
-                    {
-                        'title': link['title'],
-                        'link': link['link'],
-                        'external': True
-                    }
-                )
+                if link['title'] and link['link']:
+                    result['links'].append(
+                        {
+                            'title': link['title'],
+                            'link': link['link'],
+                            'external': True
+                        }
+                    )
 
         return result
 
