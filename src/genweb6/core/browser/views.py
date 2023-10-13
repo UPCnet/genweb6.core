@@ -116,7 +116,7 @@ class HomePageBase(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
-        self.portlet_container = self.getPortletContainer()
+        self.portlet_container = None
 
     def getPortletContainer(self):
         # inicio = time.time()
@@ -129,20 +129,15 @@ class HomePageBase(BrowserView):
             pc = api.portal.get_tool(name='portal_catalog')
             # Add the use case of mixin types of IHomepages. The main ones of a
             # non PAM-enabled site and the possible inner ones.
-
-            # isAnom = api.user.is_anonymous()
-            # Por ahora dejo unrestricted y los estados, tenemos un problema con esta vista.
-            # El user siempre es anonymous aunque este authenticated PDTE REVISAR
-            result = pc.unrestrictedSearchResults(object_provides=IHomePage.__identifier__,
-                                                  portal_type='Document',
-                                                  review_state=['published', 'intranet'],
-                                                  Language=pref_lang())
+            result = pc.searchResults(object_provides=IHomePage.__identifier__,
+                                      portal_type='Document',
+                                      Language=pref_lang())
             if result:
                 # Return the object without forcing a getObject()
                 container = getattr(context, result[0].id, context)
         # elapsed_fin= time.time() - inicio
         # LOGGER.error("Tiempo /genweb6/core/browser/views.py getPortletContainer Elapsed time: %0.10f seconds." % elapsed_fin)
-        return container
+        self.portlet_container = container
 
     def renderProviderByName(self, provider_name):
         #ini_render = time.time()

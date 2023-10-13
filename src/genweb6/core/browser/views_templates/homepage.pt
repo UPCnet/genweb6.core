@@ -19,7 +19,7 @@
       <tal:comment tal:replace="nothing">get rid of the left hand column portlets to avoid confusion</tal:comment>
   </div>
 
-  <div metal:fill-slot="main">
+  <div metal:fill-slot="main" tal:define="init_homepage view/getPortletContainer">
 
     <div tal:define="view nocall:view;
                      have_portlets_slot1 python:view.have_portlets('genweb.portlets.HomePortletManager1', view);
