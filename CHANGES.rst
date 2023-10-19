@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.8 (unreleased)
+1.8 (2023-10-19)
 ----------------
 
-- Nothing changed yet.
-
+* [FIX] subhome [Iago López]
 
 1.7 (2023-10-19)
 ----------------
