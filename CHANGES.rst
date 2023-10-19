@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.6 (unreleased)
+1.6 (2023-10-19)
 ----------------
 
-- Nothing changed yet.
-
+* Desactivar menu del footer por defecto [Iago López]
+* Remove old imports from gw4 and become fix_record helper view more userfriendly [Alberto Durán]
+* [FIX] Que no pete si no se informa bien un enlace del pie [Iago López]
+* Fix homepage [Iago López]
+* Traducción [Iago López]
 
 1.5 (2023-10-10)
 ----------------
