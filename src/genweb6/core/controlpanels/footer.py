@@ -56,7 +56,7 @@ class IFooterSettings(model.Schema):
         title=_(u"Mostrar enllaços al peu"),
         description=_(u"Al marcar aquesta opció es mostrarà els enllaços als continguts i els enllaços personalitzats"),
         required=False,
-        default=True,
+        default=False,
     )
 
     complete_custom_links = schema.Bool(
