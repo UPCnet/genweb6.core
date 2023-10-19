@@ -97,11 +97,6 @@
                                                      title obj/title | nothing;
                                                      alt obj/title | string: ;"/>
 
-                                <img tal:condition="not:obj/image | nothing"
-                                     loading="lazy"
-                                     src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
-                                     tal:attributes="title obj/title | nothing;
-                                                     alt obj/title | string: ;"/>
                             </a>
 
                         </div>
