@@ -272,12 +272,9 @@ class Renderer(base.Renderer):
             result_obj = result.getObject()
             result_image = getattr(result_obj, 'image', None)
             try:
-                result_description = result.description
+                result_description = result_obj.description
             except:
-                try:
-                    result_description = result.Description()
-                except:
-                    result_description = ''
+                result_description = ''
 
             date = toLocalizedTime(self, result.EffectiveDate())
             if not date:
