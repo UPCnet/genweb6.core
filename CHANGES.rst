@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.7 (unreleased)
+1.7 (2023-10-19)
 ----------------
 
-- Nothing changed yet.
-
+* [FIX] Ver descripcion portlets fullnews y multiviewcollection [Iago López]
+* Quitar imagenes por defecto [Iago López]
 
 1.6 (2023-10-19)
 ----------------
