@@ -1152,7 +1152,6 @@ class setup(BrowserView):
 </div>
 </div>
 <p> </p>
-<p> </p>
 <div class="row">
 <div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
 <p> </p>
@@ -1241,7 +1240,6 @@ class setup(BrowserView):
 <h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Genweb 6</strong>, el nuevo diseño de tú genweb <span class="fa fa-quote-right"></span></h2>
 </div>
 </div>
-<p> </p>
 <p> </p>
 <div class="row">
 <div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">El generador de webs UPC</span></a>
@@ -1332,7 +1330,6 @@ class setup(BrowserView):
 <h2 class="align-center"><span class="fa fa-quote-left"></span> <strong>Genweb 6</strong>, the new design of your genweb <span class="fa fa-quote-right"></span></h2>
 </div>
 </div>
-<p> </p>
 <p> </p>
 <div class="row">
 <div class="col-md-6"><a class="link-bannerblau external-link" href="https://genweb.upc.edu/ca" target="_blank"><span class="btntitolblau">Genweb 6</span><br /><span class="btnsubtitolblau">The UPC website generator</span></a>
