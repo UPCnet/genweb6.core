@@ -135,6 +135,7 @@
             <permission-role>Manager</permission-role>
             <permission-role>Owner</permission-role>
             <permission-role>Site Administrator</permission-role>
+            <permission-role>WebMaster</permission-role>
         </permission-map>
         <permission-map name="View" acquired="False">
             <permission-role>Anonymous</permission-role>
