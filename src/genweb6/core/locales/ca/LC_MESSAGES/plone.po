@@ -170,3 +170,6 @@ msgstr "GWUUID"
 
 msgid "output"
 msgstr "Output"
+
+msgid "Matches none of"
+msgstr "No coincideix amb cap"
