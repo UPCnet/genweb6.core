@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-1.9 (unreleased)
+1.9 (2023-10-26)
 ----------------
 
-- Nothing changed yet.
-
+* Añadir traducciones estándar [Ruben Padilla Mateu]
+* Permiso webmaster [Iago López]
+* [UPD] Quitar <p> sobrante en los contenidos de ejemplo del setup-view [Iago López]
 
 1.8 (2023-10-19)
 ----------------
