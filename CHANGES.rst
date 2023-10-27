@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.10 (unreleased)
+1.10 (2023-10-27)
 -----------------
 
-- Nothing changed yet.
-
+* Activar viewlet plone.analytics [Pilar Marinas]
 
 1.9 (2023-10-26)
 ----------------
