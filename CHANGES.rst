@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.11 (unreleased)
+1.11 (2023-10-30)
 -----------------
 
-- Nothing changed yet.
-
+* RSS visible [Pilar Marinas]
 
 1.10 (2023-10-27)
 -----------------
