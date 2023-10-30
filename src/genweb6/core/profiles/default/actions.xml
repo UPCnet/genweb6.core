@@ -5,6 +5,22 @@
  <action-provider name="portal_types"/>
  <action-provider name="portal_actions"/>
 
+ <object name="object" meta_type="CMF Action Category">
+  <property name="title">Object actions</property>
+  <object name="syndication" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Syndication</property>
+   <property name="description" i18n:translate=""></property>
+   <property name="url_expr">string:${object_url}/synPropertiesForm</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:plone-rss</property>
+   <property
+      name="available_expr">object/@@syndication-util/context_allowed</property>
+   <property name="permissions">
+    <element value="Manage properties"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
  <object name="object_buttons" meta_type="CMF Action Category">
   <property name="title">Object buttons</property>
   <object name="cut" meta_type="CMF Action" i18n:domain="plone">
@@ -225,7 +241,7 @@
       </property>
       <property name="visible">True</property>
    </object>
-   
+
  </object>
 
  <object name="portal_tabs" meta_type="CMF Action Category">
