@@ -24,6 +24,7 @@ from zope.component import queryAdapter
 
 from genweb6.core import _
 from genweb6.core import utils
+from genweb6.core.adapters.important import IImportant
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebFooterConfig
@@ -597,3 +598,18 @@ class newsDateViewlet(viewletBase):
             return toLocalizedTime(self, self.context.effective_date)
 
         return toLocalizedTime(self, self.context.modification_date)
+
+
+class importantViewlet(viewletBase):
+
+    def render(self):
+        if INewsItem.providedBy(self.context):
+            return super(viewletBase, self).render()
+        else:
+            return ""
+
+    @property
+    def isNewImportant(self):
+        context = aq_inner(self.context)
+        is_important = IImportant(context).is_important
+        return is_important

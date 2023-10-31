@@ -1849,3 +1849,21 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el
 
 msgid "not_show_image"
 msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
+
+msgid "INFORMACIÓ:"
+msgstr "INFORMACIÓ:"
+
+msgid "Per marcar la notícia com a important premeu el botó:"
+msgstr "Per marcar la notícia com a important premeu el botó:"
+
+msgid "Marca com a important"
+msgstr "Marca com a important"
+
+msgid "ATENCIÓ:"
+msgstr "ATENCIÓ:"
+
+msgid "Aquesta notícia està marcada com a important. Per desmarcar la notícia com a important premeu el botó:"
+msgstr "Aquesta notícia està marcada com a important. Per desmarcar la notícia com a important premeu el botó:"
+
+msgid "Desmarca com a important"
+msgstr "Desmarca com a important"

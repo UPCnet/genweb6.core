@@ -85,6 +85,15 @@
     <!-- CONTENT -->
 
     <browser:viewlet
+        name="genweb.important"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
+        class=".viewlets.importantViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ModifyPortalContent"
+        template="viewlets_templates/content/important.pt"
+        />
+
+    <browser:viewlet
         name="genweb.socialtools"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentTitle"
         class=".viewlets.socialtoolsViewlet"
@@ -98,7 +107,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".viewlets.newsDateViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
-        permission="zope2.View"
+        permission="cmf.ModifyPortalContent"
         template="viewlets_templates/content/newsdate.pt"
         />
 
