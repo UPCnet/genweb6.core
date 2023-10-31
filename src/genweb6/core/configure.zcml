@@ -34,6 +34,10 @@
     <include package="souper.plone" />
     <include package="z3c.jbot" file="meta.zcml" />
 
+    <adapter factory=".serializer.CustomSerializeSiteRootToJson" />
+    <adapter factory=".serializer.CustomSerializeFolderToJson" />
+    <adapter factory=".serializer.CustomSerializeToJson" />
+
     <browser:jbot
         directory="templates"
         layer=".interfaces.IGenweb6CoreLayer"
