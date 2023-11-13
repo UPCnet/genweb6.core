@@ -5,6 +5,7 @@
   <viewlet name="plone.path_bar"/>
  </order>
  <order manager="plone.abovecontenttitle" skinname="Plone Default">
+  <viewlet name="genweb.important"/>
   <viewlet name="plone.socialtags"/>
   <viewlet name="contentleadimage"/>
   <viewlet name="genweb.socialtools"/>
