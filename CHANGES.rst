@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.12 (unreleased)
+1.12 (2023-11-13)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Hide creators field in /++api++/ [Alberto Durán]
+* Viewlet important [Iago López]
 
 1.11 (2023-10-30)
 -----------------
