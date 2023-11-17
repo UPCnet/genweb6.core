@@ -1150,3 +1150,118 @@ def tinymce(self):
         },
     }
     return {"data-pat-tinymce": json.dumps(configuration)}
+
+from zope.schema import getFieldsInOrder
+from collective.easyform.api import get_actions
+from collective.easyform.api import get_schema
+from collective.easyform.interfaces import ISaveData
+from collective.easyform.serializer import convertAfterDeserialize
+
+def deserializeSavedData(self, data):
+    if "savedDataStorage" in data:
+        storage = data["savedDataStorage"]
+        actions = getFieldsInOrder(get_actions(self.context))
+        schema = get_schema(self.context)
+        AllFieldsinOrder = schema.namesAndDescriptions()
+        included_columns_in_savedata = []
+        for column, field in AllFieldsinOrder:
+            if "label" not in field.__str__().lower():
+                included_columns_in_savedata.append(column)
+        for name, action in actions:
+            if ISaveData.providedBy(action) and name in storage:
+                savedData = storage[name]
+                for key, value in savedData.items():
+                    for name in included_columns_in_savedata:  # schema.names():
+                        try:
+                            value[name] = convertAfterDeserialize(
+                                schema[name], value[name]
+                            )
+                        except:
+                            value[name] = name
+                    action.setDataRow(int(key), value)
+
+from collective.easyform.api import is_file_data
+from xml.etree import ElementTree as ET
+from zope.contenttype import guess_content_type
+from csv import writer as csvwriter
+from DateTime import DateTime
+from six import BytesIO
+
+def get_attachments(self, fields, request):
+    """Return all attachments uploaded in form."""
+    attachments = []
+    # if requested, generate CSV attachment of form values
+    sendCSV = getattr(self, "sendCSV", None)
+    sendWithHeader = getattr(self, "sendWithHeader", None)
+    sendXLSX = getattr(self, "sendXLSX", None)
+    if sendCSV or sendXLSX:
+        csvdata = ()
+    sendXML = getattr(self, "sendXML", None)
+    if sendXML:
+        xmlRoot = ET.Element("form")
+    field_names = self.get_field_names_in_order()
+    for fname in field_names:
+        try:
+            field = fields[fname]
+        except:
+            continue
+        if sendCSV or sendXLSX:
+            if not is_file_data(field):
+                val = self.serialize(field)
+                if six.PY2:
+                    val = val.encode("utf-8")
+                csvdata += (val,)
+        if sendXML:
+            if not is_file_data(field):
+                ET.SubElement(xmlRoot, "field", name=fname).text = self.serialize(
+                    field
+                )  # noqa
+        if is_file_data(field):
+            data = field.data
+            filename = field.filename
+            mimetype, enc = guess_content_type(filename, data, None)
+            attachments.append((filename, mimetype, enc, data))
+    if sendCSV:
+        output = StringIO()
+        writer = csvwriter(output)
+        if sendWithHeader:
+            writer.writerow(self.get_header_row())
+        writer.writerow(csvdata)
+        csv = output.getvalue()
+        if six.PY3:
+            csv = csv.encode("utf-8")
+        now = DateTime().ISO().replace(" ", "-").replace(":", "")
+        filename = "formdata_{0}.csv".format(now)
+        # Set MIME type of attachment to 'application' so that it will be encoded with base64
+        attachments.append((filename, "application/csv", "utf-8", csv))
+    if sendXLSX:
+        from openpyxl import Workbook
+        wb = Workbook()
+        ws = wb.active
+        if sendWithHeader:
+            ws.append(self.get_header_row())
+        ws.append(csvdata)
+        with NamedTemporaryFile() as tmp:
+            wb.save(tmp.name)
+            output = tmp.read()
+        now = DateTime().ISO().replace(" ", "-").replace(":", "")
+        filename = "formdata_{0}.xlsx".format(now)
+        attachments.append(
+            (
+                filename,
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "utf-8",
+                output
+            )
+        )
+    if sendXML:
+        # use ET.write to get a proper XML Header line
+        output = BytesIO()
+        doc = ET.ElementTree(xmlRoot)
+        doc.write(output, encoding="utf-8", xml_declaration=True)
+        xmlstr = output.getvalue()
+        now = DateTime().ISO().replace(" ", "-").replace(":", "")
+        filename = "formdata_{0}.xml".format(now)
+        # Set MIME type of attachment to 'application' so that it will be encoded with base64
+        attachments.append((filename, "application/xml", "utf-8", xmlstr))
+    return attachments

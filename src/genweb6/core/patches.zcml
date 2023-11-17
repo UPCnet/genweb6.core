@@ -167,4 +167,18 @@
         replacement=".patches.tinymce"
         />
 
+    <monkey:patch
+        description="EasyForm modificamos el guardar datos por si tienen columnas que son etiquetas"
+        class="collective.easyform.serializer.DeserializeFromJson"
+        original="deserializeSavedData"
+        replacement=".patches.deserializeSavedData"
+        />
+
+    <monkey:patch
+        description="EasyForm modificamos que al enviar mail si no encuentra un campo lo envie igual"
+        class="collective.easyform.actions.Mailer"
+        original="get_attachments"
+        replacement=".patches.get_attachments"
+        />
+
 </configure>
