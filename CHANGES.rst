@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.13 (unreleased)
+1.13 (2023-11-20)
 -----------------
 
-- Nothing changed yet.
-
+* Parches para solucionar problemas de formularios antiguos sin algun dato [Pilar Marinas]
 
 1.12 (2023-11-13)
 -----------------
