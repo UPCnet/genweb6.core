@@ -194,7 +194,8 @@ class Renderer(base.Renderer):
                           review_state=state,
                           is_important=True,
                           Language=pref_lang(),
-                          sort_on="getObjPositionInParent",
+                          sort_on=('Date'),
+                          sort_order='reverse',
                           path=self.get_current_path_news())
 
         importants = []
