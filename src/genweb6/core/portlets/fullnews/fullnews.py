@@ -5,7 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.portlets.portlets import base
-from plone.memoize.instance import memoize
+from plone.memoize.view import memoize_contextless
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.interface import implementer
@@ -185,7 +185,7 @@ class Renderer(base.Renderer):
             summary = summary[:last_space] + '...'
         return summary
 
-    @memoize
+    @memoize_contextless
     def _data(self):
         catalog = api.portal.get_tool(name='portal_catalog')
         limit = self.data.count

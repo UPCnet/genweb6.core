@@ -7,7 +7,7 @@ from plone import api
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
 from plone.app.portlets.portlets import base
-from plone.memoize.instance import memoize
+from plone.memoize.view import memoize_contextless
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.i18nmessageid import MessageFactory
@@ -99,7 +99,7 @@ class Renderer(base.Renderer):
             sort='start',
             review_state=['published', 'intranet'])
 
-    @memoize
+    @memoize_contextless
     def get_events(self):
         events = []
         ts = api.portal.get_tool(name='translation_service')

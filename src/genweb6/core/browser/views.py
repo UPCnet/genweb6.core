@@ -12,7 +12,7 @@ from plone.app.event.base import localized_now
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.base.interfaces import ILoginForm
 from plone.batching import Batch
-from plone.memoize.view import memoize
+from plone.memoize.view import memoize_contextless
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletManagerRenderer
 from zope.component import getMultiAdapter
@@ -532,7 +532,7 @@ class FolderIndexView(BrowserView):
     def items(self):
         return self._data()
 
-    @memoize
+    @memoize_contextless
     def _data(self):
         context = aq_inner(self.context)
         self.catalog = getToolByName(context, 'portal_catalog')

@@ -7,7 +7,7 @@ from plone.app.portlets.portlets import base
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-from plone.memoize.instance import memoize
+from plone.memoize.view import memoize_contextless
 from plone.portlets.interfaces import IPortletDataProvider
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
@@ -305,7 +305,7 @@ class Renderer(base.Renderer):
             summary = summary[:last_space] + '...'
         return summary
 
-    @memoize
+    @memoize_contextless
     def results(self):
         if self.data.random:
             return self._random_results()
@@ -356,7 +356,7 @@ class Renderer(base.Renderer):
 
         return results
 
-    @memoize
+    @memoize_contextless
     def collection(self):
         collection_path = self.data.target_collection
 
