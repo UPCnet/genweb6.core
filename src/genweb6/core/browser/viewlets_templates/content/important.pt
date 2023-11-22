@@ -5,14 +5,14 @@
 
     <i class="bi bi-info-circle-fill"></i>
 
-    <tal:block tal:condition="isNewImportant">
+    <tal:block tal:condition="not:isNewImportant">
       <strong class="me-1" i18n:translate="">INFORMACIÓ:</strong>
       <tal:omit-tag i18n:translate="">Per marcar la notícia com a important premeu el botó:</tal:omit-tag>
       <a class="d-block mt-3 btn btn-outline-primary" tal:attributes="href string:${context/absolute_url}/toggle_important"
          i18n:translate="">Marca com a important</a>
     </tal:block>
 
-    <tal:block tal:condition="not:isNewImportant">
+    <tal:block tal:condition="isNewImportant">
       <strong class="me-1" i18n:translate="">ATENCIÓ:</strong>
       <tal:omit-tag i18n:translate="">Aquesta notícia està marcada com a important. Per desmarcar la notícia com a important premeu el botó:</tal:omit-tag>
       <a class="d-block mt-3 btn btn-outline-primary" tal:attributes="href string:${context/absolute_url}/toggle_important"
