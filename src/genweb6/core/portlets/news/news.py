@@ -6,7 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.app.portlets.portlets.news import Renderer as news_renderer
-from plone.memoize.view import memoize_contextless
+from plone.memoize.view import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.interface import implementer
@@ -84,7 +84,7 @@ class Renderer(news_renderer):
         elif lang == 'en':
             return root_path + '/' + lang + '/news'
 
-    @memoize_contextless
+    @memoize
     def _data(self):
         catalog = api.portal.get_tool(name='portal_catalog')
         limit = self.data.count

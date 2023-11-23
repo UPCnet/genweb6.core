@@ -206,7 +206,7 @@ class headerViewlet(
                 "secondary_logo_url": getattr(header_config, 'secondary_logo_url', None),
                 "secondary_logo_target": "_blank" if header_config.secondary_logo_external_url else "_self"}
 
-    @memoize_contextless
+    @memoize
     def languages(self):
         lt = api.portal.get_tool(name='portal_languages')
         if lt is None:
@@ -339,7 +339,7 @@ class heroViewlet(viewletBase):
 
 class logosFooterViewlet(viewletBase):
 
-    @memoize_contextless
+    @memoize
     def getLogosFooter(self):
         catalog = api.portal.get_tool(name='portal_catalog')
         lang = utils.pref_lang()
@@ -367,7 +367,7 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
         else:
             return ""
 
-    @memoize_contextless
+    @memoize
     def getCustomLinks(self):
         lang = self.pref_lang()
         footer_config = genwebFooterConfig()
@@ -417,7 +417,7 @@ class linksFooterViewlet(viewletBase, GWGlobalSectionsViewlet):
     def getLinksPersonalized(self):
         return genwebFooterConfig().complete_custom_links
 
-    @memoize_contextless
+    @memoize
     def getLinksPage(self):
         """
         Funcio que retorna la pagina de contacte personalitzada
@@ -461,13 +461,13 @@ class footerViewlet(viewletBase):
         else:
             return False
 
-    @memoize_contextless
+    @memoize
     def getSignatura(self):
         lang = self.pref_lang()
         footer_config = genwebFooterConfig()
         return getattr(footer_config, 'signatura_' + lang, '')
 
-    @memoize_contextless
+    @memoize
     def getLinksPeu(self):
         lang = self.pref_lang()
 
@@ -529,7 +529,7 @@ class socialtoolsViewlet(viewletBase):
         else:
             return ""
 
-    @memoize_contextless
+    @memoize
     def data(self):
         title = self.context.title
 
