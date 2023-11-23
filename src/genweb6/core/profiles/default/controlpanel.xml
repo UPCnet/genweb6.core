@@ -77,7 +77,7 @@
         icon_expr="string:file"
         visible="True">
 
-        <permission>Genweb: Manager Users</permission>
+        <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
 </object>
