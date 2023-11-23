@@ -2,11 +2,17 @@ Changelog
 =========
 
 
-1.14 (unreleased)
+1.14 (2023-11-23)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Traduccion event_listing [Iago López]
+* [FIX] Template event_listing [Iago López]
+* [UPD] Condición news_events_listing [Iago López]
+* [UPD] Cambiar template event_listing [Iago López]
+* [UPD] Revisión de las cache [Iago López]
+* [FIX] Viewlet important - Los mensajes se mostraban con la condición al reves [Iago López]
+* [FIX] Portlets fullnews cambiar orden [Iago López]
+* Posición viewlet genweb.important [Iago López]
 
 1.13 (2023-11-20)
 -----------------
