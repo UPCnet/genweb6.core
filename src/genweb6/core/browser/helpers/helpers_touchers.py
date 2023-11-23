@@ -753,3 +753,15 @@ Canvia la url dels css del TinyMCE
         api.portal.set_registry_record('plone.content_css', ['++theme++genweb6.theme/theme.min.css'])
         transaction.commit()
         return 'OK'
+
+
+class setup_robots_txt(BrowserView):
+    """
+Configura el robots.txt
+    """
+
+    def __call__(self):
+        registry = getUtility(IRegistry)
+        registry["plone.robots_txt"] = 'Sitemap: {portal_url}/sitemap.xml.gz\r\n\r\n# Define access-restrictions for robots/spiders\r\n# http://www.robotstxt.org/wc/norobots.html\r\n\r\n\r\n\r\n# By default we allow robots to access all areas of our site\r\n# already accessible to anonymous users\r\n\r\nUser-agent: *\r\nDisallow: */noindex-upc/*\r\nDisallow: /*sendto_form$\r\nDisallow: /*folder_factories$\r\n\r\n\r\n\r\n# Add Googlebot-specific syntax extension to exclude forms\r\n# that are repeated for each piece of content in the site\r\n# the wildcard is only supported by Googlebot\r\n# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx=sibling\r\n\r\nUser-Agent: Googlebot\r\nDisallow: /*?\r\nDisallow: /*atct_album_view$\r\nDisallow: /*folder_factories$\r\nDisallow: /*folder_summary_view$\r\nDisallow: /*login_form$\r\nDisallow: /*mail_password_form$\r\nDisallow: /@@search\r\nDisallow: /*search_rss$\r\nDisallow: /*sendto_form$\r\nDisallow: /*summary_view$\r\nDisallow: /*thumbnail_view$\r\nDisallow: /*view$'
+        transaction.commit()
+        return 'OK'
