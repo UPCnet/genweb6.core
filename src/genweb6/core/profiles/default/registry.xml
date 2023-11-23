@@ -1528,14 +1528,4 @@
     <value>True</value>
   </record>
 
-  <record name="plone.robots_txt" interface="plone.base.interfaces.controlpanel.ISiteSchema" field="robots_txt">
-    <field type="plone.registry.field.SourceText">
-      <default>Sitemap: {portal_url}/sitemap.xml.gz # Define access-restrictions for robots/spiders # http://www.robotstxt.org/wc/norobots.html # By default we allow robots to access all areas of our site # already accessible to anonymous users User-agent: * Disallow: # Add Googlebot-specific syntax extension to exclude forms # that are repeated for each piece of content in the site # the wildcard is only supported by Googlebot # http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx=sibling User-Agent: Googlebot Disallow: /*? Disallow: /*atct_album_view$ Disallow: /*folder_factories$ Disallow: /*folder_summary_view$ Disallow: /*login_form$ Disallow: /*mail_password_form$ Disallow: /@@search Disallow: /*search_rss$ Disallow: /*sendto_form$ Disallow: /*summary_view$ Disallow: /*thumbnail_view$ Disallow: /*view$ </default>
-      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="help_robots_txt">robots.txt is read by search engines to determine how to index your site. For details see <a href='http://www.robotstxt.org'>http://www.robotstxt.org</a>. Use '{portal_url}' for the site URL.</description>
-      <required>False</required>
-      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">robots.txt</title>
-    </field>
-    <value>Sitemap: {portal_url}/sitemap.xml.gz # Define access-restrictions for robots/spiders # http://www.robotstxt.org/wc/norobots.html # By default we allow robots to access all areas of our site # already accessible to anonymous users User-agent: * Disallow: */noindex-upc/* Disallow: /*sendto_form$ Disallow: /*folder_factories$ # Add Googlebot-specific syntax extension to exclude forms # that are repeated for each piece of content in the site # the wildcard is only supported by Googlebot # http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx=sibling User-Agent: Googlebot Disallow: /*? Disallow: /*atct_album_view$ Disallow: /*folder_factories$ Disallow: /*folder_summary_view$ Disallow: /*login_form$ Disallow: /*mail_password_form$ Disallow: /@@search Disallow: /*search_rss$ Disallow: /*sendto_form$ Disallow: /*summary_view$ Disallow: /*thumbnail_view$ Disallow: /*view$</value>
-  </record>
-
 </registry>
