@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.16 (unreleased)
+1.16 (2023-11-23)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Helper setup_defaultpage_aggregator [Iago López]
+* [FIX] setup-view eliminacion carpeta recursos de plone [Iago López]
+* [FIX] setup robots.txt [Iago López]
+* [DEL] commit eee7924 [Iago López]
+* [FIX] Permission controlpanel resources a webmaster [Iago López]
 
 1.15 (2023-11-23)
 -----------------
