@@ -7,7 +7,7 @@ from plone.app.portlets.portlets import base
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.i18n.normalizer.interfaces import IIDNormalizer
-from plone.memoize.view import memoize
+from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice

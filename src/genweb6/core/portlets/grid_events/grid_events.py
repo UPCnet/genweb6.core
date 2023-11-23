@@ -7,7 +7,7 @@ from plone import api
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
 from plone.app.portlets.portlets import base
-from plone.memoize.view import memoize
+from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.i18nmessageid import MessageFactory

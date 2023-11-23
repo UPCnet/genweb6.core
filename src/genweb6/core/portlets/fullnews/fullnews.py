@@ -5,7 +5,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.portlets.portlets import base
-from plone.memoize.view import memoize
+from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.interface import implementer

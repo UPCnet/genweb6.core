@@ -12,7 +12,7 @@ from plone.app.portlets.cache import render_cachekey
 from plone.app.portlets.portlets import base
 from plone.memoize import ram
 from plone.memoize.compress import xhtml_compress
-from plone.memoize.view import memoize
+from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.component import getMultiAdapter
