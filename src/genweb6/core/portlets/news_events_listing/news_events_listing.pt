@@ -1,6 +1,6 @@
 <tal:portlet tal:define="tags view/get_tags;
                          get_type view/get_type;
-                         is_news python: True if get_type == u'News' else False;
+                         is_news python:get_type == u'News';
                          mode request/mode|string:future;">
 
     <tal:events tal:condition="not:is_news" i18n:domain="genweb" >
