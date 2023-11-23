@@ -41,8 +41,9 @@
 
       </tal:comment>
 
-      <nav tal:replace="nothing"
-           tal:define="mode request/mode|string:future;
+      <tal:comment tal:replace="nothing">
+
+      <nav tal:define="mode request/mode|string:future;
                        show_filter view/show_filter;">
         <ul class="mode_selector nav justify-content-end">
           <tal:cond condition="show_filter">
@@ -85,9 +86,10 @@
         </ul>
       </nav>
 
-      <h2 tal:replace="nothing"
-          tal:condition="header/sub"
+      <h2 tal:condition="header/sub"
           tal:content="header/sub"></h2>
+
+      </tal:comment>
 
     </metal:custom_title>
 
