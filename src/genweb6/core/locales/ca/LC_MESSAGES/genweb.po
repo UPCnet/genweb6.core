@@ -1364,7 +1364,7 @@ msgstr "${from} fins el ${until}."
 #. Default: "Events in ${month} ${year}"
 #: ../browser/news_listing.py:357
 msgid "events_in_month"
-msgstr "Esdeveniments de/d' ${month} ${year}"
+msgstr "Esdeveniments ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
 #: ../browser/news_listing.py:334
@@ -1867,3 +1867,6 @@ msgstr "Aquesta notícia està marcada com a important. Per desmarcar la notíci
 
 msgid "Desmarca com a important"
 msgstr "Desmarca com a important"
+
+msgid "events_in_month"
+msgstr "Esdeveniments ${month} ${year}"

@@ -181,4 +181,11 @@
         replacement=".patches.get_attachments"
         />
 
+    <monkey:patch
+        description="Cambiar traducción"
+        class="plone.app.event.browser.event_listing.EventListing"
+        original="header_string"
+        replacement=".patches.header_string"
+        />
+
 </configure>

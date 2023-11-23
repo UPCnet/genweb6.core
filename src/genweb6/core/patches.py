@@ -1265,3 +1265,110 @@ def get_attachments(self, fields, request):
         # Set MIME type of attachment to 'application' so that it will be encoded with base64
         attachments.append((filename, "application/xml", "utf-8", xmlstr))
     return attachments
+
+from plone.app.event.base import spell_date
+
+@property
+def header_string(self):
+    start, end = self._start_end
+    start_dict = spell_date(start, self.context) if start else None
+    end_dict = spell_date(end, self.context) if end else None
+
+    mode = self.mode
+    main_msgid = None
+    sub_msgid = None
+    if mode == "all":
+        main_msgid = _("all_events", default="All events")
+
+    elif mode == "past":
+        main_msgid = _("past_events", default="Past events")
+
+    elif mode == "future":
+        main_msgid = _("future_events", default="Future events")
+
+    elif mode == "now":
+        main_msgid = _("todays_upcoming_events", default="Todays upcoming events")
+
+    elif mode == "today":
+        main_msgid = _("todays_events", default="Todays events")
+
+    elif mode == "7days":
+        main_msgid = _("7days_events", default="Events in next 7 days.")
+        sub_msgid = _(
+            "events_from_until",
+            default="${from} until ${until}.",
+            mapping={
+                "from": "%s, %s. %s %s"
+                % (
+                    start_dict["wkday_name"],
+                    start.day,
+                    start_dict["month_name"],
+                    start.year,
+                ),
+                "until": "%s, %s. %s %s"
+                % (
+                    end_dict["wkday_name"],
+                    end.day,
+                    end_dict["month_name"],
+                    end.year,
+                ),
+            },
+        )
+
+    elif mode == "day":
+        main_msgid = _(
+            "events_on_day",
+            default="Events on ${day}",
+            mapping={
+                "day": "%s, %s. %s %s"
+                % (
+                    start_dict["wkday_name"],
+                    start.day,
+                    start_dict["month_name"],
+                    start.year,
+                ),
+            },
+        )
+
+    elif mode == "week":
+        main_msgid = _(
+            "events_in_week",
+            default="Events in week ${weeknumber}",
+            mapping={"weeknumber": start.isocalendar()[1]},
+        )
+        sub_msgid = _(
+            "events_from_until",
+            default="${from} until ${until}.",
+            mapping={
+                "from": "%s, %s. %s %s"
+                % (
+                    start_dict["wkday_name"],
+                    start.day,
+                    start_dict["month_name"],
+                    start.year,
+                ),
+                "until": "%s, %s. %s %s"
+                % (
+                    end_dict["wkday_name"],
+                    end.day,
+                    end_dict["month_name"],
+                    end.year,
+                ),
+            },
+        )
+
+    elif mode == "month":
+        main_msgid = _(
+            "events_in_month",
+            default="Events in ${month} ${year}",
+            mapping={
+                "month": start_dict["month_name"],
+                "year": start.year,
+            },
+        )
+
+    trans = self.context.translate
+    return {
+        "main": trans(main_msgid) if main_msgid else "",
+        "sub": trans(sub_msgid) if sub_msgid else "",
+    }
