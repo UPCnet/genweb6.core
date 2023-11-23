@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.15 (unreleased)
+1.15 (2023-11-23)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] setup robots.txt [Iago López]
+* [DEL] commit eee7924 [Iago López]
 
 1.14 (2023-11-23)
 -----------------
