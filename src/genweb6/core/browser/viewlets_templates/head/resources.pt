@@ -14,4 +14,14 @@
 
     </tal:file>
 
+    <tal:block
+        tal:omit-tag=""
+        tal:define="webstats_js view/webstats_js"
+        tal:condition="webstats_js"
+        tal:content="structure webstats_js">
+
+        Here goes the webstats_js
+
+    </tal:block>
+
 </tal:block>

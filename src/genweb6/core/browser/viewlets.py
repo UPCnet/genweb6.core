@@ -14,12 +14,15 @@ from plone.app.multilingual.browser.selector import getPostPath
 from plone.app.multilingual.interfaces import ILanguageRootFolder
 from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
+from plone.base.interfaces import ISiteSchema
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
+from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
 from scss import Scss
+from zope.component import getUtility
 from zope.component import queryAdapter
 
 from genweb6.core import _
@@ -511,6 +514,15 @@ class resourcesViewletCSS(viewletBase):
         resources_config = genwebResourcesConfig()
         css = Scss()
         return "<style>" + css.compile(resources_config.text_css) + "</style>"
+
+    @property
+    def webstats_js(self):
+        registry = getUtility(IRegistry)
+        site_settings = registry.forInterface(ISiteSchema, prefix="plone", check=False)
+        try:
+            return site_settings.webstats_js or ""
+        except AttributeError:
+            return ""
 
 
 class resourcesViewletJS(viewletBase):
