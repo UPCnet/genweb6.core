@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.17 (unreleased)
+1.17 (2023-11-24)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Mover bloque de analitycs en el head, plone lo tiene abajo dentro del body [Iago López]
 
 1.16 (2023-11-23)
 -----------------
