@@ -34,6 +34,7 @@ from genweb6.core.controlpanels.resources import IResourcesSettings
 from plone.cachepurging.interfaces import IPurger
 from plone.cachepurging.interfaces import ICachePurgingSettings
 from plone.cachepurging.utils import getURLsToPurge
+from plone.cachepurging.utils import getPathsToPurge
 from Products.CMFCore.utils import getToolByName
 
 from zope.component import getUtility
