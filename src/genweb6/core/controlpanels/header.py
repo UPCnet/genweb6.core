@@ -22,6 +22,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
+from genweb6.core import utils
 
 
 themeVocabulary = SimpleVocabulary([
@@ -289,6 +290,7 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
 
         self.applyChanges(data)
         ramcache.caches.clear()
+        utils.purge_varnish(utils.portal_url())
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())

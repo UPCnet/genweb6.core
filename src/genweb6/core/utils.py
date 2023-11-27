@@ -31,6 +31,8 @@ from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
+from plone.cachepurging.interfaces import IPurger
+from zope.component import getUtility
 
 import json
 import logging
@@ -186,6 +188,11 @@ def remove_html_tags(text):
         clean = re.compile('<.*?>')
         return re.sub(clean, '', text)
     return None
+
+def purge_varnish(url):
+    """Purge url varnish"""
+    purger = getUtility(IPurger)
+    purger.purgeSync(url)
 
 
 # class GWConfig(BrowserView):
