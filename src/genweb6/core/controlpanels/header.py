@@ -290,7 +290,11 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
 
         self.applyChanges(data)
         ramcache.caches.clear()
-        utils.purge_varnish(self, utils.portal_url() + '/ca')
+
+        urls = []
+        urls.append(utils.portal_url() + '/ca')
+
+        utils.purge_varnish(self, urls)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
