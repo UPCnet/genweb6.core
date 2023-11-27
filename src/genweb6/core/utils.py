@@ -214,7 +214,6 @@ def remove_html_tags(text):
 #         logger.error('****Result purge varnish: %s' % (log))
 
 def purge_varnish(self, urls):
-    sync = True
 
     urls = [x.decode("utf8") if isinstance(x, bytes) else x for x in urls]
 
@@ -224,19 +223,15 @@ def purge_varnish(self, urls):
 
     serverURL = self.request["SERVER_URL"]
     def purge(url):
-        if sync:
-            status, xcache, xerror = purger.purgeSync(url)
-            log = url
-            if xcache:
-                log += " (X-Cache header: " + xcache + ")"
-            if xerror:
-                log += " -- " + xerror
-            if not str(status).startswith("2"):
-                log += " -- WARNING status " + str(status)
-            self.purgeLog.append(log)
-        else:
-            purger.purgeAsync(url)
-            self.purgeLog.append(url)
+        status, xcache, xerror = purger.purgeSync(url)
+        log = url
+        if xcache:
+            log += " (X-Cache header: " + xcache + ")"
+        if xerror:
+            log += " -- " + xerror
+        if not str(status).startswith("2"):
+            log += " -- WARNING status " + str(status)
+
     portal_url = getToolByName(self.context, "portal_url")
     portal = portal_url.getPortalObject()
     portalPath = portal.getPhysicalPath()
