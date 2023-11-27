@@ -32,6 +32,9 @@ from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
 from plone.cachepurging.interfaces import IPurger
+from plone.cachepurging.interfaces import ICachePurgingSettings
+from plone.cachepurging.utils import getURLsToPurge
+
 from zope.component import getUtility
 
 import json
@@ -189,11 +192,25 @@ def remove_html_tags(text):
         return re.sub(clean, '', text)
     return None
 
-def purge_varnish(url):
-    """Purge url varnish"""
-    purger = getUtility(IPurger)
-    purger.purgeSync(url)
+def purge_varnish(inputURL):
+    """ Purge url varnish """
 
+    purger = getUtility(IPurger)
+    registry = getUtility(IRegistry)
+    purgingSettings = registry.forInterface(ICachePurgingSettings)
+    proxies = purgingSettings.cachingProxies
+
+    for newURL in getURLsToPurge(inputURL, proxies):
+        status, xcache, xerror = purger.purgeSync(newURL)
+
+        log = newURL
+        if xcache:
+           log += " (X-Cache header: " + xcache + ")"
+        if xerror:
+           log += " -- " + xerror
+        if not str(status).startswith("2"):
+           log += " -- WARNING status " + str(status)
+        logger.error('****Result purge varnish: %s' % (log))
 
 # class GWConfig(BrowserView):
 
