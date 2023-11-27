@@ -34,6 +34,7 @@ from genweb6.core.controlpanels.resources import IResourcesSettings
 from plone.cachepurging.interfaces import IPurger
 from plone.cachepurging.interfaces import ICachePurgingSettings
 from plone.cachepurging.utils import getURLsToPurge
+from Products.CMFCore.utils import getToolByName
 
 from zope.component import getUtility
 
@@ -192,25 +193,82 @@ def remove_html_tags(text):
         return re.sub(clean, '', text)
     return None
 
-def purge_varnish(inputURL):
-    """ Purge url varnish """
+# def purge_varnish(inputURL):
+#     """ Purge url varnish """
+
+#     purger = getUtility(IPurger)
+#     registry = getUtility(IRegistry)
+#     purgingSettings = registry.forInterface(ICachePurgingSettings)
+#     proxies = purgingSettings.cachingProxies
+
+#     for newURL in getURLsToPurge(inputURL, proxies):
+#         status, xcache, xerror = purger.purgeSync(newURL)
+
+#         log = newURL
+#         if xcache:
+#            log += " (X-Cache header: " + xcache + ")"
+#         if xerror:
+#            log += " -- " + xerror
+#         if not str(status).startswith("2"):
+#            log += " -- WARNING status " + str(status)
+#         logger.error('****Result purge varnish: %s' % (log))
+
+def purge_varnish(self, urls):
+    sync = True
+
+    urls = [x.decode("utf8") if isinstance(x, bytes) else x for x in urls]
 
     purger = getUtility(IPurger)
     registry = getUtility(IRegistry)
     purgingSettings = registry.forInterface(ICachePurgingSettings)
+
+    serverURL = self.request["SERVER_URL"]
+    def purge(url):
+        if sync:
+            status, xcache, xerror = purger.purgeSync(url)
+            log = url
+            if xcache:
+                log += " (X-Cache header: " + xcache + ")"
+            if xerror:
+                log += " -- " + xerror
+            if not str(status).startswith("2"):
+                log += " -- WARNING status " + str(status)
+            self.purgeLog.append(log)
+        else:
+            purger.purgeAsync(url)
+            self.purgeLog.append(url)
+    portal_url = getToolByName(self.context, "portal_url")
+    portal = portal_url.getPortalObject()
+    portalPath = portal.getPhysicalPath()
     proxies = purgingSettings.cachingProxies
-
-    for newURL in getURLsToPurge(inputURL, proxies):
-        status, xcache, xerror = purger.purgeSync(newURL)
-
-        log = newURL
-        if xcache:
-           log += " (X-Cache header: " + xcache + ")"
-        if xerror:
-           log += " -- " + xerror
-        if not str(status).startswith("2"):
-           log += " -- WARNING status " + str(status)
-        logger.error('****Result purge varnish: %s' % (log))
+    for inputURL in urls:
+        if not inputURL.startswith(serverURL):  # not in the site
+            if "://" in inputURL:  # Full URL?
+                purge(inputURL)
+            else:  # Path?
+                for newURL in getURLsToPurge(inputURL, proxies):
+                    purge(newURL)
+            continue
+        physicalPath = relativePath = None
+        try:
+            physicalPath = self.request.physicalPathFromURL(inputURL)
+        except ValueError:
+            purge(inputURL)
+            continue
+        if not physicalPath:
+            purge(inputURL)
+            continue
+        relativePath = physicalPath[len(portalPath) :]
+        if not relativePath:
+            purge(inputURL)
+            continue
+        obj = portal.unrestrictedTraverse(relativePath, None)
+        if obj is None:
+            purge(inputURL)
+            continue
+        for path in getPathsToPurge(obj, self.request):
+            for newURL in getURLsToPurge(path, proxies):
+                purge(newURL)
 
 # class GWConfig(BrowserView):
 
