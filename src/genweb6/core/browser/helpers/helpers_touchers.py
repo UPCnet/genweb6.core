@@ -795,6 +795,34 @@ Configura la páginas por defecto de las carpetas de notícias y eventos para a�
                 portal_en['news'].setDefaultPage('aggregator')
             if 'events' in portal_en:
                 portal_en['events'].setDefaultPage('aggregator')
+class change_modify_view_template_permission_news_events(BrowserView):
+    """
+Configura los permisos de [ Modify view template ] de las carpetas de eventos y noticias para que solo pueda modificarlos el Manager
+    """
+
+    def __call__(self):
+        portal = api.portal.get()
+
+        if 'ca' in portal:
+            portal_ca = portal['ca']
+            if 'noticies' in portal_ca:
+                portal_ca['noticies'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_ca['noticies']:
+                    portal_ca['noticies']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
+
+        if 'es' in portal:
+            portal_es = portal['es']
+            if 'noticias' in portal_es:
+                portal_es['noticias'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_es['noticias']:
+                    portal_es['noticias']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
+
+        if 'en' in portal:
+            portal_en = portal['en']
+            if 'news' in portal_en:
+                portal_en['news'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_en['news']:
+                    portal_en['news']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
 
         transaction.commit()
         return 'OK'

@@ -239,4 +239,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="change_modify_view_template_permission_news_events"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.change_modify_view_template_permission_news_events"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

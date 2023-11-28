@@ -189,6 +189,10 @@ class setup(BrowserView):
         noticias.exclude_from_nav = True
         noticies.exclude_from_nav = True
 
+        news.manage_permission('Modify view template', ['Manager'], 0)
+        noticias.manage_permission('Modify view template', ['Manager'], 0)
+        noticies.manage_permission('Modify view template', ['Manager'], 0)
+
         # Create the aggregator
         col_news = self.create_content(
             news, 'Collection', 'aggregator', title='aggregator',
@@ -196,6 +200,7 @@ class setup(BrowserView):
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
+        col_news.manage_permission('Modify view template', ['Manager'], 0)
 
         col_news.reindexObject()
 
@@ -205,6 +210,7 @@ class setup(BrowserView):
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
+        col_noticias.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticias.reindexObject()
 
@@ -214,6 +220,7 @@ class setup(BrowserView):
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
+        col_noticies.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticies.reindexObject()
 
@@ -660,6 +667,10 @@ class setup(BrowserView):
         noticias.exclude_from_nav = True
         noticies.exclude_from_nav = True
 
+        news.manage_permission('Modify view template', ['Manager'], 0)
+        noticias.manage_permission('Modify view template', ['Manager'], 0)
+        noticies.manage_permission('Modify view template', ['Manager'], 0)
+
         # Create the aggregator
         col_news = self.create_content(
             news, 'Collection', 'aggregator', title='aggregator',
@@ -667,6 +678,7 @@ class setup(BrowserView):
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
+        col_news.manage_permission('Modify view template', ['Manager'], 0)
 
         col_news.reindexObject()
 
@@ -676,6 +688,7 @@ class setup(BrowserView):
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
+        col_noticias.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticias.reindexObject()
 
@@ -685,6 +698,7 @@ class setup(BrowserView):
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
+        col_noticies.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticies.reindexObject()
 
