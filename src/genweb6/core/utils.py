@@ -35,6 +35,7 @@ from plone.cachepurging.interfaces import IPurger
 from plone.cachepurging.interfaces import ICachePurgingSettings
 from plone.cachepurging.utils import getURLsToPurge
 from plone.cachepurging.utils import getPathsToPurge
+from plone.cachepurging.interfaces import IPurgePathRewriter
 from Products.CMFCore.utils import getToolByName
 
 from zope.component import getUtility
@@ -214,15 +215,14 @@ def remove_html_tags(text):
 #            log += " -- WARNING status " + str(status)
 #         logger.error('****Result purge varnish: %s' % (log))
 
-def purge_varnish(self, urls):
-
-    urls = [x.decode("utf8") if isinstance(x, bytes) else x for x in urls]
+def purge_varnish_paths(self, paths):
+    """ Purga todos los paths Ej: '/@@gw-hero' en el varnish"""
 
     purger = getUtility(IPurger)
     registry = getUtility(IRegistry)
     purgingSettings = registry.forInterface(ICachePurgingSettings)
+    proxies = purgingSettings.cachingProxies
 
-    serverURL = self.request["SERVER_URL"]
     def purge(url):
         status, xcache, xerror = purger.purgeSync(url)
         log = url
@@ -233,38 +233,12 @@ def purge_varnish(self, urls):
         if not str(status).startswith("2"):
             log += " -- WARNING status " + str(status)
 
-    portal_url = getToolByName(self.context, "portal_url")
-    portal = portal_url.getPortalObject()
-    portalPath = portal.getPhysicalPath()
-    proxies = purgingSettings.cachingProxies
-    for inputURL in urls:
-        if not inputURL.startswith(serverURL):  # not in the site
-            if "://" in inputURL:  # Full URL?
-                purge(inputURL)
-            else:  # Path?
-                for newURL in getURLsToPurge(inputURL, proxies):
-                    purge(newURL)
-            continue
-        physicalPath = relativePath = None
-        try:
-            physicalPath = self.request.physicalPathFromURL(inputURL)
-        except ValueError:
-            purge(inputURL)
-            continue
-        if not physicalPath:
-            purge(inputURL)
-            continue
-        relativePath = physicalPath[len(portalPath) :]
-        if not relativePath:
-            purge(inputURL)
-            continue
-        obj = portal.unrestrictedTraverse(relativePath, None)
-        if obj is None:
-            purge(inputURL)
-            continue
-        for path in getPathsToPurge(obj, self.request):
-            for newURL in getURLsToPurge(path, proxies):
-                purge(newURL)
+    relativePaths = [x.decode("utf8") if isinstance(x, bytes) else x for x in paths]
+    rewriter = IPurgePathRewriter(self.request, None)
+    for relativePath in relativePaths:
+        rewrittenPaths = rewriter(relativePath) or []
+        for newURL in getURLsToPurge(rewrittenPaths[0], proxies):
+            purge(newURL)
 
 # class GWConfig(BrowserView):
 

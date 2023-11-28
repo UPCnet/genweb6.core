@@ -291,10 +291,10 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
         self.applyChanges(data)
         ramcache.caches.clear()
 
-        urls = []
-        urls.append(utils.portal_url() + '/ca')
+        paths = []
+        paths.append('/@@gw-hero')
 
-        utils.purge_varnish(self, urls)
+        utils.purge_varnish_paths(self, paths)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
