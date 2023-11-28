@@ -82,23 +82,26 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
                      in "/".join(self.context.getPhysicalPath())})
 
     def customize_tab(self, entry, tab):
+        catalog = api.portal.get_tool('portal_catalog')
+        portal = api.portal.get()
+
         lang = self.context.language
         if not lang:
-            lang = self.context.getPhysicalPath()[
-                len(api.portal.get().getPhysicalPath())]
+            lang = self.context.getPhysicalPath()[len(portal.getPhysicalPath())]
 
-        path = '/' + api.portal.get().id + '/' + lang + '/' + tab['id']
+        path = '/' + portal.id + '/' + lang + '/' + tab['id']
         brain = api.content.get(path=path)
         entry.update({"external_link": bool(
             getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
         entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
 
         # Si tenemos una url con resolveuid la cambiamos por la url del objeto
-        internal = True if 'resolveuid' in entry['url'] else False
+        internal = 'resolveuid' in entry['url']
         if internal:
             uid = entry['url'].split('/resolveuid/')[1]
-            next_obj = api.content.get(UID=uid)
-            entry['url'] = next_obj.absolute_url()
+            next_obj = catalog.unrestrictedSearchResults(UID=uid)
+            if next_obj:
+                entry['url'] = next_obj[0].getURL()
 
     # Añadimos target y current al dict
     def render_item(self, item, path):
