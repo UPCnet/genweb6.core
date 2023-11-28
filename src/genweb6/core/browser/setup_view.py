@@ -266,6 +266,7 @@ class setup(BrowserView):
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
         col_events.sort_reversed = QUERY_SORT_REVERSED
+        col_events.setLayout('event_listing')
 
         col_events.reindexObject()
 
@@ -276,6 +277,7 @@ class setup(BrowserView):
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
         col_eventos.sort_reversed = QUERY_SORT_REVERSED
+        col_eventos.setLayout('event_listing')
 
         col_eventos.reindexObject()
 
@@ -286,6 +288,7 @@ class setup(BrowserView):
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
         col_noticies.col_esdeveniments = QUERY_SORT_REVERSED
+        col_esdeveniments.setLayout('event_listing')
 
         col_esdeveniments.reindexObject()
 
@@ -750,6 +753,7 @@ class setup(BrowserView):
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
         col_events.sort_reversed = QUERY_SORT_REVERSED
+        col_events.setLayout('event_listing')
 
         col_events.reindexObject()
 
@@ -760,6 +764,7 @@ class setup(BrowserView):
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
         col_eventos.sort_reversed = QUERY_SORT_REVERSED
+        col_eventos.setLayout('event_listing')
 
         col_eventos.reindexObject()
 
@@ -770,6 +775,7 @@ class setup(BrowserView):
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
         col_esdeveniments.sort_reversed = QUERY_SORT_REVERSED
+        col_esdeveniments.setLayout('event_listing')
 
         col_esdeveniments.reindexObject()
 
