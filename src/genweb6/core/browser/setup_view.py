@@ -44,6 +44,7 @@ NEWS_QUERY = [
     {'i': u'path', 'o': u'plone.app.querystring.operation.string.relativePath',
      'v': u'..'}]
 QUERY_SORT_ON = u'effective'
+QUERY_SORT_REVERSED = True
 EVENT_QUERY = [
     {'i': 'portal_type', 'o': 'plone.app.querystring.operation.selection.any',
      'v': [u'Event']},
@@ -200,6 +201,7 @@ class setup(BrowserView):
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
+        col_news.sort_reversed = QUERY_SORT_REVERSED
         col_news.manage_permission('Modify view template', ['Manager'], 0)
 
         col_news.reindexObject()
@@ -210,6 +212,7 @@ class setup(BrowserView):
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
+        col_noticias.sort_reversed = QUERY_SORT_REVERSED
         col_noticias.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticias.reindexObject()
@@ -220,6 +223,7 @@ class setup(BrowserView):
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
+        col_noticies.sort_reversed = QUERY_SORT_REVERSED
         col_noticies.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticies.reindexObject()
@@ -261,6 +265,7 @@ class setup(BrowserView):
         col_events.title = 'Events'
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
+        col_events.sort_reversed = QUERY_SORT_REVERSED
 
         col_events.reindexObject()
 
@@ -270,6 +275,7 @@ class setup(BrowserView):
         col_eventos.title = 'Eventos'
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
+        col_eventos.sort_reversed = QUERY_SORT_REVERSED
 
         col_eventos.reindexObject()
 
@@ -279,6 +285,7 @@ class setup(BrowserView):
         col_esdeveniments.title = 'Esdeveniments'
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
+        col_noticies.col_esdeveniments = QUERY_SORT_REVERSED
 
         col_esdeveniments.reindexObject()
 
@@ -678,6 +685,7 @@ class setup(BrowserView):
         col_news.title = 'News'
         col_news.query = NEWS_QUERY
         col_news.sort_on = QUERY_SORT_ON
+        col_news.sort_reversed = QUERY_SORT_REVERSED
         col_news.manage_permission('Modify view template', ['Manager'], 0)
 
         col_news.reindexObject()
@@ -688,6 +696,7 @@ class setup(BrowserView):
         col_noticias.title = 'Noticias'
         col_noticias.query = NEWS_QUERY
         col_noticias.sort_on = QUERY_SORT_ON
+        col_noticias.sort_reversed = QUERY_SORT_REVERSED
         col_noticias.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticias.reindexObject()
@@ -698,6 +707,7 @@ class setup(BrowserView):
         col_noticies.title = 'Notícies'
         col_noticies.query = NEWS_QUERY
         col_noticies.sort_on = QUERY_SORT_ON
+        col_noticies.sort_reversed = QUERY_SORT_REVERSED
         col_noticies.manage_permission('Modify view template', ['Manager'], 0)
 
         col_noticies.reindexObject()
@@ -739,6 +749,7 @@ class setup(BrowserView):
         col_events.title = 'Events'
         col_events.query = EVENT_QUERY
         col_events.sort_on = QUERY_SORT_ON
+        col_events.sort_reversed = QUERY_SORT_REVERSED
 
         col_events.reindexObject()
 
@@ -748,6 +759,7 @@ class setup(BrowserView):
         col_eventos.title = 'Eventos'
         col_eventos.query = EVENT_QUERY
         col_eventos.sort_on = QUERY_SORT_ON
+        col_eventos.sort_reversed = QUERY_SORT_REVERSED
 
         col_eventos.reindexObject()
 
@@ -757,6 +769,7 @@ class setup(BrowserView):
         col_esdeveniments.title = 'Esdeveniments'
         col_esdeveniments.query = EVENT_QUERY
         col_esdeveniments.sort_on = QUERY_SORT_ON
+        col_esdeveniments.sort_reversed = QUERY_SORT_REVERSED
 
         col_esdeveniments.reindexObject()
 
