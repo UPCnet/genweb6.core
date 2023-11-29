@@ -84,13 +84,6 @@
 
     <browser:page
         for="*"
-        name="gw-css"
-        class=".resources.GWCSS"
-        permission="zope.Public"
-        />
-
-    <browser:page
-        for="*"
         name="gw-js"
         class=".resources.GWJS"
         permission="zope.Public"

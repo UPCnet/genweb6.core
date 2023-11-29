@@ -108,7 +108,6 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
         self.applyChanges(data)
 
         paths = []
-        paths.append('/@@gw-css')
         paths.append('/@@gw-js')
         paths.append('/_purge_all')
 
@@ -125,23 +124,6 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
 
 class ResourcesSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     form = ResourcesSettingsForm
-
-
-class GWCSS(BrowserView):
-
-    def __call__(self):
-        return self.generate()
-
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
-    def generate(self):
-        registry = queryUtility(IRegistry)
-        resources_config = registry.forInterface(IResourcesSettings)
-
-        if getattr(resources_config, 'file_css', False):
-            filename, data = b64decode_file(resources_config.file_css)
-            data = NamedFile(data=data, filename=filename)
-            return data._data._data
-        return None
 
 
 class GWJS(BrowserView):
