@@ -203,6 +203,7 @@ class setup(BrowserView):
         col_news.sort_on = QUERY_SORT_ON
         col_news.sort_reversed = QUERY_SORT_REVERSED
         col_news.manage_permission('Modify view template', ['Manager'], 0)
+        col_news.setLayout('news_listing')
 
         col_news.reindexObject()
 
@@ -214,6 +215,7 @@ class setup(BrowserView):
         col_noticias.sort_on = QUERY_SORT_ON
         col_noticias.sort_reversed = QUERY_SORT_REVERSED
         col_noticias.manage_permission('Modify view template', ['Manager'], 0)
+        col_noticias.setLayout('news_listing')
 
         col_noticias.reindexObject()
 
@@ -225,6 +227,7 @@ class setup(BrowserView):
         col_noticies.sort_on = QUERY_SORT_ON
         col_noticies.sort_reversed = QUERY_SORT_REVERSED
         col_noticies.manage_permission('Modify view template', ['Manager'], 0)
+        col_noticies.setLayout('news_listing')
 
         col_noticies.reindexObject()
 
@@ -690,6 +693,7 @@ class setup(BrowserView):
         col_news.sort_on = QUERY_SORT_ON
         col_news.sort_reversed = QUERY_SORT_REVERSED
         col_news.manage_permission('Modify view template', ['Manager'], 0)
+        col_news.setLayout('news_listing')
 
         col_news.reindexObject()
 
@@ -701,6 +705,7 @@ class setup(BrowserView):
         col_noticias.sort_on = QUERY_SORT_ON
         col_noticias.sort_reversed = QUERY_SORT_REVERSED
         col_noticias.manage_permission('Modify view template', ['Manager'], 0)
+        col_noticias.setLayout('news_listing')
 
         col_noticias.reindexObject()
 
@@ -712,6 +717,7 @@ class setup(BrowserView):
         col_noticies.sort_on = QUERY_SORT_ON
         col_noticies.sort_reversed = QUERY_SORT_REVERSED
         col_noticies.manage_permission('Modify view template', ['Manager'], 0)
+        col_noticies.setLayout('news_listing')
 
         col_noticies.reindexObject()
 
