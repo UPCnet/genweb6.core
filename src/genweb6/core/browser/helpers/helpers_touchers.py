@@ -779,7 +779,6 @@ Configura la páginas por defecto de las carpetas de notícias y eventos para a�
             portal_ca = portal['ca']
             if 'noticies' in portal_ca:
                 portal_ca['noticies'].setDefaultPage('aggregator')
-            if 'esdeveniments' in portal_ca:
 
             if 'esdeveniments' in portal_ca and 'aggregator' in portal_ca['esdeveniments']:
                 portal_ca['esdeveniments'].setDefaultPage('aggregator')
@@ -789,7 +788,6 @@ Configura la páginas por defecto de las carpetas de notícias y eventos para a�
             portal_es = portal['es']
             if 'noticias' in portal_es:
                 portal_es['noticias'].setDefaultPage('aggregator')
-            if 'eventos' in portal_es:
 
             if 'eventos' in portal_es and 'aggregator' in portal_es['eventos']:
                 portal_es['eventos'].setDefaultPage('aggregator')
@@ -799,7 +797,6 @@ Configura la páginas por defecto de las carpetas de notícias y eventos para a�
             portal_en = portal['en']
             if 'news' in portal_en:
                 portal_en['news'].setDefaultPage('aggregator')
-            if 'events' in portal_en:
 
             if 'events' in portal_en and 'aggregator' in portal_en['events']:
                 portal_en['events'].setDefaultPage('aggregator')
