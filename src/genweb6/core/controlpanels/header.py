@@ -293,6 +293,10 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
 
         paths = []
         paths.append('/@@gw-hero')
+        paths.append('/@@gw-full-hero')
+        paths.append('/@@gw-logo')
+        paths.append('/@@gw-secondary-logo')
+        paths.append('/_purge_all')
 
         utils.purge_varnish_paths(self, paths)
 
