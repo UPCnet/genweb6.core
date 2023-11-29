@@ -27,6 +27,7 @@ from zope.ramcache import ram as ramcache
 from zope.schema.interfaces import IField
 
 from genweb6.core import _
+from genweb6.core import utils
 
 
 class IResourcesControlpanelJSWidget(ITextWidget):
@@ -105,6 +106,13 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
 
         ramcache.caches.clear()
         self.applyChanges(data)
+
+        paths = []
+        paths.append('/@@gw-css')
+        paths.append('/@@gw-js')
+        paths.append('/_purge_all')
+
+        utils.purge_varnish_paths(self, paths)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
