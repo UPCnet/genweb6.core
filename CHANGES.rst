@@ -2,11 +2,26 @@ Changelog
 =========
 
 
-1.18 (unreleased)
+1.18 (2023-11-30)
 -----------------
 
-- Nothing changed yet.
-
+* purge cache varnish si esta configurado [Pilar Marinas]
+* [DEL] gw-css [Iago López]
+* [UPD] View news_listing [Iago López]
+* Purge varnish resources controlpanel [Pilar Marinas]
+* [UPD] Cambiar vista coleccion eventos por event_listing [Iago López]
+* Purge varnish header controlpanel [Pilar Marinas]
+* Purge varnish paths [Pilar Marinas]
+* [UPD] Cambiar vista coleccion eventos por event_listing [Iago López]
+* [UPD] Invertir orden colecciones aggregator [Iago López]
+* [UPD] No permitir que los usuarios editen la vista de las noticias y eventos [Iago López]
+* [FIX] Evitar error menu cabecera cuando tenemos un enlace interno apuntando a un objeto no publico [Iago López]
+* Purge varnish [Pilar Marinas]
+* Purge varnish header controlpanel [Pilar Marinas]
+* Purge varnish [Pilar Marinas]
+* Purge varnish [Pilar Marinas]
+* Purge varnish [Pilar Marinas]
+* Purge varnish controlpanel header [Pilar Marinas]
 
 1.17 (2023-11-24)
 -----------------
