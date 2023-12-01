@@ -31,12 +31,6 @@ from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
-from plone.cachepurging.interfaces import IPurger
-from plone.cachepurging.interfaces import ICachePurgingSettings
-from plone.cachepurging.utils import getURLsToPurge
-from plone.cachepurging.utils import getPathsToPurge
-from plone.cachepurging.interfaces import IPurgePathRewriter
-from Products.CMFCore.utils import getToolByName
 
 from zope.component import getUtility
 
@@ -195,52 +189,6 @@ def remove_html_tags(text):
         return re.sub(clean, '', text)
     return None
 
-# def purge_varnish(inputURL):
-#     """ Purge url varnish """
-
-#     purger = getUtility(IPurger)
-#     registry = getUtility(IRegistry)
-#     purgingSettings = registry.forInterface(ICachePurgingSettings)
-#     proxies = purgingSettings.cachingProxies
-
-#     for newURL in getURLsToPurge(inputURL, proxies):
-#         status, xcache, xerror = purger.purgeSync(newURL)
-
-#         log = newURL
-#         if xcache:
-#            log += " (X-Cache header: " + xcache + ")"
-#         if xerror:
-#            log += " -- " + xerror
-#         if not str(status).startswith("2"):
-#            log += " -- WARNING status " + str(status)
-#         logger.error('****Result purge varnish: %s' % (log))
-
-def purge_varnish_paths(self, paths):
-    """ Purga todos los paths Ej: '/@@gw-hero' en el varnish"""
-
-    purger = getUtility(IPurger)
-    registry = getUtility(IRegistry)
-    purgingSettings = registry.forInterface(ICachePurgingSettings)
-    proxies = purgingSettings.cachingProxies
-
-    if proxies:
-
-        def purge(url):
-            status, xcache, xerror = purger.purgeSync(url)
-            log = url
-            if xcache:
-                log += " (X-Cache header: " + xcache + ")"
-            if xerror:
-                log += " -- " + xerror
-            if not str(status).startswith("2"):
-                log += " -- WARNING status " + str(status)
-
-        relativePaths = [x.decode("utf8") if isinstance(x, bytes) else x for x in paths]
-        rewriter = IPurgePathRewriter(self.request, None)
-        for relativePath in relativePaths:
-            rewrittenPaths = rewriter(relativePath) or []
-            for newURL in getURLsToPurge(rewrittenPaths[0], proxies):
-                purge(newURL)
 
 # class GWConfig(BrowserView):
 

@@ -22,7 +22,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
-from genweb6.core import utils
+from genweb6.core.purge import purge_varnish_paths
 
 
 themeVocabulary = SimpleVocabulary([
@@ -298,7 +298,7 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
         paths.append('/@@gw-secondary-logo')
         paths.append('/_purge_all')
 
-        utils.purge_varnish_paths(self, paths)
+        purge_varnish_paths(self, paths)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
