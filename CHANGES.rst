@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.19 (unreleased)
+1.19 (2023-12-01)
 -----------------
 
-- Nothing changed yet.
-
+* Purge [Pilar Marinas]
 
 1.18 (2023-11-30)
 -----------------
