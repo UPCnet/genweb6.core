@@ -824,6 +824,11 @@ Configura los permisos de [ Modify view template ] de las carpetas de eventos y 
                 if 'aggregator' in portal_ca['noticies']:
                     portal_ca['noticies']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
 
+            if 'esdeveniments' in portal_ca:
+                portal_ca['esdeveniments'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_ca['esdeveniments']:
+                    portal_ca['esdeveniments']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
+
         if 'es' in portal:
             portal_es = portal['es']
             if 'noticias' in portal_es:
@@ -831,12 +836,22 @@ Configura los permisos de [ Modify view template ] de las carpetas de eventos y 
                 if 'aggregator' in portal_es['noticias']:
                     portal_es['noticias']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
 
+            if 'eventos' in portal_es:
+                portal_es['eventos'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_es['eventos']:
+                    portal_es['eventos']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
+
         if 'en' in portal:
             portal_en = portal['en']
             if 'news' in portal_en:
                 portal_en['news'].manage_permission('Modify view template', ['Manager'], 0)
                 if 'aggregator' in portal_en['news']:
                     portal_en['news']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
+
+            if 'events' in portal_es:
+                portal_es['events'].manage_permission('Modify view template', ['Manager'], 0)
+                if 'aggregator' in portal_es['events']:
+                    portal_es['events']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
 
         transaction.commit()
         return 'OK'
