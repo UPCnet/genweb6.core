@@ -168,6 +168,15 @@ class Assignment (base.Assignment):
 class Renderer(base.Renderer):
     render = ViewPageTemplateFile('new_existing_content.pt')
 
+    def check_configuration_error(self):
+        if self.data.content_or_url == 'INTERN' and not self.data.own_content:
+            return _(u"Configura el contingut intern")
+
+        if self.data.content_or_url == 'EXTERN' and not self.data.external_url:
+            return _(u"Configura el contingut extern")
+
+        return None
+
     @memoize
     def owncontent(self):
         owncontent_path = self.data.own_content
@@ -191,15 +200,18 @@ class Renderer(base.Renderer):
         return content
 
     def checkContentIsPublic(self):
-        if self.data.content_or_url == 'INTERN':
-            content = self.get_catalog_content()
-            if not content.expiration_date:
-                return True
+        try:
+            if self.data.content_or_url == 'INTERN':
+                content = self.get_catalog_content()
+                if not content.expiration_date:
+                    return True
 
-            now = DateTime.DateTime()
-            return now >= content.effective_date and now <= content.expiration_date
-        else:
-            return True
+                now = DateTime.DateTime()
+                return now >= content.effective_date and now <= content.expiration_date
+            else:
+                return True
+        except:
+            return False
 
     def checkContentIsIntranet(self):
         if self.data.content_or_url == 'INTERN':

@@ -1,4 +1,18 @@
-<div tal:condition="view/checkContentIsPublic" tal:attributes="class view/getClass">
-	<h2 class='portlet-title' tal:condition="view/showTitle" tal:content="view/getTitle"> titol contingut </h2>
-  <tal:packet replace="structure view/getHTML"></tal:packet>
+<div tal:attributes="class view/getClass"
+     tal:define="check_configuration_error view/check_configuration_error">
+
+  <div class="alert alert-warning" role="alert"
+       tal:condition="check_configuration_error">
+    <i class="fw-bold bi bi-exclamation-triangle"></i>
+    <span class="fw-bold">Error:</span>
+    <span tal:content="check_configuration_error"></span>
+  </div>
+
+	<h2 class='portlet-title' tal:condition="view/showTitle"
+      tal:content="view/getTitle"> titol contingut </h2>
+
+  <tal:block tal:condition="not:check_configuration_error">
+    <tal:packet tal:condition="view/checkContentIsPublic"
+                replace="structure view/getHTML"></tal:packet>
+  </tal:block>
 </div>
