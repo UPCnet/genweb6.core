@@ -10,7 +10,7 @@ from zope.ramcache import ram
 
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
-
+from genweb6.core.purge import purge_varnish_paths
 
 class ICintilloSettings(model.Schema):
 
@@ -109,7 +109,12 @@ class CintilloSettingsForm(controlpanel.RegistryEditForm):
 
         self.applyChanges(data)
         ram.caches.clear()
-        
+
+        paths = []
+        paths.append('/_purge_all')
+
+        purge_varnish_paths(self, paths)
+
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
         self.request.response.redirect(self.request.getURL())
 

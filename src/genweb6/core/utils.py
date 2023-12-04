@@ -196,19 +196,19 @@ def remove_html_tags(text):
 #         return genweb_config()
 
 
-@ram.cache(lambda *args: time() // (24 * 60 * 60))
+#@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebCintilloConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICintilloSettings)
 
 
-@ram.cache(lambda *args: time() // (24 * 60 * 60))
+#@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebHeaderConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IHeaderSettings)
 
 
-@ram.cache(lambda *args: time() // (24 * 60 * 60))
+#@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebFooterConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IFooterSettings)
@@ -220,7 +220,7 @@ def genwebLoginConfig():
     return registry.forInterface(ILoginSettings)
 
 
-@ram.cache(lambda *args: time() // (24 * 60 * 60))
+#@ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebResourcesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IResourcesSettings)

@@ -326,7 +326,7 @@ class GWHero(Download):
         self.data = data
         self.filename = filename
 
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate_hero_image(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
@@ -353,7 +353,7 @@ class GWFullHero(Download):
         self.filename = filename
         self.data = data
 
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate_full_hero_image(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
@@ -380,7 +380,7 @@ class GWLogo(Download):
         self.filename = filename
         self.data = data
 
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate_logo(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
@@ -407,7 +407,7 @@ class GWSecundaryLogo(Download):
         self.filename = filename
         self.data = data
 
-    @ram.cache(lambda *args: time() // (24 * 60 * 60))
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
     def generate_secondary_logo(self):
         registry = queryUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)

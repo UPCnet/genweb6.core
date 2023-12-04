@@ -16,6 +16,7 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
+from genweb6.core.purge import purge_varnish_paths
 
 
 themeVocabulary = SimpleVocabulary([
@@ -179,6 +180,11 @@ class FooterSettingsForm(controlpanel.RegistryEditForm):
             return
 
         ram.caches.clear()
+        paths = []
+        paths.append('/_purge_all')
+
+        purge_varnish_paths(self, paths)
+
         self.applyChanges(data)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")
