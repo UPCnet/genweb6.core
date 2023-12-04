@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.20 (unreleased)
+1.20 (2023-12-04)
 -----------------
 
-- Nothing changed yet.
-
+* Comentar ram.cache porque la hace por zcX y el resto tiene datos incorrectos y añadir purge_all varnish [Pilar Marinas]
 
 1.19 (2023-12-01)
 -----------------
