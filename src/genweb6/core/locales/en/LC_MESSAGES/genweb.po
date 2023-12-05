@@ -303,11 +303,11 @@ msgstr "Collection"
 
 #: ../portlets/new_existing_content/new_existing_content.py:176
 msgid "Configura el contingut extern"
-msgstr ""
+msgstr "Configure external content"
 
 #: ../portlets/new_existing_content/new_existing_content.py:173
 msgid "Configura el contingut intern"
-msgstr ""
+msgstr "Configure internal content"
 
 #: ../controlpanels/header.py:46
 msgid "Configuracions"
@@ -1170,7 +1170,7 @@ msgstr "This process may take a while. If the request times out, the zip file wi
 
 #: ../tiles/configure.zcml:42
 msgid "Tile used to show 2 destacats in homepage"
-msgstr ""
+msgstr "Tile used to show 2 destacats in homepage"
 
 #: ../tiles/configure.zcml:55
 msgid "Tile used to show 3 destacats in homepage"
@@ -1178,11 +1178,11 @@ msgstr "Tile used to show 3 destacats in homepage"
 
 #: ../tiles/configure.zcml:68
 msgid "Tile used to show 4 destacats events in homepage"
-msgstr ""
+msgstr "Tile used to show 4 destacats events in homepage"
 
 #: ../tiles/configure.zcml:81
 msgid "Tile used to show 5 destacats in homepage"
-msgstr ""
+msgstr "Tile used to show 5 destacats in homepage"
 
 #: ../tiles/configure.zcml:110
 msgid "Tile used to show custom video"
@@ -1330,7 +1330,7 @@ msgstr "Do you really want to delete those contents?"
 #. Default: "All events"
 #: ../patches.py:1281
 msgid "all_events"
-msgstr ""
+msgstr "All events"
 
 # Portlet NewsEventsListing
 #. Default: "All news"
