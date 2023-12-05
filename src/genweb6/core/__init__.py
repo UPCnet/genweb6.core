@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+from plone.app.event.base import expand_events
+from plone.protect.monkey import marmoset_patch
 from zope.i18nmessageid import MessageFactory
+
+from genweb6.core.marmoset import gw_expend_events
 
 import os
 import pkg_resources
@@ -69,3 +73,6 @@ def uninstall_pre_commit_hook(argv=sys.argv):
             pass
 
         print('Uninstall Git pre-commit hook in {}.'.format(repo))
+
+
+marmoset_patch(expand_events, gw_expend_events)
