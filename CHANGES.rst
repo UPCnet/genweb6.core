@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.21 (unreleased)
+1.21 (2023-12-05)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Evitar que peten los contenidos existentes mal configurados [Iago López]
+* [UPD] Helper change_modify_view_template_permission_news_events parte de los eventos [Iago López]
 
 1.20 (2023-12-04)
 -----------------
