@@ -1372,3 +1372,31 @@ def header_string(self):
         "main": trans(main_msgid) if main_msgid else "",
         "sub": trans(sub_msgid) if sub_msgid else "",
     }
+
+def resultsFolder(self, **kwargs):
+    """Return a content listing based result set with contents of the
+    folder.
+
+    :param **kwargs: Any keyword argument, which can be used for catalog
+                        queries.
+    :type  **kwargs: keyword argument
+
+    :returns: plone.app.contentlisting based result set.
+    :rtype: ``plone.app.contentlisting.interfaces.IContentListing`` based
+            sequence.
+    """
+    # Extra filter
+    kwargs.update(self.request.get("contentFilter", {}))
+    if "object_provides" not in kwargs:  # object_provides is more specific
+        kwargs.setdefault("portal_type", self.friendly_types)
+    kwargs.setdefault("exclude_from_nav", False)  # Añadido
+    kwargs.setdefault("batch", True)
+    kwargs.setdefault("b_size", self.b_size)
+    kwargs.setdefault("b_start", self.b_start)
+    kwargs.setdefault("orphan", 1)
+
+    listing = aq_inner(self.context).restrictedTraverse("@@folderListing", None)
+    if listing is None:
+        return []
+    results = listing(**kwargs)
+    return results

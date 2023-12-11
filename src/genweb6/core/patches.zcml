@@ -188,4 +188,11 @@
         replacement=".patches.header_string"
         />
 
+    <monkey:patch
+        description="No mostrar excluidos de la navegación en carpetas"
+        class="plone.app.contenttypes.browser.folder.FolderView"
+        original="results"
+        replacement=".patches.resultsFolder"
+        />
+
 </configure>
