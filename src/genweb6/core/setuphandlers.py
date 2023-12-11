@@ -113,13 +113,14 @@ def setupVarious(context):
 
     header_settings = registry.forInterface(IHeaderSettings)
 
-    logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
-    encoded_data = b64encode_file(filename='logo.png', data=logo)
-    header_settings.logo = encoded_data
+    if not header_settings.logo:
+        logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
+        encoded_data = b64encode_file(filename='logo.png', data=logo)
+        header_settings.logo = encoded_data
 
-    header_settings.logo_alt = "Universitat Politècnica de Catalunya"
-    header_settings.logo_url = "https://www.upc.edu/ca"
-    header_settings.logo_external_url = True
+        header_settings.logo_alt = "Universitat Politècnica de Catalunya"
+        header_settings.logo_url = "https://www.upc.edu/ca"
+        header_settings.logo_external_url = True
 
     if not header_settings.hero_image:
         hero = open('{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation), 'rb').read()
