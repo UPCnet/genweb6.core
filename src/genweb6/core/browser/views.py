@@ -33,6 +33,9 @@ from genweb6.core.utils import json_response
 from genweb6.core.utils import pref_lang
 from genweb6.theme.theme.tinymce_templates.templates import templates
 
+from genweb6.core.purge import purge_varnish_paths
+from zope.ramcache import ram
+
 import unicodedata
 
 PLMF = MessageFactory('plonelocales')
@@ -611,3 +614,19 @@ class FolderIndexItem():
 @implementer(ILoginForm)
 class GWLoginForm(LoginForm):
     pass
+
+
+class GWPurgeCacheVarnish(BrowserView):
+
+    def __call__(self):
+
+        ram.caches.clear()
+        paths = []
+        paths.append('/_purge_all')
+
+        purge_varnish_paths(self, paths)
+
+        message = _(u'Purged')
+
+        IStatusMessage(self.request).addStatusMessage(message, type='info')
+        return self.request.response.redirect(self.context.absolute_url())

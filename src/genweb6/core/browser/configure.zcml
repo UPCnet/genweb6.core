@@ -189,4 +189,12 @@
         template="views_templates/login.pt"
         />
 
+    <browser:page
+        name="purge_cache_varnish"
+        for="*"
+        permission="zope2.View"
+        layer="..interfaces.IGenweb6CoreLayer"
+        class=".views.GWPurgeCacheVarnish"
+        />
+
 </configure>

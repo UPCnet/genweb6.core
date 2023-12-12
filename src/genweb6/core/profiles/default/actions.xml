@@ -20,6 +20,18 @@
    </property>
    <property name="visible">True</property>
   </object>
+  <object name="purge" meta_type="CMF Action" i18n:domain="genweb">
+   <property name="title" i18n:translate="actions_purge">Purge</property>
+   <property
+      name="url_expr">string:$object_url/purge_cache_varnish</property>
+   <property name="link_target"></property>
+   <property name="icon_expr">string:arrow-clockwise</property>
+   <property name="permissions">
+    <element value="Genweb: Manager Users"/>
+    <element value="Genweb: Webmaster Users"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
  </object>
  <object name="object_buttons" meta_type="CMF Action Category">
   <property name="title">Object buttons</property>
