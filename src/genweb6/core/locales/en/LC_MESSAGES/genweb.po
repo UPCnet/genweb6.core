@@ -741,11 +741,11 @@ msgstr "Enter the color code. Ex: #FFFFFF"
 msgid "Items in which workflow state to show."
 msgstr "Items in which workflow state to show."
 
-#: ../browser/views.py:96
+#: ../browser/views.py:99
 msgid "L'element s'ha desmarcat com important"
 msgstr "The item has been marked as important"
 
-#: ../browser/views.py:99
+#: ../browser/views.py:102
 msgid "L'element s'ha marcat com important"
 msgstr "The item has been unmarked as important"
 
@@ -1017,6 +1017,14 @@ msgstr "Post the notice"
 #: ../controlpanels/header.py:111
 msgid "Pujada d’imatges"
 msgstr "Uploading images"
+
+#: ../profiles/default/actions.xml
+msgid "Purge"
+msgstr "Clear cache"
+
+#: ../browser/views.py:629
+msgid "Purged"
+msgstr "Cache cleared"
 
 #: ../controlpanels/resources.py:62
 msgid "Recurs CSS"

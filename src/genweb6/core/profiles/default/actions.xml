@@ -21,7 +21,7 @@
    <property name="visible">True</property>
   </object>
   <object name="purge" meta_type="CMF Action" i18n:domain="genweb">
-   <property name="title" i18n:translate="actions_purge">Purge</property>
+   <property name="title" i18n:translate="">Purge</property>
    <property
       name="url_expr">string:$object_url/purge_cache_varnish</property>
    <property name="link_target"></property>

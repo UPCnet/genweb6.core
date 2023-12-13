@@ -735,11 +735,11 @@ msgstr "Introdueix el codi de color. Ex: #FFFFFF"
 msgid "Items in which workflow state to show."
 msgstr "Estats a mostrar"
 
-#: ../browser/views.py:96
+#: ../browser/views.py:99
 msgid "L'element s'ha desmarcat com important"
 msgstr "L'element s'ha desmarcat com important"
 
-#: ../browser/views.py:99
+#: ../browser/views.py:102
 msgid "L'element s'ha marcat com important"
 msgstr "L'element s'ha marcat com important"
 
@@ -1011,6 +1011,14 @@ msgstr "Publica l'avís"
 #: ../controlpanels/header.py:111
 msgid "Pujada d’imatges"
 msgstr "Pujada d’imatges"
+
+#: ../profiles/default/actions.xml
+msgid "Purge"
+msgstr "Esborrar memòria cau"
+
+#: ../browser/views.py:629
+msgid "Purged"
+msgstr "Memòria cau esborrada"
 
 #: ../controlpanels/resources.py:62
 msgid "Recurs CSS"
