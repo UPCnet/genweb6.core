@@ -39,24 +39,6 @@
     </field>
     <value>text/x-web-intelligent</value>
   </record>
-  <!-- plone.formwidget.recaptcha -->
-
-  <record field="private_key" interface="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings" name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.private_key">
-    <field type="plone.registry.field.TextLine">
-      <default />
-      <title>Private Key</title>
-    </field>
-    <value>6LcEtjEUAAAAAFoR3rEORJQTzMdQE0y6prqaC0Ta</value>
-  </record>
-
-  <record field="public_key" interface="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings" name="plone.formwidget.recaptcha.interfaces.IReCaptchaSettings.public_key">
-    <field type="plone.registry.field.TextLine">
-      <default />
-      <title>Public Key</title>
-    </field>
-    <value>6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn</value>
-  </record>
-
   <!-- Para que no muestre los portlets seleccionados en el menu administrar portlets -->
   <record name="plone.app.portlets.PortletManagerBlacklist">
     <field type="plone.registry.field.List">

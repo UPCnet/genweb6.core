@@ -4,6 +4,7 @@ from Products.CMFPlone.interfaces import INonInstallable
 from plone import api
 from plone.app.multilingual.browser.setup import SetupMultilingualSite
 from plone.formwidget.namedfile.converter import b64encode_file
+from plone.formwidget.recaptcha.interfaces import IReCaptchaSettings
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from zope.interface import implementer
@@ -126,6 +127,14 @@ def setupVarious(context):
         hero = open('{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation), 'rb').read()
         encoded_data = b64encode_file(filename='capcalera.jpg', data=hero)
         header_settings.hero_image = encoded_data
+
+    recaptcha_settings = registry.forInterface(IReCaptchaSettings)
+
+    if not recaptcha_settings.public_key:
+        recaptcha_settings.public_key = '6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn'
+
+    if not recaptcha_settings.private_key:
+        recaptcha_settings.private_key = '6LcEtjEUAAAAAFoR3rEORJQTzMdQE0y6prqaC0Ta'
 
     transaction.commit()
 
