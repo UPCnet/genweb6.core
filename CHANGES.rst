@@ -2,11 +2,18 @@ Changelog
 =========
 
 
-1.22 (unreleased)
+1.22 (2023-12-14)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Recaptcha setup [Iago López]
+* Traduccions purge [Pilar Marinas]
+* Button purge varnish [Pilar Marinas]
+* [ADD] No mostrar elementos excluidos de la navegación en colecciones [Iago López]
+* [ADD] No mostrar elementos excluidos de la navegación en carpetas [Iago López]
+* [FIX] setuphandlers.py, no cambiar logo si ya esta puesto [Iago López]
+* [ADD] marmoset fix events_listing view [Iago López]
+* [UPD] Traducciones [Iago López]
+* [UPD] Traducciones [Iago López]
 
 1.21 (2023-12-05)
 -----------------
