@@ -1014,7 +1014,7 @@ msgstr "Pujada d’imatges"
 
 #: ../profiles/default/actions.xml
 msgid "Purge"
-msgstr "Esborrar memòria cau"
+msgstr "Esborra memòria cau"
 
 #: ../browser/views.py:629
 msgid "Purged"
