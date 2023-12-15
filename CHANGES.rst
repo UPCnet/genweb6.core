@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.23 (unreleased)
+1.23 (2023-12-15)
 -----------------
 
-- Nothing changed yet.
-
+* Modificar traducció purge [Pilar Marinas]
 
 1.22 (2023-12-14)
 -----------------
