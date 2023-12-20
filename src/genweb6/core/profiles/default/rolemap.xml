@@ -331,16 +331,39 @@
             <role name="Manager" />
             <role name="Site Administrator" />
         </permission>
-        <permission name="Sharing page: Delegate Editor role" acquire="True">
+        <permission name="Sharing page: Delegate Contributor role" acquire="False">
+            <role name="Contributor"/>
+            <role name="Manager"/>
+            <role name="Site Administrator" />
+            <role name="WebMaster"/>
+        </permission>
+        <permission name="Sharing page: Delegate Editor role" acquire="False">
+            <role name="Owner"/>
+            <role name="Editor"/>
+            <role name="Manager"/>
+            <role name="Site Administrator" />
             <role name="WebMaster" />
         </permission>
-        <permission name="Sharing page: Delegate Reader role" acquire="True">
+        <permission name="Sharing page: Delegate Reader role" acquire="False">
+            <role name="Owner"/>
+            <role name="Editor"/>
+            <role name="Reviewer"/>
+            <role name="Manager"/>
+            <role name="Site Administrator" />
             <role name="WebMaster" />
         </permission>
-        <permission name="Sharing page: Delegate Reviewer role" acquire="True">
-            <role name="WebMaster" />
+        <permission name="Sharing page: Delegate Reviewer role" acquire="False">
+            <role name="Reviewer"/>
+            <role name="Manager"/>
+            <role name="Site Administrator" />
+            <role name="WebMaster"/>
         </permission>
-        <permission name="Sharing page: Delegate roles" acquire="True">
+        <permission name="Sharing page: Delegate roles" acquire="False">
+            <role name="Owner"/>
+            <role name="Editor"/>
+            <role name="Reviewer"/>
+            <role name="Manager"/>
+            <role name="Site Administrator" />
             <role name="WebMaster" />
         </permission>
         <permission name="Show Toolbar" acquire="False">
