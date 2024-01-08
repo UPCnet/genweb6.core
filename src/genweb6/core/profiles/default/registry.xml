@@ -878,12 +878,28 @@
       <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a JSON-formatted style format configuration. A format is for example the style that get applied when you press the bold button inside the editor. See https://www.tinymce.com/docs/configure/content-formatting/#formats</description>
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Formats</title>
     </field>
-    <value>{ "discreet": { "inline": "span", "classes": "discreet" }, "clearfix": { "block": "div", "classes": "clearfix" }, "alignleft": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-start" }, "aligncenter": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-center" }, "alignright": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-end" }, "alignjustify": { "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table", "classes": "text-justify" }, "textcolumns2": { "selector": "p", "classes": "text-columns-2" }, "textcolumns3": { "selector": "p", "classes": "text-columns-3" }, "h2borderb": { "block": "h2", "classes": "border-bottom pb-2" }, "h3borderb": { "block": "h3", "classes": "border-bottom pb-2" }, "h4borderb": { "block": "h4", "classes": "border-bottom pb-2" } }</value>
+    <value>{"discreet":{"inline":"span","classes":"discreet"},"clearfix":{"block":"div","classes":"clearfix"},"alignleft":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-start"},"aligncenter":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-center"},"alignright":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-end"},"alignjustify":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-justify"},"textcolumns2":{"selector":"p","classes":"text-columns-2"},"textcolumns3":{"selector":"p","classes":"text-columns-3"},"h2borderb":{"block":"h2","classes":"border-bottom pb-2"},"h3borderb":{"block":"h3","classes":"border-bottom pb-2"},"h4borderb":{"block":"h4","classes":"border-bottom pb-2"},"ipdf":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"pdf"},"idoc":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"doc"},"ippt":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"ppt"},"itxt":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"txt"},"ixls":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"xls"},"iimg":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"img"},"ivid":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"vid"},"ihttps":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"https"},"idown":{"selector":"p,span,h1,h2,h3,h4,h5,h6","classes":"down"}}</value>
   </record>
 
   <record name="plone.inline_styles" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="inline_styles">
-  <field type="plone.registry.field.List">
-    <default>
+    <field type="plone.registry.field.List">
+      <default>
+        <element>Bold|bold|bold</element>
+        <element>Italic|italic|italic</element>
+        <element>Underline|underline|underline</element>
+        <element>Strikethrough|strikethrough|strikethrough</element>
+        <element>Superscript|superscript|superscript</element>
+        <element>Subscript|subscript|subscript</element>
+        <element>Code|code|code</element>
+        <element>Text in 2 columns|textcolumns2</element>
+        <element>Text in 3 columns|textcolumns3</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Name|format|icon</description>
+      <missing_value/>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Inline styles</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
       <element>Bold|bold|bold</element>
       <element>Italic|italic|italic</element>
       <element>Underline|underline|underline</element>
@@ -893,26 +909,33 @@
       <element>Code|code|code</element>
       <element>Text in 2 columns|textcolumns2</element>
       <element>Text in 3 columns|textcolumns3</element>
-    </default>
-    <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Name|format|icon</description>
-    <missing_value/>
-    <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Inline styles</title>
-    <value_type type="plone.registry.field.TextLine"/>
-  </field>
-  <value>
-    <element>Bold|bold|bold</element>
-    <element>Italic|italic|italic</element>
-    <element>Underline|underline|underline</element>
-    <element>Strikethrough|strikethrough|strikethrough</element>
-    <element>Superscript|superscript|superscript</element>
-    <element>Subscript|subscript|subscript</element>
-    <element>Code|code|code</element>
-    <element>Text in 2 columns|textcolumns2</element>
-    <element>Text in 3 columns|textcolumns3</element>
-    <element>Header 2|h2borderb|underline</element>
-    <element>Header 3|h3borderb|underline</element>
-    <element>Header 4|h4borderb|underline</element>
-  </value>
+      <element>Header 2|h2borderb|underline</element>
+      <element>Header 3|h3borderb|underline</element>
+      <element>Header 4|h4borderb|underline</element>
+      <element>Arxiu PDF|ipdf</element>
+      <element>Arxiu DOC|idoc</element>
+      <element>Arxiu PPT|ippt</element>
+      <element>Arxiu TXT|itxt</element>
+      <element>Arxiu XLS|ixls</element>
+      <element>Arxiu imatge|iimg</element>
+      <element>Arxiu vídeo|ivid</element>
+      <element>Cadenat HTTPS|ihttps</element>
+      <element>Descarrega fitxer|idown</element>
+    </value>
+  </record>
+
+  <record name="plone.custom_plugins" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="custom_plugins">
+    <field type="plone.registry.field.List">
+      <default/>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a list of custom plugins which will be loaded in the editor. Format is pluginname|location, one per line.</description>
+      <missing_value/>
+      <required>False</required>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Custom plugins</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>gw_translations|++theme++genweb6.theme/js/tinymce_translations.min.js</element>
+    </value>
   </record>
 
   <record name="plone.contains_objects" interface="plone.base.interfaces.controlpanel.ITinyMCEResourceTypesSchema" field="contains_objects">
