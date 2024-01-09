@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.24 (unreleased)
+1.24 (2024-01-09)
 -----------------
 
-- Nothing changed yet.
-
+* Añadir nuevos estilos al tinymce [Iago López]
+* [FIX] Bug permission sharing [Pilar Marinas]
 
 1.23 (2023-12-15)
 -----------------

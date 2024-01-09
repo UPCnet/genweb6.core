@@ -17,7 +17,7 @@ def purge_varnish_paths(self, paths):
     registry = getUtility(IRegistry)
     purgingSettings = registry.forInterface(ICachePurgingSettings)
     proxies = purgingSettings.cachingProxies
-
+    import ipdb; ipdb.set_trace()
     if proxies:
 
         def purge(url):
