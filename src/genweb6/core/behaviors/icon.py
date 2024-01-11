@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.supermodel import model
 from zope import schema
 from zope.component import adapts
@@ -10,7 +11,7 @@ from zope.interface import implementer
 from genweb6.core import _
 
 
-class IIcon(model.Schema):
+class IIcon(model.Schema, IDexteritySchema):
     """Add open in new window field to link content
     """
 

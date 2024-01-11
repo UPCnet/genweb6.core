@@ -4,6 +4,7 @@ from Products.Five.browser import BrowserView
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.supermodel import model
 from z3c.form.browser.text import TextWidget
 from z3c.form.browser.widget import addFieldClass
@@ -57,7 +58,7 @@ contentVocabulary = SimpleVocabulary([
     SimpleTerm(value="collection", title=_(u'Col·lecció'))])
 
 
-class IAccordionTabs(model.Schema):
+class IAccordionTabs(model.Schema, IDexteritySchema):
 
     type_template = schema.Choice(
         title=_(u'Tipus de plantilla'),

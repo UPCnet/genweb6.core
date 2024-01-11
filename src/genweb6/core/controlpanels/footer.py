@@ -7,6 +7,7 @@ from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.supermodel import model
 from z3c.form import button
 from zope import schema
@@ -25,7 +26,7 @@ themeVocabulary = SimpleVocabulary([
     SimpleTerm(value="image-theme", title=_(u'Imatge capçalera'))])
 
 
-class ICustomLinks(model.Schema):
+class ICustomLinks(model.Schema, IDexteritySchema):
 
     title = schema.TextLine(
         title=_(u'Title'),
@@ -38,7 +39,7 @@ class ICustomLinks(model.Schema):
     )
 
 
-class IFooterSettings(model.Schema):
+class IFooterSettings(model.Schema, IDexteritySchema):
 
     theme = schema.Choice(
         title=_(u'Tema'),

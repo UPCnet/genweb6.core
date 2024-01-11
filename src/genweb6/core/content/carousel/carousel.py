@@ -4,6 +4,7 @@ from Products.Five.browser import BrowserView
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.supermodel import model
 from z3c.form.browser.text import TextWidget
 from z3c.form.browser.widget import addFieldClass
@@ -19,6 +20,7 @@ from zope.interface import implementer_only
 from zope.schema.interfaces import IField
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
 
 from genweb6.core import _
 
@@ -54,7 +56,7 @@ def CarouselJSFieldWidget(field, request):
     return FieldWidget(field, CarouselJSWidget(request))
 
 
-class ICarousel(model.Schema):
+class ICarousel(model.Schema, IDexteritySchema):
 
     carousel_type = schema.Choice(
         title=_(u'Tipus de carousel'),

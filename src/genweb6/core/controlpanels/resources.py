@@ -4,6 +4,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedFileFieldWidget
 from plone.memoize import ram
@@ -50,7 +51,7 @@ def ResourcesControlpanelJSFieldWidget(field, request):
     return FieldWidget(field, ResourcesControlpanelJSWidget(request))
 
 
-class IResourcesSettings(model.Schema):
+class IResourcesSettings(model.Schema, IDexteritySchema):
 
     upload_files = schema.Bool(
         title=_(u'Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla'),

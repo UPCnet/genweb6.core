@@ -2,6 +2,7 @@
 from plone.app.contenttypes.interfaces import ILink
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.indexer import indexer
 from plone.supermodel import model
 from zope import schema
@@ -9,10 +10,11 @@ from zope.component import adapts
 from zope.interface import alsoProvides
 from zope.interface import implementer
 
+
 from genweb6.core import _
 
 
-class IOpenLinkInNewWindow(model.Schema):
+class IOpenLinkInNewWindow(model.Schema, IDexteritySchema):
     """Add open in new window field to link content
     """
 

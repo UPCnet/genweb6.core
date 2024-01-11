@@ -2,6 +2,7 @@
 from Products.Five.browser import BrowserView
 
 from plone.app.contenttypes.utils import replace_link_variables_by_paths
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.indexer.decorator import indexer
 from plone.namedfile.field import NamedBlobImage
 from plone.supermodel import model
@@ -10,7 +11,7 @@ from zope import schema
 from genweb6.core import _
 
 
-class IBanner(model.Schema):
+class IBanner(model.Schema, IDexteritySchema):
     """ A site banner.
     """
 

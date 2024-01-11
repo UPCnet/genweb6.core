@@ -7,6 +7,7 @@ from plone.app.blocks import utils
 from plone.app.blocks.tiles import renderTiles
 from plone.app.standardtiles import PloneMessageFactory as _
 from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.memoize.view import memoize
 from plone.supermodel import model
 from plone.tiles import Tile
@@ -20,7 +21,6 @@ from zope.component import queryMultiAdapter
 from zope.component.hooks import getSite
 from zope.interface import Invalid
 from zope.pagetemplate.interfaces import IPageTemplate
-
 
 def uuidToObject(uuid):
     """Given a UUID, attempt to return a content object. Will return
@@ -62,7 +62,7 @@ class CatalogSource(CatalogSourceBase):
         return True  # Always contains to allow lazy handling of removed objs
 
 
-class IFormulariExistent(model.Schema):
+class IFormulariExistent(model.Schema, IDexteritySchema):
 
     content_uid = schema.Choice(
         title=_(u"Select an existing content"),

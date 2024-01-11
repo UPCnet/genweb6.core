@@ -3,6 +3,7 @@ from Products.Five.browser import BrowserView
 
 from plone.app.contenttypes import _
 from plone.dexterity.content import Item
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.namedfile import field as namedfile
 from plone.supermodel import model
 from zope import schema
@@ -11,7 +12,7 @@ from zope.interface import implementer
 from genweb6.core import _ as _GwC
 
 
-class IDocumentImage(model.Schema):
+class IDocumentImage(model.Schema, IDexteritySchema):
 
     image = namedfile.NamedBlobImage(
         title=_(u"Lead Image"),

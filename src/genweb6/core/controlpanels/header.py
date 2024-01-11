@@ -5,6 +5,7 @@ from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
 from plone.autoform.directives import read_permission
 from plone.autoform.directives import write_permission
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.formwidget.namedfile.converter import b64decode_file
 from plone.formwidget.namedfile.widget import NamedImageFieldWidget
 from plone.memoize import ram
@@ -41,7 +42,7 @@ contentHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="image-hero", title=_(u'Conservadora'))])
 
 
-class IHeaderSettings(model.Schema):
+class IHeaderSettings(model.Schema, IDexteritySchema):
 
     model.fieldset('Configuracions', _(u'Configuracions'),
                    fields=['main_hero_style', 'content_hero_style', 'html_title_ca',

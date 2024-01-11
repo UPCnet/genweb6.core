@@ -3,6 +3,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.app.registry.browser import controlpanel
 from plone.autoform import directives
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.supermodel import model
 from z3c.form import button
 from zope import schema
@@ -12,7 +13,7 @@ from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
 from genweb6.core.purge import purge_varnish_paths
 
-class ICintilloSettings(model.Schema):
+class ICintilloSettings(model.Schema, IDexteritySchema):
 
     active = schema.Bool(
         title=_(u"Publica el avis"),
