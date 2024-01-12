@@ -173,3 +173,331 @@ msgstr "Output"
 
 msgid "Matches none of"
 msgstr "No coincideix amb cap"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Can only be seen and edited by the owner."
+msgstr "Només el pot veure i editar el propietari."
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Can only be seen by site managers."
+msgstr "Només el poden veure els administradors del lloc."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Comment about the last transition"
+msgstr "Comenta l'última transició"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "Comments about the last transition"
+msgstr "Comentaris sobre l'última transició"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Draft"
+msgstr "Esborrany"
+
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Els usuaris amb el rol Editor poden publicar coses a la intranet i per tothom. No hi ha review."
+msgstr "Els usuaris amb el rol Editor poden publicar coses a la intranet i per tothom. No hi ha review."
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "Els usuaris amb el rol review poden publicar un element per tothom."
+msgstr "Els usuaris amb el rol review poden publicar un element per tothom."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+msgid "Els usuaris no poden publicar els objectes, exclusiu per intranets."
+msgstr "Els usuaris no poden publicar els objectes, exclusiu per intranets."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+msgid "Genweb intranet workflow"
+msgstr "Genweb intranet workflow"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "Genweb review workflow"
+msgstr "Genweb review workflow"
+
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Genweb simple workflow"
+msgstr "Genweb simple workflow"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "If you submitted the item by mistake or want to perform additional edits, this will take it back."
+msgstr "Si heu enviat l'element per error o voleu fer edicions addicionals, això el recuperarà."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Intranet"
+msgstr "Intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Making an item private means that it will not be visible to anyone but the owner and the site administrator."
+msgstr "Fer que un element sigui privat significa que no serà visible per a ningú més que el propietari i l'administrador del lloc."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Making an item published to intranet means that it will be visible to the members (readers)."
+msgstr "Fer que un article es publiqui a la intranet significa que serà visible per als membres (lectors)."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Member makes content private"
+msgstr "El membre fa que el contingut sigui privat"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Member promotes content to public draft"
+msgstr "El membre promou el contingut a esborrany públic"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Member retracts submission"
+msgstr "El membre es retracta de la presentació"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Member submits content for publication"
+msgstr "El membre envia contingut per a la seva publicació"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Pending (%(count)d)"
+msgstr "Pendents (%(count)d)"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Pending review"
+msgstr "Revisió pendent"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "Pending reviewer_queue"
+msgstr "Cua de revisors pendents"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Previous transition"
+msgstr "Transició prèvia"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Private"
+msgstr "Privat"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Promotes your private item to a draft."
+msgstr "Promociona el teu element privat a esborrany"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Provides access to workflow history"
+msgstr "Proporciona accés a l'historial del flux de treball"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Publish To Intranet"
+msgstr "Publicar a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Published"
+msgstr "Publicat"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Publishing the item makes it visible to other users."
+msgstr "Publicar l'element el fa visible per a altres usuaris."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Puts your item in a review queue, so it can be published on the site."
+msgstr "Col·loca el teu article en una cua de revisió perquè es pugui publicar al lloc."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Restrict"
+msgstr "Restringir"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Restricted to managers"
+msgstr "Restringit als gestors"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Retract To Intranet"
+msgstr "Retirar a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Reviewer publishes content"
+msgstr "El revisor publica el contingut"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Reviewer sends content back for re-drafting"
+msgstr "El revisor envia el contingut per tornar-lo a redactar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Reviewer tasks"
+msgstr "Tasques de revisor"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Send the item back to draft."
+msgstr "Torna a enviar l'element a l'esborrany."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "The ID of the user who performed the last transition"
+msgstr "L'identificador de l'usuari que va realitzar la darrera transició"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "The last transition"
+msgstr "La darrera transició"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "Time of the last transition"
+msgstr "Temps de l'última transició"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Visible to everyone, but not approved by the reviewers."
+msgstr "Visible per a tothom, però no aprovat pels revisors."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Visible to everyone, not editable by the owner."
+msgstr "Visible per a tothom, no editable pel propietari."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "Waiting to be reviewed, not editable by the owner."
+msgstr "A l'espera de ser revisat, no es pot editar pel propietari."
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "When the previous transition was performed"
+msgstr "Quan es va realitzar la transició anterior"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "esborrany"
+msgstr "Esborrany"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "hide"
+msgstr "Fes privat"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "intranet"
+msgstr "Intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "pending"
+msgstr "Pendent de revisar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "private"
+msgstr "Privat"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "publicaalaintranet"
+msgstr "Publica a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "publish"
+msgstr "Publica"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "published"
+msgstr "Publicat"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "publishtointranet"
+msgstr "Publica a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "reject"
+msgstr "Rebutjar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "restrict"
+msgstr "Restringir"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "restricted-to-managers"
+msgstr "Restringit als gestors"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "retiraaesborrany"
+msgstr "Retira a esborrany"
+
+#: ../profiles/default/workflows/genweb_review/definition.xml
+msgid "retiraalaintranet"
+msgstr "Retira a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "retract"
+msgstr "Retractar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "retracttointranet"
+msgstr "Retira a la intranet"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "show"
+msgstr "Mostrar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_review/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "submit"
+msgstr "Presentar"
+
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "visible"
+msgstr "Esborrany"

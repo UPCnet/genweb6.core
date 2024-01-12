@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dc-workflow workflow_id="genweb_intranet" title="Genweb intranet workflow" description="Els usuaris no poden publicar els objectes, exclusiu per intranets." state_variable="review_state" initial_state="visible" manager_bypass="False">
+<dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+             workflow_id="genweb_intranet"
+             title="Genweb intranet workflow"
+             description="Els usuaris no poden publicar els objectes, exclusiu per intranets."
+             state_variable="review_state"
+             initial_state="visible"
+             manager_bypass="False"
+             i18n:domain="plone"
+             i18n:attributes="title;
+                              description">
 
     <permission>Access contents information</permission>
     <permission>Change portal events</permission>
@@ -9,7 +18,7 @@
     <permission>List folder contents</permission>
     <permission>Add portal content</permission>
 
-    <state state_id="intranet" title="Intranet">
+    <state state_id="intranet" title="Intranet" i18n:attributes="title; state_id">
         <exit-transition transition_id="reject" />
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Editor</permission-role>
@@ -52,8 +61,8 @@
         </permission-map>
     </state>
 
-    <state state_id="pending" title="Pending review">
-        <description>Waiting to be reviewed, not editable by the owner.</description>
+    <state state_id="pending" title="Pending review" i18n:attributes="title; state_id">
+        <description i18n:translate="">Waiting to be reviewed, not editable by the owner.</description>
         <exit-transition transition_id="publishtointranet" />
         <exit-transition transition_id="reject" />
         <permission-map name="Access contents information" acquired="False">
@@ -86,8 +95,8 @@
         </permission-map>
     </state>
 
-    <state state_id="private" title="Private">
-        <description>Can only be seen and edited by the owner.</description>
+    <state state_id="private" title="Private" i18n:attributes="title; state_id">
+        <description i18n:translate="">Can only be seen and edited by the owner.</description>
         <exit-transition transition_id="show" />
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Manager</permission-role>
@@ -114,8 +123,8 @@
         </permission-map>
     </state>
 
-    <state state_id="published" title="Published">
-        <description>Visible to everyone, not editable by the owner.</description>
+    <state state_id="published" title="Published" i18n:attributes="title; state_id">
+        <description i18n:translate="">Visible to everyone, not editable by the owner.</description>
         <exit-transition transition_id="reject" />
         <exit-transition transition_id="retracttointranet" />
         <permission-map name="Access contents information" acquired="False">
@@ -160,8 +169,8 @@
         </permission-map>
     </state>
 
-    <state state_id="restricted-to-managers" title="Restricted to managers">
-        <description>Can only be seen and edited by the owner.</description>
+    <state state_id="restricted-to-managers" title="Restricted to managers" i18n:attributes="title; state_id">
+        <description i18n:translate="">Can only be seen and edited by the owner.</description>
         <exit-transition transition_id="reject" />
         <permission-map name="Access contents information" acquired="False">
             <permission-role>Manager</permission-role>
@@ -184,8 +193,8 @@
         </permission-map>
     </state>
 
-    <state state_id="visible" title="Draft">
-        <description>Visible to everyone, but not approved by the reviewers.</description>
+    <state state_id="visible" title="Draft" i18n:attributes="title; state_id">
+        <description i18n:translate="">Visible to everyone, but not approved by the reviewers.</description>
         <exit-transition transition_id="hide" />
         <exit-transition transition_id="publishtointranet" />
         <exit-transition transition_id="restrict" />
@@ -229,8 +238,10 @@
         </permission-map>
     </state>
 
-    <transition transition_id="hide" title="Member makes content private" new_state="private" trigger="USER" before_script="" after_script="">
-        <description>Making an item private means that it will not be visible to anyone but the owner and the site administrator.</description>
+    <transition transition_id="hide" title="Member makes content private"
+                new_state="private" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Making an item private means that it will not be visible to anyone but the owner and the site administrator.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=hide" category="workflow" icon="">Make private</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -238,8 +249,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="publish" title="Reviewer publishes content" new_state="published" trigger="USER" before_script="" after_script="">
-        <description>Publishing the item makes it visible to other users.</description>
+    <transition transition_id="publish" title="Reviewer publishes content"
+                new_state="published" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Publishing the item makes it visible to other users.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -248,8 +261,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="publishtointranet" title="Publish To Intranet" new_state="intranet" trigger="USER" before_script="" after_script="">
-        <description>Making an item published to intranet means that it will be visible to the members (readers).</description>
+    <transition transition_id="publishtointranet" title="Publish To Intranet"
+                new_state="intranet" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Making an item published to intranet means that it will be visible to the members (readers).</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=publishtointranet" category="workflow" icon="">Publish To Intranet</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -260,8 +275,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="reject" title="Reviewer sends content back for re-drafting" new_state="visible" trigger="USER" before_script="" after_script="">
-        <description>Send the item back to draft.</description>
+    <transition transition_id="reject" title="Reviewer sends content back for re-drafting"
+                new_state="visible" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Send the item back to draft.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=reject" category="workflow" icon="">retiraaesborrany</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -271,16 +288,20 @@
         </guard>
     </transition>
 
-    <transition transition_id="restrict" title="Restrict" new_state="restricted-to-managers" trigger="USER" before_script="" after_script="">
-        <description>Making an item private means that it will not be visible to anyone but the owner and the site administrator.</description>
+    <transition transition_id="restrict" title="Restrict"
+                new_state="restricted-to-managers" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Making an item private means that it will not be visible to anyone but the owner and the site administrator.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=restrict" category="workflow" icon="">Restrict</action>
         <guard>
             <guard-role>Manager</guard-role>
         </guard>
     </transition>
 
-    <transition transition_id="retract" title="Member retracts submission" new_state="visible" trigger="USER" before_script="" after_script="">
-        <description>If you submitted the item by mistake or want to perform additional edits, this will take it back.</description>
+    <transition transition_id="retract" title="Member retracts submission"
+                new_state="visible" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">If you submitted the item by mistake or want to perform additional edits, this will take it back.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=retract" category="workflow" icon="">Retract</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -289,8 +310,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="retracttointranet" title="Retract To Intranet" new_state="intranet" trigger="USER" before_script="" after_script="">
-        <description>Making an item published to intranet means that it will be visible to the members (readers).</description>
+    <transition transition_id="retracttointranet" title="Retract To Intranet"
+                new_state="intranet" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Making an item published to intranet means that it will be visible to the members (readers).</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=retracttointranet" category="workflow" icon="">Retract To Intranet</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -299,8 +322,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="show" title="Member promotes content to public draft" new_state="visible" trigger="USER" before_script="" after_script="">
-        <description>Promotes your private item to a draft.</description>
+    <transition transition_id="show" title="Member promotes content to public draft"
+                new_state="visible" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Promotes your private item to a draft.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=show" category="workflow" icon="">Make draft</action>
         <guard>
             <guard-role>Manager</guard-role>
@@ -308,8 +333,10 @@
         </guard>
     </transition>
 
-    <transition transition_id="submit" title="Member submits content for publication" new_state="pending" trigger="USER" before_script="" after_script="">
-        <description>Puts your item in a review queue, so it can be published on the site.</description>
+    <transition transition_id="submit" title="Member submits content for publication"
+                new_state="pending" trigger="USER" before_script="" after_script=""
+                i18n:attributes="title; transition_id">
+        <description i18n:translate="">Puts your item in a review queue, so it can be published on the site.</description>
         <action url="%(content_url)s/content_status_modify?workflow_action=submit" category="workflow" icon="">Submit for publication</action>
         <guard>
             <guard-permission>Request review</guard-permission>
@@ -317,8 +344,8 @@
     </transition>
 
     <worklist worklist_id="reviewer_queue" title="">
-        <description>Reviewer tasks</description>
-        <action url="%(portal_url)s/search?review_state=pending" category="global" icon="">Pending (%(count)d)</action>
+        <description i18n:translate="">Reviewer tasks</description>
+        <action url="%(portal_url)s/search?review_state=pending" category="global" icon="" i18n:translate="">Pending (%(count)d)</action>
         <guard>
             <guard-permission>Review portal content</guard-permission>
         </guard>
@@ -326,7 +353,7 @@
     </worklist>
 
     <variable variable_id="action" for_catalog="False" for_status="True" update_always="True">
-        <description>Previous transition</description>
+        <description i18n:translate="">Previous transition</description>
         <default>
             <expression>transition/getId|nothing</expression>
         </default>
@@ -334,7 +361,7 @@
     </variable>
 
     <variable variable_id="actor" for_catalog="False" for_status="True" update_always="True">
-        <description>The ID of the user who performed the last transition</description>
+        <description i18n:translate="">The ID of the user who performed the last transition</description>
         <default>
             <expression>user/getId</expression>
         </default>
@@ -342,7 +369,7 @@
     </variable>
 
     <variable variable_id="comments" for_catalog="False" for_status="True" update_always="True">
-        <description>Comment about the last transition</description>
+        <description i18n:translate="">Comment about the last transition</description>
         <default>
             <expression>python:state_change.kwargs.get('comment', '')</expression>
         </default>
@@ -350,7 +377,7 @@
     </variable>
 
     <variable variable_id="review_history" for_catalog="False" for_status="False" update_always="False">
-        <description>Provides access to workflow history</description>
+        <description i18n:translate="">Provides access to workflow history</description>
         <default>
             <expression>state_change/getHistory</expression>
         </default>
@@ -361,7 +388,7 @@
     </variable>
 
     <variable variable_id="time" for_catalog="False" for_status="True" update_always="True">
-        <description>When the previous transition was performed</description>
+        <description i18n:translate="">When the previous transition was performed</description>
         <default>
             <expression>state_change/getDateTime</expression>
         </default>
