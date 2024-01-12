@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.25 (unreleased)
+1.25 (2024-01-12)
 -----------------
 
-- Nothing changed yet.
-
+* Traducciones workflows [Iago López]
+* Add IDexteritySchema a nuestros contenidos para que si hay imagen haga del plone.app.caching.purge.py el purge class ScalesPurgePaths [Pilar Marinas]
+* [FIX] Solve URL in domain UPC [Iago López]
+* [UPD] registry purge false [Iago López]
+* [DEL] ipdb [Iago López]
 
 1.24 (2024-01-09)
 -----------------
