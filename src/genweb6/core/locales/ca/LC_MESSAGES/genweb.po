@@ -585,7 +585,7 @@ msgstr "Amplada total"
 #: ../portlets/fullnews/fullnews.py:26
 #: ../portlets/multiviewcollection/multiviewcollection.py:49
 msgid "Full2cols view"
-msgstr "Amplada total a dues columnes: tres columnes amb imatge a dalt i text a sota"
+msgstr "Amplada total a dues columnes: dues columnes amb imatge a dalt i text a sota"
 
 #: ../portlets/fullnews/fullnews.py:27
 #: ../portlets/multiviewcollection/multiviewcollection.py:52
