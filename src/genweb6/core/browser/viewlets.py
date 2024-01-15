@@ -552,7 +552,10 @@ class socialtoolsViewlet(viewletBase):
         # imagen para pillar el nombre del anexo
         if not title:
             if IFile.providedBy(self.context) or IImage.providedBy(self.context):
-                title = self.context.file.filename
+                try:
+                    title = self.context.file.filename
+                except:
+                   return []
             else:
                 return []
 
