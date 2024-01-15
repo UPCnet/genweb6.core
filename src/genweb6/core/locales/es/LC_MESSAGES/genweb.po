@@ -1891,3 +1891,6 @@ msgstr "Es importante subir una imagen con una resolución de 2000 x 100 px. Est
 #: ../controlpanels/header.py:118
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "Es importante subir una imagen con una resolución de 2000 x 900 px para el modelo de pantalla entera o de 2000 x 500 px. Esta imagen, aparte, se utilizará para el fondo del pie de página."
+
+msgid "image"
+msgstr "Imagen"

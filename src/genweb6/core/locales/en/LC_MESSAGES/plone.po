@@ -413,3 +413,39 @@ msgstr "Submit"
 #: ../profiles/default/workflows/genweb_simple/definition.xml
 msgid "visible"
 msgstr "Draft"
+
+msgid "title"
+msgstr "Title"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "created"
+msgstr "Creation date"
+
+msgid "effective"
+msgstr "Publication date"
+
+msgid "Date"
+msgstr "Creation date"
+
+msgid "expires"
+msgstr "Expiry date"
+
+msgid "getIcon"
+msgstr "Icon"
+
+msgid "getId"
+msgstr "ID"
+
+msgid "listCreators"
+msgstr "List of creators"
+
+msgid "modified"
+msgstr "Date of modification"
+
+msgid "portal_type"
+msgstr "Content type"
+
+msgid "author_name"
+msgstr "Author"

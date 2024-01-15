@@ -380,3 +380,39 @@ msgstr "Presentador"
 #: ../profiles/default/workflows/genweb_simple/definition.xml
 msgid "visible"
 msgstr "Borrador"
+
+msgid "title"
+msgstr "Título"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "created"
+msgstr "Fecha de creación"
+
+msgid "effective"
+msgstr "Fecha de publicación"
+
+msgid "Date"
+msgstr "Fecha de creación"
+
+msgid "expires"
+msgstr "Fecha de expiración"
+
+msgid "getIcon"
+msgstr "Icono"
+
+msgid "getId"
+msgstr "ID"
+
+msgid "listCreators"
+msgstr "Lista de creadores"
+
+msgid "modified"
+msgstr "Fecha de modificación"
+
+msgid "portal_type"
+msgstr "Tipo de contenido"
+
+msgid "author_name"
+msgstr "Autor"

@@ -501,3 +501,39 @@ msgstr "Presentar"
 #: ../profiles/default/workflows/genweb_simple/definition.xml
 msgid "visible"
 msgstr "Esborrany"
+
+msgid "title"
+msgstr "Títol"
+
+msgid "Title"
+msgstr "Títol"
+
+msgid "created"
+msgstr "Data de creació"
+
+msgid "effective"
+msgstr "Data de publicació"
+
+msgid "Date"
+msgstr "Data de creació"
+
+msgid "expires"
+msgstr "Data de expiració"
+
+msgid "getIcon"
+msgstr "Icona"
+
+msgid "getId"
+msgstr "ID"
+
+msgid "listCreators"
+msgstr "Llista de creadors"
+
+msgid "modified"
+msgstr "Data de modificació"
+
+msgid "portal_type"
+msgstr "Tipus de contingut"
+
+msgid "author_name"
+msgstr "Autor"
