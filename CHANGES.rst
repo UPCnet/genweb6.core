@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.26 (unreleased)
+1.26 (2024-01-15)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Error viewlet socialtools not filename [Iago López]
 
 1.25 (2024-01-12)
 -----------------
