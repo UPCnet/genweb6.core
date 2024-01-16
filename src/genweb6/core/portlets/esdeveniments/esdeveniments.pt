@@ -1,4 +1,4 @@
-<div class="portlet portlet-esdeveniments portlet-list"
+<div class="portlet portlet-esdeveniments"
      tal:define="events view/published_events_expanded"
      tal:condition="events"
      i18n:domain="plone">
@@ -10,17 +10,43 @@
 
         <tal:item tal:repeat="event events">
 
-            <li tal:attributes="class string:list-group-item ps-0 ${event/class_li}">
+            <li tal:attributes="class string:list-group-item border-0 ps-0 ${event/class_li}">
 
-                <a tal:attributes="href event/url;
-                                   title event/title;
-                                   class string:d-block text-decoration-none ${event/class_a}">
+                <div class="cal_date card me-3 flex-shrink-0 text-center"
+                     tal:define="startf python:view.date_speller(event['start']);">
 
-                    <span tal:replace="event/title">Title</span>
+                    <div class="cal_month card-header p-2"
+                         tal:content="string:${startf/month_name}">Oct.</div>
 
-                </a>
+                    <div class="card-body d-flex flex-column p-2">
 
-                <time class="smaller" tal:content="event/date">01/01/2022</time>
+                        <h3 class="cal_day card-title fs-1 m-0"
+                            tal:content="string:${startf/day}">15</h3>
+
+                        <span class="cal_wkday card-text"
+                              tal:content="python:startf['wkday_name']">Tue</span>
+
+                    </div>
+
+                </div>
+
+                <div class="cal_info clearfix">
+
+                    <h3 class="mb-2">
+
+                        <a tal:attributes="href event/url;
+                                        title event/title;
+                                        class string:d-block text-decoration-none ${event/class_a}">
+
+                            <span tal:replace="event/title">Title</span>
+
+                        </a>
+
+                    </h3>
+
+                    <time class="smaller" tal:content="structure event/date">01/01/2022</time>
+
+                </div>
 
             </li>
 

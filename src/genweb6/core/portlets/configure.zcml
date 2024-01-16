@@ -52,6 +52,15 @@
         editview=".esdeveniments.esdeveniments.EditForm"
         />
 
+    <adapter
+        factory="plone.app.event.browser.formatted_date.FormattedDateProvider"
+        provides="zope.contentprovider.interfaces.IContentProvider"
+        for="zope.interface.Interface
+             zope.publisher.interfaces.browser.IBrowserRequest
+             plone.portlets.interfaces.IPortletRenderer"
+        name="formatted_date_portlet"
+        />
+
     <plone:portlet
         name="genweb.portlets.fullnews"
         interface=".fullnews.fullnews.IFullNewsPortlet"

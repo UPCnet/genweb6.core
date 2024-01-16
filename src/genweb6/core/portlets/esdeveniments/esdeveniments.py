@@ -6,7 +6,9 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from datetime import date
 from datetime import timedelta
 from plone import api
-from plone.app.event.base import localized_now, get_events
+from plone.app.event.base import get_events
+from plone.app.event.base import localized_now
+from plone.app.event.base import spell_date
 from plone.app.portlets import PloneMessageFactory as _
 from plone.app.portlets.cache import render_cachekey
 from plone.app.portlets.portlets import base
@@ -16,10 +18,11 @@ from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.component import getMultiAdapter
+from zope.contentprovider.interfaces import IContentProvider
 from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 
-from genweb6.core import GenwebMessageFactory as TAM
+from genweb6.core import GenwebMessageFactory as GMF
 from genweb6.core.interfaces import IEventFolder
 from genweb6.core.utils import pref_lang
 
@@ -56,7 +59,7 @@ class Assignment(base.Assignment):
 
     @property
     def title(self):
-        return TAM(u"Events")
+        return GMF(u"Events")
 
 
 class Renderer(base.Renderer):
@@ -115,29 +118,18 @@ class Renderer(base.Renderer):
         info = {
             'class_li': '' if is_same_day else 'multidate',
             'class_a': '' if is_same_day else 'multidate-before',
-            'date': self.dateFormat(local_start, local_end),
+            'date': self.dateFormat(event),
+            'start': local_start,
             'title': event.Title,
             'url': event.absolute_url()}
 
         return info
 
-    def dateFormat(self, start, end):
-        """Select which type of text appears"""
-        startday = start.strftime("%d")
-        endday = end.strftime("%d")
-        startmonth = start.strftime("%m")
-        endmonth = end.strftime("%m")
-        startyear = start.strftime("%Y")
-        endyear = end.strftime("%Y")
-
-        if startyear != endyear:
-            return start.strftime('%d/%m/%Y') + " - " + end.strftime('%d/%m/%Y')
-        elif startmonth != endmonth:
-            return start.strftime('%d/%m') + " - " + end.strftime('%d/%m/%Y')
-        elif startday != endday:
-            return start.strftime('%d') + " - " + end.strftime('%d/%m/%Y')
-        else:
-            return start.strftime('%d/%m/%Y')
+    def dateFormat(self, event):
+        provider = getMultiAdapter(
+            (self.context, self.request, self), IContentProvider, name="formatted_date_portlet"
+        )
+        return provider(event)
 
     def get_month_name(self, month, month_format=''):
         self._ts = api.portal.get_tool(name='translation_service')
@@ -153,14 +145,6 @@ class Renderer(base.Renderer):
             return '%s' % events_folder[0].getURL()
         else:
             return ''
-
-    # Deprecated?
-    def prev_events_link(self):
-        previous_events = self.portal.esdeveniments.aggregator.anteriors.getTranslation()
-        if self.have_events_folder:
-            return '%s' % previous_events.absolute_url()
-        else:
-            return None
 
     @memoize
     def _data(self):
@@ -233,6 +217,9 @@ class Renderer(base.Renderer):
                 return results_not_expired + results2_not_expired
         else:
             return results_not_expired
+
+    def date_speller(self, date):
+        return spell_date(date, self.context)
 
 
 class AddForm(base.AddForm):
