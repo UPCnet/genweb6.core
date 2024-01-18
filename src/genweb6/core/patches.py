@@ -58,6 +58,8 @@ from zope.component import queryMultiAdapter
 from zope.component import queryUtility
 from zope.component.hooks import getSite
 from zope.event import notify
+from zope.schema._field import Choice
+from zope.schema.interfaces import ConstraintNotSatisfied
 
 from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
@@ -1424,3 +1426,24 @@ def resultsCollection(self, **kwargs):
 
     results = self.collection_behavior.results(**kwargs)
     return results
+
+
+def _validate(self, value):
+    # Pass all validations during initialization
+    if self._init_field:
+        return
+    super(Choice, self)._validate(value)
+    vocabulary = self._resolve_vocabulary(value)
+
+    if value not in vocabulary:
+        try:
+            vocabulary.query['path']['query'] = api.portal.get().absolute_url_path()
+        except:
+            raise ConstraintNotSatisfied(
+                value, self.__name__
+            ).with_field_and_value(self, value)
+
+    if value not in vocabulary:
+        raise ConstraintNotSatisfied(
+            value, self.__name__
+        ).with_field_and_value(self, value)

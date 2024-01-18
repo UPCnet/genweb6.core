@@ -202,4 +202,11 @@
         replacement=".patches.resultsCollection"
         />
 
+    <monkey:patch
+        description="RelationChoice y RelationList permitir buscar contenidos en cualquier idioma"
+        class="zope.schema._field.Choice"
+        original="_validate"
+        replacement=".patches._validate"
+        />
+
 </configure>
