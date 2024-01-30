@@ -12,7 +12,8 @@
              tal:define="external python:view.url().startswith('http');
                          mail python:view.url().startswith('mailto');
                          link python: not external and not mail;
-                         display_link python: view.display_link()">
+                         display_link python: view.display_link();
+                         externalLink context/open_link_in_new_window | nothing;">
 
 
   <section class="section section-main">
@@ -22,8 +23,10 @@
     </tal:comment>
 
     <div class="h5 mb-2">
-      <a href="" tal:attributes="href python: view.absolute_target_url()"
-         tal:content="python: display_link['title']">remote url</a>
+      <a tal:condition="externalLink" tal:attributes="href python: view.absolute_target_url(); target string:'_blank'"
+        tal:content="python: display_link['title']">remote url</a>
+      <a tal:condition="not: externalLink" tal:attributes="href python: view.absolute_target_url(); target string:'_self'"
+        tal:content="python: display_link['title']">remote url</a>
     </div>
     <div class="metadata d-flex justify-content-center text-muted small"
         tal:condition="python: display_link['meta']">
