@@ -2,11 +2,17 @@ Changelog
 =========
 
 
-1.27 (unreleased)
+1.27 (2024-01-31)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Solucionar error que no genera bien el menu de cabecera [Iago López]
+* [FIX] Open link in new window [Alberto Durán]
+* [UPD] Añadir permisos al WebMaster par las acciones del EasyForm [Iago López]
+* [UPD] Añadir permisos al WebMaster par las acciones del EasyForm [Iago López]
+* [ADD] Patches RelationChoice y RelationList permitir buscar contenidos en cualquier idioma [Iago López]
+* [UPD] Modificar visualización del portlet de agenda [Iago López]
+* [ADD] Traducciones vista tabular [Iago López]
+* [FIX] Tradiccoón portlet multi vista [Iago López]
 
 1.26 (2024-01-15)
 -----------------
