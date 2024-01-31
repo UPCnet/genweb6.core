@@ -89,8 +89,10 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
         if not lang:
             lang = self.context.getPhysicalPath()[len(portal.getPhysicalPath())]
 
-        path = '/' + portal.id + '/' + lang + '/' + tab['id']
-        brain = api.content.get(path=path)
+        portal_path = '/'.join(portal.getPhysicalPath())
+        path = portal_path + '/' + lang + '/' + tab['id']
+        brain = catalog.unrestrictedSearchResults(path=path)[0]
+
         entry.update({"external_link": bool(
             getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
         entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
