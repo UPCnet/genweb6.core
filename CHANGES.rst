@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.28 (unreleased)
+1.28 (2024-02-02)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Link: Generar correctamente el enlace [Iago López]
 
 1.27 (2024-01-31)
 -----------------
