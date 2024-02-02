@@ -36,10 +36,12 @@ from plone import api
 from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
+from plone.app.contenttypes.browser.link_redirect_view import NON_RESOLVABLE_URL_SCHEMES
 from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
 from plone.app.users.utils import uuid_userid_generator
+from plone.app.uuid.utils import uuidToObject
 from plone.app.widgets.utils import get_relateditems_options
 from plone.app.z3cform.utils import call_callables
 from plone.base.interfaces import IPloneSiteRoot
@@ -51,6 +53,7 @@ from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
 from urllib.parse import quote_plus
+from urllib.parse import urlparse
 from zExceptions import NotFound
 from zope.component import getMultiAdapter
 from zope.component import getUtility
@@ -1447,3 +1450,65 @@ def _validate(self, value):
         raise ConstraintNotSatisfied(
             value, self.__name__
         ).with_field_and_value(self, value)
+
+
+def display_link(self):
+    """Format the url for display"""
+
+    url = self.url()
+    if "resolveuid" in url:
+        uid = url.split("/")[-1]
+        obj = uuidToObject(uid)
+        if obj:
+            title = obj.Title()
+            # Generar correctamente el enlace para tener en cuenta los mountpoints
+            # meta ="/".join(obj.getPhysicalPath()[2:])
+            meta = "/".join(obj.getPhysicalPath()[len(api.portal.get().getPhysicalPath()):])
+            if not meta.startswith("/"):
+                meta = "/" + meta
+            return {
+                "title": title,
+                "meta": meta,
+            }
+
+    parsed = urlparse(url)
+    if parsed.scheme == "mailto":
+        return {
+            "title": parsed.path,
+            "meta": "",
+        }
+
+    return {
+        "title": url,
+        "meta": "",
+    }
+
+def absolute_target_url(self):
+    """Compute the absolute target URL."""
+    url = self.url()
+
+    if self._url_uses_scheme(NON_RESOLVABLE_URL_SCHEMES):
+        # For non http/https url schemes, there is no path to resolve.
+        return url
+
+    if url.startswith("."):
+        # we just need to adapt ../relative/links, /absolute/ones work
+        # anyway -> this requires relative links to start with ./ or
+        # ../
+        context_state = self.context.restrictedTraverse("@@plone_context_state")
+        url = "/".join([context_state.canonical_object_url(), url])
+    else:
+        if "resolveuid" in url:
+            uid = url.split("/")[-1]
+            obj = uuidToObject(uid)
+            if obj:
+                # Generar correctamente el enlace para tener en cuenta los mountpoints
+                # url = "/".join(obj.getPhysicalPath()[2:])
+                # if not url.startswith("/"):
+                #     url = "/" + url
+                url = obj.absolute_url()
+
+        if not url.startswith(("http://", "https://")):
+            url = self.request["SERVER_URL"] + url
+
+    return url

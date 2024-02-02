@@ -209,4 +209,18 @@
         replacement=".patches._validate"
         />
 
+    <monkey:patch
+        description="Contenido enlace, generar correctamente el texto, no tienen en cuenta los mountpoints"
+        class="plone.app.contenttypes.browser.link_redirect_view.LinkRedirectView"
+        original="display_link"
+        replacement=".patches.display_link"
+        />
+
+    <monkey:patch
+        description="Contenido enlace, genera correctamente la url, no tienen en cuenta los mountpoints"
+        class="plone.app.contenttypes.browser.link_redirect_view.LinkRedirectView"
+        original="absolute_target_url"
+        replacement=".patches.absolute_target_url"
+        />
+
 </configure>
