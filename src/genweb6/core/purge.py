@@ -33,5 +33,6 @@ def purge_varnish_paths(self, paths):
         rewriter = IPurgePathRewriter(self.request, None)
         for relativePath in relativePaths:
             rewrittenPaths = rewriter(relativePath) or []
-            for newURL in getURLsToPurge(rewrittenPaths[0], proxies):
-                purge(newURL)
+            for rewrittenPath in rewrittenPaths:
+                for newURL in getURLsToPurge(rewrittenPath, proxies):
+                    purge(newURL)
