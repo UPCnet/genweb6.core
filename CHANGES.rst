@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.29 (unreleased)
+1.29 (2024-02-05)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Enlaces en nueva pestaña en portlet de navegación [Iago López]
 
 1.28 (2024-02-02)
 -----------------
