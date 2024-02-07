@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.30 (unreleased)
+1.30 (2024-02-07)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] purge_all de todos los dominis visibles externamente [Pilar Marinas]
 
 1.29 (2024-02-05)
 -----------------
