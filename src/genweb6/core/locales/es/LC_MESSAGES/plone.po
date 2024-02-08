@@ -381,6 +381,11 @@ msgstr "Presentador"
 msgid "visible"
 msgstr "Borrador"
 
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "draft"
+msgstr "Borrador"
+
 msgid "title"
 msgstr "Título"
 

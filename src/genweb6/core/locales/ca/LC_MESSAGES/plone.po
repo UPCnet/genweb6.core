@@ -502,6 +502,11 @@ msgstr "Presentar"
 msgid "visible"
 msgstr "Esborrany"
 
+#: ../profiles/default/workflows/genweb_intranet/definition.xml
+#: ../profiles/default/workflows/genweb_simple/definition.xml
+msgid "draft"
+msgstr "Esborrany"
+
 msgid "title"
 msgstr "Títol"
 
