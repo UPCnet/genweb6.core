@@ -92,9 +92,6 @@ logger = logging.getLogger('event.LDAPUserFolder')
 genweb_log = logging.getLogger('genweb6.core')
 
 
-def isStringType(data):
-    return isinstance(data, str) or isinstance(data, unicode)
-
 # Dejo la funcion que teniamos ya que ha cambiado mucho
 # BORRAR cuando veamos que funciona todo
 # def generate_user_id(self, data):
@@ -665,11 +662,6 @@ def changeMemberPortrait(self, portrait, id=None):
     if not id:
         id = authenticated_id
     safe_id = self._getSafeMemberId(id)
-
-    # Our LDAP improvements hand the current user id in unicode, but BTree can't
-    # handle unicode keys in inner objects... *sigh*
-    if isinstance(safe_id, unicode):
-        safe_id = str(safe_id)
 
     if authenticated_id and id != authenticated_id:
         # Only Managers can change portraits of others.
