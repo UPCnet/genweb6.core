@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.31 (unreleased)
+1.31 (2024-02-13)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Document.xml add mosaic properties [Iago López]
+* [FIX] ADD marmoset para no eliminar imagenes data:... [Iago López]
+* [FIX] No se podia subir imagenes al perfil [Iago López]
+* [UPD] Añadir restriccion de carpetas shared en el robots.txt [Iago López]
+* Traducciones [Iago López]
 
 1.30 (2024-02-07)
 -----------------
