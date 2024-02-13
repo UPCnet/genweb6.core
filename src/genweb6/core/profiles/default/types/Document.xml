@@ -13,11 +13,12 @@
         <element value="plone.tableofcontents" />
         <element value="plone.locking" />
         <element value="plone.translatable" />
+        <element value="plone.layoutaware" />
     </property>
 
     <property name="view_methods">
         <element value="document_view" />
-        <element value="article" />
+        <element value="layout_view" />
     </property>
 
 </object>
