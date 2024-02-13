@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
+from Products.PortalTransforms.transforms.safe_html import CSS_COMMENT
+from Products.PortalTransforms.transforms.safe_html import decode_htmlentities
 
 from plone.app.event.base import RET_MODE_BRAINS
 from plone.app.event.base import _get_compare_attr
@@ -66,3 +68,29 @@ def gw_expend_events(events, ret_mode, start=None, end=None, sort=None, sort_rev
     if sort_reverse:
         exp_result.reverse()
     return exp_result
+
+
+def gw_hasScript(s):
+    """Dig out evil Java/VB script inside an HTML attribute.
+    >>> hasScript(
+    ...     'data:text/html;'
+    ...     'base64,PHNjcmlwdD5hbGVydCgidGVzdCIpOzwvc2NyaXB0Pg==')
+    True
+    >>> hasScript('script:evil(1);')
+    True
+    >>> hasScript('expression:evil(1);')
+    True
+    >>> hasScript('expression/**/:evil(1);')
+    True
+    >>> hasScript('http://foo.com/ExpressionOfInterest.doc')
+    False
+    """
+    s = decode_htmlentities(s)
+    s = s.replace('\x00', '')
+    s = CSS_COMMENT.sub('', s)
+    s = ''.join(s.split()).lower()
+    # for t in ('script:', 'expression:', 'expression(', 'data:'):
+    for t in ('script:', 'expression:', 'expression('):
+        if t in s:
+            return True
+    return False

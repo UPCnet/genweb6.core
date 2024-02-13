@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+from Products.PortalTransforms.transforms.safe_html import hasScript
+
 from plone.app.event.base import expand_events
 from plone.protect.monkey import marmoset_patch
 from zope.i18nmessageid import MessageFactory
 
 from genweb6.core.marmoset import gw_expend_events
+from genweb6.core.marmoset import gw_hasScript
 
 import os
 import pkg_resources
@@ -76,3 +79,4 @@ def uninstall_pre_commit_hook(argv=sys.argv):
 
 
 marmoset_patch(expand_events, gw_expend_events)
+marmoset_patch(hasScript, gw_hasScript)
