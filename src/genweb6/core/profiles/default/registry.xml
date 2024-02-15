@@ -533,6 +533,7 @@
       <element>option</element>
       <element>output</element>
       <element>p</element>
+      <element>path</element>
       <element>pre</element>
       <element>picture</element>
       <element>progress</element>
@@ -549,6 +550,7 @@
       <element>strong</element>
       <element>sub</element>
       <element>sup</element>
+      <element>symbol</element>
       <element>svg</element>
       <element>table</element>
       <element>tbody</element>
@@ -641,6 +643,7 @@
       <element>aria-valuetext</element>
       <element>autoplay</element>
       <element>controls</element>
+      <element>d</element>
       <element>data-bs-animation</element>
       <element>data-bs-auto-close</element>
       <element>data-bs-autohide</element>
@@ -682,6 +685,7 @@
       <element>srcset</element>
       <element>style</element>
       <element>tabindex</element>
+      <element>viewBox</element>
       <element>xmlns</element>
     </value>
   </record>
