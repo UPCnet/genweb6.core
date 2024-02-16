@@ -149,15 +149,22 @@
 
         <div class="card-img-top">
 
-            <img tal:condition="obj/image_src" class="d-block w-100" loading="lazy"
-                 tal:attributes="src obj/image_src;
-                                 alt obj/image_caption;
-                                 title obj/title">
+            <a href="#" class="title d-block text-decoration-none"
+               tal:attributes="href obj/url;
+                               title obj/title">
 
-            <img tal:condition="not:obj/image_src" class="d-block w-100" loading="lazy"
-                 src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
-                 tal:attributes="alt obj/title;
-                                 title obj/title">
+
+                <img tal:condition="obj/image_src" class="d-block w-100" loading="lazy"
+                    tal:attributes="src obj/image_src;
+                                    alt obj/image_caption;
+                                    title obj/title">
+
+                <img tal:condition="not:obj/image_src" class="d-block w-100" loading="lazy"
+                    src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
+                    tal:attributes="alt obj/title;
+                                    title obj/title">
+
+            </a>
 
         </div>
 

@@ -116,17 +116,23 @@
                                 <div class="w-100">
                                     <div class="card-img-top">
 
-                                        <img class="d-block w-100" loading="lazy"
-                                             tal:condition="context/carousel_enable_auto_proportions"
-                                             tal:attributes="src content/image;
-                                                             alt content/title;
-                                                             title content/title">
+                                        <a href="#" class="title d-block text-decoration-none"
+                                           tal:attributes="href content/url;
+                                                           title content/title">
 
-                                        <img class="d-block w-100 disable-auto-proportions" loading="lazy"
-                                             tal:condition="not:context/carousel_enable_auto_proportions"
-                                             tal:attributes="src content/image;
-                                                             alt content/title;
-                                                             title content/title">
+                                            <img class="d-block w-100" loading="lazy"
+                                                tal:condition="context/carousel_enable_auto_proportions"
+                                                tal:attributes="src content/image;
+                                                                alt content/title;
+                                                                title content/title">
+
+                                            <img class="d-block w-100 disable-auto-proportions" loading="lazy"
+                                                tal:condition="not:context/carousel_enable_auto_proportions"
+                                                tal:attributes="src content/image;
+                                                                alt content/title;
+                                                                title content/title">
+
+                                        </a>
 
                                     </div>
                                     <div class="card-body mt-2">
