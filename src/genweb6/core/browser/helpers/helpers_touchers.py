@@ -694,6 +694,36 @@ Vista que configura la caché
                 'There are not any varnish_url in the environment. No caching proxy could be configured.')
             return 'There are not any varnish_url in the environment. No caching proxy could be configured.'
 
+class configure_urls_site_cache(BrowserView):
+    """
+Vista que configura las urls caché
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        context = aq_inner(self.context)
+        import json
+        from plone.cachepurging.interfaces import ICachePurgingSettings
+        registry = queryUtility(IRegistry)
+
+        cachepurginsettings = registry.forInterface(ICachePurgingSettings)
+
+        urls = json.loads(self.request['BODY'])
+        # En el body me llegará algo de este estilo: ("https://genweb6.upc.edu:443","https://www.upc.edu:443","https://upc.edu:443")
+
+        if urls != None:
+            cachepurginsettings.domains = urls
+
+            logger = logging.getLogger(
+                'Genweb: Executing configure cache urls on site -')
+            logger.info('%s' % self.context.id)
+
+        else:
+            logger.info(
+                'There are not any urls to configure caching.')
+            return 'There are not any urls to configure caching.'
+
 
 class refresh_uids(BrowserView):
     """
