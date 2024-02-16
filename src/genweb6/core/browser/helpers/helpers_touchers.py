@@ -713,7 +713,8 @@ Vista que configura las urls caché
         # En el body me llegará algo de este estilo: ("https://genweb6.upc.edu:443","https://www.upc.edu:443","https://upc.edu:443")
 
         if urls != None:
-            cachepurginsettings.domains = urls
+            cachepurginsettings.domains = tuple(urls)
+            transaction.commit()
 
             logger = logging.getLogger(
                 'Genweb: Executing configure cache urls on site -')
