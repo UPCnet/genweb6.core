@@ -2,11 +2,16 @@ Changelog
 =========
 
 
-1.32 (unreleased)
+1.32 (2024-02-19)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] configure_urls_site_cache [Iago López]
+* configure_urls_site_cache [Pilar Marinas]
+* configure_urls_site_cache [Pilar Marinas]
+* [UPD] Eliminar opciones de vistas en contenido LRF [Iago López]
+* [UPD] Carousel 4 imagenes añadir enlace en las imagenes [Iago López]
+* Remove tile twitter [Pilar Marinas]
+* [UPD] Add valid tags and attributes [Iago López]
 
 1.31 (2024-02-13)
 -----------------
