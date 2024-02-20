@@ -61,11 +61,14 @@ class GetDXDocumentTextStyle(BrowserView):
 class GetDXDocumentTextTinyMCE(BrowserView):
 
     def __call__(self):
-        soup = BeautifulSoup(self.context.text.output, "html.parser")
-        for mce in soup.find_all('div', class_="mceTmpl"):
-            classes = mce.get("class", [])
-            classes.remove("mceTmpl")
-        return '<div class="mceTmpl">' + soup.decode() + '</div>'
+        if self.context.text:
+            soup = BeautifulSoup(self.context.text.output, "html.parser")
+            for mce in soup.find_all('div', class_="mceTmpl"):
+                classes = mce.get("class", [])
+                classes.remove("mceTmpl")
+            return '<div class="mceTmpl">' + soup.decode() + '</div>'
+        else:
+            return '<div class="mceTmpl"></div>'
 
 
 class TemplateList(BrowserView):
