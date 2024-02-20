@@ -12,4 +12,11 @@
         permission="zope2.ViewManagementScreens"
         />
 
+    <browser:page
+        name="migrationfixtemplates"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_migration.migrationfixtemplates"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="zope2.ViewManagementScreens"
+        />
 </configure>
