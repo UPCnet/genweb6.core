@@ -255,4 +255,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="enable_viewlet"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.enable_viewlet"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

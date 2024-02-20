@@ -7,6 +7,7 @@ from Products.PortalTransforms.transforms.pdf_to_text import pdf_to_text
 
 from plone import api
 from plone.app.contenttypes.interfaces import IFolder
+from plone.app.viewletmanager.interfaces import IViewletSettingsStorage
 from plone.portlets.interfaces import IPortletAssignmentMapping
 from plone.portlets.interfaces import IPortletManager
 from plone.protect.interfaces import IDisableCSRFProtection
@@ -15,8 +16,8 @@ from plone.uuid import interfaces
 from plone.uuid.interfaces import IMutableUUID
 from plone.uuid.interfaces import IUUIDGenerator
 from repoze.catalog.query import Eq
-from souper.soup import get_soup
 from souper.soup import Record
+from souper.soup import get_soup
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
@@ -885,4 +886,34 @@ Configura los permisos de [ Modify view template ] de las carpetas de eventos y 
                     portal_es['events']['aggregator'].manage_permission('Modify view template', ['Manager'], 0)
 
         transaction.commit()
+        return 'OK'
+
+
+class enable_viewlet(BrowserView):
+    """
+Habilita un viewlet
+
+Paràmetre:
+- manager: nom del manager
+- viewletname: nom del viewlet
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        if 'viewletname' not in self.request.form:
+            return "Es necesari el paràmetre viewletname"
+
+        if 'manager' not in self.request.form:
+            return "Es necesari el paràmetre manager"
+
+        manager = self.request.form['manager']
+        viewletname = self.request.form['viewletname']
+
+        storage = getUtility(IViewletSettingsStorage)
+        hidden = list(storage.getHidden(manager, 'Plone Default'))
+        if viewletname in hidden:
+            hidden.remove(viewletname)
+            storage.setHidden(manager, 'Plone Default', hidden)
+
         return 'OK'
