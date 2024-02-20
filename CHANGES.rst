@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.34 (unreleased)
+1.34 (2024-02-20)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] helper disable_viewlet [Iago López]
+* [ADD] helper enable_viewlet [Iago López]
 
 1.33 (2024-02-20)
 -----------------
