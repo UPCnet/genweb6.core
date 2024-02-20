@@ -66,9 +66,9 @@ class GetDXDocumentTextTinyMCE(BrowserView):
             for mce in soup.find_all('div', class_="mceTmpl"):
                 classes = mce.get("class", [])
                 classes.remove("mceTmpl")
-            return '<div class="mceTmpl">' + soup.decode() + '</div>'
+            return '<div class="mceTmpl">' + soup.decode() + '<p> </p></div>'
         else:
-            return '<div class="mceTmpl"></div>'
+            return '<div class="mceTmpl"><p> </p></div>'
 
 
 class TemplateList(BrowserView):
