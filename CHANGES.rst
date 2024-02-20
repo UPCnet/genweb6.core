@@ -2,11 +2,13 @@ Changelog
 =========
 
 
-1.33 (unreleased)
+1.33 (2024-02-20)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] genweb.get.dxdocument.text.tinymce - Añadir salto de línea al final [Iago López]
+* [FIX] genweb.get.dxdocument.text.tinymce - Que no pete si dejan una página vacía [Iago López]
+* [UPD] Mejorar gestión plantillas propias del tinymce [Iago López]
+* [FIX] migrationfixtemplates add  div class=mceTmpl in templates [Pilar Marinas]
 
 1.32 (2024-02-19)
 -----------------
