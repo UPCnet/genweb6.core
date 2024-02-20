@@ -6,6 +6,7 @@ from Products.CMFPlone.browser.login.login import LoginForm
 from Products.Five.browser import BrowserView
 from Products.statusmessages.interfaces import IStatusMessage
 
+from bs4 import BeautifulSoup
 from plone import api
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
@@ -57,6 +58,16 @@ class GetDXDocumentTextStyle(BrowserView):
         return self.context.text.output
 
 
+class GetDXDocumentTextTinyMCE(BrowserView):
+
+    def __call__(self):
+        soup = BeautifulSoup(self.context.text.output, "html.parser")
+        for mce in soup.find_all('div', class_="mceTmpl"):
+            classes = mce.get("class", [])
+            classes.remove("mceTmpl")
+        return '<div class="mceTmpl">' + soup.decode() + '</div>'
+
+
 class TemplateList(BrowserView):
 
     @json_response
@@ -84,7 +95,7 @@ class TemplateList(BrowserView):
         for plantilla in plantilles:
             results.append({'title': plantilla.Title,
                             'description': plantilla.Description,
-                            'url': plantilla.getURL() + '/genweb.get.dxdocument.text'})
+                            'url': plantilla.getURL() + '/genweb.get.dxdocument.text.tinymce'})
 
         return results
 
