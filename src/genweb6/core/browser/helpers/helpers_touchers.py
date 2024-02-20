@@ -917,3 +917,33 @@ Paràmetre:
             storage.setHidden(manager, 'Plone Default', hidden)
 
         return 'OK'
+
+
+class disable_viewlet(BrowserView):
+    """
+Deshabilita un viewlet
+
+Paràmetre:
+- manager: nom del manager
+- viewletname: nom del viewlet
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+
+        if 'viewletname' not in self.request.form:
+            return "Es necesari el paràmetre viewletname"
+
+        if 'manager' not in self.request.form:
+            return "Es necesari el paràmetre manager"
+
+        manager = self.request.form['manager']
+        viewletname = self.request.form['viewletname']
+
+        storage = getUtility(IViewletSettingsStorage)
+        hidden = list(storage.getHidden(manager, 'Plone Default'))
+        if viewletname not in hidden:
+            hidden.append(viewletname)
+            storage.setHidden(manager, 'Plone Default', hidden)
+
+        return 'OK'

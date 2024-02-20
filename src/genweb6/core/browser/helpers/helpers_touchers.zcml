@@ -263,4 +263,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="disable_viewlet"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.disable_viewlet"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
