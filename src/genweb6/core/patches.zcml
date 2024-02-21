@@ -196,13 +196,6 @@
         />
 
     <monkey:patch
-        description="No mostrar excluidos de la navegación en colecciones"
-        class="plone.app.contenttypes.browser.collection.CollectionView"
-        original="results"
-        replacement=".patches.resultsCollection"
-        />
-
-    <monkey:patch
         description="RelationChoice y RelationList permitir buscar contenidos en cualquier idioma"
         class="zope.schema._field.Choice"
         original="_validate"
