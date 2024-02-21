@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.35 (unreleased)
+1.35 (2024-02-21)
 -----------------
 
-- Nothing changed yet.
-
+* Borrado parche No mostrar excluidos de la navegación en colecciones [Pilar Marinas]
 
 1.34 (2024-02-20)
 -----------------
