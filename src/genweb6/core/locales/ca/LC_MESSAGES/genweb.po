@@ -1923,3 +1923,6 @@ msgstr "Interval de temps entre imatges (ms)"
 
 msgid "L\'interval de temps ha d\'estar entre 5000 i 60000 ms"
 msgstr "L\'interval de temps ha d\'estar entre 5000 i 60000 ms"
+
+msgid "Per motius d\'accessibilitat, us recomanem que eviteu l\'ús de carrusels de reproducció automàtica."
+msgstr "Per motius d\'accessibilitat, us recomanem que eviteu l\'ús de carrusels de reproducció automàtica."

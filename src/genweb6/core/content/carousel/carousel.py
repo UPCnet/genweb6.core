@@ -112,6 +112,7 @@ class ICarousel(model.Schema, IDexteritySchema):
 
     carousel_enable_auto_start = schema.Bool(
         title=_(u'Iniciar el carousel automàticament'),
+        description=_(u'Per motius d\'accessibilitat, us recomanem que eviteu l\'ús de carrusels de reproducció automàtica.'),
         required=False,
     )
 
