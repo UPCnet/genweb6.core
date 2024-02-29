@@ -1908,3 +1908,6 @@ msgstr "It is important to upload an image with a resolution of 2000 x 900px for
 
 msgid "image"
 msgstr "Image"
+
+msgid "not_show_image"
+msgstr "Do not display the image on the page, but do in the portlets and views"

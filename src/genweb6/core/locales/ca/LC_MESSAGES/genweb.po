@@ -1908,3 +1908,6 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el
 
 msgid "image"
 msgstr "Imatge"
+
+msgid "not_show_image"
+msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
