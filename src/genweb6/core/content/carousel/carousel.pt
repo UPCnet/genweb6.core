@@ -26,14 +26,19 @@
     <div id="copy_content"
          tal:define="token context/token;
                      carousel_type context/carousel_type;
+                     carousel_enable_auto_start context/carousel_enable_auto_start;
+                     carousel_interval context/carousel_interval;
                      contents context/contents;
                      id_carousel string:carousel-${token};"
          tal:condition="contents">
 
-        <div class="template-carousel" tal:condition="python:carousel_type == 'simple'">
+        <div class="template-carousel"
+             tal:condition="python:carousel_type == 'simple'">
 
             <div class="carousel carousel-dark slide mb-2"
-                 tal:attributes="id id_carousel">
+                 tal:attributes="id id_carousel;
+                                 data-bs-ride python:'carousel' if carousel_enable_auto_start else None;
+                                 data-bs-pause python:'false' if carousel_enable_auto_start else None">
 
                 <div class="carousel-indicators">
                     <tal:item tal:repeat="content contents">
@@ -54,7 +59,9 @@
                 <div class="carousel-inner">
 
                     <tal:item tal:repeat="content contents">
-                        <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item'">
+
+                        <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
+                                             data-bs-interval python:carousel_interval if carousel_enable_auto_start else None;">
 
                             <img class="d-block w-100" loading="lazy"
                                  tal:condition="context/carousel_enable_auto_proportions"
@@ -68,7 +75,8 @@
                                                  title content/title;
                                                  alt content/title;">
 
-                            <div class="carousel-caption" tal:condition="python:context.carousel_show_title or context.carousel_show_description">
+                            <div class="carousel-caption"
+                                 tal:condition="python:context.carousel_show_title or context.carousel_show_description">
                                 <p class="description text-truncate-2 mb-1"
                                    tal:condition="context/carousel_show_description"
                                    tal:content="structure content/description">Text</p>
@@ -81,9 +89,20 @@
                                         tal:content="content/title">Title</h5>
                                 </a>
                             </div>
+
                         </div>
+
                     </tal:item>
                 </div>
+
+                <button class="carousel-control-pause" type="button"
+                        tal:condition="carousel_enable_auto_start"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+
+                    <i class="bi bi-pause-fill text-dark"></i>
+                    <span class="visually-hidden">Stop automatic slide show</span>
+
+                </button>
 
                 <button class="carousel-control-prev" type="button" data-bs-slide="prev"
                         tal:attributes="data-bs-target string:#${id_carousel};">
@@ -101,6 +120,9 @@
 
                 </button>
             </div>
+
+            <block tal:condition="carousel_enable_auto_start"
+                   metal:use-macro="context/macros-genweb-carousel/carousel_pause_js"></block>
 
         </div>
 

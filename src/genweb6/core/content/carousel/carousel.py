@@ -15,12 +15,12 @@ from z3c.form.widget import FieldWidget
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
+from zope.interface import Invalid
 from zope.interface import implementer
 from zope.interface import implementer_only
 from zope.schema.interfaces import IField
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
 
 from genweb6.core import _
 
@@ -54,6 +54,12 @@ class CarouselJSWidget(TextWidget):
 @implementer(IFieldWidget)
 def CarouselJSFieldWidget(field, request):
     return FieldWidget(field, CarouselJSWidget(request))
+
+
+def validate_interval(value):
+    if 5000 <= value <= 60000:
+        return True
+    raise Invalid(_(u'Revisa el valor introduït, ha de ser un número entre 5000 i 60000'))
 
 
 class ICarousel(model.Schema, IDexteritySchema):
@@ -102,6 +108,19 @@ class ICarousel(model.Schema, IDexteritySchema):
     carousel_enable_auto_proportions = schema.Bool(
         title=_(u'Forçar les proporcions de les imatges'),
         required=False,
+    )
+
+    carousel_enable_auto_start = schema.Bool(
+        title=_(u'Iniciar el carousel automàticament'),
+        required=False,
+    )
+
+    carousel_interval = schema.Int(
+        title=_(u'Interval de temps entre imatges (ms)'),
+        description=_(u'L\'interval de temps ha d\'estar entre 5000 i 60000 ms'),
+        required=False,
+        constraint=validate_interval,
+        default=5000,
     )
 
     show_copy = schema.Bool(

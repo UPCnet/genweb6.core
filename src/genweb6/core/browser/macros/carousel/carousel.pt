@@ -191,6 +191,14 @@
 
 </metal:block>
 
+<metal:block metal:define-macro="carousel_pause_js" i18n:domain="plone">
+
+    <script type="text/javascript"
+            tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/templates/carousel_pause.min.js">
+    </script>
+
+</metal:block>
+
 <metal:block metal:define-macro="multiple_carousel_js" i18n:domain="plone">
 
     <script type="text/javascript"

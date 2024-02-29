@@ -1911,3 +1911,15 @@ msgstr "Imatge"
 
 msgid "not_show_image"
 msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
+
+msgid "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
+msgstr "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
+
+msgid "Iniciar el carousel automàticament"
+msgstr "Iniciar el carousel automàticament"
+
+msgid "Interval de temps entre imatges (ms)"
+msgstr "Interval de temps entre imatges (ms)"
+
+msgid "L\'interval de temps ha d\'estar entre 5000 i 60000 ms"
+msgstr "L\'interval de temps ha d\'estar entre 5000 i 60000 ms"
