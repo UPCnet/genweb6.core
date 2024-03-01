@@ -178,26 +178,22 @@ class Renderer(base.Renderer):
         return None
 
     @memoize
-    def owncontent(self):
+    def get_catalog_content(self):
+        """ Fem una consulta al catalog, en comptes de fer un PyQuery """
         owncontent_path = self.data.own_content
         if owncontent_path and isinstance(owncontent_path, RelationValue):
             owncontent_path = owncontent_path.to_path
         else:
             return None
 
-        portal_state = getMultiAdapter(
-            (self.context, self.request), name=u'plone_portal_state')
-        portal = portal_state.portal()
-        return portal.unrestrictedTraverse(owncontent_path, default=None)
-
-    def get_catalog_content(self):
-        """ Fem una consulta al catalog, en comptes de fer un PyQuery """
-        content = self.owncontent()
-        if content.Type() == 'FormFolder':
-            content = content.getObject()()
+        pc = api.portal.get_tool("portal_catalog")
+        state = ('published', 'intranet')
+        results = pc.searchResults(path=owncontent_path,review_state=state)
+        if not results:
+            return None
         else:
-            content = self.owncontent()
-        return content
+            return results[0].getObject()
+
 
     def checkContentIsPublic(self):
         try:
@@ -211,15 +207,6 @@ class Renderer(base.Renderer):
             else:
                 return True
         except:
-            return False
-
-    def checkContentIsIntranet(self):
-        if self.data.content_or_url == 'INTERN':
-            content = self.get_catalog_content()
-            pw = api.portal.get_tool(name='portal_workflow')
-            state = pw.getInfoFor(content, 'review_state')
-            return state == 'intranet'
-        else:
             return False
 
     def getHTML(self):
@@ -261,10 +248,7 @@ class Renderer(base.Renderer):
         except RequestException:
             content = _(u"ERROR. This URL does not exist")
         except:
-            if not self.checkContentIsIntranet():
-                content = _(u"ERROR. Charset undefined")
-            else:
-                content = _(u"")
+            content = _(u"ERROR. Charset undefined")
 
         soup = BeautifulSoup(clean_html, "html.parser")
         body = soup.find_all("body")
