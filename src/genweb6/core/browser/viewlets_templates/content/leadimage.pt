@@ -1,0 +1,6 @@
+<section id="section-leadimage"
+         tal:condition="view/available">
+
+  <tal:block metal:use-macro="context/macros-genweb-leadimage/figure"></tal:block>
+
+</section>

@@ -111,4 +111,14 @@
         template="viewlets_templates/content/newsdate.pt"
         />
 
+    <browser:viewlet
+        name="genweb.contentleadimage"
+        for="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class="plone.app.contenttypes.behaviors.viewlets.LeadImageViewlet"
+        template="viewlets_templates/content/leadimage.pt"
+        permission="zope2.View"
+        />
+
 </configure>

@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="genweb">
+
+<metal:block metal:define-macro="figure">
+
+  <figure class="newsImageContainer"
+          tal:define="images context/@@images;
+                      scale_func context/@@images;">
+
+    <a tal:define="here_url context/@@plone_context_state/object_url;
+                   large_image python: scale_func.scale('image', scale='large');"
+       tal:attributes="href large_image/url"
+       target="_blank">
+
+      <img tal:replace="structure python: images.tag('image', scale='large', css_class='figure-img img-fluid')" />
+
+      <figcaption class="figure-caption"
+                  tal:condition="python: getattr(context, 'image_caption', None)"
+                  tal:content="python: context.image_caption">
+          Image caption
+      </figcaption>
+
+    </a>
+
+  </figure>
+
+</metal:block>
+
+</html>

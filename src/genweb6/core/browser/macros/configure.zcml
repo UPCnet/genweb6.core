@@ -46,4 +46,11 @@
         template="hero.pt"
         />
 
+    <browser:page
+        name="macros-genweb-leadimage"
+        for="*"
+        permission="zope.Public"
+        template="leadimage.pt"
+        />
+
 </configure>
