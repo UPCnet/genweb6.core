@@ -415,6 +415,7 @@
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Add Custom Scripts" acquire="True">
             <role name="Manager" />
@@ -424,6 +425,7 @@
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Add Mailers" acquire="True">
             <role name="Manager" />
@@ -436,12 +438,14 @@
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Edit Advanced Fields" acquire="True">
             <role name="Manager" />
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Edit Encryption Specs" acquire="True">
             <role name="Manager" />
@@ -451,6 +455,7 @@
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Edit Python Fields" acquire="True">
             <role name="Manager" />
@@ -458,11 +463,13 @@
         <permission name="collective.easyform: Edit TALES Fields" acquire="True">
             <role name="Manager" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="collective.easyform: Edit Technical Fields" acquire="True">
             <role name="Manager" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="iterate : Check in content" acquire="True">
             <role name="WebMaster" />
