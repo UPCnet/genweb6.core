@@ -169,11 +169,15 @@ class Renderer(base.Renderer):
     render = ViewPageTemplateFile('new_existing_content.pt')
 
     def check_configuration_error(self):
-        if self.data.content_or_url == 'INTERN' and not self.data.own_content:
-            return _(u"Configura el contingut intern")
+        pm = api.portal.get_tool(name='portal_membership')
+        user = pm.getAuthenticatedMember()
+        roles = user.getRoles()
+        if ('WebMaster' in roles) or ('Manager' in roles):
+            if self.data.content_or_url == 'INTERN' and not self.data.own_content.to_path:
+                return _(u"Configura el contingut intern")
 
-        if self.data.content_or_url == 'EXTERN' and not self.data.external_url:
-            return _(u"Configura el contingut extern")
+            if self.data.content_or_url == 'EXTERN' and not self.data.external_url:
+                return _(u"Configura el contingut extern")
 
         return None
 
@@ -188,11 +192,14 @@ class Renderer(base.Renderer):
 
         pc = api.portal.get_tool("portal_catalog")
         state = ('published', 'intranet')
-        results = pc.searchResults(path=owncontent_path,review_state=state)
-        if not results:
-            return None
+        if owncontent_path == None:
+            return _(u"Configura el contingut intern")
         else:
-            return results[0].getObject()
+            results = pc.searchResults(path=owncontent_path,review_state=state)
+            if not results:
+                return _(u"Configura el contingut intern")
+            else:
+                return results[0].getObject()
 
 
     def checkContentIsPublic(self):
