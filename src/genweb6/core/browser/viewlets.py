@@ -35,6 +35,8 @@ from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
 from genweb6.core.utils import toLocalizedTime
 
+import re
+
 
 class viewletBase(ViewletBase):
 
@@ -503,6 +505,9 @@ class footerViewlet(viewletBase):
         return links[lang]
 
 
+def remove_quotes_from_var_scss(text):
+    return re.sub(r'var\("([^"]*)"\)', lambda m: 'var(' + m.group(1) + ')', text)
+
 class resourcesViewletCSS(viewletBase):
 
     @memoize
@@ -512,13 +517,14 @@ class resourcesViewletCSS(viewletBase):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
             css = Scss()
-            return css.compile(data._data._data)
+            return remove_quotes_from_var_scss(css.compile(data._data._data))
 
     @memoize
     def getTextCSS(self):
+
         resources_config = genwebResourcesConfig()
         css = Scss()
-        return "<style>" + css.compile(resources_config.text_css) + "</style>"
+        return "<style>" + remove_quotes_from_var_scss(css.compile(resources_config.text_css)) + "</style>"
 
     @property
     def webstats_js(self):
