@@ -8,11 +8,13 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
 
-from genweb6.core.cas.controlpanel import ICASSettings
+from ftw.casauth.cas import strip_ticket
 from genweb6.core.cas import PLUGIN_CAS
+from genweb6.core.cas.controlpanel import ICASSettings
 
 from time import time
 from urllib import parse
+
 
 
 def secureURL(url):
@@ -33,13 +35,11 @@ def login_URL(context, request):
 
     if plugin:
         cas_settings = getCASSettings()
-        current_url = getMultiAdapter((context, request), name=u'plone_context_state').current_page_url()
-
         came_from = getattr(request, 'came_from', None)
         if came_from:
-            return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(parse.urljoin(portal.absolute_url() + '/', came_from)))
+            url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
 
-        return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(context.absolute_url()))
+        return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(context.absolute_url())))
     else:
         return '%s/login_form' % portal.absolute_url()
 
