@@ -554,5 +554,12 @@
             <role name="Manager" />
             <role name="Site Administrator" />
         </permission>
+        <permission name="Manage schemata" acquire="True">
+            <role name="Manager" />
+            <role name="Owner" />
+            <role name="Site Administrator" />
+            <role name="WebMaster" />
+            <role name="Editor" />
+        </permission>
     </permissions>
 </rolemap>
