@@ -454,3 +454,12 @@ msgstr "Content type"
 
 msgid "author_name"
 msgstr "Author"
+
+msgid "folder_index_view"
+msgstr "Index view"
+
+msgid "filtered_contents_search_pretty_view"
+msgstr "View with filters"
+
+msgid "layout_view"
+msgstr "Mosaic view"

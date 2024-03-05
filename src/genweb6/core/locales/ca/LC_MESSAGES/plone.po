@@ -542,3 +542,12 @@ msgstr "Tipus de contingut"
 
 msgid "author_name"
 msgstr "Autor"
+
+msgid "folder_index_view"
+msgstr "Vista indexada"
+
+msgid "filtered_contents_search_pretty_view"
+msgstr "Vista amb filtres"
+
+msgid "layout_view"
+msgstr "Vista mosaic"
