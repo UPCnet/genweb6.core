@@ -994,6 +994,8 @@
       <element>Collection</element>
       <element>packet</element>
       <element>EasyForm</element>
+      <element>Image</element>
+      <element>File</element>
       <element>Link</element>
       <element>Event</element>
       <element>genweb.core.accordiontabs</element>
