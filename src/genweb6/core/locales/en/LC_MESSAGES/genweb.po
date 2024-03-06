@@ -1926,3 +1926,6 @@ msgstr "The interval of time must be between 5000 and 60000 ms"
 
 msgid "Per motius d\'accessibilitat, us recomanem que eviteu l\'ús de carrusels de reproducció automàtica."
 msgstr "For accessibility reasons, we recommend avoiding the use of autoplaying carousels."
+
+msgid "Subjects"
+msgstr "Subjects"
