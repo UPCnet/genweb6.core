@@ -50,6 +50,14 @@
             <role name="Manager" />
         </permission>
 
+        <permission
+            id="manage.keywords"
+            title="Manage Keywords">
+
+            <role name="WebMaster"/>
+            <role name="Manager"/>
+        </permission>
+
     </configure>
 
 </configure>
