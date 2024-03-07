@@ -11,6 +11,11 @@
     <tal:block tal:define="item python:view.getNDestacats(1);" tal:condition="item">
 
       <div tal:define="heroTextPosition view/heroTextPosition">
+
+        <a tal:attributes="href item/url; target item/open_link_in_new_window;"
+           class="wrapper-img-link" aria-hidden="true">
+        </a>
+
         <section
           tal:attributes="class string:hero-posicio-${heroTextPosition} gw-tile hero hero-color-negre content-highlighted">
 
