@@ -7,6 +7,8 @@ from plone.app.blocks import utils
 from plone.app.blocks.tiles import renderTiles
 from plone.app.standardtiles import PloneMessageFactory as _
 from plone.app.vocabularies.catalog import CatalogSource as CatalogSourceBase
+from plone.app.z3cform.widget import RelatedItemsFieldWidget
+from plone.autoform import directives
 from plone.dexterity.interfaces import IDexteritySchema
 from plone.memoize.view import memoize
 from plone.supermodel import model
@@ -67,9 +69,16 @@ class IFormulariExistent(model.Schema, IDexteritySchema):
     content_uid = schema.Choice(
         title=_(u"Select an existing content"),
         required=True,
-        source=CatalogSource(),
+        vocabulary="plone.app.vocabularies.Catalog",
     )
 
+    directives.widget(
+        "content_uid",
+        RelatedItemsFieldWidget,
+        pattern_options={
+            "selectableTypes": ["EasyForm"],
+        },
+    )
 
 class SameContentValidator(validator.SimpleFieldValidator):
     def validate(self, content_uid):
