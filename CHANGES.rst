@@ -2,11 +2,25 @@ Changelog
 =========
 
 
-1.36 (unreleased)
+1.36 (2024-03-07)
 -----------------
 
-- Nothing changed yet.
-
+* Moficada tile formulari existent para que solo permita seleccionar formularios [Pilar Marinas]
+* [UPD] Hacer que toda la tile de destacat principal sea clicable [Iago López]
+* [ADD] Añadir posibilidad de buscar por las etiquetas en la vista de search [Iago López]
+* [ADD] Permisos para gestionar el borrado de fieldsets del EasyForm [Iago López]
+* [ADD] Traducciones nombres de vista [Iago López]
+* [UPD] Mostrar contenidos File y Image en la navegación [Iago López]
+* [FIX] Quitar ticket de la url del login del CAS [Iago López]
+* [UPD] Añadir selectores permitidos iconos tiny [Iago López]
+* [UPD] Añadir mejora a los css compilados [Iago López]
+* Que a webmaster le aparezca error si ha borrado el contenido interno en un portlet [Pilar Marinas]
+* [UPD] Añadir permisos al Editor sobre el Easyform [Iago López]
+* Solucionar bugs portlet new_existing_content solo lo muestra si lo puedes ver [Pilar Marinas]
+* [UPD] Cambiar posicion contentleadimage + nuevo diseño [Iago López]
+* [UPD] Añadir descripcion campo carousel [Iago López]
+* [UPD] Carousel pause [Iago López]
+* [ADD] Traducción not_show_image [Iago López]
 
 1.35 (2024-02-21)
 -----------------
