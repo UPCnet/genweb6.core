@@ -75,6 +75,7 @@ setup(
         'pyScss',
         'genweb6.theme',
         'ipdb',
+        'Products.PloneKeywordManager',
     ],
 
     extras_require={

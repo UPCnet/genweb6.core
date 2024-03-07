@@ -561,5 +561,11 @@
             <role name="WebMaster" />
             <role name="Editor" />
         </permission>
+        <permission name="PloneKeywordManager: Use PloneKeywordManager"
+                acquire="True">
+            <role name="WebMaster"/>
+            <role name="Manager"/>
+            <role name="Site Administrator"/>
+        </permission>
     </permissions>
 </rolemap>

@@ -8,5 +8,6 @@
         <dependency>profile-collective.easyform:default</dependency>
         <dependency>profile-plone.app.mosaic:default</dependency>
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
+        <dependency>profile-Products.PloneKeywordManager:default</dependency>
     </dependencies>
 </metadata>
