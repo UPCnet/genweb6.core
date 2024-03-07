@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.37 (unreleased)
+1.37 (2024-03-07)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Permission WebMaster Manage Keywords [Pilar Marinas]
+* [ADD] Products.PloneKeywordManager [Pilar Marinas]
 
 1.36 (2024-03-07)
 -----------------
