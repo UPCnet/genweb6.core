@@ -37,7 +37,7 @@ def login_URL(context, request):
         cas_settings = getCASSettings()
         came_from = getattr(request, 'came_from', None)
         if came_from:
-            url = '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
+            return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
 
         return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(context.absolute_url())))
     else:
