@@ -551,3 +551,6 @@ msgstr "Vista amb filtres"
 
 msgid "layout_view"
 msgstr "Vista mosaic"
+
+msgid "event_view"
+msgstr "Vista esdeveniment"

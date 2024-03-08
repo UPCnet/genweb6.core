@@ -463,3 +463,6 @@ msgstr "View with filters"
 
 msgid "layout_view"
 msgstr "Mosaic view"
+
+msgid "event_view"
+msgstr "Event view"

@@ -1205,7 +1205,7 @@ msgid "Tile used to show easyform as tile"
 msgstr "Tile used to show easyform as tile"
 
 #: ../content/carousel/carousel.py:60
-msgid "Tipus de carousel"
+msgid "Tipus de carrusel"
 msgstr "Carousel type"
 
 #: ../content/accordion_tabs/accordion_tabs.py:63
@@ -1915,7 +1915,7 @@ msgstr "Do not display the image on the page, but do in the portlets and views"
 msgid "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
 msgstr "Check the value entered, it must be a number between 5000 and 60000"
 
-msgid "Iniciar el carousel automàticament"
+msgid "Iniciar el carrusel automàticament"
 msgstr "Start the carousel automatically"
 
 msgid "Interval de temps entre imatges (ms)"

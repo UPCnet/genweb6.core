@@ -27,7 +27,7 @@ class IDocumentImage(model.Schema, IDexteritySchema):
     )
 
     image_caption = schema.TextLine(
-        title=_Plone(u"Lead Image Caption"),
+        title=_(u"Lead Image Caption"),
         description=u"",
         required=False,
     )

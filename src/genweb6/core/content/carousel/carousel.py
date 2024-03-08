@@ -65,7 +65,7 @@ def validate_interval(value):
 class ICarousel(model.Schema, IDexteritySchema):
 
     carousel_type = schema.Choice(
-        title=_(u'Tipus de carousel'),
+        title=_(u'Tipus de carrusel'),
         required=True,
         vocabulary=carouselTypeVocabulary,
         default="simple"
