@@ -121,6 +121,7 @@ class Renderer(base.Renderer):
             'date': self.dateFormat(event),
             'start': local_start,
             'title': event.Title,
+            'description': event.Description,
             'url': event.absolute_url()}
 
         return info
@@ -220,6 +221,10 @@ class Renderer(base.Renderer):
 
     def date_speller(self, date):
         return spell_date(date, self.context)
+
+    @memoize
+    def show_time(self):
+        return True
 
 
 class AddForm(base.AddForm):

@@ -32,19 +32,19 @@
 
                 <div class="cal_info clearfix">
 
-                    <h3 class="mb-2">
+                    <a href="#" class="title d-block text-decoration-none text-truncate-2"
+                       tal:attributes="href event/url;
+                                       title event/title">
 
-                        <a tal:attributes="href event/url;
-                                        title event/title;
-                                        class string:d-block text-decoration-none ${event/class_a}">
+                        <span tal:replace="event/title">Title</span>
+                    </a>
 
-                            <span tal:replace="event/title">Title</span>
+                    <p tal:condition="event/description" class="description mb-1 text-truncate-2"
+                       tal:content="event/description">Description summary</p>
 
-                        </a>
-
-                    </h3>
-
-                    <time class="smaller" tal:content="structure event/date">01/01/2022</time>
+                    <time class="time smaller" tal:content="structure event/date">
+                        Date
+                    </time>
 
                 </div>
 
