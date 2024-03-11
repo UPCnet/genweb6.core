@@ -1479,3 +1479,66 @@ def absolute_target_url(self):
             url = self.request["SERVER_URL"] + url
 
     return url
+
+
+from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
+
+from collective.easyform.actions import DummyFormView
+from collective.easyform.api import OrderedDict
+from collective.easyform.api import dollar_replacer
+from collective.easyform.api import filter_fields
+from collective.easyform.api import filter_widgets
+from collective.easyform.api import lnbr
+from plone.app.textfield.value import RichTextValue
+
+
+def get_mail_body(self, unsorted_data, request, context):
+    """Returns the mail-body with footer."""
+    schema = get_schema(context)
+
+    form = DummyFormView(context, request)
+    form.schema = schema
+    form.prefix = "form"
+    form._update()
+    widgets = filter_widgets(self, form.w)
+
+    # Añadido para corregir los campos de tipo richtext
+    for k, v in unsorted_data.items():
+        if isinstance(v, RichTextValue):
+            unsorted_data.update({k: v.raw})
+
+    data = filter_fields(self, schema, unsorted_data)
+
+    bodyfield = self.body_pt
+
+    # pass both the bare_fields (fgFields only) and full fields.
+    # bare_fields for compatability with older templates,
+    # full fields to enable access to htmlValue
+    if isinstance(self.body_pre, six.string_types):
+        body_pre = self.body_pre
+    else:
+        body_pre = self.body_pre.output
+
+    if isinstance(self.body_post, six.string_types):
+        body_post = self.body_post
+    else:
+        body_post = self.body_post.output
+
+    if isinstance(self.body_footer, six.string_types):
+        body_footer = self.body_footer
+    else:
+        body_footer = self.body_footer.output
+
+    extra = {
+        "data": data,
+        "fields": OrderedDict([(i, j.title) for i, j in getFieldsInOrder(schema)]),
+        "widgets": widgets,
+        "mailer": self,
+        "body_pre": body_pre and lnbr(dollar_replacer(body_pre, data)),
+        "body_post": body_post and lnbr(dollar_replacer(body_post, data)),
+        "body_footer": body_footer and lnbr(dollar_replacer(body_footer, data)),
+    }
+    template = ZopePageTemplate(self.__name__)
+    template.write(bodyfield)
+    template = template.__of__(context)
+    return template.pt_render(extra_context=extra)

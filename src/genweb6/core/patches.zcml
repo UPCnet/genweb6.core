@@ -216,4 +216,11 @@
         replacement=".patches.absolute_target_url"
         />
 
+    <monkey:patch
+        description="EasyForm - corregir los campos de tipo richtext en el envio del mensaje"
+        class="collective.easyform.actions.Mailer"
+        original="get_mail_body"
+        replacement=".patches.get_mail_body"
+        />
+
 </configure>
