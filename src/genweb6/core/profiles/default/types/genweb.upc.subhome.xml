@@ -26,6 +26,7 @@
         <element value="plone.locking" />
         <element value="plone.textindexer" />
         <element value="plone.versioning" />
+        <element value="plone.translatable" />
     </property>
 
     <property name="default_view">subhome_view</property>

@@ -28,6 +28,7 @@
         <element value="plone.shortname" />
         <element value="plone.excludefromnavigation" />
         <element value="plone.locking" />
+        <element value="plone.translatable" />
     </property>
 
     <property name="default_view">view</property>
