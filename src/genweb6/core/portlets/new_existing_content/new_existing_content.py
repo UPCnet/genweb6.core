@@ -184,22 +184,17 @@ class Renderer(base.Renderer):
     @memoize
     def get_catalog_content(self):
         """ Fem una consulta al catalog, en comptes de fer un PyQuery """
-        owncontent_path = self.data.own_content
-        if owncontent_path and isinstance(owncontent_path, RelationValue):
-            owncontent_path = owncontent_path.to_path
-        else:
-            return None
+        owncontent_obj = self.data.own_content
+        if owncontent_obj and isinstance(owncontent_obj, RelationValue):
+            owncontent_obj = owncontent_obj.to_object
 
-        pc = api.portal.get_tool("portal_catalog")
-        state = ('published', 'intranet')
-        if owncontent_path == None:
-            return _(u"Configura el contingut intern")
-        else:
-            results = pc.searchResults(path=owncontent_path,review_state=state)
-            if not results:
-                return _(u"Configura el contingut intern")
-            else:
-                return results[0].getObject()
+        if owncontent_obj:
+            pw = api.portal.get_tool('portal_workflow')
+            review_state = pw.getInfoFor(owncontent_obj, 'review_state')
+            if review_state in ['published', 'intranet']:
+                return owncontent_obj
+
+        return _(u"Configura el contingut intern")
 
 
     def checkContentIsPublic(self):
