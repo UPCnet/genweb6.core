@@ -1929,3 +1929,9 @@ msgstr "Per motius d\'accessibilitat, us recomanem que eviteu l\'ús de carrusel
 
 msgid "Subjects"
 msgstr "Etiquetes"
+
+msgid "Els continguts han sigut exclosos de la navegació correctament."
+msgstr "Els continguts han sigut exclosos de la navegació correctament."
+
+msgid "Hi ha hagut un error durant el procediment."
+msgstr "Hi ha hagut un error durant el procediment."

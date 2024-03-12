@@ -1915,3 +1915,9 @@ msgstr "Por motivos de accesibilidad, os recomendamos que evitéis el uso de car
 
 msgid "Subjects"
 msgstr "Etiquetas"
+
+msgid "Els continguts han sigut exclosos de la navegació correctament."
+msgstr "Los contenidos han sido excluidos de la navegación correctamente."
+
+msgid "Hi ha hagut un error durant el procediment."
+msgstr "Ha habido un error durante el procedimiento."

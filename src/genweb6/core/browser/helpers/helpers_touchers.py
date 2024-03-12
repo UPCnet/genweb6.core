@@ -23,6 +23,7 @@ from zope.component import getUtility
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 
+from genweb6.core import _
 from genweb6.core.interfaces import IHomePage
 
 import logging
@@ -947,3 +948,58 @@ Paràmetre:
             storage.setHidden(manager, 'Plone Default', hidden)
 
         return 'OK'
+
+
+def exclude_from_nav_content_types(content_types):
+    catalog = api.portal.get_tool('portal_catalog')
+    brains = catalog.unrestrictedSearchResults(
+        portal_type=content_types,
+        exclude_from_nav=False
+    )
+
+    total = len(brains)
+    logger.info(f'{total} objectos')
+
+    for count, brain in enumerate(brains):
+        obj = brain.getObject()
+        obj.exclude_from_nav = True
+        obj.reindexObject()
+
+        if count % 50 == 0:
+            percentage = round((count / total) * 100, 2)
+            logger.info(f'Proceso completado en un {percentage}%')
+
+    logger.info('Proceso finalizado')
+    transaction.commit()
+
+
+class exclude_from_nav_images(BrowserView):
+    """
+Exclou de la navegació les imatges
+"""
+
+    def __call__(self):
+        try:
+            logger.info('Lanzado exclude_from_nav_images en ' + self.context.absolute_url())
+            exclude_from_nav_content_types(['Image'])
+            self.context.plone_utils.addPortalMessage(_(u'Els continguts han sigut exclosos de la navegació correctament.'), 'info')
+        except:
+            self.context.plone_utils.addPortalMessage(_(u'Hi ha hagut un error durant el procediment.'), 'error')
+
+        self.request.response.redirect(self.context.absolute_url())
+
+
+class exclude_from_nav_files(BrowserView):
+    """
+Exclou de la navegació els fitxers
+"""
+
+    def __call__(self):
+        try:
+            logger.info('Lanzado exclude_from_nav_files en ' + self.context.absolute_url())
+            exclude_from_nav_content_types(['File'])
+            self.context.plone_utils.addPortalMessage(_(u'Els continguts han sigut exclosos de la navegació correctament.'), 'info')
+        except:
+            self.context.plone_utils.addPortalMessage(_(u'Hi ha hagut un error durant el procediment.'), 'error')
+
+        self.request.response.redirect(self.context.absolute_url())

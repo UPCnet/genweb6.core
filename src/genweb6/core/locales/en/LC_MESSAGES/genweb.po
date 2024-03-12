@@ -1929,3 +1929,9 @@ msgstr "For accessibility reasons, we recommend avoiding the use of autoplaying 
 
 msgid "Subjects"
 msgstr "Subjects"
+
+msgid "Els continguts han sigut exclosos de la navegació correctament."
+msgstr "The contents have been excluded from the navigation correctly."
+
+msgid "Hi ha hagut un error durant el procediment."
+msgstr "There was an error during the procedure."

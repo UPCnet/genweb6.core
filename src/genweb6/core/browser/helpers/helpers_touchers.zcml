@@ -271,4 +271,20 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="exclude_from_nav_images"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.exclude_from_nav_images"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="genweb.webmaster"
+        />
+
+    <browser:page
+        name="exclude_from_nav_files"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.exclude_from_nav_files"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="genweb.webmaster"
+        />
+
 </configure>
