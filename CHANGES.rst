@@ -2,11 +2,19 @@ Changelog
 =========
 
 
-1.38 (unreleased)
+1.38 (2024-03-13)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Hacer generico el JS del carousel pause [Iago López]
+* [ADD] Añadir estilos custom del GW al tiny [Iago López]
+* [UPD] robots.txt añadir */plantilles/* [Iago López]
+* [FIX] Portlet new_existing_content - No pillaba bien el elemento seleccionado [Iago López]
+* [Add] Añadir tocadores exclude_from_nav_images y exclude_from_nav_files [Iago López]
+* [ADD] Añadir behaviors plone.locking y plone.translatable [Iago López]
+* [FIX] EasyForm - corregir los campos de tipo richtext en el envio del mensaje [Iago López]
+* [FIX] login_URL con came_from [Iago López]
+* [UPD] Portlets esdeveniments, añadir descripcion [Iago López]
+* [ADD] Traducciones varias [Iago López]
 
 1.37 (2024-03-07)
 -----------------
