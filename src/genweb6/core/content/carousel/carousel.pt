@@ -121,9 +121,6 @@
                 </button>
             </div>
 
-            <block tal:condition="carousel_enable_auto_start"
-                   metal:use-macro="context/macros-genweb-carousel/carousel_pause_js"></block>
-
         </div>
 
         <div class="template-multiple-carousel" tal:condition="python:carousel_type == 'complex'">
