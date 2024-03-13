@@ -878,6 +878,7 @@
       <element>++theme++barceloneta/tinymce/tinymce-formats.css</element>
       <element>++theme++barceloneta/tinymce/tinymce-ui-content.css</element>
       <element>++theme++genweb6.theme/stylesheets/fa.min.css</element>
+      <element>tinymce_custom.css</element>
     </value>
   </record>
 

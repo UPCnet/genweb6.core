@@ -190,6 +190,10 @@ def remove_html_tags(text):
     return None
 
 
+def remove_quotes_from_var_scss(text):
+    return re.sub(r'var\("([^"]*)"\)', lambda m: 'var(' + m.group(1) + ')', text)
+
+
 # class GWConfig(BrowserView):
 
 #     def render(self):

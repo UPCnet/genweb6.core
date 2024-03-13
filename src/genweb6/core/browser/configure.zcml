@@ -205,4 +205,12 @@
         class=".views.GWPurgeCacheVarnish"
         />
 
+    <browser:page
+        name="tinymce_custom.css"
+        for="*"
+        permission="zope2.View"
+        layer="..interfaces.IGenweb6CoreLayer"
+        class=".views.TinyMCECustomCSS"
+        />
+
 </configure>
