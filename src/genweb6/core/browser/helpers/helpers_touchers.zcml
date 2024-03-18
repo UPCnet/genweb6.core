@@ -287,4 +287,12 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="disable_easyform_fieldsets_view_mode"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.disable_easyform_fieldsets_view_mode"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

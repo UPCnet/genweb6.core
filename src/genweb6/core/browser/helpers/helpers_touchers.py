@@ -708,7 +708,6 @@ Vista que configura las urls caché
         import json
         from plone.cachepurging.interfaces import ICachePurgingSettings
         registry = queryUtility(IRegistry)
-
         cachepurginsettings = registry.forInterface(ICachePurgingSettings)
 
         urls = json.loads(self.request['BODY'])
@@ -976,7 +975,7 @@ def exclude_from_nav_content_types(content_types):
 class exclude_from_nav_images(BrowserView):
     """
 Exclou de la navegació les imatges
-"""
+    """
 
     def __call__(self):
         try:
@@ -992,7 +991,7 @@ Exclou de la navegació les imatges
 class exclude_from_nav_files(BrowserView):
     """
 Exclou de la navegació els fitxers
-"""
+    """
 
     def __call__(self):
         try:
@@ -1003,3 +1002,23 @@ Exclou de la navegació els fitxers
             self.context.plone_utils.addPortalMessage(_(u'Hi ha hagut un error durant el procediment.'), 'error')
 
         self.request.response.redirect(self.context.absolute_url())
+
+
+class disable_easyform_fieldsets_view_mode(BrowserView):
+    """
+Deshabilita les pestañes en mode visualització
+    """
+
+    def __call__(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.unrestrictedSearchResults(
+            portal_type=['EasyForm']
+        )
+
+        for brain in brains:
+            obj = brain.getObject()
+            obj.form_tabbing = False
+            obj.reindexObject()
+
+        transaction.commit()
+        return 'OK'
