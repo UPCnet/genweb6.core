@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.39 (unreleased)
+1.39 (2024-03-18)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Tocador configure_urls_site_cache [Iago López]
+* [ADD] Helper disable_easyform_fieldsets_view_mode - Deshabilita les pestañes en mode visualització [Iago López]
 
 1.38 (2024-03-13)
 -----------------
