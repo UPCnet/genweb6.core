@@ -710,21 +710,23 @@ Vista que configura las urls caché
         registry = queryUtility(IRegistry)
         cachepurginsettings = registry.forInterface(ICachePurgingSettings)
 
-        urls = json.loads(self.request['BODY'])
-        # En el body me llegará algo de este estilo: ("https://genweb6.upc.edu:443","https://www.upc.edu:443","https://upc.edu:443")
 
-        if urls != None:
+        logger = logging.getLogger(
+            'Genweb: Executing configure cache urls on site -')
+
+        data = json.loads(self.request['BODY'])
+        # En el BODY me llegará algo de este estilo: {'urls': ["https://genweb6.upc.edu:443","https://www.upc.edu:443","https://upc.edu:443"]}
+
+        if data:
+            urls = data.get('urls', [])
             cachepurginsettings.domains = tuple(urls)
             transaction.commit()
-
-            logger = logging.getLogger(
-                'Genweb: Executing configure cache urls on site -')
             logger.info('%s' % self.context.id)
+            return
 
-        else:
-            logger.info(
-                'There are not any urls to configure caching.')
-            return 'There are not any urls to configure caching.'
+        logger.info(
+            'There are not any urls to configure caching.')
+        return 'There are not any urls to configure caching.'
 
 
 class refresh_uids(BrowserView):
