@@ -544,9 +544,10 @@ class socialtoolsViewlet(viewletBase):
 
     def render(self):
         if api.user.is_anonymous():
-            return super(viewletBase, self).render()
-        else:
-            return ""
+            header_config = genwebHeaderConfig()
+            if not header_config.treu_icones_xarxes_socials:
+                return super(viewletBase, self).render()
+        return ""
 
     @memoize
     def data(self):

@@ -1921,3 +1921,9 @@ msgstr "Los contenidos han sido excluidos de la navegación correctamente."
 
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "Ha habido un error durante el procedimiento."
+
+msgid "treu_icones_xarxes_socials"
+msgstr "Quitar los iconos para compartir en las redes sociales"
+
+msgid "help_treu_icones_xarxes_socials"
+msgstr "Quitar los iconos para compartir en las redes sociales ..."

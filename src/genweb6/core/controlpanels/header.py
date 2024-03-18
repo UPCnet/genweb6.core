@@ -41,7 +41,6 @@ contentHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),
     SimpleTerm(value="image-hero", title=_(u'Conservadora'))])
 
-
 class IHeaderSettings(model.Schema, IDexteritySchema):
 
     model.fieldset('Configuracions', _(u'Configuracions'),
@@ -224,7 +223,8 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
 
     model.fieldset('Altres', _(u'Altres'),
                    fields=['treu_menu_horitzontal', 'amaga_identificacio',
-                           'idiomes_publicats', 'languages_link_to_root'])
+                           'idiomes_publicats', 'languages_link_to_root',
+                           'treu_icones_xarxes_socials'])
 
     read_permission(treu_menu_horitzontal='genweb.manager')
     write_permission(treu_menu_horitzontal='genweb.manager')
@@ -266,6 +266,15 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
                 default=u"languages_link_to_root"),
         description=_(u"help_languages_link_to_root",
                       default=u"help_languages_link_to_root"),
+        required=False,
+        default=False,
+    )
+
+    read_permission(treu_icones_xarxes_socials='genweb.manager')
+    write_permission(treu_icones_xarxes_socials='genweb.manager')
+    treu_icones_xarxes_socials = schema.Bool(
+        title=_(u"treu_icones_xarxes_socials"),
+        description=_(u"help_treu_icones_xarxes_socials"),
         required=False,
         default=False,
     )

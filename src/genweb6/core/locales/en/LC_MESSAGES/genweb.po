@@ -1935,3 +1935,9 @@ msgstr "The contents have been excluded from the navigation correctly."
 
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "There was an error during the procedure."
+
+msgid "treu_icones_xarxes_socials"
+msgstr "Remove social sharing icons"
+
+msgid "help_treu_icones_xarxes_socials"
+msgstr "Remove social sharing icons ..."
