@@ -213,4 +213,16 @@
         class=".views.TinyMCECustomCSS"
         />
 
+    <configure package="Products.CMFPlone.browser">
+
+        <browser:page
+            name="author"
+            for="plone.app.multilingual.interfaces.ILanguageRootFolder"
+            class="Products.CMFPlone.browser.author.AuthorView"
+            template="templates/author.pt"
+            permission="zope.Public"
+            />
+
+    </configure>
+
 </configure>
