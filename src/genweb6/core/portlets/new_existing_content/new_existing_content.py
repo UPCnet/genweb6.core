@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from AccessControl.SecurityManagement import getSecurityManager
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from bs4 import BeautifulSoup
@@ -189,23 +190,25 @@ class Renderer(base.Renderer):
             owncontent_obj = owncontent_obj.to_object
 
         if owncontent_obj:
-            pw = api.portal.get_tool('portal_workflow')
-            review_state = pw.getInfoFor(owncontent_obj, 'review_state')
-            if review_state in ['published', 'intranet']:
-                return owncontent_obj
+            return owncontent_obj
 
-        return _(u"Configura el contingut intern")
+        return None
 
 
     def checkContentIsPublic(self):
         try:
             if self.data.content_or_url == 'INTERN':
                 content = self.get_catalog_content()
-                if not content.expiration_date:
-                    return True
+                if content:
+                    sm = getSecurityManager()
+                    if sm.checkPermission('View', content):
+                        if not content.expiration_date:
+                            return True
 
-                now = DateTime.DateTime()
-                return now >= content.effective_date and now <= content.expiration_date
+                        now = DateTime.DateTime()
+                        return now >= content.effective_date and now <= content.expiration_date
+
+                return False
             else:
                 return True
         except:
