@@ -28,8 +28,22 @@
 
     <browser:page
         for="*"
-        name="gw-full-hero"
-        class=".header.GWFullHero"
+        name="gw-full-hero-ca"
+        class=".header.GWFullHeroCA"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="gw-full-hero-es"
+        class=".header.GWFullHeroES"
+        permission="zope.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="gw-full-hero-en"
+        class=".header.GWFullHeroEN"
         permission="zope.Public"
         />
 

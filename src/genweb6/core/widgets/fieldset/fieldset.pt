@@ -4,7 +4,7 @@
       lang="ca"
       i18n:domain="genweb6.tfemarket">
 
-    <h2 class="formFieldset" i18n:translate="" tal:content="view/value">
+    <h2 class="formFieldset mb-2" i18n:translate="" tal:content="view/value">
       Title
     </h2>
 

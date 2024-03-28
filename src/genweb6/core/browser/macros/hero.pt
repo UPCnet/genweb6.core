@@ -16,8 +16,9 @@
          tal:attributes="class style;
                          style string:--bg-img-url: url(${heroImage})"
          tal:define="is_new_style python:'pretty-image-hero' in style;
+                     text_and_image python:'position-text-' in style;
                      hero_title python:getattr(header_config, 'html_title_' + pref_lang, '');
-                     hero_alt python:genweb_utils.remove_html_tags(hero_title);
+                     img_hero_alt python:getattr(header_config, 'full_hero_image_alt_' + pref_lang, ' ');
                      hero_description python:getattr(header_config, 'html_description_' + pref_lang, '')">
 
         <div tal:condition="is_new_style" role="heading" aria-level="1">
@@ -29,10 +30,47 @@
             </div>
         </div>
 
-        <img alt="" title="" tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
-             tal:attributes="src heroImage;
-                             alt hero_alt;
-                             title hero_alt|nothing" />
+        <a tal:condition="python:'linkable-hero' in style"
+           tal:attributes="href python:getattr(header_config, 'full_hero_image_url_' + pref_lang, '')"
+           target="_blank" href="#"
+           class="wrapper-img-link" aria-hidden="true">
+        </a>
+
+
+        <tal:block tal:condition="text_and_image">
+
+            <section class="bullet-image"
+                     tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style">
+
+                <img alt=""
+                     tal:attributes="src heroImage;
+                                     alt python:img_hero_alt if img_hero_alt else '';
+                                     title img_hero_alt|nothing" />
+
+                <article class="container d-flex">
+
+                    <div class="bullet">
+
+                        <p class="h2"
+                           tal:content="python:getattr(header_config, 'full_hero_image_text_' + pref_lang, '')"></p>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+        </tal:block>
+
+        <tal:block tal:condition="not:text_and_image">
+
+            <img alt=""
+                 tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
+                 tal:attributes="src heroImage;
+                                 alt python:img_hero_alt if img_hero_alt else '';
+                                 title img_hero_alt|nothing" />
+
+        </tal:block>
 
         <div class="site_title" tal:condition="not:is_new_style">
 

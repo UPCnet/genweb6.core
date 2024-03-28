@@ -17,6 +17,7 @@ from time import time
 from z3c.form import button
 from zope import schema
 from zope.component import queryUtility
+from zope.interface import Invalid
 from zope.ramcache import ram as ramcache
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
@@ -24,6 +25,18 @@ from zope.schema.vocabulary import SimpleVocabulary
 from genweb6.core import _
 from genweb6.core.widgets import FieldsetFieldWidget
 from genweb6.core.purge import purge_varnish_paths
+
+import re
+
+
+def isURL(value):
+    """Check if the input is a valid URL."""
+    url_regex = re.compile(
+        r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+    )
+    if not url_regex.match(value):
+        raise Invalid(_(u"El valor introduït no és un URL vàlid."))
+    return True
 
 
 themeVocabulary = SimpleVocabulary([
@@ -34,20 +47,31 @@ themeVocabulary = SimpleVocabulary([
 mainHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),
     SimpleTerm(value="image-hero", title=_(u'Conservadora')),
-    SimpleTerm(value="pretty-image-hero", title=_(u'Innovadora')),
+    SimpleTerm(value="pretty-image-hero", title=_(u'Innovadora amb títol en fons blau UPC')),
+    SimpleTerm(value="pretty-image-black-hero", title=_(u'Innovadora amb títol negre')),
     SimpleTerm(value="full-pretty-image-hero", title=_(u'Innovadora a pantalla sencera'))])
 
 contentHeroStyleVocabulary = SimpleVocabulary([
     SimpleTerm(value="text-hero", title=_(u'Només text')),
     SimpleTerm(value="image-hero", title=_(u'Conservadora'))])
 
+positionTextVocabulary = SimpleVocabulary([
+    SimpleTerm(value="left", title=_(u'Rodona a l’esquerra')),
+    SimpleTerm(value="right", title=_(u'Rodona a la dreta')),
+    SimpleTerm(value="down", title=_(u'Inferior'))])
+
 class IHeaderSettings(model.Schema, IDexteritySchema):
 
     model.fieldset('Configuracions', _(u'Configuracions'),
-                   fields=['main_hero_style', 'content_hero_style', 'html_title_ca',
-                           'html_title_es', 'html_title_en', 'html_description_ca',
-                           'html_description_es', 'html_description_en', 'theme',
-                           'fieldset_image', 'full_hero_image', 'hero_image'])
+                   fields=['main_hero_style', 'content_hero_style',
+                           'fieldset_ca', 'fieldset_es', 'fieldset_en',
+                           'html_title_ca', 'html_title_es', 'html_title_en',
+                           'html_description_ca', 'html_description_es', 'html_description_en',
+                           'full_hero_image', 'full_hero_image_es', 'full_hero_image_en',
+                           'full_hero_image_alt_ca', 'full_hero_image_alt_es', 'full_hero_image_alt_en',
+                           'full_hero_image_url_ca', 'full_hero_image_url_es', 'full_hero_image_url_en',
+                           'full_hero_image_text_ca', 'full_hero_image_text_es', 'full_hero_image_text_en',
+                           'full_hero_image_position_text', 'hero_image', 'theme'])
 
     main_hero_style = schema.Choice(
         title=_(u'Tipus d’imatge a les pàgines principals'),
@@ -63,54 +87,56 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
         default='image-hero'
     )
 
+    directives.widget('fieldset_ca', FieldsetFieldWidget)
+    fieldset_ca = schema.Text(
+        default=_(u'Català'),
+        required=False,
+    )
+
+    directives.widget('fieldset_es', FieldsetFieldWidget)
+    fieldset_es = schema.Text(
+        default=_(u'Castellà'),
+        required=False,
+    )
+
+    directives.widget('fieldset_en', FieldsetFieldWidget)
+    fieldset_en = schema.Text(
+        default=_(u'Anglès'),
+        required=False,
+    )
+
     read_permission(html_title_ca='genweb.webmaster')
     write_permission(html_title_ca='genweb.manager')
     html_title_ca = schema.TextLine(
-        title=_(u"html_title_ca", default=u"Títol del web [CA]"),
+        title=_(u"html_title_ca", default=u"Títol del web"),
         required=False,
     )
 
     read_permission(html_title_es='genweb.webmaster')
     write_permission(html_title_es='genweb.manager')
     html_title_es = schema.TextLine(
-        title=_(u"html_title_es", default=u"Títol del web [ES]"),
+        title=_(u"html_title_es", default=u"Títol del web"),
         required=False,
     )
 
     read_permission(html_title_en='genweb.webmaster')
     write_permission(html_title_en='genweb.manager')
     html_title_en = schema.TextLine(
-        title=_(u"html_title_en", default=u"Títol del web [EN]"),
+        title=_(u"html_title_en", default=u"Títol del web"),
         required=False,
     )
 
     html_description_ca = schema.TextLine(
-        title=_(
-            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [CA]"),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
 
     html_description_es = schema.TextLine(
-        title=_(
-            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [ES]"),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
 
     html_description_en = schema.TextLine(
-        title=_(
-            u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero [EN]"),
+        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
-
-    theme = schema.Choice(
-        title=_(u'Color de transició del menú quan fem scroll'),
-        required=True,
-        vocabulary=themeVocabulary,
-        default='light-to-dark-theme'
-    )
-
-    directives.widget('fieldset_image', FieldsetFieldWidget)
-    fieldset_image = schema.Text(
-        default=_(u'Pujada d’imatges'),
-        required=False,
-    )
 
     directives.widget('full_hero_image', NamedImageFieldWidget)
     full_hero_image = schema.Bytes(
@@ -119,12 +145,77 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
             u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
         required=False,)
 
+    directives.widget('full_hero_image_es', NamedImageFieldWidget)
+    full_hero_image_es = schema.Bytes(
+        title=_(u"Imatge principal innovadora"),
+        description=_(
+            u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        required=False,)
+
+    directives.widget('full_hero_image_en', NamedImageFieldWidget)
+    full_hero_image_en = schema.Bytes(
+        title=_(u"Imatge principal innovadora"),
+        description=_(
+            u"És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."),
+        required=False,)
+
+    full_hero_image_alt_ca = schema.TextLine(
+        title=_(u"Text alternatiu de la imatge"),
+        required=False,)
+
+    full_hero_image_alt_es = schema.TextLine(
+        title=_(u"Text alternatiu de la imatge"),
+        required=False,)
+
+    full_hero_image_alt_en = schema.TextLine(
+        title=_(u"Text alternatiu de la imatge"),
+        required=False,)
+
+    full_hero_image_url_ca = schema.TextLine(
+        title=_(u"Enllaç"),
+        constraint=isURL,
+        required=False,)
+
+    full_hero_image_url_es = schema.TextLine(
+        title=_(u"Enllaç"),
+        constraint=isURL,
+        required=False,)
+
+    full_hero_image_url_en = schema.TextLine(
+        title=_(u"Enllaç"),
+        constraint=isURL,
+        required=False,)
+
+    full_hero_image_text_ca = schema.TextLine(
+        title=_(u"Text de la imatge"),
+        required=False,)
+
+    full_hero_image_text_es = schema.TextLine(
+        title=_(u"Text de la imatge"),
+        required=False,)
+
+    full_hero_image_text_en = schema.TextLine(
+        title=_(u"Text de la imatge"),
+        required=False,)
+
+    full_hero_image_position_text = schema.Choice(
+        title=_(u'Posició del text'),
+        required=True,
+        vocabulary=positionTextVocabulary,
+        default='left')
+
     directives.widget('hero_image', NamedImageFieldWidget)
     hero_image = schema.Bytes(
         title=_(u"Imatge principal conservadora"),
-        description=_(
-            u"És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
+        description=_(u"És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."),
         required=False,)
+
+    theme = schema.Choice(
+        title=_(u'Color de transició del menú quan fem scroll'),
+        required=True,
+        vocabulary=themeVocabulary,
+        default='light-to-dark-theme'
+    )
 
     model.fieldset('Logo', _(u'Logo'),
                    fields=['fieldset_logo', 'fieldset_secondary_logo',
@@ -303,7 +394,9 @@ class HeaderSettingsForm(controlpanel.RegistryEditForm):
 
         paths = []
         paths.append('/@@gw-hero')
-        paths.append('/@@gw-full-hero')
+        paths.append('/@@gw-full-hero-ca')
+        paths.append('/@@gw-full-hero-es')
+        paths.append('/@@gw-full-hero-en')
         paths.append('/@@gw-logo')
         paths.append('/@@gw-secondary-logo')
         paths.append('/_purge_all')
@@ -351,10 +444,10 @@ class GWHero(Download):
         return self.data
 
 
-class GWFullHero(Download):
+class GWFullHeroCA(Download):
 
     def __init__(self, context, request):
-        super(GWFullHero, self).__init__(context, request)
+        super(GWFullHeroCA, self).__init__(context, request)
         self.filename = None
         self.data = None
 
@@ -377,6 +470,59 @@ class GWFullHero(Download):
     def _getFile(self):
         return self.data
 
+
+class GWFullHeroES(Download):
+
+    def __init__(self, context, request):
+        super(GWFullHeroES, self).__init__(context, request)
+        self.filename = None
+        self.data = None
+
+        filename, data = self.generate_full_hero_image()
+
+        self.filename = filename
+        self.data = data
+
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate_full_hero_image(self):
+        registry = queryUtility(IRegistry)
+        header_config = registry.forInterface(IHeaderSettings)
+
+        if getattr(header_config, 'full_hero_image_es', False):
+            filename, data = b64decode_file(header_config.full_hero_image_es)
+            data = NamedImage(data=data, filename=filename)
+
+        return filename, data
+
+    def _getFile(self):
+        return self.data
+
+
+class GWFullHeroEN(Download):
+
+    def __init__(self, context, request):
+        super(GWFullHeroEN, self).__init__(context, request)
+        self.filename = None
+        self.data = None
+
+        filename, data = self.generate_full_hero_image()
+
+        self.filename = filename
+        self.data = data
+
+    #@ram.cache(lambda *args: time() // (24 * 60 * 60))
+    def generate_full_hero_image(self):
+        registry = queryUtility(IRegistry)
+        header_config = registry.forInterface(IHeaderSettings)
+
+        if getattr(header_config, 'full_hero_image_en', False):
+            filename, data = b64decode_file(header_config.full_hero_image_en)
+            data = NamedImage(data=data, filename=filename)
+
+        return filename, data
+
+    def _getFile(self):
+        return self.data
 
 class GWLogo(Download):
 

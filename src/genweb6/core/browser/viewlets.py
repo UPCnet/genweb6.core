@@ -145,7 +145,7 @@ class cintilloViewlet(viewletBase):
         else:
             return ""
 
-    @memoize_contextless
+    @memoize
     def info_cintillo(self):
         cintillo_config = genwebCintilloConfig()
         lang = self.pref_lang()
@@ -313,17 +313,29 @@ class heroViewlet(viewletBase):
 
         return False
 
-    @memoize_contextless
+    @memoize
     def getClass(self):
         header_config = genwebHeaderConfig()
         theme = getattr(header_config, 'theme', 'light-to-dark-theme') + ' '
 
         if self.isHomepage():
-            return theme + getattr(header_config, 'main_hero_style', 'image-hero')
+            style = getattr(header_config, 'main_hero_style', 'image-hero')
+            if style in ['pretty-image-hero', 'pretty-image-black-hero']:
+                lang = self.pref_lang()
 
-        return theme + getattr(header_config, 'content_hero_style', 'image-hero')
+                linkable = getattr(header_config, 'full_hero_image_url_' + lang, None)
+                if linkable:
+                    style = style + ' linkable-hero'
 
-    @memoize_contextless
+                text = getattr(header_config, 'full_hero_image_text_' + lang, None)
+                if text:
+                    style = style + ' position-text-' + getattr(header_config, 'full_hero_image_position_text', 'left')
+
+            return theme + style + ' main-hero'
+
+        return theme + getattr(header_config, 'content_hero_style', 'image-hero') + ' content-hero'
+
+    @memoize
     def getHeroHeader(self):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
@@ -333,18 +345,19 @@ class heroViewlet(viewletBase):
         else:
             hero = getattr(header_config, 'content_hero_style', 'image-hero')
 
-        if 'pretty-image-hero' in hero:
-            if getattr(header_config, 'full_hero_image', False):
-                img_url = '{}/@@gw-full-hero'.format(portal_url)
+        if 'pretty-image' in hero:
+            lang = self.pref_lang()
+            if lang == 'ca':
+                if getattr(header_config, 'full_hero_image', False):
+                    return '{}/@@gw-full-hero-ca'.format(portal_url)
             else:
-                return False
+                if getattr(header_config, 'full_hero_image_' + lang, False):
+                    return '{}/@@gw-full-hero-{}'.format(portal_url, lang)
         else:
             if getattr(header_config, 'hero_image', False):
-                img_url = '{}/@@gw-hero'.format(portal_url)
-            else:
-                return False
+                return '{}/@@gw-hero'.format(portal_url)
 
-        return img_url
+        return False
 
 
 class logosFooterViewlet(viewletBase):
@@ -464,12 +477,18 @@ class footerViewlet(viewletBase):
         header_config = genwebHeaderConfig()
         portal_url = self.root_url()
 
-        if getattr(header_config, 'full_hero_image', False):
-            return '{}/@@gw-full-hero'.format(portal_url)
-        elif getattr(header_config, 'hero_image', False):
-            return '{}/@@gw-hero'.format(portal_url)
+        lang = self.pref_lang()
+        if lang == 'ca':
+            if getattr(header_config, 'full_hero_image', False):
+                return '{}/@@gw-full-hero-ca'.format(portal_url)
         else:
-            return False
+            if getattr(header_config, 'full_hero_image_' + lang, False):
+                return '{}/@@gw-full-hero-{}'.format(portal_url, lang)
+
+        if getattr(header_config, 'hero_image', False):
+            return '{}/@@gw-hero'.format(portal_url)
+
+        return False
 
     @memoize
     def getSignatura(self):
