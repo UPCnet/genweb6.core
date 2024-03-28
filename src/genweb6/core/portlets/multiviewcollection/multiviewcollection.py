@@ -271,10 +271,12 @@ class Renderer(base.Renderer):
         for index, result in enumerate(self.results(), start=0):
             result_obj = result.getObject()
             result_image = getattr(result_obj, 'image', None)
+
+            result_description = ''
             try:
                 result_description = result_obj.description
             except:
-                result_description = ''
+                pass
 
             date = toLocalizedTime(self, result.EffectiveDate())
             if not date:
@@ -298,11 +300,14 @@ class Renderer(base.Renderer):
 
     def _summarize(self, text):
         summary = text
-        if len(summary) > Renderer.SUMMARY_LENGTH_MAX:
-            summary = text[:Renderer.SUMMARY_LENGTH_MAX]
-            last_space = summary.rfind(' ')
-            last_space = -3 if last_space == -1 else last_space
-            summary = summary[:last_space] + '...'
+        try:
+            if len(summary) > Renderer.SUMMARY_LENGTH_MAX:
+                summary = text[:Renderer.SUMMARY_LENGTH_MAX]
+                last_space = summary.rfind(' ')
+                last_space = -3 if last_space == -1 else last_space
+                summary = summary[:last_space] + '...'
+        except:
+            pass
         return summary
 
     @memoize
