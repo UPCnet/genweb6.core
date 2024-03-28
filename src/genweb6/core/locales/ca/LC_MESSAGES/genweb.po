@@ -173,7 +173,7 @@ msgstr "Anar al contingut principal"
 
 #: ../controlpanels/header.py:104
 msgid "Anglès"
-msgstr ""
+msgstr "Anglès"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:44
 #: ../tiles/destacats/destacats.py:86
@@ -470,7 +470,7 @@ msgstr "El contingut d'aquest camp només aplica en les tiles esmentades"
 
 #: ../controlpanels/header.py:38
 msgid "El valor introduït no és un URL vàlid."
-msgstr ""
+msgstr "El valor introduït no és un URL vàlid."
 
 #: ../portlets/new_existing_content/new_existing_content.py:134
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
@@ -482,7 +482,7 @@ msgstr "Els continguts han sigut exclosos de la navegació correctament."
 
 #: ../controlpanels/header.py:175
 msgid "Enllaç"
-msgstr ""
+msgstr "Enllaç"
 
 #: ../tiles/video/video.py:78
 msgid "Enllaç extern per obrir en finestra nova"
@@ -580,7 +580,7 @@ msgstr "Fosc"
 
 #: ../controlpanels/header.py:130
 msgid "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"
-msgstr ""
+msgstr "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"
 
 #. Default: "Notícies amb foto"
 #: ../portlets/fullnews/fullnews.py:73
@@ -715,7 +715,7 @@ msgstr "Imatge hero"
 
 #: ../controlpanels/header.py:61
 msgid "Inferior"
-msgstr ""
+msgstr "Inferior"
 
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:64
 msgid "Info"
@@ -727,7 +727,7 @@ msgstr "Inici"
 
 #: ../content/carousel/carousel.py:114
 msgid "Iniciar el carousel automàticament"
-msgstr ""
+msgstr "Iniciar el carousel automàticament"
 
 #: ../controlpanels/header.py:52
 msgid "Innovadora a pantalla sencera"
@@ -735,11 +735,11 @@ msgstr "Full Hero"
 
 #: ../controlpanels/header.py:50
 msgid "Innovadora amb títol en fons blau UPC"
-msgstr ""
+msgstr "Innovadora amb títol en fons blau UPC"
 
 #: ../controlpanels/header.py:51
 msgid "Innovadora amb títol negre"
-msgstr ""
+msgstr "Innovadora amb títol negre"
 
 #: ../configure.zcml:53
 msgid "Installs the genweb6.core add-on."
@@ -775,7 +775,7 @@ msgstr "L'element s'ha marcat com important"
 
 #: ../content/carousel/carousel.py:121
 msgid "L'interval de temps ha d'estar entre 5000 i 60000 ms"
-msgstr ""
+msgstr "L'interval de temps ha d'estar entre 5000 i 60000 ms"
 
 #: ../content/document_image/document_image.py:30
 msgid "Lead Image Caption"
@@ -1005,7 +1005,7 @@ msgstr "Per marcar la notícia com a important premeu el botó:"
 
 #: ../content/carousel/carousel.py:115
 msgid "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
-msgstr ""
+msgstr "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
 
 #: ../controlpanels/cintillo.py:54
 msgid "Permet introduir el text que es veurà a l'avís"
@@ -1036,7 +1036,7 @@ msgstr "Capçalera del portlet"
 
 #: ../controlpanels/header.py:202
 msgid "Posició del text"
-msgstr ""
+msgstr "Posició del text"
 
 #: ../profiles/default/portlets.xml
 msgid "Pretty RSS"
@@ -1072,11 +1072,11 @@ msgstr "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
 
 #: ../controlpanels/header.py:60
 msgid "Rodona a la dreta"
-msgstr ""
+msgstr "Rodona a la dreta"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr ""
+msgstr "Rodona a l’esquerra"
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:104
@@ -1168,11 +1168,11 @@ msgstr "Tema"
 
 #: ../controlpanels/header.py:163
 msgid "Text alternatiu de la imatge"
-msgstr ""
+msgstr "Text alternatiu de la imatge"
 
 #: ../controlpanels/header.py:190
 msgid "Text de la imatge"
-msgstr ""
+msgstr "Text de la imatge"
 
 #: ../controlpanels/cintillo.py:53
 msgid "Text per l'avís"
