@@ -554,3 +554,6 @@ msgstr "Vista mosaic"
 
 msgid "event_view"
 msgstr "Vista esdeveniment"
+
+msgid "Subjects"
+msgstr "Etiquetes"

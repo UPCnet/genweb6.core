@@ -466,3 +466,6 @@ msgstr "Mosaic view"
 
 msgid "event_view"
 msgstr "Event view"
+
+msgid "Subjects"
+msgstr "Subjects"

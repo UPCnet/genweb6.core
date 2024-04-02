@@ -307,6 +307,10 @@ msgstr "Color de transición del menú cuando hacemos scroll"
 msgid "Col·lecció"
 msgstr "Colección"
 
+#: ../browser/viewlets_templates/content/socialtools.pt:6
+msgid "Comparteix"
+msgstr "Compartir"
+
 #: ../portlets/new_existing_content/new_existing_content.py:181
 msgid "Configura el contingut extern"
 msgstr "Configura el contenido externo"
@@ -988,7 +992,7 @@ msgstr "Abre el enlace en una nueva ventana"
 
 #: ../controlpanels/header.py:167
 msgid "Per accesibilitat cal descriure la imatge"
-msgstr ""
+msgstr "Por accesibilidad es necesario describir la imagen"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:22
 msgid "Per afegir continguts dintre d'aquest directori d'acordió / pestanyes: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça."

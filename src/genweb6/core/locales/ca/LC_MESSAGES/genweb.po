@@ -307,6 +307,10 @@ msgstr "Color de transició del menú quan fem scroll"
 msgid "Col·lecció"
 msgstr "Col·lecció"
 
+#: ../browser/viewlets_templates/content/socialtools.pt:6
+msgid "Comparteix"
+msgstr "Comparteix"
+
 #: ../portlets/new_existing_content/new_existing_content.py:181
 msgid "Configura el contingut extern"
 msgstr "Configura el contingut extern"
@@ -584,7 +588,7 @@ msgstr "Fosc"
 
 #: ../controlpanels/header.py:130
 msgid "Frase publicitària"
-msgstr ""
+msgstr "Frase publicitària"
 
 #. Default: "Notícies amb foto"
 #: ../portlets/fullnews/fullnews.py:73
