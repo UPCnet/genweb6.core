@@ -127,15 +127,18 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
     )
 
     html_description_ca = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
+        title=_(u"Frase publicitària"),
+        description=_(u"Es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
 
     html_description_es = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
+        title=_(u"Frase publicitària"),
+        description=_(u"Es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
 
     html_description_en = schema.TextLine(
-        title=_(u"Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
+        title=_(u"Frase publicitària"),
+        description=_(u"Es visualitza sota el títol del web als tipus de capçalera amb imatge hero"),
         required=False,)
 
     directives.widget('full_hero_image', NamedImageFieldWidget)
@@ -161,14 +164,17 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
 
     full_hero_image_alt_ca = schema.TextLine(
         title=_(u"Text alternatiu de la imatge"),
+        description=_(u"Per accesibilitat cal descriure la imatge"),
         required=False,)
 
     full_hero_image_alt_es = schema.TextLine(
         title=_(u"Text alternatiu de la imatge"),
+        description=_(u"Per accesibilitat cal descriure la imatge"),
         required=False,)
 
     full_hero_image_alt_en = schema.TextLine(
         title=_(u"Text alternatiu de la imatge"),
+        description=_(u"Per accesibilitat cal descriure la imatge"),
         required=False,)
 
     full_hero_image_url_ca = schema.TextLine(

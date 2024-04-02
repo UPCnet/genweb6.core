@@ -163,7 +163,7 @@ msgstr "En marcar aquesta opció es mostrarà la pàgina d'enllaços personalitz
 msgid "All"
 msgstr "Tots"
 
-#: ../controlpanels/header.py:315
+#: ../controlpanels/header.py:321
 msgid "Altres"
 msgstr "Altres"
 
@@ -298,7 +298,7 @@ msgstr "Color de fons de l'avís"
 msgid "Color de la font de l'avís"
 msgstr "Color de la font de l'avís"
 
-#: ../controlpanels/header.py:214
+#: ../controlpanels/header.py:220
 msgid "Color de transició del menú quan fem scroll"
 msgstr "Color de transició del menú quan fem scroll"
 
@@ -480,7 +480,7 @@ msgstr "Element de la pàgina a mostrar, per defecte #content-core"
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "Els continguts han sigut exclosos de la navegació correctament."
 
-#: ../controlpanels/header.py:175
+#: ../controlpanels/header.py:181
 msgid "Enllaç"
 msgstr "Enllaç"
 
@@ -513,6 +513,10 @@ msgstr "Entra amb la identificació única"
 #: ../browser/macros/login.pt:115
 msgid "Error"
 msgstr "Error"
+
+#: ../controlpanels/header.py:131
+msgid "Es visualitza sota el títol del web als tipus de capçalera amb imatge hero"
+msgstr "Es visualitza sota el títol del web als tipus de capçalera half hero amb fons blau UPC o full hero"
 
 #: ../portlets/fullnews/fullnews.py:40
 msgid "Escull com es mostraran les noticies"
@@ -579,8 +583,8 @@ msgid "Fosc"
 msgstr "Fosc"
 
 #: ../controlpanels/header.py:130
-msgid "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"
-msgstr "Frase publicitària que es visualitza sota el títol del web als tipus de capçalera amb imatge hero"
+msgid "Frase publicitària"
+msgstr ""
 
 #. Default: "Notícies amb foto"
 #: ../portlets/fullnews/fullnews.py:73
@@ -639,7 +643,7 @@ msgstr "Parrilla d'Agenda"
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 
-#: ../controlpanels/header.py:377
+#: ../controlpanels/header.py:383
 msgid "Header Settings"
 msgstr "Configuració Capçalera"
 
@@ -705,11 +709,11 @@ msgstr "Si es selecciona, el llistat no mostrarà l'element actual."
 msgid "Imatge capçalera"
 msgstr "Imatge de capçalera"
 
-#: ../controlpanels/header.py:209
+#: ../controlpanels/header.py:215
 msgid "Imatge principal conservadora"
 msgstr "Imatge estàndard"
 
-#: ../controlpanels/header.py:143
+#: ../controlpanels/header.py:146
 msgid "Imatge principal innovadora"
 msgstr "Imatge hero"
 
@@ -735,11 +739,11 @@ msgstr "Full Hero"
 
 #: ../controlpanels/header.py:50
 msgid "Innovadora amb títol en fons blau UPC"
-msgstr "Innovadora amb títol en fons blau UPC"
+msgstr "Half Hero amb títol en fons blau UPC"
 
 #: ../controlpanels/header.py:51
 msgid "Innovadora amb títol negre"
-msgstr "Innovadora amb títol negre"
+msgstr "Half Hero amb títol negre"
 
 #: ../configure.zcml:53
 msgid "Installs the genweb6.core add-on."
@@ -809,15 +813,15 @@ msgstr "Llista d’enllaços [ES]"
 msgid "Login Settings"
 msgstr "Configuració Login"
 
-#: ../controlpanels/header.py:220
+#: ../controlpanels/header.py:226
 msgid "Logo"
 msgstr "Logo"
 
-#: ../controlpanels/header.py:231
+#: ../controlpanels/header.py:237
 msgid "Logo principal"
 msgstr "Logo principal"
 
-#: ../controlpanels/header.py:239
+#: ../controlpanels/header.py:245
 msgid "Logo secundari"
 msgstr "Logo secundari"
 
@@ -979,6 +983,10 @@ msgstr "Omet el contorn del portlet"
 msgid "Optional open link in a new window"
 msgstr "Obre l'enllaç en una finestra nova"
 
+#: ../controlpanels/header.py:167
+msgid "Per accesibilitat cal descriure la imatge"
+msgstr "Per accesibilitat cal descriure la imatge"
+
 #: ../content/accordion_tabs/accordion_tabs.pt:22
 msgid "Per afegir continguts dintre d'aquest directori d'acordió / pestanyes: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça."
 msgstr "Per afegir continguts dintre d'aquest directori d'acordió / pestanyes: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça."
@@ -1020,7 +1028,7 @@ msgid "Picture"
 msgstr "Imatge"
 
 #: ../content/banner/banner.py:20
-#: ../controlpanels/header.py:248
+#: ../controlpanels/header.py:254
 msgid "Please upload an image"
 msgstr "Si us plau, pugeu una imatge"
 
@@ -1034,7 +1042,7 @@ msgstr "Podeu afegir continguts en aquest directori des del següent <a target=\
 msgid "Portlet header"
 msgstr "Capçalera del portlet"
 
-#: ../controlpanels/header.py:202
+#: ../controlpanels/header.py:208
 msgid "Posició del text"
 msgstr "Posició del text"
 
@@ -1166,11 +1174,11 @@ msgstr "Indica si un element està marcat com a important"
 msgid "Tema"
 msgstr "Tema"
 
-#: ../controlpanels/header.py:163
+#: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"
 msgstr "Text alternatiu de la imatge"
 
-#: ../controlpanels/header.py:190
+#: ../controlpanels/header.py:196
 msgid "Text de la imatge"
 msgstr "Text de la imatge"
 
@@ -1395,7 +1403,7 @@ msgstr "Totes les notícies"
 
 #. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:334
+#: ../controlpanels/header.py:340
 msgid "amaga_identificacio"
 msgstr "Amaga l'enllaç d'identificació de les eines"
 
@@ -1570,7 +1578,7 @@ msgstr "S'ha desconnectat la sessió."
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:337
+#: ../controlpanels/header.py:343
 msgid "help_amaga_identificacio"
 msgstr "Amaga de les eines l'enllaç d'identificació ..."
 
@@ -1581,22 +1589,22 @@ msgstr "Podeu cercar i triar un contingut existent"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:346
+#: ../controlpanels/header.py:352
 msgid "help_idiomes_publicats"
 msgstr "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:358
+#: ../controlpanels/header.py:364
 msgid "help_languages_link_to_root"
 msgstr "Aquesta opció marcada fa que el desplegable d'idiomes, sempre redirigeixi a l'arrel del lloc web."
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:265
+#: ../controlpanels/header.py:271
 msgid "help_logo_alt"
 msgstr "Afegiu el text alternatiu (alt) del logo de la capçalera."
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:284
+#: ../controlpanels/header.py:290
 msgid "help_logo_url"
 msgstr "Afegiu l'URL del logo."
 
@@ -1634,13 +1642,13 @@ msgstr "Opcional: títol del portlet"
 msgid "help_static_content_url_ca"
 msgstr "La URL completa de la pàgina d'on volem visualitzar el contingut"
 
-#: ../controlpanels/header.py:368
+#: ../controlpanels/header.py:374
 msgid "help_treu_icones_xarxes_socials"
 msgstr "Treure les icones per compartir en xarxes socials ..."
 
 #. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:325
+#: ../controlpanels/header.py:331
 msgid "help_treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal ..."
 
@@ -1691,7 +1699,7 @@ msgstr "Títol del web [ES]"
 
 #. "Idiomes publicats al web"
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:345
+#: ../controlpanels/header.py:351
 msgid "idiomes_publicats"
 msgstr "Idiomes publicats al web"
 
@@ -1769,7 +1777,7 @@ msgstr "Inicia la sessió"
 # Contropanel option to redirect languages #
 #############################################
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:356
+#: ../controlpanels/header.py:362
 msgid "languages_link_to_root"
 msgstr "Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal"
 
@@ -1778,17 +1786,17 @@ msgid "login_text_btn"
 msgstr "Text del botó de login"
 
 #. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:264
+#: ../controlpanels/header.py:270
 msgid "logo_alt"
 msgstr "Text alternatiu del logo"
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:302
+#: ../controlpanels/header.py:308
 msgid "logo_external_url"
 msgstr "Es una URL externa?"
 
 #. Default: "URL del logo"
-#: ../controlpanels/header.py:282
+#: ../controlpanels/header.py:288
 msgid "logo_url"
 msgstr "URL del logo"
 
@@ -1954,13 +1962,13 @@ msgstr "Esdeveniments per avui"
 msgid "todays_upcoming_events"
 msgstr "Propers esdeveniments per avui"
 
-#: ../controlpanels/header.py:367
+#: ../controlpanels/header.py:373
 msgid "treu_icones_xarxes_socials"
 msgstr "Treure les icones per compartir en xarxes socials"
 
 #. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:323
+#: ../controlpanels/header.py:329
 msgid "treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal"
 
@@ -1972,10 +1980,10 @@ msgstr "url"
 msgid "Àngles"
 msgstr "Àngles"
 
-#: ../controlpanels/header.py:210
+#: ../controlpanels/header.py:216
 msgid "És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
 msgstr "És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
 
-#: ../controlpanels/header.py:144
+#: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
