@@ -1,5 +1,10 @@
 <div id="social_tags"
+     i18n:domain="genweb"
      tal:define="socials view/data">
+
+  <p class="fs-s mb-0">
+    <tal:block i18n:translate="">Comparteix</tal:block>:
+  </p>
 
   <tal:social tal:repeat="social socials">
 
