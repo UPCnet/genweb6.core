@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-1.41 (unreleased)
+1.41 (2024-04-02)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Traducciones [Iago López]
+* [UPD] viewlet socialtools, añadir literal de compartir [Iago López]
+* [UPD] Cambios cabecera [Iago López]
 
 1.40 (2024-04-02)
 -----------------
