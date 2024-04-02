@@ -2,11 +2,16 @@ Changelog
 =========
 
 
-1.40 (unreleased)
+1.40 (2024-04-02)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Traducciones [Iago López]
+* [UPD] Nuevos estilos de cabecera [Iago López]
+* [FIX] Portlet fullnews y multiviewcollection [Iago López]
+* [UPD] Mostrar contenidos en Esborrany y otros estados si realmente puedes verlos con permisos [Iago López]
+* [ADD] Permitir que la vista author funcione sobre un idioma [Iago López]
+* [FIX] Actions URL [Iago López]
+* [ADD] Añadir configuracion treu_icones_xarxes_socials [Iago López]
 
 1.39 (2024-03-18)
 -----------------
