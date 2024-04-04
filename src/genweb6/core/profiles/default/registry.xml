@@ -88,6 +88,7 @@
       <element>News Item</element>
       <element>Collection</element>
       <element>genweb.upc.subhome</element>
+      <element>packet</element>
     </value>
   </record>
 
