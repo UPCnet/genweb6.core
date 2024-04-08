@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.42 (unreleased)
+1.42 (2024-04-08)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Añadir packet a plone.default_page_types [Iago López]
 
 1.41 (2024-04-02)
 -----------------
