@@ -664,4 +664,5 @@ class TinyMCECustomCSS(BrowserView):
                 data = NamedFile(data=data, filename=filename)
                 return remove_quotes_from_var_scss(css.compile(data._data._data))
         else:
-            return remove_quotes_from_var_scss(css.compile(resources_config.text_css))
+            if resources_config.text_css:
+                return remove_quotes_from_var_scss(css.compile(resources_config.text_css))

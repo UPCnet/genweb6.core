@@ -538,8 +538,9 @@ class resourcesViewletCSS(viewletBase):
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        css = Scss()
-        return "<style>" + utils.remove_quotes_from_var_scss(css.compile(resources_config.text_css)) + "</style>"
+        if resources_config.text_css:
+            css = Scss()
+            return "<style>" + utils.remove_quotes_from_var_scss(css.compile(resources_config.text_css)) + "</style>"
 
     @property
     def webstats_js(self):
