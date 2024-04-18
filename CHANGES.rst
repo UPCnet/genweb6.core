@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.43 (unreleased)
+1.43 (2024-04-18)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Error cuando no hay css personalizado al entrar dentro del tiny [Iago López]
 
 1.42 (2024-04-08)
 -----------------
