@@ -19,4 +19,13 @@
         layer="genweb6.core.interfaces.IGenweb6CoreLayer"
         permission="zope2.ViewManagementScreens"
         />
+
+    <browser:page
+        name="fix_collection_migration"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_migration.fix_collection_migration"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
