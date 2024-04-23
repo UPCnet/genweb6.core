@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.44 (unreleased)
+1.44 (2024-04-23)
 -----------------
 
-- Nothing changed yet.
-
+* Arreglar colecciones rotas criterios migrador [Pilar Marinas]
 
 1.43 (2024-04-18)
 -----------------
