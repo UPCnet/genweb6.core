@@ -24,6 +24,7 @@
         <permission name="Access inactive portal content" acquire="True">
             <role name="Owner" />
             <role name="Site Administrator" />
+            <role name="WebMaster" />
         </permission>
         <permission name="Add portal content" acquire="True">
             <role name="Contributor" />
