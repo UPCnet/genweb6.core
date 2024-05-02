@@ -24,8 +24,9 @@ def preventDeletionOnProtectedContent(content, event):
     # Only (global) site managers can delete packet content from root folder
 
     if 'Manager' not in api.user.get_roles():
-        IStatusMessage(content.request).addStatusMessage(u'Cannot delete protected content.', type='error')
-        raise(Unauthorized, u'Cannot delete protected content.')
+        IStatusMessage(content.request).addStatusMessage(
+            u'Cannot delete protected content.', type='error')
+        raise (Unauthorized, u'Cannot delete protected content.')
     else:
         return
 
@@ -43,8 +44,9 @@ def preventMovedOnProtectedContent(content, event):
     # Only (global) site managers can moved or renamed packet content from root folder
 
     if 'Manager' not in api.user.get_roles():
-        IStatusMessage(content.request).addStatusMessage(u'Cannot moved or renamed protected content.', type='error')
-        raise(Unauthorized, u'Cannot moved or renamed protected content.')
+        IStatusMessage(content.request).addStatusMessage(
+            u'Cannot moved or renamed protected content.', type='error')
+        raise (Unauthorized, u'Cannot moved or renamed protected content.')
     else:
         return
 
@@ -72,3 +74,17 @@ def addedPermissionsPloneSiteRoot(content, event):
 
     msg.attach(MIMEText(message, 'plain', email_charset))
     mailhost.send(msg)
+
+
+def updateLastLoginTimeAfterLogin(event):
+    """
+    Update last login time in memberdata tool after login
+
+    Args:
+        event (Products.PlonePAS.events.UserLoggedInEvent):
+            Plone Implementation of the logged in event
+    """
+    pmd = api.portal.get_tool(name='portal_memberdata')
+    users_last_login = event.object.getProperty('last_login_time', None)
+    if users_last_login:
+        pmd.last_login_time = users_last_login
