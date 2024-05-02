@@ -1407,7 +1407,7 @@ def _validate(self, value):
 
     if value not in vocabulary:
         try:
-            vocabulary.query['path']['query'] = api.portal.get().absolute_url_path()
+            vocabulary.query['path']['query'] = '/'.join(api.portal.get().getPhysicalPath())
         except:
             raise ConstraintNotSatisfied(
                 value, self.__name__
