@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
@@ -75,11 +75,13 @@ class DownloadFiles(BrowserView):
         options_pdf = {'cookie': [('__ac', self.request.cookies['__ac'])]}
 
         for item in items:
-            relative_path = os.path.relpath(item.getPath(), from_path)  # diff between item path and root path
+            # diff between item path and root path
+            relative_path = os.path.relpath(item.getPath(), from_path)
             zip_path = os.path.join(exp_path, relative_path)
             if item.portal_type == 'Folder':
                 os.mkdir(zip_path)  # create folder in root path + relative path
-                folders.update({item.id.lower(): item.getPath()})  # update virtual folder structure
+                # update virtual folder structure
+                folders.update({item.id.lower(): item.getPath()})
                 print(("Saved {}".format(zip_path)))
             elif item.portal_type == 'File':
                 obj = item.getObject()
@@ -107,7 +109,9 @@ class DownloadFiles(BrowserView):
                     if test_path == item.getPath():
                         f = open(zip_path + '.pdf', 'wb')
 
-                pdfkit.from_url(obj.absolute_url(), '/tmp/' + exp_path + '.pdf', options=options_pdf)
+                pdfkit.from_url(
+                    obj.absolute_url(),
+                    '/tmp/' + exp_path + '.pdf', options=options_pdf)
                 f.write(open('/tmp/' + exp_path + '.pdf', 'rb').read())
                 f.close()
                 print("Saved {}".format(zip_path + '.pdf'))

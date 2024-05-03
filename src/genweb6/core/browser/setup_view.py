@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.interfaces.constrains import ISelectableConstrainTypes
+from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -137,11 +137,17 @@ class setup(BrowserView):
         portal_es = portal['es']
 
         # Remove recursos / assets folders
-        if getattr(portal_ca, 'recursos', False) and ILanguageIndependentFolder.providedBy(portal_ca['recursos']):
+        if getattr(
+                portal_ca, 'recursos', False) and ILanguageIndependentFolder.providedBy(
+                portal_ca['recursos']):
             api.content.delete(portal_ca['recursos'])
-        if getattr(portal_en, 'assets', False) and ILanguageIndependentFolder.providedBy(portal_en['assets']):
+        if getattr(
+                portal_en, 'assets', False) and ILanguageIndependentFolder.providedBy(
+                portal_en['assets']):
             api.content.delete(portal_en['assets'])
-        if getattr(portal_es, 'recursos', False) and ILanguageIndependentFolder.providedBy(portal_es['recursos']):
+        if getattr(
+                portal_es, 'recursos', False) and ILanguageIndependentFolder.providedBy(
+                portal_es['recursos']):
             api.content.delete(portal_es['recursos'])
 
         # Let's configure mail
@@ -627,11 +633,17 @@ class setup(BrowserView):
         portal_es = portal['es']
 
         # Remove recursos / assets folders
-        if getattr(portal_ca, 'recursos', False) and ILanguageIndependentFolder.providedBy(portal_ca['recursos']):
+        if getattr(
+                portal_ca, 'recursos', False) and ILanguageIndependentFolder.providedBy(
+                portal_ca['recursos']):
             api.content.delete(portal_ca['recursos'])
-        if getattr(portal_en, 'assets', False) and ILanguageIndependentFolder.providedBy(portal_en['assets']):
+        if getattr(
+                portal_en, 'assets', False) and ILanguageIndependentFolder.providedBy(
+                portal_en['assets']):
             api.content.delete(portal_en['assets'])
-        if getattr(portal_es, 'recursos', False) and ILanguageIndependentFolder.providedBy(portal_es['recursos']):
+        if getattr(
+                portal_es, 'recursos', False) and ILanguageIndependentFolder.providedBy(
+                portal_es['recursos']):
             api.content.delete(portal_es['recursos'])
 
         # Let's configure mail

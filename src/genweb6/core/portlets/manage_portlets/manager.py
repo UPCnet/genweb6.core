@@ -6,7 +6,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.app.layout.viewlets.common import ManagePortletsFallbackViewlet
+from plone.app.portlets.browser.viewlets import ManagePortletsFallbackViewlet
 from plone.app.portlets.browser.editmanager import ContextualEditPortletManagerRenderer
 from plone.app.portlets.browser.interfaces import IManageContextualPortletsView
 from plone.app.portlets.browser.manage import ManageContextualPortlets
@@ -42,7 +42,8 @@ class GenwebPortletRenderer(ColumnPortletManagerRenderer):
 
 class gwContextualEditPortletManagerRenderer(ContextualEditPortletManagerRenderer):
     """Render a portlet manager in edit mode for contextual portlets"""
-    adapts(Interface, IDefaultBrowserLayer, IManageContextualPortletsView, IHomepagePortletManager)
+    adapts(Interface, IDefaultBrowserLayer,
+           IManageContextualPortletsView, IHomepagePortletManager)
 
     template = ViewPageTemplateFile('templates/edit-manager-contextual.pt')
 
@@ -177,7 +178,8 @@ class gwManagePortletsFallbackViewletMixin(object):
             return False
 
 
-class gwManagePortletsFallbackViewletForIHomePage(gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
+class gwManagePortletsFallbackViewletForIHomePage(
+        gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
     """ The override for the manage_portlets_fallback viewlet for IHomePage
     """
 
@@ -191,7 +193,8 @@ class gwManagePortletsFallbackViewletForIHomePage(gwManagePortletsFallbackViewle
         return False
 
 
-class gwManagePortletsFallbackViewletForISubhome(gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
+class gwManagePortletsFallbackViewletForISubhome(
+        gwManagePortletsFallbackViewletMixin, ManagePortletsFallbackViewlet, viewletBase):
     """ The override for the manage_portlets_fallback viewlet for ISubhome
     """
 

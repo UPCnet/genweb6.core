@@ -115,7 +115,9 @@ def setupVarious(context):
     header_settings = registry.forInterface(IHeaderSettings)
 
     if not header_settings.logo:
-        logo = open('{}/genweb6/theme/theme/img/logo.png'.format(egglocation), 'rb').read()
+        logo = open(
+            '{}/genweb6/theme/theme/img/logo.png'.format(egglocation),
+            'rb').read()
         encoded_data = b64encode_file(filename='logo.png', data=logo)
         header_settings.logo = encoded_data
 
@@ -124,17 +126,21 @@ def setupVarious(context):
         header_settings.logo_external_url = True
 
     if not header_settings.hero_image:
-        hero = open('{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation), 'rb').read()
+        hero = open(
+            '{}/genweb6/theme/theme/img/capcalera.jpg'.format(egglocation),
+            'rb').read()
         encoded_data = b64encode_file(filename='capcalera.jpg', data=hero)
         header_settings.hero_image = encoded_data
 
     recaptcha_settings = registry.forInterface(IReCaptchaSettings)
 
     if not recaptcha_settings.public_key:
-        recaptcha_settings.public_key = '6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn'
+        recaptcha_settings.public_key =\
+            '6LcEtjEUAAAAAHVmogdyohPkahy_0MrKsOjKlefn'
 
     if not recaptcha_settings.private_key:
-        recaptcha_settings.private_key = '6LcEtjEUAAAAAFoR3rEORJQTzMdQE0y6prqaC0Ta'
+        recaptcha_settings.private_key =\
+            '6LcEtjEUAAAAAFoR3rEORJQTzMdQE0y6prqaC0Ta'
 
     transaction.commit()
 
@@ -181,7 +187,6 @@ def setupVarious(context):
     # pct.calendar_states = ('published', 'intranet')
     # # Fixem el primer dia de la setamana com dilluns (0)
     # pct.firstweekday = 0
-
 
     # # Set mailhost
     # if portal.email_from_address in ('noreply@upc.edu', 'no-reply@upcnet.es'):

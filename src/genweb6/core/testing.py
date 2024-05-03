@@ -24,8 +24,9 @@ class Genweb6CoreLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.easyform)
         import plone.app.mosaic
         self.loadZCML(package=plone.app.mosaic)
+        import Products.PloneKeywordManager
+        self.loadZCML(package=Products.PloneKeywordManager)
         self.loadZCML(package=genweb6.core)
-        
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'genweb6.core:default')

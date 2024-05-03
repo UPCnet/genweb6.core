@@ -2,7 +2,7 @@
 from Acquisition import aq_inner
 from DateTime import DateTime
 from Products.CMFPlone.interfaces.controlpanel import IMailSchema
-from Products.CMFPlone.utils import get_installer
+from plone.base.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 

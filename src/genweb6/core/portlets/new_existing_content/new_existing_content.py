@@ -27,7 +27,7 @@ from zope.interface import implementer_only
 from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.interfaces import IField
-from zope.site import hooks
+from zope.component import hooks
 
 from genweb6.core import GenwebMessageFactory as _
 
@@ -151,7 +151,10 @@ class INewContentPortlet(IPortletDataProvider):
 @implementer(INewContentPortlet)
 class Assignment (base.Assignment):
 
-    def __init__(self, ptitle=u"", content_or_url='EXTERN', external_url='#', own_content=None, element='#content-core', show_title=True, hide_footer=False, js=u""):
+    def __init__(
+            self, ptitle=u"", content_or_url='EXTERN', external_url='#',
+            own_content=None, element='#content-core', show_title=True,
+            hide_footer=False, js=u""):
         self.ptitle = ptitle
         self.show_title = show_title
         self.hide_footer = hide_footer
@@ -194,7 +197,6 @@ class Renderer(base.Renderer):
 
         return None
 
-
     def checkContentIsPublic(self):
         try:
             if self.data.content_or_url == 'INTERN':
@@ -227,22 +229,27 @@ class Renderer(base.Renderer):
                 clean_html = re.sub(r'[\n\r]?', r'', raw_html)
                 doc = pq(clean_html)
                 if doc(self.data.element):
-                    content = pq('<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
+                    content = pq(
+                        '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
                 else:
-                    content = _(u"ERROR. This element does not exist:") + " " + self.data.element
+                    content = _(
+                        u"ERROR. This element does not exist:") + " " + self.data.element
 
             # CONTENIDO EXTERNO #
             elif self.data.content_or_url == 'EXTERN':
                 # link extern, pyreq
                 link_extern = self.data.external_url
                 headers = {'Accept-Language': self.context.language}
-                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=5)
+                raw_html = requests.get(
+                    link_extern, headers=headers, verify=False, timeout=5)
                 clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
                 doc = pq(clean_html)
                 if doc(self.data.element):
-                    content = pq('<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
+                    content = pq(
+                        '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
                 else:
-                    content = _(u"ERROR. This element does not exist:") + " " + self.data.element
+                    content = _(
+                        u"ERROR. This element does not exist:") + " " + self.data.element
 
             # PORTLET MALAMENT CONFIGURAT #
             else:
@@ -259,8 +266,11 @@ class Renderer(base.Renderer):
         body = soup.find_all("body")
         if body:
             class_body = body[0].get("class", [])
-            valid_class = [valid for valid in class_body if valid.startswith('template-') or valid.startswith('portaltype-')]
-            content = str('<div class="existing-content ' + ' '.join(valid_class) + '">' + content + '</div>')
+            valid_class = [valid for valid in class_body if valid.startswith(
+                'template-') or valid.startswith('portaltype-')]
+            content = str(
+                '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
+                '</div>')
 
         return content
 
