@@ -163,8 +163,10 @@ class mirror_states(BrowserView):
             origin_portal = portal.restrictedTraverse(origin_root_path)
 
             # States translation table from genweb_review to genweb_simple
-            states = {'esborrany': 'visible', 'intranet': 'intranet', 'pending': 'pending',
-                      'private': 'private', 'published': 'published', 'restricted-to-managers': 'restricted-to-managers'}
+            states = {'esborrany': 'visible', 'intranet': 'intranet',
+                      'pending': 'pending', 'private': 'private',
+                      'published': 'published',
+                      'restricted-to-managers': 'restricted-to-managers'}
 
             # Get all eligible objects
             if HAS_PAM:
@@ -250,7 +252,8 @@ class check_cache_settings(BrowserView):
         if not portal:
             portal = api.portal.get()
 
-        return api.portal.get_registry_record(name='plone.app.caching.moderateCaching.etags')
+        return api.portal.get_registry_record(
+            name='plone.app.caching.moderateCaching.etags')
 
 
 class list_domains_cache(BrowserView):
@@ -262,7 +265,8 @@ class list_domains_cache(BrowserView):
         if CSRF:
             alsoProvides(self.request, IDisableCSRFProtection)
         output = []
-        domains = api.portal.get_registry_record(name='plone.cachepurging.interfaces.ICachePurgingSettings.domains')
+        domains = api.portal.get_registry_record(
+            name='plone.cachepurging.interfaces.ICachePurgingSettings.domains')
         ppath = api.portal.getSite().getPhysicalPath()
         info = {}
         if len(ppath) > 2:
@@ -650,7 +654,7 @@ class get_contents_type(BrowserView):
         pt = self.request.form['portal_type'].split(',')
 
         catalog = api.portal.get_tool('portal_catalog')
-        pw =  api.portal.get_tool('portal_workflow')
+        pw = api.portal.get_tool('portal_workflow')
 
         results_dict = {}
 
@@ -671,31 +675,33 @@ class get_contents_type(BrowserView):
                 results_dict[ct]['state'][rs].append(obj.absolute_url())
 
         return json.dumps(results_dict, indent=4)
-    
+
 
 class genwebStats(BrowserView):
     """
     Retorna algunes estadístiques per al GWManager.
     """
-    
+
     def __call__(self):
         context = aq_inner(self.context)
-        last_login = DateTime('2023/01/01 16:00:00.111111 GMT+2')
-        membership = api.portal.get_tool(name='portal_membership')
-        for user in membership.searchForMembers():
-            llt = user.getProperty('last_login_time')
-            if llt > last_login:
-                last_login = llt
+        # last_login = DateTime('2023/01/01 16:00:00.111111 GMT+2')
+        # membership = api.portal.get_tool(name='portal_membership')
+        # for user in membership.searchForMembers():
+        #     llt = user.getProperty('last_login_time')
+        #     if llt > last_login:
+        #         last_login = llt
+        pmd = api.portal.get_tool(name='portal_memberdata')
 
         contact_email = api.portal.get_registry_record('plone.email_from_address')
         registry = getUtility(IRegistry)
         header_config = registry.forInterface(IHeaderSettings)
-        last_access = last_login.timeTime()
+        last_access = pmd.last_login_time.timeTime()
         # Restem la diferencia de les dates en segons i obtenim els minuts /60
         minutes = int((DateTime().timeTime() - last_access)/60.0)
         # Els dies son els minuts per hora i les hores per dia
         days = int(minutes/60/24)
-        unitat = api.portal.get_registry_record('genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
+        unitat = api.portal.get_registry_record(
+            'genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
         stats = {
             'contact_email': contact_email,
             'inactivity_days': days,
