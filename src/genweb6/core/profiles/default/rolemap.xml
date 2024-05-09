@@ -25,6 +25,7 @@
             <role name="Owner" />
             <role name="Site Administrator" />
             <role name="WebMaster" />
+            <role name="Editor" />
         </permission>
         <permission name="Add portal content" acquire="True">
             <role name="Contributor" />
