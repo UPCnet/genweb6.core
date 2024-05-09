@@ -16,8 +16,6 @@
 <li tal:define="show_children   node/show_children;
                 children        node/children;
                 item_url        node/getURL;
-                item_remote_url node/getRemoteUrl;
-                use_remote_url  node/useRemoteUrl | nothing;
                 item_type       node/portal_type;
                 item            node/item;
                 has_thumb       item/getIcon;
@@ -34,7 +32,7 @@
                        item_type_class python:'contenttype-%s' % normalizeString(item_type) if not supress_icon else '';
                        item_class python:'%s navTreeCurrentItem' % item_class if is_current else item_class">
 
-        <a tal:attributes="href  python:item_remote_url if use_remote_url else item_url;
+        <a tal:attributes="href item_url;
                            title node/Description;
                            class string:${item_class}${li_class}${li_extr_class}${li_folder_class} ${item_type_class};
                            target python:'_blank' if item_finestranova else '_self'">
