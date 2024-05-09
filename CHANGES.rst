@@ -2,11 +2,20 @@ Changelog
 =========
 
 
-1.45 (unreleased)
+1.46 (unreleased)
 -----------------
 
 - Nothing changed yet.
 
+
+1.45 (2024-05-07)
+-----------------
+
+* [UPD] linters and dependencies for tests [Alberto Durán]
+* [FIX] genweb_stats view for sites with huge amount of users [Alberto Durán]
+* [UPD] Patches RelationChoice y RelationList permitir buscar contenidos en cualquier idioma [Iago López]
+* [ADD] Update last login time in memberdata tool after login [Alberto Durán]
+* [UPD] Permitir a Webmaster ver contenido caducado en el folder_contents [Iago López]
 
 1.44 (2024-04-23)
 -----------------
