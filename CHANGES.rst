@@ -2,11 +2,13 @@ Changelog
 =========
 
 
-1.46 (unreleased)
+1.46 (2024-05-15)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Portlet navegación, problema con los enlaces [Iago López]
+* [UPD] Permitir a Editor ver contenido caducado en el folder_contents [Iago López]
+* Merge branch 'master' of github.com:UPCnet/genweb6.core [ruben.padilla.mateu]
+* FIX disconnect translations - added modify_translations override [ruben.padilla.mateu]
 
 1.45 (2024-05-07)
 -----------------
