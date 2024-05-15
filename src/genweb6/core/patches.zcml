@@ -19,6 +19,7 @@
         replacement=".patches.setMemberProperties"
         />
 
+    <!-- // TODO Revisar - debería ser un marmoset -->
     <monkey:patch
         description="Add subjects to searchableText"
         module="plone.app.contenttypes.indexers"
