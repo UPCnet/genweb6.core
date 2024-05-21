@@ -107,7 +107,7 @@
         manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
         class=".viewlets.newsDateViewlet"
         layer="..interfaces.IGenweb6CoreLayer"
-        permission="cmf.ModifyPortalContent"
+        permission="zope2.View"
         template="viewlets_templates/content/newsdate.pt"
         />
 
