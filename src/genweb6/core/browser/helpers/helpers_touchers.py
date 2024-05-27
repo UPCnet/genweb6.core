@@ -1024,3 +1024,23 @@ Deshabilita les pestañes en mode visualització
 
         transaction.commit()
         return 'OK'
+
+
+class update_session_timeout(BrowserView):
+    """
+Actualitza el temps de sessió
+
+
+Paràmetre:
+- hours: temps en hores
+    """
+
+    def __call__(self):
+        if self.request.form.get('hours', False):
+            time = int(self.request.form.get('hours')) * 3600
+            acl = api.portal.get_tool("acl_users")
+            acl.session.timeout = time
+            transaction.commit()
+            return 'OK'
+        else:
+            return 'Error parameter hours, not defined'
