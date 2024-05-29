@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-1.47 (unreleased)
+1.47 (2024-05-29)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Helper update_session_timeout [Iago López]
+* [UPD] Viewlet genweb.newsdate - Que lo vea todo el mundo [Iago López]
+* [ADD] Comentario [Iago López]
 
 1.46 (2024-05-15)
 -----------------
