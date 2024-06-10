@@ -25,8 +25,10 @@
         />
 
     <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
-    <adapter factory=".indexes.newsImageFile" name="news_image_filename" />
+    <adapter factory=".indexers.newsImageFile" name="news_image_filename" />
     <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
     <adapter factory=".content.banner.banner.getRemoteUrl" name="getRemoteUrl" />
+
+    <adapter factory=".indexers.SearchableText_document_image" name="SearchableText" />
 
 </configure>
