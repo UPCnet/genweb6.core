@@ -74,10 +74,14 @@
                 </a>
 
                 <img alt=""
-                     tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style"
+                     tal:condition="python:heroImage and 'text-hero' not in style and 'full-pretty-image-hero' not in style and 'pretty-image' in style"
                      tal:attributes="src heroImage;
                                      alt python:img_hero_alt if img_hero_alt else '';
                                      title img_hero_alt|nothing" />
+
+                <img alt=""
+                        tal:condition="python:heroImage and 'text-hero' not in style and 'pretty-image' not in style"
+                        tal:attributes="src heroImage;" />
 
             </section>
 
