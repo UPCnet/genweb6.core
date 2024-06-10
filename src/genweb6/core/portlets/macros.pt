@@ -56,7 +56,7 @@
     <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
        tal:content="obj/description">Description summary</p>
 
-    <a href="#" class="title d-block text-decoration-none text-truncate-2"
+    <a href="#" class="title d-block text-decoration-none"
        tal:attributes="href obj/url;
                        title obj/title">
 

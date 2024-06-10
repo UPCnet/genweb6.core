@@ -161,8 +161,7 @@
                                            tal:attributes="href content/url;
                                                            title content/title">
 
-                                            <h6 class="text-truncate-2"
-                                                tal:content="content/title">Title</h6>
+                                            <h6 tal:content="content/title">Title</h6>
                                         </a>
 
                                         <p tal:condition="context/carousel_show_description"

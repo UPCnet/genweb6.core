@@ -174,7 +174,7 @@
                tal:attributes="href obj/url;
                                title obj/title">
 
-                <h6 class="text-truncate-2" tal:content="obj/title">Title</h6>
+                <h6 tal:content="obj/title">Title</h6>
             </a>
 
             <p tal:condition="obj/description" class="description text-truncate-4 mb-1"
