@@ -89,6 +89,7 @@
       <element>Collection</element>
       <element>genweb.upc.subhome</element>
       <element>packet</element>
+      <element>genweb.upc.documentimage</element>
     </value>
   </record>
 
