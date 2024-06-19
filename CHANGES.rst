@@ -2,11 +2,17 @@ Changelog
 =========
 
 
-1.48 (unreleased)
+1.48 (2024-06-19)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] TinyMCE añadir autosave [Iago López]
+* Merge branch 'master' of github.com:UPCnet/genweb6.core [ruben.padilla.mateu]
+* Added inline style colors for tinymce [ruben.padilla.mateu]
+* [ADD] Añadir documento con imagen como vista por defecto de las carpetas [Iago López]
+* FIX hero estandar image showing alt message [ruben.padilla.mateu]
+* [UPD] Quitar text-truncate-2 de los titulares de los elementos de los portlets [Iago López]
+* [ADD] Indexer searchabletext para documentimage [Iago López]
+* [UPD] Añadir timeout de 12 horas en el setup [Iago López]
 
 1.47 (2024-05-29)
 -----------------
