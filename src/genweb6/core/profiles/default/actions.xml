@@ -29,6 +29,7 @@
    <property name="permissions">
     <element value="Genweb: Manager Users"/>
     <element value="Genweb: Webmaster Users"/>
+    <element value="Modify portal content"/>
    </property>
    <property name="visible">True</property>
   </object>
