@@ -334,8 +334,6 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
         default=False,
     )
 
-    read_permission(amaga_identificacio='genweb.manager')
-    write_permission(amaga_identificacio='genweb.manager')
     amaga_identificacio = schema.Bool(
         title=_(
             u"amaga_identificacio",
