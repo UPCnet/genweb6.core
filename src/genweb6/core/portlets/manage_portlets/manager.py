@@ -202,7 +202,7 @@ class gwManagePortletsFallbackViewletForISubhome(
 
     def available(self):
         secman = getSecurityManager()
-        if secman.checkPermission('Genweb: Webmaster Users', self.context):
+        if secman.checkPermission('Modify portal content', self.context):
             if self.request.steps[-1] in ['subhome_view']:
                 return True
         return False
