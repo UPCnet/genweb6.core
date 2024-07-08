@@ -265,7 +265,6 @@
     </field>
     <value>
       <element>anchor</element>
-      <element>autosave</element>
       <element>charmap</element>
       <element>code</element>
       <element>contextmenu</element>
