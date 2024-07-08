@@ -49,8 +49,11 @@ class read(BrowserView):
                 for tag in allTags:
                     tag['class'] = ''
                     tag['style'] = ''
+                    if tag.name == 'a' and tag.get('href') and 'http' not in tag.get('href') or tag.name == 'a' and not tag.get('href'):
+                        for content in tag.contents:
+                            if isinstance(content, str):
+                                content.replaceWith(content + ' [enllaçtrencat]')
                 data["text"] = RichTextValue(str(soup), 'text/html', 'text/x-html-safe')
-                logging.info(soup.prettify())
                 offer = createContentInContainer(container, "Document", **data)
                 offer.setEffectiveDate(dt_start_of_day(datetime.datetime.today() + datetime.timedelta(1)))
                 offer.setExpirationDate(dt_end_of_day(datetime.datetime.today() + datetime.timedelta(365)))
