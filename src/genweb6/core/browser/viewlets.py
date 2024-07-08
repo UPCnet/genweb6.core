@@ -611,12 +611,12 @@ class socialtoolsViewlet(viewletBase):
             #     'icon': 'bi bi-telegram',
             #     'action': False,
             # },
-            # {
-            #     'title': 'Linkedin',
-            #     'url': 'https://www.linkedin.com/shareArticle?url=' + url,
-            #     'icon': 'bi bi-linkedin',
-            #     'action': False,
-            # },
+            {
+                'title': 'Linkedin',
+                'url': 'https://www.linkedin.com/sharing/share-offsite?url=' + url,
+                'icon': 'bi bi-linkedin',
+                'action': False,
+            },
             {
                 'title': _(u"Copiar enllaç"),
                 'url': url,
