@@ -5,6 +5,7 @@ from plone.app.contenttypes.interfaces import IEvent
 from plone.app.event.base import dt_end_of_day
 from plone.app.event.base import dt_start_of_day
 from plone.dexterity.utils import createContentInContainer
+from bs4 import BeautifulSoup
 from plone.app.textfield.value import RichTextValue
 import logging
 import datetime
@@ -41,7 +42,11 @@ class read(BrowserView):
                 container = self.context
                 data["text"] = RichTextValue(data["text"], 'text/html', 'text/x-html-safe')
                 data["table_of_contents"] = True
-                logging.info(data)
+                soup = BeautifulSoup(data["text"].raw, 'html.parser')
+                tags = soup.find_all(class_="minus")
+                for tag in tags:
+                    tag.name = 'h2'
+                data["text"] = RichTextValue(str(soup), 'text/html', 'text/x-html-safe')
                 offer = createContentInContainer(container, "Document", **data)
                 offer.setEffectiveDate(dt_start_of_day(datetime.datetime.today() + datetime.timedelta(1)))
                 offer.setExpirationDate(dt_end_of_day(datetime.datetime.today() + datetime.timedelta(365)))
