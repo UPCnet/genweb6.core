@@ -34,7 +34,6 @@ class read(BrowserView):
     def read_JSON(self,JSON_file):
         if JSON_file.filename != '' and JSON_file.filename.endswith('.json'):
             data = json.load(JSON_file, strict=False)
-            logging.info(data)
             if self.base_JSON.keys() != data.keys():
                 logging.info("The JSON file is not valid")
             else:
@@ -46,7 +45,12 @@ class read(BrowserView):
                 tags = soup.find_all(class_="minus")
                 for tag in tags:
                     tag.name = 'h2'
+                allTags = soup.find_all()
+                for tag in allTags:
+                    tag['class'] = ''
+                    tag['style'] = ''
                 data["text"] = RichTextValue(str(soup), 'text/html', 'text/x-html-safe')
+                logging.info(soup.prettify())
                 offer = createContentInContainer(container, "Document", **data)
                 offer.setEffectiveDate(dt_start_of_day(datetime.datetime.today() + datetime.timedelta(1)))
                 offer.setExpirationDate(dt_end_of_day(datetime.datetime.today() + datetime.timedelta(365)))
