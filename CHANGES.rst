@@ -2,11 +2,15 @@ Changelog
 =========
 
 
-1.49 (unreleased)
+1.49 (2024-07-17)
 -----------------
 
-- Nothing changed yet.
-
+* [Deshacer] 1ab94e [Iago López]
+* [UPD] Añadir Linkedin en las redes sociales para compartir [Iago López]
+* [UPD] TinyMCE quitar autosave [Iago López]
+* [UPD] Webmaster tambien puede editar el campo de esconder el login de la cabecera [Iago López]
+* [UPDATE] agregar permisos al editor para administrar portlets [Clàudia Andreu]
+* Added editors permission to purge cache [ruben.padilla.mateu]
 
 1.48 (2024-06-19)
 -----------------
