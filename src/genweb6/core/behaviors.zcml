@@ -22,4 +22,15 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
+        <plone:behavior
+        title="Max size for file fields"
+        name="easyform.maxsize"
+        description="Max size for a file field on easy form."
+        provides=".behaviors.maxsize.IMaxSizeExtender"
+        factory=".behaviors.maxsize.MaxSizeExtender"
+        for="collective.easyform.interfaces.easyform.IEasyForm"
+        />
+
+    
+
 </configure>

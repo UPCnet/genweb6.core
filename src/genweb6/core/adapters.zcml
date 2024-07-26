@@ -31,4 +31,9 @@
 
     <adapter factory=".indexers.SearchableText_document_image" name="SearchableText" />
 
+    <adapter
+    factory=".adapters.form_setup.FileSizeValidator"
+    name="file_size"
+    />
+
 </configure>
