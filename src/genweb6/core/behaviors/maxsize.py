@@ -19,12 +19,13 @@ from plone.autoform.interfaces import IFormFieldProvider
 @provider(IFormFieldProvider)
 class IMaxSizeExtender(model.Schema):
 
-    max_size = schema.TextLine(
-        title=_("Mida màxima"),
-        description=_("Mida màxima per als fitxers d'aquest formulari. Número enter"),
+
+    max_size = schema.Int(
+        title=_(u'Mida màxima'),
+        description=_(u"Mida màxima (en MB) per als fitxers d'aquest formulari. Número enter."),
         required=False,
-        default=u'',
-    )
+        default=0,
+        min=0,)
 
 
 
