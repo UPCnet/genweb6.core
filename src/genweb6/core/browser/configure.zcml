@@ -214,7 +214,7 @@
         />
 
     <browser:page
-        name="custom_view"
+        name="import_personal"
         for="zope.interface.Interface"
         permission="zope.Public"
         class=".JSON_reader.read"

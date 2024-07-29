@@ -8,10 +8,7 @@
 
     <body>
     <metal:content-core fill-slot="content-core">
-        <div>
-        New custom template
-        <p>Here is the content of the page</p>
-        </div>
+        <div>Import personal</div>
         <form method="post" enctype="multipart/form-data" action="" >
             <input class="form-control mb-3" type="file" name="jsonfile" />
             <!-- <textarea class="form-control mb-3" name="jsonfile" rows="10" cols="50"></textarea> -->
