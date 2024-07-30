@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.50 (unreleased)
+1.50 (2024-07-30)
 -----------------
 
-- Nothing changed yet.
-
+* Make max_size field as int field [ruben.padilla.mateu]
+* Added easyform max size behavior and validator [ruben.padilla.mateu]
 
 1.49 (2024-07-17)
 -----------------
