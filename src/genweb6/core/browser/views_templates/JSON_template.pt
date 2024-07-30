@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+    <body>
+    <metal:content-core fill-slot="content-core">
+        <div>Import personal</div>
+        <form method="post" enctype="multipart/form-data" action="" >
+            <input class="form-control mb-3" type="file" name="jsonfile" />
+            <!-- <textarea class="form-control mb-3" name="jsonfile" rows="10" cols="50"></textarea> -->
+            <button class="btn btn-large btn-primary" name="save" type="submit" i18n:translate="">Send</button>
+        </form>
+    </metal:content-core>
+    </body>
+</html>

@@ -213,6 +213,15 @@
         class=".views.TinyMCECustomCSS"
         />
 
+    <browser:page
+        name="import_personal"
+        for="zope.interface.Interface"
+        permission="zope.Public"
+        class=".JSON_reader.read"
+        layer="..interfaces.IGenweb6CoreLayer"
+        template="views_templates/JSON_template.pt"
+        />
+
     <configure package="Products.CMFPlone.browser">
 
         <browser:page
