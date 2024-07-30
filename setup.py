@@ -76,6 +76,7 @@ setup(
         'genweb6.theme',
         'ipdb',
         'Products.PloneKeywordManager',
+        'xmltodict',
     ],
 
     extras_require={
