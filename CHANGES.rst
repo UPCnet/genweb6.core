@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.51 (unreleased)
+1.51 (2024-07-30)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Depedency package xmltodict [Iago López]
+* Merge remote-tracking branch 'origin/feature/build_from_JSON' [Iago López]
 
 1.50 (2024-07-30)
 -----------------
