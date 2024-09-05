@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.PloneBatch import Batch
+from Products.CMFPlone.utils import isExpired
 from Products.Five.browser import BrowserView
 
 from datetime import date
@@ -115,8 +116,8 @@ class NewsListing(BrowserView):
             kw['sort_order'] = 'reverse'
 
         cat = getToolByName(context, 'portal_catalog')
-        result = cat(is_important=True, **kw)
-        result2 = cat(is_important=False, **kw)
+        result = [brain for brain in cat(is_important=True, **kw) if not isExpired(brain)]
+        result2 = [brain for brain in cat(is_important=False, **kw) if not isExpired(brain)]
 
         return result + result2
 
