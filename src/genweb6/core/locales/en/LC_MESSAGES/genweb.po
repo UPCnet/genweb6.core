@@ -157,7 +157,7 @@ msgstr "Checking this option will show the first and second level of the menu an
 
 #: ../controlpanels/footer.py:66
 msgid "Al marcar aquesta opció es mostrarà la pàgina de enllaços personalitzats al peu, la pàgina ha d'estar publicada."
-msgstr "Checking this option will display the custom links page in the footer, the page must be published."
+msgstr "Checking this option will display the custom links page in the footer, the page must be published. You can edit it from the following pages: <a target='_blank' href='ca/enllacospersonalitzats'>Catalan</a> | <a target='_blank' href='en/customizedlinks'>English</a> | <a target='_blank' href='es/enlacespersonalizados'>Spanish</a>"
 
 #: ../browser/views_templates/download_files.pt:27
 msgid "All"
