@@ -108,6 +108,9 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
                 next_obj = catalog.unrestrictedSearchResults(UID=uid)
                 if next_obj:
                     entry['url'] = next_obj[0].getURL()
+        else:
+            entry.update({"external_link": False})
+            entry.update({"current": False})
 
     # Añadimos target y current al dict
     def render_item(self, item, path):
