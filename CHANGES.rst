@@ -2,11 +2,15 @@ Changelog
 =========
 
 
-1.52 (unreleased)
+1.52 (2024-09-25)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Solucionar error que no genera bien el menu de cabecera [Iago López]
+* [UPD] Literal [Iago López]
+* [UPD] Literal [Iago López]
+* [FIX] SSO login en ficheros o imagenes [Iago López]
+* [UPD] news_listing - No mostrar expirados [Iago López]
+* [FIX] Solucionar error que no genera bien el menu de cabecera [Iago López]
 
 1.51 (2024-07-30)
 -----------------
