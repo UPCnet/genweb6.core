@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.53 (unreleased)
+1.53 (2024-09-25)
 -----------------
 
-- Nothing changed yet.
-
+* Merge remote-tracking branch 'origin/feature/build_from_JSON' [Iago López]
 
 1.52 (2024-09-25)
 -----------------
