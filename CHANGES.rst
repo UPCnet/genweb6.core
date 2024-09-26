@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.54 (unreleased)
+1.54 (2024-09-26)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Cambios en el login [Iago López]
 
 1.53 (2024-09-25)
 -----------------
