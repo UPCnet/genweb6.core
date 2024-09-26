@@ -236,7 +236,11 @@ class LoginUtils():
         return getCASSettings()
 
     def cas_login_URL(self):
-        return login_URL(self.context, self.request)
+        login_url = login_URL(self.context, self.request)
+        url = self.context.absolute_url()
+        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
+            return login_url
+        return self.request.response.redirect(login_url)
 
     def change_password_url(self):
         login_settings = genwebLoginConfig()

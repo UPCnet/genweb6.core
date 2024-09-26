@@ -5,18 +5,30 @@
       tal:omit-tag="">
 
   <tal:block tal:condition="view/show"
-             tal:define="site_url python:context.portal_url();">
+             tal:define="site_url python:context.portal_url();
+                         cas_login_URL view/cas_login_URL">
 
     <div class="portlet portletLogin">
 
       <div class="d-grid gap-2">
 
         <a title="Inicia la sessió" href="" id="personaltools-login"
+           tal:condition="not:cas_login_URL"
            data-pat-plone-modal="position: center top; titleSelector: h1.card-title; buttons: ;"
            class="pat-plone-modal btn btn-primary"
            tal:attributes="href string:${site_url}/login_form"
            i18n:attributes="title label_start_session"
            i18n:translate="label_start_session">
+
+          Inicia la sessió
+        </a>
+
+        <a title="Inicia la sessió" href="" id="personaltools-login"
+           tal:condition="cas_login_URL"
+           tal:attributes="href string:${cas_login_URL}"
+           i18n:attributes="title label_start_session"
+           i18n:translate="label_start_session"
+           class="btn btn-primary">
 
           Inicia la sessió
         </a>
@@ -28,5 +40,3 @@
   </tal:block>
 
 </html>
-
-
