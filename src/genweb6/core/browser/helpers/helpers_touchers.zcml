@@ -303,4 +303,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="fix_icon_field_banners"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.fix_icon_field_banners"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
