@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.55 (unreleased)
+1.55 (2024-10-08)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] toucher fix_icon_field_banners [Iago López]
+* [UPD] No abrir login en modal [Iago López]
 
 1.54 (2024-09-26)
 -----------------
