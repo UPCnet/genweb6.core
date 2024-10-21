@@ -21,6 +21,7 @@
         <element value="tabular_view" />
         <element value="full_view" />
         <element value="album_view" />
+        <element value="event_listing"/>
     </property>
 
 </object>

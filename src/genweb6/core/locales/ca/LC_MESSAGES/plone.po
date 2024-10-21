@@ -557,3 +557,6 @@ msgstr "Vista esdeveniment"
 
 msgid "Subjects"
 msgstr "Etiquetes"
+
+msgid "event_listing"
+msgstr "Llista d'esdeveniments"

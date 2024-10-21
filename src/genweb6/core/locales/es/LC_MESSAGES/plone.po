@@ -436,3 +436,6 @@ msgstr "Vista evento"
 
 msgid "Subjects"
 msgstr "Etiquetas"
+
+msgid "filtered_contents_search_pretty_view"
+msgstr "Lista de eventos"

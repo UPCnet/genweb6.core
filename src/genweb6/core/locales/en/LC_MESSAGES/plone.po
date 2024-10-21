@@ -469,3 +469,6 @@ msgstr "Event view"
 
 msgid "Subjects"
 msgstr "Subjects"
+
+msgid "event_listing"
+msgstr "Event listing view"
