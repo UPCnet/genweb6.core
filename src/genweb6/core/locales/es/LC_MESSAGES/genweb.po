@@ -118,7 +118,7 @@ msgstr "Añadir portlet de noticias"
 msgid "Add Tags portlet"
 msgstr "Add Tags portlet"
 
-#: ../portlets/banners/banners.py:94
+#: ../portlets/banners/banners.py:99
 msgid "Add banners portlet"
 msgstr "Añadir potlet banners"
 
@@ -138,7 +138,7 @@ msgstr "Añadir campo icono"
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Dirección web del canal donde se encuentra el vídeo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:282
+#: ../portlets/new_existing_content/new_existing_content.py:292
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
@@ -189,7 +189,7 @@ msgstr "Este formulario crea un directorio dentro de la cual has de añadir las 
 msgid "Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya."
 msgstr "Este formulario crea un directorio dentro de la cual has de añadir las páginas que formmaran parte de cada desplegable del acordión o de cada pestaña."
 
-#: ../portlets/new_existing_content/new_existing_content.py:283
+#: ../portlets/new_existing_content/new_existing_content.py:293
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "Este portlet muestra contenido ya existente de la URL especificada."
 
@@ -311,11 +311,11 @@ msgstr "Colección"
 msgid "Comparteix"
 msgstr "Compartir"
 
-#: ../portlets/new_existing_content/new_existing_content.py:181
+#: ../portlets/new_existing_content/new_existing_content.py:184
 msgid "Configura el contingut extern"
 msgstr "Configura el contenido externo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:178
+#: ../portlets/new_existing_content/new_existing_content.py:181
 msgid "Configura el contingut intern"
 msgstr "Configura el contenido interno"
 
@@ -355,20 +355,20 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Contenidos que alimentan la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:196
+#: ../content/carousel/carousel.pt:195
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:620
+#: ../browser/viewlets.py:626
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:196
+#: ../content/carousel/carousel.pt:195
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:625
+#: ../browser/viewlets.py:631
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -413,23 +413,23 @@ msgstr "Mostrar imágenes"
 msgid "Document Image"
 msgstr "Página con imagen"
 
-#: ../portlets/new_existing_content/new_existing_content.py:256
+#: ../portlets/new_existing_content/new_existing_content.py:263
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../portlets/new_existing_content/new_existing_content.py:249
+#: ../portlets/new_existing_content/new_existing_content.py:256
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Revise la configuración del portlet"
 
-#: ../portlets/new_existing_content/new_existing_content.py:252
+#: ../portlets/new_existing_content/new_existing_content.py:259
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. Se ha superado el tiempo de espera"
 
-#: ../portlets/new_existing_content/new_existing_content.py:254
+#: ../portlets/new_existing_content/new_existing_content.py:261
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. La URL no existe"
 
-#: ../portlets/new_existing_content/new_existing_content.py:232
+#: ../portlets/new_existing_content/new_existing_content.py:235
 msgid "ERROR. This element does not exist:"
 msgstr "ERROR. El elemento no existe:"
 
@@ -463,17 +463,21 @@ msgstr "Edit portlet noticias"
 msgid "Edit Tags Portlet"
 msgstr "Editar portlet de etiquetas"
 
-#: ../portlets/banners/banners.py:103
+#: ../portlets/banners/banners.py:108
 msgid "Edit banners portlet"
 msgstr "Editar portlet báners"
 
-#: ../portlets/new_existing_content/new_existing_content.py:294
+#: ../portlets/new_existing_content/new_existing_content.py:304
 msgid "Edita portlet de contingut existent"
 msgstr "Editar portlet de contenido existente"
 
 #: ../tiles/destacats/destacats.py:79
 msgid "El contingut d'aquest camp només aplica en les tiles esmentades"
 msgstr "Este campo sólo se aplica a las tiles correspondientes"
+
+#: ../portlets/banners/banners.py:17
+msgid "El número de banners debe estar entre 1 y 10."
+msgstr "El número de banners debe estar entre 1 y 10."
 
 #: ../controlpanels/header.py:38
 msgid "El valor introduït no és un URL vàlid."
@@ -537,7 +541,7 @@ msgstr "Agenda"
 msgid "Exclude the Current Context"
 msgstr "Exclude the Current Context"
 
-#: ../portlets/new_existing_content/new_existing_content.py:166
+#: ../portlets/new_existing_content/new_existing_content.py:169
 msgid "Existing Content"
 msgstr "Contenido existente"
 
@@ -630,7 +634,7 @@ msgstr "Avanzados Genweb"
 msgid "Genweb Configuration"
 msgstr "Configuración Genweb"
 
-#: ../portlets/banners/banners.py:53
+#: ../portlets/banners/banners.py:58
 msgid "Genweb banners"
 msgstr "Báners"
 
@@ -658,7 +662,7 @@ msgstr "Configuración Cabecera"
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "Ha habido un error durante el procedimiento."
 
-#: ../portlets/banners/banners.py:29
+#: ../portlets/banners/banners.py:35
 msgid "How many banners to list."
 msgstr "Número de banners a mostrar"
 
@@ -853,6 +857,14 @@ msgstr "Mostra sin cabecera, contorno ni pie"
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
 msgstr "Mostrar el título del portlet"
 
+#: ../behaviors.zcml:32
+msgid "Max size for a file field on easy form."
+msgstr ""
+
+#: ../behaviors.zcml:32
+msgid "Max size for file fields"
+msgstr ""
+
 #: ../portlets/grid_events/grid_events.py:32
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:51
 msgid "Maxim numero de esdeveniments a mostrar (d'1 a 16)"
@@ -869,6 +881,14 @@ msgstr "Número máximo de noticias a mostrar (1-14)"
 #: ../controlpanels/footer.py:53
 msgid "Menú al peu"
 msgstr "Menú en el pie"
+
+#: ../behaviors/maxsize.py:24
+msgid "Mida màxima"
+msgstr ""
+
+#: ../behaviors/maxsize.py:25
+msgid "Mida màxima (en MB) per als fitxers d'aquest formulari. Número enter."
+msgstr ""
 
 #: ../portlets/rss/rss.py:306
 msgid "More link"
@@ -947,7 +967,7 @@ msgstr "Noticias"
 msgid "Nou Contingut existent"
 msgstr "Contenido existente"
 
-#: ../portlets/banners/banners.py:28
+#: ../portlets/banners/banners.py:34
 msgid "Number of banners to display"
 msgstr "Número de banners a mostrar"
 
@@ -1044,7 +1064,7 @@ msgstr "Por favor, suba una imagen"
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 msgstr "Puede añadir contenidos en este directorio desde el siguiente <a target=\"_blank\" href=\"folder_contents\">enlace</a> "
 
-#: ../portlets/banners/banners.py:23
+#: ../portlets/banners/banners.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:70
 msgid "Portlet header"
 msgstr "Cabecera del portlet"
@@ -1223,7 +1243,7 @@ msgstr "Este portlet muestra acontecimientos recientes."
 msgid "This portlet displays recent News Items."
 msgstr "El portlet muestra las noticias recientes."
 
-#: ../portlets/banners/banners.py:95
+#: ../portlets/banners/banners.py:100
 msgid "This portlet displays the site banners."
 msgstr "El portlet muestra los banners del sitio"
 
@@ -1293,7 +1313,7 @@ msgstr "Tipo de imagen en los contenidos"
 msgid "Title"
 msgstr "Título"
 
-#: ../portlets/banners/banners.py:24
+#: ../portlets/banners/banners.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:71
 msgid "Title of the rendered portlet"
 msgstr "Título del portlet"
@@ -1578,7 +1598,7 @@ msgstr "genweb6.theme (desinstalar)"
 msgid "genweb_loginlocal"
 msgstr "Identifícate sólo en esta web"
 
-#: ../cas/utils.py:54
+#: ../cas/utils.py:67
 msgid "heading_signed_out"
 msgstr "Se ha desconectado la sesión."
 
@@ -1766,7 +1786,7 @@ msgstr "ir aquí"
 
 #. Default: "Inicia la sessió"
 #: ../browser/macros/login.pt:109
-#: ../portlets/login/login.pt:14
+#: ../portlets/login/login.pt:15
 msgid "label_start_session"
 msgstr "Iniciar sesión"
 
@@ -1858,7 +1878,7 @@ msgid "not_show_image"
 msgstr "No mostrar la imagen en la página, pero sí en los portlets y vistas"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:379
+#: ../browser/viewlets.py:384
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"

@@ -5,11 +5,17 @@ from plone import api
 from plone.app.portlets.portlets import base
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
+from zope.interface import Invalid
 from zope.interface import implementer
 
 from genweb6.core import _
 from genweb6.core import utils
 
+
+def validate_count(value):
+    if value < 1 or value > 10:
+        raise Invalid(_(u'El número de banners debe estar entre 1 y 10.'))
+    return True
 
 class IBannersPortlet(IPortletDataProvider):
     """A portlet
@@ -29,8 +35,7 @@ class IBannersPortlet(IPortletDataProvider):
         description=_(u'How many banners to list.'),
         required=True,
         default=7,
-        min=5,
-        max=7)
+        constraint=validate_count)
 
 
 @implementer(IBannersPortlet)
