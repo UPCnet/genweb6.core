@@ -77,6 +77,7 @@ setup(
         'ipdb',
         'Products.PloneKeywordManager',
         'xmltodict',
+        'collective.behavior.seo',
     ],
 
     extras_require={

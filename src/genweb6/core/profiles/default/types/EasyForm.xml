@@ -27,6 +27,7 @@
     <element value="plone.excludefromnavigation" />
     <element value="plone.dublincore" />
     <element value="easyform.maxsize" />
+    <element value="collective.behavior.seo.seo_fields" />
   </property>
 
   <!-- View information -->
