@@ -10,6 +10,20 @@
         <element value="full_view"/>
         <element value="folder_index_view"/>
         <element value="filtered_contents_search_pretty_view"/>
+    </property>
+
+    <property name="behaviors">
+        <element value="plone.dublincore" />
+        <element value="plone.namefromtitle" />
+        <element value="plone.allowdiscussion" />
+        <element value="plone.excludefromnavigation" />
+        <element value="plone.shortname" />
+        <element value="plone.constraintypes" />
+        <element value="plone.relateditems" />
+        <element value="plone.nextprevioustoggle" />
+        <element value="plone.translatable" />
+        <element value="plone.layoutaware" />
+        <element value="plone.draftable" />
         <element value="collective.behavior.seo.seo_fields" />
     </property>
 
