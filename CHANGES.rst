@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.56 (unreleased)
+1.56 (2024-12-10)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Behavior imagen para los enlaces [Iago López]
+* [ADD] SEO behavior [Iago López]
+* [UPD] Portlet banner - Aumentar limite a 10 y personalizar mensaje de error [Iago López]
+* [UPD] Añadir nueva vista a las colecciones - event_listing [Iago López]
+* [UPD] Literal etiquetas del buscador [Iago López]
 
 1.55 (2024-10-08)
 -----------------
