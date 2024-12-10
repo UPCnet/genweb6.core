@@ -126,6 +126,10 @@ msgstr "Add banners portlet"
 msgid "Add field to add icon."
 msgstr "Add field to add icon."
 
+#: ../behaviors.zcml:32
+msgid "Add field to add image in contents."
+msgstr ""
+
 #: ../behaviors.zcml:23
 msgid "Add field to mark a link to open in a new window when clicked."
 msgstr "Add field to mark a link to open in a new window when clicked."
@@ -719,6 +723,18 @@ msgstr "If enabled, items will be selected randomly from the collection, rather 
 msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 msgstr "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 
+#: ../behaviors/image.py:21
+msgid "Image"
+msgstr ""
+
+#: ../behaviors.zcml:32
+msgid "Image fields"
+msgstr ""
+
+#: ../behaviors/image.py:22
+msgid "Image only visible in portlets and in folder and collection views"
+msgstr ""
+
 #: ../controlpanels/footer.py:26
 msgid "Imatge capçalera"
 msgstr "Header image"
@@ -795,6 +811,7 @@ msgstr "The item has been unmarked as important"
 msgid "L'interval de temps ha d'estar entre 5000 i 60000 ms"
 msgstr "The time interval must be between 5000 and 60000 ms"
 
+#: ../behaviors/image.py:32
 #: ../content/document_image/document_image.py:30
 msgid "Lead Image Caption"
 msgstr "Lead Image Caption"
@@ -860,11 +877,11 @@ msgstr "Check this box if you want the text shown above to be displayed"
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
 msgstr "Check this box if you want the portlet title to be displayed"
 
-#: ../behaviors.zcml:32
+#: ../behaviors.zcml:41
 msgid "Max size for a file field on easy form."
 msgstr ""
 
-#: ../behaviors.zcml:32
+#: ../behaviors.zcml:41
 msgid "Max size for file fields"
 msgstr ""
 
