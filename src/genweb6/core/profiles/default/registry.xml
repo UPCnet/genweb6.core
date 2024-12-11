@@ -1562,4 +1562,26 @@
     <value>True</value>
   </record>
 
+  <!-- SEO -->
+
+  <record name="collective.behavior.seo.interfaces.ICollectiveBehaviorSeoSettings.robot_tags" interface="collective.behavior.seo.interfaces.ICollectiveBehaviorSeoSettings" field="robot_tags">
+    <field type="plone.registry.field.Tuple">
+      <default>
+        <element>index, nofollow</element>
+        <element>noindex, follow</element>
+        <element>index, follow</element>
+      </default>
+      <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="collective.behavior.seo" ns0:translate="robot_tags_desc">Enter combinations of robot tags, separated by comma's one combination on every line. The idea here is that the webmaster decides which combinations of multiple tags are sane, so that content editors don't need to compose logical combinations themselves from all individual tags.</description>
+      <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="collective.behavior.seo" ns0:translate="">Robot Tags</title>
+      <value_type type="plone.registry.field.TextLine"/>
+    </field>
+    <value>
+      <element>index, nofollow</element>
+      <element>noindex, follow</element>
+      <element>index, follow</element>
+      <element>noindex</element>
+      <element>noindex, nofollow</element>
+    </value>
+  </record>
+
 </registry>
