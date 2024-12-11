@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.57 (unreleased)
+1.57 (2024-12-11)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Añadir opciones para el SEO [Iago López]
 
 1.56 (2024-12-10)
 -----------------
