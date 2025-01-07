@@ -25,7 +25,7 @@ class IImage(model.Schema, IDexteritySchema):
     image = namedfile.NamedBlobImage(
         title=_Plone(u"Lead Image"),
         description=u"",
-        required=True,
+        required=False,
     )
 
     image_caption = schema.TextLine(
