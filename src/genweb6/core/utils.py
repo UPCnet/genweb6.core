@@ -26,6 +26,7 @@ from genweb6.core import _
 from genweb6.core import HAS_PAM
 from genweb6.core.cas.utils import getCASSettings
 from genweb6.core.cas.utils import login_URL
+from genweb6.core.oidc.utils import login_URL as oidc_login_URL
 from genweb6.core.controlpanels.cintillo import ICintilloSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
@@ -236,7 +237,7 @@ class LoginUtils():
         return getCASSettings()
 
     def cas_login_URL(self):
-        return login_URL(self.context, self.request)
+        return oidc_login_URL(self.context, self.request)
 
     def change_password_url(self):
         login_settings = genwebLoginConfig()

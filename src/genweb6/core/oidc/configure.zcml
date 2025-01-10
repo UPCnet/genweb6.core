@@ -1,0 +1,30 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="genweb6.core">
+
+    <browser:page
+        for="*"
+        name="oidc_login_url"
+        class=".browser.LoginUrl"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="oidc_loginform_url"
+        class=".browser.LoginFormUrl"
+        permission="zope2.Public"
+        />
+
+    <browser:page
+        for="*"
+        name="oidc_logout"
+        class=".browser.Logout"
+        permission="zope2.Public"
+        />
+
+</configure>
