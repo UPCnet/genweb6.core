@@ -2,11 +2,63 @@ Changelog
 =========
 
 
-1.50 (unreleased)
+1.58 (unreleased)
 -----------------
 
 - Nothing changed yet.
 
+
+1.57 (2024-12-11)
+-----------------
+
+* [UPD] Añadir opciones para el SEO [Iago López]
+
+1.56 (2024-12-10)
+-----------------
+
+* [ADD] Behavior imagen para los enlaces [Iago López]
+* [ADD] SEO behavior [Iago López]
+* [UPD] Portlet banner - Aumentar limite a 10 y personalizar mensaje de error [Iago López]
+* [UPD] Añadir nueva vista a las colecciones - event_listing [Iago López]
+* [UPD] Literal etiquetas del buscador [Iago López]
+
+1.55 (2024-10-08)
+-----------------
+
+* [ADD] toucher fix_icon_field_banners [Iago López]
+* [UPD] No abrir login en modal [Iago López]
+
+1.54 (2024-09-26)
+-----------------
+
+* [UPD] Cambios en el login [Iago López]
+
+1.53 (2024-09-25)
+-----------------
+
+* Merge remote-tracking branch 'origin/feature/build_from_JSON' [Iago López]
+
+1.52 (2024-09-25)
+-----------------
+
+* [FIX] Solucionar error que no genera bien el menu de cabecera [Iago López]
+* [UPD] Literal [Iago López]
+* [UPD] Literal [Iago López]
+* [FIX] SSO login en ficheros o imagenes [Iago López]
+* [UPD] news_listing - No mostrar expirados [Iago López]
+* [FIX] Solucionar error que no genera bien el menu de cabecera [Iago López]
+
+1.51 (2024-07-30)
+-----------------
+
+* [ADD] Depedency package xmltodict [Iago López]
+* Merge remote-tracking branch 'origin/feature/build_from_JSON' [Iago López]
+
+1.50 (2024-07-30)
+-----------------
+
+* Make max_size field as int field [ruben.padilla.mateu]
+* Added easyform max size behavior and validator [ruben.padilla.mateu]
 
 1.49 (2024-07-17)
 -----------------

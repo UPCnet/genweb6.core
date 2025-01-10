@@ -1044,3 +1044,23 @@ Paràmetre:
             return 'OK'
         else:
             return 'Error parameter hours, not defined'
+
+class fix_icon_field_banners(BrowserView):
+    """
+Elimina el camp icon del continguts de tipus Banner en cas de que estigui mal migrat
+    """
+
+    def __call__(self):
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.unrestrictedSearchResults(
+            portal_type=['Banner']
+        )
+
+        for brain in brains:
+            obj = brain.getObject()
+            if callable(obj.icon):
+                obj.icon = ''
+                obj.reindexObject()
+
+        transaction.commit()
+        return 'OK'

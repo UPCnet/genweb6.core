@@ -22,15 +22,22 @@
         for="plone.dexterity.interfaces.IDexterityContent"
         />
 
-        <plone:behavior
-        title="Max size for file fields"
+    <plone:behavior
+        name="genweb.image"
+        title="Image fields"
+        description="Add field to add image in contents."
+        provides=".behaviors.image.IImage"
+        factory=".behaviors.image.Image"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        />
+
+    <plone:behavior
         name="easyform.maxsize"
+        title="Max size for file fields"
         description="Max size for a file field on easy form."
         provides=".behaviors.maxsize.IMaxSizeExtender"
         factory=".behaviors.maxsize.MaxSizeExtender"
         for="collective.easyform.interfaces.easyform.IEasyForm"
         />
-
-    
 
 </configure>

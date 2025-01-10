@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='genweb6.core',
-    version='1.50.dev0',
+    version='1.58.dev0',
     description="Genweb 6 Core package",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
@@ -76,6 +76,8 @@ setup(
         'genweb6.theme',
         'ipdb',
         'Products.PloneKeywordManager',
+        'xmltodict',
+        'collective.behavior.seo',
     ],
 
     extras_require={

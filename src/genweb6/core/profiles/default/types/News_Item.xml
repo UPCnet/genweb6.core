@@ -13,7 +13,7 @@
         <element value="plone.versioning"/>
         <element value="plone.translatable" />
         <element value="plone.locking"/>
+        <element value="collective.behavior.seo.seo_fields" />
     </property>
 
 </object>
-

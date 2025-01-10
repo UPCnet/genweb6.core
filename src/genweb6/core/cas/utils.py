@@ -3,18 +3,19 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.statusmessages.interfaces import IStatusMessage
 
+from plone import api
 from plone.memoize import ram
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
 
 from ftw.casauth.cas import strip_ticket
+
 from genweb6.core.cas import PLUGIN_CAS
 from genweb6.core.cas.controlpanel import ICASSettings
 
 from time import time
 from urllib import parse
-
 
 
 def secureURL(url):
@@ -36,7 +37,19 @@ def login_URL(context, request):
     if plugin:
         cas_settings = getCASSettings()
         came_from = getattr(request, 'came_from', None)
+
         if came_from:
+            if not came_from.endswith('/view'):
+                try:
+                    item_path = unir_cadenas('/' + '/'.join(context.getPhysicalPath()[1:3]), came_from)
+                    pc = api.portal.get_tool(name='portal_catalog')
+                    item = pc.unrestrictedSearchResults(path=item_path, depth=0)
+                    if item:
+                        if item[0].portal_type in ['Image', 'File']:
+                            came_from += '/view'
+                except:
+                    pass
+
             return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
 
         return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(context.absolute_url())))
@@ -60,7 +73,19 @@ def logout(context, request):
     else:
         return '%s/logout' % portal.absolute_url()
 
+
 @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def getCASSettings():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICASSettings)
+
+
+def unir_cadenas(s1, s2):
+    # Encuentra la superposición más larga
+    max_overlap = 0
+    for i in range(1, min(len(s1), len(s2)) + 1):
+        if s1[-i:] == s2[:i]:
+            max_overlap = i
+
+    # Une las cadenas sin repetir la superposición
+    return s1 + s2[max_overlap:]

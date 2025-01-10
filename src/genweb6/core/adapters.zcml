@@ -26,6 +26,7 @@
 
     <adapter factory=".behaviors.openlinkin.open_link_in_new_window" name="open_link_in_new_window" />
     <adapter factory=".indexers.newsImageFile" name="news_image_filename" />
+    <adapter factory=".indexers.linkImageFile" name="news_image_filename" />
     <adapter factory=".gwuuid.gwUUID" name="gwuuid" />
     <adapter factory=".content.banner.banner.getRemoteUrl" name="getRemoteUrl" />
 

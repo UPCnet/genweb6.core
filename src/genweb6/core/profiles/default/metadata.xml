@@ -9,5 +9,6 @@
         <dependency>profile-plone.app.mosaic:default</dependency>
         <dependency>profile-plone.formwidget.recaptcha:default</dependency>
         <dependency>profile-Products.PloneKeywordManager:default</dependency>
+        <dependency>profile-collective.behavior.seo:default</dependency>
     </dependencies>
 </metadata>

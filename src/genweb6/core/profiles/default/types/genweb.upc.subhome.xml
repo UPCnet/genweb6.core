@@ -27,6 +27,7 @@
         <element value="plone.textindexer" />
         <element value="plone.versioning" />
         <element value="plone.translatable" />
+        <element value="collective.behavior.seo.seo_fields" />
     </property>
 
     <property name="default_view">subhome_view</property>

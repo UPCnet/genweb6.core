@@ -213,7 +213,6 @@
             <element value="View" />
       </property>
       <property name="visible">True</property>
-      <property name="modal" type="text">{"position": "center top", "titleSelector": "h1.card-title", "buttons": ""}</property>
    </object>
 
    <object name="join" meta_type="CMF Action" i18n:domain="plone">

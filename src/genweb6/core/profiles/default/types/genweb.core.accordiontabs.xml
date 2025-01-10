@@ -29,6 +29,7 @@
         <element value="plone.excludefromnavigation" />
         <element value="plone.locking" />
         <element value="plone.translatable" />
+        <element value="collective.behavior.seo.seo_fields" />
     </property>
 
     <property name="default_view">view</property>

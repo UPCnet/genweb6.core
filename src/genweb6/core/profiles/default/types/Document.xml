@@ -14,6 +14,7 @@
         <element value="plone.locking" />
         <element value="plone.translatable" />
         <element value="plone.layoutaware" />
+        <element value="collective.behavior.seo.seo_fields" />
     </property>
 
     <property name="view_methods">

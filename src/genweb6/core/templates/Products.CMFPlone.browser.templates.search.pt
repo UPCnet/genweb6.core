@@ -186,7 +186,7 @@
 
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                href="#" role="button" aria-expanded="false"
-               i18n:domain="genweb"
+               i18n:domain="plone"
                i18n:translate="">Subjects</a>
 
             <select class="dropdown-menu dropdown-menu-md-end ps-2 form-select form-select-subjects"
