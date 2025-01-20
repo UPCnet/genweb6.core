@@ -568,10 +568,9 @@ class resourcesViewletJS(viewletBase):
 class socialtoolsViewlet(viewletBase):
 
     def render(self):
-        if api.user.is_anonymous():
-            header_config = genwebHeaderConfig()
-            if not header_config.treu_icones_xarxes_socials:
-                return super(viewletBase, self).render()
+        header_config = genwebHeaderConfig()
+        if not header_config.treu_icones_xarxes_socials:
+            return super(viewletBase, self).render()
         return ""
 
     @memoize
@@ -592,6 +591,12 @@ class socialtoolsViewlet(viewletBase):
         url = self.root_url() + '/resolveuid/' + IUUID(self.context)
 
         return [
+               {
+                'title': 'Bluesky',
+                'url': 'https://bsky.app/intent/compose?text=' + title + ' ' + url,
+                'icon': 'fa-brands fa-bluesky',
+                'action': False,
+            },
             {
                 'title': 'Twitter',
                 'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
