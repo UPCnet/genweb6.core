@@ -34,6 +34,10 @@ from genweb6.core import GenwebMessageFactory as _
 import DateTime
 import re
 import requests
+import time
+import logging
+
+logger = logging.getLogger("genweb6.core")
 
 
 class NotAnExternalLink(schema.ValidationError):
@@ -185,36 +189,53 @@ class Renderer(base.Renderer):
 
         return None
 
-    @memoize
     def get_catalog_content(self):
         """ Fem una consulta al catalog, en comptes de fer un PyQuery """
         owncontent_obj = self.data.own_content
         if owncontent_obj and isinstance(owncontent_obj, RelationValue):
             owncontent_obj = owncontent_obj.to_object
+            if not owncontent_obj:
+                return ''
+            sm = getSecurityManager()
+            # Si no s'ha publicat o está caducat no retornem res
+            if sm.checkPermission('View', owncontent_obj):
+                if owncontent_obj.expiration_date:
+                    now = DateTime.DateTime()
+                    expired = test(now >= owncontent_obj.effective_date and now <= owncontent_obj.expiration_date)
+                    if expired:
+                        return ''
+            if owncontent_obj.portal_type == 'Document' and self.data.element == '#content-core':
+                logger.info("Existing internal document: " + owncontent_obj.portal_type)
+                return owncontent_obj.text.raw
+            else:
+                #TODO: afegir més tipus de contingut
+                logger.info("Existing internal other portal type: " + owncontent_obj.portal_type)
+                # Això ho fem per netejar el html quan no sabem quin tipus de contingut és
+                clean_html = re.sub(r'[\n\r]?', r'', owncontent_obj())
+                doc = pq(clean_html)
+                if doc(self.data.element):
+                    content = pq(
+                        '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
+                else:
+                    content = _(
+                        u"ERROR. This element does not exist:") + " " + self.data.element
 
-        if owncontent_obj:
-            return owncontent_obj
+                #ini_render_b = time.time()
+                soup = BeautifulSoup(clean_html, "html.parser")
+                body = soup.find_all("body")
+                if body:
+                    class_body = body[0].get("class", [])
+                    valid_class = [valid for valid in class_body if valid.startswith(
+                        'template-') or valid.startswith('portaltype-')]
+                    content = str(
+                        '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
+                        '</div>')
+                #elapsed_fin_render_b = time.time() - ini_render_b
+                #logger.info("Elapsed time BEAUTIFUL SOUP: %0.10f seconds." % elapsed_fin_render_b)
+                return content
 
         return None
 
-    def checkContentIsPublic(self):
-        try:
-            if self.data.content_or_url == 'INTERN':
-                content = self.get_catalog_content()
-                if content:
-                    sm = getSecurityManager()
-                    if sm.checkPermission('View', content):
-                        if not content.expiration_date:
-                            return True
-
-                        now = DateTime.DateTime()
-                        return now >= content.effective_date and now <= content.expiration_date
-
-                return False
-            else:
-                return True
-        except:
-            return False
 
     def getHTML(self):
         """ Agafa contingut de 'Element' de la 'URL', paràmetres definits per l'usuari
@@ -225,19 +246,12 @@ class Renderer(base.Renderer):
             # CONTINGUT INTERN #
             if self.data.content_or_url == 'INTERN':
                 # link intern, search through the catalog
-                raw_html = self.get_catalog_content()()
-                clean_html = re.sub(r'[\n\r]?', r'', raw_html)
-                doc = pq(clean_html)
-                if doc(self.data.element):
-                    content = pq(
-                        '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
-                else:
-                    content = _(
-                        u"ERROR. This element does not exist:") + " " + self.data.element
-
+                content = self.get_catalog_content()
+                
             # CONTENIDO EXTERNO #
             elif self.data.content_or_url == 'EXTERN':
                 # link extern, pyreq
+                # ini_render = time.time()
                 link_extern = self.data.external_url
                 headers = {'Accept-Language': self.context.language}
                 raw_html = requests.get(
@@ -251,6 +265,21 @@ class Renderer(base.Renderer):
                     content = _(
                         u"ERROR. This element does not exist:") + " " + self.data.element
 
+                # elapsed_fin_render = time.time() - ini_render
+                # logger.info("Elapsed time EXTERNAL CONTENT: %0.10f seconds." % elapsed_fin_render)
+                # ini_render_b = time.time()
+                soup = BeautifulSoup(clean_html, "html.parser")
+                body = soup.find_all("body")
+                if body:
+                    class_body = body[0].get("class", [])
+                    valid_class = [valid for valid in class_body if valid.startswith(
+                        'template-') or valid.startswith('portaltype-')]
+                    content = str(
+                        '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
+                        '</div>')
+                # elapsed_fin_render_b = time.time() - ini_render_b
+                # logger.info("Elapsed time BEAUTIFUL SOUP: %0.10f seconds." % elapsed_fin_render_b)
+
             # PORTLET MALAMENT CONFIGURAT #
             else:
                 content = _(u"ERROR. Review the portlet configuration.")
@@ -261,16 +290,6 @@ class Renderer(base.Renderer):
             content = _(u"ERROR. This URL does not exist")
         except:
             content = _(u"ERROR. Charset undefined")
-
-        soup = BeautifulSoup(clean_html, "html.parser")
-        body = soup.find_all("body")
-        if body:
-            class_body = body[0].get("class", [])
-            valid_class = [valid for valid in class_body if valid.startswith(
-                'template-') or valid.startswith('portaltype-')]
-            content = str(
-                '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
-                '</div>')
 
         return content
 
@@ -304,3 +323,4 @@ class EditForm(base.EditForm):
     label = _(u"Edita portlet de contingut existent")
     description = _(
         u"Aquest portlet mostra contingut ja existent en URL específica.")
+

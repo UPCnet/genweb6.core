@@ -1,5 +1,5 @@
 <tal:block tal:define="check_configuration_error view/check_configuration_error;
-                       check_content_is_public  view/checkContentIsPublic">
+                       html view/getHTML">
 
   <div class="alert alert-warning" role="alert"
        tal:condition="check_configuration_error">
@@ -8,13 +8,13 @@
     <span tal:content="check_configuration_error"></span>
   </div>
 
-  <tal:block tal:condition="check_content_is_public">
+  <tal:block tal:condition="html">
     <div tal:attributes="class view/getClass">
       <h2 class='portlet-title' tal:condition="view/showTitle"
           tal:content="view/getTitle"> titol contingut </h2>
 
       <tal:block tal:condition="not:check_configuration_error">
-        <tal:packet replace="structure view/getHTML"></tal:packet>
+        <tal:packet replace="structure html"></tal:packet>
       </tal:block>
     </div>
   </tal:block>
