@@ -11,6 +11,7 @@ from plone.memoize import ram
 from plone.namedfile.file import NamedFile
 from plone.registry.interfaces import IRegistry
 from plone.supermodel import model
+from scss import Scss
 from time import time
 from z3c.form import button
 from z3c.form.browser.text import TextWidget
@@ -28,6 +29,7 @@ from zope.ramcache import ram as ramcache
 from zope.schema.interfaces import IField
 
 from genweb6.core import _
+from genweb6.core import utils
 from genweb6.core.purge import purge_varnish_paths
 
 
@@ -103,6 +105,18 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
         data, errors = self.extractData()
         if errors:
             self.status = self.formErrorsMessage
+            return
+
+        try:
+            css = Scss()
+            if data['upload_files']:
+                if data['file_css']:
+                    checkCSS = utils.remove_quotes_from_var_scss(css.compile(data['file_css']._data._data))
+            else:
+                if data['text_css']:
+                    checkCSS = utils.remove_quotes_from_var_scss(css.compile(data['text_css']))
+        except Exception as e:
+            IStatusMessage(self.request).addStatusMessage(f"CSS - {e}", type='error')
             return
 
         ramcache.caches.clear()
