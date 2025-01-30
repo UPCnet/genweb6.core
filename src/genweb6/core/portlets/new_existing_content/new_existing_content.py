@@ -196,19 +196,23 @@ class Renderer(base.Renderer):
             owncontent_obj = owncontent_obj.to_object
             if not owncontent_obj:
                 return ''
-            sm = getSecurityManager()
+
             # Si no s'ha publicat o está caducat no retornem res
+            sm = getSecurityManager()
             if sm.checkPermission('View', owncontent_obj):
-                if owncontent_obj.expiration_date:
-                    now = DateTime.DateTime()
-                    expired = test(now >= owncontent_obj.effective_date and now <= owncontent_obj.expiration_date)
-                    if expired:
-                        return ''
+                now = DateTime.DateTime()
+                if owncontent_obj.effective_date and now < owncontent_obj.effective_date:
+                    return ''
+                if owncontent_obj.expiration_date and now > owncontent_obj.expiration_date:
+                    return ''
+            else:
+                return ''
+
             if owncontent_obj.portal_type == 'Document' and self.data.element == '#content-core':
                 logger.info("Existing internal document: " + owncontent_obj.portal_type)
                 return owncontent_obj.text.raw
             else:
-                #TODO: afegir més tipus de contingut
+                # TODO: afegir més tipus de contingut
                 logger.info("Existing internal other portal type: " + owncontent_obj.portal_type)
                 # Això ho fem per netejar el html quan no sabem quin tipus de contingut és
                 clean_html = re.sub(r'[\n\r]?', r'', owncontent_obj())
@@ -220,7 +224,7 @@ class Renderer(base.Renderer):
                     content = _(
                         u"ERROR. This element does not exist:") + " " + self.data.element
 
-                #ini_render_b = time.time()
+                # ini_render_b = time.time()
                 soup = BeautifulSoup(clean_html, "html.parser")
                 body = soup.find_all("body")
                 if body:
@@ -230,12 +234,11 @@ class Renderer(base.Renderer):
                     content = str(
                         '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
                         '</div>')
-                #elapsed_fin_render_b = time.time() - ini_render_b
-                #logger.info("Elapsed time BEAUTIFUL SOUP: %0.10f seconds." % elapsed_fin_render_b)
+                # elapsed_fin_render_b = time.time() - ini_render_b
+                # logger.info("Elapsed time BEAUTIFUL SOUP: %0.10f seconds." % elapsed_fin_render_b)
                 return content
 
-        return None
-
+        return ''
 
     def getHTML(self):
         """ Agafa contingut de 'Element' de la 'URL', paràmetres definits per l'usuari
@@ -247,7 +250,7 @@ class Renderer(base.Renderer):
             if self.data.content_or_url == 'INTERN':
                 # link intern, search through the catalog
                 content = self.get_catalog_content()
-                
+
             # CONTENIDO EXTERNO #
             elif self.data.content_or_url == 'EXTERN':
                 # link extern, pyreq
@@ -323,4 +326,3 @@ class EditForm(base.EditForm):
     label = _(u"Edita portlet de contingut existent")
     description = _(
         u"Aquest portlet mostra contingut ja existent en URL específica.")
-
