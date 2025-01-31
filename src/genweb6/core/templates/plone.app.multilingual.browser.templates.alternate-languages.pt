@@ -1,0 +1,13 @@
+<link rel="alternate"
+        tal:repeat="item view/alternates"
+        tal:attributes="
+        hreflang item/lang;
+        href string:${item/url};
+        " />
+
+<link rel="alternate" hreflang="x-default"
+    tal:define="portal_url context/@@genweb.utils/portal_url"
+    tal:attributes="
+    href string:${portal_url};
+    " />
+
