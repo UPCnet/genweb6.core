@@ -2,11 +2,20 @@ Changelog
 =========
 
 
-1.58 (unreleased)
+1.58 (2025-02-03)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] hreflang default [Clàudia Andreu]
+* [ADD] override hreflang x-default [Clàudia Andreu]
+* [FIX] Portlet new_existing_content - Revisar correctamente si podemos ver el contenido [Iago López]
+* [UPD] Controlpanel resources - Mostrar error si los css puestos no son correctos [Iago López]
+* [FIX] way of load Document(Page) in existing content - INTERNAL [root]
+* [FIX] way of calculate customize_tab [root]
+* [UPD] Comparteix - afegir bluesky [Iago López]
+* TEST OIDC in replacement of CAS [ruben.padilla.mateu]
+* Merge branch 'master' of github.com:UPCnet/genweb6.core [ruben.padilla.mateu]
+* TEST OIDC addition in replacement of CAS [ruben.padilla.mateu]
+* [FIX] Field image not required [Iago López]
 
 1.57 (2024-12-11)
 -----------------
