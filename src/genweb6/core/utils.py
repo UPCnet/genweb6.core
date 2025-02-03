@@ -21,6 +21,7 @@ from zope.i18nmessageid import MessageFactory
 from zope.interface import implementer
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from Products.CMFCore.utils import getToolByName
 
 from genweb6.core import _
 from genweb6.core import HAS_PAM
@@ -432,6 +433,20 @@ class genwebUtils(BrowserView):
 
     def remove_html_tags(self, text):
         return remove_html_tags(text)
+    
+    def get_default_language_url(self):
+    
+        tm = ITranslationManager(self.context)
+        catalog = api.portal.get_tool(name='portal_catalog')
+        results = catalog(TranslationGroup=tm.query_canonical())
+        registry_tool = getToolByName(self, "portal_registry")
+        lang = registry_tool['plone.default_language']
+        for item in results:
+            if item.Language == lang:
+                return item.getURL()
+
+        return self.context.absolute_url()
+
 
 
 @implementer(ICatalogFactory)

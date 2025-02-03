@@ -6,8 +6,8 @@
         " />
 
 <link rel="alternate" hreflang="x-default"
-    tal:define="portal_url context/@@genweb.utils/portal_url"
+    tal:define="lang context/@@genweb.utils/get_default_language_url"
     tal:attributes="
-    href string:${portal_url};
+    href string:${lang};
     " />
 
