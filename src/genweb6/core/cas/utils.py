@@ -51,8 +51,9 @@ def login_URL(context, request):
                     pass
 
             return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
+        return f"{plugin.cas_server_url}/login?idApp={cas_settings.app_name}&service={secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from)))}"
 
-        return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(context.absolute_url())))
+
     else:
         return '%s/login_form' % portal.absolute_url()
 
