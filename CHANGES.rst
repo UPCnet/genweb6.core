@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.59 (unreleased)
+1.59 (2025-02-03)
 -----------------
 
-- Nothing changed yet.
-
+* REMOVE oidc and use cas [ruben.padilla.mateu]
 
 1.58 (2025-02-03)
 -----------------
