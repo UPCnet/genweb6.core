@@ -9,6 +9,8 @@
 
     <include file="viewlets.zcml" />
 
+    <exclude package="plone.app.multilingual" file="viewlets.xml"  />
+
     <browser:page
         name="blank_template"
         for="*"
