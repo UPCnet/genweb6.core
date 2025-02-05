@@ -209,11 +209,11 @@ class Renderer(base.Renderer):
                 return ''
 
             if owncontent_obj.portal_type == 'Document' and self.data.element == '#content-core':
-                logger.info("Existing internal document: " + owncontent_obj.portal_type)
+                logger.info(f"[{self.context.virtual_url_path()}] Existing internal document: {owncontent_obj.portal_type}")
                 return owncontent_obj.text.raw
             else:
                 # TODO: afegir més tipus de contingut
-                logger.info("Existing internal other portal type: " + owncontent_obj.portal_type)
+                logger.info(f"[{self.context.virtual_url_path()}] Existing internal other portal type: {owncontent_obj.portal_type}")
                 # Això ho fem per netejar el html quan no sabem quin tipus de contingut és
                 clean_html = re.sub(r'[\n\r]?', r'', owncontent_obj())
                 doc = pq(clean_html)
