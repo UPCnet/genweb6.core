@@ -224,4 +224,19 @@
         replacement=".patches.get_mail_body"
         />
 
+    <monkey:patch
+        description="Sobreescribir Alternate language meta tags con x-default"
+        class="plone.app.multilingual.browser.viewlets.AlternateLanguagesViewlet"
+        original="render"
+        replacement=".patches.render_ALV"
+        />
+
+    <monkey:patch
+        description="Sobreescribir Alternate language meta tags con x-default"
+        class="plone.app.multilingual.browser.viewlets.AlternateLanguagesViewlet"
+        original="get_alternate_languages"
+        replacement=".patches.get_alternate_languages"
+        />
+
+
 </configure>

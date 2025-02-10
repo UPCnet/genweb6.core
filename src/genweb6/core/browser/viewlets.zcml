@@ -15,27 +15,6 @@
         template="viewlets_templates/head/resources.pt"
         />
 
-    <browser:viewlet
-        name="plone.app.multilingual.alternate-languages"
-        for="plone.app.multilingual.interfaces.ITranslatable"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        class=".viewlets.AlternateLanguagesViewletGW"
-        template="viewlets_templates/head/alternate-languages.pt"
-        permission="zope.Public"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        />
-
-    <!-- <browser:viewlet
-        name="plone.app.multilingual.alternate-languages"
-        for="plone.app.multilingual.interfaces.ITranslatable"
-        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
-        class=".viewlets.AlternateLanguagesViewlet"
-        template="hidden"
-        permission="zope.Public"
-        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
-        /> -->
-
-
     <!-- HEADER -->
 
     <browser:viewlet

@@ -1542,3 +1542,48 @@ def get_mail_body(self, unsorted_data, request, context):
     template.write(bodyfield)
     template = template.__of__(context)
     return template.pt_render(extra_context=extra)
+
+
+def render_ALV(self):
+    return self.index()
+
+
+from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.memoize import ram
+
+
+@ram.cache(_cache_until_catalog_change)
+def get_alternate_languages(self):
+    """Cache relative urls only. If we have multilingual sites
+    and multi domain site caching absolute urls will result in
+    very inefficient caching. Build absolute url in template.
+    """
+    tm = ITranslationManager(self.context)
+    catalog = getToolByName(self.context, "portal_catalog")
+    results = catalog(TranslationGroup=tm.query_canonical())
+    registry_tool = getToolByName(self, "portal_registry")
+    default_language = registry_tool['plone.default_language']
+
+    alternates = []
+    default_url = self.context.absolute_url()
+
+    for item in results:
+        url = item.getURL()
+        if item.Language == default_language:
+            default_url = url
+        alternates.append(
+            {
+                "lang": item.Language,
+                "url": url,
+            }
+        )
+
+    alternates.append(
+        {
+            "lang": "x-default",
+            "url": default_url,
+        }
+    )
+
+    return alternates

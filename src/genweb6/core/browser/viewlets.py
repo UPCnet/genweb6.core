@@ -34,13 +34,6 @@ from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
 from genweb6.core.utils import toLocalizedTime
 from plone.app.layout.viewlets.common import ViewletBase
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.memoize import ram
-from Products.CMFCore.utils import getToolByName
-from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
-from plone.app.multilingual.browser.viewlets import AlternateLanguagesViewlet
-
-import re
 
 
 class viewletBase(ViewletBase):
@@ -664,47 +657,3 @@ class importantViewlet(viewletBase):
         context = aq_inner(self.context)
         is_important = IImportant(context).is_important
         return is_important
-
-
-class AlternateLanguagesViewletGW(AlternateLanguagesViewlet, viewletBase):
-    """Notice search engines about alternates languages of current
-    content item
-    """
-
-    # alternatives = []
-
-    # @ram.cache(_cache_until_catalog_change)
-    # def get_alternate_languages(self):
-    #     """Cache relative urls only. If we have multilingual sites
-    #     and multi domain site caching absolute urls will result in
-    #     very inefficient caching. Build absolute url in template.
-    #     """
-    #     tm = ITranslationManager(self.context)
-    #     catalog = getToolByName(self.context, "portal_catalog")
-    #     results = catalog(TranslationGroup=tm.query_canonical())
-
-    #     alternates = []
-    #     for item in results:
-    #         url = item.getURL()
-    #         alternates.append(
-    #             {
-    #                 "lang": item.Language,
-    #                 "url": url,
-    #             }
-    #         )
-
-    #     return alternates
-
-    # def update(self):
-    #     super().update()
-    #     self.alternates = self.get_alternate_languages()
-
-    # @property
-    # def available(self):
-    #     return len(self.alternates) > 1
-
-    def render(self):
-        return "aaaaa"
-        if self.available:
-            return self.index()
-        return ""
