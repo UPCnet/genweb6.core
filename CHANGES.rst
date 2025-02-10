@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-1.60 (unreleased)
+1.60 (2025-02-10)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] monkey patch for x-default hreflang [Alberto Durán]
+* [UPD] format logger to get more info about instance [Alberto Durán]
+* [WIP] x-default hreflang [Clàudia Andreu]
 
 1.59 (2025-02-03)
 -----------------
