@@ -238,5 +238,11 @@
         replacement=".patches.get_alternate_languages"
         />
 
+    <monkey:patch
+        description="Sobreescribir BaseVocabularyView para coger path sin idioma"
+        class="plone.app.content.browser.vocabulary.BaseVocabularyView"
+        original="get_base_path"
+        replacement=".patches.get_base_path"
+        />
 
 </configure>

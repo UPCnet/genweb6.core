@@ -1587,3 +1587,8 @@ def get_alternate_languages(self):
     )
 
     return alternates
+
+from plone.app.layout.navigation.root import getNavigationRoot
+
+def get_base_path(self, context):
+    return '/'.join(getNavigationRoot(context).split('/')[:-1])
