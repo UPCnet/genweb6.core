@@ -254,7 +254,7 @@
 
                         <small class="text-muted small fs-6" i18n:domain="plone"
                               tal:condition="show_about">
-                          <span class="documentAuthor"
+                          <!-- <span class="documentAuthor"
                                 i18n:translate="label_by_author">
                             by
                             <tal:block tal:condition="item/Creator"
@@ -266,12 +266,12 @@
                                   Bob Dobalina
                               </a>
                             </tal:block>
-                          </span>
+                          </span> -->
                           <span tal:define="publication_date item/EffectiveDate;
                                             modification_date item/ModificationDate">
 
                             <span class="documentPublished" tal:condition="python: publication_date != 'None'">
-                              &mdash;
+
                               <span i18n:translate="box_published">
                                 published
                               </span>
@@ -281,7 +281,7 @@
                             </span>
 
                             <span class="documentModified" tal:condition="python: modification_date != publication_date">
-                              &mdash;
+                              <tal:block tal:condition="python: publication_date != 'None'"> &mdash; </tal:block>
                               <span i18n:translate="box_last_modified">
                                 last modified
                               </span>
