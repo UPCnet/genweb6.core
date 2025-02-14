@@ -890,9 +890,152 @@
       <description xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Enter a JSON-formatted style format configuration. A format is for example the style that get applied when you press the bold button inside the editor. See https://www.tinymce.com/docs/configure/content-formatting/#formats</description>
       <title xmlns:ns0="http://xml.zope.org/namespaces/i18n" ns0:domain="plone" ns0:translate="">Formats</title>
     </field>
-    <value>{"discreet":{"inline":"span","classes":"discreet"},"clearfix":{"block":"div","classes":"clearfix"},"alignleft":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-start"},"aligncenter":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-center"},"alignright":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-end"},"alignjustify":{"selector":"p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table","classes":"text-justify"},"textcolumns2":{"selector":"p","classes":"text-columns-2"},"textcolumns3":{"selector":"p","classes":"text-columns-3"},"h2borderb":{"block":"h2","classes":"border-bottom pb-2"},"h3borderb":{"block":"h3","classes":"border-bottom pb-2"},"h4borderb":{"block":"h4","classes":"border-bottom pb-2"},"ipdf":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"pdf"},"idoc":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"doc"},"ippt":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"ppt"},"itxt":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"txt"},"ixls":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"xls"},"iimg":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"img"},"ivid":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"vid"},"ihttps":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"https"},"idown":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"down"},
-    "error":{"selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"error"},"pink":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"pink-background"},"warning":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"warning"},"orange":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"orange-background"},"info":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"info"},"blueDark":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"blueDark-background"},"success":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"success"},
-    "green":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"green-background"},"purple":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"purple-background"},"purpleDark":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"purpleDark-background"},"gray":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"gray-background"},"grayLight":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"grayLight-background"},"grayLighter":{"selector":"p,span,h1,h2,h3,h4,h5,h6,a,li,th,td","classes":"grayLighter-background"}}</value>
+        <value>{&#13;
+  "discreet": {&#13;
+    "inline": "span",&#13;
+    "classes": "discreet"&#13;
+  },&#13;
+  "clearfix": {&#13;
+    "block": "div",&#13;
+    "classes": "clearfix"&#13;
+  },&#13;
+  "alignleft": {&#13;
+    "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table",&#13;
+    "classes": "text-start"&#13;
+  },&#13;
+  "aligncenter": {&#13;
+    "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table",&#13;
+    "classes": "text-center"&#13;
+  },&#13;
+  "alignright": {&#13;
+    "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table",&#13;
+    "classes": "text-end"&#13;
+  },&#13;
+  "alignjustify": {&#13;
+    "selector": "p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table",&#13;
+    "classes": "text-justify"&#13;
+  },&#13;
+  "textcolumns2": {&#13;
+    "selector": "p",&#13;
+    "classes": "text-columns-2"&#13;
+  },&#13;
+  "textcolumns3": {&#13;
+    "selector": "p",&#13;
+    "classes": "text-columns-3"&#13;
+  },&#13;
+  "h2borderb": {&#13;
+    "block": "h2",&#13;
+    "classes": "border-bottom pb-2"&#13;
+  },&#13;
+  "h3borderb": {&#13;
+    "block": "h3",&#13;
+    "classes": "border-bottom pb-2"&#13;
+  },&#13;
+  "h4borderb": {&#13;
+    "block": "h4",&#13;
+    "classes": "border-bottom pb-2"&#13;
+  },&#13;
+  "ipdf": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "pdf"&#13;
+  },&#13;
+  "idoc": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "doc"&#13;
+  },&#13;
+  "ippt": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "ppt"&#13;
+  },&#13;
+  "itxt": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "txt"&#13;
+  },&#13;
+  "ixls": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "xls"&#13;
+  },&#13;
+  "iimg": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "img"&#13;
+  },&#13;
+  "ivid": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "vid"&#13;
+  },&#13;
+  "ihttps": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "https"&#13;
+  },&#13;
+  "idown": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "down"&#13;
+  },&#13;
+  "error": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "error"&#13;
+  },&#13;
+  "pink": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "pink-background"&#13;
+  },&#13;
+  "warning": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "warning"&#13;
+  },&#13;
+  "orange": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "orange-background"&#13;
+  },&#13;
+  "info": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "info"&#13;
+  },&#13;
+  "blueDark": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "blueDark-background"&#13;
+  },&#13;
+  "success": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "success"&#13;
+  },&#13;
+  "green": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "green-background"&#13;
+  },&#13;
+  "purple": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "purple-background"&#13;
+  },&#13;
+  "purpleDark": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "purpleDark-background"&#13;
+  },&#13;
+  "gray": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "gray-background"&#13;
+  },&#13;
+  "grayLight": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "grayLight-background"&#13;
+  },&#13;
+  "grayLighter": {&#13;
+    "selector": "p,span,h1,h2,h3,h4,h5,h6,a,li,th,td",&#13;
+    "classes": "grayLighter-background"&#13;
+  },&#13;
+  "superGran" : {&#13;
+    "selector": "p,span,a,li,th,td",&#13;
+    "classes": "fs-1"&#13;
+  },&#13;
+  "moltGran" : {&#13;
+    "selector": "p,span,a,li,th,td",&#13;
+    "classes": "fs-2"&#13;
+  },&#13;
+  "gran" : {&#13;
+    "selector": "p,span,a,li,th,td",&#13;
+    "classes": "fs-3"&#13;
+  }&#13;
+}</value>
   </record>
 
   <record name="plone.inline_styles" interface="plone.base.interfaces.controlpanel.ITinyMCESchema" field="inline_styles">
@@ -926,6 +1069,9 @@
       <element>Header 2|h2borderb|underline</element>
       <element>Header 3|h3borderb|underline</element>
       <element>Header 4|h4borderb|underline</element>
+      <element>Super gran|superGran</element>
+      <element>Molt gran|moltGran</element>
+      <element>Gran|gran</element>
       <element>Arxiu PDF|ipdf</element>
       <element>Arxiu DOC|idoc</element>
       <element>Arxiu PPT|ippt</element>
