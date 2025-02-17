@@ -150,4 +150,11 @@
         permission="zope2.ViewManagementScreens"
         />
 
+    <browser:page
+        name="linkchecker_intranet"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers.linkchecker_intranet"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

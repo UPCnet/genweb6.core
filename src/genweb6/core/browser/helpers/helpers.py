@@ -6,6 +6,7 @@ from plone.base.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from bs4 import BeautifulSoup
 from plone import api
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IMutableUUID
@@ -21,6 +22,7 @@ import json
 import logging
 import os
 import pkg_resources
+import requests
 
 
 logger = logging.getLogger(__name__)
@@ -711,3 +713,62 @@ class genwebStats(BrowserView):
             'unitat': unitat,
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
+
+
+class linkchecker_intranet(BrowserView):
+    """
+    Comprova tots els enllaços de la intranet
+    """
+
+    render = ViewPageTemplateFile("templates/linkchecker_intranet.pt")
+
+    def __call__(self):
+        self.report = "<h1>Informe d'enllaços trencats:</h1>"
+        form = self.request.form
+        if 'login_url' in form:
+            return self.check_links(form['username'], form['password'])
+        return self.render()
+
+    def check_links(self, username, password):
+        session = requests.Session()
+        form = self.request.form
+        login_url = form.get('login_url', self.context.absolute_url() + '/login')
+        credentials = {"username": username, "password": password}
+        session.post(login_url, data=credentials)
+        pc = api.portal.get_tool('portal_catalog')
+        intranet_brains = pc.unrestrictedSearchResults(review_state='intranet')
+        portal = api.portal.get()
+        site_path = portal.virtual_url_path()
+        self.bad = []
+        # self.good = []
+        for brain in intranet_brains:
+            obj = brain.getObject()
+            obj_path = obj.virtual_url_path()
+            obj_url = login_url + obj_path.replace(site_path, '')
+            self.process_links(session, obj_url)
+        return self.generate_report()
+
+    def process_links(self, session, url):
+        response = session.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        for link in soup.find_all("a", href=True):
+            link_url = link["href"]
+            try:
+                res = session.get(link_url)
+                if res.status_code >= 400 and res.status_code != 999:
+                    print(f"Enllaç trencat: {link_url} --(a)--> {url}")
+                    self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat: <a href='{link_url}' target='_blank'>{link_url}</a></p>")
+                # else:
+                #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
+            except requests.RequestException:
+                pass
+                # self.output.append(f"Error accedint a: {link_url}")
+
+    def generate_report(self):
+        for item in self.bad:
+            self.report += item
+
+        # report = "\nInforme d'enllaços que funcionen\n"
+        # for item in self.good:
+        #     report += "\n" + f"{item}"
+        return self.render()
