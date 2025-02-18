@@ -757,8 +757,7 @@ class linkchecker_intranet(BrowserView):
                 res = session.get(link_url)
                 if res.status_code >= 400 and res.status_code != 999:
                     print(f"Enllaç trencat: {link_url} --(a)--> {url}")
-                    self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a>
-                        amb codi d'error: {res.status_code}</p>")
+                    self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {res.status_code}</p>")
                 # else:
                 #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
             except requests.RequestException:
