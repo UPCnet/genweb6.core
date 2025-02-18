@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.61 (unreleased)
+1.61 (2025-02-18)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] linkchecker intranet objects view [Alberto Durán]
+* [FIX] monkey patch get_base_path [Clàudia Andreu]
+* [ADD] new inline format for tiny [Clàudia Andreu]
+* [UPD] removed author from search template [Clàudia Andreu]
+* [UPD] monkey patch for get_base_path [Clàudia Andreu]
 
 1.60 (2025-02-10)
 -----------------
