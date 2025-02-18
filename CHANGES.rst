@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.62 (unreleased)
+1.62 (2025-02-18)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] linkchecker_intranet - Quitar salto de linea que provoca error [Iago López Fernández]
+* [UPD] linkchecker intranet objects view [Alberto Durán]
 
 1.61 (2025-02-18)
 -----------------
