@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone">
+<body>
+
+<metal:content-core fill-slot="content-core">
+<metal:block define-macro="content-core">
+<tal:block tal:define="check_configuration_error view/check_configuration_error;
+                       html view/getHTML">
+
+  <div class="alert alert-warning" role="alert"
+       tal:condition="check_configuration_error">
+    <i class="fw-bold bi bi-exclamation-triangle"></i>
+    <span class="fw-bold">Error:</span>
+    <span tal:content="check_configuration_error"></span>
+  </div>
+
+  <tal:block tal:condition="python:html.strip()">
+    <div tal:attributes="class python:view.getClass() or 'default-class'">
+      <!-- <h2 class="portlet-title" tal:condition="view/showTitle"
+          tal:content="view/getTitle">Títol Contingut</h2> -->
+
+      <tal:block tal:condition="not:check_configuration_error">
+        <tal:block tal:replace="structure html"></tal:block>
+      </tal:block>
+    </div>
+  </tal:block>
+</tal:block>
+
+</metal:block>
+</metal:content-core>
+
+</body>
+</html>

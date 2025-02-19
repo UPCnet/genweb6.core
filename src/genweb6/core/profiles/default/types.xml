@@ -12,5 +12,7 @@
 
     <object name="genweb.upc.subhome" meta_type="Dexterity FTI" />
     <object name="genweb.upc.documentimage" meta_type="Dexterity FTI" />
+    
+    <object name="genweb.core.existing_content" meta_type="Dexterity FTI" />
 
 </object>

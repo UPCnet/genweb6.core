@@ -68,7 +68,14 @@
         layer="plone.app.z3cform.interfaces.IPloneFormLayer"
         template="carousel/js.pt"
         />
-
+    <browser:page
+        name="view"
+        for="genweb6.core.content.existing_content.existing_content.IExistingContent"
+        class=".existing_content.existing_content.ExistingContentView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="existing_content/existing_content.pt"
+        />
 
 
 </configure>

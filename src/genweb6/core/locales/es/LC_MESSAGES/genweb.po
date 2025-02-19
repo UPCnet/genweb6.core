@@ -16,7 +16,8 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Language: es\n"
 
-#: ../portlets/new_existing_content/new_existing_content.py:137
+#: ../content/existing_content/existing_content.py:64
+#: ../portlets/new_existing_content/new_existing_content.py:120
 msgid "#content-core"
 msgstr "#content-core"
 
@@ -64,11 +65,11 @@ msgstr "5 Destacados Izquierda"
 msgid "7days_events"
 msgstr "Eventos en los próximos 7 días."
 
-#: ../controlpanels/resources.py:64
+#: ../controlpanels/resources.py:66
 msgid "<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</a>"
 msgstr "<a href='https://codebeautify.org/cssvalidate' target='_blank'>Validar</a>"
 
-#: ../controlpanels/resources.py:70
+#: ../controlpanels/resources.py:72
 msgid "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 msgstr "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a>"
 
@@ -142,7 +143,7 @@ msgstr "Añadir campo icono"
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Dirección web del canal donde se encuentra el vídeo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:292
+#: ../portlets/new_existing_content/new_existing_content.py:293
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
@@ -150,6 +151,10 @@ msgstr "Añadir portlet de contenido existente"
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:67
 msgid "Afegeix un botó a l'enllaç afegit en aquest camp"
 msgstr "Añadir un botón al enlace añadido en este campo"
+
+#: ../profiles/default/types/genweb.core.existing_content.xml
+msgid "Afegir contigut existent intern o extern"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
@@ -193,7 +198,7 @@ msgstr "Este formulario crea un directorio dentro de la cual has de añadir las 
 msgid "Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya."
 msgstr "Este formulario crea un directorio dentro de la cual has de añadir las páginas que formmaran parte de cada desplegable del acordión o de cada pestaña."
 
-#: ../portlets/new_existing_content/new_existing_content.py:293
+#: ../portlets/new_existing_content/new_existing_content.py:294
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "Este portlet muestra contenido ya existente de la URL especificada."
 
@@ -315,11 +320,13 @@ msgstr "Colección"
 msgid "Comparteix"
 msgstr "Compartir"
 
-#: ../portlets/new_existing_content/new_existing_content.py:184
+#: ../content/existing_content/existing_content.py:97
+#: ../portlets/new_existing_content/new_existing_content.py:167
 msgid "Configura el contingut extern"
 msgstr "Configura el contenido externo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:181
+#: ../content/existing_content/existing_content.py:95
+#: ../portlets/new_existing_content/new_existing_content.py:164
 msgid "Configura el contingut intern"
 msgstr "Configura el contenido interno"
 
@@ -348,6 +355,10 @@ msgstr "Tipo de contenido"
 msgid "Content's title position"
 msgstr "Posición del título del contenido"
 
+#: ../profiles/default/types/genweb.core.existing_content.xml
+msgid "Contingut Existent"
+msgstr "Contenido Existente"
+
 #: ../content/accordion_tabs/accordion_tabs.py:57
 #: ../content/carousel/carousel.py:31
 msgid "Continguts de dintre d'aquest directori"
@@ -363,7 +374,7 @@ msgstr "Contenidos que alimentan la plantilla"
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:626
+#: ../browser/viewlets.py:622
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
@@ -372,7 +383,7 @@ msgstr "Copiar enlace"
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:631
+#: ../browser/viewlets.py:627
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -417,27 +428,36 @@ msgstr "Mostrar imágenes"
 msgid "Document Image"
 msgstr "Página con imagen"
 
-#: ../portlets/new_existing_content/new_existing_content.py:263
+#: ../content/existing_content/existing_content.py:173
+#: ../portlets/new_existing_content/new_existing_content.py:274
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../portlets/new_existing_content/new_existing_content.py:256
+#: ../content/existing_content/existing_content.py:166
+msgid "ERROR. Review the content configuration."
+msgstr ""
+
+#: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Revise la configuración del portlet"
 
-#: ../portlets/new_existing_content/new_existing_content.py:259
+#: ../content/existing_content/existing_content.py:169
+#: ../portlets/new_existing_content/new_existing_content.py:270
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. Se ha superado el tiempo de espera"
 
-#: ../portlets/new_existing_content/new_existing_content.py:261
+#: ../content/existing_content/existing_content.py:171
+#: ../portlets/new_existing_content/new_existing_content.py:272
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. La URL no existe"
 
-#: ../portlets/new_existing_content/new_existing_content.py:235
+#: ../content/existing_content/existing_content.py:127
+#: ../portlets/new_existing_content/new_existing_content.py:203
 msgid "ERROR. This element does not exist:"
 msgstr "ERROR. El elemento no existe:"
 
-#: ../portlets/new_existing_content/new_existing_content.py:118
+#: ../content/existing_content/existing_content.py:45
+#: ../portlets/new_existing_content/new_existing_content.py:101
 msgid "EXTERN: URL de la pàgina a mostrar"
 msgstr "EXTERNO: URL de la página a mostrar"
 
@@ -471,7 +491,7 @@ msgstr "Editar portlet de etiquetas"
 msgid "Edit banners portlet"
 msgstr "Editar portlet báners"
 
-#: ../portlets/new_existing_content/new_existing_content.py:304
+#: ../portlets/new_existing_content/new_existing_content.py:305
 msgid "Edita portlet de contingut existent"
 msgstr "Editar portlet de contenido existente"
 
@@ -487,7 +507,8 @@ msgstr "El número de banners debe estar entre 1 y 10."
 msgid "El valor introduït no és un URL vàlid."
 msgstr "El valor introducido no es una URL válida."
 
-#: ../portlets/new_existing_content/new_existing_content.py:134
+#: ../content/existing_content/existing_content.py:61
+#: ../portlets/new_existing_content/new_existing_content.py:117
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Elemento de la página a mostrar, por defecto #content-core"
 
@@ -545,15 +566,17 @@ msgstr "Agenda"
 msgid "Exclude the Current Context"
 msgstr "Exclude the Current Context"
 
-#: ../portlets/new_existing_content/new_existing_content.py:169
+#: ../portlets/new_existing_content/new_existing_content.py:152
 msgid "Existing Content"
 msgstr "Contenido existente"
 
-#: ../portlets/new_existing_content/new_existing_content.py:148
+#: ../content/existing_content/existing_content.py:76
+#: ../portlets/new_existing_content/new_existing_content.py:131
 msgid "Falta l'enllaç extern"
 msgstr "Falta el enlace externo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:146
+#: ../content/existing_content/existing_content.py:74
+#: ../portlets/new_existing_content/new_existing_content.py:129
 msgid "Falta seleccionar el contingut intern"
 msgstr "Falta seleccionar el contenido interno"
 
@@ -679,7 +702,8 @@ msgid "INFORMACIÓ:"
 msgstr "INFORMACIÓN:"
 
 #. Default: "INTERN: Existing content"
-#: ../portlets/new_existing_content/new_existing_content.py:125
+#: ../content/existing_content/existing_content.py:52
+#: ../portlets/new_existing_content/new_existing_content.py:108
 msgid "INTERN: Existing content"
 msgstr "INTERNO: Contenido existente"
 
@@ -865,12 +889,12 @@ msgstr "Logos Pie"
 msgid "Marca com a important"
 msgstr "Marca como importante"
 
-#: ../portlets/new_existing_content/new_existing_content.py:104
+#: ../portlets/new_existing_content/new_existing_content.py:87
 msgid "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
 msgstr "Mostra sin cabecera, contorno ni pie"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:76
-#: ../portlets/new_existing_content/new_existing_content.py:96
+#: ../portlets/new_existing_content/new_existing_content.py:79
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
 msgstr "Mostrar el título del portlet"
 
@@ -921,7 +945,7 @@ msgid "Mostra data?"
 msgstr "Mostrar fecha"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:75
-#: ../portlets/new_existing_content/new_existing_content.py:95
+#: ../portlets/new_existing_content/new_existing_content.py:78
 msgid "Mostra el títol?"
 msgstr "Mostrar título"
 
@@ -1019,7 +1043,7 @@ msgstr "Número de noticias a mostrar"
 msgid "Obrir el primer panell de l’acordió per defecte"
 msgstr "Abrir el primer panel del acordeón por defecto"
 
-#: ../portlets/new_existing_content/new_existing_content.py:103
+#: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
 msgstr "Omitir el contorno del portlet"
 
@@ -1106,15 +1130,15 @@ msgstr "Borrar caché"
 msgid "Purged"
 msgstr "Caché borrada"
 
-#: ../controlpanels/resources.py:63
+#: ../controlpanels/resources.py:65
 msgid "Recurs CSS"
 msgstr "Recurso CSS"
 
-#: ../controlpanels/resources.py:69
+#: ../controlpanels/resources.py:71
 msgid "Recurs JS"
 msgstr "Recurso JS"
 
-#: ../controlpanels/resources.py:93
+#: ../controlpanels/resources.py:95
 msgid "Resources Settings"
 msgstr "Estilos propios"
 
@@ -1136,7 +1160,7 @@ msgstr "Redonda a la izquierda"
 msgid "Save"
 msgstr "Guardar"
 
-#: ../controlpanels/resources.py:57
+#: ../controlpanels/resources.py:59
 msgid "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
 msgstr "Selecciona para subir los recursos desde archivos y no utilizar los campos de texto plano"
 
@@ -1243,7 +1267,7 @@ msgstr "Texto a mostrar por el literal de Más contenidos."
 msgid "The content type to check for."
 msgstr "Tipo de contenido"
 
-#: ../portlets/new_existing_content/new_existing_content.py:40
+#: ../validations.py:6
 msgid "This is an inner link"
 msgstr "Este es un enlace interno"
 
@@ -1353,7 +1377,7 @@ msgstr "Tipo"
 msgid "Títol del l'avís"
 msgstr "Título del aviso"
 
-#: ../portlets/new_existing_content/new_existing_content.py:88
+#: ../portlets/new_existing_content/new_existing_content.py:71
 msgid "Títol del portlet"
 msgstr "Título del portlet"
 
@@ -1615,7 +1639,7 @@ msgstr "genweb6.theme (desinstalar)"
 msgid "genweb_loginlocal"
 msgstr "Identifícate sólo en esta web"
 
-#: ../cas/utils.py:67
+#: ../cas/utils.py:68
 msgid "heading_signed_out"
 msgstr "Se ha desconectado la sesión."
 
@@ -1626,7 +1650,8 @@ msgid "help_amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación ..."
 
 #. Default: "You may search for and choose an existing content"
-#: ../portlets/new_existing_content/new_existing_content.py:127
+#: ../content/existing_content/existing_content.py:54
+#: ../portlets/new_existing_content/new_existing_content.py:110
 msgid "help_existing_content"
 msgstr "Puede buscar y elegir un contenido existente"
 
@@ -1669,15 +1694,17 @@ msgstr "Es el literal que aparece al pie de la página."
 msgid "help_signatura_es"
 msgstr "Es el literal que aparece al pie de la página."
 
-#: ../portlets/new_existing_content/new_existing_content.py:135
+#: ../content/existing_content/existing_content.py:62
+#: ../portlets/new_existing_content/new_existing_content.py:118
 msgid "help_static_content_element_ca"
 msgstr "Aquí se puede introducir un id, clase o elemento html. Por ejemplo, en una página genweb típica, todo el contenido está dentro de #content, y todo el contenido sin el título dentro de #content-core"
 
-#: ../portlets/new_existing_content/new_existing_content.py:89
+#: ../portlets/new_existing_content/new_existing_content.py:72
 msgid "help_static_content_title_ca"
 msgstr "Opcional: título del portlet"
 
-#: ../portlets/new_existing_content/new_existing_content.py:119
+#: ../content/existing_content/existing_content.py:46
+#: ../portlets/new_existing_content/new_existing_content.py:102
 msgid "help_static_content_url_ca"
 msgstr "La URL completa de la página desde dónde queremos visualizar el contenido."
 
@@ -1895,7 +1922,7 @@ msgid "not_show_image"
 msgstr "No mostrar la imagen en la página, pero sí en los portlets y vistas"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:384
+#: ../browser/viewlets.py:375
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
