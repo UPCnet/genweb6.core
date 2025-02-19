@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <body>
+    <form method="post" action="">
+      <p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"/>
+      </p>
+      <p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"/>
+      </p>
+      <p>
+        <label for="login_url">Detectar enllaços trencats al genweb (URL):</label>
+        <input type="text" id="login_url" name="login_url" placeholder="https://genweb.upc.edu" />
+      </p>
+      <p><input type="submit" value="Check Links" /></p>
+    </form>
+    <div tal:content="structure view/report"></div>
+  </body>
+</html>

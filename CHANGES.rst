@@ -2,11 +2,26 @@ Changelog
 =========
 
 
-1.61 (unreleased)
+1.63 (unreleased)
 -----------------
 
 - Nothing changed yet.
 
+
+1.62 (2025-02-18)
+-----------------
+
+* [FIX] linkchecker_intranet - Quitar salto de linea que provoca error [Iago López Fernández]
+* [UPD] linkchecker intranet objects view [Alberto Durán]
+
+1.61 (2025-02-18)
+-----------------
+
+* [ADD] linkchecker intranet objects view [Alberto Durán]
+* [FIX] monkey patch get_base_path [Clàudia Andreu]
+* [ADD] new inline format for tiny [Clàudia Andreu]
+* [UPD] removed author from search template [Clàudia Andreu]
+* [UPD] monkey patch for get_base_path [Clàudia Andreu]
 
 1.60 (2025-02-10)
 -----------------
