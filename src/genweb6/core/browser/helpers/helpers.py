@@ -23,6 +23,7 @@ import logging
 import os
 import pkg_resources
 import requests
+import time
 
 
 logger = logging.getLogger(__name__)
@@ -741,28 +742,43 @@ class linkchecker_intranet(BrowserView):
         site_path = portal.virtual_url_path()
         self.bad = []
         # self.good = []
+        logger.info(len(intranet_brains))
         for brain in intranet_brains:
-            obj = brain.getObject()
-            obj_path = obj.virtual_url_path()
-            obj_url = login_url + obj_path.replace(site_path, '')
-            self.process_links(session, obj_url)
+            try:
+                obj = brain.getObject()
+                obj_path = obj.virtual_url_path()
+                obj_url = login_url + obj_path.replace(site_path, '')
+                self.process_links(session, obj_url)
+            except:
+                pass
         return self.generate_report()
 
     def process_links(self, session, url):
-        response = session.get(url)
+        try:
+            response = session.get(url)
+        except requests.RequestException:
+            time.sleep(2)
+            try:
+                response = session.get(url)
+            except requests.RequestException:
+                logger.error(f"Error accedint a: {url} despres de 2 intents")
+                return
+
         soup = BeautifulSoup(response.text, "html.parser")
         for link in soup.find_all("a", href=True):
             link_url = link["href"]
-            try:
-                res = session.get(link_url)
-                if res.status_code >= 400 and res.status_code != 999:
-                    print(f"Enllaç trencat: {link_url} --(a)--> {url}")
-                    self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {res.status_code}</p>")
-                # else:
-                #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
-            except requests.RequestException:
-                pass
-                # self.output.append(f"Error accedint a: {link_url}")
+            if link_url != '':
+                try:
+                    res = session.get(link_url)
+                    if res.status_code >= 400 and res.status_code != 999:
+                        logger.warning(f"Enllaç trencat: {link_url} --(a)--> {url}")
+                        self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {res.status_code}</p>")
+                    # else:
+                    #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
+                except requests.RequestException:
+                    logger.error(f"Error accedint a: {link_url} que forma part dels enllaços de la pàgina:{url}")
+                    pass
+                    # self.output.append(f"Error accedint a: {link_url}")
 
     def generate_report(self):
         for item in self.bad:
@@ -771,4 +787,5 @@ class linkchecker_intranet(BrowserView):
         # report = "\nInforme d'enllaços que funcionen\n"
         # for item in self.good:
         #     report += "\n" + f"{item}"
+        logger.info("He acabat l'escaneig, renderitzo")
         return self.render()
