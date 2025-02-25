@@ -14,7 +14,11 @@
       </p>
       <p>
         <label for="login_url">Detectar enllaços trencats al genweb (URL):</label>
-        <input type="text" id="login_url" name="login_url" placeholder="https://genweb.upc.edu" />
+        <input type="text" id="login_url" name="login_url" placeholder="https://genweb.upc.edu" size="100"/>
+      </p>
+      <p>
+        <label for="path_id">id de la pàgina en Intranet que vols escanejar:</label>
+        <input type="text" id="path_id" name="path_id" placeholder="pagina-en-intranet-amb-enllacos-trencats" size="100"/>
       </p>
       <p><input type="submit" value="Check Links" /></p>
     </form>

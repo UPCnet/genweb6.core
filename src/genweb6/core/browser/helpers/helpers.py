@@ -720,67 +720,42 @@ class linkchecker_intranet(BrowserView):
     """
     Comprova tots els enllaços de la intranet
     """
-
+    good = []
+    bad = []
     render = ViewPageTemplateFile("templates/linkchecker_intranet.pt")
 
     def __call__(self):
-        self.report = "<h1>Informe d'enllaços trencats:</h1>"
         form = self.request.form
+        self.good = []
+        self.bad = []
+        self.report = f"<h1>Informe d'enllaços trencats a la intranet {form.get('login_url')}</h1>"
         if 'login_url' in form:
-            return self.check_links(form['username'], form['password'])
+            return self.check_links(form)
         return self.render()
 
-    def check_links(self, username, password):
-        session = requests.Session()
-        form = self.request.form
-        login_url = form.get('login_url', self.context.absolute_url() + '/login')
-        credentials = {"username": username, "password": password}
-        session.post(login_url, data=credentials)
+    def check_links(self, form):
         pc = api.portal.get_tool('portal_catalog')
-        intranet_brains = pc.unrestrictedSearchResults(review_state='intranet')
+        check_links_in_content_core = True
+        if not form['path_id']:
+            intranet_brains = pc.unrestrictedSearchResults(review_state='intranet')
+        else:
+            check_links_in_content_core = False
+            intranet_brains = pc.unrestrictedSearchResults(id=form.get('path_id'))
+            # intranet_brains = pc.unrestrictedSearchResults(id='pagina-en-intranet-amb-enllacos-trencats')
         portal = api.portal.get()
         site_path = portal.virtual_url_path()
-        self.bad = []
-        # self.good = []
         logger.info(len(intranet_brains))
         for brain in intranet_brains:
             try:
                 obj = brain.getObject()
                 obj_path = obj.virtual_url_path()
-                obj_url = login_url + obj_path.replace(site_path, '')
-                self.process_links(session, obj_url)
+                obj_url = form.get('login_url') + obj_path.replace(site_path, '')
+                logger.info(obj_url)
+                self.process_links(form, obj_url, check_links_in_content_core)
             except:
                 pass
-        return self.generate_report()
 
-    def process_links(self, session, url):
-        try:
-            response = session.get(url)
-        except requests.RequestException:
-            time.sleep(2)
-            try:
-                response = session.get(url)
-            except requests.RequestException:
-                logger.error(f"Error accedint a: {url} despres de 2 intents")
-                return
-
-        soup = BeautifulSoup(response.text, "html.parser")
-        for link in soup.find_all("a", href=True):
-            link_url = link["href"]
-            if link_url != '':
-                try:
-                    res = session.get(link_url)
-                    if res.status_code >= 400 and res.status_code != 999:
-                        logger.warning(f"Enllaç trencat: {link_url} --(a)--> {url}")
-                        self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {res.status_code}</p>")
-                    # else:
-                    #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
-                except requests.RequestException:
-                    logger.error(f"Error accedint a: {link_url} que forma part dels enllaços de la pàgina:{url}")
-                    pass
-                    # self.output.append(f"Error accedint a: {link_url}")
-
-    def generate_report(self):
+        logger.info(self.bad)
         for item in self.bad:
             self.report += item
 
@@ -789,3 +764,36 @@ class linkchecker_intranet(BrowserView):
         #     report += "\n" + f"{item}"
         logger.info("He acabat l'escaneig, renderitzo")
         return self.render()
+
+    def process_links(self, form, url, check_links_in_content_core):
+        try:
+            response = requests.get(url, auth=(form.get('username'), form.get('password')))
+        except requests.RequestException:
+            time.sleep(2)
+            try:
+                response = requests.get(url, auth=(form.get('username'), form.get('password')))
+            except requests.RequestException:
+                logger.error(f"Error accedint a: {url} despres de 2 intents")
+                return
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        if check_links_in_content_core:
+            content_core = soup.find("div", id="content-core")
+            a_tags = content_core.find_all("a", href=True)
+        else:
+            a_tags = soup.find_all("a", href=True)
+        for link in a_tags:
+            link_url = link["href"]
+            if link_url != '':
+                try:
+                    res = requests.get(link_url, auth=(form.get('username'), form.get('password')))
+                    logger.warning(link_url + " - " + str(res.status_code))
+                    if res.status_code >= 400 and res.status_code != 999:
+                        logger.error(f"Enllaç trencat: {link_url} --(a)--> {url}")
+                        self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {res.status_code}</p>")
+                    # else:
+                    #    self.good.append(f"Funciona bé: {link_url} --(a)--> {url}")
+                except requests.RequestException as e:
+                    logger.error(f"Error trencat a: {link_url} que forma part dels enllaços de la pàgina:{url}")
+                    self.bad.append(f"<p>En la pàgina web <a href='{url}' target='_blank'>{url}</a> hi ha un enllaç trencat cap a: <a href='{link_url}' target='_blank'>{link_url}</a> amb codi d'error: {e}</p>")
+                    # self.output.append(f"Error accedint a: {link_url}")
