@@ -22,6 +22,11 @@ class ITranslatable(Interface):
     """ Fake marker interface in case Products.LinguaPlone is not installed """
 
 
+class ISeoMarker(Interface):
+    """Marker interface that will be provided by instances using the
+    ISeo behavior.
+    """
+
 class IGenwebUtils(Interface):
     """ Marker describing the functionality of the convenience methods
         placeholder genweb.utils view.
