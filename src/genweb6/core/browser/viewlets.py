@@ -588,12 +588,12 @@ class socialtoolsViewlet(viewletBase):
                 'icon': 'fa-brands fa-bluesky',
                 'action': False,
             },
-            {
-                'title': 'Twitter',
-                'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
-                'icon': 'bi bi-twitter-x',
-                'action': False,
-            },
+            # {
+            #     'title': 'Twitter',
+            #     'url': 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
+            #     'icon': 'bi bi-twitter-x',
+            #     'action': False,
+            # },
             {
                 'title': 'Facebook',
                 'url': 'https://www.facebook.com/sharer/sharer.php?u=' + url,
