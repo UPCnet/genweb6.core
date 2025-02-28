@@ -28,6 +28,7 @@ from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.adapters.important import IImportant
 from genweb6.core.interfaces import IHomePage
+from genweb6.core.interfaces import ISeoMarker
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
@@ -671,3 +672,26 @@ class importantViewlet(viewletBase):
         context = aq_inner(self.context)
         is_important = IImportant(context).is_important
         return is_important
+
+
+class MetaRobotsViewlet(ViewletBase):
+    """Renders the  <meta name="robots"> tag if the IMetaRobots is applied
+    to the context
+    """
+
+    def update(self):
+        super().update()
+        try:
+            self.behavior = ISeoMarker(self.context)
+        except TypeError:
+            self.behavior = None
+
+    def available(self):
+        return True if self.behavior else False
+
+    def content(self):
+        content = self.behavior.seo_robots
+        # If there is no restriction, we explicity allow indexing
+        if not content:
+            return "all"
+        return content

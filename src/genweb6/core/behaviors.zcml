@@ -40,4 +40,14 @@
         for="collective.easyform.interfaces.easyform.IEasyForm"
         />
 
+    <plone:behavior
+        name="collective.behavior.seo.seo_fields"
+        title="SEO Fields"
+        description="This behavior adds extra fields to a Content Type for SEO optimisation"
+        provides=".behaviors.seo.ISeo"
+        factory=".behaviors.seo.Seo"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        marker="genweb6.core.interfaces.ISeoMarker"
+        />
+
 </configure>
