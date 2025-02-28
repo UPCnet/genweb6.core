@@ -9,7 +9,7 @@
            i18n:domain="genweb" i18n:translate="">Anar al contingut principal</a>
 
         <div id="portal-logos" class="d-flex me-4" tal:define="logos view/getLogosHeader">
-            <div id="logo-primary">
+            <div id="logo-primary" >
 
                 <a tal:condition="logos/logo_url"
                 tal:attributes="href logos/logo_url;
@@ -33,7 +33,7 @@
 
             </div>
 
-            <div id="logo-secondary" class="ms-4" tal:condition="logos/secondary_logo">
+            <div id="logo-secondary" >
 
                 <a tal:condition="logos/secondary_logo_url"
                 tal:attributes="href logos/secondary_logo_url;
