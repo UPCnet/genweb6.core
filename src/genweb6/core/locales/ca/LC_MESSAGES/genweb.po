@@ -154,7 +154,7 @@ msgstr "Afegeix un botó a l'enllaç afegit en aquest camp"
 
 #: ../profiles/default/types/genweb.core.existing_content.xml
 msgid "Afegir contigut existent intern o extern"
-msgstr ""
+msgstr "Afegir contigut existent intern o extern"
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
@@ -172,7 +172,7 @@ msgstr "En marcar aquesta opció es mostrarà la pàgina d'enllaços personalitz
 msgid "All"
 msgstr "Tots"
 
-#: ../controlpanels/header.py:321
+#: ../controlpanels/header.py:402
 msgid "Altres"
 msgstr "Altres"
 
@@ -374,7 +374,7 @@ msgstr "Continguts que alimenten la plantilla"
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:622
+#: ../browser/viewlets.py:630
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
@@ -383,7 +383,7 @@ msgstr "Copiar enllaç"
 msgid "Copiat"
 msgstr "Copiat!"
 
-#: ../browser/viewlets.py:627
+#: ../browser/viewlets.py:635
 msgid "Copiat!"
 msgstr "Copiat!"
 
@@ -432,7 +432,7 @@ msgstr "ERROR: Charset no definit"
 
 #: ../content/existing_content/existing_content.py:166
 msgid "ERROR. Review the content configuration."
-msgstr ""
+msgstr "ERROR. Comprova la configuració del contingut"
 
 #: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. Review the portlet configuration."
@@ -678,7 +678,7 @@ msgstr "Parrilla d'Agenda"
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 
-#: ../controlpanels/header.py:383
+#: ../controlpanels/header.py:464
 msgid "Header Settings"
 msgstr "Configuració Capçalera"
 
@@ -866,11 +866,11 @@ msgstr "Configuració Login"
 msgid "Logo"
 msgstr "Logo"
 
-#: ../controlpanels/header.py:237
+#: ../controlpanels/header.py:241
 msgid "Logo principal"
 msgstr "Logo principal"
 
-#: ../controlpanels/header.py:245
+#: ../controlpanels/header.py:249
 msgid "Logo secundari"
 msgstr "Logo secundari"
 
@@ -919,6 +919,10 @@ msgstr "Màxim nombre de notícies a mostrar (d'1 a 14)"
 #: ../controlpanels/footer.py:53
 msgid "Menú al peu"
 msgstr "Menú al peu"
+
+#: ../behaviors/seo.py:33
+msgid "Metatag Robots"
+msgstr "Metatag Robots"
 
 #: ../behaviors/maxsize.py:24
 msgid "Mida màxima"
@@ -1093,7 +1097,7 @@ msgid "Picture"
 msgstr "Imatge"
 
 #: ../content/banner/banner.py:20
-#: ../controlpanels/header.py:254
+#: ../controlpanels/header.py:258
 msgid "Please upload an image"
 msgstr "Si us plau, pugeu una imatge"
 
@@ -1150,6 +1154,10 @@ msgstr "Rodona a la dreta"
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
 msgstr "Rodona a l’esquerra"
+
+#: ../behaviors/seo.py:29
+msgid "SEO"
+msgstr "SEO"
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:104
@@ -1468,7 +1476,7 @@ msgstr "Totes les notícies"
 
 #. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:340
+#: ../controlpanels/header.py:421
 msgid "amaga_identificacio"
 msgstr "Amaga l'enllaç d'identificació de les eines"
 
@@ -1643,7 +1651,7 @@ msgstr "S'ha desconnectat la sessió."
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:343
+#: ../controlpanels/header.py:424
 msgid "help_amaga_identificacio"
 msgstr "Amaga de les eines l'enllaç d'identificació ..."
 
@@ -1655,22 +1663,22 @@ msgstr "Podeu cercar i triar un contingut existent"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:352
+#: ../controlpanels/header.py:433
 msgid "help_idiomes_publicats"
 msgstr "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:364
+#: ../controlpanels/header.py:445
 msgid "help_languages_link_to_root"
 msgstr "Aquesta opció marcada fa que el desplegable d'idiomes, sempre redirigeixi a l'arrel del lloc web."
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:271
+#: ../controlpanels/header.py:275
 msgid "help_logo_alt"
 msgstr "Afegiu el text alternatiu (alt) del logo de la capçalera."
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:290
+#: ../controlpanels/header.py:332
 msgid "help_logo_url"
 msgstr "Afegiu l'URL del logo."
 
@@ -1710,13 +1718,13 @@ msgstr "Opcional: títol del portlet"
 msgid "help_static_content_url_ca"
 msgstr "La URL completa de la pàgina d'on volem visualitzar el contingut"
 
-#: ../controlpanels/header.py:374
+#: ../controlpanels/header.py:455
 msgid "help_treu_icones_xarxes_socials"
 msgstr "Treure les icones per compartir en xarxes socials ..."
 
 #. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:331
+#: ../controlpanels/header.py:412
 msgid "help_treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal ..."
 
@@ -1749,25 +1757,22 @@ msgstr "3a Fila"
 ####################
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:111
-#, fuzzy
 msgid "html_title_ca"
 msgstr "Títol del web [CA]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:125
-#, fuzzy
 msgid "html_title_en"
 msgstr "Títol del web [EN]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:118
-#, fuzzy
 msgid "html_title_es"
 msgstr "Títol del web [ES]"
 
 #. "Idiomes publicats al web"
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:351
+#: ../controlpanels/header.py:432
 msgid "idiomes_publicats"
 msgstr "Idiomes publicats al web"
 
@@ -1783,6 +1788,14 @@ msgstr "Imatge gran dreta"
 #: ../tiles/destacats/cinc_destacats/destacats.py:29
 msgid "imatge-gran-esquerra"
 msgstr "Imatge gran esquerra"
+
+#: ../behaviors/seo.py:19
+msgid "index, follow"
+msgstr "index, follow"
+
+#: ../behaviors/seo.py:17
+msgid "index, nofollow"
+msgstr "index, nofollow"
 
 #: ../tiles/destacats/un_destacat/destacats.py:24
 msgid "inferior-centre"
@@ -1845,7 +1858,7 @@ msgstr "Inicia la sessió"
 # Contropanel option to redirect languages #
 #############################################
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:362
+#: ../controlpanels/header.py:443
 msgid "languages_link_to_root"
 msgstr "Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal"
 
@@ -1853,20 +1866,40 @@ msgstr "Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal"
 msgid "login_text_btn"
 msgstr "Text del botó de login"
 
-#. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:270
+#. Default: "Text alternatiu del logo [CA]"
+#: ../controlpanels/header.py:274
 msgid "logo_alt"
-msgstr "Text alternatiu del logo"
+msgstr "Text alternatiu del logo [CA]"
+
+#. Default: "Text alternatiu del logo [EN]"
+#: ../controlpanels/header.py:294
+msgid "logo_alt_en"
+msgstr "Text alternatiu del logo [EN]"
+
+#. Default: "Text alternatiu del logo [ES]"
+#: ../controlpanels/header.py:284
+msgid "logo_alt_es"
+msgstr "Text alternatiu del logo [ES]"
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:308
+#: ../controlpanels/header.py:389
 msgid "logo_external_url"
 msgstr "Es una URL externa?"
 
-#. Default: "URL del logo"
-#: ../controlpanels/header.py:288
+#. Default: "URL del logo [CA]"
+#: ../controlpanels/header.py:330
 msgid "logo_url"
-msgstr "URL del logo"
+msgstr "URL del logo [CA]"
+
+#. Default: "URL del logo [EN]"
+#: ../controlpanels/header.py:350
+msgid "logo_url_en"
+msgstr "URL del logo [EN]"
+
+#. Default: "URL del logo [ES]"
+#: ../controlpanels/header.py:340
+msgid "logo_url_es"
+msgstr "URL del logo [ES]"
 
 #. "manage_homeportlets_link"
 #. Default: "Manage home page"
@@ -1927,12 +1960,24 @@ msgstr "Més notícies"
 msgid "more_url"
 msgstr "Veure més"
 
+#: ../behaviors/seo.py:20
+msgid "noindex"
+msgstr "noindex"
+
+#: ../behaviors/seo.py:18
+msgid "noindex, follow"
+msgstr "noindex, follow"
+
+#: ../behaviors/seo.py:21
+msgid "noindex, nofollow"
+msgstr "noindex, nofollow"
+
 #: ../content/document_image/document_image.py:24
 msgid "not_show_image"
 msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:375
+#: ../browser/viewlets.py:383
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(obriu en una finestra nova)"
@@ -1964,6 +2009,41 @@ msgstr "Col·lecció multi-vista"
 #: ../portlets/manage_portlets/templates/managesubhome.pt:57
 msgid "return_to_view"
 msgstr "Torna"
+
+#. Default: "Text alternatiu del logo secundari [CA]"
+#: ../controlpanels/header.py:303
+msgid "secondary_logo_alt"
+msgstr "Text alternatiu del logo secundari [CA]"
+
+#. Default: "Text alternatiu del logo secundari [EN]"
+#: ../controlpanels/header.py:321
+msgid "secondary_logo_alt_en"
+msgstr "Text alternatiu del logo secundari [EN]"
+
+#. Default: "Text alternatiu del logo secundari [ES]"
+#: ../controlpanels/header.py:312
+msgid "secondary_logo_alt_es"
+msgstr "Text alternatiu del logo secundari [ES]"
+
+#. Default: "URL del logo secundari [CA]"
+#: ../controlpanels/header.py:359
+msgid "secondary_logo_url"
+msgstr "URL del logo secundari [CA]"
+
+#. Default: "URL del logo secundari [EN]"
+#: ../controlpanels/header.py:379
+msgid "secondary_logo_url_en"
+msgstr "URL del logo secundari [EN]"
+
+#. Default: "URL del logo secundari [ES]"
+#: ../controlpanels/header.py:369
+msgid "secondary_logo_url_es"
+msgstr "URL del logo secundari [ES]"
+
+#. Default: "Select options that hint search engines how to treat this content. Typically listings are to navigate the site, but add little to no value in its own and should be set to 'noindex, follow'. In some cases you want a listing to be indexed. E.g. when publishing a Top 10 recipes list with extra content above and below the list, in which case you would use 'index,follow'."
+#: ../behaviors/seo.py:34
+msgid "seo_robots_help"
+msgstr "Seleccioneu les opcions que indiquen als motors de cerca com tractar aquest contingut. Normalment, les llistes són per navegar pel lloc, però aporten poc o cap valor per si mateixes i s'han de configurar com a 'noindex, follow'. En alguns casos, voleu que una llista sigui indexada. Per exemple, quan publiqueu una llista de les 10 millors receptes amb contingut addicional a sobre i a sota de la llista, en aquest cas utilitzaríeu 'index, follow'."
 
 #. "Signatura de la unitat [CA]"
 #. Default: "Signatura [CA]"
@@ -2030,13 +2110,13 @@ msgstr "Esdeveniments per avui"
 msgid "todays_upcoming_events"
 msgstr "Propers esdeveniments per avui"
 
-#: ../controlpanels/header.py:373
+#: ../controlpanels/header.py:454
 msgid "treu_icones_xarxes_socials"
 msgstr "Treure les icones per compartir en xarxes socials"
 
 #. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:329
+#: ../controlpanels/header.py:410
 msgid "treu_menu_horitzontal"
 msgstr "Treu el menú horitzontal"
 

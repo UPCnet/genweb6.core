@@ -129,7 +129,7 @@ msgstr "Add field to add icon."
 
 #: ../behaviors.zcml:32
 msgid "Add field to add image in contents."
-msgstr ""
+msgstr "Add field to add image in contents."
 
 #: ../behaviors.zcml:23
 msgid "Add field to mark a link to open in a new window when clicked."
@@ -154,7 +154,7 @@ msgstr "Add a button to the link added in this field"
 
 #: ../profiles/default/types/genweb.core.existing_content.xml
 msgid "Afegir contigut existent intern o extern"
-msgstr ""
+msgstr "Add existing internal or external content"
 
 #: ../profiles/default/portlets.xml
 msgid "AgendaGW"
@@ -172,7 +172,7 @@ msgstr "Checking this option will display the custom links page in the footer, t
 msgid "All"
 msgstr "All"
 
-#: ../controlpanels/header.py:321
+#: ../controlpanels/header.py:402
 msgid "Altres"
 msgstr "Others"
 
@@ -374,7 +374,7 @@ msgstr "Content that feeds the template"
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
-#: ../browser/viewlets.py:622
+#: ../browser/viewlets.py:630
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
@@ -383,7 +383,7 @@ msgstr "Copy link"
 msgid "Copiat"
 msgstr "Copied!"
 
-#: ../browser/viewlets.py:627
+#: ../browser/viewlets.py:635
 msgid "Copiat!"
 msgstr "Copied!"
 
@@ -435,7 +435,7 @@ msgstr "ERROR. Charset undefined"
 
 #: ../content/existing_content/existing_content.py:166
 msgid "ERROR. Review the content configuration."
-msgstr ""
+msgstr "ERROR. Review the content configuration."
 
 #: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. Review the portlet configuration."
@@ -684,7 +684,7 @@ msgstr "Grid Events"
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgstr "Enable the option to be able to open multiple accordion panels"
 
-#: ../controlpanels/header.py:383
+#: ../controlpanels/header.py:464
 msgid "Header Settings"
 msgstr "Header Settings"
 
@@ -749,15 +749,15 @@ msgstr "If enabled, the listing will not include the current item the portlet is
 
 #: ../behaviors/image.py:21
 msgid "Image"
-msgstr ""
+msgstr "Image"
 
 #: ../behaviors.zcml:32
 msgid "Image fields"
-msgstr ""
+msgstr "Image fields"
 
 #: ../behaviors/image.py:22
 msgid "Image only visible in portlets and in folder and collection views"
-msgstr ""
+msgstr "Image only visible in portlets and in folder and collection views"
 
 #: ../controlpanels/footer.py:26
 msgid "Imatge capçalera"
@@ -872,11 +872,11 @@ msgstr "Login Settings"
 msgid "Logo"
 msgstr "Logo"
 
-#: ../controlpanels/header.py:237
+#: ../controlpanels/header.py:241
 msgid "Logo principal"
 msgstr "Main logo"
 
-#: ../controlpanels/header.py:245
+#: ../controlpanels/header.py:249
 msgid "Logo secundari"
 msgstr "Secondary logo"
 
@@ -903,11 +903,11 @@ msgstr "Check this box if you want the portlet title to be displayed"
 
 #: ../behaviors.zcml:41
 msgid "Max size for a file field on easy form."
-msgstr ""
+msgstr "Max size for a file field on easy form."
 
 #: ../behaviors.zcml:41
 msgid "Max size for file fields"
-msgstr ""
+msgstr "Max size for file fields"
 
 #: ../portlets/grid_events/grid_events.py:32
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:51
@@ -926,13 +926,17 @@ msgstr "Maximum number of news items to display (from 1 to 14)"
 msgid "Menú al peu"
 msgstr "Footer menu"
 
+#: ../behaviors/seo.py:33
+msgid "Metatag Robots"
+msgstr "Metatag Robots"
+
 #: ../behaviors/maxsize.py:24
 msgid "Mida màxima"
-msgstr ""
+msgstr "Max size"
 
 #: ../behaviors/maxsize.py:25
 msgid "Mida màxima (en MB) per als fitxers d'aquest formulari. Número enter."
-msgstr ""
+msgstr "Maximum size (in MB) for the files of this form. Whole number."
 
 #: ../portlets/rss/rss.py:306
 msgid "More link"
@@ -1099,7 +1103,7 @@ msgid "Picture"
 msgstr "Picture"
 
 #: ../content/banner/banner.py:20
-#: ../controlpanels/header.py:254
+#: ../controlpanels/header.py:258
 msgid "Please upload an image"
 msgstr "Please upload an image"
 
@@ -1156,6 +1160,10 @@ msgstr "Round to the right"
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
 msgstr "Round to the left"
+
+#: ../behaviors/seo.py:29
+msgid "SEO"
+msgstr "SEO"
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:104
@@ -1475,7 +1483,7 @@ msgstr "All News"
 
 #. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
-#: ../controlpanels/header.py:340
+#: ../controlpanels/header.py:421
 msgid "amaga_identificacio"
 msgstr "Hide tools with identification link"
 
@@ -1648,7 +1656,7 @@ msgstr "The session has been disconnected."
 
 #. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
-#: ../controlpanels/header.py:343
+#: ../controlpanels/header.py:424
 msgid "help_amaga_identificacio"
 msgstr "Hide tools with identification link ..."
 
@@ -1660,22 +1668,22 @@ msgstr "You may search for and choose an existing content"
 
 #. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
-#: ../controlpanels/header.py:352
+#: ../controlpanels/header.py:433
 msgid "help_idiomes_publicats"
 msgstr "These languages will be published on the website, languages not specified not be public but will be visible to managers (editors)."
 
 #. Default: "help_languages_link_to_root"
-#: ../controlpanels/header.py:364
+#: ../controlpanels/header.py:445
 msgid "help_languages_link_to_root"
 msgstr "Selecting this option makes that all the clicks on the languages combo always redirects to the site root."
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
-#: ../controlpanels/header.py:271
+#: ../controlpanels/header.py:275
 msgid "help_logo_alt"
 msgstr "Add the alt text (alt) of the header logo."
 
 #. Default: "Afegiu l'URL del logo."
-#: ../controlpanels/header.py:290
+#: ../controlpanels/header.py:332
 msgid "help_logo_url"
 msgstr "Add the logo URL."
 
@@ -1715,13 +1723,13 @@ msgstr "Optional: portlet title"
 msgid "help_static_content_url_ca"
 msgstr "The complete URL of the content's page."
 
-#: ../controlpanels/header.py:374
+#: ../controlpanels/header.py:455
 msgid "help_treu_icones_xarxes_socials"
 msgstr "Remove social sharing icons ..."
 
 #. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
-#: ../controlpanels/header.py:331
+#: ../controlpanels/header.py:412
 msgid "help_treu_menu_horitzontal"
 msgstr "Hide horizontal menu ..."
 
@@ -1751,25 +1759,22 @@ msgstr "Third Fila"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:111
-#, fuzzy
 msgid "html_title_ca"
 msgstr "Web title [CA]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:125
-#, fuzzy
 msgid "html_title_en"
 msgstr "Web title [EN]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:118
-#, fuzzy
 msgid "html_title_es"
 msgstr "Web title [ES]"
 
 #. "Idiomes publicats al web"
 #. Default: "Idiomes publicats al web"
-#: ../controlpanels/header.py:351
+#: ../controlpanels/header.py:432
 msgid "idiomes_publicats"
 msgstr "Languages activated on the website"
 
@@ -1785,6 +1790,14 @@ msgstr "Big image right"
 #: ../tiles/destacats/cinc_destacats/destacats.py:29
 msgid "imatge-gran-esquerra"
 msgstr "Big image left"
+
+#: ../behaviors/seo.py:19
+msgid "index, follow"
+msgstr "index, follow"
+
+#: ../behaviors/seo.py:17
+msgid "index, nofollow"
+msgstr "index, nofollow"
 
 #: ../tiles/destacats/un_destacat/destacats.py:24
 msgid "inferior-centre"
@@ -1844,7 +1857,7 @@ msgid "label_start_session"
 msgstr "Log in"
 
 #. Default: "languages_link_to_root"
-#: ../controlpanels/header.py:362
+#: ../controlpanels/header.py:443
 msgid "languages_link_to_root"
 msgstr "Redirect to site root when the user clicks on the languages availables on the site"
 
@@ -1852,20 +1865,40 @@ msgstr "Redirect to site root when the user clicks on the languages availables o
 msgid "login_text_btn"
 msgstr "Login button text"
 
-#. Default: "Text alternatiu del logo"
-#: ../controlpanels/header.py:270
+#. Default: "Text alternatiu del logo [CA]"
+#: ../controlpanels/header.py:274
 msgid "logo_alt"
-msgstr "Alternative logo text"
+msgstr "Alternative logo text [CA]"
+
+#. Default: "Text alternatiu del logo [EN]"
+#: ../controlpanels/header.py:294
+msgid "logo_alt_en"
+msgstr "Alternative logo text [EN]"
+
+#. Default: "Text alternatiu del logo [ES]"
+#: ../controlpanels/header.py:284
+msgid "logo_alt_es"
+msgstr "Alternative logo text [ES]"
 
 #. Default: "Es una URL externa?"
-#: ../controlpanels/header.py:308
+#: ../controlpanels/header.py:389
 msgid "logo_external_url"
 msgstr "Is it an external URL?"
 
-#. Default: "URL del logo"
-#: ../controlpanels/header.py:288
+#. Default: "URL del logo [CA]"
+#: ../controlpanels/header.py:330
 msgid "logo_url"
-msgstr "Logo URL"
+msgstr "Logo URL [CA]"
+
+#. Default: "URL del logo [EN]"
+#: ../controlpanels/header.py:350
+msgid "logo_url_en"
+msgstr "Logo URL [EN]"
+
+#. Default: "URL del logo [ES]"
+#: ../controlpanels/header.py:340
+msgid "logo_url_es"
+msgstr "Logo URL [ES]"
 
 #. "manage_homeportlets_link"
 #. Default: "Manage home page"
@@ -1926,12 +1959,24 @@ msgstr "More news"
 msgid "more_url"
 msgstr "View more"
 
+#: ../behaviors/seo.py:20
+msgid "noindex"
+msgstr "noindex"
+
+#: ../behaviors/seo.py:18
+msgid "noindex, follow"
+msgstr "noindex, follow"
+
+#: ../behaviors/seo.py:21
+msgid "noindex, nofollow"
+msgstr "noindex, nofollow"
+
 #: ../content/document_image/document_image.py:24
 msgid "not_show_image"
 msgstr "Do not display the image on the page, but do in the portlets and views"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:375
+#: ../browser/viewlets.py:383
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(open link in a new window)"
@@ -1963,6 +2008,41 @@ msgstr "Multiview Collection"
 #: ../portlets/manage_portlets/templates/managesubhome.pt:57
 msgid "return_to_view"
 msgstr "Return"
+
+#. Default: "Text alternatiu del logo secundari [CA]"
+#: ../controlpanels/header.py:303
+msgid "secondary_logo_alt"
+msgstr "Alternative text of the secondary logo [CA]"
+
+#. Default: "Text alternatiu del logo secundari [EN]"
+#: ../controlpanels/header.py:321
+msgid "secondary_logo_alt_en"
+msgstr "Alternative text of the secondary logo [EN]"
+
+#. Default: "Text alternatiu del logo secundari [ES]"
+#: ../controlpanels/header.py:312
+msgid "secondary_logo_alt_es"
+msgstr "Alternative text of the secondary logo [ES]"
+
+#. Default: "URL del logo secundari [CA]"
+#: ../controlpanels/header.py:359
+msgid "secondary_logo_url"
+msgstr "Secondary logo URL [CA]"
+
+#. Default: "URL del logo secundari [EN]"
+#: ../controlpanels/header.py:379
+msgid "secondary_logo_url_en"
+msgstr "Secondary logo URL [EN]"
+
+#. Default: "URL del logo secundari [ES]"
+#: ../controlpanels/header.py:369
+msgid "secondary_logo_url_es"
+msgstr "Secondary logo URL [ES]"
+
+#. Default: "Select options that hint search engines how to treat this content. Typically listings are to navigate the site, but add little to no value in its own and should be set to 'noindex, follow'. In some cases you want a listing to be indexed. E.g. when publishing a Top 10 recipes list with extra content above and below the list, in which case you would use 'index,follow'."
+#: ../behaviors/seo.py:34
+msgid "seo_robots_help"
+msgstr "Select options that hint search engines how to treat this content. Typically listings are to navigate the site, but add little to no value in its own and should be set to 'noindex, follow'. In some cases you want a listing to be indexed. E.g. when publishing a Top 10 recipes list with extra content above and below the list, in which case you would use 'index,follow'."
 
 #########
 #. "Signatura de la unitat [CA]"
@@ -2030,13 +2110,13 @@ msgstr "Todays events"
 msgid "todays_upcoming_events"
 msgstr "Todays upcoming events"
 
-#: ../controlpanels/header.py:373
+#: ../controlpanels/header.py:454
 msgid "treu_icones_xarxes_socials"
 msgstr "Remove social sharing icons"
 
 #. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
-#: ../controlpanels/header.py:329
+#: ../controlpanels/header.py:410
 msgid "treu_menu_horitzontal"
 msgstr "Hide horizontal menu"
 

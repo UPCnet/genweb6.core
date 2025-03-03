@@ -33,7 +33,7 @@
 
             </div>
 
-            <div id="logo-secondary" >
+            <div id="logo-secondary" class="ms-4" tal:condition="logos/secondary_logo">
 
                 <a tal:condition="logos/secondary_logo_url"
                 tal:attributes="href logos/secondary_logo_url;

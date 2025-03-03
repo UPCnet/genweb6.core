@@ -276,7 +276,7 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
             u"help_logo_alt",
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,)
-    
+
 
     read_permission(logo_alt_es='genweb.manager')
     write_permission(logo_alt_es='genweb.manager')
@@ -286,7 +286,7 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
             u"help_logo_alt",
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,)
-    
+
 
     read_permission(logo_alt_en='genweb.manager')
     write_permission(logo_alt_en='genweb.manager')
@@ -300,25 +300,25 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
     read_permission(secondary_logo_alt='genweb.manager')
     write_permission(secondary_logo_alt='genweb.manager')
     secondary_logo_alt = schema.TextLine(
-        title=_(u"secondary_logo_alt", default=u"Text alternatiu del logo secundari[CA]"),
+        title=_(u"secondary_logo_alt", default=u"Text alternatiu del logo secundari [CA]"),
         description=_(
             u"help_logo_alt",
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,)
-    
+
     read_permission(secondary_logo_alt_es='genweb.manager')
     write_permission(secondary_logo_alt_es='genweb.manager')
     secondary_logo_alt_es = schema.TextLine(
-        title=_(u"secondary_logo_alt_es", default=u"Text alternatiu del logo secundari[ES]"),
+        title=_(u"secondary_logo_alt_es", default=u"Text alternatiu del logo secundari [ES]"),
         description=_(
             u"help_logo_alt",
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
         required=False,)
-    
+
     read_permission(secondary_logo_alt_en='genweb.manager')
     write_permission(secondary_logo_alt_en='genweb.manager')
     secondary_logo_alt_en = schema.TextLine(
-        title=_(u"secondary_logo_alt_en", default=u"Text alternatiu del logo secundari[EN]"),
+        title=_(u"secondary_logo_alt_en", default=u"Text alternatiu del logo secundari [EN]"),
         description=_(
             u"help_logo_alt",
             default=u"Afegiu el text alternatiu (alt) del logo de la capçalera."),
@@ -357,7 +357,7 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
     write_permission(secondary_logo_url='genweb.manager')
     secondary_logo_url = schema.TextLine(
         title=_(u"secondary_logo_url",
-                default=u"URL del logo secundari[CA]"),
+                default=u"URL del logo secundari [CA]"),
         description=_(u"help_logo_url",
                       default=u"Afegiu l'URL del logo."),
         required=False,
@@ -367,7 +367,7 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
     write_permission(secondary_logo_url_es='genweb.manager')
     secondary_logo_url_es = schema.TextLine(
         title=_(u"secondary_logo_url_es",
-                default=u"URL del logo secundari[ES]"),
+                default=u"URL del logo secundari [ES]"),
         description=_(u"help_logo_url",
                       default=u"Afegiu l'URL del logo."),
         required=False,
@@ -377,11 +377,11 @@ class IHeaderSettings(model.Schema, IDexteritySchema):
     write_permission(secondary_logo_url_en='genweb.manager')
     secondary_logo_url_en = schema.TextLine(
         title=_(u"secondary_logo_url_en",
-                default=u"URL del logo secundari[EN]"),
+                default=u"URL del logo secundari [EN]"),
         description=_(u"help_logo_url",
                       default=u"Afegiu l'URL del logo."),
         required=False,
-    ) 
+    )
 
     read_permission(logo_external_url='genweb.manager')
     write_permission(logo_external_url='genweb.manager')
