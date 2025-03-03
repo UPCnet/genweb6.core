@@ -1034,6 +1034,10 @@
   "gran" : {&#13;
     "selector": "p,span,a,li,th,td",&#13;
     "classes": "fs-3"&#13;
+  },&#13;
+    "titleLine" : {&#13;
+    "selector": "h1,h2,h3,h4,h5,h6",&#13;
+    "classes": "title-line"&#13;
   }&#13;
 }</value>
   </record>
@@ -1072,6 +1076,7 @@
       <element>Super gran|superGran</element>
       <element>Molt gran|moltGran</element>
       <element>Gran|gran</element>
+      <element>Title line|titleLine</element>
       <element>Arxiu PDF|ipdf</element>
       <element>Arxiu DOC|idoc</element>
       <element>Arxiu PPT|ippt</element>
