@@ -2,11 +2,24 @@ Changelog
 =========
 
 
-1.63 (unreleased)
+1.63 (2025-03-07)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Añadir icono al nuevo contenido existing content [Iago López]
+* [FIX] Solucionar error TOO_MANY_REDIRECTS SSO [Pilar Marinas]
+* [UPD] Añadir nuevos directorios en el robots.txt [Iago López]
+* [UPD] Cambios controlpanel cabecera [Iago López]
+* [UPD] Quitar collective.behavior.seo [Iago López]
+* [UPD] Cambios controlpanel cabecera [Iago López]
+* [ADD] new tiny format for headers [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] fields in header-controlpanel [Clàudia Andreu]
+* [UPD] Quitar collective.behavior.seo y traer funcionalidad necesaria en el paquete [Iago López]
+* [UPD] Quitar twitter del compartir [Iago López]
+* [FIX] way of scan paths in linkchecker_intranet [Alberto Durán]
+* [FIX] linkchecker intranet view to be more verbose [Alberto Durán]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [ADD] New content type- existing content [Clàudia Andreu]
 
 1.62 (2025-02-18)
 -----------------
