@@ -198,19 +198,19 @@ def remove_quotes_from_var_scss(text):
 #         return genweb_config()
 
 
-#@ram.cache(lambda *args: time() // (24 * 60 * 60))
+# @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebCintilloConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICintilloSettings)
 
 
-#@ram.cache(lambda *args: time() // (24 * 60 * 60))
+# @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebHeaderConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IHeaderSettings)
 
 
-#@ram.cache(lambda *args: time() // (24 * 60 * 60))
+# @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebFooterConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IFooterSettings)
@@ -222,7 +222,7 @@ def genwebLoginConfig():
     return registry.forInterface(ILoginSettings)
 
 
-#@ram.cache(lambda *args: time() // (24 * 60 * 60))
+# @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def genwebResourcesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IResourcesSettings)
@@ -235,6 +235,14 @@ class LoginUtils():
 
     def cas_login_URL(self):
         login_url = login_URL(self.context, self.request)
+
+        # Si tiene el ticket en la url, quiere decir que es un usuario válido pero no tiene permisos.
+        # Por tanto, redirigimos a la página de error para evitar el bucle infinito del SSO
+        # En el log vemos Unauthorized(m) - zExceptions.unauthorized.Unauthorized: You are not authorized to access this resource.
+        if 'ticket' in getattr(self.request, 'came_from', ''):
+            return self.request.response.redirect(
+                self.context.absolute_url + '/insufficient-privileges')
+
         url = self.context.absolute_url()
         if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
             return login_url
@@ -386,7 +394,8 @@ class genwebUtils(BrowserView):
             return False
 
         current = api.user.get_current().id
-        return api.user.has_permission('Modify portal content', username=current, obj=self.context)
+        return api.user.has_permission(
+            'Modify portal content', username=current, obj=self.context)
 
     def link_redirect_blank(self, item, isObject=False):
         ptool = api.portal.get_tool(name='portal_properties')
@@ -418,7 +427,8 @@ class genwebUtils(BrowserView):
             'caldav:'
         ])
 
-        return redirect_links and not can_edit and getattr(item, 'open_link_in_new_window', False)
+        return redirect_links and not can_edit and getattr(
+            item, 'open_link_in_new_window', False)
 
     def localized_time(self, date):
         local_date = DateTime(date)
