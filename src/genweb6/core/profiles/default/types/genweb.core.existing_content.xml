@@ -4,11 +4,10 @@
 
     <property name="title" i18n:translate="">Contingut Existent</property>
     <property name="description" i18n:translate="">Afegir contigut existent intern o extern</property>
+    <property name="icon_expr">string:box</property>
     <property name="allow_discussion">False</property>
     <property name="global_allow">True</property>
-    <property name="filter_content_types">False</property>
-    <property name="allowed_content_types">
-        <element value="genweb6.core.existing_content" /></property>
+    <property name="filter_content_types">True</property>
 
     <property name="schema">genweb6.core.content.existing_content.existing_content.IExistingContent</property>
     <property name="klass">genweb6.core.content.existing_content.existing_content.ExistingContent</property>

@@ -1,34 +1,32 @@
-from zope.interface import implementer
+# -*- coding: utf-8 -*-
+
+from AccessControl.SecurityManagement import getSecurityManager
+from Products.Five.browser import BrowserView
+
+from bs4 import BeautifulSoup
+from plone import api
+from plone.autoform import directives
+from plone.dexterity.content import Container
 from plone.dexterity.content import Container
 from plone.supermodel import model
-from zope import schema
-from plone.dexterity.content import Container
-from plone.app.content.interfaces import INameFromTitle
-from zope.component import hooks
-from z3c.relationfield.schema import RelationChoice
-from genweb6.core import GenwebMessageFactory as _
-from plone.autoform import directives
-from zope.interface import Invalid
-from zope.interface import invariant
-from plone import api
-from z3c.relationfield.relation import RelationValue
+from pyquery import PyQuery as pq
 from requests.exceptions import ReadTimeout
 from requests.exceptions import RequestException
-from bs4 import BeautifulSoup
-from Products.Five.browser import BrowserView
-from plone.dexterity.interfaces import IDexteritySchema
-from AccessControl.SecurityManagement import getSecurityManager
-from zope.interface import provider
-from plone.autoform.interfaces import IFormFieldProvider
+from z3c.relationfield.relation import RelationValue
+from z3c.relationfield.schema import RelationChoice
+from zope import schema
+from zope.interface import Invalid
+from zope.interface import implementer
+from zope.interface import invariant
+
+from genweb6.core import GenwebMessageFactory as _
 from genweb6.core.portlets.new_existing_content.new_existing_content import NewContentPortletJSFieldWidget
-from pyquery import PyQuery as pq
 from genweb6.core.validations import validate_externalurl
 
 import DateTime
+import logging
 import re
 import requests
-import time
-import logging
 
 logger = logging.getLogger("genweb6.core")
 
@@ -80,13 +78,13 @@ class ExistingContent(Container):
     """ Implementación de ExistingContent """
 
 class ExistingContentView(BrowserView):
-    
+
     def __init__(self, context, request):
         super().__init__(context, request)
         self.data = {}
 
     def check_configuration_error(self):
-        
+
         pm = api.portal.get_tool(name='portal_membership')
         user = pm.getAuthenticatedMember()
         roles = user.getRoles()
