@@ -200,6 +200,11 @@ class headerViewlet(
         else:
             secondary_logo_responsive = secondary_logo
 
+        logo_alt = getattr(header_config, 'logo_alt', "")
+        logo_url = getattr(header_config, 'logo_url', None)
+        secondary_logo_alt = getattr(header_config, 'secondary_logo_alt', "")
+        secondary_logo_url = getattr(header_config, 'secondary_logo_url', None)
+
         lang = self.pref_lang()
         if lang == 'es':
             logo_alt = getattr(header_config, 'logo_alt_es', "") or logo_alt
@@ -211,11 +216,6 @@ class headerViewlet(
             logo_url = getattr(header_config, 'logo_url_en', None) or logo_url
             secondary_logo_alt = getattr(header_config, 'secondary_logo_alt_en', "") or secondary_logo_alt
             secondary_logo_url = getattr(header_config, 'secondary_logo_url_en', None) or secondary_logo_url
-        else:
-            logo_alt = getattr(header_config, 'logo_alt', "")
-            logo_url = getattr(header_config, 'logo_url', None)
-            secondary_logo_alt = getattr(header_config, 'secondary_logo_alt', "")
-            secondary_logo_url = getattr(header_config, 'secondary_logo_url', None)
 
         return {"logo": logo,
                 "logo_responsive": logo_responsive,
