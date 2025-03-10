@@ -241,7 +241,7 @@ class LoginUtils():
         # En el log vemos Unauthorized(m) - zExceptions.unauthorized.Unauthorized: You are not authorized to access this resource.
         if 'ticket' in getattr(self.request, 'came_from', ''):
             return self.request.response.redirect(
-                self.context.absolute_url + '/insufficient-privileges')
+                self.context.absolute_url() + '/insufficient-privileges')
 
         url = self.context.absolute_url()
         if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
