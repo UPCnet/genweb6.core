@@ -2,11 +2,13 @@ Changelog
 =========
 
 
-1.64 (unreleased)
+1.64 (2025-03-10)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Solucionar error TOO_MANY_REDIRECTS SSO in portlet [Iago López]
+* [FIX] Solucionar error TOO_MANY_REDIRECTS SSO [Iago López]
+* [UPD] Cambio de literal Title line [Iago López]
+* [FIX] Header viewlet [Iago López]
 
 1.63 (2025-03-07)
 -----------------
