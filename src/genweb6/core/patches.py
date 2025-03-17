@@ -707,17 +707,19 @@ def _get_tags(self):
         return []
 
     # Comentar lineas para que sean visible siempre los tags
-    # portal_membership = api.portal.get_tool(name="portal_membership")  # Se modifico para para hacerlo con la api
+    # portal_membership = api.portal.get_tool(name="portal_membership")  # Se modifico para hacerlo con la api
     # is_anonymous = bool(portal_membership.isAnonymousUser())
     # if not is_anonymous:
     #     return []
 
+    page_title = getattr(self.context, 'seo_title', self.page_title)  # Añadido
+
     tags = [
-        dict(itemprop="name", content=self.page_title),
+        dict(itemprop="name", content=page_title),
         dict(name="twitter:card", content="summary"),
         dict(property="og:site_name", content=self.site_title_setting),
-        dict(property="og:title", content=self.page_title),
-        dict(property="twitter:title", content=self.page_title),  # Añadido
+        dict(property="og:title", content=page_title),
+        dict(property="twitter:title", content=page_title),  # Añadido
         dict(property="og:type", content="website"),
     ]
 
@@ -747,12 +749,14 @@ def _get_tags(self):
     if item is None:
         item = BaseItem(self.context, feed)
 
+    description = getattr(self.context, 'seo_description', item.description)  # Añadido
+
     tags.extend(
         [
-            dict(itemprop="description", content=item.description),
+            dict(itemprop="description", content=description),
             dict(itemprop="url", content=item.link),
-            dict(property="og:description", content=item.description),
-            dict(property="twitter:description", content=item.description),  # Añadido
+            dict(property="og:description", content=description),
+            dict(property="twitter:description", content=description),  # Añadido
             dict(property="og:url", content=item.link),
             dict(property="twitter:url", content=item.link),  # Añadido
         ]

@@ -26,24 +26,24 @@ class ISeo(model.Schema, IDexteritySchema):
     """
 
     model.fieldset(
-      "seofields", _("SEO"), fields=["seo_robots"],
+      "seofields", _("SEO"), fields=["seo_title", "seo_description", "seo_robots"],
+    )
+
+    seo_title = schema.TextLine(
+        title=_("SEO Title"),
+        description=_("S'utilitza al títol de la secció 'head' de la pàgina web"),
+        required=False,
+    )
+
+    seo_description = schema.Text(
+        title=_("SEO Description"),
+        description=_("S'utilitza a la descripció de la secció 'head' de la pàgina web"),
+        required=False,
     )
 
     seo_robots = schema.Choice(
         title=_("Metatag Robots"),
-        description=_(
-            "seo_robots_help",
-            default=(
-                "Select options that hint search engines how "
-                "to treat this content. Typically listings are to "
-                "navigate the site, but add little to no value in its "
-                "own and should be set to 'noindex, follow'. In some "
-                "cases you want a listing to be indexed. E.g. when "
-                "publishing a Top 10 recipes list with extra content "
-                "above and below the list, in which case you would use "
-                "'index,follow'."
-            ),
-        ),
+        description=_("<ul><li><span class='fw-bold'>No value (per defecte):</span> Els motors de cerca indexen la pàgina i segueixen els enllaços (comportament per defecte).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la pàgina, però no segueix els enllaços que conté.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la pàgina, però sí que segueix els enllaços.</li><li><span class='fw-bold'>index, follow:</span> Indexa la pàgina i segueix els enllaços (equivalent a no especificar res).</li><li><span class='fw-bold'>noindex:</span> No indexa la pàgina i no segueix els enllaços.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la pàgina ni segueix els enllaços.</li></ul>"),
         vocabulary=seoRobotsVocabulary,
         required=False,
     )
@@ -57,6 +57,22 @@ class Seo(object):
 
     def __init__(self, context):
         self.context = context
+
+    def _set_seo_title(self, value):
+        self.context.seo_title = value
+
+    def _get_seo_title(self):
+        return getattr(self.context, 'seo_title', None)
+
+    seo_title = property(_get_seo_title, _set_seo_title)
+
+    def _set_seo_description(self, value):
+        self.context.seo_description = value
+
+    def _get_seo_description(self):
+        return getattr(self.context, 'seo_description', None)
+
+    seo_description = property(_get_seo_description, _set_seo_description)
 
     def _set_seo_robots(self, value):
         self.context.seo_robots = value
