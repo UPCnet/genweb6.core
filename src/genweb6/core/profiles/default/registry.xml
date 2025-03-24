@@ -86,6 +86,7 @@
       <element>Document</element>
       <element>Event</element>
       <element>News Item</element>
+      <element>Link</element>
       <element>Collection</element>
       <element>genweb.upc.subhome</element>
       <element>packet</element>
