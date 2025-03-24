@@ -200,13 +200,22 @@ class headerViewlet(
         else:
             secondary_logo_responsive = secondary_logo
 
-        lang = self.pref_lang()
-        is_ca = lang not in ['es', 'en']
+        logo_alt = getattr(header_config, 'logo_alt', "")
+        logo_url = getattr(header_config, 'logo_url', None)
+        secondary_logo_alt = getattr(header_config, 'secondary_logo_alt', "")
+        secondary_logo_url = getattr(header_config, 'secondary_logo_url', None)
 
-        logo_alt = getattr(header_config, 'logo_alt' if is_ca else 'logo_alt_' + lang, "")
-        logo_url = getattr(header_config, 'logo_url' if is_ca else 'logo_url_' + lang, None)
-        secondary_logo_alt = getattr(header_config, 'secondary_logo_alt' if is_ca else 'secondary_logo_alt_' + lang, "")
-        secondary_logo_url = getattr(header_config, 'secondary_logo_url' if is_ca else 'secondary_logo_url_' + lang, None)
+        lang = self.pref_lang()
+        if lang == 'es':
+            logo_alt = getattr(header_config, 'logo_alt_es', "") or logo_alt
+            logo_url = getattr(header_config, 'logo_url_es', None) or logo_url
+            secondary_logo_alt = getattr(header_config, 'secondary_logo_alt_es', "") or secondary_logo_alt
+            secondary_logo_url = getattr(header_config, 'secondary_logo_url_es', None) or secondary_logo_url
+        elif lang == 'en':
+            logo_alt = getattr(header_config, 'logo_alt_en', "") or logo_alt
+            logo_url = getattr(header_config, 'logo_url_en', None) or logo_url
+            secondary_logo_alt = getattr(header_config, 'secondary_logo_alt_en', "") or secondary_logo_alt
+            secondary_logo_url = getattr(header_config, 'secondary_logo_url_en', None) or secondary_logo_url
 
         return {"logo": logo,
                 "logo_responsive": logo_responsive,

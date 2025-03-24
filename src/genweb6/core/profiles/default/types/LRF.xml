@@ -9,4 +9,14 @@
         <element value="homepage"/>
     </property>
 
+    <property name="behaviors">
+        <element value="plone.dublincore"/>
+        <element value="plone.namefromtitle"/>
+        <element value="plone.constraintypes"/>
+        <element value="plone.translatable"/>
+        <element value="plone.excludefromnavigation"/>
+        <element value="plone.navigationroot"/>
+        <element value="collective.behavior.seo.seo_fields" />
+    </property>
+
  </object>

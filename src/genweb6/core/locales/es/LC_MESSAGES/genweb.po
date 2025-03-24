@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 "Language: es\n"
 
-#: ../content/existing_content/existing_content.py:64
+#: ../content/existing_content/existing_content.py:62
 #: ../portlets/new_existing_content/new_existing_content.py:120
 msgid "#content-core"
 msgstr "#content-core"
@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacados Izquierda"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1293
+#: ../patches.py:1297
 msgid "7days_events"
 msgstr "Eventos en los próximos 7 días."
 
@@ -77,6 +77,10 @@ msgstr "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validar</a
 #: ../content/carousel/carousel.pt:21
 msgid "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
 msgstr "<i class=\"bi bi-info-circle-fill me-1\"></i> Pasos para añadir contenidos"
+
+#: ../behaviors/seo.py:46
+msgid "<ul><li><span class='fw-bold'>No value (per defecte):</span> Els motors de cerca indexen la pàgina i segueixen els enllaços (comportament per defecte).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la pàgina, però no segueix els enllaços que conté.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la pàgina, però sí que segueix els enllaços.</li><li><span class='fw-bold'>index, follow:</span> Indexa la pàgina i segueix els enllaços (equivalent a no especificar res).</li><li><span class='fw-bold'>noindex:</span> No indexa la pàgina i no segueix els enllaços.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la pàgina ni segueix els enllaços.</li></ul>"
+msgstr "<ul><li><span class='fw-bold'>No value (por defecto):</span> Los motores de búsqueda indexan la página y siguen los enlaces (comportamiento por defecto).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la página, pero no sigue los enlaces que contiene.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la página, pero sí sigue los enlaces.</li><li><span class='fw-bold'>index, follow:</span> Indexa la página y sigue los enlaces (equivalente a no especificar nada).</li><li><span class='fw-bold'>noindex:</span> No indexa la página y no sigue los enlaces.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la página ni sigue los enlaces.</li></ul>"
 
 #: ../profiles/default/types/Banner.xml
 msgid "A Banner"
@@ -320,12 +324,12 @@ msgstr "Colección"
 msgid "Comparteix"
 msgstr "Compartir"
 
-#: ../content/existing_content/existing_content.py:97
+#: ../content/existing_content/existing_content.py:95
 #: ../portlets/new_existing_content/new_existing_content.py:167
 msgid "Configura el contingut extern"
 msgstr "Configura el contenido externo"
 
-#: ../content/existing_content/existing_content.py:95
+#: ../content/existing_content/existing_content.py:93
 #: ../portlets/new_existing_content/new_existing_content.py:164
 msgid "Configura el contingut intern"
 msgstr "Configura el contenido interno"
@@ -334,7 +338,7 @@ msgstr "Configura el contenido interno"
 msgid "Configuracions"
 msgstr "Configuraciones"
 
-#: ../patches.py:815
+#: ../patches.py:819
 msgid "Connections"
 msgstr "Conexiones"
 
@@ -374,7 +378,7 @@ msgstr "Contenidos que alimentan la plantilla"
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:630
+#: ../browser/viewlets.py:639
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
@@ -383,7 +387,7 @@ msgstr "Copiar enlace"
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:635
+#: ../browser/viewlets.py:644
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -428,12 +432,12 @@ msgstr "Mostrar imágenes"
 msgid "Document Image"
 msgstr "Página con imagen"
 
-#: ../content/existing_content/existing_content.py:173
+#: ../content/existing_content/existing_content.py:171
 #: ../portlets/new_existing_content/new_existing_content.py:274
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../content/existing_content/existing_content.py:166
+#: ../content/existing_content/existing_content.py:164
 msgid "ERROR. Review the content configuration."
 msgstr "ERROR. Revise la configuración del contenido"
 
@@ -441,22 +445,22 @@ msgstr "ERROR. Revise la configuración del contenido"
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Revise la configuración del portlet"
 
-#: ../content/existing_content/existing_content.py:169
+#: ../content/existing_content/existing_content.py:167
 #: ../portlets/new_existing_content/new_existing_content.py:270
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. Se ha superado el tiempo de espera"
 
-#: ../content/existing_content/existing_content.py:171
+#: ../content/existing_content/existing_content.py:169
 #: ../portlets/new_existing_content/new_existing_content.py:272
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. La URL no existe"
 
-#: ../content/existing_content/existing_content.py:127
+#: ../content/existing_content/existing_content.py:125
 #: ../portlets/new_existing_content/new_existing_content.py:203
 msgid "ERROR. This element does not exist:"
 msgstr "ERROR. El elemento no existe:"
 
-#: ../content/existing_content/existing_content.py:45
+#: ../content/existing_content/existing_content.py:43
 #: ../portlets/new_existing_content/new_existing_content.py:101
 msgid "EXTERN: URL de la pàgina a mostrar"
 msgstr "EXTERNO: URL de la página a mostrar"
@@ -507,7 +511,7 @@ msgstr "El número de banners debe estar entre 1 y 10."
 msgid "El valor introduït no és un URL vàlid."
 msgstr "El valor introducido no es una URL válida."
 
-#: ../content/existing_content/existing_content.py:61
+#: ../content/existing_content/existing_content.py:59
 #: ../portlets/new_existing_content/new_existing_content.py:117
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Elemento de la página a mostrar, por defecto #content-core"
@@ -570,12 +574,12 @@ msgstr "Exclude the Current Context"
 msgid "Existing Content"
 msgstr "Contenido existente"
 
-#: ../content/existing_content/existing_content.py:76
+#: ../content/existing_content/existing_content.py:74
 #: ../portlets/new_existing_content/new_existing_content.py:131
 msgid "Falta l'enllaç extern"
 msgstr "Falta el enlace externo"
 
-#: ../content/existing_content/existing_content.py:74
+#: ../content/existing_content/existing_content.py:72
 #: ../portlets/new_existing_content/new_existing_content.py:129
 msgid "Falta seleccionar el contingut intern"
 msgstr "Falta seleccionar el contenido interno"
@@ -653,11 +657,11 @@ msgstr "Anchura total a cuatro columnas: cuatro columnas con imagen arriba y tex
 msgid "FullNews"
 msgstr "Notícias con foto"
 
-#: ../patches.py:814
+#: ../patches.py:818
 msgid "Genweb Advanced"
 msgstr "Avanzados Genweb"
 
-#: ../patches.py:813
+#: ../patches.py:817
 msgid "Genweb Configuration"
 msgstr "Configuración Genweb"
 
@@ -702,7 +706,7 @@ msgid "INFORMACIÓ:"
 msgstr "INFORMACIÓN:"
 
 #. Default: "INTERN: Existing content"
-#: ../content/existing_content/existing_content.py:52
+#: ../content/existing_content/existing_content.py:50
 #: ../portlets/new_existing_content/new_existing_content.py:108
 msgid "INTERN: Existing content"
 msgstr "INTERNO: Contenido existente"
@@ -923,7 +927,7 @@ msgstr "Número máximo de noticias a mostrar (1-14)"
 msgid "Menú al peu"
 msgstr "Menú en el pie"
 
-#: ../behaviors/seo.py:33
+#: ../behaviors/seo.py:45
 msgid "Metatag Robots"
 msgstr "Metatag Robots"
 
@@ -1158,9 +1162,29 @@ msgstr "Redonda a la derecha"
 msgid "Rodona a l’esquerra"
 msgstr "Redonda a la izquierda"
 
+#: ../behaviors/seo.py:40
+msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
+msgstr "Se utiliza en la descripción de la sección 'head' de la página web"
+
+#: ../behaviors/seo.py:34
+msgid "S'utilitza al títol de la secció 'head' de la pàgina web"
+msgstr "Se utiliza en el título de la sección 'head' de la página web"
+
 #: ../behaviors/seo.py:29
 msgid "SEO"
 msgstr "SEO"
+
+#: ../behaviors/seo.py:39
+msgid "SEO Description"
+msgstr "Descripción SEO"
+
+#: ../behaviors.zcml:51
+msgid "SEO Fields"
+msgstr "Campos SEO"
+
+#: ../behaviors/seo.py:33
+msgid "SEO Title"
+msgstr "Título SEO"
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:104
@@ -1274,6 +1298,10 @@ msgstr "Texto a mostrar por el literal de Más contenidos."
 #: ../tiles/destacats/destacats.py:51
 msgid "The content type to check for."
 msgstr "Tipo de contenido"
+
+#: ../behaviors.zcml:51
+msgid "This behavior adds extra fields to a Content Type for SEO optimisation"
+msgstr "Este behavior añade campos adicionales a un tipo de contenido para la optimización SEO"
 
 #: ../validations.py:6
 msgid "This is an inner link"
@@ -1468,7 +1496,7 @@ msgid "alert_really_delete_contents"
 msgstr "¿Seguro que deseas eliminar estos contenidos?"
 
 #. Default: "All events"
-#: ../patches.py:1278
+#: ../patches.py:1282
 msgid "all_events"
 msgstr "Todos los eventos"
 
@@ -1553,22 +1581,22 @@ msgid "enabled"
 msgstr "Habilitado"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1294
+#: ../patches.py:1298
 msgid "events_from_until"
 msgstr "${from} hasta ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1358
+#: ../patches.py:1362
 msgid "events_in_month"
 msgstr "Eventos en ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1331
+#: ../patches.py:1335
 msgid "events_in_week"
 msgstr "Eventos en la semana ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1316
+#: ../patches.py:1320
 msgid "events_on_day"
 msgstr "Eventos en ${day}"
 
@@ -1577,7 +1605,7 @@ msgid "folder contents"
 msgstr "Contenidos directorio"
 
 #. Default: "Future events"
-#: ../patches.py:1284
+#: ../patches.py:1288
 msgid "future_events"
 msgstr "Futuros eventos"
 
@@ -1658,7 +1686,7 @@ msgid "help_amaga_identificacio"
 msgstr "Esconde las herramientas del enlace de identificación ..."
 
 #. Default: "You may search for and choose an existing content"
-#: ../content/existing_content/existing_content.py:54
+#: ../content/existing_content/existing_content.py:52
 #: ../portlets/new_existing_content/new_existing_content.py:110
 msgid "help_existing_content"
 msgstr "Puede buscar y elegir un contenido existente"
@@ -1702,7 +1730,7 @@ msgstr "Es el literal que aparece al pie de la página."
 msgid "help_signatura_es"
 msgstr "Es el literal que aparece al pie de la página."
 
-#: ../content/existing_content/existing_content.py:62
+#: ../content/existing_content/existing_content.py:60
 #: ../portlets/new_existing_content/new_existing_content.py:118
 msgid "help_static_content_element_ca"
 msgstr "Aquí se puede introducir un id, clase o elemento html. Por ejemplo, en una página genweb típica, todo el contenido está dentro de #content, y todo el contenido sin el título dentro de #content-core"
@@ -1711,7 +1739,7 @@ msgstr "Aquí se puede introducir un id, clase o elemento html. Por ejemplo, en 
 msgid "help_static_content_title_ca"
 msgstr "Opcional: título del portlet"
 
-#: ../content/existing_content/existing_content.py:46
+#: ../content/existing_content/existing_content.py:44
 #: ../portlets/new_existing_content/new_existing_content.py:102
 msgid "help_static_content_url_ca"
 msgstr "La URL completa de la página desde dónde queremos visualizar el contenido."
@@ -1807,7 +1835,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:840
+#: ../patches.py:844
 msgid "label_add_new_item"
 msgstr "Añadir..."
 
@@ -1817,7 +1845,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:837
+#: ../patches.py:841
 msgid "label_choose_template"
 msgstr "Vistas"
 
@@ -1967,7 +1995,7 @@ msgid "not_show_image"
 msgstr "No mostrar la imagen en la página, pero sí en los portlets y vistas"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:383
+#: ../browser/viewlets.py:392
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
@@ -1977,7 +2005,7 @@ msgid "open_link_in_new_window"
 msgstr "Abrir en pestaña nueva"
 
 #. Default: "Past events"
-#: ../patches.py:1281
+#: ../patches.py:1285
 msgid "past_events"
 msgstr "Eventos pasados"
 
@@ -2029,11 +2057,6 @@ msgstr "URL del logo secundario [EN]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
 msgstr "URL del logo secundario [ES]"
-
-#. Default: "Select options that hint search engines how to treat this content. Typically listings are to navigate the site, but add little to no value in its own and should be set to 'noindex, follow'. In some cases you want a listing to be indexed. E.g. when publishing a Top 10 recipes list with extra content above and below the list, in which case you would use 'index,follow'."
-#: ../behaviors/seo.py:34
-msgid "seo_robots_help"
-msgstr "Selecciona las opciones que indican a los motores de búsqueda cómo tratar este contenido. Normalmente las listas son para navegar por el sitio, pero añaden poco o ningún valor por sí mismas y deberían ser marcadas como 'noindex, follow'. En algunos casos quieres que una lista sea indexada. Por ejemplo, cuando publicas una lista de las 10 mejores recetas con contenido adicional arriba y abajo de la lista, en cuyo caso usarías 'index, follow'."
 
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143
@@ -2088,12 +2111,12 @@ msgid "today_link"
 msgstr "Hoy"
 
 #. Default: "Todays events"
-#: ../patches.py:1290
+#: ../patches.py:1294
 msgid "todays_events"
 msgstr "Eventos de hoy"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1287
+#: ../patches.py:1291
 msgid "todays_upcoming_events"
 msgstr "Próximos eventos de hoy"
 
