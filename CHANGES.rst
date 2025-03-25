@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.65 (unreleased)
+1.65 (2025-03-25)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] links to default view [Clàudia Andreu]
+* [ADD] Añadir campos de SEO - titulo y descripcion | Añadirlo behavior SEO a LRF [Iago López]
 
 1.64 (2025-03-10)
 -----------------
