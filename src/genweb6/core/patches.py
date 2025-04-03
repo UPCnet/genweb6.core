@@ -712,7 +712,9 @@ def _get_tags(self):
     # if not is_anonymous:
     #     return []
 
-    page_title = getattr(self.context, 'seo_title', self.page_title)  # Añadido
+    page_title = getattr(self.context, 'seo_title', None)  # Añadido
+    if not page_title:
+        page_title = self.page_title
 
     tags = [
         dict(itemprop="name", content=page_title),
@@ -749,7 +751,9 @@ def _get_tags(self):
     if item is None:
         item = BaseItem(self.context, feed)
 
-    description = getattr(self.context, 'seo_description', item.description)  # Añadido
+    description = getattr(self.context, 'seo_description', None)  # Añadido
+    if not description:
+        description = item.description
 
     tags.extend(
         [
