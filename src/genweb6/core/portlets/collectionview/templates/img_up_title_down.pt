@@ -1,0 +1,30 @@
+<div class="portlet portlet-collection portlet-collection-iutd"
+     i18n:domain="plone"
+     tal:define="result_dicts view/result_dicts"
+     tal:condition="result_dicts"
+     tal:attributes="class string:portlet portlet-collection portlet-collection-iutd ${view/css_class}">
+
+    <block metal:use-macro="context/macros-genweb-portlet-collectionview/title"></block>
+
+    <ul class="ps-0 mb-2 row">
+
+            <tal:item tal:repeat="obj result_dicts">
+
+                <block metal:use-macro="context/macros-genweb-portlets/img_up_title_down"></block>
+
+                <span tal:condition="view/show_time" class="smaller" style="font-weight:bold;">
+                    Termini:
+                    <time class="smaller" style="font-weight:normal;"
+                        tal:content="obj/date">
+                        Date
+                    </time>
+                </span>
+
+            </tal:item>
+
+
+    </ul>
+
+    <block metal:use-macro="context/macros-genweb-portlet-collectionview/more_info"></block>
+
+</div>

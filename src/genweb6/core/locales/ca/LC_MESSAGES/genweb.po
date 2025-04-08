@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacats Esquerra"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1297
+#: ../patches.py:1301
 msgid "7days_events"
 msgstr "Esdeveniments en els 7 dies vinents."
 
@@ -101,6 +101,10 @@ msgstr "Acordió"
 #: ../profiles/default/types/genweb.core.accordiontabs.xml
 msgid "Acordió / Pestanyes"
 msgstr "Acordió / Pestanyes"
+
+#: ../portlets/collectionview/collectionview.py:405
+msgid "Add Collection View Portlet"
+msgstr ""
 
 #: ../portlets/esdeveniments/esdeveniments.py:232
 msgid "Add Events Portlet"
@@ -286,6 +290,7 @@ msgstr "Canvis cancelats"
 msgid "Changes saved"
 msgstr "Canvis desats"
 
+#: ../portlets/collectionview/collectionview.py:132
 #: ../portlets/multiviewcollection/multiviewcollection.py:132
 msgid "Choose how the portlet must be rendered"
 msgstr "Seleccioni com es mostrarà el portlet"
@@ -338,7 +343,7 @@ msgstr "Configura el contingut intern"
 msgid "Configuracions"
 msgstr "Configuracions"
 
-#: ../patches.py:819
+#: ../patches.py:823
 msgid "Connections"
 msgstr "Connexions"
 
@@ -374,7 +379,7 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
@@ -383,7 +388,7 @@ msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiat"
 msgstr "Copiat!"
 
@@ -466,6 +471,10 @@ msgstr "EXTERN: URL de la pàgina a mostrar"
 #: ../profiles/default/types/Logos_Container.xml
 msgid "Edit"
 msgstr "Edita"
+
+#: ../portlets/collectionview/collectionview.py:416
+msgid "Edit Collection View Portlet"
+msgstr ""
 
 #: ../portlets/esdeveniments/esdeveniments.py:241
 msgid "Edit Events Portlet"
@@ -563,6 +572,7 @@ msgstr "Seleccioni com es mostraran les notícies"
 msgid "Events"
 msgstr "Agenda"
 
+#: ../portlets/collectionview/collectionview.py:123
 #: ../portlets/multiviewcollection/multiviewcollection.py:123
 msgid "Exclude the Current Context"
 msgstr "Excloure el context actual"
@@ -593,6 +603,7 @@ msgstr "Fer el títol enllaçable cap a una altra web. NOTA: Si aquest camp est�
 msgid "File Types"
 msgstr "Tipus de fitxers"
 
+#: ../portlets/collectionview/collectionview.py:90
 #: ../portlets/multiviewcollection/multiviewcollection.py:90
 msgid "Find the collection which provides the items to list"
 msgstr "Seleccioni la col·lecció."
@@ -630,21 +641,25 @@ msgstr "Frase publicitària"
 msgid "Full News"
 msgstr "Notícies amb foto"
 
+#: ../portlets/collectionview/collectionview.py:46
 #: ../portlets/fullnews/fullnews.py:25
 #: ../portlets/multiviewcollection/multiviewcollection.py:46
 msgid "Full view"
 msgstr "Amplada total"
 
+#: ../portlets/collectionview/collectionview.py:49
 #: ../portlets/fullnews/fullnews.py:26
 #: ../portlets/multiviewcollection/multiviewcollection.py:49
 msgid "Full2cols view"
 msgstr "Amplada total a dues columnes: dues columnes amb imatge a dalt i text a sota"
 
+#: ../portlets/collectionview/collectionview.py:52
 #: ../portlets/fullnews/fullnews.py:27
 #: ../portlets/multiviewcollection/multiviewcollection.py:52
 msgid "Full3cols view"
 msgstr "Amplada total a tres columnes: tres columnes amb imatge a dalt i text a sota"
 
+#: ../portlets/collectionview/collectionview.py:55
 #: ../portlets/fullnews/fullnews.py:28
 #: ../portlets/multiviewcollection/multiviewcollection.py:55
 msgid "Full4cols view"
@@ -654,11 +669,11 @@ msgstr "Amplada total a quatre columnes: quatre columnes amb imatge a dalt i tex
 msgid "FullNews"
 msgstr "Notícies amb foto"
 
-#: ../patches.py:818
+#: ../patches.py:822
 msgid "Genweb Advanced"
 msgstr "Genweb Avançats"
 
-#: ../patches.py:817
+#: ../patches.py:821
 msgid "Genweb Configuration"
 msgstr "Configuració Genweb"
 
@@ -729,18 +744,22 @@ msgstr "Icona que es mostrarà al costat del títol, podeu trobar tots els ident
 msgid "Identitat Digital Settings"
 msgstr "Configuració Identitat Digital"
 
+#: ../portlets/collectionview/collectionview.py:109
 #: ../portlets/multiviewcollection/multiviewcollection.py:109
 msgid "If enabled, a more... link will appear in the footer of the portlet, linking to the underlying Collection."
 msgstr "Si es selecciona, un enllaç indicant Més... es mostrarà al peu del portlet."
 
+#: ../portlets/collectionview/collectionview.py:117
 #: ../portlets/multiviewcollection/multiviewcollection.py:117
 msgid "If enabled, effective dates will be shown underneath the items listed."
 msgstr "Si es selecciona, es mostraran les dates efectives sota els elements. "
 
+#: ../portlets/collectionview/collectionview.py:102
 #: ../portlets/multiviewcollection/multiviewcollection.py:102
 msgid "If enabled, items will be selected randomly from the collection, rather than based on its sort order."
 msgstr "Si es selecciona, es cercaran elements de manera aleatòria, sense cap ordre."
 
+#: ../portlets/collectionview/collectionview.py:124
 #: ../portlets/multiviewcollection/multiviewcollection.py:124
 msgid "If enabled, the listing will not include the current item the portlet is rendered for if it otherwise would be."
 msgstr "Si es selecciona, el llistat no mostrarà l'element actual."
@@ -838,6 +857,7 @@ msgstr "L'interval de temps ha d'estar entre 5000 i 60000 ms"
 msgid "Lead Image Caption"
 msgstr "Llegenda de la imatge principal"
 
+#: ../portlets/collectionview/collectionview.py:95
 #: ../portlets/multiviewcollection/multiviewcollection.py:95
 msgid "Limit"
 msgstr "Límit"
@@ -846,6 +866,7 @@ msgstr "Límit"
 msgid "Link"
 msgstr "Enllaç"
 
+#: ../portlets/collectionview/collectionview.py:40
 #: ../portlets/multiviewcollection/multiviewcollection.py:40
 msgid "List view"
 msgstr "Vista de llista"
@@ -894,6 +915,7 @@ msgstr "Marca com a important"
 msgid "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
 msgstr "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
 
+#: ../portlets/collectionview/collectionview.py:76
 #: ../portlets/multiviewcollection/multiviewcollection.py:76
 #: ../portlets/new_existing_content/new_existing_content.py:79
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
@@ -949,6 +971,7 @@ msgstr "Més informació"
 msgid "Mostra data?"
 msgstr "Mostrar data?"
 
+#: ../portlets/collectionview/collectionview.py:75
 #: ../portlets/multiviewcollection/multiviewcollection.py:75
 #: ../portlets/new_existing_content/new_existing_content.py:78
 msgid "Mostra el títol?"
@@ -971,6 +994,7 @@ msgstr "Mostrar títol"
 msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 msgstr "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 
+#: ../portlets/collectionview/collectionview.py:61
 #: ../portlets/fullnews/fullnews.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:61
 msgid "Multiple carousel view"
@@ -1000,6 +1024,7 @@ msgstr "Nom de l’apartat [ES]"
 msgid "Només text"
 msgstr "Només títol"
 
+#: ../portlets/collectionview/collectionview.py:43
 #: ../portlets/fullnews/fullnews.py:24
 #: ../portlets/multiviewcollection/multiviewcollection.py:43
 msgid "Normal view"
@@ -1111,6 +1136,7 @@ msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"
 msgstr "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 
 #: ../portlets/banners/banners.py:29
+#: ../portlets/collectionview/collectionview.py:70
 #: ../portlets/multiviewcollection/multiviewcollection.py:70
 msgid "Portlet header"
 msgstr "Capçalera del portlet"
@@ -1202,14 +1228,17 @@ msgstr "Selecciona una opció"
 msgid "Select an existing content"
 msgstr "Selecciona un contingut existent"
 
+#: ../portlets/collectionview/collectionview.py:101
 #: ../portlets/multiviewcollection/multiviewcollection.py:101
 msgid "Select random items"
 msgstr "Selecciona elements en ordre aleatori"
 
+#: ../portlets/collectionview/collectionview.py:116
 #: ../portlets/multiviewcollection/multiviewcollection.py:116
 msgid "Show dates"
 msgstr "Mostrar dates"
 
+#: ../portlets/collectionview/collectionview.py:108
 #: ../portlets/multiviewcollection/multiviewcollection.py:108
 msgid "Show more... link"
 msgstr "Mostra l'enllaç 'Veure més...'"
@@ -1226,11 +1255,13 @@ msgstr "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
 msgid "Signatura"
 msgstr "Signatura"
 
+#: ../portlets/collectionview/collectionview.py:58
 #: ../portlets/fullnews/fullnews.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:58
 msgid "Simple carousel view"
 msgstr "Carrusel amb una imatge en pantalla"
 
+#: ../portlets/collectionview/collectionview.py:96
 #: ../portlets/multiviewcollection/multiviewcollection.py:96
 msgid "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
 msgstr "Inidicar el màxim número d'elements a mostrar al portlet. Deixar en blanc per mostar-ho tot."
@@ -1259,6 +1290,7 @@ msgstr "Camp etiquetes"
 msgid "Tags field description"
 msgstr "Etiquetes sobre les que es farà la cerca. Si no es selecciona cap, no es tindrà en compte cap etiqueta."
 
+#: ../portlets/collectionview/collectionview.py:89
 #: ../portlets/multiviewcollection/multiviewcollection.py:89
 msgid "Target collection"
 msgstr "Col.leccío d'etiquetes"
@@ -1304,6 +1336,7 @@ msgstr "Aquest behavior afegeix camps addicionals a un tipus de contingut per a 
 msgid "This is an inner link"
 msgstr "Aquest és un enllaç intern"
 
+#: ../portlets/collectionview/collectionview.py:406
 #: ../portlets/multiviewcollection/multiviewcollection.py:397
 msgid "This portlet displays a listing of items from a Collection."
 msgstr "Aquest portlet mostra un llistat d'elements d'una col.lecció"
@@ -1388,6 +1421,7 @@ msgid "Title"
 msgstr "Títol"
 
 #: ../portlets/banners/banners.py:30
+#: ../portlets/collectionview/collectionview.py:71
 #: ../portlets/multiviewcollection/multiviewcollection.py:71
 msgid "Title of the rendered portlet"
 msgstr "Títol del portlet renderitzat"
@@ -1459,6 +1493,7 @@ msgstr "Tipus de vista del contingut"
 msgid "View as description"
 msgstr "Indica el tipus de vista dels destacats"
 
+#: ../portlets/collectionview/collectionview.py:131
 #: ../portlets/multiviewcollection/multiviewcollection.py:131
 msgid "View type"
 msgstr "Tipus de vista"
@@ -1493,7 +1528,7 @@ msgid "alert_really_delete_contents"
 msgstr "Segur que vols eliminar aquests continguts?"
 
 #. Default: "All events"
-#: ../patches.py:1282
+#: ../patches.py:1286
 msgid "all_events"
 msgstr "Tots els esdeveniments"
 
@@ -1579,22 +1614,22 @@ msgid "enabled"
 msgstr "Habilitat"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1298
+#: ../patches.py:1302
 msgid "events_from_until"
 msgstr "${from} fins el ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1362
+#: ../patches.py:1366
 msgid "events_in_month"
 msgstr "Esdeveniments ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1335
+#: ../patches.py:1339
 msgid "events_in_week"
 msgstr "Esdeveniments en la setmana ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1320
+#: ../patches.py:1324
 msgid "events_on_day"
 msgstr "Esdeveniments en ${day}"
 
@@ -1603,7 +1638,7 @@ msgid "folder contents"
 msgstr "Continguts directori"
 
 #. Default: "Future events"
-#: ../patches.py:1288
+#: ../patches.py:1292
 msgid "future_events"
 msgstr "Propers esdeveniments"
 
@@ -1842,7 +1877,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:844
+#: ../patches.py:848
 msgid "label_add_new_item"
 msgstr "Afegeix..."
 
@@ -1852,7 +1887,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:841
+#: ../patches.py:845
 msgid "label_choose_template"
 msgstr "Vistes"
 
@@ -1983,8 +2018,8 @@ msgstr "Més notícies"
 
 #. Default: "More"
 #: ../portlets/collection/collection.pt:59
+#: ../portlets/collectionview/templates/macros.pt:22
 #: ../portlets/multiviewcollection/templates/macros.pt:22
-#: ../templates/plone.app.portlets.portlets.rss.pt:42
 msgid "more_url"
 msgstr "Veure més"
 
@@ -2015,9 +2050,13 @@ msgid "open_link_in_new_window"
 msgstr "Obrir en una finestra nova"
 
 #. Default: "Past events"
-#: ../patches.py:1285
+#: ../patches.py:1289
 msgid "past_events"
 msgstr "Esdeveniments passats"
+
+#: ../profiles/default/portlets.xml
+msgid "portlet_collectionview"
+msgstr "Col·lecció d'esdeveniments"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_banners_title"
@@ -2124,12 +2163,12 @@ msgid "today_link"
 msgstr "Avui"
 
 #. Default: "Todays events"
-#: ../patches.py:1294
+#: ../patches.py:1298
 msgid "todays_events"
 msgstr "Esdeveniments per avui"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1291
+#: ../patches.py:1295
 msgid "todays_upcoming_events"
 msgstr "Propers esdeveniments per avui"
 

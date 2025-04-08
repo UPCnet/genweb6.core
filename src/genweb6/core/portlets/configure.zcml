@@ -111,6 +111,22 @@
         />
 
     <plone:portlet
+        name="genweb.portlets.collection_view"
+        interface=".collectionview.collectionview.ICollectionViewPortlet"
+        assignment=".collectionview.collectionview.Assignment"
+        renderer=".collectionview.collectionview.Renderer"
+        addview=".collectionview.collectionview.AddForm"
+        editview=".collectionview.collectionview.EditForm"
+        />
+
+    <browser:page
+        name="macros-genweb-portlet-collectionview"
+        for="*"
+        permission="zope.Public"
+        template="collectionview/templates/macros.pt"
+        />
+
+    <plone:portlet
         name="genweb.portlets.new_existing_content"
         interface=".new_existing_content.new_existing_content.INewContentPortlet"
         assignment=".new_existing_content.new_existing_content.Assignment"

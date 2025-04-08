@@ -1,0 +1,18 @@
+<div class="portlet portlet-collection template-multiple-carousel"
+     i18n:domain="plone"
+     tal:attributes="class string:portlet portlet-collection template-multiple-carousel ${view/css_class}"
+     tal:define="result_dicts view/result_dicts;
+                 id_carousel string:carousel-collection-${view/token}"
+     tal:condition="result_dicts">
+
+    <block metal:use-macro="context/macros-genweb-portlet-collectionview/title"></block>
+
+    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel"></block>
+
+    <block metal:use-macro="context/macros-genweb-portlet-collectionview/more_info"></block>
+
+    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+
+</div>
+
+

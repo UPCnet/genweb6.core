@@ -187,6 +187,12 @@
         />
 
     <portlet
+        addview="genweb.portlets.collection_view"
+        title="portlet_collectionview"
+        i18n:attributes="title"
+        />
+
+    <portlet
         addview="genweb.portlets.new_existing_content"
         title="Nou Contingut existent"
         i18n:attributes="title"
