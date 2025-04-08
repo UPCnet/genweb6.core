@@ -111,19 +111,12 @@
         />
 
     <plone:portlet
-        name="genweb.portlets.collection_view"
-        interface=".collectionview.collectionview.ICollectionViewPortlet"
-        assignment=".collectionview.collectionview.Assignment"
-        renderer=".collectionview.collectionview.Renderer"
-        addview=".collectionview.collectionview.AddForm"
-        editview=".collectionview.collectionview.EditForm"
-        />
-
-    <browser:page
-        name="macros-genweb-portlet-collectionview"
-        for="*"
-        permission="zope.Public"
-        template="collectionview/templates/macros.pt"
+        name="genweb.portlets.multiview_collection_events"
+        interface=".multiviewcollectionevents.multiviewcollectionevents.IMultiviewCollectionEventsPortlet"
+        assignment=".multiviewcollectionevents.multiviewcollectionevents.Assignment"
+        renderer=".multiviewcollectionevents.multiviewcollectionevents.Renderer"
+        addview=".multiviewcollectionevents.multiviewcollectionevents.AddForm"
+        editview=".multiviewcollectionevents.multiviewcollectionevents.EditForm"
         />
 
     <plone:portlet

@@ -187,8 +187,8 @@
         />
 
     <portlet
-        addview="genweb.portlets.collection_view"
-        title="portlet_collectionview"
+        addview="genweb.portlets.multiview_collection_events"
+        title="portlet_multiviewcollectionevents_title"
         i18n:attributes="title"
         />
 

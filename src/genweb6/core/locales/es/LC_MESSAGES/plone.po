@@ -37,6 +37,9 @@ msgstr "Bienvenido"
 msgid "portlet_multiviewcollection_title"
 msgstr "Colección multivista"
 
+msgid "portlet_multiviewcollectionevents"
+msgstr "Colección multivista de eventos"
+
 msgid "Nou Contingut existent"
 msgstr "Contenido existente"
 

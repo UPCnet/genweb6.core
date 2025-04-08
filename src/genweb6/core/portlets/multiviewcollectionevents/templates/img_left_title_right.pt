@@ -4,7 +4,7 @@
      tal:condition="result_dicts"
      tal:attributes="class string:portlet portlet-collection portlet-collection-iltr ${view/css_class}">
 
-    <block metal:use-macro="context/macros-genweb-portlet-collectionview/title"></block>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
     <ul class="list-group list-group-flush mb-2">
 
@@ -20,10 +20,10 @@
                 </time>
             </span>
 
-            </tal:item>
+        </tal:item>
 
     </ul>
 
-    <block metal:use-macro="context/macros-genweb-portlet-collectionview/more_info"></block>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
 
 </div>

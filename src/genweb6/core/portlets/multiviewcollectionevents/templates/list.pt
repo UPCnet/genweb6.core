@@ -4,7 +4,7 @@
      tal:condition="results"
      tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
-    <block metal:use-macro="context/macros-genweb-portlet-collectionview/title"></block>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
 
     <ul class="list-group list-group-flush mb-2"
         tal:define="plone_view context/@@plone;
@@ -24,7 +24,7 @@
                     <span tal:replace="obj/title_or_id">Title</span>
                 </a>
             <span tal:condition="view/show_time" class="smaller" style="font-weight:bold;">
-                Termini: 
+                Termini:
                 <time tal:condition="view/show_time" class="smaller" style="font-weight:normal;"
                     tal:define="date_item python:obj.end if obj.end else obj.modified"
                     tal:content="python:toLocalizedTime(date_item)">
@@ -37,6 +37,6 @@
 
     </ul>
 
-    <block metal:use-macro="context/macros-genweb-portlet-collectionview/more_info"></block>
+    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
 
 </div>

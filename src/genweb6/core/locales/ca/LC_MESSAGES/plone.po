@@ -121,6 +121,8 @@ msgstr "Canal RSS avançat"
 msgid "homepage"
 msgstr "Pàgina principal"
 
+msgid "portlet_multiviewcollectionevents"
+msgstr "Col·lecció multi-vista d'esdeveniments"
 
 #. Default: "Related content"
 #: plone.app.layout/plone/app/layout/viewlets/document_relateditems.pt:14
