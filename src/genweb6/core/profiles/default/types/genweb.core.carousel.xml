@@ -10,6 +10,7 @@
     <property name="filter_content_types">True</property>
     <property name="allowed_content_types">
         <element value="Image"/>
+        <element value="Link"/>
     </property>
 
     <property name="schema">genweb6.core.content.carousel.carousel.ICarousel</property>

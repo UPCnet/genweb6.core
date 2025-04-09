@@ -84,7 +84,8 @@
                                 <a class="title d-block text-decoration-none"
                                    tal:condition="context/carousel_show_title"
                                    tal:attributes="href content/url;
-                                                   title content/title">
+                                                   title content/title;
+                                                   target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
                                     <h5 class="text-truncate"
                                         tal:content="content/title">Title</h5>
                                 </a>
@@ -137,7 +138,8 @@
 
                                         <a href="#" class="title d-block text-decoration-none"
                                            tal:attributes="href content/url;
-                                                           title content/title">
+                                                           title content/title;
+                                                           target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
 
                                             <img class="d-block w-100" loading="lazy"
                                                 tal:condition="context/carousel_enable_auto_proportions"
@@ -159,7 +161,8 @@
                                         <a href="#" class="title d-block text-decoration-none"
                                            tal:condition="context/carousel_show_title"
                                            tal:attributes="href content/url;
-                                                           title content/title">
+                                                           title content/title;
+                                                           target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
 
                                             <h6 tal:content="content/title">Title</h6>
                                         </a>

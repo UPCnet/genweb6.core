@@ -151,7 +151,8 @@ class Carousel(Container):
             'id': elem.id.replace('.', '-'),
             'title': elem.title,
             'description': elem.description,
-            'url': elem.absolute_url() + '/view'}
+            'url': elem.absolute_url() + '/view',
+            'open_link_in_new_window': getattr(elem, 'open_link_in_new_window', False)}
 
         if self.carousel_type == 'complex':
             result.update({'image': elem.absolute_url() + '/@@images/image/preview' if getattr(elem, 'image', False) else '++theme++genweb6.theme/img/sample/default_image.webp'})
