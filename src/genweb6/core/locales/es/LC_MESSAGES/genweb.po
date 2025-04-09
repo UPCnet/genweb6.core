@@ -1289,11 +1289,9 @@ msgstr "Marcar importante"
 msgid "Tema"
 msgstr "Color"
 
-#: ../portlets/multiviewcollectionevents/templates/img_left_title_right.pt:16
-#: ../portlets/multiviewcollectionevents/templates/img_up_title_down.pt:16
-#: ../portlets/multiviewcollectionevents/templates/list.pt:27
+#: ../portlets/multiviewcollectionevents/templates/list.pt:28
 msgid "Termini:"
-msgstr ""
+msgstr "Fecha límite:"
 
 #: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"

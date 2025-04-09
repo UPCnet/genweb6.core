@@ -70,7 +70,7 @@
 
 </metal:block>
 
-<metal:block metal:define-macro="it-txt-without-date" i18n:domain="plone">
+<metal:block metal:define-macro="it-txt-event" i18n:domain="plone">
 
     <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
        tal:content="obj/description">Description summary</p>
@@ -82,10 +82,17 @@
         <span tal:replace="obj/title">Title</span>
     </a>
 
+    <span tal:condition="view/show_time" class="time fs-s fw-bold" >
+        <span i18n:domain="genweb" i18n:translate="">Termini:</span>
+        <time class="fw-light"
+            tal:content="obj/date">
+            Date
+        </time>
+    </span>
 
 </metal:block>
 
-<metal:block metal:define-macro="img_left_title_right_without_date" i18n:domain="plone">
+<metal:block metal:define-macro="img_left_title_right_event" i18n:domain="plone">
 
     <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
 
@@ -94,14 +101,14 @@
         </div>
 
         <div class="txt col-md-7">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt-without-date"></block>
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt-event"></block>
         </div>
     </li>
 
 </metal:block>
 
 
-<metal:block metal:define-macro="img_up_title_down_without_date" i18n:domain="plone">
+<metal:block metal:define-macro="img_up_title_down_event" i18n:domain="plone">
 
     <li tal:attributes="class string:mt-2 mb-3 contenttype-${obj/portal_type} col-md-${obj/col}">
 
@@ -110,7 +117,7 @@
         </div>
 
         <div class="txt">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt-without-date"></block>
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt-event"></block>
         </div>
     </li>
 

@@ -1286,11 +1286,9 @@ msgstr "Indica si un element està marcat com a important"
 msgid "Tema"
 msgstr "Tema"
 
-#: ../portlets/multiviewcollectionevents/templates/img_left_title_right.pt:16
-#: ../portlets/multiviewcollectionevents/templates/img_up_title_down.pt:16
-#: ../portlets/multiviewcollectionevents/templates/list.pt:27
+#: ../portlets/multiviewcollectionevents/templates/list.pt:28
 msgid "Termini:"
-msgstr ""
+msgstr "Termini:"
 
 #: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"
