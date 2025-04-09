@@ -121,7 +121,7 @@ msgstr "Canal RSS avançat"
 msgid "homepage"
 msgstr "Pàgina principal"
 
-msgid "portlet_multiviewcollectionevents"
+msgid "portlet_multiviewcollectionevents_title"
 msgstr "Col·lecció multi-vista d'esdeveniments"
 
 #. Default: "Related content"

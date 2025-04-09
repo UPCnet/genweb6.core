@@ -102,7 +102,7 @@ msgstr "Acordió"
 msgid "Acordió / Pestanyes"
 msgstr "Acordió / Pestanyes"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:177
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:192
 msgid "Add Event Multi-view Collection Portlet"
 msgstr "Afegir portlet de col·lecció multivista d'esdeveniments"
 
@@ -379,7 +379,7 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
@@ -388,7 +388,7 @@ msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiat"
 msgstr "Copiat!"
 
@@ -472,7 +472,7 @@ msgstr "EXTERN: URL de la pàgina a mostrar"
 msgid "Edit"
 msgstr "Edita"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:188
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:203
 msgid "Edit Event Multi-view Collection Portlet"
 msgstr "Edita portlet de col·lecció multivista d'esdeveniments"
 
@@ -1286,6 +1286,12 @@ msgstr "Indica si un element està marcat com a important"
 msgid "Tema"
 msgstr "Tema"
 
+#: ../portlets/multiviewcollectionevents/templates/img_left_title_right.pt:16
+#: ../portlets/multiviewcollectionevents/templates/img_up_title_down.pt:16
+#: ../portlets/multiviewcollectionevents/templates/list.pt:27
+msgid "Termini:"
+msgstr ""
+
 #: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"
 msgstr "Text alternatiu de la imatge"
@@ -1319,7 +1325,7 @@ msgstr "Aquest behavior afegeix camps addicionals a un tipus de contingut per a 
 msgid "This is an inner link"
 msgstr "Aquest és un enllaç intern"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:178
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:193
 msgid "This portlet displays a listing of items from a Collection of events."
 msgstr "Aquest portlet mostra un llistat d'elements d'una col·lecció d'esdeveniments"
 

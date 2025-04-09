@@ -119,6 +119,7 @@
         editview=".multiviewcollectionevents.multiviewcollectionevents.EditForm"
         />
 
+
     <plone:portlet
         name="genweb.portlets.new_existing_content"
         interface=".new_existing_content.new_existing_content.INewContentPortlet"

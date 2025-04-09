@@ -10,11 +10,11 @@
 
         <tal:item tal:repeat="obj result_dicts">
 
-            <block metal:use-macro="context/macros-genweb-portlets/img_left_title_right"></block>
+            <block metal:use-macro="context/macros-genweb-portlets/img_left_title_right_without_date"></block>
 
-            <span tal:condition="view/show_time" class="smaller" style="font-weight:bold;">
-                Termini:
-                <time class="smaller" style="font-weight:normal;"
+            <span tal:condition="view/show_time" class="fw-bold">
+                <span i18n:domain="genweb" i18n:translate="">Termini:</span>
+                <time class="fw-light" 
                     tal:content="obj/date">
                     Date
                 </time>

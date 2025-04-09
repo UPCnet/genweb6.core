@@ -23,11 +23,10 @@
 
                     <span tal:replace="obj/title_or_id">Title</span>
                 </a>
-            <span tal:condition="view/show_time" class="smaller" style="font-weight:bold;">
-                Termini:
-                <time tal:condition="view/show_time" class="smaller" style="font-weight:normal;"
-                    tal:define="date_item python:obj.end if obj.end else obj.modified"
-                    tal:content="python:toLocalizedTime(date_item)">
+            <span tal:condition="view/show_time" class="fw-bold" >
+                <span i18n:domain="genweb" i18n:translate="">Termini:</span>
+                <time tal:condition="view/show_time" class="fw-light"
+                    tal:content="python:toLocalizedTime(obj.end)">
                     Date
                 </time>
             </span>

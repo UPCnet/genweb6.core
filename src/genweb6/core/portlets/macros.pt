@@ -70,4 +70,50 @@
 
 </metal:block>
 
+<metal:block metal:define-macro="it-txt-without-date" i18n:domain="plone">
+
+    <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
+       tal:content="obj/description">Description summary</p>
+
+    <a href="#" class="title d-block text-decoration-none"
+       tal:attributes="href obj/url;
+                       title obj/title">
+
+        <span tal:replace="obj/title">Title</span>
+    </a>
+
+
+</metal:block>
+
+<metal:block metal:define-macro="img_left_title_right_without_date" i18n:domain="plone">
+
+    <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
+
+        <div class="img col-md-5">
+            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+        </div>
+
+        <div class="txt col-md-7">
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt-without-date"></block>
+        </div>
+    </li>
+
+</metal:block>
+
+
+<metal:block metal:define-macro="img_up_title_down_without_date" i18n:domain="plone">
+
+    <li tal:attributes="class string:mt-2 mb-3 contenttype-${obj/portal_type} col-md-${obj/col}">
+
+        <div class="img mb-2">
+            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+        </div>
+
+        <div class="txt">
+            <block metal:use-macro="context/macros-genweb-portlets/it-txt-without-date"></block>
+        </div>
+    </li>
+
+</metal:block>
+
 </html>

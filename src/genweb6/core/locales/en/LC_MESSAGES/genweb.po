@@ -102,7 +102,7 @@ msgstr "Accordion"
 msgid "Acordió / Pestanyes"
 msgstr "Accordion / Tabs"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:177
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:192
 msgid "Add Event Multi-view Collection Portlet"
 msgstr "Add Event Multi-view Collection Portlet"
 
@@ -379,7 +379,7 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Content that feeds the template"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
@@ -388,7 +388,7 @@ msgid "Copiar enllaç"
 msgstr "Copy link"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:195
+#: ../content/carousel/carousel.pt:198
 msgid "Copiat"
 msgstr "Copied!"
 
@@ -475,7 +475,7 @@ msgstr "EXTERNAL: URL of the page to display"
 msgid "Edit"
 msgstr "Edit"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:188
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:203
 msgid "Edit Event Multi-view Collection Portlet"
 msgstr "Edit Event Multi-view Collection Portlet"
 
@@ -1292,6 +1292,12 @@ msgstr "Tells if an object is marked as important"
 msgid "Tema"
 msgstr "Color"
 
+#: ../portlets/multiviewcollectionevents/templates/img_left_title_right.pt:16
+#: ../portlets/multiviewcollectionevents/templates/img_up_title_down.pt:16
+#: ../portlets/multiviewcollectionevents/templates/list.pt:27
+msgid "Termini:"
+msgstr ""
+
 #: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"
 msgstr "Alternative text of the image"
@@ -1325,7 +1331,7 @@ msgstr "This behavior adds extra fields to a Content Type for SEO optimisation"
 msgid "This is an inner link"
 msgstr "This is an inner link"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:178
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:193
 msgid "This portlet displays a listing of items from a Collection of events."
 msgstr "This portlet displays a listing of items from a Collection of events."
 
