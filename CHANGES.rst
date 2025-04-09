@@ -2,11 +2,15 @@ Changelog
 =========
 
 
-1.67 (unreleased)
+1.67 (2025-04-09)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] new event collection portlet [Iago López]
+* [ADD] new carousel with links [Clàudia Andreu]
+* [FIX] new events collection portlet [Clàudia Andreu]
+* [UPD] new event collection portlet [Iago López]
+* [ADD] new event collection portlet [Clàudia Andreu]
+* [FIX] SEO title y description [Iago López]
 
 1.66 (2025-03-26)
 -----------------
