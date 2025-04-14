@@ -437,6 +437,10 @@ msgstr "Mostrar imágenes"
 msgid "Document Image"
 msgstr "Página con imagen"
 
+#: ../profiles/default/actions.xml
+msgid "Documentació"
+msgstr "Documentación"
+
 #: ../content/existing_content/existing_content.py:171
 #: ../portlets/new_existing_content/new_existing_content.py:274
 msgid "ERROR. Charset undefined"
@@ -681,6 +685,10 @@ msgstr "Configuración Genweb"
 #: ../portlets/banners/banners.py:58
 msgid "Genweb banners"
 msgstr "Báners"
+
+#: ../profiles/default/actions.xml
+msgid "Genweb6"
+msgstr "Genweb6"
 
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:56
 msgid "Go to parent folder"
@@ -1289,6 +1297,7 @@ msgstr "Marcar importante"
 msgid "Tema"
 msgstr "Color"
 
+#: ../portlets/macros.pt:86
 #: ../portlets/multiviewcollectionevents/templates/list.pt:28
 msgid "Termini:"
 msgstr "Fecha límite:"
