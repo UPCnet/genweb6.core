@@ -1604,3 +1604,132 @@ def get_base_path(self, context):
         return '/'.join(getNavigationRoot(context).split('/')[:-1])
     else:
         return path
+
+
+from datetime import datetime
+from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
+from plone.app.event.base import _prepare_range
+from plone.app.event.base import construct_calendar
+from plone.app.event.base import expand_events
+from plone.app.event.base import get_events
+from plone.app.event.base import localized_today
+from plone.app.event.base import RET_MODE_OBJECTS
+from plone.app.event.base import start_end_query
+from plone.event.interfaces import IEventAccessor
+from plone.app.querystring import queryparser
+
+@property
+def cal_data(self):
+    """Calendar iterator over weeks and days of the month to display."""
+    context = aq_inner(self.context)
+    today = localized_today(context)
+    year, month = self.year_month_display()
+    monthdates = [dat for dat in self.cal.itermonthdates(year, month)]
+
+    start = monthdates[0]
+    end = monthdates[-1]
+
+    data = self.data
+    query = {}
+    if data.state:
+        query["review_state"] = data.state
+
+    events = []
+    query.update(self.request.get("contentFilter", {}))
+    if ISyndicatableCollection and ISyndicatableCollection.providedBy(
+        self.search_base
+    ):
+        # Whatever sorting is defined, we're overriding it.
+        query = queryparser.parseFormquery(
+            self.search_base,
+            self.search_base.query,
+            sort_on="start",
+            sort_order=None,
+        )
+
+        # restrict start/end with those from query, if given.
+        try:
+            if "start" in query and query["start"] > start:
+                start = query["start"]
+        except:
+            if "start" in query:
+                fixStart = datetime.strptime(query["start"]['query'].Date(), '%Y/%m/%d').date()
+                start = fixStart if fixStart > start else start
+
+        try:
+            if "end" in query and query["end"] < end:
+                end = query["end"]
+        except:
+            if "end" in query:
+                fixEnd = datetime.strptime(query["end"]['query'].Date(), '%Y/%m/%d').date()
+                end = fixStart if fixEnd < end else end
+
+        start, end = _prepare_range(self.search_base, start, end)
+        query.update(start_end_query(start, end))
+        events = self.search_base.results(
+            batch=False, brains=True, custom_query=query
+        )
+        events = expand_events(
+            events,
+            ret_mode=RET_MODE_OBJECTS,
+            start=start,
+            end=end,
+            sort="start",
+            sort_reverse=False,
+        )
+    else:
+        if self.search_base_path:
+            query["path"] = {"query": self.search_base_path}
+        events = get_events(
+            context,
+            start=start,
+            end=end,
+            ret_mode=RET_MODE_OBJECTS,
+            expand=True,
+            **query,
+        )
+
+    cal_dict = construct_calendar(events, start=start, end=end)
+
+    # [[day1week1, day2week1, ... day7week1], [day1week2, ...]]
+    caldata = [[]]
+    for dat in monthdates:
+        if len(caldata[-1]) == 7:
+            caldata.append([])
+        date_events = None
+        isodat = dat.isoformat()
+        if isodat in cal_dict:
+            date_events = cal_dict[isodat]
+
+        events_string_list = []
+        if date_events:
+            for occ in date_events:
+                accessor = IEventAccessor(occ)
+                location = accessor.location
+                whole_day = accessor.whole_day
+                time = accessor.start.time().strftime("%H:%M")
+                # TODO: make 24/12 hr format configurable
+                events_string_list.append(
+                    "{}{}{}{}".format(
+                        accessor.title,
+                        f" {time}" if not whole_day else "",
+                        ", " if not whole_day and location else "",
+                        f" {location}" if location else "",
+                    )
+                )
+
+        caldata[-1].append(
+            {
+                "date": dat,
+                "day": dat.day,
+                "prev_month": dat.month < month,
+                "next_month": dat.month > month,
+                "today": dat.year == today.year
+                and dat.month == today.month
+                and dat.day == today.day,
+                "date_string": f"{dat.year}-{dat.month}-{dat.day}",
+                "events_string": " | ".join(events_string_list),
+                "events": date_events,
+            }
+        )
+    return caldata

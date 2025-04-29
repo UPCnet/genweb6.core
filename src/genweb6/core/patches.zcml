@@ -245,4 +245,11 @@
         replacement=".patches.get_base_path"
         />
 
+    <monkey:patch
+        description="Sobreescribir cal_data para que funcione el portlet de calendario con colecciones"
+        class="plone.app.event.portlets.portlet_calendar.Renderer"
+        original="cal_data"
+        replacement=".patches.cal_data"
+        />
+
 </configure>
