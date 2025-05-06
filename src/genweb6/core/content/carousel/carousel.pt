@@ -55,7 +55,32 @@
                                                 aria-label content/title"></button>
                     </tal:item>
                 </div>
+        <div class="carousel-controls-overlay">
+                <button class="carousel-control-pause" type="button"
+                        tal:condition="carousel_enable_auto_start"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
 
+                    <i class="bi bi-pause-fill text-dark"></i>
+                    <span class="visually-hidden">Stop automatic slide show</span>
+
+                </button>
+
+                <button class="carousel-control-prev" type="button" data-bs-slide="prev"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+
+                    <i class="bi bi-arrow-left-short text-black"></i>
+                    <span class="visually-hidden">Previous</span>
+
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-slide="next"
+                        tal:attributes="data-bs-target string:#${id_carousel};">
+
+                    <i class="bi bi-arrow-right-short text-black"></i>
+                    <span class="visually-hidden">Next</span>
+
+                </button>
+            </div>
                 <div class="carousel-inner">
 
                     <tal:item tal:repeat="content contents">
@@ -96,30 +121,6 @@
                     </tal:item>
                 </div>
 
-                <button class="carousel-control-pause" type="button"
-                        tal:condition="carousel_enable_auto_start"
-                        tal:attributes="data-bs-target string:#${id_carousel};">
-
-                    <i class="bi bi-pause-fill text-dark"></i>
-                    <span class="visually-hidden">Stop automatic slide show</span>
-
-                </button>
-
-                <button class="carousel-control-prev" type="button" data-bs-slide="prev"
-                        tal:attributes="data-bs-target string:#${id_carousel};">
-
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-
-                </button>
-
-                <button class="carousel-control-next" type="button" data-bs-slide="next"
-                        tal:attributes="data-bs-target string:#${id_carousel};">
-
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-
-                </button>
             </div>
 
         </div>
