@@ -122,12 +122,13 @@
 
     <browser:viewlet
         name="genweb.contentleadimage"
-        for="plone.app.contenttypes.behaviors.leadimage.ILeadImage"
+        for="*"
         view="plone.app.layout.globals.interfaces.IViewView"
         manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-        class="plone.app.contenttypes.behaviors.viewlets.LeadImageViewlet"
+        class=".leadimage.CustomLeadImageViewlet"
         template="viewlets_templates/content/leadimage.pt"
         permission="zope2.View"
         />
+
 
 </configure>
