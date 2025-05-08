@@ -9,6 +9,9 @@ from plone.app.event.base import _obj_or_acc
 from plone.event.interfaces import IEvent
 from plone.event.interfaces import IEventRecurrence
 from plone.event.interfaces import IRecurrenceSupport
+from Products.PlonePAS.utils import safe_unicode
+from plone import api
+from collective.easyform import config
 
 
 def gw_expend_events(events, ret_mode, start=None, end=None, sort=None, sort_reverse=None):
@@ -94,3 +97,32 @@ def gw_hasScript(s):
         if t in s:
             return True
     return False
+
+
+
+
+
+def gw_default_mail_body():
+    """Default mail body for mailer action.
+    Acquire 'mail_body_default.pt' or return hard coded default
+    """
+    
+    import pkg_resources
+    content = pkg_resources.resource_string(
+        'genweb6.core', 
+        'templates/mail_body_default.pt'
+    )
+    GW_MAIL_BODY_DEFAULT = safe_unicode(content)
+
+    try:
+        portal = api.portal.get()
+    except api.exc.CannotGetPortalError:
+        return GW_MAIL_BODY_DEFAULT
+
+    mail_body_default = portal.restrictedTraverse(
+        "easyform_mail_body_default.pt", default=None
+    )
+    if mail_body_default:
+        return safe_unicode(mail_body_default.file.data)
+    else:
+        return GW_MAIL_BODY_DEFAULT

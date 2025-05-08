@@ -4,6 +4,8 @@ from Products.PortalTransforms.transforms.safe_html import hasScript
 from plone.app.event.base import expand_events
 from plone.protect.monkey import marmoset_patch
 from zope.i18nmessageid import MessageFactory
+from collective.easyform.interfaces.mailer import default_mail_body
+from genweb6.core.marmoset import gw_default_mail_body
 
 from genweb6.core.marmoset import gw_expend_events
 from genweb6.core.marmoset import gw_hasScript
@@ -80,3 +82,5 @@ def uninstall_pre_commit_hook(argv=sys.argv):
 
 marmoset_patch(expand_events, gw_expend_events)
 marmoset_patch(hasScript, gw_hasScript)
+
+marmoset_patch(default_mail_body, gw_default_mail_body)
