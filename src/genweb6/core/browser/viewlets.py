@@ -581,22 +581,23 @@ class socialtoolsViewlet(viewletBase):
             return super(viewletBase, self).render()
         return ""
 
-    @memoize
     def data(self):
-        title = self.context.title
+        real_context = getattr(self.context, '__parent__', self.context)
 
-        # En caso de que no tenga título el contenido comprobamos si es un fichero o una
-        # imagen para pillar el nombre del anexo
+        title = getattr(real_context, 'title', '') or getattr(real_context, 'Title', '')
         if not title:
-            if IFile.providedBy(self.context) or IImage.providedBy(self.context):
+            if IFile.providedBy(real_context) or IImage.providedBy(real_context):
                 try:
-                    title = self.context.file.filename
-                except:
-                   return []
-            else:
-                return []
-
-        url = self.root_url() + '/resolveuid/' + IUUID(self.context)
+                    title = real_context.file.filename
+                except AttributeError:
+                    pass
+            if not title:
+                title = getattr(real_context, 'id', 'Contingut') 
+        try:
+            uid = IUUID(real_context)
+            url = self.root_url() + '/resolveuid/' + uid
+        except Exception:
+            url = real_context.absolute_url()
 
         return [
                {
