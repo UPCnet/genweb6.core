@@ -26,10 +26,7 @@
         tal:attributes="href python:'%s/@@download/image' % context.absolute_url()">
     </a>
   </div>
-
-  <script type="text/javascript"
-          tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/contents/document_image.min.js"></script>
-
+  
 </metal:block>
 </metal:content-core>
 
