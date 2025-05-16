@@ -112,9 +112,9 @@
 
         <div id="portal-searchbox" class="nav-item" i18n:domain="plone">
 
-            <block tal:define="id_searchBox string:"
-                metal:use-macro="context/macros-genweb-searchBox/search"></block>
-
+            <tal:block tal:define="id_searchBox string:"
+                metal:use-macro="context/@@macros-genweb-searchBox/search"></tal:block>
+            <metal:use-macro use-macro="context/@@macros-genweb-searchBox/search"></metal:use-macro>
         </div>
 
         <div id="portal-navbar-mobile" class="d-none ms-auto" role="navigation">
@@ -147,8 +147,8 @@
 
                                 <div id="portal-searchbox-mobile" class="nav-item" i18n:domain="plone">
 
-                                    <block tal:define="id_searchBox string:_mobile"
-                                        metal:use-macro="context/macros-genweb-searchBox/search"></block>
+                                    <tal:block tal:define="id_searchBox string:_mobile"
+                                        metal:use-macro="context/@@macros-genweb-searchBox/search"></tal:block>
 
                                 </div>
 

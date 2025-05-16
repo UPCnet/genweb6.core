@@ -1,1 +1,1 @@
-<block metal:use-macro="context/macros-genweb-hero/content"></block>
+<tal:block metal:use-macro="context/@@macros-genweb-hero/content"></tal:block>
