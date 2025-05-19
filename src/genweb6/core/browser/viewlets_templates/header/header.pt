@@ -114,7 +114,6 @@
 
             <tal:block tal:define="id_searchBox string:"
                 metal:use-macro="context/@@macros-genweb-searchBox/search"></tal:block>
-            <metal:use-macro use-macro="context/@@macros-genweb-searchBox/search"></metal:use-macro>
         </div>
 
         <div id="portal-navbar-mobile" class="d-none ms-auto" role="navigation">

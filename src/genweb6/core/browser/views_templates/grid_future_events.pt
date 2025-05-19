@@ -37,10 +37,10 @@
                         <i tal:condition="item/showflip" class="event-flip fa fa-repeat" aria-hidden="true"></i>
                         <span class="event-time">
                           <span class="event-time--wrap" tal:define="type item/dateType">
-                            <block metal:use-macro="context/macros-genweb/sameday_samemonth"></block>
-                            <block metal:use-macro="context/macros-genweb/difday_samemonth"></block>
-                            <block metal:use-macro="context/macros-genweb/difday_difmonth"></block>
-                            <block metal:use-macro="context/macros-genweb/difday_difyear"></block>
+                            <tal:block metal:use-macro="context/@@macros-genweb/sameday_samemonth"></tal:block>
+                            <tal:block metal:use-macro="context/@@macros-genweb/difday_samemonth"></tal:block>
+                            <tal:block metal:use-macro="context/@@macros-genweb/difday_difmonth"></tal:block>
+                            <tal:block metal:use-macro="context/@@macros-genweb/difday_difyear"></tal:block>
                           </span>
                         </span>
                         <h2 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h2>

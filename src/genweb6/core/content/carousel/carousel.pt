@@ -190,7 +190,7 @@
                     </a>
                 </div>
             </div>
-            <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-carousel/multiple_carousel_js"></tal:block>
         </div>
     </div>
 

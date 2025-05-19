@@ -21,61 +21,61 @@
 
   <metal:block metal:define-macro="firstday">
     <time class='event-days' tal:define="day item/firstday; month item/firstmonth">
-      <block metal:use-macro="context/macros-genweb/time"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/time"></tal:block>
     </time>
   </metal:block>
 
   <metal:block metal:define-macro="firstdayyear">
     <time class='event-days' tal:define="day item/firstday; month item/firstmonth; year item/firstyear">
-      <block metal:use-macro="context/macros-genweb/timeyear"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/timeyear"></tal:block>
     </time>
   </metal:block>
 
   <metal:block metal:define-macro="firstdayonly">
     <time class='event-days' tal:define="day item/firstday;">
-      <block metal:use-macro="context/macros-genweb/day"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/day"></tal:block>
     </time>
   </metal:block>
 
   <metal:block metal:define-macro="lastday">
     <time class='event-days' tal:define="day item/lastday; month item/lastmonth">
-      <block metal:use-macro="context/macros-genweb/time"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/time"></tal:block>
     </time>
   </metal:block>
 
   <metal:block metal:define-macro="lastdayyear">
     <time class='event-days' tal:define="day item/lastday; month item/lastmonth; year item/lastyear">
-      <block metal:use-macro="context/macros-genweb/timeyear"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/timeyear"></tal:block>
     </time>
   </metal:block>
 
   <metal:block metal:define-macro="sameday_samemonth">
     <tal:sameday_samemonth condition="python: type == 'sameday_samemonth'">
-      <block metal:use-macro="context/macros-genweb/firstday"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/firstday"></tal:block>
     </tal:sameday_samemonth>
   </metal:block>
 
   <metal:block metal:define-macro="difday_samemonth">
     <tal:difday_samemonth condition="python: type == 'difday_samemonth'">
-      <block metal:use-macro="context/macros-genweb/firstdayonly"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/firstdayonly"></tal:block>
       <span class='event-days event-days-connector' i18n:translate="">a</span>
-      <block metal:use-macro="context/macros-genweb/lastday"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/lastday"></tal:block>
     </tal:difday_samemonth>
   </metal:block>
 
   <metal:block metal:define-macro="difday_difmonth">
     <tal:difday_difmonth condition="python: type == 'difday_difmonth'">
-      <block metal:use-macro="context/macros-genweb/firstday"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/firstday"></tal:block>
       <span class="event-days event-days-connector" i18n:translate="">a</span>
-      <block metal:use-macro="context/macros-genweb/lastday"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/lastday"></tal:block>
     </tal:difday_difmonth>
   </metal:block>
 
   <metal:block metal:define-macro="difday_difyear">
     <tal:difday_difmonth condition="python: type == 'difday_difyear'">
-      <block metal:use-macro="context/macros-genweb/firstdayyear"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/firstdayyear"></tal:block>
       <span class="event-days event-days-connector" i18n:translate="">a</span>
-      <block metal:use-macro="context/macros-genweb/lastdayyear"></block>
+      <tal:block metal:use-macro="context/@@macros-genweb/lastdayyear"></tal:block>
     </tal:difday_difmonth>
   </metal:block>
 

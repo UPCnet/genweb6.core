@@ -10,7 +10,7 @@
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core">
 
-    <block metal:use-macro="context/macros-genweb-banner/banner"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-banner/banner"></tal:block>
 
 </metal:block>
 </metal:content-core>

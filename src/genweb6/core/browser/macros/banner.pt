@@ -62,7 +62,7 @@
                    tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                    href context/remoteUrl">
 
-                    <tal:content metal:use-macro="context/macros-genweb-banner/content_auto_banner"></tal:content>
+                    <tal:content metal:use-macro="context/@@macros-genweb-banner/content_auto_banner"></tal:content>
 
                 </a>
 
@@ -70,7 +70,7 @@
                    tal:attributes="title context/title;
                                    href context/remoteUrl">
 
-                    <tal:content metal:use-macro="context/macros-genweb-banner/content_auto_banner"></tal:content>
+                    <tal:content metal:use-macro="context/@@macros-genweb-banner/content_auto_banner"></tal:content>
 
                 </a>
 

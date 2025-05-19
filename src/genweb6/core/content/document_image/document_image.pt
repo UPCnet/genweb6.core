@@ -14,7 +14,7 @@
                 scaled_image python: getattr(context.aq_explicit, 'image', False) and scale_func.scale('image', scale='preview')">
 
   <tal:block tal:condition="not:context/not_show_image"
-             metal:use-macro="context/macros-genweb-leadimage/figure"></tal:block>
+             metal:use-macro="context/@@macros-genweb-leadimage/figure"></tal:block>
 
   <div id="parent-fieldname-text"
       tal:condition="context/text"
@@ -26,7 +26,7 @@
         tal:attributes="href python:'%s/@@download/image' % context.absolute_url()">
     </a>
   </div>
-  
+
 </metal:block>
 </metal:content-core>
 

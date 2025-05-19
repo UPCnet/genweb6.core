@@ -43,9 +43,9 @@
 
      <div class="accordion" id="accordionLogin" tal:condition="not:cas/enabled">
 
-        <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+        <tal:block metal:use-macro="context/@@macros-genweb-login/login_site"></tal:block>
 
-      </div> 
+      </div>
 
       <div class="accordion" id="accordionLogin">
 
@@ -84,7 +84,7 @@
 
             <div class="accordion-body">
 
-              <block metal:use-macro="context/macros-genweb-login/login_site"></block>
+              <tal:block metal:use-macro="context/@@macros-genweb-login/login_site"></tal:block>
 
             </div>
 

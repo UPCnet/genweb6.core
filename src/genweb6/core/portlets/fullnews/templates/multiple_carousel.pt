@@ -4,12 +4,12 @@
                  id_carousel string:carousel-collection-${view/token}"
      tal:condition="result_dicts">
 
-    <block metal:use-macro="context/macros-genweb-portlet-fullnews/title"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-fullnews/title"></tal:block>
 
-    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-carousel/multiple_carousel"></tal:block>
 
-    <block metal:use-macro="context/macros-genweb-portlet-fullnews/more_info"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-fullnews/more_info"></tal:block>
 
-    <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_js"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-carousel/multiple_carousel_js"></tal:block>
 
 </div>

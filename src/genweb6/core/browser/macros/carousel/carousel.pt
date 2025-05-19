@@ -31,11 +31,11 @@
             <tal:item tal:repeat="obj result_dicts">
 
                 <div tal:condition="obj/active" class="carousel-item active">
-                    <block metal:use-macro="context/macros-genweb-carousel/carousel_content"></block>
+                    <tal:block metal:use-macro="context/@@macros-genweb-carousel/carousel_content"></tal:block>
                 </div>
 
                 <div tal:condition="not:obj/active" class="carousel-item">
-                    <block metal:use-macro="context/macros-genweb-carousel/carousel_content"></block>
+                    <tal:block metal:use-macro="context/@@macros-genweb-carousel/carousel_content"></tal:block>
                 </div>
 
             </tal:item>
@@ -107,11 +107,11 @@
                 <tal:item tal:repeat="obj result_dicts">
 
                     <div tal:condition="obj/active" class="carousel-item active">
-                        <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_content"></block>
+                        <tal:block metal:use-macro="context/@@macros-genweb-carousel/multiple_carousel_content"></tal:block>
                     </div>
 
                     <div tal:condition="not:obj/active" class="carousel-item">
-                        <block metal:use-macro="context/macros-genweb-carousel/multiple_carousel_content"></block>
+                        <tal:block metal:use-macro="context/@@macros-genweb-carousel/multiple_carousel_content"></tal:block>
                     </div>
 
                 </tal:item>

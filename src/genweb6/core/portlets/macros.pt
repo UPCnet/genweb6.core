@@ -9,11 +9,11 @@
     <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
 
         <div class="img col-md-5">
-            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
         <div class="txt col-md-7">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt"></tal:block>
         </div>
     </li>
 
@@ -25,11 +25,11 @@
     <li tal:attributes="class string:mt-2 mb-3 contenttype-${obj/portal_type} col-md-${obj/col}">
 
         <div class="img mb-2">
-            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
         <div class="txt">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt"></tal:block>
         </div>
     </li>
 
@@ -97,11 +97,11 @@
     <li tal:attributes="class string:ps-0 mt-2 mb-3 row contenttype-${obj/portal_type}">
 
         <div class="img col-md-5">
-            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
         <div class="txt col-md-7">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt-event"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt-event"></tal:block>
         </div>
     </li>
 
@@ -113,11 +113,11 @@
     <li tal:attributes="class string:mt-2 mb-3 contenttype-${obj/portal_type} col-md-${obj/col}">
 
         <div class="img mb-2">
-            <block metal:use-macro="context/macros-genweb-portlets/it-img"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
         <div class="txt">
-            <block metal:use-macro="context/macros-genweb-portlets/it-txt-event"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt-event"></tal:block>
         </div>
     </li>
 

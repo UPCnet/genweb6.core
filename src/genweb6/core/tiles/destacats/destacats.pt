@@ -50,10 +50,10 @@
 
                   <a role="button" tal:attributes="data-bs-target string:#${video_id}Toggle;"
                      class="video-link video-youtube" data-bs-toggle="modal">
-                    <tal:block metal:use-macro="context/macros-tiles/titol-video"></tal:block>
+                    <tal:block metal:use-macro="context/@@macros-tiles/titol-video"></tal:block>
                   </a>
 
-                  <tal:block metal:use-macro="context/macros-tiles/video">
+                  <tal:block metal:use-macro="context/@@macros-tiles/video">
                     <tal:block metal:fill-slot="video-container">
                       <iframe width="560" height="315"
                               class='video-modal' loading="lazy"
@@ -73,10 +73,10 @@
 
                   <a role="button" tal:attributes="data-bs-target string:${video_id}Toggle;"
                      class="video-link video-upctv" data-bs-toggle="modal">
-                    <tal:block metal:use-macro="context/macros-tiles/titol-video"></tal:block>
+                    <tal:block metal:use-macro="context/@@macros-tiles/titol-video"></tal:block>
                   </a>
 
-                  <tal:block metal:use-macro="context/macros-tiles/video">
+                  <tal:block metal:use-macro="context/@@macros-tiles/video">
                     <tal:block metal:fill-slot="video-container">
                       <video tal:attributes="src item/url_video" type="video/mp4" controls></video>
                     </tal:block>
@@ -97,7 +97,7 @@
 
       <tal:3destacats condition="tres_destacats">
         <section class="gw-tile destacats3 container content-banners">
-          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/titol-destacats"></tal:block>
           <div tal:define="items view/get3Destacats" tal:condition="items" class="row">
             <div tal:repeat="item items" class="col-lg-4 col-md-6">
               <div tal:define="abaseclass string:btn-banner btn-banner-large btn-banner-stretch"
@@ -105,7 +105,7 @@
                 <a tal:attributes="href item/url; target item/open_link_in_new_window;
                                    class python:abaseclass if item['imatge'] else abaseclass + ' notimage-banner';"
                    class="btn-banner btn-banner-large btn-banner-stretch" tal:define="tamany string:preview">
-                  <tal:block metal:use-macro="context/macros-tiles/multiple-destacats"></tal:block>
+                  <tal:block metal:use-macro="context/@@macros-tiles/multiple-destacats"></tal:block>
                   <div>
                     <h2 tal:content="item/title">Àgormació Permanent</h2>
                     <p tal:content="structure item/description" class="hotnews-description text-truncate-3">Sala de premsa</p></div>
@@ -113,7 +113,7 @@
               </div>
             </div>
           </div>
-          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:3destacats>
 
@@ -121,7 +121,7 @@
 
       <tal:4destacats condition="quatre_destacats_esdeveniments">
         <section class="gw-tile destacats4-esdeveniments container content-agenda list-agenda">
-          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/titol-destacats"></tal:block>
 
           <div class="list-agenda" tal:define="items view/get4DestacatsEsdeveniments" tal:condition="items">
             <ol class="row ps-0 mb-0">
@@ -130,9 +130,9 @@
                   <a class="card" tal:attributes="href item/url">
                     <span class="event-time">
                       <span class="event-time--wrap" tal:define="type python: view.dateType(item)">
-                        <tal:block metal:use-macro="context/macros-tiles/sameday_samemonth"></tal:block>
-                        <tal:block metal:use-macro="context/macros-tiles/difday_samemonth"></tal:block>
-                        <tal:block metal:use-macro="context/macros-tiles/difday_difmonth"></tal:block>
+                        <tal:block metal:use-macro="context/@@macros-tiles/sameday_samemonth"></tal:block>
+                        <tal:block metal:use-macro="context/@@macros-tiles/difday_samemonth"></tal:block>
+                        <tal:block metal:use-macro="context/@@macros-tiles/difday_difmonth"></tal:block>
                       </span>
                     </span>
                     <h3 class="event-title" tal:content="item/title">Setmana internacional de l’accés obert</h3>
@@ -141,7 +141,7 @@
               </tal:repeat>
             </ol>
           </div>
-          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:4destacats>
 
@@ -149,17 +149,17 @@
 
       <tal:5destacatsesquerra condition="cinc_esquerra">
         <section class="gw-tile destacats5 destacats5-esquerra container content-hotnews">
-          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/titol-destacats"></tal:block>
           <div class="grid-container esquerra"
                tal:define="all4news view/all4news">
-            <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
+            <tal:block metal:use-macro="context/@@macros-tiles/bigImageNews"></tal:block>
             <tal:block tal:condition="all4news" tal:define="items all4news">
               <tal:block tal:repeat="item items">
-                <tal:block metal:use-macro="context/macros-tiles/littelImageNews"></tal:block>
+                <tal:block metal:use-macro="context/@@macros-tiles/littelImageNews"></tal:block>
               </tal:block>
             </tal:block>
           </div>
-          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:5destacatsesquerra>
 
@@ -167,17 +167,17 @@
 
       <tal:5destacatsdreta condition="cinc_dreta">
         <section class="gw-tile destacats5 destacats5-dreta container content-hotnews">
-          <tal:block metal:use-macro="context/macros-tiles/titol-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/titol-destacats"></tal:block>
           <div class="grid-container dreta"
                tal:define="all4news view/all4news">
-            <tal:block metal:use-macro="context/macros-tiles/bigImageNews"></tal:block>
+            <tal:block metal:use-macro="context/@@macros-tiles/bigImageNews"></tal:block>
             <tal:block tal:condition="all4news" tal:define="items all4news">
               <tal:block tal:repeat="item items">
-                <tal:block metal:use-macro="context/macros-tiles/littelImageNews"></tal:block>
+                <tal:block metal:use-macro="context/@@macros-tiles/littelImageNews"></tal:block>
               </tal:block>
             </tal:block>
           </div>
-          <tal:block metal:use-macro="context/macros-tiles/peu-destacats"></tal:block>
+          <tal:block metal:use-macro="context/@@macros-tiles/peu-destacats"></tal:block>
         </section>
       </tal:5destacatsdreta>
 

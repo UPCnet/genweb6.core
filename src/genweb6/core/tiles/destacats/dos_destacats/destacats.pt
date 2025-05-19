@@ -13,11 +13,11 @@
       <div>
         <section class="section-dos-destacats mb-5">
           <div class="container">
-            <block metal:use-macro="context/macros-tiles/titol-destacats"></block>
+            <tal:block metal:use-macro="context/@@macros-tiles/titol-destacats"></tal:block>
             <ul class="list-destacats d-flex justify-content-between p-0">
               <li tal:repeat="item items" class="w-50 mb-4">
                 <a tal:attributes="href item/url; class string:${item/class} text-decoration-none d-flex; target item/open_link_in_new_window;">
-                  <block metal:use-macro="context/macros-tiles/n-destacats"></block>
+                  <tal:block metal:use-macro="context/@@macros-tiles/n-destacats"></tal:block>
                   <div class="mt-2 d-flex justify-content-start flex-column">
                     <p tal:content="item/title" class="mb-0 title">Title</p>
                     <p tal:content="structure item/description" class="text-truncate-4">Description</p>

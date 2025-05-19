@@ -592,7 +592,7 @@ class socialtoolsViewlet(viewletBase):
                 except AttributeError:
                     pass
             if not title:
-                title = getattr(real_context, 'id', 'Contingut') 
+                title = getattr(real_context, 'id', 'Contingut')
         try:
             uid = IUUID(real_context)
             url = self.root_url() + '/resolveuid/' + uid

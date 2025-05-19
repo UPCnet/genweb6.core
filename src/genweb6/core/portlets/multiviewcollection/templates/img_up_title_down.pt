@@ -4,18 +4,18 @@
      tal:condition="result_dicts"
      tal:attributes="class string:portlet portlet-collection portlet-collection-iutd ${view/css_class}">
 
-    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-multiviewcollection/title"></tal:block>
 
     <ul class="ps-0 mb-2 row">
 
         <tal:item tal:repeat="obj result_dicts">
 
-            <block metal:use-macro="context/macros-genweb-portlets/img_up_title_down"></block>
+            <tal:block metal:use-macro="context/@@macros-genweb-portlets/img_up_title_down"></tal:block>
 
         </tal:item>
 
     </ul>
 
-    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-multiviewcollection/more_info"></tal:block>
 
 </div>

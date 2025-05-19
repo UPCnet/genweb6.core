@@ -4,7 +4,7 @@
      tal:condition="results"
      tal:attributes="class string:portlet portlet-collection ${view/css_class}">
 
-    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/title"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-multiviewcollection/title"></tal:block>
 
     <ul class="list-group list-group-flush mb-2"
         tal:define="plone_view context/@@plone;
@@ -36,6 +36,6 @@
 
     </ul>
 
-    <block metal:use-macro="context/macros-genweb-portlet-multiviewcollection/more_info"></block>
+    <tal:block metal:use-macro="context/@@macros-genweb-portlet-multiviewcollection/more_info"></tal:block>
 
 </div>
