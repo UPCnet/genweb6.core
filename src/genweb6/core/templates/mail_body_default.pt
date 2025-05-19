@@ -30,7 +30,7 @@
 
       th {
         width: 35%;
-        font-weight: normal;
+        font-weight: bold;
         background-color: #f9f9f9;
       }
 
@@ -61,9 +61,6 @@
 
     <p tal:content="structure body_post | nothing"></p>
 
-    <div tal:condition="body_footer">
-      <div class="section-title">Pie de página</div>
-      <p tal:content="structure body_footer | nothing"></p>
-    </div>
+    <p tal:content="structure body_footer | nothing"></p>
   </body>
 </html>
