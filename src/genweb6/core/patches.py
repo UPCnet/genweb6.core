@@ -1779,16 +1779,6 @@ def patched_album_results(self):
 
     return {"images": images, "folders": folders}
 
-# def _patched_album_folders(self):
-#     results = self.results()
-#     folders = []
-#     for it in results:
-#         obj = it.getObject()
-#         if IFolder.providedBy(obj):
-#             folders.append(it)
-#     return folders
-
-
 def album_folders(self):
     """Get all folders within this collection."""
     return patched_album_results(self)["folders"]
