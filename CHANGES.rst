@@ -2,11 +2,22 @@ Changelog
 =========
 
 
-1.68 (unreleased)
+1.68 (2025-05-20)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Modificar template correo formularios [Iago López Fernández]
+* [UPD] Cambiar como llamamos a las macros [«Iago]
+* [FIX] macro calls when it cannot be found on the context [Alberto Durán]
+* [ADD] new template for mail body [Clàudia Andreu]
+* [FIX] Quitar llamada a js no existente - document_image.min.js [Iago López]
+* [FIX] social tools concurrent events bug [Clàudia Andreu]
+* [FIX] events leadimage [Clàudia Andreu]
+* [FIX] show lead image [Iago López]
+* [FIX] show lead image [Clàudia Andreu]
+* [UPD] carousel template [Clàudia Andreu]
+* [ADD] Patch - Sobreescribir cal_data para que funcione el portlet de calendario con colecciones [Iago López]
+* [UPD] Action Documentacion - Cambiar permisos [Iago López]
+* [ADD] new button linked to genweb documentation [Clàudia Andreu]
 
 1.67 (2025-04-09)
 -----------------
