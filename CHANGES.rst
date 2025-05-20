@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-1.69 (unreleased)
+1.69 (2025-05-20)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] monkey patches for album views [«Iago]
+* [DEL] unused function [Clàudia Andreu]
+* [ADD] monkey patches for album views [Clàudia Andreu]
 
 1.68 (2025-05-20)
 -----------------
