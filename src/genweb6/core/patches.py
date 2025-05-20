@@ -37,6 +37,8 @@ from plone.app.content.interfaces import INameFromTitle
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.contenttypes.behaviors.richtext import IRichText
 from plone.app.contenttypes.browser.link_redirect_view import NON_RESOLVABLE_URL_SCHEMES
+from plone.app.contenttypes.browser.collection import CollectionView
+from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.textfield.value import IRichTextValue
 from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
@@ -1735,3 +1737,67 @@ def cal_data(self):
     return caldata
 
 
+
+from plone.app.contenttypes.browser.folder import FolderView
+from plone.app.contenttypes.interfaces import IImage
+from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from Products.CMFCore.utils import getToolByName
+from plone.memoize.view import memoize
+from zope.interface import Interface
+from genweb6.core.content.document_image.document_image import IDocumentImage
+
+def album_images(self):
+    """Return images and pages with leadimages."""
+    results = []
+    context = self.context
+    catalog = getToolByName(context, 'portal_catalog')
+    brains = catalog(path={'query': '/'.join(context.getPhysicalPath()), 'depth': 1},
+                     portal_type=['Image', 'genweb.upc.documentimage'])
+    for brain in brains:
+        obj = brain.getObject()
+        if brain.portal_type == 'Image':
+            if obj.image and obj.image.getSize():
+                results.append(brain)
+        elif IDocumentImage.providedBy(obj):
+            if hasattr(obj, 'image') and obj.image and obj.image.getSize():
+                results.append(brain)
+    return results
+
+from plone.app.contenttypes.interfaces import IFolder
+
+def patched_album_results(self):
+    results = self.results()
+    images = []
+    folders = []
+
+    for it in results:
+        obj = it.getObject()
+        if IFolder.providedBy(obj):
+            folders.append(it)
+        elif IImage.providedBy(obj) or ILeadImage.providedBy(obj) or IDocumentImage.providedBy(obj):
+            images.append(it)
+
+    return {"images": images, "folders": folders}
+
+# def _patched_album_folders(self):
+#     results = self.results()
+#     folders = []
+#     for it in results:
+#         obj = it.getObject()
+#         if IFolder.providedBy(obj):
+#             folders.append(it)
+#     return folders
+
+
+def album_folders(self):
+    """Get all folders within this collection."""
+    return patched_album_results(self)["folders"]
+
+def album_images(self):
+    """Get all images within this collection."""
+    return patched_album_results(self)["images"]
+
+from plone.app.contenttypes.browser.collection import CollectionView
+CollectionView.album_images = property(patched_album_results)
+CollectionView.album_folders = property(album_folders)
+CollectionView.album_images = property(album_images)
