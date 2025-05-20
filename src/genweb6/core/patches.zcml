@@ -257,27 +257,28 @@
         description="Sobreescribir album_images para que se muestren las páginas con imagen en la vista de álbum"
         class="plone.app.contenttypes.browser.folder.FolderView"
         original="album_images"
-        replacement=".patches.album_images"
+        replacement=".patches.album_images_folder"
         />
 
     <monkey:patch
         description="Sobreescribir _album_results para que se muestren las páginas con imagen en la vista de álbum"
         class="plone.app.contenttypes.browser.collection.CollectionView"
         original="_album_results"
-        replacement=".patches.patched_album_results"
+        replacement=".patches._album_results_collection"
         />
 
     <monkey:patch
         description="Sobreescribir album_folders para que se muestren las páginas con imagen en la vista de álbum"
         class="plone.app.contenttypes.browser.collection.CollectionView"
         original="album_folders"
-        replacement=".patches.album_folders"
+        replacement=".patches.album_folders_collection"
         />
 
     <monkey:patch
         description="Sobreescribir album_images para que se muestren las páginas con imagen en la vista de álbum"
         class="plone.app.contenttypes.browser.collection.CollectionView"
         original="album_images"
-        replacement=".patches.album_images"
+        replacement=".patches.album_images_collection"
         />
+
 </configure>

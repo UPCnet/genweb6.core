@@ -1737,7 +1737,6 @@ def cal_data(self):
     return caldata
 
 
-
 from plone.app.contenttypes.browser.folder import FolderView
 from plone.app.contenttypes.interfaces import IImage
 from plone.app.contenttypes.behaviors.leadimage import ILeadImage
@@ -1746,26 +1745,25 @@ from plone.memoize.view import memoize
 from zope.interface import Interface
 from genweb6.core.content.document_image.document_image import IDocumentImage
 
-def album_images(self):
-    """Return images and pages with leadimages."""
-    results = []
-    context = self.context
-    catalog = getToolByName(context, 'portal_catalog')
-    brains = catalog(path={'query': '/'.join(context.getPhysicalPath()), 'depth': 1},
-                     portal_type=['Image', 'genweb.upc.documentimage'])
-    for brain in brains:
-        obj = brain.getObject()
-        if brain.portal_type == 'Image':
-            if obj.image and obj.image.getSize():
-                results.append(brain)
-        elif IDocumentImage.providedBy(obj):
-            if hasattr(obj, 'image') and obj.image and obj.image.getSize():
-                results.append(brain)
-    return results
+
+@property
+@memoize
+def album_images_folder(self):
+    """Get all images within this folder."""
+    provides = [
+        IImage.__identifier__,
+        ILeadImage.__identifier__,
+        IDocumentImage.__identifier__,
+    ]
+    images = [obj for obj in self.results(batch=False, object_provides=provides) if getattr(obj, 'image', None)]
+    return images
+
 
 from plone.app.contenttypes.interfaces import IFolder
 
-def patched_album_results(self):
+
+@memoize
+def _album_results(self):
     results = self.results()
     images = []
     folders = []
@@ -1775,19 +1773,24 @@ def patched_album_results(self):
         if IFolder.providedBy(obj):
             folders.append(it)
         elif IImage.providedBy(obj) or ILeadImage.providedBy(obj) or IDocumentImage.providedBy(obj):
-            images.append(it)
+            if getattr(obj, 'image', None):
+                images.append(it)
 
     return {"images": images, "folders": folders}
 
-def album_folders(self):
+
+@property
+def _album_results_collection(self):
+    return _album_results(self)
+
+
+@property
+def album_folders_collection(self):
     """Get all folders within this collection."""
-    return patched_album_results(self)["folders"]
+    return _album_results(self)["folders"]
 
-def album_images(self):
+
+@property
+def album_images_collection(self):
     """Get all images within this collection."""
-    return patched_album_results(self)["images"]
-
-from plone.app.contenttypes.browser.collection import CollectionView
-CollectionView.album_images = property(patched_album_results)
-CollectionView.album_folders = property(album_folders)
-CollectionView.album_images = property(album_images)
+    return _album_results(self)["images"]
