@@ -281,4 +281,11 @@
         replacement=".patches.album_images_collection"
         />
 
+    <monkey:patch
+        description="Sobreescribir query_index para que no de error si no hay record.keys in range max"
+        class="Products.PluginIndexes.unindex.UnIndex"
+        original="query_index"
+        replacement=".patches.query_index"
+        />
+
 </configure>

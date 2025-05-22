@@ -4,6 +4,14 @@ from Acquisition import aq_base
 from Acquisition import aq_inner
 from Acquisition import aq_parent
 from BTrees.OOBTree import OOBTree
+from BTrees.IIBTree import IISet
+from BTrees.IIBTree import IITreeSet
+from BTrees.IIBTree import difference
+from BTrees.IIBTree import intersection
+from BTrees.IIBTree import multiunion
+from BTrees.IOBTree import IOBTree
+from BTrees.Length import Length
+from BTrees.OOBTree import OOBTree
 from Products.CMFCore.MemberDataTool import MemberAdapter as BaseMemberAdapter
 from Products.CMFCore.MemberDataTool import _marker
 from Products.CMFCore.interfaces._content import IFolderish
@@ -27,6 +35,14 @@ from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
 from Products.PlonePAS.utils import safe_unicode
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
+from Products.PluginIndexes.cache import RequestCache
+from Products.PluginIndexes.interfaces import ILimitedResultIndex
+from Products.PluginIndexes.interfaces import IQueryIndex
+from Products.PluginIndexes.interfaces import IRequestCacheIndex
+from Products.PluginIndexes.interfaces import ISortIndex
+from Products.PluginIndexes.interfaces import IUniqueValueIndex
+from Products.PluginIndexes.util import safe_callable
+from Products.ZCatalog.query import IndexQuery
 
 from borg.localrole.interfaces import IFactoryTempFolder
 from hashlib import sha1
@@ -1794,3 +1810,263 @@ def album_folders_collection(self):
 def album_images_collection(self):
     """Get all images within this collection."""
     return _album_results(self)["images"]
+
+
+def query_index(self, record, resultset=None):
+    """Search the index with the given IndexQuery object.
+
+    If not `None`, the resultset argument
+    indicates that the search result is relevant only on this set,
+    i.e. everything outside resultset is of no importance.
+    The index can use this information for optimizations.
+    """
+    index = self._index
+    r = None
+    opr = None
+
+    # not / exclude parameter
+    not_parm = record.get('not', None)
+
+    operator = record.operator
+
+    cachekey = None
+    cache = self.getRequestCache()
+    if cache is not None:
+        cachekey = self.getRequestCacheKey(record)
+        if cachekey is not None:
+            cached = None
+            if operator == 'or':
+                cached = cache.get(cachekey, None)
+            else:
+                cached_setlist = cache.get(cachekey, None)
+                if cached_setlist is not None:
+                    r = resultset
+                    for s in cached_setlist:
+                        # the result is bound by the resultset
+                        r = intersection(r, s)
+                        # If intersection, we can't possibly get a
+                        # smaller result
+                        if not r:
+                            break
+                    cached = r
+
+            if cached is not None:
+                if isinstance(cached, int):
+                    cached = IISet((cached, ))
+
+                if not_parm:
+                    not_parm = list(map(self._convert, not_parm))
+                    exclude = self._apply_not(not_parm, resultset)
+                    cached = difference(cached, exclude)
+
+                return cached
+
+    # Range parameter
+    range_parm = record.get('range', None)
+    if range_parm:
+        opr = 'range'
+        opr_args = []
+        if range_parm.find('min') > -1:
+            opr_args.append('min')
+        if range_parm.find('max') > -1:
+            opr_args.append('max')
+
+    if record.get('usage', None):
+        # see if any usage params are sent to field
+        opr = record.usage.lower().split(':')
+        opr, opr_args = opr[0], opr[1:]
+
+    # not query
+    if not record.keys and not_parm:
+        # convert into indexed format
+        not_parm = list(map(self._convert, not_parm))
+        # we have only a 'not' query
+        # shortcut/optimization if we have no 'opr' (i.e. no range)
+        if resultset is not None and opr is None:
+            i_not_parm = self._apply_not(not_parm, resultset)
+            if i_not_parm:
+                return difference(resultset, i_not_parm)
+        record.keys = list(index)
+        for parm in not_parm:
+            try:
+                record.keys.remove(parm)
+            except ValueError:
+                pass
+    else:
+        # convert query arguments into indexed format
+        record.keys = list(map(self._convert, record.keys))
+
+    if opr == 'range':  # range search
+        if 'min' in opr_args:
+            try:
+                lo = min(record.keys)
+            except Exception as e:
+                lo = None
+        else:
+            lo = None
+        if 'max' in opr_args:
+            try:
+                hi = max(record.keys)
+            except Exception as e:
+                hi = None
+        else:
+            hi = None
+        if hi:
+            setlist = index.values(lo, hi)
+        else:
+            setlist = index.values(lo)
+
+        # If we only use one key, intersect and return immediately
+        if len(setlist) == 1:
+            result = setlist[0]
+            if isinstance(result, int):
+                result = IISet((result,))
+
+            if cachekey is not None:
+                if operator == 'or':
+                    cache[cachekey] = result
+                else:
+                    cache[cachekey] = [result]
+
+            if not_parm:
+                exclude = self._apply_not(not_parm, resultset)
+                result = difference(result, exclude)
+            return result
+
+        if operator == 'or':
+            tmp = []
+            for s in setlist:
+                if isinstance(s, int):
+                    s = IISet((s,))
+                tmp.append(s)
+            r = multiunion(tmp)
+
+            if cachekey is not None:
+                cache[cachekey] = r
+        else:
+            # For intersection, sort with smallest data set first
+            tmp = []
+            for s in setlist:
+                if isinstance(s, int):
+                    s = IISet((s,))
+                tmp.append(s)
+            if len(tmp) > 2:
+                setlist = sorted(tmp, key=len)
+            else:
+                setlist = tmp
+
+            # 'r' is not invariant of resultset. Thus, we
+            # have to remember 'setlist'
+            if cachekey is not None:
+                cache[cachekey] = setlist
+
+            r = resultset
+            for s in setlist:
+                # the result is bound by the resultset
+                r = intersection(r, s)
+                # If intersection, we can't possibly get a smaller result
+                if not r:
+                    break
+
+    else:  # not a range search
+        # Filter duplicates
+        setlist = []
+        for k in record.keys:
+            if k is None:
+                # Prevent None from being looked up. None doesn't
+                # have a valid ordering definition compared to any
+                # other object. BTrees 4.0+ will throw a TypeError
+                # "object has default comparison".
+                continue
+            try:
+                s = index.get(k, None)
+            except TypeError:
+                # key is not valid for this Btree so the value is None
+                LOG.error(
+                    '%(context)s: query_index tried '
+                    'to look up key %(key)r from index %(index)r '
+                    'but key was of the wrong type.', dict(
+                        context=self.__class__.__name__,
+                        key=k,
+                        index=self.id,
+                    )
+                )
+                s = None
+            # If None, try to bail early
+            if s is None:
+                if operator == 'or':
+                    # If union, we can possibly get a bigger result
+                    continue
+                # If intersection, we can't possibly get a smaller result
+                if cachekey is not None:
+                    # If operator is 'and', we have to cache a list of
+                    # IISet objects
+                    cache[cachekey] = [IISet()]
+                return IISet()
+            elif isinstance(s, int):
+                s = IISet((s,))
+            setlist.append(s)
+
+        # If we only use one key return immediately
+        if len(setlist) == 1:
+            result = setlist[0]
+            if isinstance(result, int):
+                result = IISet((result,))
+
+            if cachekey is not None:
+                if operator == 'or':
+                    cache[cachekey] = result
+                else:
+                    cache[cachekey] = [result]
+
+            if not_parm:
+                exclude = self._apply_not(not_parm, resultset)
+                result = difference(result, exclude)
+            return result
+
+        if operator == 'or':
+            # If we already get a small result set passed in, intersecting
+            # the various indexes with it and doing the union later is
+            # faster than creating a multiunion first.
+
+            if resultset is not None and len(resultset) < 200:
+                smalllist = []
+                for s in setlist:
+                    smalllist.append(intersection(resultset, s))
+                r = multiunion(smalllist)
+
+                # 'r' is not invariant of resultset.  Thus, we
+                # have to remember the union of 'setlist'. But
+                # this is maybe a performance killer. So we do not cache.
+                # if cachekey is not None:
+                #    cache[cachekey] = multiunion(setlist)
+
+            else:
+                r = multiunion(setlist)
+                if cachekey is not None:
+                    cache[cachekey] = r
+        else:
+            # For intersection, sort with smallest data set first
+            if len(setlist) > 2:
+                setlist = sorted(setlist, key=len)
+
+            # 'r' is not invariant of resultset. Thus, we
+            # have to remember the union of 'setlist'
+            if cachekey is not None:
+                cache[cachekey] = setlist
+
+            r = resultset
+            for s in setlist:
+                r = intersection(r, s)
+                # If intersection, we can't possibly get a smaller result
+                if not r:
+                    break
+
+    if isinstance(r, int):
+        r = IISet((r, ))
+    if r is None:
+        return IISet()
+    if not_parm:
+        exclude = self._apply_not(not_parm, resultset)
+        r = difference(r, exclude)
+    return r
