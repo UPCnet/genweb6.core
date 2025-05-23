@@ -224,6 +224,13 @@
         template="views_templates/JSON_template.pt"
         />
 
+    <browser:page
+        name="anonimitzar"
+        for="zope.interface.Interface"
+        permission="zope.Public"
+        class=".anonimitzar.AnonimitzarView"
+        layer="..interfaces.IGenweb6CoreLayer"
+    />
     <configure package="Products.CMFPlone.browser">
 
         <browser:page

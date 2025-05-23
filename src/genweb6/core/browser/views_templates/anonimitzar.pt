@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="genweb"
+      lang="en">
+
+  <body>
+    <metal:content-core fill-slot="content-core">
+      <h1 i18n:translate="heading_anonimitzar">Anonimitzar document</h1>
+      
+      <form action="" method="post" enctype="multipart/form-data">
+        <label for="pdf_file" i18n:translate="select_pdf">Selecciona el PDF a anonimitzar:</label><br />
+        <input type="file" 
+               id="pdf_file" 
+               name="pdf_file" 
+               accept="application/pdf" 
+               required 
+               i18n:attributes="title select_file_button; placeholder no_file_selected" /><br /><br />
+
+        <input type="submit" value="Enviar a anonimitzar" i18n:attributes="value send_to_anonymize" />
+      </form>
+    </metal:content-core>
+  </body>
+</html>

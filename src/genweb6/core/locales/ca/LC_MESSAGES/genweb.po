@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacats Esquerra"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1301
+#: ../patches.py:1303
 msgid "7days_events"
 msgstr "Esdeveniments en els 7 dies vinents."
 
@@ -343,7 +343,7 @@ msgstr "Configura el contingut intern"
 msgid "Configuracions"
 msgstr "Configuracions"
 
-#: ../patches.py:823
+#: ../patches.py:825
 msgid "Connections"
 msgstr "Connexions"
 
@@ -379,20 +379,20 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:639
+#: ../browser/viewlets.py:640
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copiat!"
 
-#: ../browser/viewlets.py:644
+#: ../browser/viewlets.py:645
 msgid "Copiat!"
 msgstr "Copiat!"
 
@@ -671,11 +671,11 @@ msgstr "Amplada total a quatre columnes: quatre columnes amb imatge a dalt i tex
 msgid "FullNews"
 msgstr "Notícies amb foto"
 
-#: ../patches.py:822
+#: ../patches.py:824
 msgid "Genweb Advanced"
 msgstr "Genweb Avançats"
 
-#: ../patches.py:821
+#: ../patches.py:823
 msgid "Genweb Configuration"
 msgstr "Configuració Genweb"
 
@@ -701,7 +701,7 @@ msgstr "Parrilla d'Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
+msgstr ""
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
@@ -873,16 +873,16 @@ msgid "List view"
 msgstr "Vista de llista"
 
 #: ../controlpanels/footer.py:113
-msgid "Llista d’enllaços [CA]"
-msgstr "Llista d’enllaços [CA]"
+msgid "Llista d'enllaços [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:127
-msgid "Llista d’enllaços [EN]"
-msgstr "Llista d’enllaços [EN]"
+msgid "Llista d'enllaços [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:120
-msgid "Llista d’enllaços [ES]"
-msgstr "Llista d’enllaços [ES]"
+msgid "Llista d'enllaços [ES]"
+msgstr ""
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -890,1308 +890,1294 @@ msgstr "Configuració Login"
 
 #: ../controlpanels/header.py:226
 msgid "Logo"
-msgstr "Logo"
+msgstr ""
 
 #: ../controlpanels/header.py:241
 msgid "Logo principal"
-msgstr "Logo principal"
+msgstr ""
 
 #: ../controlpanels/header.py:249
 msgid "Logo secundari"
-msgstr "Logo secundari"
+msgstr ""
 
 #: ../profiles/default/types/Logos_Container.xml
 msgid "Logos_Container"
-msgstr "Directori de logos peu"
+msgstr ""
 
 #: ../profiles/default/types/Logos_Footer.xml
 msgid "Logos_Footer"
-msgstr "Logo peu"
+msgstr ""
 
 #: ../browser/viewlets_templates/content/important.pt:11
 msgid "Marca com a important"
-msgstr "Marca com a important"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:87
 msgid "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
-msgstr "Marqueu aquesta casella si es desitja que el text mostrat a dalt sigui visualitzat sense la capçalera, el contorn o el peu estàndard"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:76
 #: ../portlets/new_existing_content/new_existing_content.py:79
 msgid "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
-msgstr "Marqueu aquesta casella si voleu que es mostri el títol del portlet"
+msgstr ""
 
 #: ../behaviors.zcml:41
 msgid "Max size for a file field on easy form."
-msgstr "Mida màxima per als camps de fitxers en formularis"
+msgstr ""
 
 #: ../behaviors.zcml:41
 msgid "Max size for file fields"
-msgstr "Mida màxima per als camps de fitxers"
+msgstr ""
 
 #: ../portlets/grid_events/grid_events.py:32
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:51
 msgid "Maxim numero de esdeveniments a mostrar (d'1 a 16)"
-msgstr "Màxim nombre d'esdeveniments a mostrar (d'1 a 16)"
+msgstr ""
 
 #: ../portlets/news/news.py:23
 msgid "Maxim numero de noticies a mostrar (5 o 7)"
-msgstr "Màxim nombre de noticies a mostrar (5 o 7)"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:48
 msgid "Maxim numero de noticies a mostrar (d'1 a 14)"
-msgstr "Màxim nombre de notícies a mostrar (d'1 a 14)"
+msgstr ""
 
 #: ../controlpanels/footer.py:53
 msgid "Menú al peu"
-msgstr "Menú al peu"
+msgstr ""
 
 #: ../behaviors/seo.py:45
 msgid "Metatag Robots"
-msgstr "Metatag Robots"
+msgstr ""
 
 #: ../behaviors/maxsize.py:24
 msgid "Mida màxima"
-msgstr "Mida màxima"
+msgstr ""
 
 #: ../behaviors/maxsize.py:25
 msgid "Mida màxima (en MB) per als fitxers d'aquest formulari. Número enter."
-msgstr "Mida màxima (en MB) per als fitxers d'aquest formulari. Número enter."
+msgstr ""
 
 #: ../portlets/rss/rss.py:306
 msgid "More link"
-msgstr "Veure més"
+msgstr ""
 
 #: ../portlets/rss/rss.py:313
 msgid "More text"
-msgstr "Més informació"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:55
 #: ../portlets/news/news.py:31
 msgid "Mostra data?"
-msgstr "Mostrar data?"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:75
 #: ../portlets/new_existing_content/new_existing_content.py:78
 msgid "Mostra el títol?"
-msgstr "Mostrar el títol?"
+msgstr ""
 
 #: ../content/carousel/carousel.py:103
 msgid "Mostrar descripció"
-msgstr "Mostrar descripció"
+msgstr ""
 
 #: ../controlpanels/footer.py:58
 msgid "Mostrar enllaços al peu"
-msgstr "Mostrar el menú del lloc web"
+msgstr ""
 
 #: ../content/carousel/carousel.py:97
 msgid "Mostrar títol"
-msgstr "Mostrar títol"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:102
 #: ../content/carousel/carousel.py:128
 msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
-msgstr "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:61
 msgid "Multiple carousel view"
-msgstr "Carrusel amb quatre imatges en pantalla, en dispositius mòbils es redueix a una"
+msgstr ""
 
 #: ../tiles/twitter/twitter.py:13
 msgid "Name of the Twitter account used to shown the tweets"
-msgstr "Compte de twitter sobre la que es mostraran els twetts"
+msgstr ""
 
 #: ../portlets/news/news.py:48
 msgid "News"
-msgstr "Notícies"
+msgstr ""
 
 #: ../controlpanels/footer.py:94
-msgid "Nom de l’apartat [CA]"
-msgstr "Nom de l’apartat [CA]"
+msgid "Nom de l'apartat [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:106
-msgid "Nom de l’apartat [EN]"
-msgstr "Nom de l’apartat [EN]"
+msgid "Nom de l'apartat [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:100
-msgid "Nom de l’apartat [ES]"
-msgstr "Nom de l’apartat [ES]"
+msgid "Nom de l'apartat [ES]"
+msgstr ""
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
-msgstr "Només títol"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:24
 #: ../portlets/multiviewcollection/multiviewcollection.py:43
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:44
 msgid "Normal view"
-msgstr "Vista normal"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "NoticiesPropi"
-msgstr "Notícies"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "Nou Contingut existent"
-msgstr "Contingut existent"
+msgstr ""
 
 #: ../portlets/banners/banners.py:34
 msgid "Number of banners to display"
-msgstr "Nombre de banners a mostrar"
+msgstr ""
 
 #: ../portlets/esdeveniments/esdeveniments.py:35
 msgid "Number of items to display"
-msgstr "Nombre d'elements a mostrar"
+msgstr ""
 
 #: ../portlets/grid_events/grid_events.py:39
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:58
 msgid "Numero de columnes"
-msgstr "Número de columnes"
+msgstr ""
 
 #: ../portlets/grid_events/grid_events.py:40
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:59
 msgid "Numero de columnes (d'1 a 4)"
-msgstr "Número de columnes (d'1 a 4)"
+msgstr ""
 
-######################
-# Portlet Grid Events #
-######################
 #: ../portlets/grid_events/grid_events.py:31
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:50
 msgid "Numero de esdeveniments a mostrar"
-msgstr "Número d'esdeveniments a mostrar"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:47
 #: ../portlets/news/news.py:22
 msgid "Numero de noticies a mostrar"
-msgstr "Número de notícies a mostrar"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
-msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr "Obrir el primer panell de l’acordió per defecte"
+msgid "Obrir el primer panell de l'acordió per defecte"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
-msgstr "Omet el contorn del portlet"
+msgstr ""
 
 #: ../behaviors.zcml:23
 msgid "Optional open link in a new window"
-msgstr "Obre l'enllaç en una finestra nova"
+msgstr ""
 
 #: ../controlpanels/header.py:167
 msgid "Per accesibilitat cal descriure la imatge"
-msgstr "Per accesibilitat cal descriure la imatge"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.pt:22
 msgid "Per afegir continguts dintre d'aquest directori d'acordió / pestanyes: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça."
-msgstr "Per afegir continguts dintre d'aquest directori d'acordió / pestanyes: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ] tot seleccionant algun dels recursos disponibles. Cada contingut esdevindrà una peça."
+msgstr ""
 
 #: ../content/carousel/carousel.pt:22
 msgid "Per afegir continguts dintre d'aquest directori de carrusel: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ]."
-msgstr "Per afegir continguts dintre d'aquest directori de carrusel: Dirigiu-vos al menú lateral, opció [ <i class=\"bi bi-plus-square-fill me-1\"></i> Afegeix... ]."
+msgstr ""
 
 #: ../controlpanels/footer.py:101
 msgid "Per defecte: Enlaces"
-msgstr "Per defecte: Enlaces"
+msgstr ""
 
 #: ../controlpanels/footer.py:95
 msgid "Per defecte: Enllaços"
-msgstr "Per defecte: Enllaços"
+msgstr ""
 
 #: ../controlpanels/footer.py:107
 msgid "Per defecte: Links"
-msgstr "Per defecte: Links"
+msgstr ""
 
 #: ../browser/viewlets_templates/content/important.pt:10
 msgid "Per marcar la notícia com a important premeu el botó:"
-msgstr "Per marcar la notícia com a important premeu el botó:"
+msgstr ""
 
 #: ../content/carousel/carousel.py:115
 msgid "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
-msgstr "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
+msgstr ""
 
 #: ../controlpanels/cintillo.py:54
 msgid "Permet introduir el text que es veurà a l'avís"
-msgstr "Permet introduir el text que es veurà a l'avís"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:52
 msgid "Pestanyes"
-msgstr "Pestanyes"
+msgstr ""
 
 #: ../content/banner/banner.py:19
 msgid "Picture"
-msgstr "Imatge"
+msgstr ""
 
 #: ../content/banner/banner.py:20
 #: ../controlpanels/header.py:258
 msgid "Please upload an image"
-msgstr "Si us plau, pugeu una imatge"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:73
 #: ../content/carousel/carousel.py:78
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
-msgstr "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
+msgstr ""
 
 #: ../portlets/banners/banners.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:70
 msgid "Portlet header"
-msgstr "Capçalera del portlet"
+msgstr ""
 
 #: ../controlpanels/header.py:208
 msgid "Posició del text"
-msgstr "Posició del text"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "Pretty RSS"
-msgstr "Canal RSS avançat"
+msgstr ""
 
 #: ../controlpanels/cintillo.py:19
 msgid "Publica el avis"
-msgstr "Publica l'avís"
+msgstr ""
 
 #: ../profiles/default/actions.xml
 msgid "Purge"
-msgstr "Esborra memòria cau"
+msgstr ""
 
 #: ../browser/views.py:648
 msgid "Purged"
-msgstr "Memòria cau esborrada"
+msgstr ""
 
 #: ../controlpanels/resources.py:65
 msgid "Recurs CSS"
-msgstr "Recurs CSS"
+msgstr ""
 
 #: ../controlpanels/resources.py:71
 msgid "Recurs JS"
-msgstr "Recurs JS"
+msgstr ""
 
 #: ../controlpanels/resources.py:95
 msgid "Resources Settings"
-msgstr "Estils propis"
+msgstr ""
 
 #: ../content/carousel/carousel.py:62
 msgid "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
-msgstr "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
+msgstr ""
 
 #: ../controlpanels/header.py:60
 msgid "Rodona a la dreta"
-msgstr "Rodona a la dreta"
+msgstr ""
 
 #: ../controlpanels/header.py:59
-msgid "Rodona a l’esquerra"
-msgstr "Rodona a l’esquerra"
+msgid "Rodona a l'esquerra"
+msgstr ""
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
-msgstr "S'utilitza a la descripció de la secció 'head' de la pàgina web"
+msgstr ""
 
 #: ../behaviors/seo.py:34
 msgid "S'utilitza al títol de la secció 'head' de la pàgina web"
-msgstr "S'utilitza al títol de la secció 'head' de la pàgina web"
+msgstr ""
 
 #: ../behaviors/seo.py:29
 msgid "SEO"
-msgstr "SEO"
+msgstr ""
 
 #: ../behaviors/seo.py:39
 msgid "SEO Description"
-msgstr "Descripció SEO"
+msgstr ""
 
 #: ../behaviors.zcml:51
 msgid "SEO Fields"
-msgstr "Camps SEO"
+msgstr ""
 
 #: ../behaviors/seo.py:33
 msgid "SEO Title"
-msgstr "Títol SEO"
+msgstr ""
 
 #: ../cas/controlpanel.py:92
 #: ../controlpanels/cintillo.py:104
 #: ../controlpanels/footer.py:176
 msgid "Save"
-msgstr "Desa"
+msgstr ""
 
 #: ../controlpanels/resources.py:59
 msgid "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
-msgstr "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:50
 #: ../content/carousel/carousel.py:30
 msgid "Selecciona una opció"
-msgstr "Selecciona una opció"
+msgstr ""
 
 #: ../tiles/formulari_existent/formulari_existent.py:70
 msgid "Select an existing content"
-msgstr "Selecciona un contingut existent"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:101
 msgid "Select random items"
-msgstr "Selecciona elements en ordre aleatori"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:116
 msgid "Show dates"
-msgstr "Mostrar dates"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:108
 msgid "Show more... link"
-msgstr "Mostra l'enllaç 'Veure més...'"
+msgstr ""
 
 #: ../browser/views_templates/setup_view.pt:27
 msgid "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
-msgstr "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
+msgstr ""
 
 #: ../behaviors/icon.py:21
 msgid "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
-msgstr "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
+msgstr ""
 
 #: ../controlpanels/footer.py:136
 msgid "Signatura"
-msgstr "Signatura"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:58
 msgid "Simple carousel view"
-msgstr "Carrusel amb una imatge en pantalla"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:96
 msgid "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
-msgstr "Inidicar el màxim número d'elements a mostrar al portlet. Deixar en blanc per mostar-ho tot."
+msgstr ""
 
 #: ../profiles/default/types/genweb.upc.subhome.xml
 msgid "Subhome"
-msgstr "Graella de portlets"
+msgstr ""
 
 #: ../browser/views_templates/download_files.pt:15
 msgid "Submit the form below to download a .zip of files contained in this folder."
-msgstr "Envieu el formulari per descarregar un .zip amb els fitxers continguts en aquesta carpeta."
+msgstr ""
 
 #: ../portlets/news_events_listing/news_events_listing.py:23
 msgid "Tags"
-msgstr "Etiquetes"
+msgstr ""
 
 #: ../tiles/destacats/destacatbase.py:31
 #: ../tiles/destacats/destacats.py:42
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:42
 msgid "Tags field"
-msgstr "Camp etiquetes"
+msgstr ""
 
 #: ../tiles/destacats/destacatbase.py:32
 #: ../tiles/destacats/destacats.py:43
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:43
 msgid "Tags field description"
-msgstr "Etiquetes sobre les que es farà la cerca. Si no es selecciona cap, no es tindrà en compte cap etiqueta."
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:89
 msgid "Target collection"
-msgstr "Col·leccío"
+msgstr ""
 
 #: ../adapters/important.py:20
 msgid "Tells if an object is marked as important"
-msgstr "Indica si un element està marcat com a important"
+msgstr ""
 
 #: ../controlpanels/footer.py:45
 msgid "Tema"
-msgstr "Tema"
+msgstr ""
 
 #: ../portlets/macros.pt:86
 #: ../portlets/multiviewcollectionevents/templates/list.pt:28
 msgid "Termini:"
-msgstr "Termini:"
+msgstr ""
 
 #: ../controlpanels/header.py:166
 msgid "Text alternatiu de la imatge"
-msgstr "Text alternatiu de la imatge"
+msgstr ""
 
 #: ../controlpanels/header.py:196
 msgid "Text de la imatge"
-msgstr "Text de la imatge"
+msgstr ""
 
 #: ../controlpanels/cintillo.py:53
 msgid "Text per l'avís"
-msgstr "Text per l'avís"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:15
 msgid "Text position"
-msgstr "Posició del text"
+msgstr ""
 
 #: ../portlets/rss/rss.py:314
 msgid "Text to show more content."
-msgstr "Text a mostrar per el literal de Més continguts."
+msgstr ""
 
 #: ../tiles/destacats/destacatbase.py:40
 #: ../tiles/destacats/destacats.py:51
 msgid "The content type to check for."
-msgstr "El tipus d'element sobre el que cercar"
+msgstr ""
 
 #: ../behaviors.zcml:51
 msgid "This behavior adds extra fields to a Content Type for SEO optimisation"
-msgstr "Aquest behavior afegeix camps addicionals a un tipus de contingut per a l'optimització de SEO"
+msgstr ""
 
 #: ../validations.py:6
 msgid "This is an inner link"
-msgstr "Aquest és un enllaç intern"
+msgstr ""
 
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:193
 msgid "This portlet displays a listing of items from a Collection of events."
-msgstr "Aquest portlet mostra un llistat d'elements d'una col·lecció d'esdeveniments"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:397
 msgid "This portlet displays a listing of items from a Collection."
-msgstr "Aquest portlet mostra un llistat d'elements d'una col·lecció"
+msgstr ""
 
 #: ../portlets/grid_events/grid_events.py:141
 msgid "This portlet displays recent Events."
-msgstr "Aquest portlet mostra esdeveniments recents."
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:292
 #: ../portlets/news/news.py:138
 msgid "This portlet displays recent News Items."
-msgstr "El portlet mostra les noticies més recents."
+msgstr ""
 
 #: ../portlets/banners/banners.py:100
 msgid "This portlet displays the site banners."
-msgstr "El portlet mostra els banners."
+msgstr ""
 
 #: ../portlets/news_events_listing/news_events_listing.py:233
 msgid "This portlet lists tags by type and context."
-msgstr "Aquest portlet llista etiquets per tipus i contexte"
+msgstr ""
 
 #: ../portlets/esdeveniments/esdeveniments.py:233
 msgid "This portlet lists upcoming Events."
-msgstr "Llista dels pròxims events."
+msgstr ""
 
 #: ../browser/views_templates/download_files.pt:18
 msgid "This process may take a while. If the request times out, the zip file will still be created in this folder. Check for the new file in"
-msgstr "Aquest procés pot trigar una estona. Si la sol·licitud s'esgota, el fitxer .zip encara es crearà en aquesta carpeta. Comproveu si hi ha el nou fitxer"
+msgstr ""
 
 #: ../tiles/configure.zcml:42
 msgid "Tile used to show 2 destacats in homepage"
-msgstr "Tile per mostrar 2 destacats a la pàgina principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:55
 msgid "Tile used to show 3 destacats in homepage"
-msgstr "Tile per mostrar 3 destacats a la pàgina principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:68
 msgid "Tile used to show 4 destacats events in homepage"
-msgstr "Tile per mostrar 4 destacats d'esdeveniments a la pàgina principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:81
 msgid "Tile used to show 5 destacats in homepage"
-msgstr "Tile per mostrar 5 destacats a la pàgina principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:110
 msgid "Tile used to show custom video"
-msgstr "Tile per mostrar vídeos personalitzats"
+msgstr ""
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr "Tile per mostrar els destacats a la pàgina principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
-msgstr "Tile per mostrar un formulari easyform com a tile"
+msgstr ""
 
 #: ../content/carousel/carousel.py:68
 msgid "Tipus de carrusel"
-msgstr "Tipus de carrusel"
+msgstr ""
 
 #: ../content/accordion_tabs/accordion_tabs.py:64
 msgid "Tipus de plantilla"
-msgstr "Tipus de plantilla"
+msgstr ""
 
 #: ../portlets/fullnews/fullnews.py:39
 msgid "Tipus de vista"
-msgstr "Tipus de vista"
+msgstr ""
 
 #: ../controlpanels/header.py:77
-msgid "Tipus d’imatge a les pàgines principals"
-msgstr "Tipus d’imatge a les pàgines principals"
+msgid "Tipus d'imatge a les pàgines principals"
+msgstr ""
 
 #: ../controlpanels/header.py:84
-msgid "Tipus d’imatge als continguts"
-msgstr "Tipus d’imatge als continguts"
+msgid "Tipus d'imatge als continguts"
+msgstr ""
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
 #: ../tiles/destacats/destacats.py:36
 msgid "Title"
-msgstr "Títol"
+msgstr ""
 
 #: ../portlets/banners/banners.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:71
 msgid "Title of the rendered portlet"
-msgstr "Títol del portlet renderitzat"
+msgstr ""
 
 #: ../tiles/destacats/destacatbase.py:26
 #: ../tiles/destacats/destacats.py:37
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:37
 msgid "Title of the tile"
-msgstr "Títol de la fitxa"
+msgstr ""
 
 #: ../tiles/twitter/twitter.py:12
 msgid "Twitter Account"
-msgstr "Identificador de Twitter"
+msgstr ""
 
 #: ../portlets/news_events_listing/news_events_listing.py:27
 msgid "Type"
-msgstr "Tipus"
+msgstr ""
 
 #: ../controlpanels/cintillo.py:48
 msgid "Títol del l'avís"
-msgstr "Títol del l'avís"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:71
 msgid "Títol del portlet"
-msgstr "Títol del portlet"
+msgstr ""
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:43
 #: ../tiles/destacats/destacats.py:85
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:73
 msgid "Títol per l'enllaç"
-msgstr "Títol per l'enllaç"
+msgstr ""
 
 #: ../controlpanels/login.py:17
 msgid "URL Canvi de contrasenya"
-msgstr "URL Canvi de contrasenya"
+msgstr ""
 
 #: ../tiles/video/video.py:83
 msgid "URL del vídeo"
-msgstr "URL del vídeo"
+msgstr ""
 
 #: ../content/banner/banner.py:26
 msgid "URL to open"
-msgstr "Enllaç a obrir"
+msgstr ""
 
 #: ../configure.zcml:62
 msgid "Uninstalls the genweb6.core add-on."
-msgstr "Desinstal·lar paquet genweb6.core"
+msgstr ""
 
 #: genweb6/theme/configure.zcml:27
 msgid "Uninstalls the genweb6.theme add-on."
-msgstr "Desinstal·lar paquet genweb6.theme"
+msgstr ""
 
 #: ../portlets/rss/rss.py:307
 msgid "Url that links to more content."
-msgstr "URL a Més contingut"
+msgstr ""
 
 #: ../profiles/default/types/BannerContainer.xml
 #: ../profiles/default/types/Logos_Container.xml
 msgid "View"
-msgstr "Visualitza"
+msgstr ""
 
 #: ../tiles/destacats/destacats.py:65
 #: ../tiles/video/video.py:61
 msgid "View as"
-msgstr "Tipus de vista del contingut"
+msgstr ""
 
 #: ../tiles/destacats/destacats.py:66
 #: ../tiles/video/video.py:62
 msgid "View as description"
-msgstr "Indica el tipus de vista dels destacats"
+msgstr ""
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:131
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:63
 msgid "View type"
-msgstr "Tipus de vista"
+msgstr ""
 
 #: ../browser/views_templates/setup_view.pt:24
 msgid "Warning"
-msgstr "ATENCIÓ"
+msgstr ""
 
 #: ../portlets/esdeveniments/esdeveniments.py:43
 msgid "Workflow state"
-msgstr "Estat"
+msgstr ""
 
 #: ../browser/confirmation.py:64
 msgid "You must select at least one item."
-msgstr "Heu de seleccionar almenys un element."
+msgstr ""
 
 #: ../browser/macros/macros.pt:61
 msgid "a"
-msgstr "a"
+msgstr ""
 
 #. Default: "There are legacy portlets defined here. Click the button to convert them to new-style portlets."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:100
 msgid "action_convert_legacy_portlets"
-msgstr "Hi han portlets heretats definits aquí. Cliqueu el botó per convertir-los al nou estil de portlets."
+msgstr ""
 
-#######################
-# Delete confirmation #
-#######################
 #. Default: "Do you really want to delete those contents?"
 #: ../browser/views_templates/confirmation.pt:16
 msgid "alert_really_delete_contents"
-msgstr "Segur que vols eliminar aquests continguts?"
+msgstr ""
 
 #. Default: "All events"
-#: ../patches.py:1286
+#: ../patches.py:1288
 msgid "all_events"
-msgstr "Tots els esdeveniments"
+msgstr ""
 
 #. Default: "All news"
 #: ../portlets/news_events_listing/news_events_listing.pt:116
 msgid "all_news"
-msgstr "Totes les notícies"
+msgstr ""
 
-#. "Amaga de les eines l'enllaç d'identificació"
 #. Default: "Amaga de les eines l'enllaç d'identificació"
 #: ../controlpanels/header.py:421
 msgid "amaga_identificacio"
-msgstr "Amaga l'enllaç d'identificació de les eines"
+msgstr ""
 
 #: ../cas/controlpanel.py:66
 msgid "app_name"
-msgstr "APP name"
+msgstr ""
 
 #. Default: "Més esdeveniments"
 #: ../browser/views_templates/portlet_events_view.pt:49
 #: ../portlets/esdeveniments/esdeveniments.pt:60
 #: ../portlets/grid_events/grid_events.pt:51
 msgid "box_upcoming_events"
-msgstr "Tots els esdeveniments"
+msgstr ""
 
 #. Default: "Cancel"
 #: ../browser/views_templates/confirmation.pt:34
 msgid "cancel"
-msgstr "Cancel·la"
+msgstr ""
 
 #: ../cas/controlpanel.py:60
 msgid "cas_url"
-msgstr "CAS URL"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:19
 msgid "centre"
-msgstr "Centre"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:27
 msgid "cercle-centre"
-msgstr "Cercle Centre"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:28
 msgid "cercle-dreta"
-msgstr "Cercle Dreta"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:26
 msgid "cercle-esquerra"
-msgstr "Cercle Esquerra"
+msgstr ""
 
 #. Default: "Cookie Policy"
 #: ../browser/viewlets_templates/footer/footer.pt:74
 msgid "cookie_policy"
-msgstr "Configuració de privadesa"
+msgstr ""
 
 #. Default: "Delete"
 #: ../browser/views_templates/confirmation.pt:33
 msgid "delete"
-msgstr "Suprimeix"
+msgstr ""
 
 #. Default: "The portlet columns will first display portlets explicitly assigned in this context. Use the buttons on each portlet to move them up or down, delete or edit them. To add a new portlet, use the drop-down list at the top of the column."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:81
 msgid "description_manage_contextual_portlets"
-msgstr "Les columnes de portlet mostraran en primer lloc aquells portlets assignats explícitament en aquest context. Utilitzeu els botons de cada portlet per moure'ls amunt o avall, eliminar-los o editar-los. Per afegir un nou portlet, utilitzeu la llista desplegable situada a la part superior de la columna."
+msgstr ""
 
 #. Default: "There are currently no events in this folder."
 #: ../browser/events.py:28
 msgid "description_no_events_in_folder"
-msgstr "Actualment no hi ha esdeveniments en aquest directori."
+msgstr ""
 
 #. Default: "If you wish to block or unblock certain categories of portlets, you can do so using the sdrop-down boxes. Portlets that are included by these categories are shown below the selection box."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:88
 msgid "description_portlets_block_unblock"
-msgstr "Si voleu bloquejar o desbloquejar determinades categories de portlets, ho podeu fer utilitzant els quadres desplegables. Els portlets inclosos en aquestes categories es mostren a continuació del quadre de selecció."
+msgstr ""
 
 #. Default: "Cookies are not enabled. You must enable cookies before you can log in."
 #: ../browser/macros/login.pt:118
 msgid "enable_cookies_message_before_login"
-msgstr "Les cookies no estàn habilitades. Hi ha que habilitar-les antes de fer log in."
+msgstr ""
 
 #: ../cas/controlpanel.py:54
 msgid "enabled"
-msgstr "Habilitat"
+msgstr ""
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1302
+#: ../patches.py:1304
 msgid "events_from_until"
-msgstr "${from} fins el ${until}."
+msgstr ""
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1366
+#: ../patches.py:1368
 msgid "events_in_month"
-msgstr "Esdeveniments ${month} ${year}"
+msgstr ""
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1339
+#: ../patches.py:1341
 msgid "events_in_week"
-msgstr "Esdeveniments en la setmana ${weeknumber}"
+msgstr ""
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1324
+#: ../patches.py:1326
 msgid "events_on_day"
-msgstr "Esdeveniments en ${day}"
+msgstr ""
 
 #: ../browser/views_templates/download_files.pt:19
 msgid "folder contents"
-msgstr "Continguts directori"
+msgstr ""
 
 #. Default: "Future events"
-#: ../patches.py:1292
+#: ../patches.py:1294
 msgid "future_events"
-msgstr "Propers esdeveniments"
+msgstr ""
 
 #: ../profiles/default/actions.xml
 msgid "genweb-accesarrel"
-msgstr "Carpeta arrel"
+msgstr ""
 
 #. Default: "Accessibilitat"
 #: ../browser/viewlets_templates/footer/footer.pt:54
 msgid "genweb-accessibility"
-msgstr "Accessibilitat"
+msgstr ""
 
 #. Default: "Agenda"
 #: ../browser/views_templates/portlet_events_view.pt:13
 #: ../portlets/esdeveniments/esdeveniments.pt:6
 msgid "genweb-agenda"
-msgstr "Agenda"
+msgstr ""
 
 #. Default: "Disclaimer"
 #: ../browser/viewlets_templates/footer/footer.pt:64
 msgid "genweb-disclaimer"
-msgstr "Avís legal"
+msgstr ""
 
 #. Default: "Notícies"
 #: ../portlets/fullnews/templates/macros.pt:9
 #: ../portlets/news/news.pt:6
 msgid "genweb-noticies"
-msgstr "Notícies <span class=\"icon-news large-icon pull-right\"></span>"
+msgstr ""
 
-#. "genweb-per_recuperarla"
 #. Default: "click here to retrieve it"
 #: ../browser/macros/login.pt:25
 msgid "genweb-per_recuperarla"
-msgstr " per recuperar-la."
+msgstr ""
 
-#. "genweb-si_heu_oblidat_la_contrasenya"
 #. Default: "If you have forgotten your password,"
 #: ../browser/macros/login.pt:21
 msgid "genweb-si_heu_oblidat_la_contrasenya"
-msgstr "Si heu oblidat la contrasenya, cliqueu"
+msgstr ""
 
-#. "genweb-si_heu_oblidat_la_contrasenya_question"
 #. Default: "Have you forgotten your password?"
 #: ../browser/macros/login.pt:15
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
-msgstr "Has oblidat la teva contrasenya?"
+msgstr ""
 
 #: ../configure.zcml:53
 msgid "genweb6.core"
-msgstr "genweb6.core"
+msgstr ""
 
 #: ../configure.zcml:62
 msgid "genweb6.core (uninstall)"
-msgstr "genweb6.core (desinstal·lar)"
+msgstr ""
 
 #: genweb6/theme/configure.zcml:18
 msgid "genweb6.theme"
-msgstr "genweb6.theme"
+msgstr ""
 
 #: genweb6/theme/configure.zcml:27
 msgid "genweb6.theme (uninstall)"
-msgstr "genweb6.theme (desinstal·lar)"
+msgstr ""
 
-#. "genweb_loginlocal"
 #. Default: "Log in only in this site"
 #: ../browser/macros/login.pt:71
 msgid "genweb_loginlocal"
-msgstr "Identifica't només en aquest web"
+msgstr ""
+
+#: ../browser/views_templates/anonimitzar.pt:11
+msgid "heading_anonimitzar"
+msgstr ""
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
-msgstr "S'ha desconnectat la sessió."
+msgstr ""
 
-#. "Amaga de les eines l'enllaç d'identificació ..."
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
 #: ../controlpanels/header.py:424
 msgid "help_amaga_identificacio"
-msgstr "Amaga de les eines l'enllaç d'identificació ..."
+msgstr ""
 
 #. Default: "You may search for and choose an existing content"
 #: ../content/existing_content/existing_content.py:52
 #: ../portlets/new_existing_content/new_existing_content.py:110
 msgid "help_existing_content"
-msgstr "Podeu cercar i triar un contingut existent"
+msgstr ""
 
-#. "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #: ../controlpanels/header.py:433
 msgid "help_idiomes_publicats"
-msgstr "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
+msgstr ""
 
 #. Default: "help_languages_link_to_root"
 #: ../controlpanels/header.py:445
 msgid "help_languages_link_to_root"
-msgstr "Aquesta opció marcada fa que el desplegable d'idiomes, sempre redirigeixi a l'arrel del lloc web."
+msgstr ""
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
 #: ../controlpanels/header.py:275
 msgid "help_logo_alt"
-msgstr "Afegiu el text alternatiu (alt) del logo de la capçalera."
+msgstr ""
 
 #. Default: "Afegiu l'URL del logo."
 #: ../controlpanels/header.py:332
 msgid "help_logo_url"
-msgstr "Afegiu l'URL del logo."
+msgstr ""
 
 #: ../behaviors/openlinkin.py:24
 msgid "help_open_link_in_new_window"
-msgstr "Marcar la opció per obrir l'enllaç en una finestra/pestanya nova"
+msgstr ""
 
-#. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
 #: ../controlpanels/footer.py:144
 msgid "help_signatura_ca"
-msgstr "És el literal que apareix al peu de pàgina."
+msgstr ""
 
-#. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
 #: ../controlpanels/footer.py:160
 msgid "help_signatura_en"
-msgstr "És el literal que apareix al peu de pàgina."
+msgstr ""
 
-#. "És el literal que apareix al peu de pàgina o el text alternatiu del logotip (centres docents)."
 #. Default: "És el literal que apareix al peu de pàgina."
 #: ../controlpanels/footer.py:152
 msgid "help_signatura_es"
-msgstr "És el literal que apareix al peu de pàgina."
+msgstr ""
 
 #: ../content/existing_content/existing_content.py:60
 #: ../portlets/new_existing_content/new_existing_content.py:118
 msgid "help_static_content_element_ca"
-msgstr "Aquí podeu introduïr un id, class o element html. Per exemple en una pàgina genweb típica, tot el contingut és dins #content, i tot el contingut sense el títol dins #content-core"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:72
 msgid "help_static_content_title_ca"
-msgstr "Opcional: títol del portlet"
+msgstr ""
 
 #: ../content/existing_content/existing_content.py:44
 #: ../portlets/new_existing_content/new_existing_content.py:102
 msgid "help_static_content_url_ca"
-msgstr "La URL completa de la pàgina d'on volem visualitzar el contingut"
+msgstr ""
 
 #: ../controlpanels/header.py:455
 msgid "help_treu_icones_xarxes_socials"
-msgstr "Treure les icones per compartir en xarxes socials ..."
+msgstr ""
 
-#. "Treu el menú horitzontal ..."
 #. Default: "Treu el menú horitzontal ..."
 #: ../controlpanels/header.py:412
 msgid "help_treu_menu_horitzontal"
-msgstr "Treu el menú horitzontal ..."
+msgstr ""
 
 #. Default: "Menu L2"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:67
 #: ../portlets/manage_portlets/templates/managesubhome.pt:67
 msgid "homeportlets_title_1"
-msgstr "Menu L2"
+msgstr ""
 
 #. Default: "1a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:78
 #: ../portlets/manage_portlets/templates/managesubhome.pt:78
 msgid "homeportlets_title_f1"
-msgstr "1a Fila"
+msgstr ""
 
 #. Default: "2a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:85
 #: ../portlets/manage_portlets/templates/managesubhome.pt:85
 msgid "homeportlets_title_f2"
-msgstr "2a Fila"
+msgstr ""
 
 #. Default: "3a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:181
 #: ../portlets/manage_portlets/templates/managesubhome.pt:181
 msgid "homeportlets_title_f3"
-msgstr "3a Fila"
+msgstr ""
 
-####################
-# Contact settings #
-####################
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:111
 msgid "html_title_ca"
-msgstr "Títol del web [CA]"
+msgstr ""
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:125
 msgid "html_title_en"
-msgstr "Títol del web [EN]"
+msgstr ""
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:118
 msgid "html_title_es"
-msgstr "Títol del web [ES]"
+msgstr ""
 
-#. "Idiomes publicats al web"
 #. Default: "Idiomes publicats al web"
 #: ../controlpanels/header.py:432
 msgid "idiomes_publicats"
-msgstr "Idiomes publicats al web"
+msgstr ""
 
 #. Default: "Image"
 #: ../templates/plone.app.contenttypes.browser.templates.listing_tabular.pt:35
 msgid "image"
-msgstr "Imatge"
+msgstr ""
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:30
 msgid "imatge-gran-dreta"
-msgstr "Imatge gran dreta"
+msgstr ""
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:29
 msgid "imatge-gran-esquerra"
-msgstr "Imatge gran esquerra"
+msgstr ""
 
 #: ../behaviors/seo.py:19
 msgid "index, follow"
-msgstr "index, follow"
+msgstr ""
 
 #: ../behaviors/seo.py:17
 msgid "index, nofollow"
-msgstr "index, nofollow"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:24
 msgid "inferior-centre"
-msgstr "Inferior Centre"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:25
 msgid "inferior-dreta"
-msgstr "Inferior Dreta"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:23
 msgid "inferior-esquerra"
-msgstr "Inferior Esquerra"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:29
 msgid "invisible"
-msgstr "Invisible"
+msgstr ""
 
 #. Default: "Add new…"
-#: ../patches.py:848
+#: ../patches.py:850
 msgid "label_add_new_item"
-msgstr "Afegeix..."
+msgstr ""
 
 #. Default: "iCal"
 #: ../portlets/news_events_listing/news_events_listing.pt:96
 msgid "label_add_to_ical"
-msgstr "iCal"
+msgstr ""
 
 #. Default: "Display"
-#: ../patches.py:845
+#: ../patches.py:847
 msgid "label_choose_template"
-msgstr "Vistes"
+msgstr ""
 
 #. Default: "Convert portlets"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:108
 msgid "label_convert_portlets"
-msgstr "Converteix els portlets"
+msgstr ""
 
 #. Default: "Filters"
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:26
 msgid "label_filters"
-msgstr "Filtres"
+msgstr ""
 
 #. Default: "You are managing the portlets of the default view of a container. If you wanted to manage the portlets of the container itself, ${go_here}."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:72
 msgid "label_manage_portlets_default_view_container"
-msgstr "Esteu gestionant els portlets de la vista per defecte d'un contenidor. Si voleu gestionar els portlets del propi contenidor, ${go_here}."
+msgstr ""
 
 #. Default: "go here"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:72
 msgid "label_manage_portlets_default_view_container_go_here"
-msgstr "aneu aquí"
+msgstr ""
 
 #. Default: "Inicia la sessió"
 #: ../browser/macros/login.pt:109
 #: ../portlets/login/login.pt:15
 msgid "label_start_session"
-msgstr "Inicia la sessió"
+msgstr ""
 
-#############################################
-# Contropanel option to redirect languages #
-#############################################
 #. Default: "languages_link_to_root"
 #: ../controlpanels/header.py:443
 msgid "languages_link_to_root"
-msgstr "Redireccionar a l'arrel del lloc al clicar sobre els idiomes del portal"
+msgstr ""
 
 #: ../cas/controlpanel.py:72
 msgid "login_text_btn"
-msgstr "Text del botó de login"
+msgstr ""
 
 #. Default: "Text alternatiu del logo [CA]"
 #: ../controlpanels/header.py:274
 msgid "logo_alt"
-msgstr "Text alternatiu del logo [CA]"
+msgstr ""
 
 #. Default: "Text alternatiu del logo [EN]"
 #: ../controlpanels/header.py:294
 msgid "logo_alt_en"
-msgstr "Text alternatiu del logo [EN]"
+msgstr ""
 
 #. Default: "Text alternatiu del logo [ES]"
 #: ../controlpanels/header.py:284
 msgid "logo_alt_es"
-msgstr "Text alternatiu del logo [ES]"
+msgstr ""
 
 #. Default: "Es una URL externa?"
 #: ../controlpanels/header.py:389
 msgid "logo_external_url"
-msgstr "Es una URL externa?"
+msgstr ""
 
 #. Default: "URL del logo [CA]"
 #: ../controlpanels/header.py:330
 msgid "logo_url"
-msgstr "URL del logo [CA]"
+msgstr ""
 
 #. Default: "URL del logo [EN]"
 #: ../controlpanels/header.py:350
 msgid "logo_url_en"
-msgstr "URL del logo [EN]"
+msgstr ""
 
 #. Default: "URL del logo [ES]"
 #: ../controlpanels/header.py:340
 msgid "logo_url_es"
-msgstr "URL del logo [ES]"
+msgstr ""
 
-#. "manage_homeportlets_link"
 #. Default: "Manage home page"
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_homepage.pt:9
 msgid "manage_homeportlets_link"
-msgstr "Administra pàgina principal"
+msgstr ""
 
 #. Default: "Manage home portlets"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:44
 #: ../portlets/manage_portlets/templates/managesubhome.pt:44
 msgid "manage_portlets_footer"
-msgstr "Manage home portlets"
+msgstr ""
 
-################
-# Subhome type #
-################
-#. "manage_subhomeportlets_link"
 #. Default: "Administra la graella de portlets"
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_subhome.pt:9
 msgid "manage_subhomeportlets_link"
-msgstr "Administra la graella de portlets"
+msgstr ""
 
 #. Default: "Day"
 #: ../portlets/news_events_listing/news_events_listing.pt:17
 msgid "mode_day_link"
-msgstr "Dia"
+msgstr ""
 
 #. Default: "Upcoming"
 #: ../portlets/news_events_listing/news_events_listing.pt:83
 msgid "mode_future_link"
-msgstr "Propers"
+msgstr ""
 
 #. Default: "Month"
 #: ../portlets/news_events_listing/news_events_listing.pt:42
 msgid "mode_month_link"
-msgstr "Mes"
+msgstr ""
 
 #. Default: "Past"
 #: ../portlets/news_events_listing/news_events_listing.pt:59
 msgid "mode_past_link"
-msgstr "Passat"
+msgstr ""
 
 #. Default: "Week"
 #: ../portlets/news_events_listing/news_events_listing.pt:32
 msgid "mode_week_link"
-msgstr "Setmana"
+msgstr ""
 
 #. Default: "Més notícies"
 #: ../portlets/fullnews/templates/macros.pt:19
 #: ../portlets/news/news.pt:40
 msgid "more_news_link"
-msgstr "Més notícies"
+msgstr ""
 
 #. Default: "More"
 #: ../portlets/collection/collection.pt:59
 #: ../portlets/multiviewcollection/templates/macros.pt:22
 #: ../templates/plone.app.portlets.portlets.rss.pt:42
 msgid "more_url"
-msgstr "Veure més"
+msgstr ""
 
 #: ../behaviors/seo.py:20
 msgid "noindex"
-msgstr "noindex"
+msgstr ""
 
 #: ../behaviors/seo.py:18
 msgid "noindex, follow"
-msgstr "noindex, follow"
+msgstr ""
 
 #: ../behaviors/seo.py:21
 msgid "noindex, nofollow"
-msgstr "noindex, nofollow"
+msgstr ""
 
 #: ../content/document_image/document_image.py:24
 msgid "not_show_image"
-msgstr "No mostrar la imatge dins la pàgina, però sí als portlets i vistes"
+msgstr ""
 
 #: ../browser/folder_index_view.pt:23
 #: ../browser/viewlets.py:392
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
-msgstr "(obriu en una finestra nova)"
+msgstr ""
 
 #: ../behaviors/openlinkin.py:23
 msgid "open_link_in_new_window"
-msgstr "Obrir en una finestra nova"
+msgstr ""
 
 #. Default: "Past events"
-#: ../patches.py:1289
+#: ../patches.py:1291
 msgid "past_events"
-msgstr "Esdeveniments passats"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_banners_title"
-msgstr "Bàners"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_homepage_title"
-msgstr "Benvingut"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollection_title"
-msgstr "Col·lecció multi-vista"
+msgstr ""
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollectionevents_title"
-msgstr "Col·lecció d'esdeveniments multi-vista"
+msgstr ""
 
 #. Default: "Return"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:45
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:57
 #: ../portlets/manage_portlets/templates/managesubhome.pt:57
 msgid "return_to_view"
-msgstr "Torna"
+msgstr ""
 
 #. Default: "Text alternatiu del logo secundari [CA]"
 #: ../controlpanels/header.py:303
 msgid "secondary_logo_alt"
-msgstr "Text alternatiu del logo secundari [CA]"
+msgstr ""
 
 #. Default: "Text alternatiu del logo secundari [EN]"
 #: ../controlpanels/header.py:321
 msgid "secondary_logo_alt_en"
-msgstr "Text alternatiu del logo secundari [EN]"
+msgstr ""
 
 #. Default: "Text alternatiu del logo secundari [ES]"
 #: ../controlpanels/header.py:312
 msgid "secondary_logo_alt_es"
-msgstr "Text alternatiu del logo secundari [ES]"
+msgstr ""
 
 #. Default: "URL del logo secundari [CA]"
 #: ../controlpanels/header.py:359
 msgid "secondary_logo_url"
-msgstr "URL del logo secundari [CA]"
+msgstr ""
 
 #. Default: "URL del logo secundari [EN]"
 #: ../controlpanels/header.py:379
 msgid "secondary_logo_url_en"
-msgstr "URL del logo secundari [EN]"
+msgstr ""
 
 #. Default: "URL del logo secundari [ES]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
-msgstr "URL del logo secundari [ES]"
+msgstr ""
 
-#. "Signatura de la unitat [CA]"
+#: ../browser/views_templates/anonimitzar.pt:15
+msgid "select_file_button"
+msgstr "Tria un fitxer"
+
+#: ../browser/views_templates/anonimitzar.pt:14
+msgid "select_pdf"
+msgstr ""
+
+#: ../browser/views_templates/anonimitzar.pt:24
+msgid "send_to_anonymize"
+msgstr ""
+
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143
 msgid "signatura_ca"
-msgstr "Signatura [CA]"
+msgstr ""
 
-#. "Signatura de la unitat [EN]"
 #. Default: "Signatura [EN]"
 #: ../controlpanels/footer.py:159
 msgid "signatura_en"
-msgstr "Signatura [EN]"
+msgstr ""
 
-#. "Signatura de la unitat [ES]"
 #. Default: "Signatura [ES]"
 #: ../controlpanels/footer.py:151
 msgid "signatura_es"
-msgstr "Signatura [ES]"
+msgstr ""
 
 #. Default: "Subhome Description"
 #: ../profiles/default/types/genweb.upc.subhome.xml
 msgid "subhome_desc"
-msgstr "Element que permet afegir una pàgina amb continguts de diferents parts de la web"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:21
 msgid "superior-centre"
-msgstr "Superior Centre"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:22
 msgid "superior-dreta"
-msgstr "Superior Dreta"
+msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:20
 msgid "superior-esquerra"
-msgstr "Superior Esquerra"
+msgstr ""
 
 #. Default: "Download this event in iCal format"
 #: ../portlets/news_events_listing/news_events_listing.pt:92
 msgid "title_add_to_ical"
-msgstr "Obteniu aquest esdeveniment en format iCal"
+msgstr ""
 
 #. Default: "Legacy portlets"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:96
 msgid "title_legacy_portlets"
-msgstr "Portlets heretats"
+msgstr ""
 
 #. Default: "Manage portlets for ${context_title}"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:35
 msgid "title_manage_contextual_portlets"
-msgstr "Administra els portlets per a <q>${context_title}</q>"
+msgstr ""
 
 #. Default: "Today"
 #: ../portlets/news_events_listing/news_events_listing.pt:71
 msgid "today_link"
-msgstr "Avui"
+msgstr ""
 
 #. Default: "Todays events"
-#: ../patches.py:1298
+#: ../patches.py:1300
 msgid "todays_events"
-msgstr "Esdeveniments per avui"
+msgstr ""
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1295
+#: ../patches.py:1297
 msgid "todays_upcoming_events"
-msgstr "Propers esdeveniments per avui"
+msgstr ""
 
 #: ../controlpanels/header.py:454
 msgid "treu_icones_xarxes_socials"
-msgstr "Treure les icones per compartir en xarxes socials"
+msgstr ""
 
-#. "Treu el menú horitzontal"
 #. Default: "Treu el menú horitzontal"
 #: ../controlpanels/header.py:410
 msgid "treu_menu_horitzontal"
-msgstr "Treu el menú horitzontal"
+msgstr ""
 
 #: ../content/banner/banner.py:25
 msgid "url"
-msgstr "url"
+msgstr ""
 
 #: ../controlpanels/cintillo.py:77
 msgid "Àngles"
-msgstr "Àngles"
+msgstr ""
 
 #: ../controlpanels/header.py:216
 msgid "És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
-msgstr "És important pujar una imatge amb una resolució de 2000 x 100px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina si no hi ha una imatge principal innovadora."
+msgstr ""
 
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
-msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
+msgstr ""
+
+msgid "no_file_selected"
+msgstr "No s'ha triat cap fitxer"

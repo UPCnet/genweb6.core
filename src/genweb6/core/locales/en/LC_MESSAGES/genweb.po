@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Featured Left"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1301
+#: ../patches.py:1303
 msgid "7days_events"
 msgstr "Events in next 7 days."
 
@@ -343,7 +343,7 @@ msgstr "Configure internal content"
 msgid "Configuracions"
 msgstr "Configurations"
 
-#: ../patches.py:823
+#: ../patches.py:825
 msgid "Connections"
 msgstr "Connections"
 
@@ -379,20 +379,20 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Content that feeds the template"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
-#: ../browser/viewlets.py:639
+#: ../browser/viewlets.py:640
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copied!"
 
-#: ../browser/viewlets.py:644
+#: ../browser/viewlets.py:645
 msgid "Copiat!"
 msgstr "Copied!"
 
@@ -677,11 +677,11 @@ msgstr "Full 4 columns: four columns of full image size and text below"
 msgid "FullNews"
 msgstr "News with picture"
 
-#: ../patches.py:822
+#: ../patches.py:824
 msgid "Genweb Advanced"
 msgstr "Genweb Advanced"
 
-#: ../patches.py:821
+#: ../patches.py:823
 msgid "Genweb Configuration"
 msgstr "Genweb Configuration"
 
@@ -707,7 +707,7 @@ msgstr "Grid Events"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Enable the option to be able to open multiple accordion panels"
+msgstr ""
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
@@ -880,15 +880,15 @@ msgstr "List view"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr "List of links [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr "List of links [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr "List of links [ES]"
+msgstr ""
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1014,15 +1014,15 @@ msgstr "News"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr "Name of the section [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr "Name of the section [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr "Name of the section [ES]"
+msgstr ""
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1075,7 +1075,7 @@ msgstr "Number of news to display"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr "Open the first accordion panel by default"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1186,7 +1186,7 @@ msgstr "Round to the right"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr "Round to the left"
+msgstr ""
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1373,19 +1373,19 @@ msgstr "This process may take a while. If the request times out, the zip file wi
 
 #: ../tiles/configure.zcml:42
 msgid "Tile used to show 2 destacats in homepage"
-msgstr "Tile used to show 2 destacats in homepage"
+msgstr "Tile used to show 2 destacat in homepage"
 
 #: ../tiles/configure.zcml:55
 msgid "Tile used to show 3 destacats in homepage"
-msgstr "Tile used to show 3 destacats in homepage"
+msgstr "Tile used to show 3 destacat in homepage"
 
 #: ../tiles/configure.zcml:68
 msgid "Tile used to show 4 destacats events in homepage"
-msgstr "Tile used to show 4 destacats events in homepage"
+msgstr "Tile used to show 4 destacat events in homepage"
 
 #: ../tiles/configure.zcml:81
 msgid "Tile used to show 5 destacats in homepage"
-msgstr "Tile used to show 5 destacats in homepage"
+msgstr "Tile used to show 5 destacat in homepage"
 
 #: ../tiles/configure.zcml:110
 msgid "Tile used to show custom video"
@@ -1393,7 +1393,7 @@ msgstr "Tile used to show custom video"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr "Tile used to show destacats in homepage"
+msgstr ""
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1413,11 +1413,11 @@ msgstr "Type of view"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr "Image type on main pages"
+msgstr ""
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr "Type of image in the contents"
+msgstr ""
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1532,7 +1532,7 @@ msgid "alert_really_delete_contents"
 msgstr "Do you really want to delete those contents?"
 
 #. Default: "All events"
-#: ../patches.py:1286
+#: ../patches.py:1288
 msgid "all_events"
 msgstr "All events"
 
@@ -1619,22 +1619,22 @@ msgid "enabled"
 msgstr "enabled"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1302
+#: ../patches.py:1304
 msgid "events_from_until"
 msgstr "${from} until ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1366
+#: ../patches.py:1368
 msgid "events_in_month"
 msgstr "Events in ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1339
+#: ../patches.py:1341
 msgid "events_in_week"
 msgstr "Events in week ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1324
+#: ../patches.py:1326
 msgid "events_on_day"
 msgstr "Events on ${day}"
 
@@ -1643,7 +1643,7 @@ msgid "folder contents"
 msgstr "Folder contents"
 
 #. Default: "Future events"
-#: ../patches.py:1292
+#: ../patches.py:1294
 msgid "future_events"
 msgstr "Future events"
 
@@ -1710,6 +1710,11 @@ msgstr "genweb6.theme (uninstall)"
 #: ../browser/macros/login.pt:71
 msgid "genweb_loginlocal"
 msgstr "Log in only in this site"
+
+#. Default: "Anonimitzar un PDF"
+#: ../browser/views_templates/anonimitzar.pt:11
+msgid "heading_anonimitzar"
+msgstr "Anonymize PDF"
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
@@ -1877,7 +1882,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:848
+#: ../patches.py:850
 msgid "label_add_new_item"
 msgstr "Add new…"
 
@@ -1887,7 +1892,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:845
+#: ../patches.py:847
 msgid "label_choose_template"
 msgstr "Display"
 
@@ -2020,6 +2025,10 @@ msgstr "More news"
 msgid "more_url"
 msgstr "View more"
 
+#: ../browser/views_templates/anonimitzar.pt:15
+msgid "no_file_selected"
+msgstr ""
+
 #: ../behaviors/seo.py:20
 msgid "noindex"
 msgstr "noindex"
@@ -2047,7 +2056,7 @@ msgid "open_link_in_new_window"
 msgstr "Open in a new window?"
 
 #. Default: "Past events"
-#: ../patches.py:1289
+#: ../patches.py:1291
 msgid "past_events"
 msgstr "Past events"
 
@@ -2103,6 +2112,19 @@ msgstr "Secondary logo URL [EN]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
 msgstr "Secondary logo URL [ES]"
+
+#: ../browser/views_templates/anonimitzar.pt:15
+msgid "select_file_button"
+msgstr "Choose a file"
+
+#. Default: "Selecciona un fitxer PDF:"
+#: ../browser/views_templates/anonimitzar.pt:14
+msgid "select_pdf"
+msgstr "Select PDF file:"
+
+#: ../browser/views_templates/anonimitzar.pt:22
+msgid "send_to_anonymize"
+msgstr "Send to anonymize"
 
 #########
 #. "Signatura de la unitat [CA]"
@@ -2161,12 +2183,12 @@ msgid "today_link"
 msgstr "Today"
 
 #. Default: "Todays events"
-#: ../patches.py:1298
+#: ../patches.py:1300
 msgid "todays_events"
 msgstr "Todays events"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1295
+#: ../patches.py:1297
 msgid "todays_upcoming_events"
 msgstr "Todays upcoming events"
 

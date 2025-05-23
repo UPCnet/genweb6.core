@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacados Izquierda"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1301
+#: ../patches.py:1303
 msgid "7days_events"
 msgstr "Eventos en los próximos 7 días."
 
@@ -343,7 +343,7 @@ msgstr "Configura el contenido interno"
 msgid "Configuracions"
 msgstr "Configuraciones"
 
-#: ../patches.py:823
+#: ../patches.py:825
 msgid "Connections"
 msgstr "Conexiones"
 
@@ -379,20 +379,20 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Contenidos que alimentan la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:639
+#: ../browser/viewlets.py:640
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:644
+#: ../browser/viewlets.py:645
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -674,11 +674,11 @@ msgstr "Anchura total a cuatro columnas: cuatro columnas con imagen arriba y tex
 msgid "FullNews"
 msgstr "Notícias con foto"
 
-#: ../patches.py:822
+#: ../patches.py:824
 msgid "Genweb Advanced"
 msgstr "Avanzados Genweb"
 
-#: ../patches.py:821
+#: ../patches.py:823
 msgid "Genweb Configuration"
 msgstr "Configuración Genweb"
 
@@ -704,7 +704,7 @@ msgstr "Parrilla de Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Habilitar la opción de poder abrir múltiples paneles del acordeon"
+msgstr ""
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
@@ -877,15 +877,15 @@ msgstr "Vista lista"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr "Listado de enlaces [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr "Listado de enlaces [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr "Listado de enlaces [ES]"
+msgstr ""
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1011,15 +1011,15 @@ msgstr "Noticias"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr "Nombre del apartado [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr "Nombre del apartado [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr "Nombre del apartado [ES]"
+msgstr ""
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1072,7 +1072,7 @@ msgstr "Número de noticias a mostrar"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr "Abrir el primer panel del acordeón por defecto"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1183,7 +1183,7 @@ msgstr "Redonda a la derecha"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr "Redonda a la izquierda"
+msgstr ""
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1390,7 +1390,7 @@ msgstr "Tile usada para mostrar un video personalizado"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr "Muestra destacados en la página principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1410,11 +1410,11 @@ msgstr "Tipo de vista"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr "Tipo de imagen en las páginas principales"
+msgstr ""
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr "Tipo de imagen en los contenidos"
+msgstr ""
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1529,7 +1529,7 @@ msgid "alert_really_delete_contents"
 msgstr "¿Seguro que deseas eliminar estos contenidos?"
 
 #. Default: "All events"
-#: ../patches.py:1286
+#: ../patches.py:1288
 msgid "all_events"
 msgstr "Todos los eventos"
 
@@ -1614,22 +1614,22 @@ msgid "enabled"
 msgstr "Habilitado"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1302
+#: ../patches.py:1304
 msgid "events_from_until"
 msgstr "${from} hasta ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1366
+#: ../patches.py:1368
 msgid "events_in_month"
 msgstr "Eventos en ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1339
+#: ../patches.py:1341
 msgid "events_in_week"
 msgstr "Eventos en la semana ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1324
+#: ../patches.py:1326
 msgid "events_on_day"
 msgstr "Eventos en ${day}"
 
@@ -1638,7 +1638,7 @@ msgid "folder contents"
 msgstr "Contenidos directorio"
 
 #. Default: "Future events"
-#: ../patches.py:1292
+#: ../patches.py:1294
 msgid "future_events"
 msgstr "Futuros eventos"
 
@@ -1707,6 +1707,11 @@ msgstr "genweb6.theme (desinstalar)"
 #: ../browser/macros/login.pt:71
 msgid "genweb_loginlocal"
 msgstr "Identifícate sólo en esta web"
+
+#. Default: "Anonimitzar un PDF"
+#: ../browser/views_templates/anonimitzar.pt:11
+msgid "heading_anonimitzar"
+msgstr "Anonimizar documento"
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
@@ -1868,7 +1873,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:848
+#: ../patches.py:850
 msgid "label_add_new_item"
 msgstr "Añadir..."
 
@@ -1878,7 +1883,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:845
+#: ../patches.py:847
 msgid "label_choose_template"
 msgstr "Vistas"
 
@@ -2011,6 +2016,10 @@ msgstr "Más noticias"
 msgid "more_url"
 msgstr "Ver más"
 
+#: ../browser/views_templates/anonimitzar.pt:15
+msgid "no_file_selected"
+msgstr ""
+
 #: ../behaviors/seo.py:20
 msgid "noindex"
 msgstr "noindex"
@@ -2038,7 +2047,7 @@ msgid "open_link_in_new_window"
 msgstr "Abrir en pestaña nueva"
 
 #. Default: "Past events"
-#: ../patches.py:1289
+#: ../patches.py:1291
 msgid "past_events"
 msgstr "Eventos pasados"
 
@@ -2095,6 +2104,19 @@ msgstr "URL del logo secundario [EN]"
 msgid "secondary_logo_url_es"
 msgstr "URL del logo secundario [ES]"
 
+#: ../browser/views_templates/anonimitzar.pt:15
+msgid "select_file_button"
+msgstr "Seleccionar archivo"
+
+#. Default: "Selecciona un fitxer PDF:"
+#: ../browser/views_templates/anonimitzar.pt:14
+msgid "select_pdf"
+msgstr "Selecciona un archivo PDF:"
+
+#: ../browser/views_templates/anonimitzar.pt:22
+msgid "send_to_anonymize"
+msgstr "Enviar para anonimizar"
+
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143
 msgid "signatura_ca"
@@ -2148,12 +2170,12 @@ msgid "today_link"
 msgstr "Hoy"
 
 #. Default: "Todays events"
-#: ../patches.py:1298
+#: ../patches.py:1300
 msgid "todays_events"
 msgstr "Eventos de hoy"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1295
+#: ../patches.py:1297
 msgid "todays_upcoming_events"
 msgstr "Próximos eventos de hoy"
 

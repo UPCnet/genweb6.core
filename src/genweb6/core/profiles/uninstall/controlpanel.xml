@@ -43,4 +43,11 @@
 
     </configlet>
 
+    <configlet
+        action_id="genweb6.core.anonimitzar"
+        appId="genweb6.core.anonimitzar"
+        remove="True">
+
+    </configlet>
+
 </object>

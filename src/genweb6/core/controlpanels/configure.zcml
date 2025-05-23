@@ -81,6 +81,13 @@
         class=".resources.ResourcesSettingsControlPanel"
         permission="genweb.webmaster"
         />
+    
+    <browser:page
+        name="anonimitzar-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".anonimitzar.AnonimitzarControlPanel"
+        permission="genweb.webmaster"
+        />
 
     <class class=".resources.ResourcesControlpanelJSWidget">
         <require
@@ -102,5 +109,6 @@
         class=".resources.GWJS"
         permission="zope.Public"
         />
+
 
 </configure>

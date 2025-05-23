@@ -80,4 +80,18 @@
         <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
+    <configlet
+        title="API Metadades"
+        action_id="genweb6.core.anonimitzar"
+        appId="genweb6.core.anonimitzar"
+        category="genweb-configuration"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@anonimitzar-settings"
+        icon_expr="string:exclamation-diamond"
+        visible="True">
+
+        <permission>Genweb: Webmaster Users</permission>
+    </configlet>
+
+
 </object>
