@@ -230,39 +230,36 @@ class Renderer(base.Renderer):
                 # link intern, search through the catalog
                 content = self.get_catalog_content()
 
-            # CONTENIDO EXTERNO #
+            # CONTINGUT EXTERN #
             elif self.data.content_or_url == 'EXTERN':
-                # link extern, pyreq
-                # ini_render = time.time()
                 link_extern = self.data.external_url
                 headers = {'Accept-Language': self.context.language}
                 raw_html = requests.get(
-                    link_extern, headers=headers, verify=False, timeout=5)
-                clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
-                doc = pq(clean_html)
-                if doc(self.data.element):
-                    content = pq(
-                        '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
+                    link_extern, headers=headers, verify=False, timeout=2)
+
+                if not raw_html.text.strip():
+                    content = _(u"ERROR. No content was received from the requested page.")
                 else:
-                    content = _(
-                        u"ERROR. This element does not exist:") + " " + self.data.element
+                    clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
+                    doc = pq(clean_html)
+                    if doc(self.data.element):
+                        content = pq(
+                            '<div/>').append(doc(self.data.element).outerHtml()).html(method='html')
+                    else:
+                        content = _(
+                            u"ERROR. This element does not exist:") + " " + self.data.element
 
-                # elapsed_fin_render = time.time() - ini_render
-                # logger.info("Elapsed time EXTERNAL CONTENT: %0.10f seconds." % elapsed_fin_render)
-                # ini_render_b = time.time()
-                soup = BeautifulSoup(clean_html, "html.parser")
-                body = soup.find_all("body")
-                if body:
-                    class_body = body[0].get("class", [])
-                    valid_class = [valid for valid in class_body if valid.startswith(
-                        'template-') or valid.startswith('portaltype-')]
-                    content = str(
-                        '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
-                        '</div>')
-                # elapsed_fin_render_b = time.time() - ini_render_b
-                # logger.info("Elapsed time BEAUTIFUL SOUP: %0.10f seconds." % elapsed_fin_render_b)
+                    soup = BeautifulSoup(clean_html, "html.parser")
+                    body = soup.find_all("body")
+                    if body:
+                        class_body = body[0].get("class", [])
+                        valid_class = [valid for valid in class_body if valid.startswith(
+                            'template-') or valid.startswith('portaltype-')]
+                        content = str(
+                            '<div class="existing-content ' + ' '.join(valid_class) + '">' + content +
+                            '</div>')
 
-            # PORTLET MALAMENT CONFIGURAT #
+            # PORTLET MAL CONFIGURAT #
             else:
                 content = _(u"ERROR. Review the portlet configuration.")
 
@@ -274,6 +271,7 @@ class Renderer(base.Renderer):
             content = _(u"ERROR. Charset undefined")
 
         return content
+
 
     def getTitle(self):
         return self.data.ptitle

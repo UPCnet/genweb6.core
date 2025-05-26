@@ -138,27 +138,30 @@ class ExistingContentView(BrowserView):
         """Obtiene contenido HTML del elemento especificado de una URL o tipo de contenido."""
         content = ''
         try:
-
             if self.context.content_or_url == 'INTERN':
                 content = self.get_catalog_content()
 
             elif self.context.content_or_url == 'EXTERN':
                 link_extern = self.context.external_url
                 headers = {'Accept-Language': self.context.language}
-                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=5)
-                clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
-                doc = pq(clean_html)
-                if doc(self.context.element):
-                    content = pq('<div/>').append(doc(self.context.element).outerHtml()).html(method='html')
-                else:
-                    content = _(u"ERROR. This element does not exist:") + " " + self.context.element
+                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=2)
 
-                soup = BeautifulSoup(clean_html, "html.parser")
-                body = soup.find_all("body")
-                if body:
-                    class_body = body[0].get("class", [])
-                    valid_class = [valid for valid in class_body if valid.startswith('template-') or valid.startswith('portaltype-')]
-                    content = str('<div class="existing-content ' + ' '.join(valid_class) + '">' + content + '</div>')
+                if not raw_html.text.strip():
+                    content = _(u"ERROR. No content was received from the requested page.")
+                else:
+                    clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
+                    doc = pq(clean_html)
+                    if doc(self.context.element):
+                        content = pq('<div/>').append(doc(self.context.element).outerHtml()).html(method='html')
+                    else:
+                        content = _(u"ERROR. This element does not exist:") + " " + self.context.element
+
+                    soup = BeautifulSoup(clean_html, "html.parser")
+                    body = soup.find_all("body")
+                    if body:
+                        class_body = body[0].get("class", [])
+                        valid_class = [valid for valid in class_body if valid.startswith('template-') or valid.startswith('portaltype-')]
+                        content = str('<div class="existing-content ' + ' '.join(valid_class) + '">' + content + '</div>')
 
             else:
                 content = _(u"ERROR. Review the content configuration.")
@@ -166,9 +169,9 @@ class ExistingContentView(BrowserView):
         except ReadTimeout:
             content = _(u"ERROR. There was a timeout.")
         except RequestException:
-            content = _(u"ERROR. This URL does not exist")
+            content = _(u"ERROR. This URL does not exist.")
         except Exception:
-            content = _(u"ERROR. Charset undefined")
+            content = _(u"ERROR. Charset undefined.")
 
         return content or ""
 
