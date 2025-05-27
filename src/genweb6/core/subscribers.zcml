@@ -32,4 +32,10 @@
         handler=".subscribers.updateLastLoginTimeAfterLogin"
     />
 
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".subscribers.clean_pdf_on_upload"
+    />
+
 </configure>

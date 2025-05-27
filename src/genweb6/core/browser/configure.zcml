@@ -231,6 +231,14 @@
         class=".anonimitzar.AnonimitzarView"
         layer="..interfaces.IGenweb6CoreLayer"
     />
+
+    <browser:page
+        name="clean_pdfs"
+        for="zope.interface.Interface"
+        permission="cmf.ManagePortal"
+        class=".clean_pdfs.CleanPDFsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+    />
     <configure package="Products.CMFPlone.browser">
 
         <browser:page
