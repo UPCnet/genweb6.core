@@ -237,7 +237,7 @@ class Renderer(base.Renderer):
                 raw_html = requests.get(
                     link_extern, headers=headers, verify=False, timeout=2)
 
-                if not raw_html.text.strip():
+                if not raw_html.text:
                     content = _(u"ERROR. No content was received from the requested page.")
                 else:
                     clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)

@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacados Izquierda"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1301
+#: ../patches.py:1319
 msgid "7days_events"
 msgstr "Eventos en los próximos 7 días."
 
@@ -151,7 +151,7 @@ msgstr "Añadir campo icono"
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Dirección web del canal donde se encuentra el vídeo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:293
+#: ../portlets/new_existing_content/new_existing_content.py:291
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
@@ -206,7 +206,7 @@ msgstr "Este formulario crea un directorio dentro de la cual has de añadir las 
 msgid "Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya."
 msgstr "Este formulario crea un directorio dentro de la cual has de añadir las páginas que formmaran parte de cada desplegable del acordión o de cada pestaña."
 
-#: ../portlets/new_existing_content/new_existing_content.py:294
+#: ../portlets/new_existing_content/new_existing_content.py:292
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "Este portlet muestra contenido ya existente de la URL especificada."
 
@@ -343,7 +343,7 @@ msgstr "Configura el contenido interno"
 msgid "Configuracions"
 msgstr "Configuraciones"
 
-#: ../patches.py:823
+#: ../patches.py:841
 msgid "Connections"
 msgstr "Conexiones"
 
@@ -379,20 +379,20 @@ msgid "Continguts que alimenten la plantilla"
 msgstr "Contenidos que alimentan la plantilla"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:639
+#: ../browser/viewlets.py:640
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
 #: ../content/accordion_tabs/accordion_tabs.pt:100
-#: ../content/carousel/carousel.pt:198
+#: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:644
+#: ../browser/viewlets.py:645
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -441,28 +441,39 @@ msgstr "Página con imagen"
 msgid "Documentació"
 msgstr "Documentación"
 
-#: ../content/existing_content/existing_content.py:171
-#: ../portlets/new_existing_content/new_existing_content.py:274
+#: ../portlets/new_existing_content/new_existing_content.py:271
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../content/existing_content/existing_content.py:164
+#: ../content/existing_content/existing_content.py:174
+msgid "ERROR. Charset undefined."
+msgstr "ERROR. Charset undefined."
+
+#: ../content/existing_content/existing_content.py:150
+#: ../portlets/new_existing_content/new_existing_content.py:241
+msgid "ERROR. No content was received from the requested page."
+msgstr "ERROR. No content was received from the requested page."
+
+#: ../content/existing_content/existing_content.py:167
 msgid "ERROR. Review the content configuration."
 msgstr "ERROR. Revise la configuración del contenido"
 
-#: ../portlets/new_existing_content/new_existing_content.py:267
+#: ../portlets/new_existing_content/new_existing_content.py:264
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Revise la configuración del portlet"
 
-#: ../content/existing_content/existing_content.py:167
-#: ../portlets/new_existing_content/new_existing_content.py:270
+#: ../content/existing_content/existing_content.py:170
+#: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. Se ha superado el tiempo de espera"
 
-#: ../content/existing_content/existing_content.py:169
-#: ../portlets/new_existing_content/new_existing_content.py:272
+#: ../portlets/new_existing_content/new_existing_content.py:269
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. La URL no existe"
+
+#: ../content/existing_content/existing_content.py:172
+msgid "ERROR. This URL does not exist."
+msgstr "ERROR. This URL does not exist."
 
 #: ../content/existing_content/existing_content.py:125
 #: ../portlets/new_existing_content/new_existing_content.py:203
@@ -508,7 +519,7 @@ msgstr "Editar portlet de etiquetas"
 msgid "Edit banners portlet"
 msgstr "Editar portlet báners"
 
-#: ../portlets/new_existing_content/new_existing_content.py:305
+#: ../portlets/new_existing_content/new_existing_content.py:303
 msgid "Edita portlet de contingut existent"
 msgstr "Editar portlet de contenido existente"
 
@@ -674,11 +685,11 @@ msgstr "Anchura total a cuatro columnas: cuatro columnas con imagen arriba y tex
 msgid "FullNews"
 msgstr "Notícias con foto"
 
-#: ../patches.py:822
+#: ../patches.py:840
 msgid "Genweb Advanced"
 msgstr "Avanzados Genweb"
 
-#: ../patches.py:821
+#: ../patches.py:839
 msgid "Genweb Configuration"
 msgstr "Configuración Genweb"
 
@@ -1529,7 +1540,7 @@ msgid "alert_really_delete_contents"
 msgstr "¿Seguro que deseas eliminar estos contenidos?"
 
 #. Default: "All events"
-#: ../patches.py:1286
+#: ../patches.py:1304
 msgid "all_events"
 msgstr "Todos los eventos"
 
@@ -1614,22 +1625,22 @@ msgid "enabled"
 msgstr "Habilitado"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1302
+#: ../patches.py:1320
 msgid "events_from_until"
 msgstr "${from} hasta ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1366
+#: ../patches.py:1384
 msgid "events_in_month"
 msgstr "Eventos en ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1339
+#: ../patches.py:1357
 msgid "events_in_week"
 msgstr "Eventos en la semana ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1324
+#: ../patches.py:1342
 msgid "events_on_day"
 msgstr "Eventos en ${day}"
 
@@ -1638,7 +1649,7 @@ msgid "folder contents"
 msgstr "Contenidos directorio"
 
 #. Default: "Future events"
-#: ../patches.py:1292
+#: ../patches.py:1310
 msgid "future_events"
 msgstr "Futuros eventos"
 
@@ -1868,7 +1879,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:848
+#: ../patches.py:866
 msgid "label_add_new_item"
 msgstr "Añadir..."
 
@@ -1878,7 +1889,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:845
+#: ../patches.py:863
 msgid "label_choose_template"
 msgstr "Vistas"
 
@@ -2038,7 +2049,7 @@ msgid "open_link_in_new_window"
 msgstr "Abrir en pestaña nueva"
 
 #. Default: "Past events"
-#: ../patches.py:1289
+#: ../patches.py:1307
 msgid "past_events"
 msgstr "Eventos pasados"
 
@@ -2148,12 +2159,12 @@ msgid "today_link"
 msgstr "Hoy"
 
 #. Default: "Todays events"
-#: ../patches.py:1298
+#: ../patches.py:1316
 msgid "todays_events"
 msgstr "Eventos de hoy"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1295
+#: ../patches.py:1313
 msgid "todays_upcoming_events"
 msgstr "Próximos eventos de hoy"
 
