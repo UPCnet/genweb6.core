@@ -83,25 +83,28 @@ class GWGlobalSectionsViewlet(GlobalSectionsViewlet):
                      in "/".join(self.context.getPhysicalPath())})
 
     def customize_tab(self, entry, tab):
-        catalog = api.portal.get_tool('portal_catalog')
-        portal = api.portal.get()
-        lang = self.context.language
-        if not lang:
+        lang = None
+        try:
+            portal = api.portal.get()
             lang = self.context.getPhysicalPath()[len(portal.getPhysicalPath())]
+        except:
+            lang = self.context.language
 
-        portal_path = '/'.join(portal.getPhysicalPath())
-        path = portal_path + '/' + lang + '/' + tab['id']
-        brain = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 0}, exclude_from_nav=False)[0]
-        entry.update({"external_link": bool(
-            getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
-        entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
-        # Si tenemos una url con resolveuid la cambiamos por la url del objeto
-        internal = 'resolveuid' in entry['url']
-        if internal:
-            uid = entry['url'].split('/resolveuid/')[1]
-            next_obj = catalog.unrestrictedSearchResults(UID=uid)
-            if next_obj:
-                entry['url'] = next_obj[0].getURL()
+        if lang:
+            portal_path = '/'.join(portal.getPhysicalPath())
+            path = portal_path + '/' + lang + '/' + tab['id']
+            catalog = api.portal.get_tool('portal_catalog')
+            brain = catalog.unrestrictedSearchResults(path={'query': path, 'depth': 0}, exclude_from_nav=False)[0]
+            entry.update({"external_link": bool(
+                getattr(brain, "open_link_in_new_window", False)) and api.user.is_anonymous()})
+            entry.update({"current": path in "/".join(self.context.getPhysicalPath())})
+            # Si tenemos una url con resolveuid la cambiamos por la url del objeto
+            internal = 'resolveuid' in entry['url']
+            if internal:
+                uid = entry['url'].split('/resolveuid/')[1]
+                next_obj = catalog.unrestrictedSearchResults(UID=uid)
+                if next_obj:
+                    entry['url'] = next_obj[0].getURL()
 
 
     # Añadimos target y current al dict
