@@ -146,22 +146,18 @@ class ExistingContentView(BrowserView):
                 headers = {'Accept-Language': self.context.language}
                 raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=2)
 
-                if not raw_html.text:
-                    content = _(u"ERROR. No content was received from the requested page.")
-                else:
-                    clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
-                    doc = pq(clean_html)
-                    if doc(self.context.element):
-                        content = pq('<div/>').append(doc(self.context.element).outerHtml()).html(method='html')
-                    else:
-                        content = _(u"ERROR. This element does not exist:") + " " + self.context.element
-
+                clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
+                doc = pq(clean_html)
+                if doc(self.context.element):
+                    content = pq('<div/>').append(doc(self.context.element).outerHtml()).html(method='html')
                     soup = BeautifulSoup(clean_html, "html.parser")
                     body = soup.find_all("body")
                     if body:
                         class_body = body[0].get("class", [])
                         valid_class = [valid for valid in class_body if valid.startswith('template-') or valid.startswith('portaltype-')]
                         content = str('<div class="existing-content ' + ' '.join(valid_class) + '">' + content + '</div>')
+                else:
+                    content = _(u"ERROR. This element does not exist:") + " " + self.context.element
 
             else:
                 content = _(u"ERROR. Review the content configuration.")
