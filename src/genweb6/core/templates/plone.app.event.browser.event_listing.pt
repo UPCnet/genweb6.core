@@ -23,13 +23,13 @@
 
         <span
             tal:replace="header/sub"
-            tal:condition="header/sub" />
+            tal:condition="header/sub"></span>
 
         <tal:condition condition="not: header/sub">
 
           <span
               tal:replace="header/main"
-              tal:condition="header/main" />
+              tal:condition="header/main"></span>
 
         </tal:condition>
 
