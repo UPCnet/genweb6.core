@@ -2,11 +2,17 @@ Changelog
 =========
 
 
-1.71 (unreleased)
+1.71 (2025-06-03)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] plone.app.event.browser.event_listing.pt - Cerrar bien span [«Iago]
+* [FIX] Continguts existents - donde llamamos el BeautifulSoup [«Iago]
+* [FIX] logger query_index [«Iago]
+* [FIX] Arreglar cuando no carga bien el menu de cabecera porque el contenido no tiene bien puesto el idioma [«Iago]
+* [UPD] Traducciones contenido existente [«Iago]
+* [UPD] Content rules: Manage rules - Añadir webmaster al permiso [«Iago]
+* [UPD] reduced timeout and [ADD] user feedback for empty response [Clàudia Andreu]
+* [FIX] Sobreescribir query_index para que no de error si no hay record.keys in range max [pilar.marinas]
 
 1.70 (2025-05-20)
 -----------------
