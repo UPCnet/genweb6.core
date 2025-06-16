@@ -141,6 +141,13 @@
         />
 
     <monkey:patch
+        description="Solucionar error getGroups en MemberData"
+        class="Products.PlonePAS.tools.memberdata.MemberData"
+        original="getGroups"
+        replacement=".patches.getGroups_memberdata_patch"
+        />
+
+    <monkey:patch
         description="Solucionar error import_relations"
         class="collective.exportimport.import_other.ImportRelations"
         original="import_relations"

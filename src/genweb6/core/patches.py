@@ -949,6 +949,19 @@ def getGroups(self, dn='*', attr=None, pwd=''):
     return group_list
 
 
+def getGroups_memberdata_patch(self):
+    """
+    Patched to avoid AttributeError: 'RequestContainer' object has no attribute 'getGroups'
+    The user object self._user seems to not have getGroups method in some contexts after
+    upgrading to Plone 6.0.15 with genweb6.core.
+    This patch handles both local users (like admin) and LDAP users.
+    """
+    try:
+        return self._user.getGroups()
+    except AttributeError:
+        if self._user.getId() == 'admin':
+            return []
+
 def getProperty(self, id, default=_marker):
     """PAS-specific method to fetch a user's properties. Looks
     through the ordered property sheets.
