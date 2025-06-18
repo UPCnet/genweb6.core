@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.72 (unreleased)
+1.72 (2025-06-18)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Subir timeout de 2 a 5 en los contenidos existentes [«Iago]
 
 1.71 (2025-06-03)
 -----------------
