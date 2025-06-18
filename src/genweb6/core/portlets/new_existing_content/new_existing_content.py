@@ -235,7 +235,7 @@ class Renderer(base.Renderer):
                 link_extern = self.data.external_url
                 headers = {'Accept-Language': self.context.language}
                 raw_html = requests.get(
-                    link_extern, headers=headers, verify=False, timeout=2)
+                    link_extern, headers=headers, verify=False, timeout=5)
 
                 clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
                 doc = pq(clean_html)
