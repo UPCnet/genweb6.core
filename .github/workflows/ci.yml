@@ -6,7 +6,7 @@ on:
   push:
     # branches: any branch for now
     #   - cicd
-    #   - master 
+    #   - master
   workflow_dispatch:
 
 jobs:
@@ -16,14 +16,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      
+
       - name: Preapre python environment
         uses: ./.github/actions/setup_python_environment
-      
+
       - name: Cache buildout
         id: cache-buildout
         uses: ./.github/actions/cache_buildout
-      
+
       - name: Install system libraries # needed for compiling eggs
         run: |
           sudo apt-get install -y build-essential xsltproc libncurses5-dev zip libffi-dev libjpeg-dev libtk-img-dev libopenjp2-7-dev liblcms2-dev libfreetype6-dev libwebp-dev libtiff-dev zlib1g-dev libreadline-dev libsqlite3-dev libssl-dev libxslt1-dev libbz2-dev libldap2-dev libsasl2-dev libpcre3-dev wv poppler-utils
@@ -44,10 +44,10 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
-      
+
       - name: Restore cache buildout
         id: cache-buildout-restore
         uses: ./.github/actions/cache_buildout
@@ -57,17 +57,17 @@ jobs:
           source venv/bin/activate
           tox -e py311-test
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
-  
+
   lint:
     needs: buildout
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
-      
+
       - name: Restore cache buildout
         id: cache-buildout-restore
         uses: ./.github/actions/cache_buildout
@@ -80,23 +80,23 @@ jobs:
           source venv/bin/activate
           warn="false"
           tox -e py311-lint || \
-            echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"           
+            echo "::warning title=Linter Warning::Your code has not passed the linter stage. Please check out the lint-report artifact"
         if: ${{ steps.cache-buildout-restore.outputs.cache-hit == 'true' }}
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: linter-report
           path: reports/flake8
         if: always()
-  
+
   coverage:
     needs: test
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        
+
       - name: Preapare python environment
         uses: ./.github/actions/setup_python_environment
 
@@ -127,7 +127,7 @@ jobs:
 
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: htmlcov
