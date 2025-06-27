@@ -15,6 +15,7 @@ from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
 from plone.base.interfaces import ISiteSchema
 from plone.formwidget.namedfile.converter import b64decode_file
+from plone.event.interfaces import IOccurrence
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
@@ -585,22 +586,22 @@ class socialtoolsViewlet(viewletBase):
         return ""
 
     def data(self):
-        real_context = getattr(self.context, '__parent__', self.context)
+        context =  self.context.aq_parent if IOccurrence.providedBy(self.context) else self.context
+        title = context.title
 
-        title = getattr(real_context, 'title', '') or getattr(real_context, 'Title', '')
         if not title:
-            if IFile.providedBy(real_context) or IImage.providedBy(real_context):
+            if IFile.providedBy(context) or IImage.providedBy(context):
                 try:
-                    title = real_context.file.filename
-                except AttributeError:
-                    pass
-            if not title:
-                title = getattr(real_context, 'id', 'Contingut')
+                    title = context.file.filename
+                except:
+                   return []
+            else:
+                return []
         try:
-            uid = IUUID(real_context)
+            uid = IUUID(context)
             url = self.root_url() + '/resolveuid/' + uid
-        except Exception:
-            url = real_context.absolute_url()
+        except:
+            url = context.absolute_url()
 
         return [
                {
