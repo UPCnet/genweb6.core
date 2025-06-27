@@ -137,9 +137,12 @@ def setupCAS(url, app_name, login_text_btn):
     registry = queryUtility(IRegistry)
     cas_settings = registry.forInterface(ICASSettings)
     cas_settings.enabled = True
-    cas_settings.url = url
-    cas_settings.app_name = app_name
-    cas_settings.login_text_btn = login_text_btn
+    if not cas_settings.url:
+        cas_settings.url = url
+    if not cas_settings.app_name:
+        cas_settings.app_name = app_name
+    if not cas_settings.login_text_btn:
+        cas_settings.login_text_btn = login_text_btn
 
     addPluginCAS(url)
 
