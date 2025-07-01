@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.73 (unreleased)
+1.73 (2025-07-01)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] socialtoolsViewlet - eventos recurrentes [«Iago]
+* [UPD] No cambiar valores de CAS si ya estan configurados [«Iago]
+* [UPD] Modificar portlet banners para que pille solo los portlets de la carpeta banners-ca/es/en [«Iago]
+* [FIX] Modificar version artifact para que no de error ci [Pilar Marinas]
+* [FIX] Modificar versions paquete para que no de error ci [Pilar Marinas]
 
 1.72 (2025-06-18)
 -----------------
