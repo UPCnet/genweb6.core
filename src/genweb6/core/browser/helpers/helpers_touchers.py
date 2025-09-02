@@ -103,7 +103,8 @@ Actualitza les vistes per al tipus de carpeta
         output = []
         portal.portal_types['Folder'].view_methods = (
             'listing_view', 'album_view', 'summary_view', 'tabular_view',
-            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
+            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view', 
+            'filtered_contents_search_album_view')
         import transaction
         transaction.commit()
         output.append('{}: Successfully reinstalled'.format(portal.id))

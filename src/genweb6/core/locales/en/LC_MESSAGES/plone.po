@@ -475,3 +475,6 @@ msgstr "Subjects"
 
 msgid "event_listing"
 msgstr "Event listing view"
+
+msgid "filtered_contents_search_album_view"
+msgstr "Album view with filters"
