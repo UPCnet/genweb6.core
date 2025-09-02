@@ -480,6 +480,13 @@ class FilteredContentsSearchView(BrowserView):
         return items
 
 
+
+class FilteredContentsSearchAlbumView(FilteredContentsSearchView):
+
+    def get_container_path(self):
+        return self.context.absolute_url() + '/search_album_filtered_content_pretty'
+
+
 class FilteredContentsSearchCompleteView(FilteredContentsSearchView):
     """ Filtered content search view for every folder. """
 

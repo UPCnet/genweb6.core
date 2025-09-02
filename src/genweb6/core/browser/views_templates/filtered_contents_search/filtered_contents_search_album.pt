@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+  <metal:block fill-slot="top_slot">
+    <tal:insert tal:replace="nothing"
+                tal:define="dummy python:request.set('enable_border', 1);
+                            disable_column_one python:request.set('disable_plone.rightcolumn',1);" />
+  </metal:block>
+</head>
+
+<body>
+
+  <metal:main metal:fill-slot="content-core"
+              tal:define="b_start python:0;
+                          b_start request/b_start | b_start;
+                          continguts python: view.getContent();
+                          path python: view.get_container_path()">
+
+    <div id="librarysearchpretty" class="filtered_contents_search_pretty row">
+      <div class="col-md-3 pe-5">
+        <h2 i18n:domain="genweb" i18n:translate="label_filters">Filters</h2>
+        <div class="caixessearch">
+          <div id="searchinputcontent">
+            <div class="input-append">
+              <input class="searchInputPretty form-control" type="text" placeholder="Cerca"
+                     i18n:attributes="placeholder search"  tal:attributes="data-name path" />
+            </div>
+          </div>
+
+          <h3 i18n:translate="label_tags">Tags</h3>
+          <div class="searchbytagcontainer" id="tags_list">
+            <p class="mb-2 d-flex gap-2" tal:repeat="tag view/getTags">
+              <input class="form-check-input" type="checkbox" name="tag" aria-labelledby="tags_list" tal:attributes="value tag;"  />
+              <label class="form-check-label" tal:content="tag"></label>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <section id="tagslist" tal:define="site_properties context/portal_properties/site_properties;
+                                           use_view_action site_properties/typesUseViewActionInListings|python:()">
+          <div class="row row-cols-auto g-4">
+            <tal:content tal:repeat="contingut continguts">
+              <div class="col" 
+                   tal:define="item_obj python:contingut.getObject();
+                               item_has_image python:hasattr(item_obj, 'image');"
+                   tal:condition="item_has_image">
+                <div class="card">
+                  <div class="card-image-top text-center" >
+                    <img tal:define="scales item_obj/@@images;
+                                     scale python:scales.scale('image', 'preview')"
+                         tal:replace="structure python:scale and scale.tag(css_class='tileImage') or None" />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title" tal:content="contingut/Title">Image title</h5>
+                    <p class="card-text" tal:content="contingut/Description"
+                       tal:condition="contingut/Description">Description</p>
+                    <a class="btn btn-primary stretched-link"
+                       tal:attributes="href string:${contingut/getURL}/view; title contingut/Description"
+                       i18n:translate="label_view">View</a>
+                  </div>
+                </div>
+              </div>
+            </tal:content>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="++theme++genweb6.theme/js/views/filtered_contents_search.min.js"></script>
+
+  </metal:main>
+</body>
+</html>

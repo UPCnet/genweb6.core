@@ -1,0 +1,29 @@
+<tal:block tal:define="site_properties context/portal_properties/site_properties;
+                       use_view_action site_properties/typesUseViewActionInListings|python:();
+                       continguts view/get_contenttags_by_query">
+  <div class="row row-cols-auto g-4">
+    <tal:content tal:repeat="contingut continguts">
+      <div class="col" 
+           tal:define="item_obj python:contingut.getObject();
+                       item_has_image python:hasattr(item_obj, 'image');"
+           tal:condition="item_has_image">
+        <div class="card">
+          <div class="card-image-top text-center" >
+            <img tal:define="scales item_obj/@@images;
+                              scale python:scales.scale('image', 'preview')"
+                  tal:replace="structure python:scale and scale.tag(css_class='tileImage') or None" />
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" tal:content="contingut/Title">Image title</h5>
+            <p class="card-text" tal:content="contingut/Description"
+               tal:condition="contingut/Description">Description</p>
+            <a class="btn btn-primary stretched-link"
+               tal:attributes="href string:${contingut/getURL}/view; 
+                               title contingut/Description"
+               i18n:translate="label_view">View</a>
+          </div>
+        </div>
+      </div>
+    </tal:content>
+  </div>
+</tal:block>

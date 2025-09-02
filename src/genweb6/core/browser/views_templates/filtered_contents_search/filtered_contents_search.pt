@@ -56,7 +56,7 @@
                 <a tal:attributes="href item_url">
                   <img tal:define="scales item_obj/@@images;
                                    scale python:scales.scale('image', 'thumb')"
-                      tal:replace="structure python:scale and scale.tag(css_class='tileImage') or None" />
+                       tal:replace="structure python:scale and scale.tag(css_class='tileImage') or None" />
                 </a>
               </div>
 

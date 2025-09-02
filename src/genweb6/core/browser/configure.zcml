@@ -120,6 +120,15 @@
         />
 
     <browser:page
+        name="filtered_contents_search_album_view"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchAlbumView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_album.pt"
+        />
+
+    <browser:page
         name="filtered_contents_search_complete_pretty_view"
         for="zope.interface.Interface"
         class=".views.FilteredContentsSearchCompleteView"
@@ -144,6 +153,15 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/filtered_contents_search/filtered_contents_search_ajax.pt"
+        />
+
+    <browser:page
+        name="search_album_filtered_content_pretty"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchAlbumView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_album_ajax.pt"
         />
 
     <browser:page
