@@ -11,7 +11,7 @@ from plone.dexterity.interfaces import IDexterityContent
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 
-from genweb6.core.controlpanels.anonimitzar import IAnonimitzarSettings
+from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 
 import logging
 import requests
@@ -140,7 +140,7 @@ def clean_pdf_on_upload(obj, event):
 
     try:
         registry = getUtility(IRegistry)
-        settings = registry.forInterface(IAnonimitzarSettings, check=False)
+        settings = registry.forInterface(IMetadadesSettings, check=False)
 
         api_url = settings.api_url
         api_key = settings.api_key
@@ -152,7 +152,7 @@ def clean_pdf_on_upload(obj, event):
 
         filename = obj.file.filename
         files = {
-            'fitxerPerAnonimitzar': (filename, file_data, 'application/pdf')
+            'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
         }
 
         response = requests.post(api_url, headers=headers, files=files)

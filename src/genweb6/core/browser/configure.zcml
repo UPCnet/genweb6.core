@@ -225,10 +225,10 @@
         />
 
     <browser:page
-        name="anonimitzar"
+        name="netejar_metadades"
         for="zope.interface.Interface"
         permission="zope.Public"
-        class=".anonimitzar.AnonimitzarView"
+        class=".netejar_metadades.NetejarMetadadesView"
         layer="..interfaces.IGenweb6CoreLayer"
     />
 

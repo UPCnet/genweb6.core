@@ -4,7 +4,7 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 from plone.protect.interfaces import IDisableCSRFProtection
 from zope.interface import alsoProvides
-from genweb6.core.controlpanels.anonimitzar import IAnonimitzarSettings
+from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from plone.namedfile.file import NamedBlobFile  
 
 import requests
@@ -41,7 +41,7 @@ class CleanPDFsView(BrowserView):
         brains = catalog.searchResults(portal_type='File')
 
         registry = getUtility(IRegistry)
-        settings = registry.forInterface(IAnonimitzarSettings, check=False)
+        settings = registry.forInterface(IMetadadesSettings, check=False)
 
         api_url = settings.api_url
         api_key = settings.api_key
@@ -85,7 +85,7 @@ class CleanPDFsView(BrowserView):
                 filename = obj.file.filename
 
                 files = {
-                    'fitxerPerAnonimitzar': (filename, file_data, 'application/pdf')
+                    'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
                 }
 
                 response = requests.post(api_url, headers=headers, files=files)
