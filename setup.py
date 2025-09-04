@@ -77,6 +77,7 @@ setup(
         'ipdb',
         'Products.PloneKeywordManager',
         'xmltodict',
+        'PyPDF2',
     ],
 
     extras_require={
