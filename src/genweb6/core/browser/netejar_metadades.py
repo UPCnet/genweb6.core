@@ -67,14 +67,13 @@ class NetejarMetadadesView(BrowserView):
                         file_obj.name = filename  
 
                         files = {
-                            'fitxerPerNetejarMetadades': (
+                            'fitxerPerAnonimitzar': (
                                 filename,
                                 file_obj,
                                 'application/pdf'
                             )
                         }
 
-                        # POST individual para cada PDF
                         response = requests.post(api_url, headers=headers, files=files, timeout=90)
 
                         # logger.info(f"Tamaño original: {len(content)} bytes, limpio: {len(response.content)} bytes para {filename}")
@@ -87,6 +86,7 @@ class NetejarMetadadesView(BrowserView):
                             zip_file.writestr(anon_name, response.content)
                             site = api.portal.get() 
                             cleaned_count += 1
+                        else:
                             error_msg = f"{filename} - Error {response.status_code}: {response.text}"
                             logger.error(error_msg)
                             zip_file.writestr(f"{filename}_ERROR.txt", error_msg)

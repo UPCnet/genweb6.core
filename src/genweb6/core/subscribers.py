@@ -152,7 +152,7 @@ def clean_pdf_on_upload(obj, event):
 
         filename = obj.file.filename
         files = {
-            'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
+            'fitxerPerAnonimitzar': (filename, file_data, 'application/pdf')
         }
 
         response = requests.post(api_url, headers=headers, files=files)
