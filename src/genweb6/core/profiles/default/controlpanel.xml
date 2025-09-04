@@ -82,11 +82,11 @@
 
     <configlet
         title="API Metadades"
-        action_id="genweb6.core.anonimitzar"
-        appId="genweb6.core.anonimitzar"
+        action_id="genweb6.core.netejar_metadades"
+        appId="genweb6.core.netejar_metadades"
         category="genweb-configuration"
         condition_expr=""
-        url_expr="string:${portal_url}/@@anonimitzar-settings"
+        url_expr="string:${portal_url}/@@metadades-settings"
         icon_expr="string:exclamation-diamond"
         visible="True">
 
