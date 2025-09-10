@@ -244,7 +244,7 @@ class LoginUtils():
                 self.context.absolute_url() + '/insufficient-privileges')
 
         url = self.context.absolute_url()
-        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
+        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu', 'governpre.upc.edu']):
             return login_url
         return self.request.response.redirect(login_url)
 
