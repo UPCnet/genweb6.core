@@ -82,7 +82,7 @@ class NetejarMetadadesView(BrowserView):
 
                         if response.status_code == 200:
                             name_part, ext_part = filename.rsplit('.', 1)
-                            anon_name = f"{name_part}_anonimitzat.{ext_part}"
+                            anon_name = f"{name_part}_sense_metadades.{ext_part}"
                             zip_file.writestr(anon_name, response.content)
                             site = api.portal.get() 
                             cleaned_count += 1
@@ -92,7 +92,7 @@ class NetejarMetadadesView(BrowserView):
                             zip_file.writestr(f"{filename}_ERROR.txt", error_msg)
 
                 request.response.setHeader('Content-Type', 'application/zip')
-                request.response.setHeader('Content-Disposition', 'attachment; filename="pdfs_anonimitzats.zip"')
+                request.response.setHeader('Content-Disposition', 'attachment; filename="pdfs_sense_metadades.zip"')
                 request.response.setHeader('Content-Length', str(len(zip_buffer.getvalue())))
                 return zip_buffer.getvalue()
 
