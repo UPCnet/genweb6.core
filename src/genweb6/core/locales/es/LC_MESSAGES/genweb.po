@@ -127,7 +127,7 @@ msgstr "Añadir portlet de noticias"
 msgid "Add Tags portlet"
 msgstr "Add Tags portlet"
 
-#: ../portlets/banners/banners.py:99
+#: ../portlets/banners/banners.py:102
 msgid "Add banners portlet"
 msgstr "Añadir potlet banners"
 
@@ -151,7 +151,7 @@ msgstr "Añadir campo icono"
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Dirección web del canal donde se encuentra el vídeo"
 
-#: ../portlets/new_existing_content/new_existing_content.py:291
+#: ../portlets/new_existing_content/new_existing_content.py:287
 msgid "Afegeix portlet de contingut existent"
 msgstr "Añadir portlet de contenido existente"
 
@@ -206,7 +206,7 @@ msgstr "Este formulario crea un directorio dentro de la cual has de añadir las 
 msgid "Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya."
 msgstr "Este formulario crea un directorio dentro de la cual has de añadir las páginas que formmaran parte de cada desplegable del acordión o de cada pestaña."
 
-#: ../portlets/new_existing_content/new_existing_content.py:292
+#: ../portlets/new_existing_content/new_existing_content.py:288
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "Este portlet muestra contenido ya existente de la URL especificada."
 
@@ -383,7 +383,7 @@ msgstr "Contenidos que alimentan la plantilla"
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
 
-#: ../browser/viewlets.py:640
+#: ../browser/viewlets.py:644
 msgid "Copiar enllaç"
 msgstr "Copiar enlace"
 
@@ -392,7 +392,7 @@ msgstr "Copiar enlace"
 msgid "Copiat"
 msgstr "Copiado!"
 
-#: ../browser/viewlets.py:645
+#: ../browser/viewlets.py:649
 msgid "Copiat!"
 msgstr "Copiado!"
 
@@ -441,37 +441,32 @@ msgstr "Página con imagen"
 msgid "Documentació"
 msgstr "Documentación"
 
-#: ../portlets/new_existing_content/new_existing_content.py:271
+#: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../content/existing_content/existing_content.py:174
+#: ../content/existing_content/existing_content.py:170
 msgid "ERROR. Charset undefined."
 msgstr "ERROR. Charset undefined."
 
-#: ../content/existing_content/existing_content.py:150
-#: ../portlets/new_existing_content/new_existing_content.py:241
-msgid "ERROR. No content was received from the requested page."
-msgstr "ERROR. No content was received from the requested page."
-
-#: ../content/existing_content/existing_content.py:167
+#: ../content/existing_content/existing_content.py:163
 msgid "ERROR. Review the content configuration."
 msgstr "ERROR. Revise la configuración del contenido"
 
-#: ../portlets/new_existing_content/new_existing_content.py:264
+#: ../portlets/new_existing_content/new_existing_content.py:260
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Revise la configuración del portlet"
 
-#: ../content/existing_content/existing_content.py:170
-#: ../portlets/new_existing_content/new_existing_content.py:267
+#: ../content/existing_content/existing_content.py:166
+#: ../portlets/new_existing_content/new_existing_content.py:263
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. Se ha superado el tiempo de espera"
 
-#: ../portlets/new_existing_content/new_existing_content.py:269
+#: ../portlets/new_existing_content/new_existing_content.py:265
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. La URL no existe"
 
-#: ../content/existing_content/existing_content.py:172
+#: ../content/existing_content/existing_content.py:168
 msgid "ERROR. This URL does not exist."
 msgstr "ERROR. This URL does not exist."
 
@@ -515,11 +510,11 @@ msgstr "Edit portlet noticias"
 msgid "Edit Tags Portlet"
 msgstr "Editar portlet de etiquetas"
 
-#: ../portlets/banners/banners.py:108
+#: ../portlets/banners/banners.py:111
 msgid "Edit banners portlet"
 msgstr "Editar portlet báners"
 
-#: ../portlets/new_existing_content/new_existing_content.py:303
+#: ../portlets/new_existing_content/new_existing_content.py:299
 msgid "Edita portlet de contingut existent"
 msgstr "Editar portlet de contenido existente"
 
@@ -532,6 +527,7 @@ msgid "El número de banners debe estar entre 1 y 10."
 msgstr "El número de banners debe estar entre 1 y 10."
 
 #: ../controlpanels/header.py:38
+#: ../controlpanels/netejar_metadades.py:24
 msgid "El valor introduït no és un URL vàlid."
 msgstr "El valor introducido no es una URL válida."
 
@@ -540,7 +536,7 @@ msgstr "El valor introducido no es una URL válida."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Elemento de la página a mostrar, por defecto #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:986
+#: ../browser/helpers/helpers_touchers.py:987
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "Los contenidos han sido excluidos de la navegación correctamente."
 
@@ -715,13 +711,13 @@ msgstr "Parrilla de Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Habilitar la opción de poder abrir múltiples paneles del acordeon"
+msgstr ""
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
 msgstr "Configuración Cabecera"
 
-#: ../browser/helpers/helpers_touchers.py:988
+#: ../browser/helpers/helpers_touchers.py:989
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "Ha habido un error durante el procedimiento."
 
@@ -888,15 +884,15 @@ msgstr "Vista lista"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr "Listado de enlaces [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr "Listado de enlaces [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr "Listado de enlaces [ES]"
+msgstr ""
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1022,15 +1018,15 @@ msgstr "Noticias"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr "Nombre del apartado [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr "Nombre del apartado [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr "Nombre del apartado [ES]"
+msgstr ""
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1083,7 +1079,7 @@ msgstr "Número de noticias a mostrar"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr "Abrir el primer panel del acordeón por defecto"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1168,7 +1164,7 @@ msgstr "Publica el aviso"
 msgid "Purge"
 msgstr "Borrar caché"
 
-#: ../browser/views.py:648
+#: ../browser/views.py:655
 msgid "Purged"
 msgstr "Caché borrada"
 
@@ -1194,7 +1190,7 @@ msgstr "Redonda a la derecha"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr "Redonda a la izquierda"
+msgstr ""
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1363,7 +1359,7 @@ msgstr "Este portlet muestra acontecimientos recientes."
 msgid "This portlet displays recent News Items."
 msgstr "El portlet muestra las noticias recientes."
 
-#: ../portlets/banners/banners.py:100
+#: ../portlets/banners/banners.py:103
 msgid "This portlet displays the site banners."
 msgstr "El portlet muestra los banners del sitio"
 
@@ -1401,7 +1397,7 @@ msgstr "Tile usada para mostrar un video personalizado"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr "Muestra destacados en la página principal"
+msgstr ""
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1421,11 +1417,11 @@ msgstr "Tipo de vista"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr "Tipo de imagen en las páginas principales"
+msgstr ""
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr "Tipo de imagen en los contenidos"
+msgstr ""
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1719,6 +1715,11 @@ msgstr "genweb6.theme (desinstalar)"
 msgid "genweb_loginlocal"
 msgstr "Identifícate sólo en esta web"
 
+#. Default: "Neteja metadades documents"
+#: ../browser/views_templates/netejar_metadades.pt:16
+msgid "heading_metadades"
+msgstr ""
+
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
 msgstr "Se ha desconectado la sesión."
@@ -1900,6 +1901,7 @@ msgstr "Convertir portlets"
 
 #. Default: "Filters"
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:26
+#: ../browser/views_templates/filtered_contents_search/filtered_contents_search_album.pt:26
 msgid "label_filters"
 msgstr "Filtros"
 
@@ -2022,6 +2024,15 @@ msgstr "Más noticias"
 msgid "more_url"
 msgstr "Ver más"
 
+#. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
+#: ../browser/views_templates/netejar_metadades.pt:47
+msgid "neteja_metadades_description"
+msgstr ""
+
+#: ../browser/views_templates/netejar_metadades.pt:25
+msgid "no_file_selected"
+msgstr ""
+
 #: ../behaviors/seo.py:20
 msgid "noindex"
 msgstr "noindex"
@@ -2039,7 +2050,7 @@ msgid "not_show_image"
 msgstr "No mostrar la imagen en la página, pero sí en los portlets y vistas"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:392
+#: ../browser/viewlets.py:396
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(abre en ventana nueva)"
@@ -2105,6 +2116,20 @@ msgstr "URL del logo secundario [EN]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
 msgstr "URL del logo secundario [ES]"
+
+#: ../browser/views_templates/netejar_metadades.pt:25
+msgid "select_file_button"
+msgstr "Seleccionar archivo"
+
+#. Default: "Selecciona el PDF a netejar:"
+#: ../browser/views_templates/netejar_metadades.pt:22
+msgid "select_pdf"
+msgstr "Selecciona un archivo PDF:"
+
+#. Default: "Netejar"
+#: ../browser/views_templates/netejar_metadades.pt:36
+msgid "send_to_anonymize"
+msgstr "Enviar para anonimizar"
 
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143

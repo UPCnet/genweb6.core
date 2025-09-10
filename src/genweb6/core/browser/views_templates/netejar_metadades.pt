@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/@@blank_template/macros/master"
+      i18n:domain="genweb"
+      lang="en">
+
+  <body>
+   <metal:main metal:fill-slot="content">
+      <a href="https://www.upc.edu" class="upc-logo">
+        <img src="++theme++genweb6.theme/img/logo.png" alt="UPC" class="upc-logo-img" />
+      </a>
+        <section class="upc-container">
+          <div class="upc-card upc-card--centered upc-card--padding">
+            <h1 class="upc-heading--large" i18n:translate="heading_metadades">
+              Neteja metadades documents
+            </h1>
+
+            <form id="upc-form" class="upc-form" action="" method="post" enctype="multipart/form-data">
+              <div class="upc-form-group">
+                <label for="pdf_file" class="upc-label" i18n:translate="select_pdf">
+                  Selecciona el PDF a netejar:
+                </label>
+                <input type="file"
+                      id="pdf_file"
+                      name="pdf_file"
+                      accept="application/pdf"
+                      required
+                      multiple
+                      class="upc-input upc-input--file"
+                      i18n:attributes="title select_file_button; placeholder no_file_selected"/>
+              </div>
+
+              <div class="upc-form-group upc-form-group--center">
+                <button type="submit"
+                        id="netejar-btn"
+                        class="upc-button upc-button--primary"
+                        i18n:translate="send_to_anonymize">
+                  Netejar
+                </button>
+
+                <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
+                    alt="Carregant..." style="display:none; width:24px; height:24px;">
+              </div>
+
+               <p class="upc-text" i18n:translate="neteja_metadades_description">
+                Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic.
+                Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers  (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar.
+               </p>
+
+
+            </form>
+          </div>
+
+        <script type="text/javascript"
+                tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/theme-concat.js"></script>
+
+        </section>
+    </metal:main>
+  </body>
+</html>

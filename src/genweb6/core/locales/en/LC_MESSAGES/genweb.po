@@ -127,7 +127,7 @@ msgstr "Add Noticies portlet"
 msgid "Add Tags portlet"
 msgstr "Add Tags portlet"
 
-#: ../portlets/banners/banners.py:99
+#: ../portlets/banners/banners.py:102
 msgid "Add banners portlet"
 msgstr "Add banners portlet"
 
@@ -151,7 +151,7 @@ msgstr "Add icon fields"
 msgid "Adreça web del canal on es troba el vídeo."
 msgstr "Web address of the channel where the video is located."
 
-#: ../portlets/new_existing_content/new_existing_content.py:291
+#: ../portlets/new_existing_content/new_existing_content.py:287
 msgid "Afegeix portlet de contingut existent"
 msgstr "Add existing content portlet"
 
@@ -206,7 +206,7 @@ msgstr "This form creates a folder in which you must add the images that are par
 msgid "Aquest formulari crea una carpeta dins la qual heu de crear una pàgina per cada desplegable del acordió o pestanya."
 msgstr "This form creates a folder within which you must create a page for each accordion dropdown or tab."
 
-#: ../portlets/new_existing_content/new_existing_content.py:292
+#: ../portlets/new_existing_content/new_existing_content.py:288
 msgid "Aquest portlet mostra contingut ja existent en URL específica."
 msgstr "This portlet displays content that already exists at a specific URL."
 
@@ -383,7 +383,7 @@ msgstr "Content that feeds the template"
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
-#: ../browser/viewlets.py:640
+#: ../browser/viewlets.py:644
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
@@ -392,7 +392,7 @@ msgstr "Copy link"
 msgid "Copiat"
 msgstr "Copied!"
 
-#: ../browser/viewlets.py:645
+#: ../browser/viewlets.py:649
 msgid "Copiat!"
 msgstr "Copied!"
 
@@ -441,37 +441,32 @@ msgstr "Document with image"
 msgid "Documentació"
 msgstr "Documentation"
 
-#: ../portlets/new_existing_content/new_existing_content.py:271
+#: ../portlets/new_existing_content/new_existing_content.py:267
 msgid "ERROR. Charset undefined"
 msgstr "ERROR. Charset undefined"
 
-#: ../content/existing_content/existing_content.py:174
+#: ../content/existing_content/existing_content.py:170
 msgid "ERROR. Charset undefined."
 msgstr "ERROR. Charset undefined."
 
-#: ../content/existing_content/existing_content.py:150
-#: ../portlets/new_existing_content/new_existing_content.py:241
-msgid "ERROR. No content was received from the requested page."
-msgstr "ERROR. No content was received from the requested page."
-
-#: ../content/existing_content/existing_content.py:167
+#: ../content/existing_content/existing_content.py:163
 msgid "ERROR. Review the content configuration."
 msgstr "ERROR. Review the content configuration."
 
-#: ../portlets/new_existing_content/new_existing_content.py:264
+#: ../portlets/new_existing_content/new_existing_content.py:260
 msgid "ERROR. Review the portlet configuration."
 msgstr "ERROR. Review the portlet configuration."
 
-#: ../content/existing_content/existing_content.py:170
-#: ../portlets/new_existing_content/new_existing_content.py:267
+#: ../content/existing_content/existing_content.py:166
+#: ../portlets/new_existing_content/new_existing_content.py:263
 msgid "ERROR. There was a timeout."
 msgstr "ERROR. There was a timeout."
 
-#: ../portlets/new_existing_content/new_existing_content.py:269
+#: ../portlets/new_existing_content/new_existing_content.py:265
 msgid "ERROR. This URL does not exist"
 msgstr "ERROR. This URL does not exist"
 
-#: ../content/existing_content/existing_content.py:172
+#: ../content/existing_content/existing_content.py:168
 msgid "ERROR. This URL does not exist."
 msgstr "ERROR. This URL does not exist."
 
@@ -515,11 +510,11 @@ msgstr "Edit News Portlet"
 msgid "Edit Tags Portlet"
 msgstr "Edit Tags Portlet"
 
-#: ../portlets/banners/banners.py:108
+#: ../portlets/banners/banners.py:111
 msgid "Edit banners portlet"
 msgstr "Edit banners portlet"
 
-#: ../portlets/new_existing_content/new_existing_content.py:303
+#: ../portlets/new_existing_content/new_existing_content.py:299
 msgid "Edita portlet de contingut existent"
 msgstr "Edit existing content portlet"
 
@@ -532,6 +527,7 @@ msgid "El número de banners debe estar entre 1 y 10."
 msgstr "The number of banners must be between 1 and 10."
 
 #: ../controlpanels/header.py:38
+#: ../controlpanels/netejar_metadades.py:24
 msgid "El valor introduït no és un URL vàlid."
 msgstr "The value entered is not a valid URL."
 
@@ -540,7 +536,7 @@ msgstr "The value entered is not a valid URL."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Element of the page to display, by default #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:986
+#: ../browser/helpers/helpers_touchers.py:987
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "The contents have been excluded from the navigation correctly."
 
@@ -718,13 +714,13 @@ msgstr "Grid Events"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Enable the option to be able to open multiple accordion panels"
+msgstr ""
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
 msgstr "Header Settings"
 
-#: ../browser/helpers/helpers_touchers.py:988
+#: ../browser/helpers/helpers_touchers.py:989
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "There was an error during the procedure."
 
@@ -891,15 +887,15 @@ msgstr "List view"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr "List of links [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr "List of links [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr "List of links [ES]"
+msgstr ""
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1025,15 +1021,15 @@ msgstr "News"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr "Name of the section [CA]"
+msgstr ""
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr "Name of the section [EN]"
+msgstr ""
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr "Name of the section [ES]"
+msgstr ""
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1086,7 +1082,7 @@ msgstr "Number of news to display"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr "Open the first accordion panel by default"
+msgstr ""
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1171,7 +1167,7 @@ msgstr "Post the notice"
 msgid "Purge"
 msgstr "Clear cache"
 
-#: ../browser/views.py:648
+#: ../browser/views.py:655
 msgid "Purged"
 msgstr "Cache cleared"
 
@@ -1197,7 +1193,7 @@ msgstr "Round to the right"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr "Round to the left"
+msgstr ""
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1366,7 +1362,7 @@ msgstr "This portlet shows recent events."
 msgid "This portlet displays recent News Items."
 msgstr "This portlet displays recent News Items."
 
-#: ../portlets/banners/banners.py:100
+#: ../portlets/banners/banners.py:103
 msgid "This portlet displays the site banners."
 msgstr "This portlet displays the site banners."
 
@@ -1384,19 +1380,19 @@ msgstr "This process may take a while. If the request times out, the zip file wi
 
 #: ../tiles/configure.zcml:42
 msgid "Tile used to show 2 destacats in homepage"
-msgstr "Tile used to show 2 destacats in homepage"
+msgstr "Tile used to show 2 destacat in homepage"
 
 #: ../tiles/configure.zcml:55
 msgid "Tile used to show 3 destacats in homepage"
-msgstr "Tile used to show 3 destacats in homepage"
+msgstr "Tile used to show 3 destacat in homepage"
 
 #: ../tiles/configure.zcml:68
 msgid "Tile used to show 4 destacats events in homepage"
-msgstr "Tile used to show 4 destacats events in homepage"
+msgstr "Tile used to show 4 destacat events in homepage"
 
 #: ../tiles/configure.zcml:81
 msgid "Tile used to show 5 destacats in homepage"
-msgstr "Tile used to show 5 destacats in homepage"
+msgstr "Tile used to show 5 destacat in homepage"
 
 #: ../tiles/configure.zcml:110
 msgid "Tile used to show custom video"
@@ -1404,7 +1400,7 @@ msgstr "Tile used to show custom video"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr "Tile used to show destacats in homepage"
+msgstr ""
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1424,11 +1420,11 @@ msgstr "Type of view"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr "Image type on main pages"
+msgstr ""
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr "Type of image in the contents"
+msgstr ""
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1722,6 +1718,11 @@ msgstr "genweb6.theme (uninstall)"
 msgid "genweb_loginlocal"
 msgstr "Log in only in this site"
 
+#. Default: "Neteja metadades documents"
+#: ../browser/views_templates/netejar_metadades.pt:16
+msgid "heading_metadades"
+msgstr ""
+
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
 msgstr "The session has been disconnected."
@@ -1909,6 +1910,7 @@ msgstr "Convert portlets"
 
 #. Default: "Filters"
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:26
+#: ../browser/views_templates/filtered_contents_search/filtered_contents_search_album.pt:26
 msgid "label_filters"
 msgstr "Filters"
 
@@ -2031,6 +2033,15 @@ msgstr "More news"
 msgid "more_url"
 msgstr "View more"
 
+#. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
+#: ../browser/views_templates/netejar_metadades.pt:47
+msgid "neteja_metadades_description"
+msgstr ""
+
+#: ../browser/views_templates/netejar_metadades.pt:25
+msgid "no_file_selected"
+msgstr ""
+
 #: ../behaviors/seo.py:20
 msgid "noindex"
 msgstr "noindex"
@@ -2048,7 +2059,7 @@ msgid "not_show_image"
 msgstr "Do not display the image on the page, but do in the portlets and views"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:392
+#: ../browser/viewlets.py:396
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(open link in a new window)"
@@ -2114,6 +2125,20 @@ msgstr "Secondary logo URL [EN]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
 msgstr "Secondary logo URL [ES]"
+
+#: ../browser/views_templates/netejar_metadades.pt:25
+msgid "select_file_button"
+msgstr "Choose a file"
+
+#. Default: "Selecciona el PDF a netejar:"
+#: ../browser/views_templates/netejar_metadades.pt:22
+msgid "select_pdf"
+msgstr "Select PDF file:"
+
+#. Default: "Netejar"
+#: ../browser/views_templates/netejar_metadades.pt:36
+msgid "send_to_anonymize"
+msgstr "Send to anonymize"
 
 #########
 #. "Signatura de la unitat [CA]"

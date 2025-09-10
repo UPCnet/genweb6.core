@@ -26,5 +26,9 @@
     <records
         interface="genweb6.core.controlpanels.resources.IResourcesSettings"
         purge="False" />
-
+    
+     <records
+        interface="genweb6.core.controlpanels.netejar_metadades.IMetadadesSettings"
+        purge="False" />
+    
 </registry>
