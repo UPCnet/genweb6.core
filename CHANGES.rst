@@ -2,11 +2,22 @@ Changelog
 =========
 
 
-1.74 (unreleased)
+1.74 (2025-09-10)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Solve merge [Iago López]
+* [UPD] Portal Metadades description [Clàudia Andreu]
+* Merge branch 'api-test' of github.com:UPCnet/genweb6.core into api-test [Clàudia Andreu]
+* [UPD] Portal Metadades view [Clàudia Andreu]
+* [UPD] Add governpre.upc.edu normal login [Iago López]
+* Merge branch 'api-test' of github.com:UPCnet/genweb6.core into api-test [Clàudia Andreu]
+* [UPD] netejar metadades [Clàudia Andreu]
+* [ADD] PyPDF2 package required [Iago López]
+* [UPD] metadades xmls [Clàudia Andreu]
+* [UPD] metadades control panel [Clàudia Andreu]
+* [ADD] first version of Neteja de Metadades [Clàudia Andreu]
+* [UPD] Nueva vista: filtered_contents_search_album_view [Iago López]
+* [ADD] Nueva vista: filtered_contents_search_album_view [Iago López]
 
 1.73 (2025-07-01)
 -----------------
