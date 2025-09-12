@@ -53,7 +53,7 @@ class IMetadadesSettings(model.Schema, IDexteritySchema):
     )
 
     indicadors_categoria_id = schema.TextLine(
-        title=u"ID de la categoria/indicador a actualitzar",
+        title=u"ID de l'indicador a actualitzar",
         required=True,
     )
 
