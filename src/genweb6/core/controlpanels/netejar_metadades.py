@@ -1,4 +1,4 @@
-from zope.interface import Interface
+from zope.interface import Interface, Invalid
 from zope import schema
 from plone.supermodel import model
 from plone.autoform import directives as form
@@ -8,11 +8,9 @@ from zope.ramcache import ram
 from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button
 from plone.dexterity.interfaces import IDexteritySchema
-from zope.interface import Invalid
 
 from genweb6.core import _
 from genweb6.core.purge import purge_varnish_paths
-
 import re
 
 def isURL(value):
@@ -25,7 +23,7 @@ def isURL(value):
     return True
 
 class IMetadadesSettings(model.Schema, IDexteritySchema):
-    """Configuració per l'eina d'anonimització"""
+    """Configuració per l'api de metadades i actualització d'indicadors"""
 
     api_url = schema.URI(
         title=u"URL del servei d'anonimització",
@@ -38,11 +36,32 @@ class IMetadadesSettings(model.Schema, IDexteritySchema):
         required=True,
     )
 
+    indicadors_api_url = schema.URI(
+        title=u"URL base del servei d'indicadors",
+        constraint=isURL,
+        required=True
+    )
+
+    indicadors_api_key = schema.TextLine(
+        title=u"Clau API del servei d'indicadors",
+        required=True,
+    )
+
+    indicadors_servei_id = schema.TextLine(
+        title=u"ID del servei per Indicadors",
+        required=True,
+    )
+
+    indicadors_categoria_id = schema.TextLine(
+        title=u"ID de la categoria/indicador a actualitzar",
+        required=True,
+    )
+
 
 class MetadadesSettingslForm(controlpanel.RegistryEditForm):
     schema = IMetadadesSettings
     label = u"Configuració Neteja de Metadades"
-    description = u"Defineix la URL i la clau API per l'eina d'anonimització."
+    description = u"Defineix la URL, la clau API i els paràmetres del servei d'indicadors."
 
     def updateFields(self):
         super(MetadadesSettingslForm, self).updateFields()
@@ -62,7 +81,6 @@ class MetadadesSettingslForm(controlpanel.RegistryEditForm):
 
         paths = []
         paths.append('/_purge_all')
-
         purge_varnish_paths(self, paths)
 
         IStatusMessage(self.request).addStatusMessage(_("Changes saved"), "info")

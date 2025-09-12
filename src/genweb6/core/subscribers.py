@@ -167,7 +167,7 @@ def clean_pdf_on_upload(obj, event):
             )
 
             obj.reindexObject()
-            logger.info(f"[OK] {obj.absolute_url()} - PDF anonimizado")
+            logger.info(f"[OK] {obj.absolute_url()} - PDF sense metadades")
         else:
             logger.warning(f"[FAIL] {obj.absolute_url()} - {response.status_code} - {response.text}")
 
