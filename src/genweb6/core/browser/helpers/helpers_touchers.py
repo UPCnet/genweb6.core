@@ -25,6 +25,7 @@ from zope.interface import alsoProvides
 
 from genweb6.core import _
 from genweb6.core.interfaces import IHomePage
+from genweb6.core.utils import genwebMetadadesConfig
 
 import logging
 import os
@@ -1062,6 +1063,44 @@ Elimina el camp icon del continguts de tipus Banner en cas de que estigui mal mi
             if callable(obj.icon):
                 obj.icon = ''
                 obj.reindexObject()
+
+        transaction.commit()
+        return 'OK'
+
+
+class setup_netejar_metadades(BrowserView):
+    """
+Definir el camps per el controlpanel de neteja de metadades
+
+Paràmetres:
+- api_url: URL del servei d'anonimització
+- api_key: Clau API
+- indicadors_api_url: URL base del servei d'indicadors
+- indicadors_api_key: Clau API del servei d'indicadors
+- indicadors_servei_id: ID del servei per Indicadors
+- indicadors_categoria_id: ID de l'indicador a actualitzar
+    """
+
+    def __call__(self):
+        import ipdb; ipdb.set_trace()
+        mc = genwebMetadadesConfig()
+        if 'api_url' in self.request.form:
+            mc.api_url = self.request.form['api_url']
+
+        if 'api_key' in self.request.form:
+            mc.api_key = self.request.form['api_key']
+
+        if 'indicadors_api_url' in self.request.form:            
+            mc.indicadors_api_url = self.request.form['indicadors_api_url']
+
+        if 'indicadors_api_key' in self.request.form:            
+            mc.indicadors_api_key = self.request.form['indicadors_api_key']
+
+        if 'indicadors_servei_id' in self.request.form:            
+            mc.indicadors_servei_id = self.request.form['indicadors_servei_id']
+
+        if 'indicadors_categoria_id' in self.request.form:            
+            mc.indicadors_categoria_id = self.request.form['indicadors_categoria_id']
 
         transaction.commit()
         return 'OK'

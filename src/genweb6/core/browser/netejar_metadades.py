@@ -1,22 +1,52 @@
 # -*- coding: utf-8 -*-
-from zope.publisher.browser import BrowserView
+from AccessControl import Unauthorized
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from PyPDF2 import PdfReader
+
+from datetime import datetime
+from io import BytesIO
+from plone import api
 from plone.registry.interfaces import IRegistry
+from zipfile import ZipFile
 from zope.component import getUtility
+from zope.publisher.browser import BrowserView
+
+from genweb6.core.browser.clean_pdfs import is_signed_pdf
 from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.indicators.client import Client
-import requests
+
+import io
 import logging
-from zipfile import ZipFile
-from io import BytesIO
-from genweb6.core.browser.clean_pdfs import is_signed_pdf
+import requests
 
 logger = logging.getLogger(__name__)
+
 
 class NetejarMetadadesView(BrowserView):
     template = ViewPageTemplateFile("views_templates/netejar_metadades.pt")
 
+    def canView(self):
+        if api.user.is_anonymous():
+            return False
+
+        username = api.user.get_current().id
+
+        if username == 'admin':
+            return True
+
+        roles = api.user.get_roles(username=username, obj=self.context)
+        if 'Manager' in roles:
+            return True
+
+        if not bool([group.id for group in api.group.get_groups(username=username) if group.id in ['PDI', 'PAS']]):
+            return False
+
+        return True
+
     def __call__(self):
+        if not self.canView():
+            return Unauthorized
+
         request = self.request
 
         if request.method == "POST" and 'pdf_file' in request.form:

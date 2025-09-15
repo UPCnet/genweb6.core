@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import Interface, Invalid
 from zope import schema
 from plone.supermodel import model
@@ -13,6 +14,7 @@ from genweb6.core import _
 from genweb6.core.purge import purge_varnish_paths
 import re
 
+
 def isURL(value):
     """Check if the input is a valid URL."""
     url_regex = re.compile(
@@ -21,6 +23,7 @@ def isURL(value):
     if not url_regex.match(value):
         raise Invalid(_(u"El valor introduït no és un URL vàlid."))
     return True
+
 
 class IMetadadesSettings(model.Schema, IDexteritySchema):
     """Configuració per l'api de metadades i actualització d'indicadors"""
@@ -90,6 +93,7 @@ class MetadadesSettingslForm(controlpanel.RegistryEditForm):
     def handleCancel(self, action):
         IStatusMessage(self.request).addStatusMessage(_("Changes canceled."), "info")
         self.request.response.redirect(self.context.absolute_url() + '/' + self.control_panel_view)
+
 
 class MetadadesControlPanel(controlpanel.ControlPanelFormWrapper):
     form = MetadadesSettingslForm

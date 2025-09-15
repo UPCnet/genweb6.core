@@ -30,6 +30,7 @@ from genweb6.core.controlpanels.cintillo import ICintilloSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
+from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
 
 import json
@@ -226,6 +227,11 @@ def genwebLoginConfig():
 def genwebResourcesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IResourcesSettings)
+
+
+def genwebMetadadesConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IMetadadesSettings)
 
 
 class LoginUtils():

@@ -248,7 +248,7 @@
         permission="zope.Public"
         class=".netejar_metadades.NetejarMetadadesView"
         layer="..interfaces.IGenweb6CoreLayer"
-    />
+        />
 
     <browser:page
         name="clean_pdfs"
@@ -256,7 +256,8 @@
         permission="cmf.ManagePortal"
         class=".clean_pdfs.CleanPDFsView"
         layer="..interfaces.IGenweb6CoreLayer"
-    />
+        />
+
     <configure package="Products.CMFPlone.browser">
 
         <browser:page

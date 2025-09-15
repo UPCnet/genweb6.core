@@ -81,13 +81,6 @@
         class=".resources.ResourcesSettingsControlPanel"
         permission="genweb.webmaster"
         />
-    
-    <browser:page
-        name="metadades-settings"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".netejar_metadades.MetadadesControlPanel"
-        permission="genweb.webmaster"
-        />
 
     <class class=".resources.ResourcesControlpanelJSWidget">
         <require
@@ -109,6 +102,12 @@
         class=".resources.GWJS"
         permission="zope.Public"
         />
-
+    
+    <browser:page
+        name="metadades-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".netejar_metadades.MetadadesControlPanel"
+        permission="genweb.webmaster"
+        />
 
 </configure>
