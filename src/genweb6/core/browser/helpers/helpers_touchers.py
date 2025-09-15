@@ -1082,7 +1082,6 @@ Paràmetres:
     """
 
     def __call__(self):
-        import ipdb; ipdb.set_trace()
         mc = genwebMetadadesConfig()
         if 'api_url' in self.request.form:
             mc.api_url = self.request.form['api_url']
