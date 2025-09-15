@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.76 (unreleased)
+1.76 (2025-09-15)
 -----------------
 
-- Nothing changed yet.
-
+* [DEL] ipdb [Iago López]
 
 1.75 (2025-09-15)
 -----------------
