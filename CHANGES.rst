@@ -2,11 +2,13 @@ Changelog
 =========
 
 
-1.75 (unreleased)
+1.75 (2025-09-15)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Mover controlpanel de metadades + [ADD] Toucher para cargar datos al controlpanel de metadades [Iago López]
+* [UPD] control panel description [Clàudia Andreu]
+* Merge branch 'api-test' into develop [Clàudia Andreu]
+* [ADD] indicadors to Portal Neteja de Metadades [Clàudia Andreu]
 
 1.74 (2025-09-10)
 -----------------
