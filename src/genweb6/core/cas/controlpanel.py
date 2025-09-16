@@ -139,12 +139,12 @@ def setupCAS(url, app_name, login_text_btn):
     cas_settings.enabled = True
     if not cas_settings.url:
         cas_settings.url = url
+        addPluginCAS(url)
     if not cas_settings.app_name:
         cas_settings.app_name = app_name
     if not cas_settings.login_text_btn:
         cas_settings.login_text_btn = login_text_btn
 
-    addPluginCAS(url)
 
 
 def deletePluginCAS():
