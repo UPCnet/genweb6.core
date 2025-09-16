@@ -265,6 +265,33 @@ Paràmetre:
         return 'Error parameter product_name, not defined'
 
 
+class reinstall_all_genweb_products(BrowserView):
+    """
+Reinstal·la tots els paquets de genweb instal·lats
+    """
+
+
+    def __call__(self, portal=None):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        if not portal:
+            portal = api.portal.get()
+
+        LIST_PRODUCTS = ['genweb6.upc', 'genweb6.ens', 'genweb6.esports', 'genweb6.gpaq', 
+                         'genweb6.patents', 'genweb6.scholarship', 'genweb6.tfemarket',
+                         'genweb6.serveistic']
+
+        qi = get_installer(self.context)
+        output = []
+        for product_name in LIST_PRODUCTS:
+
+            if qi.is_product_installed(product_name):
+                qi.upgrade_product(product_name)
+                output.append('{}: Successfully reinstalled {}'.format(
+                    portal.id, product_name))
+
+        return '\n'.join(output)
+
+
 class uninstall_product(BrowserView):
     """
 Desinstal·la un paquet
