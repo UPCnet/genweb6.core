@@ -26,6 +26,8 @@ from zope.interface import alsoProvides
 from genweb6.core import _
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebMetadadesConfig
+from genweb6.core.cas.controlpanel import addPluginCAS
+from genweb6.core.cas.controlpanel import ICASSettings
 
 import logging
 import os
@@ -261,6 +263,7 @@ Paràmetre:
             return '\n'.join(output)
 
         return 'Error parameter product_name, not defined'
+
 
 class uninstall_product(BrowserView):
     """
@@ -1102,4 +1105,18 @@ Paràmetres:
             mc.indicadors_categoria_id = self.request.form['indicadors_categoria_id']
 
         transaction.commit()
+        return 'OK'
+
+
+class fix_cas_controlpanel(BrowserView):
+    """
+Agafem la configuració del controlpanel del CAS i configurem la URL en acl_users/CASGW/manage_config
+    """
+
+    def __call__(self):
+        registry = queryUtility(IRegistry)
+        cas_settings = registry.forInterface(ICASSettings)
+        if cas_settings.url:
+            addPluginCAS(cas_settings.url)
+            transaction.commit()
         return 'OK'
