@@ -85,7 +85,7 @@ class CleanPDFsView(BrowserView):
                 filename = obj.file.filename
 
                 files = {
-                    'fitxerPerAnonimitzar': (filename, file_data, 'application/pdf')
+                    'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
                 }
 
                 response = requests.post(api_url, headers=headers, files=files)

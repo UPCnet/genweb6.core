@@ -92,7 +92,7 @@ class NetejarMetadadesView(BrowserView):
                             zip_file.writestr(f"{filename}_SIGNAT.txt", "PDF signat")
                             continue
 
-                        files = {'fitxerPerAnonimitzar': (filename, BytesIO(content), 'application/pdf')}
+                        files = {'fitxerPerNetejarMetadades': (filename, BytesIO(content), 'application/pdf')}
                         response = requests.post(api_url, headers=headers, files=files, timeout=90)
 
                         logger.info(f"Resposta API status: {response.status_code}")
