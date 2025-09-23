@@ -2,11 +2,14 @@ Changelog
 =========
 
 
-1.77 (unreleased)
+1.77 (2025-09-23)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Metadades API variable name [Clàudia Andreu]
+* [UPD] Mejorar vista filtered_contents_search_album [Iago López]
+* [ADD] helper reinstall_all_genweb_products [Iago López]
+* [ADD] helper fix_cas_controlpanel [Iago López]
+* [FIX] CAS setup [Iago López]
 
 1.76 (2025-09-15)
 -----------------
