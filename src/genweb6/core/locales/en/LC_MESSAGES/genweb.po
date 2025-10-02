@@ -536,7 +536,7 @@ msgstr "The value entered is not a valid URL."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Element of the page to display, by default #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:987
+#: ../browser/helpers/helpers_touchers.py:1018
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "The contents have been excluded from the navigation correctly."
 
@@ -713,14 +713,14 @@ msgid "GridEvents"
 msgstr "Grid Events"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
-msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr ""
+msgid "Habilitar l'opció de poder obrir múltiples panells de l'acordió"
+msgstr "Enable the option to open multiple accordion panels"
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
 msgstr "Header Settings"
 
-#: ../browser/helpers/helpers_touchers.py:989
+#: ../browser/helpers/helpers_touchers.py:1020
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "There was an error during the procedure."
 
@@ -887,15 +887,15 @@ msgstr "List view"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr ""
+msgstr "List of links [CA]"
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr ""
+msgstr "List of links [EN]"
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr ""
+msgstr "List of links [ES]"
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1021,15 +1021,15 @@ msgstr "News"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr ""
+msgstr "Name of the section [CA]"
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr ""
+msgstr "Name of the section [EN]"
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr ""
+msgstr "Name of the section [ES]"
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1082,7 +1082,7 @@ msgstr "Number of news to display"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr ""
+msgstr "Open the first accordion panel by default"
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1193,7 +1193,7 @@ msgstr "Round to the right"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr ""
+msgstr "Round to the left"
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1400,7 +1400,7 @@ msgstr "Tile used to show custom video"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr ""
+msgstr "Tile used to show destacats in homepage"
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1420,11 +1420,11 @@ msgstr "Type of view"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr ""
+msgstr "Image type on main pages"
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr ""
+msgstr "Type of image in the contents"
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1719,9 +1719,9 @@ msgid "genweb_loginlocal"
 msgstr "Log in only in this site"
 
 #. Default: "Neteja metadades documents"
-#: ../browser/views_templates/netejar_metadades.pt:16
+#: ../browser/views_templates/netejar_metadades.pt:15
 msgid "heading_metadades"
-msgstr ""
+msgstr "Clean document metadata"
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
@@ -2034,13 +2034,13 @@ msgid "more_url"
 msgstr "View more"
 
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
-#: ../browser/views_templates/netejar_metadades.pt:47
+#: ../browser/views_templates/netejar_metadades.pt:45
 msgid "neteja_metadades_description"
-msgstr ""
+msgstr "With this tool you can easily remove all metadata and hidden information from your PDF files before sharing them, ensuring more privacy and security, all with a single click. Once you submit your documents, the file or files (in <strong>.zip</strong> format) will be automatically downloaded to your device, clean of metadata, ready to use."
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "no_file_selected"
-msgstr ""
+msgstr "No file selected"
 
 #: ../behaviors/seo.py:20
 msgid "noindex"
@@ -2126,17 +2126,17 @@ msgstr "Secondary logo URL [EN]"
 msgid "secondary_logo_url_es"
 msgstr "Secondary logo URL [ES]"
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "select_file_button"
 msgstr "Choose a file"
 
 #. Default: "Selecciona el PDF a netejar:"
-#: ../browser/views_templates/netejar_metadades.pt:22
+#: ../browser/views_templates/netejar_metadades.pt:21
 msgid "select_pdf"
 msgstr "Select PDF file:"
 
 #. Default: "Netejar"
-#: ../browser/views_templates/netejar_metadades.pt:36
+#: ../browser/views_templates/netejar_metadades.pt:35
 msgid "send_to_anonymize"
 msgstr "Send to anonymize"
 
