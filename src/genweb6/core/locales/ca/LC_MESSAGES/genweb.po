@@ -930,24 +930,24 @@ msgstr ""
 
 #: ../behaviors.zcml:41
 msgid "Max size for a file field on easy form."
-msgstr ""
+msgstr "Mida màxima per a un camp de fitxer en un easy form."
 
 #: ../behaviors.zcml:41
 msgid "Max size for file fields"
-msgstr ""
+msgstr "Mida màxima per als camps de fitxer"
 
 #: ../portlets/grid_events/grid_events.py:32
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:51
 msgid "Maxim numero de esdeveniments a mostrar (d'1 a 16)"
-msgstr ""
+msgstr "Màxim número d'esdeveniments a mostrar (d'1 a 16)"
 
 #: ../portlets/news/news.py:23
 msgid "Maxim numero de noticies a mostrar (5 o 7)"
-msgstr ""
+msgstr "Màxim número de notícies a mostrar (5 o 7)"
 
 #: ../portlets/fullnews/fullnews.py:48
 msgid "Maxim numero de noticies a mostrar (d'1 a 14)"
-msgstr ""
+msgstr "Màxim número de notícies a mostrar (d'1 a 14)"
 
 #: ../controlpanels/footer.py:53
 msgid "Menú al peu"
@@ -967,11 +967,11 @@ msgstr ""
 
 #: ../portlets/rss/rss.py:306
 msgid "More link"
-msgstr ""
+msgstr "Més links"
 
 #: ../portlets/rss/rss.py:313
 msgid "More text"
-msgstr ""
+msgstr "Més text"
 
 #: ../portlets/fullnews/fullnews.py:55
 #: ../portlets/news/news.py:31
@@ -1003,15 +1003,15 @@ msgstr ""
 #: ../portlets/fullnews/fullnews.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:61
 msgid "Multiple carousel view"
-msgstr ""
+msgstr "Vista de carrusel múltiple"
 
 #: ../tiles/twitter/twitter.py:13
 msgid "Name of the Twitter account used to shown the tweets"
-msgstr ""
+msgstr "Nom del compte de Twitter utilitzat per mostrar els tuits"
 
 #: ../portlets/news/news.py:48
 msgid "News"
-msgstr ""
+msgstr "Notícies"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
@@ -1033,7 +1033,7 @@ msgstr ""
 #: ../portlets/multiviewcollection/multiviewcollection.py:43
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:44
 msgid "Normal view"
-msgstr ""
+msgstr "Vista estàndard"
 
 #: ../profiles/default/portlets.xml
 msgid "NoticiesPropi"
@@ -1045,31 +1045,31 @@ msgstr ""
 
 #: ../portlets/banners/banners.py:34
 msgid "Number of banners to display"
-msgstr ""
+msgstr "Nombre de bàners a mostrar "
 
 #: ../portlets/esdeveniments/esdeveniments.py:35
 msgid "Number of items to display"
-msgstr ""
+msgstr "Nombre d'elements a mostrar"
 
 #: ../portlets/grid_events/grid_events.py:39
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:58
 msgid "Numero de columnes"
-msgstr ""
+msgstr "Número de columnes"
 
 #: ../portlets/grid_events/grid_events.py:40
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:59
 msgid "Numero de columnes (d'1 a 4)"
-msgstr ""
+msgstr "Número de columnes (d'1 a 4)"
 
 #: ../portlets/grid_events/grid_events.py:31
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:50
 msgid "Numero de esdeveniments a mostrar"
-msgstr ""
+msgstr "Número d'esdeveniments a mostrar"
 
 #: ../portlets/fullnews/fullnews.py:47
 #: ../portlets/news/news.py:22
 msgid "Numero de noticies a mostrar"
-msgstr ""
+msgstr "Número de noticies a mostrar"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
@@ -1097,7 +1097,7 @@ msgstr ""
 
 #: ../controlpanels/footer.py:101
 msgid "Per defecte: Enlaces"
-msgstr ""
+msgstr "Per defecte: Enllaços"
 
 #: ../controlpanels/footer.py:95
 msgid "Per defecte: Enllaços"
@@ -1105,7 +1105,7 @@ msgstr ""
 
 #: ../controlpanels/footer.py:107
 msgid "Per defecte: Links"
-msgstr ""
+msgstr "Per defecte: Enllaços"
 
 #: ../browser/viewlets_templates/content/important.pt:10
 msgid "Per marcar la notícia com a important premeu el botó:"
@@ -1125,12 +1125,12 @@ msgstr ""
 
 #: ../content/banner/banner.py:19
 msgid "Picture"
-msgstr ""
+msgstr "Imatge"
 
 #: ../content/banner/banner.py:20
 #: ../controlpanels/header.py:258
 msgid "Please upload an image"
-msgstr ""
+msgstr "Si us plau,carregueu una imatge "
 
 #: ../content/accordion_tabs/accordion_tabs.py:73
 #: ../content/carousel/carousel.py:78
@@ -1140,7 +1140,7 @@ msgstr ""
 #: ../portlets/banners/banners.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:70
 msgid "Portlet header"
-msgstr ""
+msgstr "Capçalera del portlet"
 
 #: ../controlpanels/header.py:208
 msgid "Posició del text"
@@ -1152,15 +1152,15 @@ msgstr ""
 
 #: ../controlpanels/cintillo.py:19
 msgid "Publica el avis"
-msgstr ""
+msgstr "Publica l'avís"
 
 #: ../profiles/default/actions.xml
 msgid "Purge"
-msgstr ""
+msgstr "Purga"
 
 #: ../browser/views.py:655
 msgid "Purged"
-msgstr ""
+msgstr "Purgat"
 
 #: ../controlpanels/resources.py:65
 msgid "Recurs CSS"
@@ -1172,7 +1172,7 @@ msgstr ""
 
 #: ../controlpanels/resources.py:95
 msgid "Resources Settings"
-msgstr ""
+msgstr "Configuració de recursos"
 
 #: ../content/carousel/carousel.py:62
 msgid "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
@@ -1214,7 +1214,7 @@ msgstr ""
 #: ../controlpanels/cintillo.py:104
 #: ../controlpanels/footer.py:176
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 #: ../controlpanels/resources.py:59
 msgid "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
@@ -1227,19 +1227,19 @@ msgstr ""
 
 #: ../tiles/formulari_existent/formulari_existent.py:70
 msgid "Select an existing content"
-msgstr ""
+msgstr "Seleccioneu un contingut existent"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:101
 msgid "Select random items"
-msgstr ""
+msgstr "Seleccioneu elements aleatoris"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:116
 msgid "Show dates"
-msgstr ""
+msgstr "Mostra dates"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:108
 msgid "Show more... link"
-msgstr ""
+msgstr "Mostra més... enllaç"
 
 #: ../browser/views_templates/setup_view.pt:27
 msgid "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
@@ -1256,43 +1256,43 @@ msgstr ""
 #: ../portlets/fullnews/fullnews.py:29
 #: ../portlets/multiviewcollection/multiviewcollection.py:58
 msgid "Simple carousel view"
-msgstr ""
+msgstr "Vista de carrusel simple"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:96
 msgid "Specify the maximum number of items to show in the portlet. Leave this blank to show all items."
-msgstr ""
+msgstr "Especifiqueu el nombre màxim d'elements que es mostraran al portlet. Deixeu-ho en blanc per mostrar-los tots."
 
 #: ../profiles/default/types/genweb.upc.subhome.xml
 msgid "Subhome"
-msgstr ""
+msgstr "Graella de portlets"
 
 #: ../browser/views_templates/download_files.pt:15
 msgid "Submit the form below to download a .zip of files contained in this folder."
-msgstr ""
+msgstr "Envieu el formulari següent per descarregar un fitxer .zip dels fitxers que conté aquesta carpeta."
 
 #: ../portlets/news_events_listing/news_events_listing.py:23
 msgid "Tags"
-msgstr ""
+msgstr "Etiquetes"
 
 #: ../tiles/destacats/destacatbase.py:31
 #: ../tiles/destacats/destacats.py:42
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:42
 msgid "Tags field"
-msgstr ""
+msgstr "Camp d'etiquetes"
 
 #: ../tiles/destacats/destacatbase.py:32
 #: ../tiles/destacats/destacats.py:43
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:43
 msgid "Tags field description"
-msgstr ""
+msgstr "Descripció del camp d'etiquetes"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:89
 msgid "Target collection"
-msgstr ""
+msgstr "Col·lecció objectiu"
 
 #: ../adapters/important.py:20
 msgid "Tells if an object is marked as important"
-msgstr ""
+msgstr "Indica si un objecte està marcat com a important"
 
 #: ../controlpanels/footer.py:45
 msgid "Tema"
@@ -1317,85 +1317,85 @@ msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:15
 msgid "Text position"
-msgstr ""
+msgstr "Posició del text"
 
 #: ../portlets/rss/rss.py:314
 msgid "Text to show more content."
-msgstr ""
+msgstr "Text per mostrar més contingut."
 
 #: ../tiles/destacats/destacatbase.py:40
 #: ../tiles/destacats/destacats.py:51
 msgid "The content type to check for."
-msgstr ""
+msgstr "El tipus de contingut que cal comprovar."
 
 #: ../behaviors.zcml:51
 msgid "This behavior adds extra fields to a Content Type for SEO optimisation"
-msgstr ""
+msgstr "Aquest comportament afegeix camps addicionals a un tipus de contingut per a l'optimització SEO."
 
 #: ../validations.py:6
 msgid "This is an inner link"
-msgstr ""
+msgstr "Aquest és un enllaç intern"
 
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:193
 msgid "This portlet displays a listing of items from a Collection of events."
-msgstr ""
+msgstr "Aquest portlet mostra una llista d'elements d'una col·lecció d'esdeveniments."
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:397
 msgid "This portlet displays a listing of items from a Collection."
-msgstr ""
+msgstr "Aquest portlet mostra una llista d'elements d'una col·lecció d'esdeveniments."
 
 #: ../portlets/grid_events/grid_events.py:141
 msgid "This portlet displays recent Events."
-msgstr ""
+msgstr "Aquest portlet mostra els esdeveniments recents."
 
 #: ../portlets/fullnews/fullnews.py:292
 #: ../portlets/news/news.py:138
 msgid "This portlet displays recent News Items."
-msgstr ""
+msgstr "Aquest portlet mostra les notícies recents."
 
 #: ../portlets/banners/banners.py:103
 msgid "This portlet displays the site banners."
-msgstr ""
+msgstr "Aquest portlet mostra els bàners del lloc."
 
 #: ../portlets/news_events_listing/news_events_listing.py:233
 msgid "This portlet lists tags by type and context."
-msgstr ""
+msgstr "Aquest portlet llista les etiquetes per tipus i context."
 
 #: ../portlets/esdeveniments/esdeveniments.py:233
 msgid "This portlet lists upcoming Events."
-msgstr ""
+msgstr "Aquest portlet llista els propers esdeveniments."
 
 #: ../browser/views_templates/download_files.pt:18
 msgid "This process may take a while. If the request times out, the zip file will still be created in this folder. Check for the new file in"
-msgstr ""
+msgstr "Aquest procés pot trigar una estona. Si la sol·licitud s'espera, el fitxer zip encara es crearà en aquesta carpeta. Busqueu el fitxer nou a"
 
 #: ../tiles/configure.zcml:42
 msgid "Tile used to show 2 destacats in homepage"
-msgstr ""
+msgstr "Tile utilitzada per mostrar 2 elements destacats a la pàgina d'inici"
 
 #: ../tiles/configure.zcml:55
 msgid "Tile used to show 3 destacats in homepage"
-msgstr ""
+msgstr "Tile utilitzada per mostrar 3 elements destacats a la pàgina d'inici"
 
 #: ../tiles/configure.zcml:68
 msgid "Tile used to show 4 destacats events in homepage"
-msgstr ""
+msgstr "Tile utilitzada per mostrar 4 elements destacats a la pàgina d'inici"
 
 #: ../tiles/configure.zcml:81
 msgid "Tile used to show 5 destacats in homepage"
-msgstr ""
+msgstr "Tile utilitzada per mostrar 5 elements destacats a la pàgina d'inici"
 
 #: ../tiles/configure.zcml:110
 msgid "Tile used to show custom video"
-msgstr ""
+msgstr "Tile utilitzada per mostrar un vídeo personalitzat "
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr ""
+msgstr "Tile s'utilitza per mostrar els destacats a la pàgina d'inici"
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
-msgstr ""
+msgstr "Tile s'utilitza per mostrar un easyform com una tile"
 
 #: ../content/carousel/carousel.py:68
 msgid "Tipus de carrusel"
@@ -1421,7 +1421,7 @@ msgstr ""
 #: ../tiles/destacats/destacatbase.py:25
 #: ../tiles/destacats/destacats.py:36
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: ../portlets/banners/banners.py:30
 #: ../portlets/multiviewcollection/multiviewcollection.py:71
@@ -1432,15 +1432,15 @@ msgstr ""
 #: ../tiles/destacats/destacats.py:37
 #: ../tiles/destacats/quatre_destacats_esdeveniments/destacats.py:37
 msgid "Title of the tile"
-msgstr ""
+msgstr "Títol del portlet renderitzat"
 
 #: ../tiles/twitter/twitter.py:12
 msgid "Twitter Account"
-msgstr ""
+msgstr "Compte de Twitter"
 
 #: ../portlets/news_events_listing/news_events_listing.py:27
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: ../controlpanels/cintillo.py:48
 msgid "Títol del l'avís"
@@ -1466,51 +1466,51 @@ msgstr ""
 
 #: ../content/banner/banner.py:26
 msgid "URL to open"
-msgstr ""
+msgstr "URL per obrir"
 
 #: ../configure.zcml:62
 msgid "Uninstalls the genweb6.core add-on."
-msgstr ""
+msgstr "Desinstal·la el complement genweb6.core."
 
 #: genweb6/theme/configure.zcml:27
 msgid "Uninstalls the genweb6.theme add-on."
-msgstr ""
+msgstr "Desinstal·la el complement genweb6.theme."
 
 #: ../portlets/rss/rss.py:307
 msgid "Url that links to more content."
-msgstr ""
+msgstr "URL que enllaça a més contingut."
 
 #: ../profiles/default/types/BannerContainer.xml
 #: ../profiles/default/types/Logos_Container.xml
 msgid "View"
-msgstr ""
+msgstr "Vista"
 
 #: ../tiles/destacats/destacats.py:65
 #: ../tiles/video/video.py:61
 msgid "View as"
-msgstr ""
+msgstr "Veure com"
 
 #: ../tiles/destacats/destacats.py:66
 #: ../tiles/video/video.py:62
 msgid "View as description"
-msgstr ""
+msgstr "Veure com a descripció"
 
 #: ../portlets/multiviewcollection/multiviewcollection.py:131
 #: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:63
 msgid "View type"
-msgstr ""
+msgstr "Tipus de visualització"
 
 #: ../browser/views_templates/setup_view.pt:24
 msgid "Warning"
-msgstr ""
+msgstr "Avís"
 
 #: ../portlets/esdeveniments/esdeveniments.py:43
 msgid "Workflow state"
-msgstr ""
+msgstr "Declaració del flux de treball"
 
 #: ../browser/confirmation.py:64
 msgid "You must select at least one item."
-msgstr ""
+msgstr "Heu de seleccionar com a mínim un element."
 
 #: ../browser/macros/macros.pt:61
 msgid "a"
@@ -1519,167 +1519,169 @@ msgstr ""
 #. Default: "There are legacy portlets defined here. Click the button to convert them to new-style portlets."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:100
 msgid "action_convert_legacy_portlets"
-msgstr ""
+msgstr "Aquí hi ha portlets antics definits. Feu clic al botó per convertir-los en portlets de nou estil."
 
 #. Default: "Do you really want to delete those contents?"
 #: ../browser/views_templates/confirmation.pt:16
 msgid "alert_really_delete_contents"
-msgstr ""
+msgstr "Estàs segur que vols suprimir aquests continguts?
+"
 
 #. Default: "All events"
 #: ../patches.py:1304
 msgid "all_events"
-msgstr ""
+msgstr "Tots els esdeveniments"
 
 #. Default: "All news"
 #: ../portlets/news_events_listing/news_events_listing.pt:116
 msgid "all_news"
-msgstr ""
+msgstr "Totes les notícies"
 
 #. Default: "Amaga de les eines l'enllaç d'identificació"
 #: ../controlpanels/header.py:421
 msgid "amaga_identificacio"
-msgstr ""
+msgstr "Amaga les eines amb un enllaç d'identificació"
 
 #: ../cas/controlpanel.py:66
 msgid "app_name"
-msgstr ""
+msgstr "Nom de l'APP"
 
 #. Default: "Més esdeveniments"
 #: ../browser/views_templates/portlet_events_view.pt:49
 #: ../portlets/esdeveniments/esdeveniments.pt:60
 #: ../portlets/grid_events/grid_events.pt:51
 msgid "box_upcoming_events"
-msgstr ""
+msgstr "Tots els esdeveniments"
 
 #. Default: "Cancel"
 #: ../browser/views_templates/confirmation.pt:34
 msgid "cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: ../cas/controlpanel.py:60
 msgid "cas_url"
-msgstr ""
+msgstr "CAS URL"
 
 #: ../tiles/destacats/un_destacat/destacats.py:19
 msgid "centre"
-msgstr ""
+msgstr "Centre"
 
 #: ../tiles/destacats/un_destacat/destacats.py:27
 msgid "cercle-centre"
-msgstr ""
+msgstr "Cercle al centre"
 
 #: ../tiles/destacats/un_destacat/destacats.py:28
 msgid "cercle-dreta"
-msgstr ""
+msgstr "Cercle a la dreta"
 
 #: ../tiles/destacats/un_destacat/destacats.py:26
 msgid "cercle-esquerra"
-msgstr ""
+msgstr "Cercle a l'esquerra"
 
 #. Default: "Cookie Policy"
 #: ../browser/viewlets_templates/footer/footer.pt:74
 msgid "cookie_policy"
-msgstr ""
+msgstr "Configuració de privadesa"
 
 #. Default: "Delete"
 #: ../browser/views_templates/confirmation.pt:33
 msgid "delete"
-msgstr ""
+msgstr "Suprimeix"
 
 #. Default: "The portlet columns will first display portlets explicitly assigned in this context. Use the buttons on each portlet to move them up or down, delete or edit them. To add a new portlet, use the drop-down list at the top of the column."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:81
 msgid "description_manage_contextual_portlets"
-msgstr ""
+msgstr "Les columnes del portlet mostraran primer els portlets assignats explícitament en aquest context. Utilitzeu els botons de cada portlet per moure'ls amunt o avall, suprimir-los o editar-los. Per afegir un portlet nou, utilitzeu la llista desplegable a la part superior de la columna."
 
 #. Default: "There are currently no events in this folder."
 #: ../browser/events.py:28
 msgid "description_no_events_in_folder"
-msgstr ""
+msgstr "Actualment no hi ha cap esdeveniment en aquesta carpeta."
 
 #. Default: "If you wish to block or unblock certain categories of portlets, you can do so using the sdrop-down boxes. Portlets that are included by these categories are shown below the selection box."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:88
 msgid "description_portlets_block_unblock"
-msgstr ""
+msgstr "Si voleu bloquejar o desbloquejar certes categories de portlets, podeu fer-ho mitjançant els quadres desplegables. Els portlets que s'inclouen en aquestes categories es mostren a sota del quadre de selecció."
 
 #. Default: "Cookies are not enabled. You must enable cookies before you can log in."
 #: ../browser/macros/login.pt:118
 msgid "enable_cookies_message_before_login"
-msgstr ""
+msgstr "Les galetes no estan habilitades. Heu d'habilitar-les abans de poder iniciar la sessió."
 
 #: ../cas/controlpanel.py:54
 msgid "enabled"
-msgstr ""
+msgstr "Habilitat"
 
 #. Default: "${from} until ${until}."
 #: ../patches.py:1320
 msgid "events_from_until"
-msgstr ""
+msgstr "${from} fins a ${until}."
 
 #. Default: "Events in ${month} ${year}"
 #: ../patches.py:1384
 msgid "events_in_month"
-msgstr ""
+msgstr "Esdeveniments en ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
 #: ../patches.py:1357
 msgid "events_in_week"
-msgstr ""
+msgstr "Esdeveniments de la setmana ${weeknumber}
+"
 
 #. Default: "Events on ${day}"
 #: ../patches.py:1342
 msgid "events_on_day"
-msgstr ""
+msgstr "Esdeveniments del dia ${day}"
 
 #: ../browser/views_templates/download_files.pt:19
 msgid "folder contents"
-msgstr ""
+msgstr "Contingut de la carpeta"
 
 #. Default: "Future events"
 #: ../patches.py:1310
 msgid "future_events"
-msgstr ""
+msgstr "Esdeveniments futurs"
 
 #: ../profiles/default/actions.xml
 msgid "genweb-accesarrel"
-msgstr ""
+msgstr "Carpeta arrel"
 
 #. Default: "Accessibilitat"
 #: ../browser/viewlets_templates/footer/footer.pt:54
 msgid "genweb-accessibility"
-msgstr ""
+msgstr "Accessibilitat"
 
 #. Default: "Agenda"
 #: ../browser/views_templates/portlet_events_view.pt:13
 #: ../portlets/esdeveniments/esdeveniments.pt:6
 msgid "genweb-agenda"
-msgstr ""
+msgstr "Esdeveniments"
 
 #. Default: "Disclaimer"
 #: ../browser/viewlets_templates/footer/footer.pt:64
 msgid "genweb-disclaimer"
-msgstr ""
+msgstr "Exempció de responsabilitat"
 
 #. Default: "Notícies"
 #: ../portlets/fullnews/templates/macros.pt:9
 #: ../portlets/news/news.pt:6
 msgid "genweb-noticies"
-msgstr ""
+msgstr "Notícies <span class=\"icon-news large-icon pull-right\"></span>"
 
 #. Default: "click here to retrieve it"
 #: ../browser/macros/login.pt:25
 msgid "genweb-per_recuperarla"
-msgstr ""
+msgstr "Feu clic aquí per recuperar-lo"
 
 #. Default: "If you have forgotten your password,"
 #: ../browser/macros/login.pt:21
 msgid "genweb-si_heu_oblidat_la_contrasenya"
-msgstr ""
+msgstr "Si has oblidat la teva contrasenya,"
 
 #. Default: "Have you forgotten your password?"
 #: ../browser/macros/login.pt:15
 msgid "genweb-si_heu_oblidat_la_contrasenya_question"
-msgstr ""
+msgstr "Has oblidat la teva contrasenya?"
 
 #: ../configure.zcml:53
 msgid "genweb6.core"
@@ -1687,7 +1689,7 @@ msgstr ""
 
 #: ../configure.zcml:62
 msgid "genweb6.core (uninstall)"
-msgstr ""
+msgstr "genweb6.core (desinstal·la)"
 
 #: genweb6/theme/configure.zcml:18
 msgid "genweb6.theme"
@@ -1695,61 +1697,61 @@ msgstr ""
 
 #: genweb6/theme/configure.zcml:27
 msgid "genweb6.theme (uninstall)"
-msgstr ""
+msgstr "genweb6.theme (desinstal·la)"
 
 #. Default: "Log in only in this site"
 #: ../browser/macros/login.pt:71
 msgid "genweb_loginlocal"
-msgstr ""
+msgstr "Iniciar sessió només a aquest lloc web"
 
 #. Default: "Neteja metadades documents"
 #: ../browser/views_templates/netejar_metadades.pt:16
 msgid "heading_metadades"
-msgstr ""
+msgstr "Neteja de metadades"
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
-msgstr ""
+msgstr "La sessió s'ha desconnectat."
 
 #. Default: "Amaga de les eines l'enllaç d'identificació ..."
 #: ../controlpanels/header.py:424
 msgid "help_amaga_identificacio"
-msgstr ""
+msgstr "Amaga les eines amb un enllaç d'identificació..."
 
 #. Default: "You may search for and choose an existing content"
 #: ../content/existing_content/existing_content.py:52
 #: ../portlets/new_existing_content/new_existing_content.py:110
 msgid "help_existing_content"
-msgstr ""
+msgstr "Podeu cercar i triar un contingut existent"
 
 #. Default: "Aquests seran els idiomes publicats a la web, els idiomes no especificats no seran públics però seran visibles pels gestors (editors)."
 #: ../controlpanels/header.py:433
 msgid "help_idiomes_publicats"
-msgstr ""
+msgstr "Aquests idiomes es publicaran al lloc web, els idiomes no especificats no seran públics però seran visibles per als gestors (editors)."
 
 #. Default: "help_languages_link_to_root"
 #: ../controlpanels/header.py:445
 msgid "help_languages_link_to_root"
-msgstr ""
+msgstr "Si seleccioneu aquesta opció, tots els clics a la combinació d'idiomes sempre redirigiran a l'arrel del lloc."
 
 #. Default: "Afegiu el text alternatiu (alt) del logo de la capçalera."
 #: ../controlpanels/header.py:275
 msgid "help_logo_alt"
-msgstr ""
+msgstr "Afegeix el text alternatiu (alt) del logotip de la capçalera."
 
 #. Default: "Afegiu l'URL del logo."
 #: ../controlpanels/header.py:332
 msgid "help_logo_url"
-msgstr ""
+msgstr "Afegiu l'URL del logotip."
 
 #: ../behaviors/openlinkin.py:24
 msgid "help_open_link_in_new_window"
-msgstr ""
+msgstr "Heu d'incloure http:// al principi per crear un enllaç extern."
 
 #. Default: "És el literal que apareix al peu de pàgina."
 #: ../controlpanels/footer.py:144
 msgid "help_signatura_ca"
-msgstr ""
+msgstr "És el literal que apareix a la part inferior de la pàgina."
 
 #. Default: "És el literal que apareix al peu de pàgina."
 #: ../controlpanels/footer.py:160
@@ -1764,82 +1766,82 @@ msgstr ""
 #: ../content/existing_content/existing_content.py:60
 #: ../portlets/new_existing_content/new_existing_content.py:118
 msgid "help_static_content_element_ca"
-msgstr ""
+msgstr "Podeu afegir un identificador, una classe o un element html. Per exemple, en una pàgina Genweb estàndard, tot el contingut es troba dins de #content i tot el contingut sense títol es troba dins de #content-core."
 
 #: ../portlets/new_existing_content/new_existing_content.py:72
 msgid "help_static_content_title_ca"
-msgstr ""
+msgstr "Opcional: títol del portlet"
 
 #: ../content/existing_content/existing_content.py:44
 #: ../portlets/new_existing_content/new_existing_content.py:102
 msgid "help_static_content_url_ca"
-msgstr ""
+msgstr "L'URL completa de la pàgina del contingut"
 
 #: ../controlpanels/header.py:455
 msgid "help_treu_icones_xarxes_socials"
-msgstr ""
+msgstr "Elimina les icones de compartició social..."
 
 #. Default: "Treu el menú horitzontal ..."
 #: ../controlpanels/header.py:412
 msgid "help_treu_menu_horitzontal"
-msgstr ""
+msgstr "Amaga el menú horitzontal..."
 
 #. Default: "Menu L2"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:67
 #: ../portlets/manage_portlets/templates/managesubhome.pt:67
 msgid "homeportlets_title_1"
-msgstr ""
+msgstr "Menú L2"
 
 #. Default: "1a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:78
 #: ../portlets/manage_portlets/templates/managesubhome.pt:78
 msgid "homeportlets_title_f1"
-msgstr ""
+msgstr "Primera fila"
 
 #. Default: "2a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:85
 #: ../portlets/manage_portlets/templates/managesubhome.pt:85
 msgid "homeportlets_title_f2"
-msgstr ""
+msgstr "Segona fila"
 
 #. Default: "3a Fila"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:181
 #: ../portlets/manage_portlets/templates/managesubhome.pt:181
 msgid "homeportlets_title_f3"
-msgstr ""
+msgstr "Tercera fila"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:111
 msgid "html_title_ca"
-msgstr ""
+msgstr "Títol web [CA]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:125
 msgid "html_title_en"
-msgstr ""
+msgstr "Títol web [EN]"
 
 #. Default: "Títol del web"
 #: ../controlpanels/header.py:118
 msgid "html_title_es"
-msgstr ""
+msgstr "Títol web [ES]"
 
 #. Default: "Idiomes publicats al web"
 #: ../controlpanels/header.py:432
 msgid "idiomes_publicats"
-msgstr ""
+msgstr "Idiomes activats al lloc web"
 
 #. Default: "Image"
 #: ../templates/plone.app.contenttypes.browser.templates.listing_tabular.pt:35
 msgid "image"
-msgstr ""
+msgstr "Image"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:30
 msgid "imatge-gran-dreta"
-msgstr ""
+msgstr "Imatge gran a la dreta"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:29
 msgid "imatge-gran-esquerra"
-msgstr ""
+msgstr "Imatge gran a l'esquerra"
 
 #: ../behaviors/seo.py:19
 msgid "index, follow"
@@ -1851,164 +1853,164 @@ msgstr ""
 
 #: ../tiles/destacats/un_destacat/destacats.py:24
 msgid "inferior-centre"
-msgstr ""
+msgstr "Centre inferior"
 
 #: ../tiles/destacats/un_destacat/destacats.py:25
 msgid "inferior-dreta"
-msgstr ""
+msgstr "Centre dreta"
 
 #: ../tiles/destacats/un_destacat/destacats.py:23
 msgid "inferior-esquerra"
-msgstr ""
+msgstr "Inferior esquerra"
 
 #: ../tiles/destacats/un_destacat/destacats.py:29
 msgid "invisible"
-msgstr ""
+msgstr "Invisible"
 
 #. Default: "Add new…"
 #: ../patches.py:866
 msgid "label_add_new_item"
-msgstr ""
+msgstr "Afegeix..."
 
 #. Default: "iCal"
 #: ../portlets/news_events_listing/news_events_listing.pt:96
 msgid "label_add_to_ical"
-msgstr ""
+msgstr "iCal"
 
 #. Default: "Display"
 #: ../patches.py:863
 msgid "label_choose_template"
-msgstr ""
+msgstr "Mostra"
 
 #. Default: "Convert portlets"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:108
 msgid "label_convert_portlets"
-msgstr ""
+msgstr "Convertir portlets"
 
 #. Default: "Filters"
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:26
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search_album.pt:26
 msgid "label_filters"
-msgstr ""
+msgstr "Filtres"
 
 #. Default: "You are managing the portlets of the default view of a container. If you wanted to manage the portlets of the container itself, ${go_here}."
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:72
 msgid "label_manage_portlets_default_view_container"
-msgstr ""
+msgstr "Esteu gestionant els portlets de la vista predeterminada d'un contenidor. Si volguéssiu gestionar els portlets del contenidor en si, ${go_here}."
 
 #. Default: "go here"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:72
 msgid "label_manage_portlets_default_view_container_go_here"
-msgstr ""
+msgstr "Aneu aquí"
 
 #. Default: "Inicia la sessió"
 #: ../browser/macros/login.pt:109
 #: ../portlets/login/login.pt:15
 msgid "label_start_session"
-msgstr ""
+msgstr "Inicia sessió"
 
 #. Default: "languages_link_to_root"
 #: ../controlpanels/header.py:443
 msgid "languages_link_to_root"
-msgstr ""
+msgstr "Redirecciona a l'arrel del lloc quan l'usuari fa clic als idiomes disponibles al lloc"
 
 #: ../cas/controlpanel.py:72
 msgid "login_text_btn"
-msgstr ""
+msgstr "Text del botó d'inici de sessió"
 
 #. Default: "Text alternatiu del logo [CA]"
 #: ../controlpanels/header.py:274
 msgid "logo_alt"
-msgstr ""
+msgstr "Text alternatiu del logotip [CA]"
 
 #. Default: "Text alternatiu del logo [EN]"
 #: ../controlpanels/header.py:294
 msgid "logo_alt_en"
-msgstr ""
+msgstr "Text alternatiu del logotip [EN]"
 
 #. Default: "Text alternatiu del logo [ES]"
 #: ../controlpanels/header.py:284
 msgid "logo_alt_es"
-msgstr ""
+msgstr "Text alternatiu del logotip [ES]"
 
 #. Default: "Es una URL externa?"
 #: ../controlpanels/header.py:389
 msgid "logo_external_url"
-msgstr ""
+msgstr "És una URL externa?"
 
 #. Default: "URL del logo [CA]"
 #: ../controlpanels/header.py:330
 msgid "logo_url"
-msgstr ""
+msgstr "Logo URL [CA]"
 
 #. Default: "URL del logo [EN]"
 #: ../controlpanels/header.py:350
 msgid "logo_url_en"
-msgstr ""
+msgstr "Logo URL [EN]"
 
 #. Default: "URL del logo [ES]"
 #: ../controlpanels/header.py:340
 msgid "logo_url_es"
-msgstr ""
+msgstr "Logo URL [ES]"
 
 #. Default: "Manage home page"
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_homepage.pt:9
 msgid "manage_homeportlets_link"
-msgstr ""
+msgstr "Gestionar la pàgina d'inici"
 
 #. Default: "Manage home portlets"
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:44
 #: ../portlets/manage_portlets/templates/managesubhome.pt:44
 msgid "manage_portlets_footer"
-msgstr ""
+msgstr "Gestioneu els portlets de la pàgina d'inici"
 
 #. Default: "Administra la graella de portlets"
 #: ../portlets/manage_portlets/templates/manage_portlets_fallback_subhome.pt:9
 msgid "manage_subhomeportlets_link"
-msgstr ""
+msgstr "Gestioneu la graella de portlets"
 
 #. Default: "Day"
 #: ../portlets/news_events_listing/news_events_listing.pt:17
 msgid "mode_day_link"
-msgstr ""
+msgstr "Dia"
 
 #. Default: "Upcoming"
 #: ../portlets/news_events_listing/news_events_listing.pt:83
 msgid "mode_future_link"
-msgstr ""
+msgstr "Properament"
 
 #. Default: "Month"
 #: ../portlets/news_events_listing/news_events_listing.pt:42
 msgid "mode_month_link"
-msgstr ""
+msgstr "Mes"
 
 #. Default: "Past"
 #: ../portlets/news_events_listing/news_events_listing.pt:59
 msgid "mode_past_link"
-msgstr ""
+msgstr "Passat"
 
 #. Default: "Week"
 #: ../portlets/news_events_listing/news_events_listing.pt:32
 msgid "mode_week_link"
-msgstr ""
+msgstr "Setmana"
 
 #. Default: "Més notícies"
 #: ../portlets/fullnews/templates/macros.pt:19
 #: ../portlets/news/news.pt:40
 msgid "more_news_link"
-msgstr ""
+msgstr "Més notícies"
 
 #. Default: "More"
 #: ../portlets/collection/collection.pt:59
 #: ../portlets/multiviewcollection/templates/macros.pt:22
 #: ../templates/plone.app.portlets.portlets.rss.pt:42
 msgid "more_url"
-msgstr ""
+msgstr "Mostra més"
 
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
 #: ../browser/views_templates/netejar_metadades.pt:47
 msgid "neteja_metadades_description"
-msgstr ""
+msgstr "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
 
 #: ../browser/views_templates/netejar_metadades.pt:25
 msgid "no_file_selected"
@@ -2028,7 +2030,7 @@ msgstr ""
 
 #: ../content/document_image/document_image.py:24
 msgid "not_show_image"
-msgstr ""
+msgstr "No mostreu la imatge a la pàgina, però sí que ho feu als portlets i a les vistes."
 
 #: ../browser/folder_index_view.pt:23
 #: ../browser/viewlets.py:396
@@ -2038,65 +2040,65 @@ msgstr ""
 
 #: ../behaviors/openlinkin.py:23
 msgid "open_link_in_new_window"
-msgstr ""
+msgstr "Obre en una finestra nova?"
 
 #. Default: "Past events"
 #: ../patches.py:1307
 msgid "past_events"
-msgstr ""
+msgstr "Esdeveniments passats"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_banners_title"
-msgstr ""
+msgstr "Banners"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_homepage_title"
-msgstr ""
+msgstr "Benvingut"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollection_title"
-msgstr ""
+msgstr "Col·lecció d'esdeveniments multivista"
 
 #: ../profiles/default/portlets.xml
 msgid "portlet_multiviewcollectionevents_title"
-msgstr ""
+msgstr "Col·lecció d'esdeveniments multivista"
 
 #. Default: "Return"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:45
 #: ../portlets/manage_portlets/templates/managehomeportlets.pt:57
 #: ../portlets/manage_portlets/templates/managesubhome.pt:57
 msgid "return_to_view"
-msgstr ""
+msgstr "Tornar"
 
 #. Default: "Text alternatiu del logo secundari [CA]"
 #: ../controlpanels/header.py:303
 msgid "secondary_logo_alt"
-msgstr ""
+msgstr "Text alternatiu del logotip secundari [CA]"
 
 #. Default: "Text alternatiu del logo secundari [EN]"
 #: ../controlpanels/header.py:321
 msgid "secondary_logo_alt_en"
-msgstr ""
+msgstr "Text alternatiu del logotip secundari [EN]"
 
 #. Default: "Text alternatiu del logo secundari [ES]"
 #: ../controlpanels/header.py:312
 msgid "secondary_logo_alt_es"
-msgstr ""
+msgstr "Text alternatiu del logotip secundari [ES]"
 
 #. Default: "URL del logo secundari [CA]"
 #: ../controlpanels/header.py:359
 msgid "secondary_logo_url"
-msgstr ""
+msgstr "URL del logotip secundari [CA]"
 
 #. Default: "URL del logo secundari [EN]"
 #: ../controlpanels/header.py:379
 msgid "secondary_logo_url_en"
-msgstr ""
+msgstr "URL del logotip secundari [EN]"
 
 #. Default: "URL del logo secundari [ES]"
 #: ../controlpanels/header.py:369
 msgid "secondary_logo_url_es"
-msgstr ""
+msgstr "URL del logotip secundari [ES]"
 
 #: ../browser/views_templates/netejar_metadades.pt:25
 msgid "select_file_button"
@@ -2105,12 +2107,12 @@ msgstr "Tria un fitxer"
 #. Default: "Selecciona el PDF a netejar:"
 #: ../browser/views_templates/netejar_metadades.pt:22
 msgid "select_pdf"
-msgstr ""
+msgstr "Selecciona el PDF a netejar:"
 
 #. Default: "Netejar"
 #: ../browser/views_templates/netejar_metadades.pt:36
 msgid "send_to_anonymize"
-msgstr ""
+msgstr "Netejar"
 
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143
@@ -2130,62 +2132,62 @@ msgstr ""
 #. Default: "Subhome Description"
 #: ../profiles/default/types/genweb.upc.subhome.xml
 msgid "subhome_desc"
-msgstr ""
+msgstr "Element per mostrar una pàgina amb diversos continguts del web"
 
 #: ../tiles/destacats/un_destacat/destacats.py:21
 msgid "superior-centre"
-msgstr ""
+msgstr "Superior centre"
 
 #: ../tiles/destacats/un_destacat/destacats.py:22
 msgid "superior-dreta"
-msgstr ""
+msgstr "Superior dreta"
 
 #: ../tiles/destacats/un_destacat/destacats.py:20
 msgid "superior-esquerra"
-msgstr ""
+msgstr "Super esquerra"
 
 #. Default: "Download this event in iCal format"
 #: ../portlets/news_events_listing/news_events_listing.pt:92
 msgid "title_add_to_ical"
-msgstr ""
+msgstr "Descarrega aquest esdeveniment en format iCal"
 
 #. Default: "Legacy portlets"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:96
 msgid "title_legacy_portlets"
-msgstr ""
+msgstr "Portlets heretats"
 
 #. Default: "Manage portlets for ${context_title}"
 #: ../portlets/manage_portlets/templates/manage-contextual.pt:35
 msgid "title_manage_contextual_portlets"
-msgstr ""
+msgstr "Gestiona els portlets per a ${context_title}"
 
 #. Default: "Today"
 #: ../portlets/news_events_listing/news_events_listing.pt:71
 msgid "today_link"
-msgstr ""
+msgstr "Avui"
 
 #. Default: "Todays events"
 #: ../patches.py:1316
 msgid "todays_events"
-msgstr ""
+msgstr "Esdeveniments d'avui"
 
 #. Default: "Todays upcoming events"
 #: ../patches.py:1313
 msgid "todays_upcoming_events"
-msgstr ""
+msgstr "Pròxims esdeveniments d'avui"
 
 #: ../controlpanels/header.py:454
 msgid "treu_icones_xarxes_socials"
-msgstr ""
+msgstr "Elimina les icones de xarxes socials"
 
 #. Default: "Treu el menú horitzontal"
 #: ../controlpanels/header.py:410
 msgid "treu_menu_horitzontal"
-msgstr ""
+msgstr "Amaga el menú horitzontal"
 
 #: ../content/banner/banner.py:25
 msgid "url"
-msgstr ""
+msgstr "URL"
 
 #: ../controlpanels/cintillo.py:77
 msgid "Àngles"
