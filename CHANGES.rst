@@ -2,11 +2,10 @@ Changelog
 =========
 
 
-1.79 (unreleased)
+1.79 (2025-10-14)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] *.po [Iago López]
 
 1.78 (2025-10-14)
 -----------------
