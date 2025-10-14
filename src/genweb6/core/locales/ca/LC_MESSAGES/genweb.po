@@ -2036,7 +2036,7 @@ msgstr "No mostreu la imatge a la pàgina, però sí que ho feu als portlets i a
 #: ../browser/viewlets.py:396
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
-msgstr ""
+msgstr "Obrir link a una finestra nova"
 
 #: ../behaviors/openlinkin.py:23
 msgid "open_link_in_new_window"
@@ -2200,3 +2200,7 @@ msgstr ""
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr ""
+
+#: ../content/existing_content/existing_content.py:168
+msgid "ERROR. This URL does not exist."
+msgstr "ERROR. L'URL no existeix"

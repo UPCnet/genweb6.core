@@ -711,7 +711,7 @@ msgstr "Parrilla de Agenda"
 
 #: ../content/accordion_tabs/accordion_tabs.py:92
 msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr ""
+msgstr "Habilitar la opción de poder abrir múltiples paneles del acordeón"
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
@@ -884,15 +884,15 @@ msgstr "Vista lista"
 
 #: ../controlpanels/footer.py:113
 msgid "Llista d’enllaços [CA]"
-msgstr ""
+msgstr "Lista de enlaces [CA]"
 
 #: ../controlpanels/footer.py:127
 msgid "Llista d’enllaços [EN]"
-msgstr ""
+msgstr "Lista de enlaces [EN]"
 
 #: ../controlpanels/footer.py:120
 msgid "Llista d’enllaços [ES]"
-msgstr ""
+msgstr "Lista de enlaces [ES]"
 
 #: ../controlpanels/login.py:26
 msgid "Login Settings"
@@ -1018,15 +1018,15 @@ msgstr "Noticias"
 
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
-msgstr ""
+msgstr "Nombre del apartado [CA]"
 
 #: ../controlpanels/footer.py:106
 msgid "Nom de l’apartat [EN]"
-msgstr ""
+msgstr "Nombre del apartado [EN]"
 
 #: ../controlpanels/footer.py:100
 msgid "Nom de l’apartat [ES]"
-msgstr ""
+msgstr "Nombre del apartado [ES]"
 
 #: ../controlpanels/header.py:48
 msgid "Només text"
@@ -1079,7 +1079,7 @@ msgstr "Número de noticias a mostrar"
 
 #: ../content/accordion_tabs/accordion_tabs.py:97
 msgid "Obrir el primer panell de l’acordió per defecte"
-msgstr ""
+msgstr "Abrir el primer panel del acordeón por defecto"
 
 #: ../portlets/new_existing_content/new_existing_content.py:86
 msgid "Omet el contorn del portlet"
@@ -1190,7 +1190,7 @@ msgstr "Redonda a la derecha"
 
 #: ../controlpanels/header.py:59
 msgid "Rodona a l’esquerra"
-msgstr ""
+msgstr "Redonda a la izquierda"
 
 #: ../behaviors/seo.py:40
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
@@ -1397,7 +1397,7 @@ msgstr "Tile usada para mostrar un video personalizado"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr ""
+msgstr "Tile usada para mostrar destacados en la página principal"
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
@@ -1417,11 +1417,11 @@ msgstr "Tipo de vista"
 
 #: ../controlpanels/header.py:77
 msgid "Tipus d’imatge a les pàgines principals"
-msgstr ""
+msgstr "Tipo de imagen en las páginas principales"
 
 #: ../controlpanels/header.py:84
 msgid "Tipus d’imatge als continguts"
-msgstr ""
+msgstr "Tipo de imagen en los contenidos"
 
 #: ../controlpanels/footer.py:32
 #: ../tiles/destacats/destacatbase.py:25
@@ -1718,7 +1718,7 @@ msgstr "Identifícate sólo en esta web"
 #. Default: "Neteja metadades documents"
 #: ../browser/views_templates/netejar_metadades.pt:16
 msgid "heading_metadades"
-msgstr ""
+msgstr "Limpieza de metadatos"
 
 #: ../cas/utils.py:68
 msgid "heading_signed_out"
@@ -2027,11 +2027,11 @@ msgstr "Ver más"
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
 #: ../browser/views_templates/netejar_metadades.pt:47
 msgid "neteja_metadades_description"
-msgstr ""
+msgstr "Con esta herramienta puedes eliminar fácilmente todos los metadatos e información oculta de tus archivos PDf antes de compartirlos, garantizando más privacidad y seguridad. Una vez enviados tus documentos, se descargará automáticamente en tu dispositivo un fichero o ficheros (en formato <strong>.zip </strong>) limpios de metadatos, listos para usar."
 
 #: ../browser/views_templates/netejar_metadades.pt:25
 msgid "no_file_selected"
-msgstr ""
+msgstr "No se ha seleccionado ningún archivo"
 
 #: ../behaviors/seo.py:20
 msgid "noindex"
@@ -2217,3 +2217,7 @@ msgstr "Es importante subir una imagen con una resolución de 2000 x 100 px. Est
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "Es importante subir una imagen con una resolución de 2000 x 900 px para el modelo de pantalla entera o de 2000 x 500 px. Esta imagen, aparte, se utilizará para el fondo del pie de página."
+
+#: ../content/existing_content/existing_content.py:168
+msgid "ERROR. This URL does not exist."
+msgstr "ERROR. La URL no existe"
