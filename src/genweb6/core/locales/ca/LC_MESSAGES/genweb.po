@@ -533,7 +533,7 @@ msgstr "El valor introduït no és un URL vàlid."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Element de la pàgina a mostrar, per defecte #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:987
+#: ../browser/helpers/helpers_touchers.py:1018
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "Els continguts han sigut exclosos de la navegació correctament."
 
@@ -714,7 +714,7 @@ msgstr "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 msgid "Header Settings"
 msgstr "Configuració Capçalera"
 
-#: ../browser/helpers/helpers_touchers.py:989
+#: ../browser/helpers/helpers_touchers.py:1020
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "Hi ha hagut un error durant el procediment."
 
@@ -1524,8 +1524,7 @@ msgstr "Aquí hi ha portlets antics definits. Feu clic al botó per convertir-lo
 #. Default: "Do you really want to delete those contents?"
 #: ../browser/views_templates/confirmation.pt:16
 msgid "alert_really_delete_contents"
-msgstr "Estàs segur que vols suprimir aquests continguts?
-"
+msgstr "Estàs segur que vols suprimir aquests continguts?"
 
 #. Default: "All events"
 #: ../patches.py:1304
@@ -1625,8 +1624,7 @@ msgstr "Esdeveniments en ${month} ${year}"
 #. Default: "Events in week ${weeknumber}"
 #: ../patches.py:1357
 msgid "events_in_week"
-msgstr "Esdeveniments de la setmana ${weeknumber}
-"
+msgstr "Esdeveniments de la setmana ${weeknumber}"
 
 #. Default: "Events on ${day}"
 #: ../patches.py:1342
@@ -1705,7 +1703,7 @@ msgid "genweb_loginlocal"
 msgstr "Iniciar sessió només a aquest lloc web"
 
 #. Default: "Neteja metadades documents"
-#: ../browser/views_templates/netejar_metadades.pt:16
+#: ../browser/views_templates/netejar_metadades.pt:15
 msgid "heading_metadades"
 msgstr "Neteja de metadades"
 
@@ -2008,11 +2006,11 @@ msgid "more_url"
 msgstr "Mostra més"
 
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
-#: ../browser/views_templates/netejar_metadades.pt:47
+#: ../browser/views_templates/netejar_metadades.pt:45
 msgid "neteja_metadades_description"
 msgstr "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "no_file_selected"
 msgstr "No s'ha triat cap fitxer"
 
@@ -2100,17 +2098,17 @@ msgstr "URL del logotip secundari [EN]"
 msgid "secondary_logo_url_es"
 msgstr "URL del logotip secundari [ES]"
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "select_file_button"
 msgstr "Tria un fitxer"
 
 #. Default: "Selecciona el PDF a netejar:"
-#: ../browser/views_templates/netejar_metadades.pt:22
+#: ../browser/views_templates/netejar_metadades.pt:21
 msgid "select_pdf"
 msgstr "Selecciona el PDF a netejar:"
 
 #. Default: "Netejar"
-#: ../browser/views_templates/netejar_metadades.pt:36
+#: ../browser/views_templates/netejar_metadades.pt:35
 msgid "send_to_anonymize"
 msgstr "Netejar"
 
@@ -2200,7 +2198,3 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 100px. Aques
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
-
-#: ../content/existing_content/existing_content.py:168
-msgid "ERROR. This URL does not exist."
-msgstr "ERROR. L'URL no existeix"

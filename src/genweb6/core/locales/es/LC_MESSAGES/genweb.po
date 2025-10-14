@@ -536,7 +536,7 @@ msgstr "El valor introducido no es una URL válida."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Elemento de la página a mostrar, por defecto #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:987
+#: ../browser/helpers/helpers_touchers.py:1018
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "Los contenidos han sido excluidos de la navegación correctamente."
 
@@ -717,7 +717,7 @@ msgstr "Habilitar la opción de poder abrir múltiples paneles del acordeón"
 msgid "Header Settings"
 msgstr "Configuración Cabecera"
 
-#: ../browser/helpers/helpers_touchers.py:989
+#: ../browser/helpers/helpers_touchers.py:1020
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "Ha habido un error durante el procedimiento."
 
@@ -1716,7 +1716,7 @@ msgid "genweb_loginlocal"
 msgstr "Identifícate sólo en esta web"
 
 #. Default: "Neteja metadades documents"
-#: ../browser/views_templates/netejar_metadades.pt:16
+#: ../browser/views_templates/netejar_metadades.pt:15
 msgid "heading_metadades"
 msgstr "Limpieza de metadatos"
 
@@ -2025,11 +2025,11 @@ msgid "more_url"
 msgstr "Ver más"
 
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
-#: ../browser/views_templates/netejar_metadades.pt:47
+#: ../browser/views_templates/netejar_metadades.pt:45
 msgid "neteja_metadades_description"
 msgstr "Con esta herramienta puedes eliminar fácilmente todos los metadatos e información oculta de tus archivos PDf antes de compartirlos, garantizando más privacidad y seguridad. Una vez enviados tus documentos, se descargará automáticamente en tu dispositivo un fichero o ficheros (en formato <strong>.zip </strong>) limpios de metadatos, listos para usar."
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "no_file_selected"
 msgstr "No se ha seleccionado ningún archivo"
 
@@ -2117,17 +2117,17 @@ msgstr "URL del logo secundario [EN]"
 msgid "secondary_logo_url_es"
 msgstr "URL del logo secundario [ES]"
 
-#: ../browser/views_templates/netejar_metadades.pt:25
+#: ../browser/views_templates/netejar_metadades.pt:24
 msgid "select_file_button"
 msgstr "Seleccionar archivo"
 
 #. Default: "Selecciona el PDF a netejar:"
-#: ../browser/views_templates/netejar_metadades.pt:22
+#: ../browser/views_templates/netejar_metadades.pt:21
 msgid "select_pdf"
 msgstr "Selecciona un archivo PDF:"
 
 #. Default: "Netejar"
-#: ../browser/views_templates/netejar_metadades.pt:36
+#: ../browser/views_templates/netejar_metadades.pt:35
 msgid "send_to_anonymize"
 msgstr "Enviar para anonimizar"
 
@@ -2217,7 +2217,3 @@ msgstr "Es importante subir una imagen con una resolución de 2000 x 100 px. Est
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "Es importante subir una imagen con una resolución de 2000 x 900 px para el modelo de pantalla entera o de 2000 x 500 px. Esta imagen, aparte, se utilizará para el fondo del pie de página."
-
-#: ../content/existing_content/existing_content.py:168
-msgid "ERROR. This URL does not exist."
-msgstr "ERROR. La URL no existe"
