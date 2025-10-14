@@ -1147,3 +1147,39 @@ Agafem la configuració del controlpanel del CAS i configurem la URL en acl_user
             addPluginCAS(cas_settings.url)
             transaction.commit()
         return 'OK'
+
+
+from DateTime import DateTime
+class fix_bug_datetimes(BrowserView):
+    """
+Corrige fechas corruptas en objetos Plone, poniendo el año 2000
+    """
+
+    def __call__(self):
+        pc = api.portal.get_tool('portal_catalog')
+        results = pc.unrestrictedSearchResults(path='/')
+        for brain in results:
+            obj = brain.getObject()
+            for attr in ['effective', 'expires', 'created', 'modified', 'horaInici', 'horaFi']:
+                if hasattr(obj, attr):
+                    try:
+                        value = getattr(obj, attr)
+                        date = value() if callable(value) else value
+                        if isinstance(date, DateTime) and (date.year() > 2100 or date.year() < 1900):
+                            new_date = DateTime(2000, date.month(), date.day(), date.hour(), date.minute(), date.second())
+                            if attr == 'created':
+                                obj.setCreationDate(new_date)
+                            elif attr == 'modified':
+                                obj.setModificationDate(new_date)
+                            elif attr == 'effective':
+                                obj.setEffectiveDate(new_date)
+                            elif attr == 'expires':
+                                obj.setExpirationDate(new_date)
+                            else:
+                                setattr(obj, attr, new_date)
+                            obj.reindexObject()
+                            logger.info(f"Corregido {attr} en {obj.absolute_url()} de {date} a {new_date}")
+                    except Exception:
+                        pass
+        transaction.commit()
+        return 'OK'
