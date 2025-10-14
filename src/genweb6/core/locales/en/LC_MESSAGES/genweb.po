@@ -1400,7 +1400,7 @@ msgstr "Tile used to show custom video"
 
 #: ../tiles/configure.zcml:29
 msgid "Tile used to show destacats in homepage"
-msgstr ""
+msgstr "Tile used to show destacats in homepage"
 
 #: ../tiles/configure.zcml:94
 msgid "Tile used to show easyform as tile"
