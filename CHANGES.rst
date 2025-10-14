@@ -2,11 +2,11 @@ Changelog
 =========
 
 
-1.78 (unreleased)
+1.78 (2025-10-14)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] translations [Clàudia Andreu]
+* [UPD] Mejorar visualizacion vista album con filtros [Iago López]
 
 1.77 (2025-09-23)
 -----------------
