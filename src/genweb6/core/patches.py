@@ -60,7 +60,7 @@ from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
 from plone.app.users.utils import uuid_userid_generator
 from plone.app.uuid.utils import uuidToObject
-from plone.app.widgets.utils import get_relateditems_options
+from plone.app.z3cform.widgets.relateditems import get_relateditems_options
 from plone.app.z3cform.utils import call_callables
 from plone.base.interfaces import IPloneSiteRoot
 from plone.base.interfaces.controlpanel import IMailSchema
