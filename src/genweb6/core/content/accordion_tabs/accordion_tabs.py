@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from AccessControl import getSecurityManager
 from Products.Five.browser import BrowserView
 
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -134,22 +135,26 @@ class AccordionTabs(Container):
         first = True
         index = 0
 
+        sm = getSecurityManager()
         if self.content == 'collection':
             collection = self.collection.to_object
             for elem in collection.results():
-                contents.append(self.elem_to_dict(index, first, elem.getObject()))
+                obj = elem.getObject()
+                if sm.checkPermission('View', obj):
+                    contents.append(self.elem_to_dict(index, first, obj))
 
-                index += 1
-                if first:
-                    first = False
+                    index += 1
+                    if first:
+                        first = False
         else:
             for elem in self:
                 elem = self[elem]
-                contents.append(self.elem_to_dict(index, first, elem))
+                if sm.checkPermission('View', elem):
+                    contents.append(self.elem_to_dict(index, first, elem))
 
-                index += 1
-                if first:
-                    first = False
+                    index += 1
+                    if first:
+                        first = False
 
         return contents
 
