@@ -56,9 +56,7 @@ class CleanPDFsView(BrowserView):
             'File',
             'genweb.organs.file',
             'genweb.organs.acta',
-            'genweb.organs.annex',
-            'genweb.organs.propostapunt',
-            'genweb.organs.proposar_punt'
+            'genweb.organs.annex'
         ])
 
         registry = getUtility(IRegistry)
