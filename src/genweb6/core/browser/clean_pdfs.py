@@ -54,11 +54,11 @@ class CleanPDFsView(BrowserView):
         catalog = api.portal.get_tool('portal_catalog')
         brains = catalog.searchResults(portal_type=[
             'File',
-            'genweb6.organs.file',
-            'genweb6.organs.acta',
-            'genweb6.organs.annex',
-            'genweb6.organs.propostapunt',
-            'genweb6.organs.proposar_punt'
+            'genweb.organs.file',
+            'genweb.organs.acta',
+            'genweb.organs.annex',
+            'genweb.organs.propostapunt',
+            'genweb.organs.proposar_punt'
         ])
 
         registry = getUtility(IRegistry)
