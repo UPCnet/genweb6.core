@@ -33,8 +33,14 @@
     />
 
     <subscriber
-        for="plone.dexterity.interfaces.IDexterityContent
+        for="plone.app.contenttypes.interfaces.IFile
              zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".subscribers.clean_pdf_on_upload"
+    />
+
+    <subscriber
+        for="plone.app.contenttypes.interfaces.IFile
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
         handler=".subscribers.clean_pdf_on_upload"
     />
 

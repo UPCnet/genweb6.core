@@ -122,8 +122,7 @@ def is_signed_pdf(data):
         return False
 
 
-@adapter(IDexterityContent, IObjectAddedEvent)
-@implementer(IObjectAddedEvent)
+
 def clean_pdf_on_upload(obj, event):
     """Subscriber que limpia el PDF al subirlo si no está firmado."""
     if not getattr(obj, 'file', None):

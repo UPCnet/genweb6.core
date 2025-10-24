@@ -52,12 +52,7 @@ class CleanPDFsView(BrowserView):
         alsoProvides(self.request, IDisableCSRFProtection)
 
         catalog = api.portal.get_tool('portal_catalog')
-        brains = catalog.searchResults(portal_type=[
-            'File',
-            'genweb.organs.file',
-            'genweb.organs.acta',
-            'genweb.organs.annex'
-        ])
+        brains = catalog.searchResults(portal_type='File')
 
         registry = getUtility(IRegistry)
         settings = registry.forInterface(IMetadadesSettings, check=False)
