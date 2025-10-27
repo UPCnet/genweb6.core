@@ -12,6 +12,7 @@ from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 
 from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
+from genweb6.core.utils import genwebMetadadesConfig
 
 import logging
 import requests
@@ -106,6 +107,7 @@ def updateLastLoginTimeAfterLogin(event):
     if users_last_login:
         pmd.last_login_time = users_last_login
 
+
 def is_signed_pdf(data):
     try:
         reader = PdfReader(BytesIO(data))
@@ -122,24 +124,32 @@ def is_signed_pdf(data):
         return False
 
 
+def clean_pdf_on_upload_file(obj, event):
+    clean_pdf_on_upload(obj, 'file')
 
-def clean_pdf_on_upload(obj, event):
-    """Subscriber que limpia el PDF al subirlo si no está firmado."""
-    if not getattr(obj, 'file', None):
+
+def clean_pdf_on_upload(obj, field_name='file'):
+    """Subscriber que limpia el PDF al subirlo si no está firmado.
+    
+    Args:
+        obj: El objeto que contiene el archivo
+        field_name: Nombre del campo que contiene el archivo (por defecto 'file')
+    """
+    file_field = getattr(obj, field_name, None)
+    if not file_field:
         return
 
-    if not obj.file.filename.lower().endswith('.pdf'):
+    if not file_field.filename.lower().endswith('.pdf'):
         return
 
-    file_data = obj.file.data
+    file_data = file_field.data
 
     if is_signed_pdf(file_data):
         logger.info(f"[SKIPPED] {obj.absolute_url()} - PDF signat")
         return
 
     try:
-        registry = getUtility(IRegistry)
-        settings = registry.forInterface(IMetadadesSettings, check=False)
+        settings = genwebMetadadesConfig()
 
         api_url = settings.api_url
         api_key = settings.api_key
@@ -149,7 +159,7 @@ def clean_pdf_on_upload(obj, event):
             'X-Api-Key': api_key
         }
 
-        filename = obj.file.filename
+        filename = file_field.filename
         files = {
             'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
         }
@@ -159,11 +169,11 @@ def clean_pdf_on_upload(obj, event):
         if response.status_code == 200:
             cleaned_data = response.content
 
-            obj.file = NamedBlobFile(
+            setattr(obj, field_name, NamedBlobFile(
                 data=cleaned_data,
                 contentType='application/pdf',
                 filename=filename
-            )
+            ))
 
             obj.reindexObject()
             logger.info(f"[OK] {obj.absolute_url()} - PDF sense metadades")

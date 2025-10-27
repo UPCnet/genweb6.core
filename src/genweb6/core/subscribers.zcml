@@ -35,13 +35,13 @@
     <subscriber
         for="plone.app.contenttypes.interfaces.IFile
              zope.lifecycleevent.interfaces.IObjectAddedEvent"
-        handler=".subscribers.clean_pdf_on_upload"
+        handler=".subscribers.clean_pdf_on_upload_file"
     />
 
     <subscriber
         for="plone.app.contenttypes.interfaces.IFile
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".subscribers.clean_pdf_on_upload"
+        handler=".subscribers.clean_pdf_on_upload_file"
     />
 
 </configure>
