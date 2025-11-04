@@ -1658,7 +1658,7 @@ msgstr "Esdeveniments"
 #. Default: "Disclaimer"
 #: ../browser/viewlets_templates/footer/footer.pt:64
 msgid "genweb-disclaimer"
-msgstr "Exempció de responsabilitat"
+msgstr "Avís legal"
 
 #. Default: "Notícies"
 #: ../portlets/fullnews/templates/macros.pt:9
