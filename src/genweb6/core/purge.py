@@ -5,10 +5,12 @@ from plone.cachepurging.interfaces import IPurger
 from plone.cachepurging.utils import getURLsToPurge
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
+from zope.globalrequest import getRequest
 
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 def purge_varnish_paths(self, paths):
     """ Purga todos los paths Ej: '/@@gw-hero' en el varnish"""
@@ -30,7 +32,12 @@ def purge_varnish_paths(self, paths):
                 log += " -- WARNING status " + str(status)
 
         relativePaths = [x.decode("utf8") if isinstance(x, bytes) else x for x in paths]
-        rewriter = IPurgePathRewriter(self.request, None)
+        try:
+            rewriter = IPurgePathRewriter(self.request, None)
+        except:
+            request = getattr(self, 'REQUEST', None)
+            rewriter = IPurgePathRewriter(request, None)
+
         for relativePath in relativePaths:
             rewrittenPaths = rewriter(relativePath) or []
             for rewrittenPath in rewrittenPaths:
