@@ -18,8 +18,9 @@ def purge_varnish_paths(self, paths):
     purger = getUtility(IPurger)
     registry = getUtility(IRegistry)
     purgingSettings = registry.forInterface(ICachePurgingSettings)
+    enabled = purgingSettings.enabled
     proxies = purgingSettings.cachingProxies
-    if proxies:
+    if enabled and proxies:
 
         def purge(url):
             status, xcache, xerror = purger.purgeSync(url)
