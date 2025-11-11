@@ -2201,8 +2201,4 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el
 
 #: ../validations.py
 msgid "El fitxer d'imatge no és vàlid"
-msgstr "El fitxer d'imatge no és vàlid. Només es permeten imatges JPG, PNG o WEBP."
-
-#: ../validations.py
-msgid "Només es permeten imatges JPG, PNG o WEBP"
-msgstr "Només es permeten imatges JPG, PNG o WEBP per motius de seguretat."
+msgstr "El fitxer d'imatge no és vàlid."

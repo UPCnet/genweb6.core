@@ -126,6 +126,7 @@ from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
+from genweb6.core.validations import InvalidImageFile, UnsafeImageType
 
 import json
 import logging
@@ -704,10 +705,6 @@ def sitemapObjects(self):
 
 
 # Extensible member portrait management
-# Imports específicos para validación de portrait
-from genweb6.core.validations import InvalidImageFile, UnsafeImageType
-
-
 def changeMemberPortrait(self, portrait, id=None):
     """update the portait of a member.
 
@@ -747,26 +744,25 @@ def changeMemberPortrait(self, portrait, id=None):
         raise
 
 
-def deletePersonalPortrait(self, id=None):
-    """deletes the Portait of a member.
-    """
-    authenticated_id = self.getAuthenticatedMember().getId()
-    if not id:
-        id = authenticated_id
-    safe_id = self._getSafeMemberId(id)
-    if id != authenticated_id and not _checkPermission(
-            ManageUsers, self):
-        raise Unauthorized
-
-    # The plugable actions for how to handle the portrait.
-    portrait_url = portal_url() + '/defaultUser.png'
-    imgData = requests.get(portrait_url).content
-    image = StringIO(imgData)
-    image.filename = 'defaultUser'
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(image, safe_id)
-    # membertool = getToolByName(self, 'portal_memberdata')
-    # return membertool._deletePortrait(safe_id)
+# def deletePersonalPortrait(self, id=None):
+#     """deletes the Portait of a member.
+#     """
+#     authenticated_id = self.getAuthenticatedMember().getId()
+#     if not id:
+#         id = authenticated_id
+#     safe_id = self._getSafeMemberId(id)
+#     if id != authenticated_id and not _checkPermission(
+#             ManageUsers, self):
+#         raise Unauthorized
+#     # The plugable actions for how to handle the portrait.
+#     portrait_url = portal_url() + '/defaultUser.png'
+#     imgData = requests.get(portrait_url).content
+#     image = StringIO(imgData)
+#     image.filename = 'defaultUser'
+#     adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+#     adapter(image, safe_id)
+#     # membertool = getToolByName(self, 'portal_memberdata')
+#     # return membertool._deletePortrait(safe_id)
 
 
 @memoize

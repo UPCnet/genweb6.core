@@ -170,7 +170,7 @@ class PortraitUploadIntegrationTest(unittest.TestCase):
 
         print("  ✓ Creando objeto portrait con JPEG válido (photo.jpg)")
         portrait = FakePortrait(self.valid_jpeg, 'photo.jpg')
-        
+
         print("  ✓ Validando portrait con validate_portrait_upload()")
         result = validate_portrait_upload(portrait)
         self.assertTrue(result)
@@ -187,7 +187,7 @@ class PortraitUploadIntegrationTest(unittest.TestCase):
 
         print("  ✓ Creando objeto portrait con código PHP (shell.php)")
         portrait = FakePortrait(self.malicious_php, 'shell.php')
-        
+
         print("  ✓ Intentando validar portrait malicioso")
         with self.assertRaises(InvalidImageFile):
             validate_portrait_upload(portrait)
@@ -214,7 +214,7 @@ class SecurityScenarioTest(unittest.TestCase):
         Intento de subir shell.php debe ser bloqueado
         """
         print("\n🔒 ESCENARIO REAL: Intento de subir webshell (shell.php)")
-        
+
         # Contenido típico de un webshell
         malicious_content = (
             b'<?php\n'
@@ -226,7 +226,7 @@ class SecurityScenarioTest(unittest.TestCase):
 
         print("  ⚠️  Simulando subida de webshell malicioso")
         print("  ✓ Contenido: código PHP con system() call")
-        
+
         # Este contenido DEBE ser rechazado
         with self.assertRaises(InvalidImageFile) as cm:
             validate_image_file_content(malicious_content)

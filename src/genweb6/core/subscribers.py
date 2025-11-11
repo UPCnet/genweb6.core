@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
+import socket
+from plone import api
+from html import escape
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from AccessControl import Unauthorized
 from Products.CMFPlone.utils import safe_unicode
 from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.namedfile.file import NamedBlobFile
-from zope.component import adapter
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
-from zope.interface import implementer
-from plone.dexterity.interfaces import IDexterityContent 
-from zope.component import getUtility
-from plone.registry.interfaces import IRegistry
 
-from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.utils import genwebMetadadesConfig
 
 import logging
@@ -20,13 +18,6 @@ from io import BytesIO
 from PyPDF2 import PdfReader
 
 logger = logging.getLogger(__name__)
-
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from html import escape
-from plone import api
-
-import socket
 
 
 def preventDeletionOnProtectedContent(content, event):
@@ -130,7 +121,7 @@ def clean_pdf_on_upload_file(obj, event):
 
 def clean_pdf_on_upload(obj, field_name='file'):
     """Subscriber que limpia el PDF al subirlo si no está firmado.
-    
+
     Args:
         obj: El objeto que contiene el archivo
         field_name: Nombre del campo que contiene el archivo (por defecto 'file')
@@ -178,7 +169,8 @@ def clean_pdf_on_upload(obj, field_name='file'):
             obj.reindexObject()
             logger.info(f"[OK] {obj.absolute_url()} - PDF sense metadades")
         else:
-            logger.warning(f"[FAIL] {obj.absolute_url()} - {response.status_code} - {response.text}")
+            logger.warning(
+                f"[FAIL] {obj.absolute_url()} - {response.status_code} - {response.text}")
 
     except Exception as e:
         logger.exception(f"[ERROR] {obj.absolute_url()} - {e}")

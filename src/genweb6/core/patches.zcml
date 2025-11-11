@@ -48,12 +48,13 @@
         replacement=".patches.changeMemberPortrait"
         />
 
-    <monkey:patch
+    <!-- Se comenta porque en genweb6 no se pone imagen por defecto esto es para comunitats -->
+    <!-- <monkey:patch
         description="Patch to extend the features of the deletePersonalPortrait"
         class="Products.PlonePAS.tools.membership.MembershipTool"
         original="deletePersonalPortrait"
         replacement=".patches.deletePersonalPortrait"
-        />
+        /> -->
 
     <!-- LDAP and user objects related patches -->
     <monkey:patch
