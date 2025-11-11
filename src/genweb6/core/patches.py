@@ -1,4 +1,44 @@
 # -*- coding: utf-8 -*-
+from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.event.base import spell_date
+from collective.easyform.api import is_file_data
+from zope.schema import getFieldsInOrder
+from plone.app.contenttypes.interfaces import IFolder
+from genweb6.core.content.document_image.document_image import IDocumentImage
+from zope.interface import Interface
+from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.contenttypes.interfaces import IImage
+from plone.app.querystring import queryparser
+from plone.event.interfaces import IEventAccessor
+from plone.app.event.base import start_end_query
+from plone.app.event.base import RET_MODE_OBJECTS
+from plone.app.event.base import localized_today
+from plone.app.event.base import get_events
+from plone.app.event.base import expand_events
+from plone.app.event.base import construct_calendar
+from plone.app.event.base import _prepare_range
+from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
+from datetime import datetime
+from plone.memoize import ram
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
+from plone.app.textfield.value import RichTextValue
+from collective.easyform.api import lnbr
+from collective.easyform.api import filter_widgets
+from collective.easyform.api import filter_fields
+from collective.easyform.api import dollar_replacer
+from collective.easyform.api import OrderedDict
+from collective.easyform.actions import DummyFormView
+from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
+from six import BytesIO
+from DateTime import DateTime
+from csv import writer as csvwriter
+from zope.contenttype import guess_content_type
+from xml.etree import ElementTree as ET
+from collective.easyform.serializer import convertAfterDeserialize
+from collective.easyform.interfaces import ISaveData
+from collective.easyform.api import get_schema
+from collective.easyform.api import get_actions
 from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
@@ -86,7 +126,6 @@ from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
-from genweb6.core.validations import InvalidImageFile, UnsafeImageType
 
 import json
 import logging
@@ -665,6 +704,10 @@ def sitemapObjects(self):
 
 
 # Extensible member portrait management
+# Imports específicos para validación de portrait
+from genweb6.core.validations import InvalidImageFile, UnsafeImageType
+
+
 def changeMemberPortrait(self, portrait, id=None):
     """update the portait of a member.
 
@@ -1025,7 +1068,8 @@ def import_relations(self, data):
     ]
     all_fixed_relations = []
     for rel in data:
-        if "relationship" in rel and rel["relationship"] in ignore:  # Añadido a la condición la comprobación de que exista el atributo relationship
+        # Añadido a la condición la comprobación de que exista el atributo relationship
+        if "relationship" in rel and rel["relationship"] in ignore:
             continue
         rel["from_attribute"] = self.get_from_attribute(rel)
         all_fixed_relations.append(rel)
@@ -1097,7 +1141,8 @@ def addable_portlets(self):
 
     portlets = [
         {
-            "title": self.context.translate(p.title, domain="plone"),  # Aplicamos la traducción
+            # Aplicamos la traducción
+            "title": self.context.translate(p.title, domain="plone"),
             "description": p.description,
             "addview": f"{addviewbase}/+/{p.addview}",
         }
@@ -1141,12 +1186,12 @@ def tinymce(self):
 
     portal = get_portal()
     portal_url = portal.absolute_url()
-    current_path = folder.absolute_url()[len(portal_url) :]
+    current_path = folder.absolute_url()[len(portal_url):]
 
     image_types = settings.image_objects or []
 
     server_url = self.request.get("SERVER_URL", "")
-    site_path = portal_url[len(server_url) :]
+    site_path = portal_url[len(server_url):]
 
     related_items_config = get_relateditems_options(
         context=self.context,
@@ -1187,11 +1232,6 @@ def tinymce(self):
     }
     return {"data-pat-tinymce": json.dumps(configuration)}
 
-from zope.schema import getFieldsInOrder
-from collective.easyform.api import get_actions
-from collective.easyform.api import get_schema
-from collective.easyform.interfaces import ISaveData
-from collective.easyform.serializer import convertAfterDeserialize
 
 def deserializeSavedData(self, data):
     if "savedDataStorage" in data:
@@ -1216,12 +1256,6 @@ def deserializeSavedData(self, data):
                             value[name] = name
                     action.setDataRow(int(key), value)
 
-from collective.easyform.api import is_file_data
-from xml.etree import ElementTree as ET
-from zope.contenttype import guess_content_type
-from csv import writer as csvwriter
-from DateTime import DateTime
-from six import BytesIO
 
 def get_attachments(self, fields, request):
     """Return all attachments uploaded in form."""
@@ -1302,7 +1336,6 @@ def get_attachments(self, fields, request):
         attachments.append((filename, "application/xml", "utf-8", xmlstr))
     return attachments
 
-from plone.app.event.base import spell_date
 
 @property
 def header_string(self):
@@ -1409,6 +1442,7 @@ def header_string(self):
         "sub": trans(sub_msgid) if sub_msgid else "",
     }
 
+
 def resultsFolder(self, **kwargs):
     """Return a content listing based result set with contents of the
     folder.
@@ -1437,6 +1471,7 @@ def resultsFolder(self, **kwargs):
     results = listing(**kwargs)
     return results
 
+
 def _validate(self, value):
     # Pass all validations during initialization
     if self._init_field:
@@ -1446,7 +1481,8 @@ def _validate(self, value):
 
     if value not in vocabulary:
         try:
-            vocabulary.query['path']['query'] = '/'.join(api.portal.get().getPhysicalPath())
+            vocabulary.query['path']['query'] = '/'.join(
+                api.portal.get().getPhysicalPath())
         except:
             raise ConstraintNotSatisfied(
                 value, self.__name__
@@ -1469,7 +1505,8 @@ def display_link(self):
             title = obj.Title()
             # Generar correctamente el enlace para tener en cuenta los mountpoints
             # meta ="/".join(obj.getPhysicalPath()[2:])
-            meta = "/".join(obj.getPhysicalPath()[len(api.portal.get().getPhysicalPath()):])
+            meta = "/".join(obj.getPhysicalPath()
+                            [len(api.portal.get().getPhysicalPath()):])
             if not meta.startswith("/"):
                 meta = "/" + meta
             return {
@@ -1488,6 +1525,7 @@ def display_link(self):
         "title": url,
         "meta": "",
     }
+
 
 def absolute_target_url(self):
     """Compute the absolute target URL."""
@@ -1518,17 +1556,6 @@ def absolute_target_url(self):
             url = self.request["SERVER_URL"] + url
 
     return url
-
-
-from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
-
-from collective.easyform.actions import DummyFormView
-from collective.easyform.api import OrderedDict
-from collective.easyform.api import dollar_replacer
-from collective.easyform.api import filter_fields
-from collective.easyform.api import filter_widgets
-from collective.easyform.api import lnbr
-from plone.app.textfield.value import RichTextValue
 
 
 def get_mail_body(self, unsorted_data, request, context):
@@ -1587,11 +1614,6 @@ def render_ALV(self):
     return self.index()
 
 
-from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.memoize import ram
-
-
 @ram.cache(_cache_until_catalog_change)
 def get_alternate_languages(self):
     """Cache relative urls only. If we have multilingual sites
@@ -1627,7 +1649,6 @@ def get_alternate_languages(self):
 
     return alternates
 
-from plone.app.layout.navigation.root import getNavigationRoot
 
 def get_base_path(self, context):
     path = getNavigationRoot(context)
@@ -1636,18 +1657,6 @@ def get_base_path(self, context):
     else:
         return path
 
-
-from datetime import datetime
-from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
-from plone.app.event.base import _prepare_range
-from plone.app.event.base import construct_calendar
-from plone.app.event.base import expand_events
-from plone.app.event.base import get_events
-from plone.app.event.base import localized_today
-from plone.app.event.base import RET_MODE_OBJECTS
-from plone.app.event.base import start_end_query
-from plone.event.interfaces import IEventAccessor
-from plone.app.querystring import queryparser
 
 @property
 def cal_data(self):
@@ -1684,7 +1693,9 @@ def cal_data(self):
                 start = query["start"]
         except:
             if "start" in query:
-                fixStart = datetime.strptime(query["start"]['query'].Date(), '%Y/%m/%d').date()
+                fixStart = datetime.strptime(
+                    query["start"]['query'].Date(),
+                    '%Y/%m/%d').date()
                 start = fixStart if fixStart > start else start
 
         try:
@@ -1692,7 +1703,9 @@ def cal_data(self):
                 end = query["end"]
         except:
             if "end" in query:
-                fixEnd = datetime.strptime(query["end"]['query'].Date(), '%Y/%m/%d').date()
+                fixEnd = datetime.strptime(
+                    query["end"]['query'].Date(),
+                    '%Y/%m/%d').date()
                 end = fixStart if fixEnd < end else end
 
         start, end = _prepare_range(self.search_base, start, end)
@@ -1766,15 +1779,6 @@ def cal_data(self):
     return caldata
 
 
-from plone.app.contenttypes.browser.folder import FolderView
-from plone.app.contenttypes.interfaces import IImage
-from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from Products.CMFCore.utils import getToolByName
-from plone.memoize.view import memoize
-from zope.interface import Interface
-from genweb6.core.content.document_image.document_image import IDocumentImage
-
-
 @property
 @memoize
 def album_images_folder(self):
@@ -1784,11 +1788,10 @@ def album_images_folder(self):
         ILeadImage.__identifier__,
         IDocumentImage.__identifier__,
     ]
-    images = [obj for obj in self.results(batch=False, object_provides=provides) if getattr(obj, 'image', None)]
+    images = [
+        obj for obj in self.results(batch=False, object_provides=provides)
+        if getattr(obj, 'image', None)]
     return images
-
-
-from plone.app.contenttypes.interfaces import IFolder
 
 
 @memoize
