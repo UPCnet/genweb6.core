@@ -86,6 +86,7 @@ from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
+from genweb6.core.validations import InvalidImageFile, UnsafeImageType
 
 import json
 import logging
@@ -687,8 +688,20 @@ def changeMemberPortrait(self, portrait, id=None):
             raise Unauthorized
 
     # The plugable actions for how to handle the portrait.
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(portrait, safe_id)
+    # La validación de seguridad se realiza dentro del adaptador
+    try:
+        adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+        adapter(portrait, safe_id)
+    except (InvalidImageFile, UnsafeImageType) as e:
+        # Propagar la excepción con un mensaje traducible
+        from plone import api as plone_api
+        plone_api.portal.show_message(
+            message=str(e.__doc__),
+            request=self.REQUEST,
+            type='error'
+        )
+        # Re-lanzar para evitar que se guarde nada
+        raise
 
 
 def deletePersonalPortrait(self, id=None):

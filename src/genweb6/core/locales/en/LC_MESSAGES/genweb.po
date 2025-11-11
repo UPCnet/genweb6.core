@@ -2231,3 +2231,11 @@ msgstr "It is important to upload an image with a resolution of 2000 x 100px. Th
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "It is important to upload an image with a resolution of 2000 x 900px for the full screen model or 2000 x 500px. This image, apart, will be used for the background of the footer."
+
+#: ../validations.py
+msgid "El fitxer d'imatge no és vàlid"
+msgstr "The image file is not valid. Only JPG, PNG or WEBP images are allowed."
+
+#: ../validations.py
+msgid "Només es permeten imatges JPG, PNG o WEBP"
+msgstr "Only JPG, PNG or WEBP images are allowed for security reasons."
