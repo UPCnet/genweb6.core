@@ -281,4 +281,23 @@
 
     </configure>
 
+    <!-- Vista segura de password reset con rate-limiting y CAPTCHA -->
+    <browser:page
+        name="mail_password"
+        for="*"
+        class=".password_reset.SecurePasswordResetView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
+        />
+
+    <!-- Vista del formulario con CAPTCHA -->
+    <browser:page
+        name="mail_password_form"
+        for="*"
+        class=".password_reset.SecurePasswordResetFormView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        template="views_templates/password_reset.pt"
+        permission="zope.Public"
+        />
+
 </configure>

@@ -2225,3 +2225,11 @@ msgstr "El archivo de imagen no es válido. Sólo se permiten imágenes JPG, PNG
 #: ../validations.py
 msgid "Només es permeten imatges JPG, PNG o WEBP"
 msgstr "Sólo se permiten imágenes JPG, PNG o WEBP por motivos de seguridad."
+
+#: ../browser/password_reset.py
+msgid "password_reset_generic_message"
+msgstr "Si el usuario existe en el sistema, recibirá un correo electrónico con las instrucciones para restablecer la contraseña."
+
+#: ../browser/views_templates/password_reset.pt
+msgid "password_reset_captcha_help"
+msgstr "Por favor, completa el CAPTCHA para continuar."

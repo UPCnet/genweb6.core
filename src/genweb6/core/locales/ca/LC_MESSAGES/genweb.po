@@ -2202,3 +2202,11 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el
 #: ../validations.py
 msgid "El fitxer d'imatge no és vàlid"
 msgstr "El fitxer d'imatge no és vàlid."
+
+#: ../browser/password_reset.py
+msgid "password_reset_generic_message"
+msgstr "Si l'usuari existeix al sistema, rebrà un correu electrònic amb les instruccions per restablir la contrasenya."
+
+#: ../browser/views_templates/password_reset.pt
+msgid "password_reset_captcha_help"
+msgstr "Si us plau, completa el CAPTCHA per continuar."

@@ -1714,4 +1714,32 @@
     <value>True</value>
   </record>
 
+  <!-- Configuración de rate-limiting para password reset -->
+  <record name="genweb6.core.password_reset.max_attempts">
+    <field type="plone.registry.field.Int">
+      <title>Máximo de intentos de reset de contraseña</title>
+      <description>Número máximo de intentos permitidos por IP en la ventana de tiempo</description>
+      <default>5</default>
+    </field>
+    <value>5</value>
+  </record>
+
+  <record name="genweb6.core.password_reset.window_minutes">
+    <field type="plone.registry.field.Int">
+      <title>Ventana de tiempo para rate-limiting (minutos)</title>
+      <description>Ventana de tiempo en minutos para contar los intentos de reset de contraseña</description>
+      <default>10</default>
+    </field>
+    <value>10</value>
+  </record>
+
+  <record name="genweb6.core.password_reset.require_captcha_after">
+    <field type="plone.registry.field.Int">
+      <title>Requerir CAPTCHA después de N intentos</title>
+      <description>Número de intentos después del cual se requiere CAPTCHA</description>
+      <default>3</default>
+    </field>
+    <value>3</value>
+  </record>
+
 </registry>
