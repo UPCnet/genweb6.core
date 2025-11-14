@@ -6,6 +6,9 @@ from plone.app.portlets.portlets.login import Renderer as LoginRenderer
 from genweb6.core.utils import LoginUtils
 from genweb6.core.cas.utils import login_URL
 
+import re
+
+
 class gwLogin(LoginRenderer, LoginUtils):
     """ The standard navigation portlet override 'old style'
         as it doesn't allow to do it jbot way...
@@ -23,6 +26,12 @@ class gwLogin(LoginRenderer, LoginUtils):
                 self.context.absolute_url() + '/insufficient-privileges')
 
         url = self.context.absolute_url()
-        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
+        patterns = [
+            'localhost',
+            'pre.upc.edu',
+            'redhood[12].upc.edu',
+            r'fe([1-9]|1[0-9]|20).upc.edu', 
+        ]
+        if any(re.search(pattern, url) for pattern in patterns):
             return False
         return login_url
