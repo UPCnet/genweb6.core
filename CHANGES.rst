@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.81 (unreleased)
+1.81 (2025-11-14)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] URLs que pueden hacer login [Iago López]
 
 1.80 (2025-11-14)
 -----------------
