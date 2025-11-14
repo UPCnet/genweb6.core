@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
+import socket
+from plone import api
+from html import escape
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from AccessControl import Unauthorized
 from Products.CMFPlone.utils import safe_unicode
 from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.namedfile.file import NamedBlobFile
-from zope.component import adapter
-from zope.lifecycleevent.interfaces import IObjectAddedEvent
-from zope.interface import implementer
-from plone.dexterity.interfaces import IDexterityContent 
-from zope.component import getUtility
-from plone.registry.interfaces import IRegistry
 
-from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
+from genweb6.core.utils import genwebMetadadesConfig
 
 import logging
 import requests
@@ -19,13 +18,6 @@ from io import BytesIO
 from PyPDF2 import PdfReader
 
 logger = logging.getLogger(__name__)
-
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-from html import escape
-from plone import api
-
-import socket
 
 
 def preventDeletionOnProtectedContent(content, event):
@@ -106,6 +98,7 @@ def updateLastLoginTimeAfterLogin(event):
     if users_last_login:
         pmd.last_login_time = users_last_login
 
+
 def is_signed_pdf(data):
     try:
         reader = PdfReader(BytesIO(data))
@@ -122,25 +115,32 @@ def is_signed_pdf(data):
         return False
 
 
-@adapter(IDexterityContent, IObjectAddedEvent)
-@implementer(IObjectAddedEvent)
-def clean_pdf_on_upload(obj, event):
-    """Subscriber que limpia el PDF al subirlo si no está firmado."""
-    if not getattr(obj, 'file', None):
+def clean_pdf_on_upload_file(obj, event):
+    clean_pdf_on_upload(obj, 'file')
+
+
+def clean_pdf_on_upload(obj, field_name='file'):
+    """Subscriber que limpia el PDF al subirlo si no está firmado.
+
+    Args:
+        obj: El objeto que contiene el archivo
+        field_name: Nombre del campo que contiene el archivo (por defecto 'file')
+    """
+    file_field = getattr(obj, field_name, None)
+    if not file_field:
         return
 
-    if not obj.file.filename.lower().endswith('.pdf'):
+    if not file_field.filename.lower().endswith('.pdf'):
         return
 
-    file_data = obj.file.data
+    file_data = file_field.data
 
     if is_signed_pdf(file_data):
         logger.info(f"[SKIPPED] {obj.absolute_url()} - PDF signat")
         return
 
     try:
-        registry = getUtility(IRegistry)
-        settings = registry.forInterface(IMetadadesSettings, check=False)
+        settings = genwebMetadadesConfig()
 
         api_url = settings.api_url
         api_key = settings.api_key
@@ -150,7 +150,7 @@ def clean_pdf_on_upload(obj, event):
             'X-Api-Key': api_key
         }
 
-        filename = obj.file.filename
+        filename = file_field.filename
         files = {
             'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
         }
@@ -160,16 +160,17 @@ def clean_pdf_on_upload(obj, event):
         if response.status_code == 200:
             cleaned_data = response.content
 
-            obj.file = NamedBlobFile(
+            setattr(obj, field_name, NamedBlobFile(
                 data=cleaned_data,
                 contentType='application/pdf',
                 filename=filename
-            )
+            ))
 
             obj.reindexObject()
             logger.info(f"[OK] {obj.absolute_url()} - PDF sense metadades")
         else:
-            logger.warning(f"[FAIL] {obj.absolute_url()} - {response.status_code} - {response.text}")
+            logger.warning(
+                f"[FAIL] {obj.absolute_url()} - {response.status_code} - {response.text}")
 
     except Exception as e:
         logger.exception(f"[ERROR] {obj.absolute_url()} - {e}")

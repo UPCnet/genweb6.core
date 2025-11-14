@@ -250,7 +250,10 @@ class LoginUtils():
                 self.context.absolute_url() + '/insufficient-privileges')
 
         url = self.context.absolute_url()
-        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu', 'governpre.upc.edu']):
+        if any(
+                x in url
+                for x in
+                ['localhost', 'fepre.upc.edu', '.pre.upc.edu', 'governpre.upc.edu']):
             return login_url
         return self.request.response.redirect(login_url)
 
@@ -459,3 +462,68 @@ class UserPropertiesSoupCatalogFactory(object):
 
 
 provideUtility(UserPropertiesSoupCatalogFactory(), name='uuid_preserver')
+
+
+# Rate limiting utilities for password reset
+_rate_limit_cache = {}
+
+
+def get_client_ip(request):
+    """Obtiene la IP del cliente desde el request."""
+    # Intentar obtener IP real si está detrás de proxy
+    forwarded_for = request.get('HTTP_X_FORWARDED_FOR', '')
+    if forwarded_for:
+        return forwarded_for.split(',')[0].strip()
+    return request.get('REMOTE_ADDR', 'unknown')
+
+
+def check_rate_limit(ip_address, max_attempts=5, window_minutes=10):
+    """Verifica si una IP ha excedido el límite de intentos.
+
+    Args:
+        ip_address: Dirección IP del cliente
+        max_attempts: Número máximo de intentos permitidos (default: 5)
+        window_minutes: Ventana de tiempo en minutos (default: 10)
+
+    Returns:
+        tuple: (is_allowed, remaining_attempts, reset_time)
+    """
+    import time
+    current_time = time.time()
+    window_seconds = window_minutes * 60
+
+    # Limpiar entradas expiradas
+    expired_keys = [
+        key for key, (attempts, timestamp) in _rate_limit_cache.items()
+        if current_time - timestamp > window_seconds
+    ]
+    for key in expired_keys:
+        del _rate_limit_cache[key]
+
+    # Obtener o crear entrada para esta IP
+    if ip_address in _rate_limit_cache:
+        attempts, timestamp = _rate_limit_cache[ip_address]
+        elapsed = current_time - timestamp
+
+        if elapsed > window_seconds:
+            # Ventana expirada, resetear
+            _rate_limit_cache[ip_address] = (1, current_time)
+            return True, max_attempts - 1, window_seconds
+        else:
+            # Dentro de la ventana
+            if attempts >= max_attempts:
+                remaining_time = int(window_seconds - elapsed)
+                return False, 0, remaining_time
+            else:
+                _rate_limit_cache[ip_address] = (attempts + 1, timestamp)
+                return True, max_attempts - attempts - 1, int(window_seconds - elapsed)
+    else:
+        # Primera vez para esta IP
+        _rate_limit_cache[ip_address] = (1, current_time)
+        return True, max_attempts - 1, window_seconds
+
+
+def reset_rate_limit(ip_address):
+    """Resetea el rate limit para una IP específica."""
+    if ip_address in _rate_limit_cache:
+        del _rate_limit_cache[ip_address]

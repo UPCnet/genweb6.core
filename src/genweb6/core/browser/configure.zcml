@@ -9,6 +9,17 @@
 
     <include file="viewlets.zcml" />
 
+    <!-- Importar validador de portrait para interceptar antes de guardar -->
+    <include package=".portrait_validator" />
+
+    <!-- Registrar widget personalizado para el campo portrait -->
+    <adapter
+        factory=".portrait_validator.ValidatedPortraitFieldWidget"
+        for="plone.namedfile.interfaces.INamedBlobImageField
+             z3c.form.interfaces.IFormLayer"
+        provides="z3c.form.interfaces.IFieldWidget"
+        />
+
     <exclude package="plone.app.multilingual" file="viewlets.xml"  />
 
     <browser:page
@@ -269,5 +280,24 @@
             />
 
     </configure>
+
+    <!-- Vista segura de password reset con rate-limiting y CAPTCHA -->
+    <browser:page
+        name="mail_password"
+        for="*"
+        class=".password_reset.SecurePasswordResetView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
+        />
+
+    <!-- Vista del formulario con CAPTCHA -->
+    <browser:page
+        name="mail_password_form"
+        for="*"
+        class=".password_reset.SecurePasswordResetFormView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        template="views_templates/password_reset.pt"
+        permission="zope.Public"
+        />
 
 </configure>
