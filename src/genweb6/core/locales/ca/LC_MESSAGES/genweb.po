@@ -1831,7 +1831,7 @@ msgstr "Idiomes activats al lloc web"
 #. Default: "Image"
 #: ../templates/plone.app.contenttypes.browser.templates.listing_tabular.pt:35
 msgid "image"
-msgstr "Image"
+msgstr "Imatge"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:30
 msgid "imatge-gran-dreta"
