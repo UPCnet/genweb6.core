@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.82 (unreleased)
+1.82 (2025-11-18)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] Traduccion Imatge [Iago López]
 
 1.81 (2025-11-14)
 -----------------
