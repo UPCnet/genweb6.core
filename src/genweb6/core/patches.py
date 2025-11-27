@@ -73,6 +73,99 @@ from Products.LDAPUserFolder.LDAPUser import NonexistingUser
 from Products.LDAPUserFolder.utils import GROUP_MEMBER_MAP
 from Products.PlonePAS.interfaces.propertysheets import IMutablePropertySheet
 from Products.PlonePAS.utils import safe_unicode
+
+# ===========================================================================
+# LDAP CACHE LOCAL 60s - Performance Optimization
+# ===========================================================================
+"""
+OPTIMIZATION: Cache local de 60s para queries LDAP.
+
+Problema: getUserByAttr y getGroups se llaman 1000+ veces por request.
+Solución: Cache en RAM local (60s) reduce consultas LDAP.
+Mejora esperada: 70-90% en navegación de órganos.
+"""
+
+import time
+from threading import Lock
+import logging
+
+# Configuración
+LDAP_CACHE_TIMEOUT = 60  # segundos
+LDAP_CACHE_MAX_SIZE = 10000
+
+# Storage (RAM local por instancia)
+_LDAP_LOCAL_CACHE = {}
+_LDAP_CACHE_LOCK = Lock()
+
+logger_ldap_cache = logging.getLogger('genweb6.core.ldap_cache')
+
+
+def _ldap_cache_key(func_name, *args):
+    """Crear clave de cache única."""
+    key_parts = [func_name]
+    for arg in args:
+        if arg is not None:
+            key_parts.append(str(arg))
+    return ':'.join(key_parts)
+
+
+def _ldap_cache_get(cache_key):
+    """Obtener de cache si válido."""
+    if cache_key not in _LDAP_LOCAL_CACHE:
+        return None
+    
+    result, timestamp = _LDAP_LOCAL_CACHE[cache_key]
+    now = time.time()
+    
+    if now - timestamp < LDAP_CACHE_TIMEOUT:
+        return result
+    
+    # Expirada
+    with _LDAP_CACHE_LOCK:
+        _LDAP_LOCAL_CACHE.pop(cache_key, None)
+    
+    return None
+
+
+def _ldap_cache_set(cache_key, result):
+    """Guardar en cache."""
+    now = time.time()
+    
+    with _LDAP_CACHE_LOCK:
+        # Limitar tamaño
+        if len(_LDAP_LOCAL_CACHE) >= LDAP_CACHE_MAX_SIZE:
+            items = sorted(_LDAP_LOCAL_CACHE.items(), key=lambda x: x[1][1])
+            to_remove = int(LDAP_CACHE_MAX_SIZE * 0.1)
+            for key, _ in items[:to_remove]:
+                _LDAP_LOCAL_CACHE.pop(key, None)
+        
+        _LDAP_LOCAL_CACHE[cache_key] = (result, now)
+
+
+def get_ldap_cache_stats():
+    """API pública: estadísticas de cache."""
+    return {
+        'size': len(_LDAP_LOCAL_CACHE),
+        'max_size': LDAP_CACHE_MAX_SIZE,
+        'timeout': LDAP_CACHE_TIMEOUT,
+    }
+
+
+def clear_ldap_cache():
+    """API pública: limpiar cache."""
+    with _LDAP_CACHE_LOCK:
+        size = len(_LDAP_LOCAL_CACHE)
+        _LDAP_LOCAL_CACHE.clear()
+        logger_ldap_cache.info(f'Cache LDAP limpiada ({size} entradas)')
+
+
+# Log inicial
+logger_ldap_cache.info(
+    f'✓ LDAP cache local configurado (timeout: {LDAP_CACHE_TIMEOUT}s, '
+    f'max_size: {LDAP_CACHE_MAX_SIZE})'
+)
+
+
 from Products.PluggableAuthService.events import PropertiesUpdated
 from Products.PluggableAuthService.interfaces.authservice import IPluggableAuthService
 from Products.PluginIndexes.cache import RequestCache
@@ -400,6 +493,12 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     """
     if not value:
         return None
+    # OPTIMIZATION: Cache local 60s
+    cache_key = _ldap_cache_key('getUserByAttr', name, value, pwd)
+    cached = _ldap_cache_get(cache_key)
+    if cached is not None:
+        return cached
+
 
     cache_type = pwd and 'authenticated' or 'anonymous'
     negative_cache_key = '%s:%s:%s' % (
@@ -482,6 +581,7 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     if cache:
         self._cache(cache_type).set(value, user_obj)
 
+    _ldap_cache_set(cache_key, user_obj)
     return user_obj
 
 
@@ -923,6 +1023,12 @@ def getGroups(self, dn='*', attr=None, pwd=''):
         (Used e.g. in showgroups.dtml) or, if a DN is passed
         in, all groups for that particular DN.
     """
+    # OPTIMIZATION: Cache local 60s
+    cache_key = _ldap_cache_key('getGroups', dn, attr, pwd)
+    cached = _ldap_cache_get(cache_key)
+    if cached is not None:
+        return cached
+
     group_list = []
     no_show = ('Anonymous', 'Authenticated', 'Shared')
 
@@ -998,6 +1104,7 @@ def getGroups(self, dn='*', attr=None, pwd=''):
                 elif attr == 'dn':
                     group_list.append(dn)
 
+    _ldap_cache_set(cache_key, group_list)
     return group_list
 
 

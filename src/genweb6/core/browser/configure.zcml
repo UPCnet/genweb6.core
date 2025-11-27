@@ -300,4 +300,13 @@
         permission="zope.Public"
         />
 
+
+    <!-- LDAP Cache Stats (debug/development) -->
+    <browser:page
+        name="ldap-cache-stats"
+        for="*"
+        class=".ldap_cache_stats.LDAPCacheStatsView"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
