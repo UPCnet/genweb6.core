@@ -486,21 +486,13 @@ def getThreads(self, start=0, size=None, root=0, depth=None):
                 yield value
 
 
-def getUserByAttr(self, name, value, pwd=None, cache=0):
+def getUserByAttr_original(self, name, value, pwd=None, cache=0):
     """ Get a user based on a name/value pair representing an
         LDAP attribute provided to the user.  If cache is True,
         try to cache the result using 'value' as the key
     """
     if not value:
         return None
-    # OPTIMIZATION: Cache local 60s
-    cache_key = _ldap_cache_key('getUserByAttr', name, value, pwd)
-    logger_ldap_cache.info(f'getUserByAttr cache_key: {cache_key}')
-    cached = _ldap_cache_get(cache_key)
-    if cached is not None:
-        logger_ldap_cache.info('Cache HIT')
-        return cached
-
 
     cache_type = pwd and 'authenticated' or 'anonymous'
     negative_cache_key = '%s:%s:%s' % (
@@ -583,10 +575,31 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     if cache:
         self._cache(cache_type).set(value, user_obj)
 
-    _ldap_cache_set(cache_key, user_obj)
-    logger_ldap_cache.info(f'Cache SET: {cache_key} - Total entries: {len(_LDAP_LOCAL_CACHE)}')
     return user_obj
 
+
+
+def getUserByAttr(self, name, value, pwd=None, cache=0):
+    """OPTIMIZATION: Wrapper con cache local 60s."""
+    if not value:
+        return None
+    
+    # Cache check
+    cache_key = _ldap_cache_key('getUserByAttr', name, value, pwd)
+    cached = _ldap_cache_get(cache_key)
+    if cached is not None:
+        logger_ldap_cache.info(f'Cache HIT: {cache_key}')
+        return cached
+    
+    # Cache MISS → llamar función original
+    result = getUserByAttr_original(self, name, value, pwd, cache)
+    
+    # Guardar en cache (sin importar el return)
+    if result is not None:
+        _ldap_cache_set(cache_key, result)
+        logger_ldap_cache.info(f'Cache SET: {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
+    
+    return result
 
 def enumerateUsers(self, id=None, login=None, exact_match=0, sort_by=None,
                    max_results=None, **kw):
@@ -1021,17 +1034,11 @@ title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
-def getGroups(self, dn='*', attr=None, pwd=''):
+def getGroups_original(self, dn='*', attr=None, pwd=''):
     """ returns a list of possible groups from the ldap tree
         (Used e.g. in showgroups.dtml) or, if a DN is passed
         in, all groups for that particular DN.
     """
-    # OPTIMIZATION: Cache local 60s
-    cache_key = _ldap_cache_key('getGroups', dn, attr, pwd)
-    cached = _ldap_cache_get(cache_key)
-    if cached is not None:
-        return cached
-
     group_list = []
     no_show = ('Anonymous', 'Authenticated', 'Shared')
 
@@ -1107,9 +1114,28 @@ def getGroups(self, dn='*', attr=None, pwd=''):
                 elif attr == 'dn':
                     group_list.append(dn)
 
-    _ldap_cache_set(cache_key, group_list)
     return group_list
 
+
+
+def getGroups(self, dn='*', attr=None, pwd=''):
+    """OPTIMIZATION: Wrapper con cache local 60s."""
+    # Cache check
+    cache_key = _ldap_cache_key('getGroups', dn, attr, pwd)
+    cached = _ldap_cache_get(cache_key)
+    if cached is not None:
+        logger_ldap_cache.info(f'Cache HIT: {cache_key}')
+        return cached
+    
+    # Cache MISS → llamar función original
+    result = getGroups_original(self, dn, attr, pwd)
+    
+    # Guardar en cache
+    if result is not None:
+        _ldap_cache_set(cache_key, result)
+        logger_ldap_cache.info(f'Cache SET: {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
+    
+    return result
 
 def getProperty(self, id, default=_marker):
     """PAS-specific method to fetch a user's properties. Looks
