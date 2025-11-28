@@ -589,15 +589,22 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     cached = _ldap_cache_get(cache_key)
     if cached is not None:
         logger_ldap_cache.info(f'Cache HIT: {cache_key}')
+        # Si es un marcador especial de "no existe", devolver None
+        if cached == 'LDAP_NOT_FOUND':
+            return None
         return cached
     
     # Cache MISS → llamar función original
     result = getUserByAttr_original(self, name, value, pwd, cache)
     
-    # Guardar en cache (sin importar el return)
+    # Guardar en cache (incluido None = búsquedas negativas)
     if result is not None:
         _ldap_cache_set(cache_key, result)
         logger_ldap_cache.info(f'Cache SET: {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
+    else:
+        # Cachear búsqueda negativa con marcador especial
+        _ldap_cache_set(cache_key, 'LDAP_NOT_FOUND')
+        logger_ldap_cache.info(f'Cache SET (negative): {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
     
     return result
 
@@ -1125,15 +1132,22 @@ def getGroups(self, dn='*', attr=None, pwd=''):
     cached = _ldap_cache_get(cache_key)
     if cached is not None:
         logger_ldap_cache.info(f'Cache HIT: {cache_key}')
+        # Si es un marcador especial de "no existe", devolver lista vacía
+        if cached == 'LDAP_NOT_FOUND':
+            return []
         return cached
     
     # Cache MISS → llamar función original
     result = getGroups_original(self, dn, attr, pwd)
     
-    # Guardar en cache
-    if result is not None:
+    # Guardar en cache (incluido resultados vacíos)
+    if result:
         _ldap_cache_set(cache_key, result)
         logger_ldap_cache.info(f'Cache SET: {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
+    else:
+        # Cachear búsqueda negativa/vacía
+        _ldap_cache_set(cache_key, 'LDAP_NOT_FOUND')
+        logger_ldap_cache.info(f'Cache SET (negative): {cache_key} - Total: {len(_LDAP_LOCAL_CACHE)}')
     
     return result
 
