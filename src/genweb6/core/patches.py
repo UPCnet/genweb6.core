@@ -495,10 +495,10 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
         return None
     # OPTIMIZATION: Cache local 60s
     cache_key = _ldap_cache_key('getUserByAttr', name, value, pwd)
-    logger_ldap_cache.debug(f'getUserByAttr cache_key: {cache_key}')
+    logger_ldap_cache.info(f'getUserByAttr cache_key: {cache_key}')
     cached = _ldap_cache_get(cache_key)
     if cached is not None:
-        logger_ldap_cache.debug('Cache HIT')
+        logger_ldap_cache.info('Cache HIT')
         return cached
 
 
@@ -584,7 +584,7 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
         self._cache(cache_type).set(value, user_obj)
 
     _ldap_cache_set(cache_key, user_obj)
-    logger_ldap_cache.debug(f'Cache SET: {cache_key} - Total entries: {len(_LDAP_LOCAL_CACHE)}')
+    logger_ldap_cache.info(f'Cache SET: {cache_key} - Total entries: {len(_LDAP_LOCAL_CACHE)}')
     return user_obj
 
 
