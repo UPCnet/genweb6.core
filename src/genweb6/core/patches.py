@@ -128,6 +128,7 @@ from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
 from genweb6.core.validations import InvalidImageFile, UnsafeImageType
+from plone.memoize import instance
 
 import json
 import logging
@@ -394,24 +395,7 @@ def getThreads(self, start=0, size=None, root=0, depth=None):
                 yield value
 
 
-
-# ===========================================================================
-# LDAP Cache Functions (60 segundos)
-# ===========================================================================
-
-def _ldap_cache_key_getUserByAttr(method, self, name, value, pwd=None, cache=0):
-    """Cache key para getUserByAttr - expira cada 60s."""
-    # Crear clave única por usuario/atributo
-    # time() // 60 cambia cada minuto
-    return (time() // 60, name, value, bool(pwd))
-
-
-def _ldap_cache_key_getGroups(method, self, dn='*', attr=None, pwd=''):
-    """Cache key para getGroups - expira cada 60s."""
-    return (time() // 60, dn, attr, bool(pwd))
-
-
-@ram.cache(_ldap_cache_key_getUserByAttr)
+@instance.memoize
 def getUserByAttr(self, name, value, pwd=None, cache=0):
     """ Get a user based on a name/value pair representing an
         LDAP attribute provided to the user.  If cache is True,
@@ -937,7 +921,7 @@ title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
-@ram.cache(_ldap_cache_key_getGroups)
+@instance.memoize
 def getGroups(self, dn='*', attr=None, pwd=''):
     """ returns a list of possible groups from the ldap tree
         (Used e.g. in showgroups.dtml) or, if a DN is passed
