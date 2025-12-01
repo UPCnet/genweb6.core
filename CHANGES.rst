@@ -1,6 +1,72 @@
 Changelog
 =========
 
+1.83 (unreleased)
+-----------------
+
+- Nothing changed yet.
+
+
+1.82 (2025-11-18)
+-----------------
+
+* [FIX] Traduccion Imatge [Iago López]
+
+1.81 (2025-11-14)
+-----------------
+
+* [UPD] URLs que pueden hacer login [Iago López]
+
+1.80 (2025-11-14)
+-----------------
+
+* [FIX] Add .DS_Store a gitignore [Pilar Marinas]
+* [PENTEST] Solucionar vulnerabilidades password reset [Pilar Marinas]
+* [PENTEST] Que no puedan subir codigo malicioso en el portrait del usuario solo permitir jpg, png y webp [Pilar Marinas]
+* refactor: mover imports de validación junto a changeMemberPortrait [Pilar Marinas]
+*  [Pilar Marinas]
+* - Imports específicos movidos justo antes de la función [Pilar Marinas]
+* - Facilita eliminación futura si se remueve la función [Pilar Marinas]
+* - Mantiene convención de patches.py [Pilar Marinas]
+* feat: añadir prints informativos a tests de portrait validation [Pilar Marinas]
+*  [Pilar Marinas]
+* - Prints con emojis (✅/❌/🔒) para mejor visibilidad [Pilar Marinas]
+* - Estructura jerárquica descriptiva en cada test [Pilar Marinas]
+* - Test resumen (test_zzz_summary) con estadísticas completas [Pilar Marinas]
+* - 18 tests totales con seguimiento visual del progreso [Pilar Marinas]
+* - Conforme a las convenciones de plone6-testing.mdc [Pilar Marinas]
+* test(security): añade tests unitarios e integración para portrait validation [Pilar Marinas]
+*  [Pilar Marinas]
+* - 14 tests unitarios de validación por magic bytes [Pilar Marinas]
+* - 3 tests de integración con el sistema completo [Pilar Marinas]
+* - Tests de escenarios de seguridad reales [Pilar Marinas]
+* - Verifica rechazo de PHP, shell scripts y otros maliciosos [Pilar Marinas]
+* - Verifica aceptación solo de JPG, PNG, WEBP [Pilar Marinas]
+*  [Pilar Marinas]
+* Todos los tests pasaron: 17/17 ✓ [Pilar Marinas]
+* fix(security): validación robusta de portrait upload por contenido real [Pilar Marinas]
+*  [Pilar Marinas]
+* Implementa validación de seguridad para prevenir subida de archivos maliciosos [Pilar Marinas]
+* en el campo portrait del perfil de usuario. [Pilar Marinas]
+*  [Pilar Marinas]
+* Cambios: [Pilar Marinas]
+* - Añade validación por magic bytes en validations.py [Pilar Marinas]
+* - Actualiza PortraitUploadAdapter para validar antes de procesar [Pilar Marinas]
+* - Mejora manejo de errores en changeMemberPortrait patch [Pilar Marinas]
+* - Añade mensajes de error traducidos (ca, es, en) [Pilar Marinas]
+* - Implementa whitelist estricta: solo JPG, PNG, WEBP [Pilar Marinas]
+*  [Pilar Marinas]
+* Seguridad: [Pilar Marinas]
+* - Valida contenido real del archivo (magic bytes), no extensión [Pilar Marinas]
+* - Rechaza archivos antes de guardarlos [Pilar Marinas]
+* - Añade logs de auditoría para intentos maliciosos [Pilar Marinas]
+* - Previene upload de PHP, scripts y otros archivos peligrosos [Pilar Marinas]
+*  [Pilar Marinas]
+* Closes: Vulnerabilidad de upload de shell.php en portrait [Pilar Marinas]
+* [UPD] purge_varnish_paths - Comprobar que esta marcado purgingEnabled [Iago López]
+* [FIX] Que se vea siempre la descripción del campo en edición aunque lo tengas en readonly [Pilar Marinas]
+* [UPD] purge_varnish_paths - obtener request de otra forma si no lo tiene [Iago López]
+* [FIX] footer translation [Iago López]
 
 1.80 (unreleased)
 -----------------

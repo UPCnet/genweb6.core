@@ -1658,7 +1658,7 @@ msgstr "Esdeveniments"
 #. Default: "Disclaimer"
 #: ../browser/viewlets_templates/footer/footer.pt:64
 msgid "genweb-disclaimer"
-msgstr "Exempció de responsabilitat"
+msgstr "Avís legal"
 
 #. Default: "Notícies"
 #: ../portlets/fullnews/templates/macros.pt:9
@@ -1831,7 +1831,7 @@ msgstr "Idiomes activats al lloc web"
 #. Default: "Image"
 #: ../templates/plone.app.contenttypes.browser.templates.listing_tabular.pt:35
 msgid "image"
-msgstr "Image"
+msgstr "Imatge"
 
 #: ../tiles/destacats/cinc_destacats/destacats.py:30
 msgid "imatge-gran-dreta"
@@ -2198,3 +2198,15 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 100px. Aques
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
+
+#: ../validations.py
+msgid "El fitxer d'imatge no és vàlid"
+msgstr "El fitxer d'imatge no és vàlid."
+
+#: ../browser/password_reset.py
+msgid "password_reset_generic_message"
+msgstr "Si l'usuari existeix al sistema, rebrà un correu electrònic amb les instruccions per restablir la contrasenya."
+
+#: ../browser/views_templates/password_reset.pt
+msgid "password_reset_captcha_help"
+msgstr "Si us plau, completa el CAPTCHA per continuar."
