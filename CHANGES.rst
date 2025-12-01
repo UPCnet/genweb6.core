@@ -1,11 +1,11 @@
 Changelog
 =========
 
-1.83 (unreleased)
+1.83 (2025-12-01)
 -----------------
 
-- Nothing changed yet.
-
+* [RENDIMIENTO]cache ldap instance.memoize por request [Pilar Marinas]
+* [UPD] download_files view permissions [Clàudia Andreu]
 
 1.82 (2025-11-18)
 -----------------
@@ -71,8 +71,18 @@ Changelog
 1.80 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+* [MERGE] develop [Iago López]
+* [RENDIMIENTO]cache ldap instance.memoize por request [Pilar Marinas]
+* feat(performance): añadir @ram.cache 60s a getUserByAttr y getGroups [Pilar Marinas]
+*  [Pilar Marinas]
+* - Implementación con plone.memoize.ram para cache compartida entre ZEO clients [Pilar Marinas]
+* - Cache key basada en time() // 60 para expiración automática cada 60s [Pilar Marinas]
+* - getUserByAttr: cachea por (name, value, has_pwd) [Pilar Marinas]
+* - getGroups: cachea por (dn, attr, has_pwd) [Pilar Marinas]
+* - Ventaja vs cache local: compartida entre todos los workers/ZEO clients [Pilar Marinas]
+* - Compatible con multi-ZEO (no requiere invalidación manual) [Pilar Marinas]
+* - Para testing en PRE antes de decidir vs cache local conservadora [Pilar Marinas]
+* [UPD] download_files view permissions [Clàudia Andreu]
 
 1.79 (2025-10-14)
 -----------------
