@@ -20,7 +20,8 @@ from plone.app.event.base import _prepare_range
 from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
 from datetime import datetime
 from plone.memoize import ram
-from time import time
+import time
+import threading
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
 from plone.app.textfield.value import RichTextValue
@@ -151,6 +152,80 @@ except ImportError:
 
 logger = logging.getLogger('event.LDAPUserFolder')
 genweb_log = logging.getLogger('genweb6.core')
+logger_ldap_cache = logging.getLogger('genweb6.core.ldap_cache')
+
+# =============================================================================
+# LDAP CACHE HÍBRIDO
+# - getGroups: Cache global 60s (grupos no afectan CSRF, cambian poco)
+# - getUserByAttr: Cache por request (usuarios afectan CSRF, seguro)
+# =============================================================================
+
+# Cache global para getGroups (seguro: grupos no afectan CSRF)
+_LDAP_GROUPS_CACHE = {}
+_LDAP_GROUPS_CACHE_LOCK = threading.Lock()
+LDAP_GROUPS_CACHE_TIMEOUT = 60  # segundos
+LDAP_GROUPS_CACHE_MAX_SIZE = 1000
+
+
+def _groups_cache_key(dn, attr, pwd):
+    """Crear clave de cache única para getGroups."""
+    return f"getGroups:{dn}:{attr}:{sha1((pwd or '').encode()).hexdigest()}"
+
+
+def _groups_cache_get(cache_key):
+    """Obtener de cache si válido."""
+    if cache_key not in _LDAP_GROUPS_CACHE:
+        return None
+
+    result, timestamp = _LDAP_GROUPS_CACHE[cache_key]
+    now = time.time()
+
+    if now - timestamp < LDAP_GROUPS_CACHE_TIMEOUT:
+        return result
+
+    # Expirada - limpiar
+    with _LDAP_GROUPS_CACHE_LOCK:
+        _LDAP_GROUPS_CACHE.pop(cache_key, None)
+
+    return None
+
+
+def _groups_cache_set(cache_key, result):
+    """Guardar en cache."""
+    now = time.time()
+
+    with _LDAP_GROUPS_CACHE_LOCK:
+        # Limitar tamaño (eliminar 10% más antiguas si lleno)
+        if len(_LDAP_GROUPS_CACHE) >= LDAP_GROUPS_CACHE_MAX_SIZE:
+            items = sorted(
+                _LDAP_GROUPS_CACHE.items(),
+                key=lambda x: x[1][1]
+            )
+            to_remove = int(LDAP_GROUPS_CACHE_MAX_SIZE * 0.1)
+            for key, _ in items[:to_remove]:
+                _LDAP_GROUPS_CACHE.pop(key, None)
+
+        _LDAP_GROUPS_CACHE[cache_key] = (result, now)
+
+
+def clear_ldap_groups_cache():
+    """API pública: limpiar cache de grupos."""
+    with _LDAP_GROUPS_CACHE_LOCK:
+        size = len(_LDAP_GROUPS_CACHE)
+        _LDAP_GROUPS_CACHE.clear()
+        logger_ldap_cache.info(f'Cache LDAP grupos limpiada ({size} entradas)')
+
+
+def get_ldap_groups_cache_stats():
+    """API pública: estadísticas de cache de grupos."""
+    return {
+        'size': len(_LDAP_GROUPS_CACHE),
+        'max_size': LDAP_GROUPS_CACHE_MAX_SIZE,
+        'timeout': LDAP_GROUPS_CACHE_TIMEOUT,
+    }
+
+
+# =============================================================================
 
 
 # Dejo la funcion que teniamos ya que ha cambiado mucho
@@ -395,14 +470,35 @@ def getThreads(self, start=0, size=None, root=0, depth=None):
                 yield value
 
 
-@instance.memoize
 def getUserByAttr(self, name, value, pwd=None, cache=0):
     """ Get a user based on a name/value pair representing an
         LDAP attribute provided to the user.  If cache is True,
         try to cache the result using 'value' as the key
+
+    PATCH: Request-level cache para evitar 2000+ llamadas LDAP.
+    Seguro para multi-Zope: se limpia al finalizar el request.
     """
     if not value:
         return None
+
+    # PATCH: Request-level cache para performance (evita 2000+ llamadas LDAP)
+    # Seguro: no persiste entre requests, no causa CSRF
+    from zope.globalrequest import getRequest
+    request = getRequest()
+    if request is not None:
+        request_cache_key = '_ldap_getUserByAttr_cache'
+        if not hasattr(request, request_cache_key):
+            setattr(request, request_cache_key, {})
+        request_cache = getattr(request, request_cache_key)
+
+        # Key única: incluye name, value y hash del password
+        cache_key = (name, value, sha1((pwd or '').encode()).hexdigest())
+        if cache_key in request_cache:
+            return request_cache[cache_key]
+    else:
+        request_cache = None
+        cache_key = None
+    # END PATCH: Request-level cache
 
     cache_type = pwd and 'authenticated' or 'anonymous'
     negative_cache_key = '%s:%s:%s' % (
@@ -425,6 +521,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     if user_dn is None:
         logger.debug('getUserByAttr: "%s=%s" not found' % (name, value))
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if user_attrs is None:
@@ -432,6 +530,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             name, value)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if user_roles is None or user_roles == self._roles:
@@ -460,6 +560,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             user_dn, self._login_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if self._uid_attr != 'dn' and len(uid) > 0:
@@ -469,6 +571,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             user_dn, self._uid_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     # BEGIN PATCH
@@ -484,6 +588,10 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
 
     if cache:
         self._cache(cache_type).set(value, user_obj)
+
+    # PATCH: Guardar en request cache
+    if request_cache is not None:
+        request_cache[cache_key] = user_obj
 
     return user_obj
 
@@ -921,12 +1029,8 @@ title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
-@instance.memoize
-def getGroups(self, dn='*', attr=None, pwd=''):
-    """ returns a list of possible groups from the ldap tree
-        (Used e.g. in showgroups.dtml) or, if a DN is passed
-        in, all groups for that particular DN.
-    """
+def _getGroups_original(self, dn='*', attr=None, pwd=''):
+    """Función original de getGroups sin cache."""
     group_list = []
     no_show = ('Anonymous', 'Authenticated', 'Shared')
 
@@ -1003,6 +1107,37 @@ def getGroups(self, dn='*', attr=None, pwd=''):
                     group_list.append(dn)
 
     return group_list
+
+
+def getGroups(self, dn='*', attr=None, pwd=''):
+    """PATCH: Cache global 60s para getGroups.
+
+    Seguro para multi-Zope: grupos no afectan CSRF y cambian poco.
+    Mejora performance significativamente en queries LDAP repetidas.
+    """
+    # Crear key de cache
+    cache_key = _groups_cache_key(dn, attr, pwd)
+
+    # Buscar en cache global
+    cached = _groups_cache_get(cache_key)
+    if cached is not None:
+        logger_ldap_cache.debug(f'getGroups cache HIT: {dn}')
+        # Marcador especial para listas vacías
+        if cached == '_EMPTY_GROUPS_':
+            return []
+        return cached
+
+    # Cache MISS → llamar función original
+    logger_ldap_cache.debug(f'getGroups cache MISS: {dn}')
+    result = _getGroups_original(self, dn, attr, pwd)
+
+    # Guardar en cache (incluir listas vacías con marcador)
+    if result:
+        _groups_cache_set(cache_key, result)
+    else:
+        _groups_cache_set(cache_key, '_EMPTY_GROUPS_')
+
+    return result
 
 
 def getProperty(self, id, default=_marker):
