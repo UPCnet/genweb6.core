@@ -1,11 +1,25 @@
 Changelog
 =========
 
-1.84 (unreleased)
+1.84 (2025-12-09)
 -----------------
 
-- Nothing changed yet.
-
+* feat(ldap-cache): implementar cache híbrido para LDAP [Pilar Marinas]
+*  [Pilar Marinas]
+* - getUserByAttr: Cache por request (seguro para CSRF) [Pilar Marinas]
+* - Se limpia automáticamente al finalizar el request [Pilar Marinas]
+* - Evita 2000+ queries LDAP por request [Pilar Marinas]
+* - Cada usuario tiene su propio cache aislado [Pilar Marinas]
+*  [Pilar Marinas]
+* - getGroups: Cache global 60s (seguro porque no afecta CSRF) [Pilar Marinas]
+* - Grupos cambian poco y no identifican usuarios [Pilar Marinas]
+* - Mejora significativa en queries LDAP repetidas [Pilar Marinas]
+* - Thread-safe con lock para multi-Zope [Pilar Marinas]
+*  [Pilar Marinas]
+* Beneficios: [Pilar Marinas]
+* - Performance: reduce queries LDAP drásticamente [Pilar Marinas]
+* - Seguridad: no causa problemas de CSRF Token [Pilar Marinas]
+* - Multi-Zope: funciona correctamente en zc1-zc4 [Pilar Marinas]
 
 1.83 (2025-12-01)
 -----------------
@@ -36,7 +50,7 @@ Changelog
 * - Mantiene convención de patches.py [Pilar Marinas]
 * feat: añadir prints informativos a tests de portrait validation [Pilar Marinas]
 *  [Pilar Marinas]
-* - Prints con emojis (✅/❌/🔒) para mejor visibilidad [Pilar Marinas]
+* - Prints con emojis para mejor visibilidad [Pilar Marinas]
 * - Estructura jerárquica descriptiva en cada test [Pilar Marinas]
 * - Test resumen (test_zzz_summary) con estadísticas completas [Pilar Marinas]
 * - 18 tests totales con seguimiento visual del progreso [Pilar Marinas]
@@ -49,7 +63,7 @@ Changelog
 * - Verifica rechazo de PHP, shell scripts y otros maliciosos [Pilar Marinas]
 * - Verifica aceptación solo de JPG, PNG, WEBP [Pilar Marinas]
 *  [Pilar Marinas]
-* Todos los tests pasaron: 17/17 ✓ [Pilar Marinas]
+* Todos los tests pasaron: 17/17 [Pilar Marinas]
 * fix(security): validación robusta de portrait upload por contenido real [Pilar Marinas]
 *  [Pilar Marinas]
 * Implementa validación de seguridad para prevenir subida de archivos maliciosos [Pilar Marinas]
