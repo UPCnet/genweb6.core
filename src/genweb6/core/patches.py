@@ -22,6 +22,8 @@ from datetime import datetime
 from plone.memoize import ram
 import time
 import threading
+import collections
+from collections import OrderedDict
 from plone.app.multilingual.interfaces import ITranslationManager
 from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
 from plone.app.textfield.value import RichTextValue
@@ -161,7 +163,7 @@ logger_ldap_cache = logging.getLogger('genweb6.core.ldap_cache')
 # =============================================================================
 
 # Cache global para getGroups (seguro: grupos no afectan CSRF)
-_LDAP_GROUPS_CACHE = {}
+_LDAP_GROUPS_CACHE = collections.OrderedDict()
 _LDAP_GROUPS_CACHE_LOCK = threading.Lock()
 LDAP_GROUPS_CACHE_TIMEOUT = 60  # segundos
 LDAP_GROUPS_CACHE_MAX_SIZE = 1000
@@ -173,37 +175,41 @@ def _groups_cache_key(dn, attr, pwd):
 
 
 def _groups_cache_get(cache_key):
-    """Obtener de cache si válido."""
-    if cache_key not in _LDAP_GROUPS_CACHE:
+    """Obtener de cache si válido (Thread-safe, sin lock)."""
+    # .get() es atómico en CPython y OrderedDict es thread-safe para lecturas
+    entry = _LDAP_GROUPS_CACHE.get(cache_key)
+
+    if entry is None:
         return None
 
-    result, timestamp = _LDAP_GROUPS_CACHE[cache_key]
+    result, timestamp = entry
     now = time.time()
 
     if now - timestamp < LDAP_GROUPS_CACHE_TIMEOUT:
         return result
 
-    # Expirada - limpiar
-    with _LDAP_GROUPS_CACHE_LOCK:
-        _LDAP_GROUPS_CACHE.pop(cache_key, None)
-
+    # Expirado: retornamos None pero no bloqueamos para borrar.
+    # La limpieza se hará perezosamente en _groups_cache_set
     return None
 
 
 def _groups_cache_set(cache_key, result):
-    """Guardar en cache."""
+    """Guardar en cache con lock optimizado."""
     now = time.time()
 
     with _LDAP_GROUPS_CACHE_LOCK:
-        # Limitar tamaño (eliminar 10% más antiguas si lleno)
-        if len(_LDAP_GROUPS_CACHE) >= LDAP_GROUPS_CACHE_MAX_SIZE:
-            items = sorted(
-                _LDAP_GROUPS_CACHE.items(),
-                key=lambda x: x[1][1]
-            )
+        # Si ya existe, movemos al final (más reciente)
+        if cache_key in _LDAP_GROUPS_CACHE:
+            _LDAP_GROUPS_CACHE.move_to_end(cache_key)
+
+        # Limitar tamaño si es necesario
+        elif len(_LDAP_GROUPS_CACHE) >= LDAP_GROUPS_CACHE_MAX_SIZE:
+            # Eliminar 10% más antiguas (FIFO / Oldest)
+            # popitem(last=False) es O(1) vs sorted() que es O(N log N)
             to_remove = int(LDAP_GROUPS_CACHE_MAX_SIZE * 0.1)
-            for key, _ in items[:to_remove]:
-                _LDAP_GROUPS_CACHE.pop(key, None)
+            for _ in range(to_remove):
+                if _LDAP_GROUPS_CACHE:
+                    _LDAP_GROUPS_CACHE.popitem(last=False)
 
         _LDAP_GROUPS_CACHE[cache_key] = (result, now)
 
