@@ -253,7 +253,7 @@ class LoginUtils():
         patterns = [
             'localhost',
             'pre.upc.edu',
-            'redhood[12].upc.edu',
+            'redhood[123].upc.edu',
             r'fe([1-9]|1[0-9]|20).upc.edu', 
         ]
         if any(re.search(pattern, url) for pattern in patterns):
