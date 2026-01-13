@@ -39,20 +39,36 @@ def login_URL(context, request):
         came_from = getattr(request, 'came_from', None)
 
         if came_from:
+            # Limpiar URLs de vistas de archivos binarios (@@display-file, @@download)
+            # para que apunten al objeto en lugar del binario directo
+            for view_pattern in ['@@display-file/', '@@download/']:
+                if view_pattern in came_from:
+                    came_from = came_from.split(view_pattern)[0]
+                    break
+
             if not came_from.endswith('/view'):
                 try:
-                    item_path = unir_cadenas('/' + '/'.join(context.getPhysicalPath()[1:3]), came_from)
+                    item_path = unir_cadenas(
+                        '/' + '/'.join(context.getPhysicalPath()[1: 3]),
+                        came_from)
                     pc = api.portal.get_tool(name='portal_catalog')
                     item = pc.unrestrictedSearchResults(path=item_path, depth=0)
                     if item:
-                        if item[0].portal_type in ['Image', 'File']:
+                        if item[0].portal_type in [
+                            'Image', 'File']:
                             came_from += '/view'
                 except:
                     pass
 
-            return '%s/login?idApp=%s&service=%s' % (plugin.cas_server_url, cas_settings.app_name, secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
-        return f"{plugin.cas_server_url}/login?idApp={cas_settings.app_name}&service={secureURL(strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from)))}"
-
+            return '%s/login?idApp=%s&service=%s' % (
+                plugin.cas_server_url, cas_settings.app_name,
+                secureURL(
+                    strip_ticket(
+                        parse.urljoin(portal.absolute_url() + '/', came_from))))
+        return '%s/login?idApp=%s&service=%s' % (
+            plugin.cas_server_url, cas_settings.app_name,
+            secureURL(
+                strip_ticket(parse.urljoin(portal.absolute_url() + '/', came_from))))
 
     else:
         return '%s/login_form' % portal.absolute_url()
@@ -90,3 +106,4 @@ def unir_cadenas(s1, s2):
 
     # Une las cadenas sin repetir la superposición
     return s1 + s2[max_overlap:]
+
