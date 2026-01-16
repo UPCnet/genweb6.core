@@ -4,15 +4,15 @@ function showElementsType() {
     switch(value) {
       case '--NOVALUE--':
         $('#formfield-form-widgets-accordion_open_multiple').hide();
-        $('#formfield-form-widgets-accordion_open_first').hide();
+        $('#formfield-form-widgets-accordion_items_expanded').hide();
         break;
       case 'accordion':
         $('#formfield-form-widgets-accordion_open_multiple').show();
-        $('#formfield-form-widgets-accordion_open_first').show();
+        $('#formfield-form-widgets-accordion_items_expanded').show();
         break;
       case 'nav':
         $('#formfield-form-widgets-accordion_open_multiple').hide();
-        $('#formfield-form-widgets-accordion_open_first').hide();
+        $('#formfield-form-widgets-accordion_items_expanded').hide();
         break;
     }
 }

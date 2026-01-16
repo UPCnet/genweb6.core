@@ -28,19 +28,20 @@
                      token context/token">
 
         <tal:accordion tal:condition="python:tipus == 'accordion'"
-                       tal:define="accordion_open_first context/accordion_open_first">
+                       tal:define="accordion_open_multiple python:bool(getattr(context, 'accordion_open_multiple', False));
+                                   accordion_items_expanded python:bool(getattr(context, 'accordion_items_expanded', False))">
 
             <div class="accordion" tal:attributes="id string:uid-${token}">
                 <tal:item tal:repeat="content context/contents">
                     <div class="accordion-item"
-                         tal:define="first python:accordion_open_first and content['first'];">
+                         tal:define="is_expanded python:accordion_items_expanded;">
                         <h2 class="accordion-header" tal:attributes="id string:heading-${content/id};">
                             <button type="button" data-bs-toggle="collapse"
                                     tal:content="content/title"
                                     tal:attributes="data-bs-target string:#content-${content/id};
                                                     aria-controls string:content-${content/id};
-                                                    class python:'accordion-button' if first else 'accordion-button collapsed';
-                                                    aria-expanded python:'true' if first else 'false';">
+                                                    class python:'accordion-button' if is_expanded else 'accordion-button collapsed';
+                                                    aria-expanded python:'true' if is_expanded else 'false';">
                                 Title
                             </button>
                         </h2>
@@ -48,8 +49,8 @@
                         <div role="region"
                              tal:attributes="id string:content-${content/id};
                                              aria-labelledby string:heading-${content/id};
-                                             data-bs-parent python:nothing if context.accordion_open_multiple else '#uid-' + token;
-                                             class python:'accordion-collapse collapse show' if first else 'accordion-collapse collapse';">
+                                             data-bs-parent python:None if accordion_open_multiple else '#uid-' + token;
+                                             class python:'accordion-collapse collapse show' if is_expanded else 'accordion-collapse collapse';">
                             <div class="accordion-body" tal:content="structure content/text">
                                 Content
                             </div>

@@ -90,13 +90,17 @@ class IAccordionTabs(model.Schema, IDexteritySchema):
     )
 
     accordion_open_multiple = schema.Bool(
-        title=_(u'Habilitar l\'opció de poder obrir múltiples panells de l’acordió'),
+        title=_(u"Permetre obrir múltiples panells de l'acordió simultàniament"),
+        description=_(u"Si està activat, es podran tenir diversos panells oberts al mateix temps. Si no, només es podrà tenir un panell obert a la vegada."),
         required=False,
+        default=False,
     )
 
-    accordion_open_first = schema.Bool(
-        title=_(u'Obrir el primer panell de l’acordió per defecte'),
+    accordion_items_expanded = schema.Bool(
+        title=_(u"Desplegar tots els items de l'acordió per defecte"),
+        description=_(u"Si està activat, tots els items de l'acordió sortiran desplegats per defecte."),
         required=False,
+        default=False,
     )
 
     show_copy = schema.Bool(
