@@ -39,7 +39,7 @@
             Netejar
           </button>
           <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
-               alt="Carregant..." style="display:none; width:24px; height:24px;">
+               alt="Carregant..." style="display:none; width:64px; height:64px; margin-left:15px;">
         </div>
 
         <p class="upc-text" i18n:translate="neteja_metadades_description">
