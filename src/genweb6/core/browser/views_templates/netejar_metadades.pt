@@ -58,6 +58,7 @@
         var form = document.getElementById('upc-form');
         var spinner = document.getElementById('spinner');
         var submitBtn = document.getElementById('netejar-btn');
+        var fileInput = document.getElementById('pdf_file');
         var downloadIframe = document.getElementById('download-iframe');
         var originalBtnText = submitBtn ? submitBtn.textContent : 'Netejar';
         var alertShown = false;
@@ -69,10 +70,20 @@
           // Ocultar spinner
           spinner.style.display = 'none';
           
+          // Habilitar botón e input
+          submitBtn.disabled = false;
+          fileInput.disabled = false;
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+          fileInput.style.opacity = '1';
+          fileInput.style.cursor = 'pointer';
+          
           alertShown = false;
         }
 
         if (form && downloadIframe) {
+          var safetyTimeout = null;
+          
           form.addEventListener('submit', function(e) {
             // Cambiar texto del botón a "Netejant..."
             submitBtn.textContent = 'Netejant...';
@@ -80,7 +91,21 @@
             // Mostrar spinner
             spinner.style.display = 'inline-block';
             
+            // Bloquear botón e input mientras procesa
+            submitBtn.disabled = true;
+            fileInput.disabled = true;
+            submitBtn.style.opacity = '0.6';
+            submitBtn.style.cursor = 'not-allowed';
+            fileInput.style.opacity = '0.6';
+            fileInput.style.cursor = 'not-allowed';
+            
             alertShown = false;
+            
+            // Timeout de seguridad: SIEMPRE desbloquear después de 30 segundos
+            if (safetyTimeout) clearTimeout(safetyTimeout);
+            safetyTimeout = setTimeout(function() {
+              resetForm();
+            }, 30000);
             
             // Después de 5 segundos, mostrar mensaje informativo (pero mantener spinner)
             setTimeout(function() {
@@ -93,10 +118,16 @@
           
           // Detectar cuando el iframe ha terminado de cargar (descarga completada)
           downloadIframe.addEventListener('load', function() {
-            // Esperar un poco más para asegurar que la descarga comenzó
+            // Cancelar el timeout de seguridad si el iframe carga correctamente
+            if (safetyTimeout) {
+              clearTimeout(safetyTimeout);
+              safetyTimeout = null;
+            }
+            
+            // Esperar 5 segundos para asegurar que la descarga está completa
             setTimeout(function() {
               resetForm();
-            }, 2000);
+            }, 5000);
           });
         }
       });
