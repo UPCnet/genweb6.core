@@ -55,18 +55,46 @@
       document.addEventListener('DOMContentLoaded', function() {
         var form = document.getElementById('upc-form');
         var spinner = document.getElementById('spinner');
+        var submitBtn = document.getElementById('netejar-btn');
+        var downloadIframe = document.getElementById('download-iframe');
+        var originalBtnText = submitBtn ? submitBtn.textContent : 'Netejar';
+        var alertShown = false;
 
-        if (form) {
+        function resetForm() {
+          // Restaurar texto del botón a "Netejar"
+          submitBtn.textContent = originalBtnText;
+          
+          // Ocultar spinner
+          spinner.style.display = 'none';
+          
+          alertShown = false;
+        }
+
+        if (form && downloadIframe) {
           form.addEventListener('submit', function(e) {
+            // Cambiar texto del botón a "Netejant..."
+            submitBtn.textContent = 'Netejant...';
+            
             // Mostrar spinner
             spinner.style.display = 'inline-block';
             
-            // Después de 3 segundos, mostrar mensaje informativo
+            alertShown = false;
+            
+            // Después de 5 segundos, mostrar mensaje informativo (pero mantener spinner)
             setTimeout(function() {
-              alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts');
-              // Ocultar spinner
-              spinner.style.display = 'none';
-            }, 3000);
+              if (!alertShown) {
+                alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts');
+                alertShown = true;
+              }
+            }, 5000);
+          });
+          
+          // Detectar cuando el iframe ha terminado de cargar (descarga completada)
+          downloadIframe.addEventListener('load', function() {
+            // Esperar un poco más para asegurar que la descarga comenzó
+            setTimeout(function() {
+              resetForm();
+            }, 2000);
           });
         }
       });
