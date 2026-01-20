@@ -32,14 +32,16 @@
         </div>
 
         <div class="upc-form-group upc-form-group--center">
-          <button type="submit"
-                  id="netejar-btn"
-                  class="upc-button upc-button--primary"
-                  i18n:translate="send_to_anonymize">
-            Netejar
-          </button>
-          <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
-               alt="Carregant..." style="display:none; width:64px; height:64px; margin-left:15px;">
+          <span style="white-space:nowrap;">
+            <button type="submit"
+                    id="netejar-btn"
+                    class="upc-button upc-button--primary"
+                    i18n:translate="send_to_anonymize">
+              Netejar
+            </button>
+            <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
+                 alt="Carregant..." style="display:none; width:64px; height:64px; margin-left:15px; vertical-align:middle;">
+          </span>
         </div>
 
         <p class="upc-text" i18n:translate="neteja_metadades_description">
