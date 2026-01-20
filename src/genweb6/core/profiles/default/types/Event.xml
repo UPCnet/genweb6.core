@@ -12,6 +12,7 @@
         <element value="plone.dublincore" />
         <element value="plone.richtext" />
         <element value="plone.leadimage" />
+        <element value="genweb.event_image" />
         <element value="plone.allowdiscussion" />
         <element value="plone.excludefromnavigation" />
         <element value="plone.relateditems" />

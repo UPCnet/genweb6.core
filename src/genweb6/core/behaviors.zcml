@@ -50,4 +50,13 @@
         marker="genweb6.core.interfaces.ISeoMarker"
         />
 
+    <plone:behavior
+        name="genweb.event_image"
+        title="Event Image Options"
+        description="Add option to hide image on event page but show in portlets and views"
+        provides=".behaviors.event_image.IEventImage"
+        factory=".behaviors.event_image.EventImage"
+        for="plone.app.contenttypes.interfaces.IEvent"
+        />
+
 </configure>

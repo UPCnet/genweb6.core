@@ -119,13 +119,29 @@ class Renderer(MultiviewCollectionRenderer):
 
                 date = toLocalizedTime(self, result.end)
 
+                # Solo generar image_src si hay imagen y es válida
+                # El campo not_show_image solo afecta a la vista del evento, no a los portlets
+                image_src = None
+                if result_image:
+                    try:
+                        # Verificar que la imagen existe y tiene contenido
+                        if hasattr(result_image, 'getSize'):
+                            size = result_image.getSize()
+                            if size and size > 0:
+                                image_src = "{0}/@@images/image/large".format(result.getURL())
+                    except (AttributeError, TypeError, Exception):
+                        # Si hay algún error al verificar la imagen, no generar la URL
+                        # Esto evita timeouts y errores si la imagen no está disponible
+                        image_src = None
+                        result_image = None
+
                 result_dicts.append(dict(
                     date=date,
                     description=self._summarize(result_description),
                     col=col,
-                    image=result_image,
+                    image=result_image if image_src else None,
                     image_caption=getattr(result_obj, 'image_caption', None),
-                    image_src=("{0}/@@images/image/large".format(result.getURL()) if result_image else None),
+                    image_src=image_src,
                     portal_type=normalizeString(result.portal_type),
                     title=result.title_or_id(),
                     url=result.getURL(),
