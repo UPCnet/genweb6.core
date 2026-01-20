@@ -16,7 +16,7 @@
         Neteja metadades documents
       </h1>
 
-      <form id="upc-form" class="upc-form" action="" method="post" enctype="multipart/form-data">
+      <form id="upc-form" class="upc-form" action="" method="post" enctype="multipart/form-data" target="download-iframe">
         <div class="upc-form-group">
           <label for="pdf_file" class="upc-label" i18n:translate="select_pdf">
             Selecciona el PDF a netejar:
@@ -47,9 +47,30 @@
           Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers  (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar.
         </p>
       </form>
+      <iframe id="download-iframe" name="download-iframe" style="display:none;"></iframe>
     </div>
     <script type="text/javascript"
             tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/theme-concat.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('upc-form');
+        var spinner = document.getElementById('spinner');
+
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            // Mostrar spinner
+            spinner.style.display = 'inline-block';
+            
+            // Después de 3 segundos, mostrar mensaje informativo
+            setTimeout(function() {
+              alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts');
+              // Ocultar spinner
+              spinner.style.display = 'none';
+            }, 3000);
+          });
+        }
+      });
+    </script>
   </section>
 </metal:main>
 </body>
