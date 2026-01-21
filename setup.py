@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='genweb6.core',
-    version='1.85.dev0',
+    version='1.85',
     description="Genweb 6 Core package",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/

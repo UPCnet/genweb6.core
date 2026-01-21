@@ -1,11 +1,20 @@
 Changelog
 =========
 
-1.85 (unreleased)
+1.85 (2026-01-21)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] neteja metadades form behavior [Clàudia Andreu]
+* [UPD] spinner style [Clàudia Andreu]
+* [ADD] alert to neteja metadades + [UPD] spinner behavior [Clàudia Andreu]
+* [ADD] alert to neteja metadades [Clàudia Andreu]
+* [UPD] spinner mesures [Clàudia Andreu]
+* [ADD] checkbox to disable event image [Clàudia Andreu]
+* [ADD] accordion items expanded checkbox [Clàudia Andreu]
+* [FIX] Limpiar URLs de vistas de archivos binarios (@@display-file, @@download) para que funcione el SSO [pilar.marinas]
+* Update login URL patterns for redhood subdomains [Iago López Fernández]
+* Update URL pattern [Iago López Fernández]
+* [RENDIMIENTO] Mejorar cache de grupos [Pilar Marinas]
 
 1.84 (2025-12-09)
 -----------------
