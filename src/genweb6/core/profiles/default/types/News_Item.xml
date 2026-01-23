@@ -10,6 +10,7 @@
         <element value="plone.excludefromnavigation"/>
         <element value="plone.relateditems"/>
         <element value="plone.leadimage"/>
+        <element value="genweb.news_image"/>
         <element value="plone.versioning"/>
         <element value="plone.translatable" />
         <element value="plone.locking"/>
