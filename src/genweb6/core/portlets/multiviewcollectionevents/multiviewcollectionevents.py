@@ -85,6 +85,14 @@ class Renderer(MultiviewCollectionRenderer):
     }
     SUMMARY_LENGTH_MAX = 200
 
+    @property
+    def available(self):
+        """
+        Ocultar el portlet si no hay eventos para mostrar
+        """
+        results = self.results()
+        return len(results) > 0
+
     def render(self):
         view_type = getattr(self.data, 'view_type', VIEW_TYPE_LIST)
         return ViewPageTemplateFile('{folder}/{file}'.format(
