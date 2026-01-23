@@ -102,7 +102,7 @@ msgstr "Accordion"
 msgid "Acordió / Pestanyes"
 msgstr "Accordion / Tabs"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:192
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:208
 msgid "Add Event Multi-view Collection Portlet"
 msgstr "Add Event Multi-view Collection Portlet"
 
@@ -146,6 +146,14 @@ msgstr "Add field to mark a link to open in a new window when clicked."
 #: ../behaviors.zcml:14
 msgid "Add icon fields"
 msgstr "Add icon fields"
+
+#: ../behaviors.zcml:60
+msgid "Add option to hide image on event page but show in portlets and views"
+msgstr ""
+
+#: ../behaviors.zcml:69
+msgid "Add option to hide image on news page but show in portlets and views"
+msgstr ""
 
 #: ../tiles/video/video.py:84
 msgid "Adreça web del canal on es troba el vídeo."
@@ -489,7 +497,7 @@ msgstr "EXTERNAL: URL of the page to display"
 msgid "Edit"
 msgstr "Edit"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:203
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:219
 msgid "Edit Event Multi-view Collection Portlet"
 msgstr "Edit Event Multi-view Collection Portlet"
 
@@ -589,6 +597,10 @@ msgstr "It is displayed under the title of the web in header types with half her
 #: ../portlets/fullnews/fullnews.py:40
 msgid "Escull com es mostraran les noticies"
 msgstr "How news will be displayed"
+
+#: ../behaviors.zcml:60
+msgid "Event Image Options"
+msgstr ""
 
 #: ../portlets/grid_events/grid_events.pt:7
 msgid "Events"
@@ -1023,6 +1035,14 @@ msgstr "Name of the Twitter account used to shown the tweets"
 msgid "News"
 msgstr "News"
 
+#: ../behaviors.zcml:69
+msgid "News Image Options"
+msgstr ""
+
+#: ../behaviors/event_image.py:18
+msgid "No mostreu la imatge a la pàgina, però sí que ho feu als portlets i a les vistes."
+msgstr ""
+
 #: ../controlpanels/footer.py:94
 msgid "Nom de l’apartat [CA]"
 msgstr "Section name [CA]"
@@ -1365,7 +1385,7 @@ msgstr "This behavior adds extra fields to a Content Type for SEO optimisation"
 msgid "This is an inner link"
 msgstr "This is an inner link"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:193
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:209
 msgid "This portlet displays a listing of items from a Collection of events."
 msgstr "This portlet displays a listing of items from a Collection of events."
 
@@ -2054,9 +2074,14 @@ msgid "more_url"
 msgstr "View more"
 
 #. Default: "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
-#: ../browser/views_templates/netejar_metadades.pt:45
+#: ../browser/views_templates/netejar_metadades.pt:47
 msgid "neteja_metadades_description"
 msgstr "With this tool you can easily remove all metadata and hidden information from your PDF files before sharing them, ensuring greater privacy and security, all with a single click. Once you send your documents, the metadata-free file or files (in <strong>.zip</strong> format) will automatically download to your device, ready to use."
+
+#. Default: "<strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament."
+#: ../browser/views_templates/netejar_metadades.pt:51
+msgid "neteja_metadades_warning"
+msgstr "<strong>Important:</strong> Do not upload encrypted or password-protected PDFs, as the service will not be able to process them correctly."
 
 #: ../browser/views_templates/netejar_metadades.pt:24
 msgid "no_file_selected"
@@ -2074,6 +2099,7 @@ msgstr "noindex, follow"
 msgid "noindex, nofollow"
 msgstr "noindex, nofollow"
 
+#: ../behaviors/event_image.py:17
 #: ../content/document_image/document_image.py:24
 msgid "not_show_image"
 msgstr "Do not display the image on the page, but do in the portlets and views"
@@ -2161,7 +2187,7 @@ msgid "select_pdf"
 msgstr "Select PDF file:"
 
 #. Default: "Netejar"
-#: ../browser/views_templates/netejar_metadades.pt:35
+#: ../browser/views_templates/netejar_metadades.pt:36
 msgid "send_to_anonymize"
 msgstr "Send to anonymize"
 
