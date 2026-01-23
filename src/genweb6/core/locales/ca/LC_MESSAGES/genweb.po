@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Destacats Esquerra"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1319
+#: ../patches.py:1506
 msgid "7days_events"
 msgstr "Esdeveniments en els 7 dies vinents."
 
@@ -94,7 +94,7 @@ msgstr "Logo peu"
 msgid "ATENCIÓ:"
 msgstr "ATENCIÓ:"
 
-#: ../content/accordion_tabs/accordion_tabs.py:51
+#: ../content/accordion_tabs/accordion_tabs.py:52
 msgid "Acordió"
 msgstr "Acordió"
 
@@ -250,11 +250,11 @@ msgstr "Cancel·la"
 msgid "Carousel"
 msgstr "Carrusel"
 
-#: ../content/carousel/carousel.py:36
+#: ../content/carousel/carousel.py:37
 msgid "Carrusel amb quatre imatges en pantalla, en dispositius mòbils es redueix a una"
 msgstr "Carrusel amb quatre imatges en pantalla, en dispositius mòbils es redueix a una"
 
-#: ../content/carousel/carousel.py:35
+#: ../content/carousel/carousel.py:36
 msgid "Carrusel amb una imatge en pantalla"
 msgstr "Carrusel amb una imatge en pantalla"
 
@@ -273,8 +273,8 @@ msgstr "Català"
 msgid "Categories"
 msgstr "Categories"
 
-#: ../content/accordion_tabs/accordion_tabs.py:86
-#: ../content/carousel/carousel.py:91
+#: ../content/accordion_tabs/accordion_tabs.py:87
+#: ../content/carousel/carousel.py:92
 msgid "Cerca una col·lecció"
 msgstr "Cerca una col·lecció"
 
@@ -320,8 +320,8 @@ msgstr "Color de la font de l'avís"
 msgid "Color de transició del menú quan fem scroll"
 msgstr "Color de transició del menú quan fem scroll"
 
-#: ../content/accordion_tabs/accordion_tabs.py:58
-#: ../content/carousel/carousel.py:32
+#: ../content/accordion_tabs/accordion_tabs.py:59
+#: ../content/carousel/carousel.py:33
 msgid "Col·lecció"
 msgstr "Col·lecció"
 
@@ -343,7 +343,7 @@ msgstr "Configura el contingut intern"
 msgid "Configuracions"
 msgstr "Configuracions"
 
-#: ../patches.py:841
+#: ../patches.py:1010
 msgid "Connections"
 msgstr "Connexions"
 
@@ -368,17 +368,17 @@ msgstr "Posició del títol del contingut"
 msgid "Contingut Existent"
 msgstr "Contingut Existent"
 
-#: ../content/accordion_tabs/accordion_tabs.py:57
-#: ../content/carousel/carousel.py:31
+#: ../content/accordion_tabs/accordion_tabs.py:58
+#: ../content/carousel/carousel.py:32
 msgid "Continguts de dintre d'aquest directori"
 msgstr "Continguts de dintre d'aquest directori"
 
-#: ../content/accordion_tabs/accordion_tabs.py:72
-#: ../content/carousel/carousel.py:77
+#: ../content/accordion_tabs/accordion_tabs.py:73
+#: ../content/carousel/carousel.py:78
 msgid "Continguts que alimenten la plantilla"
 msgstr "Continguts que alimenten la plantilla"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:100
+#: ../content/accordion_tabs/accordion_tabs.pt:102
 #: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copiar HTML"
@@ -387,7 +387,7 @@ msgstr "Copiar HTML"
 msgid "Copiar enllaç"
 msgstr "Copiar enllaç"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:100
+#: ../content/accordion_tabs/accordion_tabs.pt:102
 #: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copiat!"
@@ -411,6 +411,10 @@ msgstr "Desenvolupat amb"
 #: ../browser/viewlets_templates/content/important.pt:18
 msgid "Desmarca com a important"
 msgstr "Desmarca com a important"
+
+#: ../content/accordion_tabs/accordion_tabs.py:107
+msgid "Desplegar tots els items de l'acordió per defecte"
+msgstr "Desplegar tots els items de l'acordió per defecte"
 
 #: ../portlets/rss/rss.py:300
 msgid "Display categories"
@@ -518,6 +522,10 @@ msgstr "Edita portlet de contingut existent"
 #: ../tiles/destacats/destacats.py:79
 msgid "El contingut d'aquest camp només aplica en les tiles esmentades"
 msgstr "El contingut d'aquest camp només aplica en les tiles esmentades"
+
+#: ../validations.py:13
+msgid "El fitxer d'imatge no és vàlid"
+msgstr "El fitxer d'imatge no és vàlid."
 
 #: ../portlets/banners/banners.py:17
 msgid "El número de banners debe estar entre 1 y 10."
@@ -633,7 +641,7 @@ msgstr "Configuració Peu"
 msgid "Formulari Existent"
 msgstr "Formulari Existent"
 
-#: ../content/carousel/carousel.py:109
+#: ../content/carousel/carousel.py:110
 msgid "Forçar les proporcions de les imatges"
 msgstr "Forçar les proporcions de les imatges"
 
@@ -678,11 +686,11 @@ msgstr "Amplada total a quatre columnes: quatre columnes amb imatge a dalt i tex
 msgid "FullNews"
 msgstr "Notícies amb foto"
 
-#: ../patches.py:840
+#: ../patches.py:1009
 msgid "Genweb Advanced"
 msgstr "Genweb Avançats"
 
-#: ../patches.py:839
+#: ../patches.py:1008
 msgid "Genweb Configuration"
 msgstr "Configuració Genweb"
 
@@ -705,10 +713,6 @@ msgstr "Parrilla d'Agenda"
 #: ../profiles/default/portlets.xml
 msgid "GridEvents"
 msgstr "Parrilla d'Agenda"
-
-#: ../content/accordion_tabs/accordion_tabs.py:92
-msgid "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
-msgstr "Habilitar l'opció de poder obrir múltiples panells de l’acordió"
 
 #: ../controlpanels/header.py:464
 msgid "Header Settings"
@@ -809,7 +813,7 @@ msgstr "Informació:"
 msgid "Inici"
 msgstr "Inici"
 
-#: ../content/carousel/carousel.py:114
+#: ../content/carousel/carousel.py:115
 msgid "Iniciar el carousel automàticament"
 msgstr "Iniciar el carousel automàticament"
 
@@ -833,7 +837,7 @@ msgstr "Instal·lar paquet genweb6.core"
 msgid "Installs the genweb6.theme add-on."
 msgstr "Instal·lar paquet genweb6.theme"
 
-#: ../content/carousel/carousel.py:120
+#: ../content/carousel/carousel.py:121
 msgid "Interval de temps entre imatges (ms)"
 msgstr "Interval de temps entre imatges (ms)"
 
@@ -857,7 +861,7 @@ msgstr "L'element s'ha desmarcat com important"
 msgid "L'element s'ha marcat com important"
 msgstr "L'element s'ha marcat com important"
 
-#: ../content/carousel/carousel.py:121
+#: ../content/carousel/carousel.py:122
 msgid "L'interval de temps ha d'estar entre 5000 i 60000 ms"
 msgstr "L'interval de temps ha d'estar entre 5000 i 60000 ms"
 
@@ -983,7 +987,7 @@ msgstr "Mostra data?"
 msgid "Mostra el títol?"
 msgstr "Mostra el títol?"
 
-#: ../content/carousel/carousel.py:103
+#: ../content/carousel/carousel.py:104
 msgid "Mostrar descripció"
 msgstr "Mostrar descripció"
 
@@ -991,12 +995,12 @@ msgstr "Mostrar descripció"
 msgid "Mostrar enllaços al peu"
 msgstr "Mostrar enllaços al peu"
 
-#: ../content/carousel/carousel.py:97
+#: ../content/carousel/carousel.py:98
 msgid "Mostrar títol"
 msgstr "Mostrar títol"
 
-#: ../content/accordion_tabs/accordion_tabs.py:102
-#: ../content/carousel/carousel.py:128
+#: ../content/accordion_tabs/accordion_tabs.py:114
+#: ../content/carousel/carousel.py:129
 msgid "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 msgstr "Mostrar un botó (Copiar HTML) que permeti copiar el codi html generat per a poder inserir-ho en una altre lloc."
 
@@ -1071,7 +1075,7 @@ msgstr "Número d'esdeveniments a mostrar"
 msgid "Numero de noticies a mostrar"
 msgstr "Número de noticies a mostrar"
 
-#: ../content/accordion_tabs/accordion_tabs.py:97
+#: ../content/accordion_tabs/accordion_tabs.py:100
 msgid "Obrir el primer panell de l’acordió per defecte"
 msgstr "Obrir el primer panell de l’acordió per defecte"
 
@@ -1111,7 +1115,7 @@ msgstr "Per defecte: Enllaços"
 msgid "Per marcar la notícia com a important premeu el botó:"
 msgstr "Per marcar la notícia com a important premeu el botó:"
 
-#: ../content/carousel/carousel.py:115
+#: ../content/carousel/carousel.py:116
 msgid "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
 msgstr "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels de reproducció automàtica."
 
@@ -1119,7 +1123,11 @@ msgstr "Per motius d'accessibilitat, us recomanem que eviteu l'ús de carrusels 
 msgid "Permet introduir el text que es veurà a l'avís"
 msgstr "Permet introduir el text que es veurà a l'avís"
 
-#: ../content/accordion_tabs/accordion_tabs.py:52
+#: ../content/accordion_tabs/accordion_tabs.py:93
+msgid "Permetre obrir múltiples panells de l'acordió simultàniament"
+msgstr "Permetre obrir múltiples panells de l'acordió simultàniament"
+
+#: ../content/accordion_tabs/accordion_tabs.py:53
 msgid "Pestanyes"
 msgstr "Pestanyes"
 
@@ -1132,8 +1140,8 @@ msgstr "Imatge"
 msgid "Please upload an image"
 msgstr "Si us plau,carregueu una imatge "
 
-#: ../content/accordion_tabs/accordion_tabs.py:73
-#: ../content/carousel/carousel.py:78
+#: ../content/accordion_tabs/accordion_tabs.py:74
+#: ../content/carousel/carousel.py:79
 msgid "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 msgstr "Podeu afegir continguts en aquest directori des del següent <a target=\"_blank\" href=\"folder_contents\">enllaç</a>"
 
@@ -1174,7 +1182,7 @@ msgstr "Recurs JS"
 msgid "Resources Settings"
 msgstr "Configuració de recursos"
 
-#: ../content/carousel/carousel.py:62
+#: ../content/carousel/carousel.py:63
 msgid "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
 msgstr "Revisa el valor introduït, ha de ser un número entre 5000 i 60000"
 
@@ -1220,8 +1228,8 @@ msgstr "Desa"
 msgid "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
 msgstr "Selecciona per pujar els recursos des de fitxers i no utilitzar els camps de text pla"
 
-#: ../content/accordion_tabs/accordion_tabs.py:50
-#: ../content/carousel/carousel.py:30
+#: ../content/accordion_tabs/accordion_tabs.py:51
+#: ../content/carousel/carousel.py:31
 msgid "Selecciona una opció"
 msgstr "Selecciona una opció"
 
@@ -1244,6 +1252,18 @@ msgstr "Mostra més... enllaç"
 #: ../browser/views_templates/setup_view.pt:27
 msgid "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
 msgstr "Si es torna a executar el procés un cop creats els objectes, es sobreescriuran algunes dades dels objectes com el títol o la descripció."
+
+#: ../content/accordion_tabs/accordion_tabs.py:101
+msgid "Si està activat, el primer panell de l'acordió s'obrirà per defecte."
+msgstr "Si està activat, el primer panell de l'acordió s'obrirà per defecte."
+
+#: ../content/accordion_tabs/accordion_tabs.py:94
+msgid "Si està activat, es podran tenir diversos panells oberts al mateix temps. Si no, només es podrà tenir un panell obert a la vegada."
+msgstr "Si està activat, es podran tenir diversos panells oberts al mateix temps. Si no, només es podrà tenir un panell obert a la vegada."
+
+#: ../content/accordion_tabs/accordion_tabs.py:108
+msgid "Si està activat, tots els items de l'acordió sortiran desplegats per defecte."
+msgstr "Si està activat, tots els items de l'acordió sortiran desplegats per defecte."
 
 #: ../behaviors/icon.py:21
 msgid "Si marqueu aquesta opció la icona es mostrarà més gros, com un fons."
@@ -1332,7 +1352,7 @@ msgstr "El tipus de contingut que cal comprovar."
 msgid "This behavior adds extra fields to a Content Type for SEO optimisation"
 msgstr "Aquest comportament afegeix camps addicionals a un tipus de contingut per a l'optimització SEO."
 
-#: ../validations.py:6
+#: ../validations.py:9
 msgid "This is an inner link"
 msgstr "Aquest és un enllaç intern"
 
@@ -1397,11 +1417,11 @@ msgstr "Tile s'utilitza per mostrar els destacats a la pàgina d'inici"
 msgid "Tile used to show easyform as tile"
 msgstr "Tile s'utilitza per mostrar un easyform com una tile"
 
-#: ../content/carousel/carousel.py:68
+#: ../content/carousel/carousel.py:69
 msgid "Tipus de carrusel"
 msgstr "Tipus de carrusel"
 
-#: ../content/accordion_tabs/accordion_tabs.py:64
+#: ../content/accordion_tabs/accordion_tabs.py:65
 msgid "Tipus de plantilla"
 msgstr "Tipus de plantilla"
 
@@ -1527,7 +1547,7 @@ msgid "alert_really_delete_contents"
 msgstr "Estàs segur que vols suprimir aquests continguts?"
 
 #. Default: "All events"
-#: ../patches.py:1304
+#: ../patches.py:1491
 msgid "all_events"
 msgstr "Tots els esdeveniments"
 
@@ -1612,22 +1632,22 @@ msgid "enabled"
 msgstr "Habilitat"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1320
+#: ../patches.py:1507
 msgid "events_from_until"
 msgstr "${from} fins a ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1384
+#: ../patches.py:1571
 msgid "events_in_month"
 msgstr "Esdeveniments en ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1357
+#: ../patches.py:1544
 msgid "events_in_week"
 msgstr "Esdeveniments de la setmana ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1342
+#: ../patches.py:1529
 msgid "events_on_day"
 msgstr "Esdeveniments del dia ${day}"
 
@@ -1636,7 +1656,7 @@ msgid "folder contents"
 msgstr "Contingut de la carpeta"
 
 #. Default: "Future events"
-#: ../patches.py:1310
+#: ../patches.py:1497
 msgid "future_events"
 msgstr "Esdeveniments futurs"
 
@@ -1707,7 +1727,7 @@ msgstr "Iniciar sessió només a aquest lloc web"
 msgid "heading_metadades"
 msgstr "Neteja de metadades"
 
-#: ../cas/utils.py:68
+#: ../cas/utils.py:84
 msgid "heading_signed_out"
 msgstr "La sessió s'ha desconnectat."
 
@@ -1866,7 +1886,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:866
+#: ../patches.py:1035
 msgid "label_add_new_item"
 msgstr "Afegeix..."
 
@@ -1876,7 +1896,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:863
+#: ../patches.py:1032
 msgid "label_choose_template"
 msgstr "Mostra"
 
@@ -2040,8 +2060,13 @@ msgstr "Obrir link a una finestra nova"
 msgid "open_link_in_new_window"
 msgstr "Obre en una finestra nova?"
 
+#. Default: "Si el usuario existe en el sistema, recibirá un correo electrónico con las instrucciones para restablecer la contraseña."
+#: ../browser/password_reset.py:171
+msgid "password_reset_generic_message"
+msgstr "Si l'usuari existeix al sistema, rebrà un correu electrònic amb les instruccions per restablir la contrasenya."
+
 #. Default: "Past events"
-#: ../patches.py:1307
+#: ../patches.py:1494
 msgid "past_events"
 msgstr "Esdeveniments passats"
 
@@ -2165,12 +2190,12 @@ msgid "today_link"
 msgstr "Avui"
 
 #. Default: "Todays events"
-#: ../patches.py:1316
+#: ../patches.py:1503
 msgid "todays_events"
 msgstr "Esdeveniments d'avui"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1313
+#: ../patches.py:1500
 msgid "todays_upcoming_events"
 msgstr "Pròxims esdeveniments d'avui"
 
@@ -2198,15 +2223,3 @@ msgstr "És important pujar una imatge amb una resolució de 2000 x 100px. Aques
 #: ../controlpanels/header.py:147
 msgid "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
 msgstr "És important pujar una imatge amb una resolució de 2000 x 900px per el model de pantalla sencera o de 2000 x 500px. Aquesta imatge, a part, es farà servir per al fons del peu de pàgina."
-
-#: ../validations.py
-msgid "El fitxer d'imatge no és vàlid"
-msgstr "El fitxer d'imatge no és vàlid."
-
-#: ../browser/password_reset.py
-msgid "password_reset_generic_message"
-msgstr "Si l'usuari existeix al sistema, rebrà un correu electrònic amb les instruccions per restablir la contrasenya."
-
-#: ../browser/views_templates/password_reset.pt
-msgid "password_reset_captcha_help"
-msgstr "Si us plau, completa el CAPTCHA per continuar."

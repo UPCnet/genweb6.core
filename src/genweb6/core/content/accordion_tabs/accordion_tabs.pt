@@ -29,12 +29,13 @@
 
         <tal:accordion tal:condition="python:tipus == 'accordion'"
                        tal:define="accordion_open_multiple python:bool(getattr(context, 'accordion_open_multiple', False));
+                                   accordion_open_first python:bool(getattr(context, 'accordion_open_first', False));
                                    accordion_items_expanded python:bool(getattr(context, 'accordion_items_expanded', False))">
 
             <div class="accordion" tal:attributes="id string:uid-${token}">
                 <tal:item tal:repeat="content context/contents">
                     <div class="accordion-item"
-                         tal:define="is_expanded python:accordion_items_expanded;">
+                         tal:define="is_expanded python:accordion_open_first and content['first'] or accordion_items_expanded;">
                         <h2 class="accordion-header" tal:attributes="id string:heading-${content/id};">
                             <button type="button" data-bs-toggle="collapse"
                                     tal:content="content/title"
