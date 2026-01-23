@@ -96,6 +96,13 @@ class IAccordionTabs(model.Schema, IDexteritySchema):
         default=False,
     )
 
+    accordion_open_first = schema.Bool(
+        title=_(u'Obrir el primer panell de l’acordió per defecte'),
+        description=_(u"Si està activat, el primer panell de l'acordió s'obrirà per defecte."),
+        required=False,
+        default=False,
+    )
+
     accordion_items_expanded = schema.Bool(
         title=_(u"Desplegar tots els items de l'acordió per defecte"),
         description=_(u"Si està activat, tots els items de l'acordió sortiran desplegats per defecte."),
