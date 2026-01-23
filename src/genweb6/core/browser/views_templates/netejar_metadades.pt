@@ -48,6 +48,9 @@
           Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic.
           Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers  (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar.
         </p>
+        <p class="upc-text" style="color: #d9534f; font-weight: 500; margin-top: 15px;" i18n:translate="neteja_metadades_warning">
+          <strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament.
+        </p>
       </form>
       <iframe id="download-iframe" name="download-iframe" style="display:none;"></iframe>
     </div>
