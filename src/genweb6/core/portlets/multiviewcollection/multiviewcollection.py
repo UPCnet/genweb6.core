@@ -199,7 +199,11 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return len(self.results())
+        """
+        Ocultar el portlet si no hay resultados para mostrar
+        """
+        results = self.results()
+        return len(results) > 0
 
     @property
     def token(self):
