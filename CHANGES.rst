@@ -1,11 +1,18 @@
 Changelog
 =========
 
-1.86 (unreleased)
+1.86 (2026-01-26)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] multiviewcollection portlet behavior [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] multiviewcollection events portlet behavior [Clàudia Andreu]
+* [UPD] Mejora vista album [Iago López]
+* [ADD] encrypted pdfs warning [Clàudia Andreu]
+* [ADD] encrypted pdfs warnings [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [ADD] checkbox to disable news image [Clàudia Andreu]
+* [UPD] Nuevo campo accordion [Iago López]
 
 1.85 (2026-01-21)
 -----------------
