@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.87 (unreleased)
+1.87 (2026-01-26)
 -----------------
 
-- Nothing changed yet.
-
+* [FIX] metadades service [Clàudia Andreu]
 
 1.86 (2026-01-26)
 -----------------
