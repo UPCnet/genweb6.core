@@ -6,9 +6,11 @@ from PyPDF2 import PdfReader
 from datetime import datetime
 from io import BytesIO
 from plone import api
+from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
 from zipfile import ZipFile
 from zope.component import getUtility
+from zope.interface import alsoProvides
 from zope.publisher.browser import BrowserView
 
 from genweb6.core.browser.clean_pdfs import is_signed_pdf
@@ -47,16 +49,16 @@ class NetejarMetadadesView(BrowserView):
         if not self.canView():
             return Unauthorized
 
+        # Desactivar protección CSRF para esta vista
+        alsoProvides(self.request, IDisableCSRFProtection)
+
         request = self.request
 
         if request.method == "POST" and 'pdf_file' in request.form:
             file_uploads = request.form.get('pdf_file')
             if not isinstance(file_uploads, list):
                 file_uploads = [file_uploads]
-
-            cleaned_count = 0
-            zip_buffer = BytesIO()
-
+            
             try:
                 registry = getUtility(IRegistry)
                 settings = registry.forInterface(IMetadadesSettings, check=False)
@@ -74,40 +76,51 @@ class NetejarMetadadesView(BrowserView):
                     api_key=settings.indicadors_api_key
                 )
 
-                with ZipFile(zip_buffer, 'w') as zip_file:
-                    for file_upload in file_uploads:
-                        filename = file_upload.filename
-                        if not filename.lower().endswith('.pdf'):
-                            logger.info(f"Se salta archivo no PDF: {filename}")
-                            continue
+                # Almacenar resultados procesados
+                processed_files = []
 
-                        file_upload.seek(0)
-                        content = file_upload.read()
-                        if not content:
-                            logger.warning(f"Archivo vacío: {filename}")
-                            continue
+                for file_upload in file_uploads:
+                    filename = file_upload.filename
+                    if not filename.lower().endswith('.pdf'):
+                        continue
 
-                        if is_signed_pdf(content):
-                            logger.info(f"PDF signat, no és possible eliminar les metadades: {filename}")
-                            zip_file.writestr(f"{filename}_SIGNAT.txt", "PDF signat")
-                            continue
+                    file_upload.seek(0)
+                    content = file_upload.read()
+                    if not content:
+                        continue
 
-                        files = {'fitxerPerNetejarMetadades': (filename, BytesIO(content), 'application/pdf')}
-                        response = requests.post(api_url, headers=headers, files=files, timeout=90)
+                    if is_signed_pdf(content):
+                        processed_files.append({
+                            'type': 'error',
+                            'filename': f"{filename}_SIGNAT.txt",
+                            'content': "PDF signat"
+                        })
+                        continue
 
-                        logger.info(f"Resposta API status: {response.status_code}")
-                        logger.info(f"INFO: {filename} net de metadades")
+                    files = {'fitxerPerNetejarMetadades': (filename, BytesIO(content), 'application/pdf')}
+                    response = requests.post(api_url, headers=headers, files=files, timeout=90)
 
-                        if response.status_code == 200:
-                            name_part, ext_part = filename.rsplit('.', 1)
-                            anon_name = f"{name_part}_sense_metadades.{ext_part}"
-                            zip_file.writestr(anon_name, response.content)
-                            cleaned_count += 1
-                        else:
-                            error_msg = f"{filename} - Error {response.status_code}: {response.text}"
-                            logger.error(error_msg)
-                            zip_file.writestr(f"{filename}_ERROR.txt", error_msg)
+                    if response.status_code == 200:
+                        name_part, ext_part = filename.rsplit('.', 1)
+                        anon_name = f"{name_part}_sense_metadades.{ext_part}"
+                        processed_files.append({
+                            'type': 'success',
+                            'filename': anon_name,
+                            'content': response.content
+                        })
+                    else:
+                        error_msg = f"{filename} - Error {response.status_code}: {response.text}"
+                        logger.error(error_msg)
+                        processed_files.append({
+                            'type': 'error',
+                            'filename': f"{filename}_ERROR.txt",
+                            'content': error_msg
+                        })
 
+                # Contar archivos exitosos
+                cleaned_count = sum(1 for f in processed_files if f['type'] == 'success')
+                
+                # Actualizar indicador
                 if cleaned_count > 0:
                     try:
                         categories = indicador_client.list_categories(
@@ -127,16 +140,35 @@ class NetejarMetadadesView(BrowserView):
                                 category_frequency=categoria.frequency,
                                 category_value=pdfs_count
                             )
-                            logger.info(f"Indicador actualitzat a {pdfs_count}")
                     except Exception as e:
                         logger.exception("Error a l'actualitzar l'indicador")
 
-                request.response.setHeader('Content-Type', 'application/zip')
-                request.response.setHeader(
-                    'Content-Disposition', 'attachment; filename="pdfs_sense_metadades.zip"'
-                )
-                request.response.setHeader('Content-Length', str(len(zip_buffer.getvalue())))
-                return zip_buffer.getvalue()
+                # Decidir si devolver PDF directo o ZIP
+                if cleaned_count == 1 and len(processed_files) == 1:
+                    # UN SOLO ARCHIVO EXITOSO: devolver PDF directo
+                    pdf_file = processed_files[0]
+                    
+                    request.response.setHeader('Content-Type', 'application/pdf')
+                    request.response.setHeader(
+                        'Content-Disposition', f'attachment; filename="{pdf_file["filename"]}"'
+                    )
+                    request.response.setHeader('Content-Length', str(len(pdf_file['content'])))
+                    return pdf_file['content']
+                else:
+                    # MÚLTIPLES ARCHIVOS: devolver ZIP
+                    zip_buffer = BytesIO()
+                    with ZipFile(zip_buffer, 'w') as zip_file:
+                        for file_data in processed_files:
+                            zip_file.writestr(file_data['filename'], file_data['content'])
+                    
+                    zip_content = zip_buffer.getvalue()
+                    
+                    request.response.setHeader('Content-Type', 'application/zip')
+                    request.response.setHeader(
+                        'Content-Disposition', 'attachment; filename="pdfs_sense_metadades.zip"'
+                    )
+                    request.response.setHeader('Content-Length', str(len(zip_content)))
+                    return zip_content
 
             except Exception as e:
                 logger.exception("Error al netejar metadades de múltiples PDFs")

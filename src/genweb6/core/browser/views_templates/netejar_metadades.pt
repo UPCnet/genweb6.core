@@ -62,75 +62,46 @@
         var spinner = document.getElementById('spinner');
         var submitBtn = document.getElementById('netejar-btn');
         var fileInput = document.getElementById('pdf_file');
-        var downloadIframe = document.getElementById('download-iframe');
         var originalBtnText = submitBtn ? submitBtn.textContent : 'Netejar';
         var alertShown = false;
 
         function resetForm() {
-          // Restaurar texto del botón a "Netejar"
           submitBtn.textContent = originalBtnText;
-          
-          // Ocultar spinner
           spinner.style.display = 'none';
-          
-          // Habilitar botón e input
           submitBtn.disabled = false;
-          fileInput.disabled = false;
           submitBtn.style.opacity = '1';
           submitBtn.style.cursor = 'pointer';
+          fileInput.style.pointerEvents = 'auto';
           fileInput.style.opacity = '1';
-          fileInput.style.cursor = 'pointer';
-          
+          // Limpiar el input file
+          fileInput.value = '';
           alertShown = false;
         }
 
-        if (form && downloadIframe) {
-          var safetyTimeout = null;
-          
+        if (form) {
           form.addEventListener('submit', function(e) {
-            // Cambiar texto del botón a "Netejant..."
             submitBtn.textContent = 'Netejant...';
-            
-            // Mostrar spinner
             spinner.style.display = 'inline-block';
-            
-            // Bloquear botón e input mientras procesa
             submitBtn.disabled = true;
-            fileInput.disabled = true;
             submitBtn.style.opacity = '0.6';
             submitBtn.style.cursor = 'not-allowed';
+            // NO deshabilitar el input file, solo hacerlo visualmente disabled
+            fileInput.style.pointerEvents = 'none';
             fileInput.style.opacity = '0.6';
-            fileInput.style.cursor = 'not-allowed';
-            
             alertShown = false;
             
-            // Timeout de seguridad: SIEMPRE desbloquear después de 30 segundos
-            if (safetyTimeout) clearTimeout(safetyTimeout);
-            safetyTimeout = setTimeout(function() {
-              resetForm();
-            }, 30000);
-            
-            // Después de 5 segundos, mostrar mensaje informativo (pero mantener spinner)
+            // Mostrar alerta después de 3 segundos
             setTimeout(function() {
               if (!alertShown) {
-                alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts');
+                alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts.');
                 alertShown = true;
               }
-            }, 5000);
-          });
-          
-          // Detectar cuando el iframe ha terminado de cargar (descarga completada)
-          downloadIframe.addEventListener('load', function() {
-            // Cancelar el timeout de seguridad si el iframe carga correctamente
-            if (safetyTimeout) {
-              clearTimeout(safetyTimeout);
-              safetyTimeout = null;
-            }
+            }, 3000);
             
-            // Esperar 5 segundos para asegurar que la descarga está completa
+            // Resetear formulario después de 15 segundos (dar tiempo a la descarga)
             setTimeout(function() {
               resetForm();
-            }, 5000);
+            }, 30000);
           });
         }
       });
