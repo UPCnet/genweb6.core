@@ -17,7 +17,7 @@
 
           <tal:block tal:condition="view/data/display_image">
 
-            <div class="img mb-2">
+            <div class="content-img mb-2">
 
                 <a href="#" tal:attributes="href item/url" target="_blank"
                    tal:condition="item/image">

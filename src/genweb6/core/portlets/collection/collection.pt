@@ -85,7 +85,7 @@
                                     useView python:item_type in viewActions;
                                     itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
 
-                        <div class="img col-md-5">
+                        <div class="content-img col-md-5">
 
                             <a href="#"
                                tal:attributes="href obj/getURL;
@@ -101,7 +101,7 @@
 
                         </div>
 
-                        <div class="txt col-md-7">
+                        <div class="content-txt col-md-7">
 
                             <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
                                tal:content="obj/description">Description summary</p>
