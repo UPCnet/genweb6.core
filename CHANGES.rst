@@ -1,11 +1,14 @@
 Changelog
 =========
 
-1.89 (unreleased)
+1.89 (2026-01-29)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] filtered collection view [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [ADD] filtered search view [Clàudia Andreu]
+* [UPD] Poder tener varios tabs en una misma pantalla [Iago López]
+* [UPD] unify event and news behavior [Clàudia Andreu]
 
 1.88 (2026-01-27)
 -----------------
