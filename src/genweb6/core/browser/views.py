@@ -8,6 +8,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from bs4 import BeautifulSoup
 from plone import api
+from plone.app.contenttypes.interfaces import ICollection
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -327,7 +328,7 @@ class PortletEventsView(BrowserView):
 
 
 class FilteredContentsSearchView(BrowserView):
-    """ Filtered content search view for every folder. """
+    """ Filtered content search view for folders and collections. """
 
     def __init__(self, context, request):
         self.context = context
@@ -339,16 +340,45 @@ class FilteredContentsSearchView(BrowserView):
         else:
             self.tags = []
 
+    def is_collection(self):
+        """Check if context is a Collection"""
+        return ICollection.providedBy(self.context)
+
+    def get_collection_results(self):
+        """Get results from a Collection"""
+        if self.is_collection():
+            # Collections have a results() method that returns the items
+            return self.context.results(batch=False)
+        return []
+
+    def get_item_subjects(self, item):
+        """Get Subject from an item (brain or object)
+        Subject can be a method or a property depending on the object type
+        """
+        if not hasattr(item, 'Subject'):
+            return []
+        subject = item.Subject() if callable(item.Subject) else item.Subject
+        return subject if subject else []
+
     def getTags(self):
         portal = getSite()
         pc = getToolByName(portal, "portal_catalog")
         tags = []
-        results = pc.searchResults(
-            path={'query': '/'.join(self.context.getPhysicalPath()),
-                  'depth': 1},
-            exclude_from_nav=False)
+        
+        if self.is_collection():
+            # For collections, get tags from collection results
+            results = self.get_collection_results()
+        else:
+            # For folders, get tags from items in the folder
+            results = pc.searchResults(
+                path={'query': '/'.join(self.context.getPhysicalPath()),
+                      'depth': 1},
+                exclude_from_nav=False)
+        
         for recurs in results:
-            tags += list(set(recurs.Subject))
+            subject = self.get_item_subjects(recurs)
+            if subject:
+                tags += list(set(subject))
 
         listTags = list(dict.fromkeys(tags))
         listTags.sort(key=lambda key: unicodedata.normalize(
@@ -367,8 +397,6 @@ class FilteredContentsSearchView(BrowserView):
 
     def get_contenttags_by_query(self):
         pc = getToolByName(self.context, "portal_catalog")
-        path = self.context.getPhysicalPath()
-        path = "/".join(path)
 
         def quotestring(s):
             return '"%s"' % s
@@ -382,6 +410,16 @@ class FilteredContentsSearchView(BrowserView):
         if not self.query and not self.tags:
             return self.getContent()
 
+        # Get base results depending on context type
+        if self.is_collection():
+            # For collections, start with collection results
+            base_results = self.get_collection_results()
+        else:
+            # For folders, we'll search in catalog with path restriction
+            path = self.context.getPhysicalPath()
+            path = "/".join(path)
+            base_results = None  # Will be populated in catalog searches below
+
         if not self.query == '':
             multispace = u'　'
             for char in ('?', '-', '+', '*', multispace):
@@ -392,13 +430,30 @@ class FilteredContentsSearchView(BrowserView):
             query = quote_bad_chars(query) + '*'
 
             if self.tags:
-                tmp_results = pc.searchResults(
-                    path={'query': path, 'depth': 1},
-                    exclude_from_nav=False, SearchableText=query,
-                    Subject={'query': self.tags, 'operator': 'and'},
-                    sort_on='getObjPositionInParent')
+                if self.is_collection():
+                    # For collections, filter base results by tags AND text
+                    tmp_results = []
+                    for item in base_results:
+                        # Check if all selected tags are present in the item
+                        subjects = self.get_item_subjects(item)
+                        item_subjects = [unicodedata.normalize('NFKD', s).lower() 
+                                        for s in subjects]
+                        normalized_tags = [unicodedata.normalize('NFKD', t).lower() 
+                                          for t in self.tags]
+                        
+                        if all(tag in item_subjects for tag in normalized_tags):
+                            tmp_results.append(item)
+                else:
+                    # For folders, search in catalog
+                    path = self.context.getPhysicalPath()
+                    path = "/".join(path)
+                    tmp_results = pc.searchResults(
+                        path={'query': path, 'depth': 1},
+                        exclude_from_nav=False, SearchableText=query,
+                        Subject={'query': self.tags, 'operator': 'and'},
+                        sort_on='getObjPositionInParent')
 
-                # BUSCAR PER ETIQUETES
+                # BUSCAR PER ETIQUETES (apply text filter)
                 r_results = [item for item in tmp_results
                              if
                              all(
@@ -406,13 +461,20 @@ class FilteredContentsSearchView(BrowserView):
                                  in unicodedata.normalize(
                                      'NFKD', item.Title + " " + item.Description).lower()
                                  + " " + unicodedata.normalize(
-                                     'NFKD', ' '.join(item.Subject)).lower()
+                                     'NFKD', ' '.join(self.get_item_subjects(item))).lower()
                                  for x in self.query.split())]
             else:
-                tmp_results = pc.searchResults(path={'query': path, 'depth': 1},
-                                               exclude_from_nav=False,
-                                               SearchableText=query,
-                                               sort_on='getObjPositionInParent')
+                if self.is_collection():
+                    # For collections, filter by text query
+                    tmp_results = base_results
+                else:
+                    # For folders, search in catalog
+                    path = self.context.getPhysicalPath()
+                    path = "/".join(path)
+                    tmp_results = pc.searchResults(path={'query': path, 'depth': 1},
+                                                   exclude_from_nav=False,
+                                                   SearchableText=query,
+                                                   sort_on='getObjPositionInParent')
 
                 r_results = [
                     item for item in tmp_results
@@ -421,18 +483,35 @@ class FilteredContentsSearchView(BrowserView):
                         unicodedata.normalize('NFKD', x).
                         lower() in unicodedata.normalize(
                             'NFKD', item.Title + " " + item.Description).lower() + " " +
-                        unicodedata.normalize('NFKD', ' '.join(item.Subject)).lower()
+                        unicodedata.normalize('NFKD', ' '.join(self.get_item_subjects(item))).lower()
                         for x in self.query.split())]
 
             return r_results
         else:
-            r_results = pc.searchResults(
-                path={'query': path, 'depth': 1},
-                exclude_from_nav=False, Subject={'query': self.tags, 'operator': 'and'},
-                sort_on='getObjPositionInParent')
+            # Only tags filter, no text query
+            if self.is_collection():
+                # For collections, filter by tags
+                r_results = []
+                for item in base_results:
+                    # Check if all selected tags are present in the item
+                    subjects = self.get_item_subjects(item)
+                    item_subjects = [unicodedata.normalize('NFKD', s).lower() 
+                                    for s in subjects]
+                    normalized_tags = [unicodedata.normalize('NFKD', t).lower() 
+                                      for t in self.tags]
+                    
+                    if all(tag in item_subjects for tag in normalized_tags):
+                        r_results.append(item)
+            else:
+                # For folders, search in catalog
+                path = self.context.getPhysicalPath()
+                path = "/".join(path)
+                r_results = pc.searchResults(
+                    path={'query': path, 'depth': 1},
+                    exclude_from_nav=False, Subject={'query': self.tags, 'operator': 'and'},
+                    sort_on='getObjPositionInParent')
 
             return r_results
-            # return self.get_batched_contenttags(query=None, batch=True, b_size=10, b_start=0)
 
     def get_tags_by_query(self):
         pc = getToolByName(self.context, "portal_catalog")
@@ -468,16 +547,21 @@ class FilteredContentsSearchView(BrowserView):
         return self.context.absolute_url() + '/search_filtered_content_pretty'
 
     def getContent(self):
-        portal = api.portal.get()
-        catalog = getToolByName(portal, 'portal_catalog')
-        path = self.context.getPhysicalPath()
-        path = "/".join(path)
+        if self.is_collection():
+            # For collections, return the collection results
+            return self.get_collection_results()
+        else:
+            # For folders, search items in the folder
+            portal = api.portal.get()
+            catalog = getToolByName(portal, 'portal_catalog')
+            path = self.context.getPhysicalPath()
+            path = "/".join(path)
 
-        items = catalog.searchResults(path={'query': path, 'depth': 1},
-                                      exclude_from_nav=False,
-                                      sort_on='getObjPositionInParent')
+            items = catalog.searchResults(path={'query': path, 'depth': 1},
+                                          exclude_from_nav=False,
+                                          sort_on='getObjPositionInParent')
 
-        return items
+            return items
 
 
 
@@ -488,12 +572,10 @@ class FilteredContentsSearchAlbumView(FilteredContentsSearchView):
 
 
 class FilteredContentsSearchCompleteView(FilteredContentsSearchView):
-    """ Filtered content search view for every folder. """
+    """ Filtered content search view for folders and collections. """
 
     def get_contenttags_by_query(self):
         pc = getToolByName(self.context, "portal_catalog")
-        path = self.context.getPhysicalPath()
-        path = "/".join(path)
 
         def quotestring(s):
             return '"%s"' % s
@@ -508,6 +590,11 @@ class FilteredContentsSearchCompleteView(FilteredContentsSearchView):
             return self.getContent()
 
         results = []
+        
+        # Get base results depending on context type
+        if self.is_collection():
+            base_results = self.get_collection_results()
+        
         if not self.query == '':
             multispace = u'　'
             for char in ('?', '-', '+', '*', multispace):
@@ -517,24 +604,61 @@ class FilteredContentsSearchCompleteView(FilteredContentsSearchView):
             query = " AND ".join(query)
             query = quote_bad_chars(query) + '*'
 
-            if self.tags:
-                results = pc.searchResults(
-                    path={'query': path, 'depth': 1},
-                    exclude_from_nav=False, SearchableText=query,
-                    Subject={'query': self.tags, 'operator': 'and'},
-                    sort_on='getObjPositionInParent')
-
+            if self.is_collection():
+                # For collections, filter base results by text and tags
+                results = []
+                for item in base_results:
+                    # Apply tags filter if present
+                    if self.tags:
+                        subjects = self.get_item_subjects(item)
+                        item_subjects = [unicodedata.normalize('NFKD', s).lower() 
+                                        for s in subjects]
+                        normalized_tags = [unicodedata.normalize('NFKD', t).lower() 
+                                          for t in self.tags]
+                        
+                        if all(tag in item_subjects for tag in normalized_tags):
+                            results.append(item)
+                    else:
+                        results.append(item)
+                # Additional text filtering would require loading full objects
             else:
-                results = pc.searchResults(path={'query': path, 'depth': 1},
-                                           exclude_from_nav=False,
-                                           SearchableText=query,
-                                           sort_on='getObjPositionInParent')
+                # For folders, use catalog search
+                path = self.context.getPhysicalPath()
+                path = "/".join(path)
+                
+                if self.tags:
+                    results = pc.searchResults(
+                        path={'query': path, 'depth': 1},
+                        exclude_from_nav=False, SearchableText=query,
+                        Subject={'query': self.tags, 'operator': 'and'},
+                        sort_on='getObjPositionInParent')
+                else:
+                    results = pc.searchResults(path={'query': path, 'depth': 1},
+                                               exclude_from_nav=False,
+                                               SearchableText=query,
+                                               sort_on='getObjPositionInParent')
 
         else:
-            results = pc.searchResults(path={'query': path, 'depth': 1},
-                                       exclude_from_nav=False,
-                                       Subject={'query': self.tags, 'operator': 'and'},
-                                       sort_on='getObjPositionInParent')
+            # Only tags filter
+            if self.is_collection():
+                results = []
+                for item in base_results:
+                    # Check if all selected tags are present in the item
+                    subjects = self.get_item_subjects(item)
+                    item_subjects = [unicodedata.normalize('NFKD', s).lower() 
+                                    for s in subjects]
+                    normalized_tags = [unicodedata.normalize('NFKD', t).lower() 
+                                      for t in self.tags]
+                    
+                    if all(tag in item_subjects for tag in normalized_tags):
+                        results.append(item)
+            else:
+                path = self.context.getPhysicalPath()
+                path = "/".join(path)
+                results = pc.searchResults(path={'query': path, 'depth': 1},
+                                           exclude_from_nav=False,
+                                           Subject={'query': self.tags, 'operator': 'and'},
+                                           sort_on='getObjPositionInParent')
 
         return results
 

@@ -23,6 +23,9 @@
         <element value="full_view" />
         <element value="album_view" />
         <element value="event_listing"/>
+        <element value="filtered_contents_search_pretty_view"/>
+        <element value="filtered_contents_search_album_view"/>
+        <element value="filtered_contents_search_complete_pretty_view"/>
     </property>
 
 </object>
