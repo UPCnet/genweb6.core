@@ -66,26 +66,27 @@
                  tal:define="contents context/contents">
 
             <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <div class="nav nav-tabs" role="tablist"
+                     tal:attributes="id string:nav-tab-${token}">
                     <tal:item tal:repeat="content contents">
                         <button data-bs-toggle="tab" type="button" role="tab"
                                 tal:attributes="class python:'nav-link active' if content['first'] else 'nav-link';
                                                 aria-selected python:'true' if content['first'] else 'false';
-                                                id string:nav-${content/id}-tab;
-                                                data-bs-target string:#nav-${content/id};
-                                                aria-controls string:nav-${content/id};"
+                                                id string:nav-${content/id}-${token}-tab;
+                                                data-bs-target string:#nav-${content/id}-${token};
+                                                aria-controls string:nav-${content/id}-${token};"
                                 tal:content="content/title">
                             Title
                         </button>
                     </tal:item>
                 </div>
             </nav>
-            <div class="tab-content" id="nav-tabContent">
+            <div class="tab-content" tal:attributes="id string:nav-tab-content-${token}">
                 <tal:item tal:repeat="content contents">
                     <div role="tabpanel" tabindex="0"
                          tal:attributes="class python:'tab-pane fade show active' if content['first'] else 'tab-pane fade';
-                                         id string:nav-${content/id};
-                                         aria-labelledby string:nav-${content/id}-tab">
+                                         id string:nav-${content/id}-${token};
+                                         aria-labelledby string:nav-${content/id}-${token}-tab">
                         <div class="mt-3" tal:content="structure content/text">
                             Content
                         </div>
