@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+import logging
 
 from plone import api
 from plone.app.contenttypes.interfaces import IFile
@@ -21,7 +22,6 @@ from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
-from scss import Scss
 from zope.component import getUtility
 from zope.component import queryAdapter
 
@@ -549,15 +549,13 @@ class resourcesViewletCSS(viewletBase):
         if getattr(resources_config, 'file_css', False):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
-            css = Scss()
-            return utils.remove_quotes_from_var_scss(css.compile(data._data._data))
+            return utils.compile_css(data._data._data)
 
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
         if resources_config.text_css:
-            css = Scss()
-            return "<style>" + utils.remove_quotes_from_var_scss(css.compile(resources_config.text_css)) + "</style>"
+            return "<style>" + utils.compile_css(resources_config.text_css) + "</style>"
 
     @property
     def webstats_js(self):
