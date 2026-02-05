@@ -1,11 +1,13 @@
 Changelog
 =========
 
-1.90 (unreleased)
+1.90 (2026-02-05)
 -----------------
 
-- Nothing changed yet.
-
+* Merge branch 'develop' [Clàudia Andreu]
+* [ADD] skip to content button [Clàudia Andreu]
+* [UPD] Comentar cache getCASSettings [Iago López]
+* [UPD] Que no pete el viewlet de resources si los css estan mal [Iago López]
 
 1.89 (2026-01-29)
 -----------------
