@@ -91,7 +91,7 @@ def logout(context, request):
         return '%s/logout' % portal.absolute_url()
 
 
-@ram.cache(lambda *args: time() // (24 * 60 * 60))
+# @ram.cache(lambda *args: time() // (24 * 60 * 60))
 def getCASSettings():
     registry = queryUtility(IRegistry)
     return registry.forInterface(ICASSettings)
