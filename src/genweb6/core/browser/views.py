@@ -19,7 +19,6 @@ from plone.memoize.view import memoize
 from plone.namedfile.file import NamedFile
 from plone.portlets.interfaces import IPortletManager
 from plone.portlets.interfaces import IPortletManagerRenderer
-from scss import Scss
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryMultiAdapter
@@ -37,7 +36,7 @@ from genweb6.core.portlets.manage_portlets.manager import ISpanStorage
 from genweb6.core.utils import genwebResourcesConfig
 from genweb6.core.utils import json_response
 from genweb6.core.utils import pref_lang
-from genweb6.core.utils import remove_quotes_from_var_scss
+from genweb6.core.utils import compile_css
 from genweb6.theme.theme.tinymce_templates.templates import templates
 
 from genweb6.core.purge import purge_varnish_paths
@@ -786,14 +785,13 @@ class TinyMCECustomCSS(BrowserView):
 
     def __call__(self):
         resources_config = genwebResourcesConfig()
-        css = Scss()
         self.request.response.setHeader('Content-Type', 'text/css')
 
         if resources_config.upload_files:
             if getattr(resources_config, 'file_css', False):
                 filename, data = b64decode_file(resources_config.file_css)
                 data = NamedFile(data=data, filename=filename)
-                return remove_quotes_from_var_scss(css.compile(data._data._data))
+                return compile_css(data._data._data)
         else:
             if resources_config.text_css:
-                return remove_quotes_from_var_scss(css.compile(resources_config.text_css))
+                return compile_css(resources_config.text_css)

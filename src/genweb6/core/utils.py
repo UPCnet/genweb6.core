@@ -12,6 +12,7 @@ from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
+from scss import Scss
 from time import time
 from zope.component import getMultiAdapter
 from zope.component import provideUtility
@@ -187,6 +188,19 @@ def remove_html_tags(text):
         clean = re.compile('<.*?>')
         return re.sub(clean, '', text)
     return None
+
+
+def compile_css(source):
+    """Compila con pyScss; si falla (p. ej. CSS con !important), devuelve el
+    texto tal cual para no romper CSS válido que pyScss no soporta bien.
+    """
+    try:
+        return remove_quotes_from_var_scss(Scss().compile(source))
+    except Exception as e:
+        logging.getLogger(__name__).warning(
+            'SCSS compile failed, using raw CSS: %s', e
+        )
+        return remove_quotes_from_var_scss(source)
 
 
 def remove_quotes_from_var_scss(text):
