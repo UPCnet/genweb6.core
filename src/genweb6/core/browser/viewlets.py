@@ -554,8 +554,16 @@ class resourcesViewletCSS(viewletBase):
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        if resources_config.text_css:
-            return "<style>" + utils.compile_css(resources_config.text_css) + "</style>"
+        if not resources_config.text_css:
+            return ''
+        try:
+            compiled = utils.compile_css(resources_config.text_css)
+            return "<style>" + (compiled or '') + "</style>"
+        except Exception as e:
+            logging.getLogger(__name__).warning(
+                'getTextCSS: compile_css failed, using raw CSS: %s', e
+            )
+            return "<style>" + (resources_config.text_css or '') + "</style>"
 
     @property
     def webstats_js(self):
