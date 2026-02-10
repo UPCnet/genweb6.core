@@ -233,7 +233,7 @@ class headerViewlet(
                 "secondary_logo_url": secondary_logo_url,
                 "secondary_logo_target": "_blank" if header_config.secondary_logo_external_url else "_self"}
 
-    @memoize
+    @memoize_contextless
     def languages(self):
         lt = api.portal.get_tool(name='portal_languages')
         if lt is None:
