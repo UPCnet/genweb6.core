@@ -1,11 +1,16 @@
 Changelog
 =========
 
-1.91 (unreleased)
+1.91 (2026-02-11)
 -----------------
 
-- Nothing changed yet.
-
+* Merge remote-tracking branch 'origin/develop' [pmarinas]
+* [RENDIMIENTO] Añadir lazy loading en las imagenes [pmarinas]
+* [RENDIMIENTO] Optimización del menú de navegación [pmarinas]
+* [RENDIMIENTO] Optimización del selector de idiomas [pmarinas]
+* [UPD] Mejora viewlet resources [Iago López]
+* [ADD] images to RSS [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
 
 1.90 (2026-02-05)
 -----------------
