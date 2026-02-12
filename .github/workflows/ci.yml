@@ -26,6 +26,7 @@ jobs:
 
       - name: Install system libraries # needed for compiling eggs
         run: |
+          sudo apt-get update
           sudo apt-get install -y build-essential xsltproc libncurses5-dev zip libffi-dev libjpeg-dev libtk-img-dev libopenjp2-7-dev liblcms2-dev libfreetype6-dev libwebp-dev libtiff-dev zlib1g-dev libreadline-dev libsqlite3-dev libssl-dev libxslt1-dev libbz2-dev libldap2-dev libsasl2-dev libpcre3-dev wv poppler-utils
         shell: bash
         if: ${{ steps.cache-buildout.outputs.cache-hit != 'true' }}
