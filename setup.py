@@ -55,6 +55,7 @@ setup(
         'plone.api',
         'plone.restapi',
         'plone.app.dexterity',
+        'plone.app.z3cform',
         'souper.plone',
         'Products.PloneLDAP>=2.0.0a1',
         'Products.LDAPUserFolder',
