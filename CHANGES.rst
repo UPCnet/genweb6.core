@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.92 (unreleased)
+1.92 (2026-02-12)
 -----------------
 
 - Nothing changed yet.
