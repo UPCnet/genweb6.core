@@ -278,7 +278,7 @@ Reinstal·la tots els paquets de genweb instal·lats
 
         LIST_PRODUCTS = ['genweb6.upc', 'genweb6.ens', 'genweb6.esports', 'genweb6.gpaq', 
                          'genweb6.patents', 'genweb6.scholarship', 'genweb6.tfemarket',
-                         'genweb6.serveistic']
+                         'genweb6.serveistic', 'genweb6.organs']
 
         qi = get_installer(self.context)
         output = []
