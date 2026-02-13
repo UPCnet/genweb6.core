@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Plan: Procesamiento Asíncrono de Limpieza de PDFs</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-light.min.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Plan: Procesamiento Asíncrono de Limpieza de PDFs</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#plan-procesamiento-asíncrono-de-limpieza-de-pdfs"
+id="toc-plan-procesamiento-asíncrono-de-limpieza-de-pdfs">Plan:
+Procesamiento Asíncrono de Limpieza de PDFs</a>
+<ul>
+<li><a href="#contexto" id="toc-contexto">Contexto</a></li>
+<li><a href="#opciones-disponibles"
+id="toc-opciones-disponibles">Opciones Disponibles</a>
+<ul>
+<li><a href="#opción-1-celery-recomendada-para-producción"
+id="toc-opción-1-celery-recomendada-para-producción">Opción 1: Celery
+(Recomendada para producción)</a></li>
+<li><a href="#opción-2-collective.taskqueue2-específico-para-plone-6"
+id="toc-opción-2-collective.taskqueue2-específico-para-plone-6">Opción
+2: collective.taskqueue2 (Específico para Plone 6)</a></li>
+<li><a href="#opción-3-threading-aftercommithook-solución-ligera"
+id="toc-opción-3-threading-aftercommithook-solución-ligera">Opción 3:
+Threading + afterCommitHook (Solución ligera)</a></li>
+<li><a href="#opción-4-guardar-sin-limpiar-cronjob-procesador"
+id="toc-opción-4-guardar-sin-limpiar-cronjob-procesador">Opción 4:
+Guardar sin limpiar + Cronjob procesador</a></li>
+</ul></li>
+<li><a
+href="#comparación-critical-opción-2-vs-opción-3-con-reinicios-memon"
+id="toc-comparación-critical-opción-2-vs-opción-3-con-reinicios-memon">Comparación
+Critical: Opción 2 vs Opción 3 con reinicios memon</a>
+<ul>
+<li><a href="#pregunta-clave-con-qué-frecuencia-reinicia-memon"
+id="toc-pregunta-clave-con-qué-frecuencia-reinicia-memon">Pregunta
+clave: ¿Con qué frecuencia reinicia memon?</a></li>
+<li><a href="#qué-pasa-si-se-pierde-una-tarea"
+id="toc-qué-pasa-si-se-pierde-una-tarea">¿Qué pasa si se pierde una
+tarea?</a></li>
+</ul></li>
+<li><a href="#recomendación-para-tu-entorno-500-instancias-sin-broker"
+id="toc-recomendación-para-tu-entorno-500-instancias-sin-broker">Recomendación
+para tu entorno (500 instancias, sin broker)</a>
+<ul>
+<li><a href="#escenario-real" id="toc-escenario-real">Escenario
+Real</a></li>
+<li><a href="#recomendación-actualizada-considerando-reinicios-memon"
+id="toc-recomendación-actualizada-considerando-reinicios-memon">Recomendación
+ACTUALIZADA considerando reinicios memon</a></li>
+<li><a href="#alternativa-híbrida-threading-cronjob-batch-mensual"
+id="toc-alternativa-híbrida-threading-cronjob-batch-mensual">Alternativa
+híbrida: Threading + Cronjob batch mensual</a></li>
+</ul></li>
+<li><a href="#archivos-afectados" id="toc-archivos-afectados">Archivos
+Afectados</a></li>
+<li><a href="#patrón-de-implementación-general"
+id="toc-patrón-de-implementación-general">Patrón de Implementación
+General</a></li>
+<li><a href="#implementación-propuesta-threading-aftercommithook"
+id="toc-implementación-propuesta-threading-aftercommithook">Implementación
+Propuesta: Threading + afterCommitHook</a>
+<ul>
+<li><a href="#estrategia" id="toc-estrategia">Estrategia</a></li>
+<li><a href="#ventajas-en-tu-arquitectura-distribuida"
+id="toc-ventajas-en-tu-arquitectura-distribuida">Ventajas en tu
+arquitectura distribuida</a></li>
+<li><a href="#detalles-de-implementación"
+id="toc-detalles-de-implementación">Detalles de implementación</a></li>
+<li><a href="#código-a-modificar" id="toc-código-a-modificar">Código a
+modificar</a></li>
+</ul></li>
+<li><a href="#comparativa-de-esfuerzo-vs-robustez"
+id="toc-comparativa-de-esfuerzo-vs-robustez">Comparativa de Esfuerzo vs
+Robustez</a></li>
+<li><a href="#resumen-ejecutivo---decision-framework"
+id="toc-resumen-ejecutivo---decision-framework">Resumen Ejecutivo -
+Decision Framework</a>
+<ul>
+<li><a href="#si-no-puedesquieres-desplegar-redis"
+id="toc-si-no-puedesquieres-desplegar-redis">Si NO puedes/quieres
+desplegar Redis</a></li>
+<li><a href="#si-sí-puedes-desplegar-redis-1-por-máquina"
+id="toc-si-sí-puedes-desplegar-redis-1-por-máquina">Si SÍ puedes
+desplegar Redis (1 por máquina)</a></li>
+</ul></li>
+<li><a href="#decisión-necesaria" id="toc-decisión-necesaria">Decisión
+Necesaria</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="plan-procesamiento-asíncrono-de-limpieza-de-pdfs">Plan:
+Procesamiento Asíncrono de Limpieza de PDFs</h1>
+<h2 id="contexto">Contexto</h2>
+<p>Actualmente el subscriber
+<code>[subscribers.py:119-120](src/genweb6.core/src/genweb6/core/subscribers.py)</code>
+llama a
+<code>[clean_pdf_on_upload](src/genweb6.core/src/genweb6/core/subscribers.py)</code>
+de forma síncrona al subir PDFs, bloqueando al usuario. La función base
+debe mantenerse síncrona porque también se usa en
+<code>[clean_pdfs.py](src/genweb6.core/src/genweb6/core/browser/clean_pdfs.py)</code>.</p>
+<h2 id="opciones-disponibles">Opciones Disponibles</h2>
+<h3 id="opción-1-celery-recomendada-para-producción">Opción 1: Celery
+(Recomendada para producción)</h3>
+<p><strong>Estimación: 40-60 horas</strong></p>
+<ul>
+<li>Desarrollo código tareas Celery: 8h</li>
+<li>Setup y configuración Redis (1 por máquina): 16h</li>
+<li>Configuración workers en buildout/supervisor: 12h</li>
+<li>Testing y QA: 8h</li>
+<li>Deployment en 20 máquinas: 8h</li>
+<li>Documentación: 4h</li>
+<li>Monitoreo y ajustes post-deploy: 4-8h</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Solución estándar y robusta del ecosistema Python</li>
+<li>Sistema de reintentos automáticos configurable</li>
+<li>Monitoreo y observabilidad con Flower</li>
+<li>Escalable horizontalmente (múltiples workers)</li>
+<li>Integración con New Relic ya disponible en el proyecto</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li>Requiere infraestructura adicional (Redis/RabbitMQ + workers)</li>
+<li>Mayor complejidad de deployment</li>
+<li>Más configuración inicial</li>
+</ul>
+<p><strong>Implementación:</strong></p>
+<ul>
+<li>Instalar: <code>celery</code>, <code>redis</code> (o
+<code>kombu</code> para RabbitMQ)</li>
+<li>Crear módulo <code>celery_app.py</code> con configuración</li>
+<li>Convertir <code>clean_pdf_on_upload</code> en tarea Celery</li>
+<li>Modificar subscriber para usar <code>.delay()</code> o
+<code>.apply_async()</code></li>
+<li>Configurar worker en buildout/supervisor</li>
+<li>Documentar deployment (Redis/RabbitMQ)</li>
+</ul>
+<p><strong>Patrón de código:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tasks.py</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">@celery_task</span>(bind<span class="op">=</span><span class="va">True</span>, max_retries<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_pdf_task(<span class="va">self</span>, obj_path, field_name<span class="op">=</span><span class="st">&#39;file&#39;</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    obj <span class="op">=</span> get_object_by_path(obj_path)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> clean_pdf_on_upload(obj, field_name)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># subscriber</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_pdf_on_upload_file(obj, event):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    obj_path <span class="op">=</span> <span class="st">&#39;/&#39;</span>.join(obj.getPhysicalPath())</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    clean_pdf_task.delay(obj_path, <span class="st">&#39;file&#39;</span>)</span></code></pre></div>
+<hr />
+<h3 id="opción-2-collective.taskqueue2-específico-para-plone-6">Opción
+2: collective.taskqueue2 (Específico para Plone 6)</h3>
+<p><strong>Estimación: 24-32 horas</strong></p>
+<ul>
+<li>Investigación y pruebas collective.taskqueue2: 4h</li>
+<li>Desarrollo código tareas: 6h</li>
+<li>Configuración variables entorno (template para 500 instancias):
+4h</li>
+<li>Testing en desarrollo: 4h</li>
+<li>Deployment y verificación en 500 instancias: 8h</li>
+<li>Documentación: 2h</li>
+<li>Ajustes y monitoreo post-deploy: 4h</li>
+</ul>
+<p><strong>IMPORTANTE:</strong> Para Plone 6 debes usar
+<code>collective.taskqueue2</code> (no el original). Usa Huey como
+base.</p>
+<p><strong>Pros:</strong></p>
+<ul>
+<li><strong>Persiste tareas</strong>: Sobrevive a reinicios de
+instancias (crítico con memon)</li>
+<li><strong>Compatible Plone 6</strong>: Mantenido y diseñado para Plone
+6 + Python 3</li>
+<li><strong>Múltiples backends disponibles</strong>:
+<ul>
+<li><code>sqlite://</code> - Archivo SQLite local (sin infraestructura
+extra)</li>
+<li><code>file://</code> - Sistema de archivos</li>
+<li><code>redis://</code> - Redis (si lo tienes)</li>
+<li><code>memory://</code> - En memoria (dev)</li>
+</ul></li>
+<li><strong>Integración nativa con Zope/Plone</strong></li>
+<li><strong>ZEO-aware</strong>: Diseñado para múltiples instancias
+Zope</li>
+<li><strong>Reintentos automáticos</strong>: Manejo de errores
+built-in</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li><strong>Proyecto pequeño</strong>: Solo 3 stars en GitHub, menos
+maduro que Celery</li>
+<li><strong>Desarrollado por un solo equipo</strong>: Universidad de
+Bologna/Andreas Jung</li>
+<li><strong>Configuración por instancia</strong>: Cada instancia
+necesita variables de entorno</li>
+<li><strong>Cola por instancia con SQLite</strong>: Si usas SQLite, cada
+instancia tiene su propia cola (no comparten)</li>
+<li><strong>Menos documentación/comunidad</strong> que Celery</li>
+</ul>
+<p><strong>Backends recomendados para tu caso (500
+instancias):</strong></p>
+<ol type="1">
+<li><strong>SQLite</strong>
+(<code>sqlite:///var/huey/instance1.db</code>):</li>
+</ol>
+<ul>
+<li>Cada instancia tiene su archivo .db propio</li>
+<li>Persiste tareas localmente</li>
+<li>Si instancia reinicia, retoma tareas pendientes</li>
+<li>No requiere infraestructura externa</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Filesystem</strong>
+(<code>file:///var/huey/queues/instance1</code>):</li>
+</ol>
+<ul>
+<li>Similar a SQLite pero basado en archivos</li>
+<li>Cada instancia su carpeta propia</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Redis</strong> (si pudieras desplegar 1 por máquina):</li>
+</ol>
+<ul>
+<li><code>redis://localhost:6379/0</code></li>
+<li>Las 25 instancias de la máquina comparten Redis local</li>
+<li>Más robusto pero requiere deployment</li>
+</ul>
+<p><strong>Configuración por instancia:</strong></p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables de entorno en cada instancia</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">HUEY_CONSUMER</span><span class="op">=</span>1</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="va">HUEY_TASKQUEUE_URL</span><span class="op">=</span>sqlite:///var/huey/instance_<span class="va">${INSTANCE_ID}</span>.db</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">HUEY_WORKERS</span><span class="op">=</span>2  <span class="co"># threads por instancia</span></span></code></pre></div>
+<p><strong>Implementación:</strong></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collective.taskqueue2.huey_config <span class="im">import</span> huey_taskqueue</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">@huey_taskqueue.task</span>(retries<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_pdf_async(obj_path, field_name<span class="op">=</span><span class="st">&#39;file&#39;</span>):</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtener objeto desde path</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    obj <span class="op">=</span> api.portal.get().restrictedTraverse(obj_path)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> clean_pdf_on_upload(obj, field_name)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_pdf_on_upload_file(obj, event):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    obj_path <span class="op">=</span> <span class="st">&#39;/&#39;</span>.join(obj.getPhysicalPath())</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    clean_pdf_async(obj_path, <span class="st">&#39;file&#39;</span>)  <span class="co"># Se encola automáticamente</span></span></code></pre></div>
+<p><strong>Deployment en 500 instancias:</strong></p>
+<ul>
+<li>Añadir <code>collective.taskqueue2</code> a eggs en buildout</li>
+<li>Configurar variables de entorno en cada instancia (vía supervisord o
+similar)</li>
+<li>Cada instancia procesa su propia cola</li>
+<li>Monitoreo vía vista <code>@@taskqueue-stats</code></li>
+</ul>
+<hr />
+<h3 id="opción-3-threading-aftercommithook-solución-ligera">Opción 3:
+Threading + afterCommitHook (Solución ligera)</h3>
+<p><strong>Estimación: 12-16 horas</strong></p>
+<ul>
+<li>Desarrollo código threading + afterCommitHook: 4h</li>
+<li>Implementación lógica reintentos: 2h</li>
+<li>Testing en desarrollo: 2h</li>
+<li>Deployment (solo actualizar código): 2h</li>
+<li>Documentación: 1h</li>
+<li>Monitoreo y ajustes: 2-4h</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Sin dependencias externas</li>
+<li>Implementación rápida</li>
+<li>No requiere infraestructura</li>
+<li>Ideal para cargas bajas/medias</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li>Sin sistema de reintentos robusto</li>
+<li>Sin persistencia de tareas pendientes (si el servidor cae, se
+pierde)</li>
+<li>No escala a múltiples workers</li>
+<li>Difícil de monitorear</li>
+</ul>
+<p><strong>Implementación:</strong></p>
+<ul>
+<li>Usar <code>transaction.get().addAfterCommitHook()</code></li>
+<li>Lanzar thread con la limpieza después del commit</li>
+<li>Guardar PDF original sin limpiar inicialmente</li>
+<li>Actualizar en background</li>
+</ul>
+<p><strong>Patrón de código:</strong></p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transaction <span class="im">import</span> get <span class="im">as</span> get_transaction</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> threading</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> async_clean_pdf(obj_path, field_name):</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtener objeto y limpiar en thread</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_pdf_on_upload_file(obj, event):</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    obj_path <span class="op">=</span> <span class="st">&#39;/&#39;</span>.join(obj.getPhysicalPath())</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> start_clean(success):</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> success:</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> threading.Thread(target<span class="op">=</span>async_clean_pdf, args<span class="op">=</span>(obj_path, <span class="st">&#39;file&#39;</span>))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>            t.daemon <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            t.start()</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    get_transaction().addAfterCommitHook(start_clean)</span></code></pre></div>
+<hr />
+<h3 id="opción-4-guardar-sin-limpiar-cronjob-procesador">Opción 4:
+Guardar sin limpiar + Cronjob procesador</h3>
+<p><strong>Estimación: 16-20 horas</strong></p>
+<ul>
+<li>Modificar subscriber (marcar como pendiente): 3h</li>
+<li>Crear campo/annotation para estado: 2h</li>
+<li>Desarrollar script procesador batch: 4h</li>
+<li>Configurar cronjobs en 20 máquinas: 4h</li>
+<li>Testing: 3h</li>
+<li>Documentación: 2h</li>
+<li>Ajustes: 2h</li>
+</ul>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Separación total del flujo de upload</li>
+<li>Fácil de implementar</li>
+<li>Sin dependencias complejas</li>
+</ul>
+<p><strong>Contras:</strong></p>
+<ul>
+<li>PDFs temporalmente sin limpiar</li>
+<li>Requiere gestión de estado (marcar como “pendiente de
+limpieza”)</li>
+<li>Cronjob adicional en infraestructura</li>
+</ul>
+<p><strong>Implementación:</strong></p>
+<ul>
+<li>Modificar subscriber para solo marcar PDF como “pendiente”</li>
+<li>Crear script/vista de procesamiento batch</li>
+<li>Configurar cronjob que ejecute el procesador</li>
+</ul>
+<hr />
+<h2
+id="comparación-critical-opción-2-vs-opción-3-con-reinicios-memon">Comparación
+Critical: Opción 2 vs Opción 3 con reinicios memon</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 36%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>collective.taskqueue2 (Op. 2)</th>
+<th>Threading (Op. 3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Persiste tareas</strong></td>
+<td>✅ SÍ (SQLite/filesystem)</td>
+<td>❌ NO</td>
+</tr>
+<tr>
+<td><strong>Sobrevive reinicios memon</strong></td>
+<td>✅ SÍ - Retoma tareas pendientes</td>
+<td>❌ NO - Se pierden tareas en proceso</td>
+</tr>
+<tr>
+<td><strong>Infraestructura extra</strong></td>
+<td>❌ NO (con SQLite)</td>
+<td>✅ NO</td>
+</tr>
+<tr>
+<td><strong>Complejidad deployment</strong></td>
+<td>🟡 Media (config vars por instancia)</td>
+<td>✅ Baja (solo código)</td>
+</tr>
+<tr>
+<td><strong>Madurez proyecto</strong></td>
+<td>🟡 Pequeño (3★ GitHub)</td>
+<td>✅ Python stdlib</td>
+</tr>
+<tr>
+<td><strong>Reintentos automáticos</strong></td>
+<td>✅ SÍ (built-in Huey)</td>
+<td>🟡 Manual (debes programar)</td>
+</tr>
+<tr>
+<td><strong>Monitoreo</strong></td>
+<td>✅ Vista <code>@@taskqueue-stats</code></td>
+<td>🟡 Solo logs</td>
+</tr>
+<tr>
+<td><strong>Riesgo de pérdida datos</strong></td>
+<td>✅ Bajo</td>
+<td>⚠️ Alto con reinicios frecuentes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pregunta-clave-con-qué-frecuencia-reinicia-memon">Pregunta
+clave: ¿Con qué frecuencia reinicia memon?</h3>
+<ul>
+<li><strong>Reinicios frecuentes (varias veces al día)</strong>:
+collective.taskqueue2</li>
+<li><strong>Reinicios raros (1-2 veces al mes)</strong>: Threading puede
+ser aceptable</li>
+</ul>
+<h3 id="qué-pasa-si-se-pierde-una-tarea">¿Qué pasa si se pierde una
+tarea?</h3>
+<ul>
+<li><strong>Con Threading</strong>: PDF queda guardado SIN limpiar
+(metadatos presentes)</li>
+<li><strong>Con taskqueue2</strong>: Tarea se retoma al reiniciar, PDF
+se limpia eventualmente</li>
+</ul>
+<h2
+id="recomendación-para-tu-entorno-500-instancias-sin-broker">Recomendación
+para tu entorno (500 instancias, sin broker)</h2>
+<h3 id="escenario-real">Escenario Real</h3>
+<ul>
+<li>20 máquinas con 25 instancias cada una = 500 instancias Zope</li>
+<li>Sin RabbitMQ/Redis disponible</li>
+<li>Carga heterogénea (algunas instancias suben muchos PDFs, otras
+no)</li>
+</ul>
+<h3
+id="recomendación-actualizada-considerando-reinicios-memon">Recomendación
+ACTUALIZADA considerando reinicios memon</h3>
+<p><strong>Si reinicios son frecuentes (&gt;1 por semana)</strong>:
+collective.taskqueue2 (Opción 2)</p>
+<ul>
+<li><strong>Razón</strong>: La persistencia es crítica. No puedes
+permitirte perder tareas constantemente.</li>
+<li><strong>Trade-off</strong>: Mayor complejidad deployment (config
+vars en 500 instancias) pero garantiza que todos los PDFs eventualmente
+se limpian.</li>
+<li><strong>Deployment</strong>: Añadir eggs + configurar
+<code>HUEY_CONSUMER=1</code> y
+<code>HUEY_TASKQUEUE_URL=sqlite://...</code> en cada instancia.</li>
+</ul>
+<p><strong>Si reinicios son raros (&lt;1 por mes)</strong>: Threading
+(Opción 3)</p>
+<ul>
+<li><strong>Razón</strong>: Deployment ultra-simple, solo actualizar
+código.</li>
+<li><strong>Trade-off</strong>: Aceptar que en un reinicio raro se
+pierdan 1-2 tareas en proceso (PDFs quedarán sin limpiar, pero
+funcionales).</li>
+<li><strong>Mitigación</strong>: Puedes crear cronjob mensual que
+ejecute vista batch para limpiar PDFs antiguos no procesados.</li>
+</ul>
+<h3 id="alternativa-híbrida-threading-cronjob-batch-mensual">Alternativa
+híbrida: Threading + Cronjob batch mensual</h3>
+<p>Si optas por Threading (Op. 3), puedes añadir:</p>
+<ol type="1">
+<li>Vista/script mensual que busca PDFs &gt;1 mes sin limpiar</li>
+<li>Procesa en batch los que se perdieron por reinicios</li>
+<li>Combina simplicidad deployment con garantía eventual de
+limpieza</li>
+</ol>
+<h2 id="archivos-afectados">Archivos Afectados</h2>
+<p><strong>Siempre:</strong></p>
+<ul>
+<li><code>[src/genweb6.core/src/genweb6/core/subscribers.py](src/genweb6.core/src/genweb6/core/subscribers.py)</code>
+- Modificar subscriber</li>
+<li><code>[src/genweb6.core/setup.py](src/genweb6.core/setup.py)</code>
+- Añadir dependencias</li>
+</ul>
+<p><strong>Según opción:</strong></p>
+<ul>
+<li>Nuevos archivos para tareas (Celery/taskqueue)</li>
+<li><code>[genwebupc.cfg](genwebupc.cfg)</code> - Configurar workers
+(Celery)</li>
+</ul>
+<h2 id="patrón-de-implementación-general">Patrón de Implementación
+General</h2>
+<pre class="mermaid"><code>graph TD
+    Usuario[Usuario sube PDF] --&gt; Subscriber[Subscriber IObjectAddedEvent]
+    Subscriber --&gt; Guardar[Guardar PDF original]
+    Guardar --&gt; Encolar[Encolar tarea asíncrona]
+    Encolar --&gt; Respuesta[Respuesta inmediata al usuario]
+
+    Respuesta -.Background.-&gt; Worker[Worker procesa cola]
+    Worker --&gt; LlamarAPI[Llamar API limpieza]
+    LlamarAPI --&gt; Actualizar[Actualizar objeto con PDF limpio]
+    Actualizar --&gt; Reindexar[Reindexar objeto]</code></pre>
+<h2
+id="implementación-propuesta-threading-aftercommithook">Implementación
+Propuesta: Threading + afterCommitHook</h2>
+<h3 id="estrategia">Estrategia</h3>
+<ol type="1">
+<li><strong>Guardar PDF original inmediatamente</strong> - Usuario
+recibe respuesta rápida</li>
+<li><strong>Encolar limpieza post-commit</strong> - Thread en background
+lo procesa</li>
+<li><strong>Actualizar objeto cuando termine</strong> - Transparente
+para el usuario</li>
+<li><strong>Logs detallados</strong> - Monitoreo vía archivos de log y
+New Relic</li>
+</ol>
+<h3 id="ventajas-en-tu-arquitectura-distribuida">Ventajas en tu
+arquitectura distribuida</h3>
+<ul>
+<li><strong>Deployment simple</strong>: Solo actualizar código Python,
+sin tocar configuración de infraestructura</li>
+<li><strong>Sin single point of failure</strong>: No hay broker central
+que pueda caer</li>
+<li><strong>Escalado automático por instancia</strong>: Más uploads =
+más threads, pero limitado por instancia</li>
+<li><strong>Compatible con 500 instancias</strong>: Cada una es
+autónoma</li>
+</ul>
+<h3 id="detalles-de-implementación">Detalles de implementación</h3>
+<ul>
+<li><strong>Límite de threads</strong>: Configurar ThreadPoolExecutor
+con límite razonable (ej: 5 threads concurrentes por instancia)</li>
+<li><strong>Reintentos</strong>: Lógica básica de retry dentro del
+thread (3 intentos con backoff exponencial)</li>
+<li><strong>Timeout</strong>: Configurar timeout en requests (ej: 60s
+para la llamada a la API)</li>
+<li><strong>Monitoreo</strong>: Logs estructurados + métricas en New
+Relic</li>
+</ul>
+<h3 id="código-a-modificar">Código a modificar</h3>
+<ol type="1">
+<li><code>[subscribers.py](src/genweb6.core/src/genweb6/core/subscribers.py)</code>:</li>
+</ol>
+<ul>
+<li>Crear función
+<code>async_clean_pdf_worker(obj_path, field_name)</code> que ejecuta en
+thread</li>
+<li>Modificar <code>clean_pdf_on_upload_file</code> para usar
+<code>afterCommitHook</code> + thread</li>
+<li>Mantener <code>clean_pdf_on_upload</code> intacta (para uso en
+vistas síncronas)</li>
+</ul>
+<ol start="2" type="1">
+<li>Opcional - Nuevo módulo <code>async_tasks.py</code>:</li>
+</ol>
+<ul>
+<li>ThreadPoolExecutor global para la instancia</li>
+<li>Funciones de retry y logging centralizadas</li>
+</ul>
+<h2 id="comparativa-de-esfuerzo-vs-robustez">Comparativa de Esfuerzo vs
+Robustez</h2>
+<pre><code>Robustez/Persistencia
+    ↑
+    |                    ● Celery (40-60h)
+    |                    
+    |          ● collective.taskqueue2 (24-32h)
+    |          
+    |                              
+    | Threading + Cronjob (16h + 16h = 32h)
+    |          
+    |   ● Threading (12-16h)
+    |          
+    +----------------------------------------→ 
+                Horas de desarrollo
+
+Celery: Máxima robustez, máximo esfuerzo
+collective.taskqueue2: Buen balance robustez/esfuerzo
+Threading: Mínimo esfuerzo, sin persistencia
+Threading + Cronjob: Esfuerzo medio, persistencia eventual</code></pre>
+<h2 id="resumen-ejecutivo---decision-framework">Resumen Ejecutivo -
+Decision Framework</h2>
+<h3 id="si-no-puedesquieres-desplegar-redis">Si NO puedes/quieres
+desplegar Redis</h3>
+<p><strong>Elección binaria:</strong></p>
+<pre><code>Reinicios memon frecuentes → collective.taskqueue2 (SQLite backend)
+Reinicios memon raros → Threading + afterCommitHook</code></pre>
+<h3 id="si-sí-puedes-desplegar-redis-1-por-máquina">Si SÍ puedes
+desplegar Redis (1 por máquina)</h3>
+<p><strong>Mejor opción:</strong> Celery con Redis local</p>
+<ul>
+<li>20 Redis (1 por máquina)</li>
+<li>Las 25 instancias de cada máquina comparten Redis local</li>
+<li>Workers Celery por máquina</li>
+<li>Máxima robustez y observabilidad</li>
+</ul>
+<h2 id="decisión-necesaria">Decisión Necesaria</h2>
+<p><strong>Te falta info para decidir:</strong></p>
+<ol type="1">
+<li><strong>¿Con qué frecuencia reinicia memon las
+instancias?</strong></li>
+</ol>
+<ul>
+<li>Si es &gt;1 vez/semana → collective.taskqueue2</li>
+<li>Si es &lt;1 vez/mes → Threading</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>¿Qué tan crítico es que TODOS los PDFs se
+limpien?</strong></li>
+</ol>
+<ul>
+<li>Crítico → collective.taskqueue2 o Celery</li>
+<li>Aceptable perder &lt;1% → Threading + cronjob batch</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>¿Complejidad deployment es un blocker?</strong></li>
+</ol>
+<ul>
+<li>SÍ blocker → Threading (más simple)</li>
+<li>NO blocker → collective.taskqueue2 (más robusto)</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>¿Puedes desplegar Redis (1 por máquina)?</strong></li>
+</ol>
+<ul>
+<li>SÍ → Celery es la mejor opción (oro standard)</li>
+<li>NO → collective.taskqueue2 o Threading</li>
+</ul>
+<p><strong>¿Qué opción prefieres que implemente?</strong></p>
+</body>
+</html>
