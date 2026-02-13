@@ -19,6 +19,7 @@ from PyPDF2 import PdfReader
 import time
 
 logger = logging.getLogger(__name__)
+logger.propagate = False  # Evitar logs duplicados
 
 
 def preventDeletionOnProtectedContent(content, event):
@@ -117,7 +118,48 @@ def is_signed_pdf(data):
 
 
 def clean_pdf_on_upload_file(obj, event):
-    clean_pdf_on_upload(obj, 'file')
+    """
+    Subscriber para limpieza de PDFs al subirlos.
+    
+    Puede funcionar en modo síncrono (actual) o asíncrono (con collective.taskqueue2)
+    según la configuración de la variable de entorno GENWEB_ASYNC_PDF_CLEANING.
+    """
+    import os
+    
+    # Verificar si el modo asíncrono está habilitado
+    async_mode = os.environ.get('GENWEB_ASYNC_PDF_CLEANING', '0') == '1'
+    
+    if async_mode:
+        try:
+            # Encolar DESPUÉS del commit para que el objeto exista
+            import transaction
+            from genweb6.core.async_tasks import schedule_pdf_cleaning
+            
+            def _schedule_after_commit(success):
+                if success:
+                    # Solo encolar si el commit fue exitoso
+                    success_result, message = schedule_pdf_cleaning(obj, 'file')
+                    if success_result:
+                        logger.info(f"[ASYNC] {message}")
+                    else:
+                        logger.error(f"[ASYNC ERROR] {message}")
+            
+            # Registrar hook DESPUÉS del commit
+            transaction.get().addAfterCommitHook(_schedule_after_commit)
+            logger.info(
+                f"[ASYNC] Programado para encolar después del commit: "
+                f"{obj.absolute_url()}"
+            )
+            
+        except ImportError as e:
+            logger.warning(
+                f"[ASYNC DISABLED] collective.taskqueue2 no disponible: {e}"
+            )
+            logger.info("[FALLBACK] Ejecutando limpieza síncrona")
+            clean_pdf_on_upload(obj, 'file')
+    else:
+        # Modo síncrono (comportamiento actual por defecto)
+        clean_pdf_on_upload(obj, 'file')
 
 
 def clean_pdf_on_upload(obj, field_name='file'):

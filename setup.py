@@ -79,6 +79,7 @@ setup(
         'Products.PloneKeywordManager',
         'xmltodict',
         'PyPDF2',
+        # collective.taskqueue2 se instala desde sources.cfg (GitHub)
     ],
 
     extras_require={
