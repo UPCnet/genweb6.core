@@ -2246,25 +2246,35 @@ def patch_globalsections_navtree(event):
     """Patch GlobalSectionsViewlet.navtree at Zope startup.
     
     Subscriber for IProcessStarting event that replaces navtree property
-    with a cached version using request-level cache shared across viewlets.
+    with a cached version using request-level cache KEYED BY navtree_path,
+    so all viewlets that need the same path (header, footer, etc.) share one
+    computation instead of N (one per viewlet instance).
     """
     from plone.app.layout.viewlets.common import GlobalSectionsViewlet
     import logging
-    
+
     logger = logging.getLogger('genweb6.core.patches')
-    
+
     # Get original property
     original_property = GlobalSectionsViewlet.navtree
     original_fget = original_property.fget
-    
-    # Create cached version with optimized per-instance cache
-    @memoize_contextless
+
+    _cache_key = '_genweb_navtree_cache'
+
     def cached_navtree_getter(self):
-        # Use memoize_contextless: fast, per-instance, request-scoped cache
-        # This caches the result for each viewlet instance during the request
-        return original_fget(self)
-    
-    # Replace property with cached version
+        request = getattr(self, 'request', None)
+        if request is None:
+            return original_fget(self)
+        cache = getattr(request, _cache_key, None)
+        if cache is None:
+            setattr(request, _cache_key, {})
+            cache = getattr(request, _cache_key)
+        path = self.navtree_path
+        if path not in cache:
+            cache[path] = original_fget(self)
+        return cache[path]
+
+    # Replace property with cached version (shared by path, not per-instance)
     GlobalSectionsViewlet.navtree = property(cached_navtree_getter)
-    
-    logger.info("GlobalSectionsViewlet.navtree patched with shared request cache")
+
+    logger.info("GlobalSectionsViewlet.navtree patched with shared request cache (keyed by path)")
