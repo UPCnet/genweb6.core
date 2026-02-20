@@ -32,7 +32,7 @@
 
           </tal:block>
 
-          <div class="txt">
+          <div class="content-txt">
 
             <a href="#" tal:attributes="href item/url" target="_blank"
                class="title d-block text-decoration-none mb-1">
