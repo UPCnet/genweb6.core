@@ -1848,7 +1848,7 @@ def cal_data(self):
                 fixEnd = datetime.strptime(
                     query["end"]['query'].Date(),
                     '%Y/%m/%d').date()
-                end = fixStart if fixEnd < end else end
+                end = fixEnd if fixEnd < end else end
 
         start, end = _prepare_range(self.search_base, start, end)
         query.update(start_end_query(start, end))
