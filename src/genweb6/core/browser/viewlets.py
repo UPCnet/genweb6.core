@@ -681,7 +681,7 @@ class importantViewlet(viewletBase):
 
 class MetaRobotsViewlet(ViewletBase):
     """Renders the  <meta name="robots"> tag if the IMetaRobots is applied
-    to the context
+    to the context. Inherits noindex settings from parent folders.
     """
 
     def update(self):
@@ -692,11 +692,60 @@ class MetaRobotsViewlet(ViewletBase):
             self.behavior = None
 
     def available(self):
-        return True if self.behavior else False
+        # Always show meta robots tag to handle inheritance and /shared/ blocking
+        return True
+
+    def is_in_shared_folder(self):
+        """Check if the current context is under /shared/ folder in any language"""
+        try:
+            path = '/'.join(self.context.getPhysicalPath())
+            # Check if path contains /shared/ in any language context
+            # e.g., /site/ca/shared/, /site/es/shared/, /site/en/shared/
+            return '/shared/' in path or path.endswith('/shared')
+        except:
+            return False
+
+    def get_inherited_robots(self):
+        """Check parent folders for noindex settings and inherit them"""
+        try:
+            # Start with current context's parent
+            obj = self.context
+            
+            # Walk up the tree looking for SEO settings
+            while True:
+                parent = getattr(obj, '__parent__', None)
+                if parent is None:
+                    break
+                
+                obj = parent
+                
+                # Try to get SEO behavior from parent
+                try:
+                    parent_behavior = ISeoMarker(obj)
+                    if parent_behavior and parent_behavior.seo_robots:
+                        # If parent has noindex, inherit it
+                        if 'noindex' in parent_behavior.seo_robots.lower():
+                            return parent_behavior.seo_robots
+                except (TypeError, AttributeError):
+                    pass
+            
+            return None
+        except:
+            return None
 
     def content(self):
-        content = self.behavior.seo_robots
-        # If there is no restriction, we explicity allow indexing
-        if not content:
-            return "all"
-        return content
+        # Priority 1: If content is under /shared/, always block indexing
+        if self.is_in_shared_folder():
+            return "noindex, nofollow"
+        
+        # Priority 2: Check current object's SEO behavior
+        if self.behavior and self.behavior.seo_robots:
+            return self.behavior.seo_robots
+        
+        # Priority 3: Inherit from parent folders
+        inherited = self.get_inherited_robots()
+        if inherited:
+            return inherited
+        
+        # Priority 4: Default to allow indexing
+        return "all"
