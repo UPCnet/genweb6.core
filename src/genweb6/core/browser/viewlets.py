@@ -714,7 +714,8 @@ class MetaRobotsViewlet(ViewletBase):
             return False
 
     def get_inherited_robots(self):
-        """Check parent folders for noindex settings and inherit them"""
+        """Check parent folders for SEO robots settings and inherit them
+        Only inherits if parent has seo_inherit_to_children enabled"""
         try:
             # Start with current context's parent
             obj = self.context
@@ -731,8 +732,11 @@ class MetaRobotsViewlet(ViewletBase):
                 try:
                     parent_behavior = ISeoMarker(obj)
                     if parent_behavior and parent_behavior.seo_robots:
-                        # If parent has noindex, inherit it
-                        if 'noindex' in parent_behavior.seo_robots.lower():
+                        # Check if parent has inheritance enabled (default True)
+                        inherit_enabled = getattr(parent_behavior, 'seo_inherit_to_children', True)
+                        
+                        # If parent has SEO robots configured AND inheritance is enabled, inherit it
+                        if inherit_enabled:
                             return parent_behavior.seo_robots
                 except (TypeError, AttributeError):
                     pass
