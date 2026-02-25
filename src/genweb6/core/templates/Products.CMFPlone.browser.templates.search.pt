@@ -337,7 +337,7 @@
                                     item_type item/PortalType">
                           <img class="thumb-icon"
                             tal:condition="python: show_images and hasIcon"
-                            tal:replace="structure python: image_scale.tag(item, 'image', scale=search_image_scale, css_class='thumb-icon')">
+                            tal:replace="structure python: image_scale.tag(item, 'image', scale=search_image_scale, css_class='thumb-icon', loading='lazy')">
                       </a>
 
                     </li>

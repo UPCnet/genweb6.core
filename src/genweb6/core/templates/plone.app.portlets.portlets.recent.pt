@@ -39,7 +39,7 @@
                                   tal:replace="structure python:icons.tag(f'mimetype-{obj.mime_type}')" />
 
                         <img tal:condition="python:obj.getIcon and thumb_scale and not supress_thumb and image_scale"
-                             tal:replace="structure python:image_scale.tag(obj, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale)" />
+                             tal:replace="structure python:image_scale.tag(obj, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale, loading='lazy')" />
 
                         <span tal:replace="obj/pretty_title_or_id">Title</span>
                     </a>

@@ -1,11 +1,36 @@
 Changelog
 =========
 
-1.90 (unreleased)
+1.93 (unreleased)
 -----------------
 
 - Nothing changed yet.
 
+
+1.92 (2026-02-12)
+-----------------
+
+- Nothing changed yet.
+
+
+1.91 (2026-02-11)
+-----------------
+
+* Merge remote-tracking branch 'origin/develop' [pmarinas]
+* [RENDIMIENTO] Añadir lazy loading en las imagenes [pmarinas]
+* [RENDIMIENTO] Optimización del menú de navegación [pmarinas]
+* [RENDIMIENTO] Optimización del selector de idiomas [pmarinas]
+* [UPD] Mejora viewlet resources [Iago López]
+* [ADD] images to RSS [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+
+1.90 (2026-02-05)
+-----------------
+
+* Merge branch 'develop' [Clàudia Andreu]
+* [ADD] skip to content button [Clàudia Andreu]
+* [UPD] Comentar cache getCASSettings [Iago López]
+* [UPD] Que no pete el viewlet de resources si los css estan mal [Iago López]
 
 1.89 (2026-01-29)
 -----------------

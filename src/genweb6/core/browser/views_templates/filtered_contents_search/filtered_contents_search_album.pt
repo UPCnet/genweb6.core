@@ -55,7 +55,7 @@
                   <div class="card-image-top text-center" >
                     <img tal:define="scales item_obj/@@images;
                                      scale python:scales.scale('image', 'preview')"
-                         tal:replace="structure python:scale and scale.tag(css_class='tileImage rounded-top') or None" />
+                         tal:replace="structure python:scale and scale.tag(css_class='tileImage rounded-top', loading='lazy') or None" />
                   </div>
                   <div class="card-body d-flex flex-column justify-content-between">
                     <div class="mb-3">

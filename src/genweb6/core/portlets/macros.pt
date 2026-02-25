@@ -28,7 +28,7 @@
             <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
-        <div class="txt">
+        <div class="content-txt">
             <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt"></tal:block>
         </div>
     </li>
@@ -116,7 +116,7 @@
             <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-img"></tal:block>
         </div>
 
-        <div class="txt">
+        <div class="content-txt">
             <tal:block metal:use-macro="context/@@macros-genweb-portlets/it-txt-event"></tal:block>
         </div>
     </li>

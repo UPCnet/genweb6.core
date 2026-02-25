@@ -20,6 +20,7 @@ from plone.app.event.base import _prepare_range
 from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
 from datetime import datetime
 from plone.memoize import ram
+from plone.memoize.view import memoize_contextless
 import time
 import threading
 import collections
@@ -1847,7 +1848,7 @@ def cal_data(self):
                 fixEnd = datetime.strptime(
                     query["end"]['query'].Date(),
                     '%Y/%m/%d').date()
-                end = fixStart if fixEnd < end else end
+                end = fixEnd if fixEnd < end else end
 
         start, end = _prepare_range(self.search_base, start, end)
         query.update(start_end_query(start, end))
@@ -2227,3 +2228,53 @@ def query_index(self, record, resultset=None):
         exclude = self._apply_not(not_parm, resultset)
         r = difference(r, exclude)
     return r
+
+
+# ============================================================================
+# PATCH: Cache GlobalSectionsViewlet.navtree to improve performance
+# ============================================================================
+# Problem: navtree property loads 15k+ ZODB objects and makes multiple catalog
+# queries on every call. Without caching, navigation rendering can take 10+ seconds.
+# Solution: Shared request-level cache keyed by navtree_path.
+# Impact: Reduces 5+ navtree calculations per request to 1-2 (depending on paths).
+# Safety: Cache only lives during single request, keyed by path to avoid conflicts.
+# Original: Uses @memoize (heavier, per-instance cache)
+# Patched: Uses request cache (shared across viewlet instances with same path)
+# ============================================================================
+
+def patch_globalsections_navtree(event):
+    """Patch GlobalSectionsViewlet.navtree at Zope startup.
+    
+    Subscriber for IProcessStarting event that replaces navtree property
+    with a cached version using request-level cache KEYED BY navtree_path,
+    so all viewlets that need the same path (header, footer, etc.) share one
+    computation instead of N (one per viewlet instance).
+    """
+    from plone.app.layout.viewlets.common import GlobalSectionsViewlet
+    import logging
+
+    logger = logging.getLogger('genweb6.core.patches')
+
+    # Get original property
+    original_property = GlobalSectionsViewlet.navtree
+    original_fget = original_property.fget
+
+    _cache_key = '_genweb_navtree_cache'
+
+    def cached_navtree_getter(self):
+        request = getattr(self, 'request', None)
+        if request is None:
+            return original_fget(self)
+        cache = getattr(request, _cache_key, None)
+        if cache is None:
+            setattr(request, _cache_key, {})
+            cache = getattr(request, _cache_key)
+        path = self.navtree_path
+        if path not in cache:
+            cache[path] = original_fget(self)
+        return cache[path]
+
+    # Replace property with cached version (shared by path, not per-instance)
+    GlobalSectionsViewlet.navtree = property(cached_navtree_getter)
+
+    logger.info("GlobalSectionsViewlet.navtree patched with shared request cache (keyed by path)")

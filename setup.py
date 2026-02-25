@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='genweb6.core',
-    version='1.90.dev0',
+    version='1.93.dev0',
     description="Genweb 6 Core package",
     long_description=long_description,
     # Get more from https://pypi.org/classifiers/
@@ -55,6 +55,7 @@ setup(
         'plone.api',
         'plone.restapi',
         'plone.app.dexterity',
+        'plone.app.z3cform',
         'souper.plone',
         'Products.PloneLDAP>=2.0.0a1',
         'Products.LDAPUserFolder',

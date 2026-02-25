@@ -289,4 +289,10 @@
         replacement=".patches.query_index"
         />
 
+    <!-- Performance optimization: Cache navtree via subscriber at startup -->
+    <subscriber
+        handler=".patches.patch_globalsections_navtree"
+        for="zope.processlifetime.IProcessStarting"
+        />
+
 </configure>

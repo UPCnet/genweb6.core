@@ -15,7 +15,7 @@
        tal:attributes="href large_image/url"
        target="_blank">
 
-      <img tal:replace="structure python: images.tag('image', scale='large', css_class='figure-img img-fluid')" />
+      <img tal:replace="structure python: images.tag('image', scale='large', css_class='figure-img img-fluid', loading='lazy')" />
 
       <figcaption class="figure-caption"
                   tal:condition="python: getattr(context, 'image_caption', None)"

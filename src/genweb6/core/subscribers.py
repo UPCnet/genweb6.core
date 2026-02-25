@@ -16,6 +16,7 @@ import logging
 import requests
 from io import BytesIO
 from PyPDF2 import PdfReader
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -133,18 +134,26 @@ def clean_pdf_on_upload(obj, field_name='file'):
     if not file_field.filename.lower().endswith('.pdf'):
         return
 
+    settings = genwebMetadadesConfig()
+
+    api_url = settings.api_url
+    api_key = settings.api_key
+
+    if not api_url or not api_key:
+        return
+
     file_data = file_field.data
 
+    start_time_check_signed = time.time()
     if is_signed_pdf(file_data):
         logger.info(f"[SKIPPED] {obj.absolute_url()} - PDF signat")
         return
 
+    end_time_check_signed = time.time()
+    time_check_signed = end_time_check_signed - start_time_check_signed
+    logger.error(f"[GW6 METADADAS CHECK SIGNED] {obj.absolute_url()} - Tiempo de verificación de firma: {time_check_signed} segundos")
+
     try:
-        settings = genwebMetadadesConfig()
-
-        api_url = settings.api_url
-        api_key = settings.api_key
-
         headers = {
             'accept': 'application/json;charset=utf-8',
             'X-Api-Key': api_key
@@ -155,7 +164,13 @@ def clean_pdf_on_upload(obj, field_name='file'):
             'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
         }
 
+        start_time_clean_pdf = time.time()
+
         response = requests.post(api_url, headers=headers, files=files)
+
+        end_time_clean_pdf = time.time()
+        time_clean_pdf = end_time_clean_pdf - start_time_clean_pdf
+        logger.error(f"[GW6 METADADAS CLEAN PDF] {obj.absolute_url()} - Tiempo de limpieza de PDF: {time_clean_pdf} segundos")
 
         if response.status_code == 200:
             cleaned_data = response.content
