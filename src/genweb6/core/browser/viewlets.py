@@ -688,9 +688,9 @@ class importantViewlet(viewletBase):
 
 
 class MetaRobotsViewlet(ViewletBase):
-    """Renders the  <meta name="robots"> tag if the IMetaRobots is applied
-    to the context. Inherits noindex settings from parent folders.
-    """
+    """Renders the <meta name="robots"> tag.
+    Only noindex/nofollow is inherited: everything under /shared/ (any language)
+    is not indexed."""
 
     def update(self):
         super().update()
@@ -700,64 +700,25 @@ class MetaRobotsViewlet(ViewletBase):
             self.behavior = None
 
     def available(self):
-        # Always show meta robots tag to handle inheritance and /shared/ blocking
-        return True
+        # Only show meta tag when we have something to set (shared or own SEO)
+        if self.is_in_shared_folder():
+            return True
+        return bool(self.behavior and self.behavior.seo_robots)
 
     def is_in_shared_folder(self):
-        """Check if the current context is under /shared/ folder in any language"""
+        """Check if the current context is under /shared/ folder in any language. """
         try:
             path = '/'.join(self.context.getPhysicalPath())
-            # Check if path contains /shared/ in any language context
-            # e.g., /site/ca/shared/, /site/es/shared/, /site/en/shared/
             return '/shared/' in path or path.endswith('/shared')
-        except:
+        except Exception:
             return False
 
-    def get_inherited_robots(self):
-        """Check parent folders for SEO robots settings and inherit them
-        Only inherits if parent has seo_inherit_to_children enabled"""
-        try:
-            # Start with current context's parent
-            obj = self.context
-            
-            # Walk up the tree looking for SEO settings
-            while True:
-                parent = getattr(obj, '__parent__', None)
-                if parent is None:
-                    break
-                
-                obj = parent
-                
-                # Try to get SEO behavior from parent
-                try:
-                    parent_behavior = ISeoMarker(obj)
-                    if parent_behavior and parent_behavior.seo_robots:
-                        # Check if parent has inheritance enabled (default True)
-                        inherit_enabled = getattr(parent_behavior, 'seo_inherit_to_children', True)
-                        
-                        # If parent has SEO robots configured AND inheritance is enabled, inherit it
-                        if inherit_enabled:
-                            return parent_behavior.seo_robots
-                except (TypeError, AttributeError):
-                    pass
-            
-            return None
-        except:
-            return None
-
     def content(self):
-        # Priority 1: If content is under /shared/, always block indexing
+        # Priority 1: Under /shared/ (any language) → always noindex, nofollow
         if self.is_in_shared_folder():
             return "noindex, nofollow"
-        
-        # Priority 2: Check current object's SEO behavior
+        # Priority 2: Current object's SEO robots
         if self.behavior and self.behavior.seo_robots:
             return self.behavior.seo_robots
-        
-        # Priority 3: Inherit from parent folders
-        inherited = self.get_inherited_robots()
-        if inherited:
-            return inherited
-        
-        # Priority 4: Default to allow indexing
+        # Default: allow indexing (viewlet not shown when available() is False)
         return "all"

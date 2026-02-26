@@ -26,7 +26,7 @@ class ISeo(model.Schema, IDexteritySchema):
     """
 
     model.fieldset(
-      "seofields", _("SEO"), fields=["seo_title", "seo_description", "seo_robots", "seo_inherit_to_children"],
+      "seofields", _("SEO"), fields=["seo_title", "seo_description", "seo_robots"],
     )
 
     seo_title = schema.TextLine(
@@ -46,13 +46,6 @@ class ISeo(model.Schema, IDexteritySchema):
         description=_("<ul><li><span class='fw-bold'>No value (per defecte):</span> Els motors de cerca indexen la pàgina i segueixen els enllaços (comportament per defecte).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la pàgina, però no segueix els enllaços que conté.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la pàgina, però sí que segueix els enllaços.</li><li><span class='fw-bold'>index, follow:</span> Indexa la pàgina i segueix els enllaços (equivalent a no especificar res).</li><li><span class='fw-bold'>noindex:</span> No indexa la pàgina i no segueix els enllaços.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la pàgina ni segueix els enllaços.</li></ul>"),
         vocabulary=seoRobotsVocabulary,
         required=False,
-    )
-
-    seo_inherit_to_children = schema.Bool(
-        title=_("Inherit to children"),
-        description=_("Si està activat, els contenuts fills heretaran automàticament la configuració de 'Metatag Robots' d'aquesta carpeta. Si un contingut fill té la seva pròpia configuració SEO, aquesta tindrà prioritat."),
-        required=False,
-        default=True,
     )
 
 alsoProvides(ISeo, IFormFieldProvider)
@@ -88,11 +81,3 @@ class Seo(object):
         return getattr(self.context, 'seo_robots', None)
 
     seo_robots = property(_get_seo_robots, _set_seo_robots)
-
-    def _set_seo_inherit_to_children(self, value):
-        self.context.seo_inherit_to_children = value
-
-    def _get_seo_inherit_to_children(self):
-        return getattr(self.context, 'seo_inherit_to_children', True)
-
-    seo_inherit_to_children = property(_get_seo_inherit_to_children, _set_seo_inherit_to_children)
