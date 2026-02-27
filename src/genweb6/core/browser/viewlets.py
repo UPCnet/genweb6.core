@@ -29,6 +29,7 @@ from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.adapters.important import IImportant
 from genweb6.core.interfaces import IHomePage
+from genweb6.core.behaviors.seo import NOINDEX_FOLDER_PATTERN
 from genweb6.core.interfaces import ISeoMarker
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebFooterConfig
@@ -709,10 +710,7 @@ class MetaRobotsViewlet(ViewletBase):
         """Under /shared/ or /media/ (any language). Fallback for old content."""
         try:
             path = '/'.join(self.context.getPhysicalPath())
-            return (
-                '/shared/' in path or path.endswith('/shared') or
-                '/media/' in path or path.endswith('/media')
-            )
+            return bool(NOINDEX_FOLDER_PATTERN.match(path))
         except Exception:
             return False
 

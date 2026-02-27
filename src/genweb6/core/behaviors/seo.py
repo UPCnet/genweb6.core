@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import re
+
 from plone.autoform import directives
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.dexterity.interfaces import IDexteritySchema
@@ -13,16 +15,16 @@ from zope.schema.vocabulary import SimpleVocabulary
 from genweb6.core import _
 
 
+NOINDEX_FOLDER_PATTERN = re.compile(r".*/(ca|es|en)/(shared|media)(/.*)?$")
+
+
 def _is_in_noindex_folder(context):
     """True if context is under /shared/ or /media/ (any language).
     Used for default seo_robots; covers entorns migrats with media too.
     """
     try:
         path = '/'.join(context.getPhysicalPath())
-        return (
-            '/shared/' in path or path.endswith('/shared') or
-            '/media/' in path or path.endswith('/media')
-        )
+        return bool(NOINDEX_FOLDER_PATTERN.match(path))
     except Exception:
         return False
 
