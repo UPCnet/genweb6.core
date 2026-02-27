@@ -688,9 +688,10 @@ class importantViewlet(viewletBase):
 
 
 class MetaRobotsViewlet(ViewletBase):
-    """Renders the <meta name="robots"> tag.
-    Only noindex/nofollow is inherited: everything under /shared/ (any language)
-    is not indexed."""
+    """Renders the <meta name="robots"> tag from SEO behavior.
+    Default noindex,nofollow is set in the behavior for content under
+    /shared/ or /media/ (any language); viewlet only reads behavior + fallback.
+    """
 
     def update(self):
         super().update()
@@ -700,25 +701,25 @@ class MetaRobotsViewlet(ViewletBase):
             self.behavior = None
 
     def available(self):
-        # Only show meta tag when we have something to set (shared or own SEO)
-        if self.is_in_shared_folder():
+        if self._is_in_noindex_folders():
             return True
         return bool(self.behavior and self.behavior.seo_robots)
 
-    def is_in_shared_folder(self):
-        """Check if the current context is under /shared/ folder in any language. """
+    def _is_in_noindex_folders(self):
+        """Under /shared/ or /media/ (any language). Fallback for old content."""
         try:
             path = '/'.join(self.context.getPhysicalPath())
-            return '/shared/' in path or path.endswith('/shared')
+            return (
+                '/shared/' in path or path.endswith('/shared') or
+                '/media/' in path or path.endswith('/media')
+            )
         except Exception:
             return False
 
     def content(self):
-        # Priority 1: Under /shared/ (any language) → always noindex, nofollow
-        if self.is_in_shared_folder():
+        # Fallback: under shared/media without SEO set (e.g. old content)
+        if self._is_in_noindex_folders() and not (self.behavior and self.behavior.seo_robots):
             return "noindex, nofollow"
-        # Priority 2: Current object's SEO robots
         if self.behavior and self.behavior.seo_robots:
             return self.behavior.seo_robots
-        # Default: allow indexing (viewlet not shown when available() is False)
         return "all"

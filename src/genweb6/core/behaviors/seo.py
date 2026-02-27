@@ -13,6 +13,20 @@ from zope.schema.vocabulary import SimpleVocabulary
 from genweb6.core import _
 
 
+def _is_in_noindex_folder(context):
+    """True if context is under /shared/ or /media/ (any language).
+    Used for default seo_robots; covers entorns migrats with media too.
+    """
+    try:
+        path = '/'.join(context.getPhysicalPath())
+        return (
+            '/shared/' in path or path.endswith('/shared') or
+            '/media/' in path or path.endswith('/media')
+        )
+    except Exception:
+        return False
+
+
 seoRobotsVocabulary = SimpleVocabulary([
     SimpleTerm(value="index, nofollow", title=_(u'index, nofollow')),
     SimpleTerm(value="noindex, follow", title=_(u'noindex, follow')),
@@ -78,6 +92,12 @@ class Seo(object):
         self.context.seo_robots = value
 
     def _get_seo_robots(self):
-        return getattr(self.context, 'seo_robots', None)
+        value = getattr(self.context, 'seo_robots', None)
+        if value:
+            return value
+        # Default: noindex,nofollow under shared or media (any language)
+        if _is_in_noindex_folder(self.context):
+            return "noindex, nofollow"
+        return None
 
     seo_robots = property(_get_seo_robots, _set_seo_robots)
