@@ -1,17 +1,35 @@
 Changelog
 =========
 
-1.93 (unreleased)
+1.93 (2026-03-02)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Añadir vista force_seo_noindexnofollow [Iago López]
+* [UPD] SEO noindex, nofollow solo es añadido en el momento de creacion de un contenido dentro de shared o media, el usuario puede modificar el valor durante este proceso [Iago López]
+* [UPD] seo behavior for shared and media folders [Clàudia Andreu]
+* [UPD] SEO behavior for shared and media folders [Clàudia Andreu]
+* [FIX] SEO settings for shared folders [Clàudia Andreu]
+* [ADD] checkbox to SEO settings to inherit SEO [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] SEO noindex inheritance from parent folders [Clàudia Andreu]
+* class txt por content-txt [Iago López]
+* [FIX] Solucionar error modificar fixStart por fixEnd [pmarinas]
+* perf(navtree): cache por request y path en GlobalSectionsViewlet [RENDIMIENTO] Sustituir @memoize por cache a nivel de request keyed por navtree_path: varias instancias del viewlet (header, footer, etc.) comparten un solo cálculo por path en lugar de una por instancia; reduce 5+ navtree a 1-2por request y evita 15k+ cargas ZODB repetidas. [pmarinas]
 
 1.92 (2026-02-12)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] Añadir vista force_seo_noindexnofollow [Iago López]
+* [UPD] SEO noindex, nofollow solo es añadido en el momento de creacion de un contenido dentro de shared o media, el usuario puede modificar el valor durante este proceso [Iago López]
+* [UPD] seo behavior for shared and media folders [Clàudia Andreu]
+* [UPD] SEO behavior for shared and media folders [Clàudia Andreu]
+* [FIX] SEO settings for shared folders [Clàudia Andreu]
+* [ADD] checkbox to SEO settings to inherit SEO [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] SEO noindex inheritance from parent folders [Clàudia Andreu]
+* class txt por content-txt [Iago López]
+* [FIX] Solucionar error modificar fixStart por fixEnd [pmarinas]
+* perf(navtree): cache por request y path en GlobalSectionsViewlet [RENDIMIENTO] Sustituir @memoize por cache a nivel de request keyed por navtree_path: varias instancias del viewlet (header, footer, etc.) comparten un solo cálculo por path en lugar de una por instancia; reduce 5+ navtree a 1-2por request y evita 15k+ cargas ZODB repetidas. [pmarinas]
 
 1.91 (2026-02-11)
 -----------------
