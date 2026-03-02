@@ -14,27 +14,41 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 from genweb6.core import _
 
-
-NOINDEX_FOLDER_PATTERN = re.compile(r".*/(ca|es|en)/(shared|media)(/.*)?$")
-
-
-def _is_in_noindex_folder(context):
-    """True if context is under /shared/ or /media/ (any language).
-    Used for default seo_robots; covers entorns migrats with media too.
-    """
-    try:
-        path = '/'.join(context.getPhysicalPath())
-        return bool(NOINDEX_FOLDER_PATTERN.match(path))
-    except Exception:
-        return False
-
-
 seoRobotsVocabulary = SimpleVocabulary([
     SimpleTerm(value="index, nofollow", title=_(u'index, nofollow')),
     SimpleTerm(value="noindex, follow", title=_(u'noindex, follow')),
     SimpleTerm(value="index, follow", title=_(u'index, follow')),
     SimpleTerm(value="noindex", title=_(u'noindex')),
     SimpleTerm(value="noindex, nofollow", title=_(u'noindex, nofollow'))])
+
+NOINDEX_FOLDER_PATTERN = re.compile(r".*/(ca|es|en)/(shared|media)(/.*)?$")
+
+
+def _path_is_noindex(path):
+    """True if path string is under /shared/ or /media/ (any language)."""
+    if not path:
+        return False
+    path = path.strip()
+    if isinstance(path, bytes):
+        path = path.decode("utf-8", "replace")
+    return bool(NOINDEX_FOLDER_PATTERN.match(path))
+
+
+def _default_seo_robots():
+    """Valor por defecto: noindex,nofollow si el contenido se crea dentro de shared/media."""
+    try:
+        from zope.globalrequest import getRequest
+        req = getRequest()
+        if req is None:
+            return None
+        environ = getattr(req, "environ", None) or getattr(req, "_orig_env", None) or {}
+        path = environ.get("PATH_INFO") or environ.get("REQUEST_URI") or getattr(req, "PATH_INFO", None) or ""
+        # Solo en formulario de creación (++add++), no en edición
+        if path and "/++add++" in path and _path_is_noindex(path):
+            return "noindex, nofollow"
+    except Exception:
+        pass
+    return None
 
 
 class ISeo(model.Schema, IDexteritySchema):
@@ -62,6 +76,7 @@ class ISeo(model.Schema, IDexteritySchema):
         description=_("<ul><li><span class='fw-bold'>No value (per defecte):</span> Els motors de cerca indexen la pàgina i segueixen els enllaços (comportament per defecte).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la pàgina, però no segueix els enllaços que conté.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la pàgina, però sí que segueix els enllaços.</li><li><span class='fw-bold'>index, follow:</span> Indexa la pàgina i segueix els enllaços (equivalent a no especificar res).</li><li><span class='fw-bold'>noindex:</span> No indexa la pàgina i no segueix els enllaços.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la pàgina ni segueix els enllaços.</li></ul>"),
         vocabulary=seoRobotsVocabulary,
         required=False,
+        defaultFactory=_default_seo_robots,
     )
 
 alsoProvides(ISeo, IFormFieldProvider)
@@ -94,12 +109,6 @@ class Seo(object):
         self.context.seo_robots = value
 
     def _get_seo_robots(self):
-        value = getattr(self.context, 'seo_robots', None)
-        if value:
-            return value
-        # Default: noindex,nofollow under shared or media (any language)
-        if _is_in_noindex_folder(self.context):
-            return "noindex, nofollow"
-        return None
+        return getattr(self.context, 'seo_robots', None)
 
     seo_robots = property(_get_seo_robots, _set_seo_robots)

@@ -29,7 +29,6 @@ from genweb6.core import _
 from genweb6.core import utils
 from genweb6.core.adapters.important import IImportant
 from genweb6.core.interfaces import IHomePage
-from genweb6.core.behaviors.seo import NOINDEX_FOLDER_PATTERN
 from genweb6.core.interfaces import ISeoMarker
 from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebFooterConfig
@@ -689,9 +688,8 @@ class importantViewlet(viewletBase):
 
 
 class MetaRobotsViewlet(ViewletBase):
-    """Renders the <meta name="robots"> tag from SEO behavior.
-    Default noindex,nofollow is set in the behavior for content under
-    /shared/ or /media/ (any language); viewlet only reads behavior + fallback.
+    """Renders the  <meta name="robots"> tag if the IMetaRobots is applied
+    to the context
     """
 
     def update(self):
@@ -702,22 +700,11 @@ class MetaRobotsViewlet(ViewletBase):
             self.behavior = None
 
     def available(self):
-        if self._is_in_noindex_folders():
-            return True
-        return bool(self.behavior and self.behavior.seo_robots)
-
-    def _is_in_noindex_folders(self):
-        """Under /shared/ or /media/ (any language). Fallback for old content."""
-        try:
-            path = '/'.join(self.context.getPhysicalPath())
-            return bool(NOINDEX_FOLDER_PATTERN.match(path))
-        except Exception:
-            return False
+        return True if self.behavior else False
 
     def content(self):
-        # Fallback: under shared/media without SEO set (e.g. old content)
-        if self._is_in_noindex_folders() and not (self.behavior and self.behavior.seo_robots):
-            return "noindex, nofollow"
-        if self.behavior and self.behavior.seo_robots:
-            return self.behavior.seo_robots
-        return "all"
+        content = self.behavior.seo_robots
+        # If there is no restriction, we explicity allow indexing
+        if not content:
+            return "all"
+        return content
