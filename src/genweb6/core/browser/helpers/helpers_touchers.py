@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from AccessControl import Unauthorized
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -20,10 +21,12 @@ from souper.soup import Record
 from souper.soup import get_soup
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryAdapter
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb6.core import _
+from genweb6.core.behaviors.seo import ISeo
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebMetadadesConfig
 from genweb6.core.cas.controlpanel import addPluginCAS
@@ -1147,3 +1150,30 @@ Agafem la configuració del controlpanel del CAS i configurem la URL en acl_user
             addPluginCAS(cas_settings.url)
             transaction.commit()
         return 'OK'
+
+
+class force_seo_noindexnofollow(BrowserView):
+    """
+Força seo_robots a "noindex, nofollow" en el contingut del path (context) i en tots els fills.
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        context = aq_inner(self.context)
+        path = '/'.join(context.getPhysicalPath())
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': -1})
+        count = 0
+        for brain in brains:
+            try:
+                obj = brain._unrestrictedGetObject()
+            except Exception:
+                continue
+            seo = queryAdapter(obj, ISeo)
+            if seo and hasattr(obj, 'seo_robots'):
+                seo.seo_robots = 'noindex, nofollow'
+                obj.reindexObject()
+                count += 1
+        if count:
+            transaction.commit()
+        return 'OK: %d objectes actualitzats a noindex, nofollow.' % count

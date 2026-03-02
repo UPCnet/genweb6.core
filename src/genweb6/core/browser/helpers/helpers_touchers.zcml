@@ -334,5 +334,13 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="force_seo_noindexnofollow"
+        for="zope.interface.Interface"
+        class=".helpers_touchers.force_seo_noindexnofollow"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 
 </configure>
