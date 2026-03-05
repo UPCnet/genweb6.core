@@ -34,6 +34,7 @@ from genweb6.core.utils import genwebCintilloConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
+from genweb6.core.utils import genwebWeglotConfig
 from genweb6.core.utils import toLocalizedTime
 from plone.app.layout.viewlets.common import ViewletBase
 
@@ -708,3 +709,61 @@ class MetaRobotsViewlet(ViewletBase):
         if not content:
             return "all"
         return content
+
+
+class WeglotHeadViewlet(ViewletBase):
+    """Injects Weglot meta tag at the end of head when enabled and api_key set."""
+
+    def update(self):
+        super().update()
+        try:
+            self._settings = genwebWeglotConfig()
+        except Exception:
+            self._settings = None
+
+    def available(self):
+        if getattr(self, '_settings', None) is None:
+            return False
+        if not bool(getattr(self._settings, 'weglot_enabled', False)):
+            return False
+        api_key = getattr(self._settings, 'weglot_api_key', None) or ''
+        return bool(api_key.strip())
+
+    def render(self):
+        if not self.available():
+            return ''
+        return super().render()
+
+
+class WeglotFooterViewlet(ViewletBase):
+    """Injects Weglot script at the end of body when enabled and api_key set."""
+
+    def update(self):
+        super().update()
+        try:
+            self._settings = genwebWeglotConfig()
+        except Exception:
+            self._settings = None
+
+    def available(self):
+        if getattr(self, '_settings', None) is None:
+            return False
+        if not bool(getattr(self._settings, 'weglot_enabled', False)):
+            return False
+        api_key = getattr(self._settings, 'weglot_api_key', None) or ''
+        return bool(api_key.strip())
+
+    def render(self):
+        if not self.available():
+            return ''
+        return super().render()
+
+    @property
+    def api_key(self):
+        return getattr(self._settings, 'weglot_api_key', None) or ''
+
+    @property
+    def api_key_js(self):
+        """API key escaped for use inside a JavaScript string."""
+        import json
+        return json.dumps(self.api_key)

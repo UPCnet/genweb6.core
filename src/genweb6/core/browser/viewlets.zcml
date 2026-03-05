@@ -24,6 +24,15 @@
         template="viewlets_templates/head/metarobots.pt"
         />
 
+    <browser:viewlet
+        name="genweb.weglot.head"
+        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+        class=".viewlets.WeglotHeadViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/head/weglot_meta.pt"
+        />
+
     <!-- HEADER -->
 
     <browser:viewlet
@@ -89,6 +98,15 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="viewlets_templates/footer/resources.pt"
+        />
+
+    <browser:viewlet
+        name="genweb.weglot.footer"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.WeglotFooterViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/footer/weglot.pt"
         />
 
     <!-- CONTENT -->

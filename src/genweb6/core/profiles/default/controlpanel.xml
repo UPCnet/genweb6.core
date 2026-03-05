@@ -92,4 +92,17 @@
         <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
+    <configlet
+        title="Weglot"
+        action_id="genweb6.core.weglot"
+        appId="genweb6.core.weglot"
+        category="genweb-configuration"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@weglot-controlpanel"
+        icon_expr="string:translate"
+        visible="True">
+
+        <permission>Genweb: Webmaster Users</permission>
+    </configlet>
+
 </object>

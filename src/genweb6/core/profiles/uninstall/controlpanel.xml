@@ -50,4 +50,11 @@
 
     </configlet>
 
+    <configlet
+        action_id="genweb6.core.weglot"
+        appId="genweb6.core.weglot"
+        remove="True">
+
+    </configlet>
+
 </object>

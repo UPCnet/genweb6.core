@@ -110,4 +110,11 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="weglot-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".weglot.WeglotSettingsControlPanel"
+        permission="genweb.webmaster"
+        />
+
 </configure>

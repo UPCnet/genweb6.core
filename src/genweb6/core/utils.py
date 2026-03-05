@@ -33,6 +33,7 @@ from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
+from genweb6.core.controlpanels.weglot import IWeglotSettings
 
 import json
 import logging
@@ -246,6 +247,11 @@ def genwebResourcesConfig():
 def genwebMetadadesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IMetadadesSettings)
+
+
+def genwebWeglotConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IWeglotSettings, check=False)
 
 
 class LoginUtils():

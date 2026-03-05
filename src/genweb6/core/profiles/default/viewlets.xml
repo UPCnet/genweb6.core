@@ -29,6 +29,8 @@
   <viewlet name="genweb.logosfooter"/>
   <viewlet name="genweb.linksfooter"/>
   <viewlet name="genweb.footer"/>
+  <viewlet name="genweb.resources.js"/>
+  <viewlet name="genweb.weglot.footer"/>
  </order>
  <order manager="plone.portalheader" skinname="Plone Default">
   <viewlet name="plone.favicon"/>
