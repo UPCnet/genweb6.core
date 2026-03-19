@@ -55,6 +55,42 @@
         />
 
     <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.IDocument"
+        class=".views.GetDXDocumentTextStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.IEvent"
+        class=".views.GetDXDocumentTextStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.INewsItem"
+        class=".views.GetDXDocumentTextStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="genweb6.core.content.document_image.document_image.IDocumentImage"
+        class=".views.GetDXDocumentTextStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
         name="tinymce_template_list"
         for="*"
         class=".views.TemplateList"

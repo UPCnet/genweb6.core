@@ -11,6 +11,7 @@ from plone import api
 from plone.app.contenttypes.interfaces import ICollection
 from plone.app.event.base import get_events
 from plone.app.event.base import localized_now
+from plone.app.event.base import spell_date
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.base.interfaces import ILoginForm
 from plone.batching import Batch
@@ -59,8 +60,22 @@ class GetDXDocumentText(BrowserView):
 
 class GetDXDocumentTextStyle(BrowserView):
 
+    ALLOWED_PORTAL_TYPES = ('Document', 'Event', 'News Item', 'genweb.upc.documentimage')
+
+    def __call__(self):
+        if self.context.portal_type not in self.ALLOWED_PORTAL_TYPES:
+            from zExceptions import NotFound
+            raise NotFound('Aquesta vista només és per a Document, Notícia, Esdeveniment o Pàgina amb imatge.')
+        return super().__call__()
+
     def textOutput(self):
         return self.context.text.output
+
+    def event_start_spelled(self):
+        """Per a esdeveniments: retorna el diccionari de spell_date (month_name, day, wkday_name)."""
+        if self.context.portal_type != 'Event' or not getattr(self.context, 'start', None):
+            return None
+        return spell_date(self.context.start, self.context)
 
 
 class GetDXDocumentTextTinyMCE(BrowserView):

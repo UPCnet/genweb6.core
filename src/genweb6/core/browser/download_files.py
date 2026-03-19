@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Products.CMFPlone.browser.navtree import DefaultNavtreeStrategy
 from plone.base.interfaces.constrains import ISelectableConstrainTypes
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -7,17 +6,35 @@ from Products.statusmessages.interfaces import IStatusMessage
 
 from datetime import datetime
 from plone import api
-from plone.app.layout.navigation.navtree import buildFolderTree
 from plone.namedfile import NamedBlobFile
 from zope.i18nmessageid import MessageFactory
 
 from genweb6.core import _
 
 import os
+import uuid
+
 import pdfkit
 import transaction
 
 _PMF = MessageFactory('plone')
+
+
+def query_items_under_root(root, portal_types):
+    """
+    Todos los contenidos bajo ``root`` que coincidan con ``portal_types``,
+    ordenados por path (padre antes que hijo). No usa el árbol de navegación,
+    así que incluye Document, File, etc. aunque no aparezcan en el menú.
+    """
+    catalog = api.portal.get_tool('portal_catalog')
+    base_path = '/'.join(root.getPhysicalPath())
+    brains = catalog.searchResults(
+        path={'query': base_path},
+        portal_type=list(portal_types),
+    )
+    items = [b for b in brains if b.getPath() != base_path]
+    items.sort(key=lambda b: b.getPath())
+    return items
 
 
 class DownloadFiles(BrowserView):
@@ -36,6 +53,20 @@ class DownloadFiles(BrowserView):
                 'genweb.upc.documentimage': _('Document Image'),
                 'Event': _PMF('Event')}
 
+    def _getSystemFontsCSS(self):
+        """Crea un archivo CSS temporal que fuerza el uso de fuentes del sistema."""
+        css_file = os.path.join('/tmp', 'system_fonts_pdf.css')
+        # CSS que fuerza fuentes del sistema estándar y maximiza el ancho del contenido
+        css_content = """
+/* Fuerza el uso de fuentes del sistema estándar */
+* {
+    font-family: Arial, Helvetica, "Liberation Sans", "DejaVu Sans", sans-serif !important;
+}
+"""
+        with open(css_file, 'w') as f:
+            f.write(css_content)
+        return css_file
+
     def __call__(self):
         form = self.request.form
         if not form or 'file_type' not in form:
@@ -51,7 +82,7 @@ class DownloadFiles(BrowserView):
                 if option in form['file_type']:
                     query['portal_type'].append(option)
 
-        items = query_items_in_natural_sort_order(self.context, query)
+        items = query_items_under_root(self.context, query['portal_type'])
         if not items:
             IStatusMessage(self.request).addStatusMessage(u"No files found!", "info")
             return self.template()
@@ -65,56 +96,63 @@ class DownloadFiles(BrowserView):
         if plone_id in self.context:
             api.content.delete(obj=self.context[plone_id])
 
-        items = query_items_in_natural_sort_order(self.context, query)
+        items = query_items_under_root(self.context, query['portal_type'])
         os.mkdir(exp_path)
         from_path = '/'.join(self.context.getPhysicalPath())
-        folders = {
-            plone_id: from_path
-        }
 
-        options_pdf = {'cookie': [('__ac', self.request.cookies['__ac'])]}
+        ac_cookie = self.request.cookies.get('__ac')
+        options_pdf = {'cookie': [('__ac', ac_cookie)]} if ac_cookie else {}
+
+        css_file = self._getSystemFontsCSS()
+        options_pdf['user-style-sheet'] = css_file
 
         for item in items:
-            # diff between item path and root path
             relative_path = os.path.relpath(item.getPath(), from_path)
             zip_path = os.path.join(exp_path, relative_path)
-            if item.portal_type == 'Folder':
-                os.mkdir(zip_path)  # create folder in root path + relative path
-                # update virtual folder structure
-                folders.update({item.id.lower(): item.getPath()})
+            is_folderish = getattr(item, 'is_folderish', False) or item.portal_type in (
+                'Folder', 'LIF', 'LRF', 'Large Folder',
+            )
+
+            if is_folderish:
+                os.makedirs(zip_path, exist_ok=True)
                 print(("Saved {}".format(zip_path)))
             elif item.portal_type == 'File':
                 obj = item.getObject()
-                for x in folders:
-                    test_path = folders[x] + '/' + obj.id
-                    if test_path == item.getPath():
-                        f = open(zip_path, 'wb')
-
-                f.write(obj.file.data)
-                f.close()
+                parent_dir = os.path.dirname(zip_path)
+                if parent_dir:
+                    os.makedirs(parent_dir, exist_ok=True)
+                with open(zip_path, 'wb') as f:
+                    f.write(obj.file.data)
                 print("Saved {}".format(zip_path))
             elif item.portal_type == 'Image':
                 obj = item.getObject()
-                for x in folders:
-                    test_path = folders[x] + '/' + obj.id
-                    if test_path == item.getPath():
-                        f = open(zip_path, 'wb')
-                f.write(obj.image.data)
-                f.close()
+                parent_dir = os.path.dirname(zip_path)
+                if parent_dir:
+                    os.makedirs(parent_dir, exist_ok=True)
+                with open(zip_path, 'wb') as f:
+                    f.write(obj.image.data)
                 print("Saved {}".format(zip_path))
             elif item.portal_type in ['News Item', 'Document', 'genweb.upc.documentimage', 'Event']:
                 obj = item.getObject()
-                for x in folders:
-                    test_path = folders[x] + '/' + obj.id
-                    if test_path == item.getPath():
-                        f = open(zip_path + '.pdf', 'wb')
-
-                pdfkit.from_url(
-                    obj.absolute_url(),
-                    '/tmp/' + exp_path + '.pdf', options=options_pdf)
-                f.write(open('/tmp/' + exp_path + '.pdf', 'rb').read())
-                f.close()
-                print("Saved {}".format(zip_path + '.pdf'))
+                pdf_path = zip_path + '.pdf'
+                parent_dir = os.path.dirname(pdf_path)
+                if parent_dir:
+                    os.makedirs(parent_dir, exist_ok=True)
+                url = obj.absolute_url() + '/@@genweb.get.dxdocument.text.complete.style'
+                tmp_pdf = '/tmp/{0}-{1}.pdf'.format(exp_path, uuid.uuid4().hex)
+                try:
+                    pdfkit.from_url(url, tmp_pdf, options=options_pdf)
+                    if os.path.isfile(tmp_pdf) and os.path.getsize(tmp_pdf) > 0:
+                        with open(tmp_pdf, 'rb') as tmp_f:
+                            with open(pdf_path, 'wb') as f:
+                                f.write(tmp_f.read())
+                        print("Saved {}".format(pdf_path))
+                finally:
+                    if os.path.isfile(tmp_pdf):
+                        try:
+                            os.remove(tmp_pdf)
+                        except OSError:
+                            pass
 
         os.system('zip -r {0}.zip {0}'.format(exp_path))
         os.system('rm -rf {}'.format(exp_path))
@@ -146,45 +184,3 @@ class DownloadFiles(BrowserView):
         self.request.response.redirect(zip_file.absolute_url() + '/view')
 
 
-def query_items_in_natural_sort_order(root, query):
-    """
-    Create a flattened out list of portal_catalog queried items in their natural depth first navigation order.
-
-    @param root: Content item which acts as a navigation root
-
-    @param query: Dictionary of portal_catalog query parameters
-
-    @return: List of catalog brains
-    """
-
-    # Navigation tree base portal_catalog query parameters
-    applied_query = {'path': '/'.join(root.getPhysicalPath()),
-                     'sort_on': 'getObjPositionInParent'}
-
-    # Apply caller's filters
-    applied_query.update(query)
-
-    # Set the navigation tree build strategy
-    # - use navigation portlet strategy as base
-    strategy = DefaultNavtreeStrategy(root)
-    strategy.rootPath = '/'.join(root.getPhysicalPath())
-    strategy.showAllParents = True
-    strategy.bottomLevel = 999
-    # This will yield out tree of nested dicts of
-    # item brains with retrofitted navigational data
-    tree = buildFolderTree(root, root, applied_query, strategy=strategy)
-
-    items = []
-
-    def flatten(children):
-        """ Recursively flatten the tree """
-        for c in children:
-            # Copy catalog brain object into the result
-            items.append(c["item"])
-            children = c.get("children", None)
-            if children:
-                flatten(children)
-
-    flatten(tree["children"])
-
-    return items

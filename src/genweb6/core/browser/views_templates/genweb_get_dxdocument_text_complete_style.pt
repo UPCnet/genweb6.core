@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="here/@@blank_template/macros/master"
+      i18n:domain="plone">
+<body class="template-get-dxdocument-text-complete-style">
+  <metal:main metal:fill-slot="content">
+    <div class="container" 
+         tal:define="portal_type context/portal_type;
+                     toLocalizedTime nocall:context/@@plone/toLocalizedTime">
+
+      <article id="content">
+        <header>
+          <h1 tal:content="context/Title">Title</h1>
+          <p class="lead" tal:content="context/Description" 
+             tal:condition="context/Description">Description</p>
+        </header>
+      </article>
+
+      <tal:news tal:condition="python: portal_type == 'News Item'">
+        <div class="documentByline mb-3"
+             tal:define="effective_date context/EffectiveDate"
+             tal:condition="effective_date">
+          <span tal:content="python: toLocalizedTime(effective_date)">Date</span>
+        </div>
+      </tal:news>
+
+      <div class="viewlet-above-content-body">
+        <tal:docimage tal:condition="python: portal_type == 'genweb.upc.documentimage'">
+          <tal:lead tal:condition="not:context/not_show_image">
+            <tal:block metal:use-macro="context/@@macros-genweb-leadimage/figure"></tal:block>
+          </tal:lead>
+        </tal:docimage>
+
+        <tal:leadimage tal:condition="python: portal_type in ('News Item', 'Event') and getattr(context, 'image', None) and not getattr(context, 'not_show_image', False)">
+          <section id="section-leadimage">
+            <tal:block metal:use-macro="context/@@macros-genweb-leadimage/figure"></tal:block>
+          </section>
+        </tal:leadimage>
+      </div>
+
+      <div id="content-core">
+        <tal:event tal:condition="python: portal_type == 'Event'">
+          <tal:eventsummary replace="structure context/@@event_summary" />
+        </tal:event>
+        <div id="parent-fieldname-text" class="stx"
+            tal:condition="view/textOutput"
+            tal:content="structure view/textOutput" />
+      </div>
+
+    </div>
+  </metal:main>
+</body>
+</html>
