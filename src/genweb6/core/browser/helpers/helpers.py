@@ -705,6 +705,11 @@ class genwebStats(BrowserView):
         days = int(minutes/60/24)
         unitat = api.portal.get_registry_record(
             'genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
+
+        # Recupera número total de continguts del cataleg
+        pc = api.portal.get_tool(name='portal_catalog')
+        total_contents = len(pc)
+        
         stats = {
             'contact_email': contact_email,
             'inactivity_days': days,
@@ -712,6 +717,7 @@ class genwebStats(BrowserView):
             'titulo': header_config.html_title_es,
             'title': header_config.html_title_en,
             'unitat': unitat,
+            'total_contents': total_contents,
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 
