@@ -336,4 +336,13 @@
         permission="zope.Public"
         />
 
+    <!-- Exporta en JSON los grupos con permisos asignados en contenidos y globalmente -->
+    <browser:page
+        name="export-group-permissions"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".export_group_permissions.ExportGroupPermissionsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>
