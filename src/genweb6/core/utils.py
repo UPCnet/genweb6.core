@@ -2,6 +2,7 @@
 from AccessControl import getSecurityManager
 from DateTime.DateTime import DateTime
 from Products.Five.browser import BrowserView
+from Products.PortalTransforms.transforms.safe_html import SafeHTML
 
 from bs4 import BeautifulSoup
 from plone import api
@@ -550,3 +551,36 @@ def reset_rate_limit(ip_address):
     """Resetea el rate limit para una IP específica."""
     if ip_address in _rate_limit_cache:
         del _rate_limit_cache[ip_address]
+
+
+def safe_html_transform(content, context=None):
+    """
+    Sanitiza HTML usando SafeHTML.scrub_html() de Products.PortalTransforms,
+    que respeta valid_tags, nasty_tags y custom_attributes del panel de Plone
+    (@@filter-controlpanel / plone.registry IFilterSchema).
+
+    Se llama scrub_html() directamente en lugar de pasar por convert() para
+    ignorar el flag disable_filtering: el filtrado se aplica siempre, ya que
+    este HTML proviene de fuentes externas y no de contenido editado por el
+    usuario en el propio Plone.
+
+    Los atributos on* (onmouseout, onclick, etc.) son eliminados siempre porque
+    safe_attrs_only=True usa lxml.html.defs.safe_attrs, que no los incluye.
+
+    Devuelve el HTML filtrado. Si falla, loguea el error y devuelve el
+    contenido original sin modificar.
+    """
+    import logging as _logging
+    _logger = _logging.getLogger('genweb6.core')
+    try:
+        transformer = SafeHTML()
+        return transformer.scrub_html(content)
+    except Exception as exc:
+        path = ''
+        if context is not None:
+            try:
+                path = context.virtual_url_path()
+            except Exception:
+                pass
+        _logger.error('Error aplicando safe_html [%s]: %s', path, exc)
+    return content

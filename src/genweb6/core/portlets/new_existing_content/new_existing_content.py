@@ -29,6 +29,7 @@ from zope.interface import invariant
 from zope.schema.interfaces import IField
 from zope.component import hooks
 from genweb6.core.validations import validate_externalurl
+from genweb6.core.utils import safe_html_transform
 
 from genweb6.core import GenwebMessageFactory as _
 
@@ -265,6 +266,9 @@ class Renderer(base.Renderer):
             content = _(u"ERROR. This URL does not exist")
         except:
             content = _(u"ERROR. Charset undefined")
+
+        if content and not content.startswith('ERROR'):
+            content = safe_html_transform(content, self.context)
 
         return content
 
