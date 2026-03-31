@@ -17,6 +17,9 @@ from zope.interface import alsoProvides
 from genweb6.core import HAS_PAM
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.interfaces import IProtectedContent
+from plone.cachepurging.interfaces import ICachePurgingSettings
+from plone.app.theming.interfaces import IThemeSettings
+
 
 import json
 import logging
@@ -709,6 +712,17 @@ class genwebStats(BrowserView):
         # Recupera número total de continguts del cataleg
         pc = api.portal.get_tool(name='portal_catalog')
         total_contents = len(pc)
+
+        # Check if caché URL is correct
+        cache_purging_settings = registry.forInterface(ICachePurgingSettings)
+        domains = cache_purging_settings.domains
+        site_url = api.portal.get().absolute_url()
+        url_is_in_cache_domains = site_url in ''.join(domains)
+
+        # Check if site has custom css
+        theme_settings = registry.forInterface(IThemeSettings)
+        custom_css = theme_settings.custom_css
+        has_custom_css = custom_css is not None and custom_css != ''
         
         stats = {
             'contact_email': contact_email,
@@ -718,6 +732,8 @@ class genwebStats(BrowserView):
             'title': header_config.html_title_en,
             'unitat': unitat,
             'total_contents': total_contents,
+            'url_is_in_cache_domains': url_is_in_cache_domains,
+            'has_custom_css': has_custom_css,
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 
