@@ -584,3 +584,44 @@ def safe_html_transform(content, context=None):
                 pass
         _logger.error('Error aplicando safe_html [%s]: %s', path, exc)
     return content
+
+
+def set_pdf_metadata(pdf_path, title, language):
+    """Metadatos de accesibilidad: idioma, título y bandera de etiquetado.
+
+    «Etiquetado para accesibilidad» en visores PDF corresponde al diccionario
+    MarkInfo (/Marked) en el catálogo. wkhtmltopdf no genera un árbol de
+    estructura real (StructTreeRoot); solo marcamos metadatos coherentes con
+    Lang y título. Un PDF plenamente PDF/UA suele requerir motor con salida
+    etiquetada o post-procesado (p. ej. Acrobat «Reconocer texto» / etiquetar).
+    """
+    try:
+        import pikepdf
+        from Products.CMFPlone.utils import safe_unicode
+    except ImportError as exc:
+        logger.warning('set_pdf_metadata: pikepdf no disponible: %s', exc)
+        return
+    title = safe_unicode(title) if title is not None else u''
+    language = safe_unicode(language) if language is not None else u'ca'
+    if not language.strip():
+        language = u'ca'
+    try:
+        with pikepdf.open(pdf_path, allow_overwriting_input=True) as pdf:
+            with pdf.open_metadata() as meta:
+                meta['dc:title'] = title
+                meta['dc:language'] = language
+            pdf.Root['/Lang'] = pikepdf.String(language)
+            pdf.Root['/MarkInfo'] = pikepdf.Dictionary(
+                Marked=True,
+                Suspects=False,
+            )
+            pdf.Root['/ViewerPreferences'] = pikepdf.Dictionary(
+                DisplayDocTitle=True,
+            )
+            pdf.save(pdf_path)
+    except Exception as exc:
+        logger.exception(
+            'set_pdf_metadata: error escribiendo metadatos en %s: %s',
+            pdf_path,
+            exc,
+        )

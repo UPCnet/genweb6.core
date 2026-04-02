@@ -79,6 +79,7 @@ setup(
         'Products.PloneKeywordManager',
         'xmltodict',
         'PyPDF2',
+        'pikepdf',
     ],
 
     extras_require={

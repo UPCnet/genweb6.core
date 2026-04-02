@@ -10,6 +10,7 @@ from plone.namedfile import NamedBlobFile
 from zope.i18nmessageid import MessageFactory
 
 from genweb6.core import _
+from genweb6.core.utils import set_pdf_metadata
 
 import os
 import uuid
@@ -146,6 +147,16 @@ class DownloadFiles(BrowserView):
                         with open(tmp_pdf, 'rb') as tmp_f:
                             with open(pdf_path, 'wb') as f:
                                 f.write(tmp_f.read())
+                        title = obj.Title()
+                        language = getattr(obj, 'language', None)
+                        if not language:
+                            try:
+                                language = api.portal.get_registry_record(
+                                    'plone.default_language'
+                                )
+                            except Exception:
+                                language = 'ca'
+                        set_pdf_metadata(pdf_path, title, language)
                         print("Saved {}".format(pdf_path))
                 finally:
                     if os.path.isfile(tmp_pdf):
