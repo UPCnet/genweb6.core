@@ -70,7 +70,6 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces import ISocialMediaSchema
 from Products.CMFPlone.interfaces.syndication import IFeedItem
 from Products.CMFPlone.patterns.tinymce import TinyMCESettingsGenerator
-from Products.CMFPlone.utils import getSiteLogo
 from Products.CMFPlone.utils import get_portal
 from Products.CMFPlone.utils import normalizeString
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
@@ -982,7 +981,7 @@ def _get_tags(self):
             )
 
     if not found_image:
-        url = getSiteLogo()
+        url = site.absolute_url() + "/++theme++genweb6.theme/img/logo.png"
         tags.extend(
             [
                 dict(property="og:image", content=url),
