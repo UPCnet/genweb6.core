@@ -1,11 +1,21 @@
 Changelog
 =========
 
-1.94 (unreleased)
+1.94 (2026-04-07)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Añadir logs al clean_pdfs [Iago López]
+* [UPD] Mejorar accesibilidad de los pdf generados [Iago López]
+* [UPD] Cambiar logo al de la UPC en los meta og:image y similares cuando no hay imagen [Iago López]
+* UPD genweb_stats view with info about url being in [Rubén Padilla Mateu]
+* cache domains and site having custom css [Rubén Padilla Mateu]
+* [UPD] Porlet multicollection, en random no fijar el limit a 1 si no se pone valor [Iago López]
+* [UPD] Contenidos existentes añadir filtro de safe_html_transform, ahora se tiene en cuenta la configuracion de filter-controlpanel [Iago López]
+* [ADD] Añadir vista export-group-permissions para exportar grupos con permisos asignados en un JSON [Iago López]
+* Merge remote-tracking branch 'origin/master' into develop [Rubén Padilla Mateu]
+* UPD genwebStats view [Rubén Padilla Mateu]
+* [UPD] Mejoras download_files [Iago López]
+* [ADD] weglot control panel [Clàudia Andreu]
 
 1.93 (2026-03-02)
 -----------------
