@@ -13,8 +13,10 @@ import transaction
 from io import BytesIO
 from PyPDF2 import PdfReader
 import warnings
+import time
 
 logger = logging.getLogger(__name__)
+
 
 def is_signed_pdf(data):
     """
@@ -51,6 +53,9 @@ class CleanPDFsView(BrowserView):
     def __call__(self):
         alsoProvides(self.request, IDisableCSRFProtection)
 
+        # Registrar tiempo de inicio
+        start_time = time.time()
+
         catalog = api.portal.get_tool('portal_catalog')
         brains = catalog.searchResults(portal_type='File')
 
@@ -72,10 +77,25 @@ class CleanPDFsView(BrowserView):
         errors = []
         problematic_pdfs = []
 
+        # Calcular el total de PDFs candidatos antes de empezar
+        logger.info("=" * 80)
+        logger.info("INICIANDO LIMPIEZA DE METADATOS DE PDFs")
+        logger.info("Calculando total de PDFs candidatos...")
 
-
+        candidates_pdfs = []
+        total_pdfs_to_process = 0
         for brain in brains:
             obj = brain.getObject()
+            if not obj.file or not obj.file.filename.lower().endswith('.pdf'):
+                continue
+            candidates_pdfs.append(obj)
+            total_pdfs_to_process += 1
+
+        logger.info(f"Total de PDFs candidatos: {total_pdfs_to_process}")
+        logger.info("=" * 80)
+
+        count_processed = 0  # Contador de PDFs procesados (total de iteraciones)
+        for obj in candidates_pdfs:
 
             # Reparar obj.file si és bytes (cas erroni)
             # if isinstance(obj.file, bytes):
@@ -86,6 +106,17 @@ class CleanPDFsView(BrowserView):
             #         filename=filename
             #     )
             #     obj.reindexObject()
+
+            # Incrementar contador de procesados
+            count_processed += 1
+
+            # Mostrar progreso cada 50 PDFs
+            if count_processed % 50 == 0:
+                percentage = (
+                    count_processed / total_pdfs_to_process * 100) if total_pdfs_to_process > 0 else 0
+                elapsed_time = time.time() - start_time
+                logger.info(
+                    f"[PROGRESO] {count_processed}/{total_pdfs_to_process} ({percentage:.1f}%) - Tiempo transcurrido: {elapsed_time:.1f}s")
 
             if not obj.file or not obj.file.filename.lower().endswith('.pdf'):
                 continue
@@ -153,6 +184,31 @@ class CleanPDFsView(BrowserView):
                 error_msg = f"Error inesperado: {str(e)}"
                 errors.append(f"{obj.absolute_url()}: {error_msg}")
                 logger.exception(f"[ERROR] {obj.absolute_url()} - {error_msg}")
+
+        # Calcular duración total
+        end_time = time.time()
+        total_duration = end_time - start_time
+        hours = int(total_duration // 3600)
+        minutes = int((total_duration % 3600) // 60)
+        seconds = int(total_duration % 60)
+
+        duration_str = ""
+        if hours > 0:
+            duration_str += f"{hours}h "
+        if minutes > 0 or hours > 0:
+            duration_str += f"{minutes}m "
+        duration_str += f"{seconds}s"
+
+        logger.info("=" * 80)
+        logger.info("PROCESO FINALIZADO")
+        logger.info(
+            f"Total de PDFs procesados: {count_processed}/{total_pdfs_to_process}")
+        logger.info(f"Duración total: {duration_str} ({total_duration:.2f} segundos)")
+        logger.info(f"PDFs limpiados exitosamente: {count_cleaned}")
+        logger.info(f"PDFs firmados (saltados): {count_signed}")
+        logger.info(f"PDFs problemáticos: {count_problematic}")
+        logger.info(f"Errores: {len(errors)}")
+        logger.info("=" * 80)
 
         html = f"""
             <h2>PDF Metadata Cleanup</h2>
