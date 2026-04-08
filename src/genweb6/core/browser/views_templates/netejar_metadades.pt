@@ -93,7 +93,7 @@
             // Mostrar alerta después de 3 segundos
             setTimeout(function() {
               if (!alertShown) {
-                alert('El PDF sense metadades es descarregarà en breus. Pot tardar uns minuts.');
+                alert('El PDF sense metadades es descarregarà en breu. Pot tardar uns minuts.');
                 alertShown = true;
               }
             }, 3000);

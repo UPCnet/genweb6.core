@@ -61,7 +61,7 @@ msgid "5 Destacats Esquerra"
 msgstr "5 Featured Left"
 
 #. Default: "Events in next 7 days."
-#: ../patches.py:1506
+#: ../patches.py:1507
 msgid "7days_events"
 msgstr "Events in next 7 days."
 
@@ -78,7 +78,7 @@ msgstr "<a href='https://codebeautify.org/jsvalidate' target='_blank'>Validate</
 msgid "<i class=\"bi bi-info-circle-fill me-1\"></i> Passos per afegir continguts"
 msgstr "<i class=\"bi bi-info-circle-fill me-1\"></i> Steps to add content"
 
-#: ../behaviors/seo.py:46
+#: ../behaviors/seo.py:76
 msgid "<ul><li><span class='fw-bold'>No value (per defecte):</span> Els motors de cerca indexen la pàgina i segueixen els enllaços (comportament per defecte).</li><li><span class='fw-bold'>index, nofollow:</span> Indexa la pàgina, però no segueix els enllaços que conté.</li><li><span class='fw-bold'>noindex, follow:</span> No indexa la pàgina, però sí que segueix els enllaços.</li><li><span class='fw-bold'>index, follow:</span> Indexa la pàgina i segueix els enllaços (equivalent a no especificar res).</li><li><span class='fw-bold'>noindex:</span> No indexa la pàgina i no segueix els enllaços.</li><li><span class='fw-bold'>noindex, nofollow:</span> No indexa la pàgina ni segueix els enllaços.</li></ul>"
 msgstr "<ul><li><span class='fw-bold'>No value (default):</span> Search engines index the page and follow the links (default behavior).</li><li><span class='fw-bold'>index, nofollow:</span> Indexes the page but does not follow the links it contains.</li><li><span class='fw-bold'>noindex, follow:</span> Does not index the page but follows the links.</li><li><span class='fw-bold'>index, follow:</span> Indexes the page and follows the links (equivalent to not specifying anything).</li><li><span class='fw-bold'>noindex:</span> Does not index the page and does not follow the links.</li><li><span class='fw-bold'>noindex, nofollow:</span> Does not index the page nor follow the links.</li></ul>"
 
@@ -89,6 +89,10 @@ msgstr "A Banner"
 #: ../profiles/default/types/Logos_Footer.xml
 msgid "A footer logo"
 msgstr "A footer logo"
+
+#: ../controlpanels/weglot.py:25
+msgid "API Key de Weglot"
+msgstr ""
 
 #: ../browser/viewlets_templates/content/important.pt:16
 msgid "ATENCIÓ:"
@@ -102,7 +106,11 @@ msgstr "Accordion"
 msgid "Acordió / Pestanyes"
 msgstr "Accordion / Tabs"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:208
+#: ../controlpanels/weglot.py:18
+msgid "Activar Weglot"
+msgstr ""
+
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:216
 msgid "Add Event Multi-view Collection Portlet"
 msgstr "Add Event Multi-view Collection Portlet"
 
@@ -114,7 +122,7 @@ msgstr "Add Events Portlet"
 msgid "Add Grid Events portlet"
 msgstr "Add Grid Events portlet"
 
-#: ../portlets/multiviewcollection/multiviewcollection.py:396
+#: ../portlets/multiviewcollection/multiviewcollection.py:400
 msgid "Add Multi-view Collection Portlet"
 msgstr "Add Multi-view Collection Portlet"
 
@@ -147,12 +155,8 @@ msgstr "Add field to mark a link to open in a new window when clicked."
 msgid "Add icon fields"
 msgstr "Add icon fields"
 
-#: ../behaviors.zcml:60
-msgid "Add option to hide image on event page but show in portlets and views"
-msgstr ""
-
-#: ../behaviors.zcml:69
-msgid "Add option to hide image on news page but show in portlets and views"
+#: ../behaviors.zcml:59
+msgid "Add option to hide image on content page but show in portlets and views"
 msgstr ""
 
 #: ../tiles/video/video.py:84
@@ -316,6 +320,10 @@ msgstr "Light"
 msgid "Clar a fosc"
 msgstr "Light to dark"
 
+#: ../controlpanels/weglot.py:26
+msgid "Clau API necessària per connectar amb Weglot (ex: wg_xxxxxxxxxxxxxxxxxx)."
+msgstr ""
+
 #: ../controlpanels/cintillo.py:24
 msgid "Color de fons de l'avís"
 msgstr "Background color of the notice"
@@ -351,7 +359,7 @@ msgstr "Configure internal content"
 msgid "Configuracions"
 msgstr "Configurations"
 
-#: ../patches.py:1010
+#: ../patches.py:1011
 msgid "Connections"
 msgstr "Connections"
 
@@ -362,6 +370,10 @@ msgstr "Standard"
 #: ../browser/viewlets_templates/footer/footer.pt:32
 msgid "Contacte amb nosaltres"
 msgstr "Contact us"
+
+#: ../behaviors.zcml:59
+msgid "Content Image Options"
+msgstr ""
 
 #: ../tiles/destacats/destacatbase.py:39
 #: ../tiles/destacats/destacats.py:50
@@ -386,21 +398,21 @@ msgstr "Contents of this directory"
 msgid "Continguts que alimenten la plantilla"
 msgstr "Content that feeds the template"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:102
+#: ../content/accordion_tabs/accordion_tabs.pt:103
 #: ../content/carousel/carousel.pt:199
 msgid "Copiar HTML"
 msgstr "Copy HTML"
 
-#: ../browser/viewlets.py:644
+#: ../browser/viewlets.py:651
 msgid "Copiar enllaç"
 msgstr "Copy link"
 
-#: ../content/accordion_tabs/accordion_tabs.pt:102
+#: ../content/accordion_tabs/accordion_tabs.pt:103
 #: ../content/carousel/carousel.pt:199
 msgid "Copiat"
 msgstr "Copied!"
 
-#: ../browser/viewlets.py:649
+#: ../browser/viewlets.py:656
 msgid "Copiat!"
 msgstr "Copied!"
 
@@ -497,7 +509,7 @@ msgstr "EXTERNAL: URL of the page to display"
 msgid "Edit"
 msgstr "Edit"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:219
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:227
 msgid "Edit Event Multi-view Collection Portlet"
 msgstr "Edit Event Multi-view Collection Portlet"
 
@@ -509,7 +521,7 @@ msgstr "Edit Events Portlet"
 msgid "Edit Grid Events Portlet"
 msgstr "Edit Grid Events Portlet"
 
-#: ../portlets/multiviewcollection/multiviewcollection.py:407
+#: ../portlets/multiviewcollection/multiviewcollection.py:411
 msgid "Edit Multi-view Collection Portlet"
 msgstr "Edit Multi-view Collection Portlet"
 
@@ -552,7 +564,7 @@ msgstr "The value entered is not a valid URL."
 msgid "Element de la pàgina a mostrar, per defecte #content-core"
 msgstr "Element of the page to display, by default #content-core"
 
-#: ../browser/helpers/helpers_touchers.py:1018
+#: ../browser/helpers/helpers_touchers.py:1021
 msgid "Els continguts han sigut exclosos de la navegació correctament."
 msgstr "The contents have been excluded from the navigation correctly."
 
@@ -597,10 +609,6 @@ msgstr "It is displayed under the title of the web in header types with half her
 #: ../portlets/fullnews/fullnews.py:40
 msgid "Escull com es mostraran les noticies"
 msgstr "How news will be displayed"
-
-#: ../behaviors.zcml:60
-msgid "Event Image Options"
-msgstr ""
 
 #: ../portlets/grid_events/grid_events.pt:7
 msgid "Events"
@@ -704,11 +712,11 @@ msgstr "Full 4 columns: four columns of full image size and text below"
 msgid "FullNews"
 msgstr "News with picture"
 
-#: ../patches.py:1009
+#: ../patches.py:1010
 msgid "Genweb Advanced"
 msgstr "Genweb Advanced"
 
-#: ../patches.py:1008
+#: ../patches.py:1009
 msgid "Genweb Configuration"
 msgstr "Genweb Configuration"
 
@@ -736,7 +744,7 @@ msgstr "Grid Events"
 msgid "Header Settings"
 msgstr "Header Settings"
 
-#: ../browser/helpers/helpers_touchers.py:1020
+#: ../browser/helpers/helpers_touchers.py:1023
 msgid "Hi ha hagut un error durant el procediment."
 msgstr "There was an error during the procedure."
 
@@ -818,6 +826,10 @@ msgstr "Standard image"
 #: ../controlpanels/header.py:146
 msgid "Imatge principal innovadora"
 msgstr "Hero image"
+
+#: ../controlpanels/weglot.py:19
+msgid "Inclou el script de Weglot per a la traducció del lloc."
+msgstr ""
 
 #: ../controlpanels/header.py:61
 msgid "Inferior"
@@ -975,7 +987,7 @@ msgstr "Maximum number of news items to display (from 1 to 14)"
 msgid "Menú al peu"
 msgstr "Footer menu"
 
-#: ../behaviors/seo.py:45
+#: ../behaviors/seo.py:75
 msgid "Metatag Robots"
 msgstr "Metatag Robots"
 
@@ -1034,10 +1046,6 @@ msgstr "Name of the Twitter account used to shown the tweets"
 #: ../portlets/news/news.py:48
 msgid "News"
 msgstr "News"
-
-#: ../behaviors.zcml:69
-msgid "News Image Options"
-msgstr ""
 
 #: ../behaviors/event_image.py:18
 msgid "No mostreu la imatge a la pàgina, però sí que ho feu als portlets i a les vistes."
@@ -1195,7 +1203,7 @@ msgstr "Post the notice"
 msgid "Purge"
 msgstr "Clear cache"
 
-#: ../browser/views.py:655
+#: ../browser/views.py:778
 msgid "Purged"
 msgstr "Cache cleared"
 
@@ -1223,19 +1231,19 @@ msgstr "Round to the right"
 msgid "Rodona a l’esquerra"
 msgstr "Round to the left"
 
-#: ../behaviors/seo.py:40
+#: ../behaviors/seo.py:70
 msgid "S'utilitza a la descripció de la secció 'head' de la pàgina web"
 msgstr "Used in the description of the 'head' section of the web page"
 
-#: ../behaviors/seo.py:34
+#: ../behaviors/seo.py:64
 msgid "S'utilitza al títol de la secció 'head' de la pàgina web"
 msgstr "Used in the title of the 'head' section of the web page"
 
-#: ../behaviors/seo.py:29
+#: ../behaviors/seo.py:59
 msgid "SEO"
 msgstr "SEO"
 
-#: ../behaviors/seo.py:39
+#: ../behaviors/seo.py:69
 msgid "SEO Description"
 msgstr "SEO Description"
 
@@ -1243,7 +1251,7 @@ msgstr "SEO Description"
 msgid "SEO Fields"
 msgstr "SEO Fields"
 
-#: ../behaviors/seo.py:33
+#: ../behaviors/seo.py:63
 msgid "SEO Title"
 msgstr "SEO Title"
 
@@ -1385,11 +1393,11 @@ msgstr "This behavior adds extra fields to a Content Type for SEO optimisation"
 msgid "This is an inner link"
 msgstr "This is an inner link"
 
-#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:209
+#: ../portlets/multiviewcollectionevents/multiviewcollectionevents.py:217
 msgid "This portlet displays a listing of items from a Collection of events."
 msgstr "This portlet displays a listing of items from a Collection of events."
 
-#: ../portlets/multiviewcollection/multiviewcollection.py:397
+#: ../portlets/multiviewcollection/multiviewcollection.py:401
 msgid "This portlet displays a listing of items from a Collection."
 msgstr "This portlet displays a listing of items from a Collection."
 
@@ -1553,6 +1561,10 @@ msgstr "View type"
 msgid "Warning"
 msgstr "Warning"
 
+#: ../controlpanels/weglot.py:34
+msgid "Weglot"
+msgstr ""
+
 #: ../portlets/esdeveniments/esdeveniments.py:43
 msgid "Workflow state"
 msgstr "Workflow state"
@@ -1579,7 +1591,7 @@ msgid "alert_really_delete_contents"
 msgstr "Do you really want to delete those contents?"
 
 #. Default: "All events"
-#: ../patches.py:1491
+#: ../patches.py:1492
 msgid "all_events"
 msgstr "All events"
 
@@ -1666,22 +1678,22 @@ msgid "enabled"
 msgstr "enabled"
 
 #. Default: "${from} until ${until}."
-#: ../patches.py:1507
+#: ../patches.py:1508
 msgid "events_from_until"
 msgstr "${from} until ${until}."
 
 #. Default: "Events in ${month} ${year}"
-#: ../patches.py:1571
+#: ../patches.py:1572
 msgid "events_in_month"
 msgstr "Events in ${month} ${year}"
 
 #. Default: "Events in week ${weeknumber}"
-#: ../patches.py:1544
+#: ../patches.py:1545
 msgid "events_in_week"
 msgstr "Events in week ${weeknumber}"
 
 #. Default: "Events on ${day}"
-#: ../patches.py:1529
+#: ../patches.py:1530
 msgid "events_on_day"
 msgstr "Events on ${day}"
 
@@ -1690,7 +1702,7 @@ msgid "folder contents"
 msgstr "Folder contents"
 
 #. Default: "Future events"
-#: ../patches.py:1497
+#: ../patches.py:1498
 msgid "future_events"
 msgstr "Future events"
 
@@ -1904,11 +1916,11 @@ msgstr "Big image right"
 msgid "imatge-gran-esquerra"
 msgstr "Big image left"
 
-#: ../behaviors/seo.py:19
+#: ../behaviors/seo.py:20
 msgid "index, follow"
 msgstr "index, follow"
 
-#: ../behaviors/seo.py:17
+#: ../behaviors/seo.py:18
 msgid "index, nofollow"
 msgstr "index, nofollow"
 
@@ -1929,7 +1941,7 @@ msgid "invisible"
 msgstr "Invisible"
 
 #. Default: "Add new…"
-#: ../patches.py:1035
+#: ../patches.py:1036
 msgid "label_add_new_item"
 msgstr "Add new…"
 
@@ -1939,7 +1951,7 @@ msgid "label_add_to_ical"
 msgstr "iCal"
 
 #. Default: "Display"
-#: ../patches.py:1032
+#: ../patches.py:1033
 msgid "label_choose_template"
 msgstr "Display"
 
@@ -2087,15 +2099,15 @@ msgstr "<strong>Important:</strong> Do not upload encrypted or password-protecte
 msgid "no_file_selected"
 msgstr "No file selected"
 
-#: ../behaviors/seo.py:20
+#: ../behaviors/seo.py:21
 msgid "noindex"
 msgstr "noindex"
 
-#: ../behaviors/seo.py:18
+#: ../behaviors/seo.py:19
 msgid "noindex, follow"
 msgstr "noindex, follow"
 
-#: ../behaviors/seo.py:21
+#: ../behaviors/seo.py:22
 msgid "noindex, nofollow"
 msgstr "noindex, nofollow"
 
@@ -2105,7 +2117,7 @@ msgid "not_show_image"
 msgstr "Do not display the image on the page, but do in the portlets and views"
 
 #: ../browser/folder_index_view.pt:23
-#: ../browser/viewlets.py:396
+#: ../browser/viewlets.py:397
 #: ../browser/views_templates/filtered_contents_search/filtered_contents_search.pt:76
 msgid "obrir_link_finestra_nova"
 msgstr "(open link in a new window)"
@@ -2120,7 +2132,7 @@ msgid "password_reset_generic_message"
 msgstr "If the user exists in the system, you will receive an email with instructions to reset your password."
 
 #. Default: "Past events"
-#: ../patches.py:1494
+#: ../patches.py:1495
 msgid "past_events"
 msgstr "Past events"
 
@@ -2248,12 +2260,12 @@ msgid "today_link"
 msgstr "Today"
 
 #. Default: "Todays events"
-#: ../patches.py:1503
+#: ../patches.py:1504
 msgid "todays_events"
 msgstr "Todays events"
 
 #. Default: "Todays upcoming events"
-#: ../patches.py:1500
+#: ../patches.py:1501
 msgid "todays_upcoming_events"
 msgstr "Todays upcoming events"
 
