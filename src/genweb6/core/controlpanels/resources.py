@@ -107,18 +107,6 @@ class ResourcesSettingsForm(controlpanel.RegistryEditForm):
             self.status = self.formErrorsMessage
             return
 
-        try:
-            css = Scss()
-            if data['upload_files']:
-                if data['file_css']:
-                    checkCSS = utils.remove_quotes_from_var_scss(css.compile(data['file_css']._data._data))
-            else:
-                if data['text_css']:
-                    checkCSS = utils.remove_quotes_from_var_scss(css.compile(data['text_css']))
-        except Exception as e:
-            IStatusMessage(self.request).addStatusMessage(f"CSS - {e}", type='error')
-            return
-
         ramcache.caches.clear()
         self.applyChanges(data)
 

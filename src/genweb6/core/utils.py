@@ -198,16 +198,20 @@ def compile_css(source):
     """Compila con pyScss; si falla (p. ej. CSS con !important), devuelve el
     texto tal cual para no romper CSS válido que pyScss no soporta bien.
     """
+    if isinstance(source, bytes):
+        source = source.decode('utf-8')
     try:
         return remove_quotes_from_var_scss(Scss().compile(source))
-    except Exception as e:
-        logging.getLogger(__name__).warning(
-            'SCSS compile failed, using raw CSS: %s', e
-        )
+    except Exception:
         return remove_quotes_from_var_scss(source)
 
 
 def remove_quotes_from_var_scss(text):
+    """Normalitza ``var(\"...\")`` a ``var(...)``. Accepta ``str`` o ``bytes``."""
+    if text is None:
+        return None
+    if isinstance(text, bytes):
+        text = text.decode('utf-8')
     return re.sub(r'var\("([^"]*)"\)', lambda m: 'var(' + m.group(1) + ')', text)
 
 
