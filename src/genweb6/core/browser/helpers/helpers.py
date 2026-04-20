@@ -719,9 +719,23 @@ class genwebStats(BrowserView):
         site_url = api.portal.get().absolute_url()
         url_is_in_cache_domains = site_url in ''.join(domains)
 
+        # Get Resources Settings
         resources_settings = registry.forInterface(IResourcesSettings)
         has_custom_css = bool(resources_settings.text_css)
         has_custom_js = bool(resources_settings.text_js)
+
+        # Last data update
+        storage = self.context._p_jar.db().storage
+        tid = storage.lastTransaction()
+        if tid and tid != b'\x00' * 8:
+            from ZODB.TimeStamp import TimeStamp
+            import datetime
+            ts = TimeStamp(tid)
+            last_tx = datetime.datetime.utcfromtimestamp(ts.timeTime())
+            last_tx = last_tx.isoformat()
+        else:
+            last_tx = None
+            
 
         stats = {
             'contact_email': contact_email,
@@ -734,6 +748,7 @@ class genwebStats(BrowserView):
             'url_is_in_cache_domains': url_is_in_cache_domains,
             'has_custom_css': has_custom_css,
             'has_custom_js': has_custom_js,
+            'last_data_update': last_tx
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 
