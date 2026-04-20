@@ -20,7 +20,6 @@ from genweb6.core.interfaces import IProtectedContent
 from plone.cachepurging.interfaces import ICachePurgingSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
 
-
 import json
 import logging
 import os
@@ -28,8 +27,8 @@ import pkg_resources
 import requests
 import time
 
-
 logger = logging.getLogger(__name__)
+
 
 PROPERTIES_MAP = {'titolespai_ca': 'html_title_ca',
                   'titolespai_es': 'html_title_es',
@@ -719,10 +718,14 @@ class genwebStats(BrowserView):
         site_url = api.portal.get().absolute_url()
         url_is_in_cache_domains = site_url in ''.join(domains)
 
-        # Get Resources Settings
+        # Get Resources Settings
         resources_settings = registry.forInterface(IResourcesSettings)
-        has_custom_css = bool(resources_settings.text_css)
-        has_custom_js = bool(resources_settings.text_js)
+        if getattr(resources_settings, 'upload_files', False):
+            has_custom_css = bool(getattr(resources_settings, 'file_css', None))
+            has_custom_js = bool(getattr(resources_settings, 'file_js', None))
+        else:
+            has_custom_css = bool(getattr(resources_settings, 'text_css', None))
+            has_custom_js = bool(getattr(resources_settings, 'text_js', None))
 
         # Last data update
         storage = self.context._p_jar.db().storage
