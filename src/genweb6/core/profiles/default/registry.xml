@@ -1742,4 +1742,64 @@
     <value>3</value>
   </record>
 
+  <!--
+    folder_contents (mockup pat-structure): cada fila pide @@iconresolver/contenttype/
+    mas el portal_type en minusculas con puntos y espacios sustituidos por guiones.
+    El icon_expr del FTI no alimenta esa vista; hace falta plone.icon.contenttype/...
+  -->
+  <record name="plone.icon.contenttype/genweb-core-accordiontabs">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb acordió / pestanyes</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/segmented-nav.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/genweb-core-carousel">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb carousel</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/images.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/genweb6-core-existing_content">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb contingut existent</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/box.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/genweb-upc-documentimage">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb document image</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/file-earmark-richtext.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/genweb-upc-subhome">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb subhome</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/columns-gap.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/banner">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb banner</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/file-earmark-image.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/bannercontainer">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb banner container</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/folder2.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/logos_container">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb logos container</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/folder2.svg</value>
+  </record>
+  <record name="plone.icon.contenttype/logos_footer">
+    <field type="plone.registry.field.TextLine">
+      <title>Genweb logos footer</title>
+    </field>
+    <value key="resource">++plone++bootstrap-icons/file-earmark-image.svg</value>
+  </record>
+
 </registry>
