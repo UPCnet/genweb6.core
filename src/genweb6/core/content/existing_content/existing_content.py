@@ -21,7 +21,6 @@ from zope.interface import invariant
 
 from genweb6.core import GenwebMessageFactory as _
 from genweb6.core.portlets.new_existing_content.new_existing_content import NewContentPortletJSFieldWidget
-from genweb6.core.utils import safe_html_transform
 from genweb6.core.validations import validate_externalurl
 
 import DateTime
@@ -30,6 +29,7 @@ import re
 import requests
 
 logger = logging.getLogger("genweb6.core")
+
 
 class IExistingContent(model.Schema):
 
@@ -169,9 +169,6 @@ class ExistingContentView(BrowserView):
             content = _(u"ERROR. This URL does not exist.")
         except Exception:
             content = _(u"ERROR. Charset undefined.")
-
-        if content and not content.startswith('ERROR'):
-            content = safe_html_transform(content, self.context)
 
         return content or ""
 

@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from plone import api
 from plone.app.portlets.portlets import base
 from plone.autoform import directives
-from plone.memoize.instance import memoize
 from plone.portlets.interfaces import IPortletDataProvider
 from pyquery import PyQuery as pq
 from requests.exceptions import ReadTimeout
@@ -21,15 +20,12 @@ from z3c.relationfield.relation import RelationValue
 from z3c.relationfield.schema import RelationChoice
 from zope import schema
 from zope.component import adapter
-from zope.component import getMultiAdapter
 from zope.interface import implementer
 from zope.interface import implementer_only
 from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.interfaces import IField
-from zope.component import hooks
 from genweb6.core.validations import validate_externalurl
-from genweb6.core.utils import safe_html_transform
 
 from genweb6.core import GenwebMessageFactory as _
 
@@ -266,9 +262,6 @@ class Renderer(base.Renderer):
             content = _(u"ERROR. This URL does not exist")
         except:
             content = _(u"ERROR. Charset undefined")
-
-        if content and not content.startswith('ERROR'):
-            content = safe_html_transform(content, self.context)
 
         return content
 

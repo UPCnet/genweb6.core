@@ -6,6 +6,7 @@ from Products.PortalTransforms.transforms.safe_html import SafeHTML
 
 from bs4 import BeautifulSoup
 from plone import api
+from plone.base.interfaces import IFilterSchema
 from plone.memoize import ram
 from plone.memoize.instance import memoize
 from plone.registry.interfaces import IRegistry
@@ -16,6 +17,7 @@ from souper.soup import NodeAttributeIndexer
 from scss import Scss
 from time import time
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component import provideUtility
 from zope.component import queryUtility
 from zope.component.hooks import getSite
@@ -555,19 +557,37 @@ def reset_rate_limit(ip_address):
         del _rate_limit_cache[ip_address]
 
 
+class _GenwebSafeHTML(SafeHTML):
+    """SafeHTML con ``Cleaner.links=False``.
+
+    Por defecto ``lxml_html_clean.Cleaner`` usa ``links=True`` y elimina *todas*
+    las etiquetas ``<link>`` antes de aplicar ``allow_tags``/``valid_tags`` del
+    panel de filtro. Así las ``<link>`` permitidas en IFilterSchema nunca
+    llegaban a conservarse.
+    """
+
+    def cleaner_options(self):
+        options = super().cleaner_options()
+        options['links'] = False
+        return options
+
+
 def safe_html_transform(content, context=None):
     """
-    Sanitiza HTML usando SafeHTML.scrub_html() de Products.PortalTransforms,
-    que respeta valid_tags, nasty_tags y custom_attributes del panel de Plone
-    (@@filter-controlpanel / plone.registry IFilterSchema).
+    Sanitiza HTML usando una subclase de SafeHTML.scrub_html() de
+    Products.PortalTransforms, que respeta valid_tags, nasty_tags y
+    custom_attributes del panel de Plone (@@filter-controlpanel /
+    plone.registry IFilterSchema). Se desactiva Cleaner.links para que las
+    etiquetas ``<link>`` puedan gobernarse por valid_tags (no se eliminan todas
+    por defecto del cleaner).
 
-    Se llama scrub_html() directamente en lugar de pasar por convert() para
-    ignorar el flag disable_filtering: el filtrado se aplica siempre, ya que
-    este HTML proviene de fuentes externas y no de contenido editado por el
-    usuario en el propio Plone.
+    Si en el panel está marcado «Deshabilitar filtrado HTML»
+    (IFilterSchema.disable_filtering), se devuelve el contenido sin modificar,
+    igual que el transform safe_html estándar.
 
-    Los atributos on* (onmouseout, onclick, etc.) son eliminados siempre porque
-    safe_attrs_only=True usa lxml.html.defs.safe_attrs, que no los incluye.
+    Cuando el filtrado sí se aplica, los atributos on* (onmouseout, onclick,
+    etc.) se eliminan porque safe_attrs_only=True usa lxml.html.defs.safe_attrs,
+    que no los incluye.
 
     Devuelve el HTML filtrado. Si falla, loguea el error y devuelve el
     contenido original sin modificar.
@@ -575,7 +595,14 @@ def safe_html_transform(content, context=None):
     import logging as _logging
     _logger = _logging.getLogger('genweb6.core')
     try:
-        transformer = SafeHTML()
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(IFilterSchema, prefix='plone')
+        if settings.disable_filtering:
+            return content
+    except Exception:
+        pass
+    try:
+        transformer = _GenwebSafeHTML()
         return transformer.scrub_html(content)
     except Exception as exc:
         path = ''
