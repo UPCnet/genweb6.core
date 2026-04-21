@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.96 (unreleased)
+1.96 (2026-04-21)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Personalizar mensaje de test @@site-controlpanel [Iago López]
 
 1.95 (2026-04-21)
 -----------------
