@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from socket import IP_DROP_MEMBERSHIP
 from plone.app.layout.navigation.root import getNavigationRoot
 from plone.app.event.base import spell_date
 from collective.easyform.api import is_file_data
@@ -108,6 +109,7 @@ from plone.app.z3cform.widgets.relateditems import get_relateditems_options
 from plone.app.z3cform.utils import call_callables
 from plone.base.interfaces import IPloneSiteRoot
 from plone.base.interfaces.controlpanel import IMailSchema
+from plone.base.interfaces.controlpanel import ISiteSchema
 from plone.base.utils import pretty_title_or_id
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
@@ -1027,6 +1029,119 @@ def mailhost_warning(self):
     if mailhost and email:
         return False
     return True
+
+
+def _genweb_mail_controlpanel_test_subject():
+    """Assumpte del correu de prova (@@mail-controlpanel)."""
+    registry = getUtility(IRegistry)
+    site_settings = registry.forInterface(ISiteSchema, prefix="plone", check=False)
+    site_title = site_settings.site_title
+    if site_title:
+        return "Correu de prova des del teu Genweb - {}".format(site_title)
+    else:
+        return "Correu de prova des del teu Genweb"
+
+
+def _genweb_mail_controlpanel_test_body():
+    """Cos del correu de prova (substitueix el text per defecte de Plone)."""
+    return (
+        "Has rebut aquest correu perquè s'ha configurat la teva adreça "
+        "electrònica com a adreça per defecte dels formularis de contacte "
+        "del Genweb. Si voleu canviar l'adreça ens ho podeu demanar "
+        "fent-nos un tiquet "
+        "https://eatic.upc.edu/plugins/servlet/desk/portal/1/create/24 "
+        "indicant-nos el genweb i la nova adreça.\n\n"
+        "Salutacions"
+    )
+
+
+def _genweb_mail_controlpanel_test_impl(form, action):
+    """Reemplaça el handler del botó test: z3c.form invoca handler.func(form, action)."""
+    from logging import getLogger
+
+    from plone.base import PloneMessageFactory as _
+    from plone.base.interfaces.controlpanel import IMailSchema
+    from plone.registry.interfaces import IRegistry
+    from Products.CMFCore.utils import getToolByName
+    from Products.MailHost.MailHost import MailHostError
+    from Products.statusmessages.interfaces import IStatusMessage
+    from zope.component import getUtility
+
+    import smtplib
+    import socket
+    import sys
+
+    log = getLogger("Plone")
+
+    if not form.save():
+        return
+    mailhost = getToolByName(form.context, "MailHost")
+
+    registry = getUtility(IRegistry)
+    mail_settings = registry.forInterface(IMailSchema, prefix="plone")
+    fromaddr = mail_settings.email_from_address
+
+    message = _genweb_mail_controlpanel_test_body()
+    email_charset = mail_settings.email_charset
+    subject = _genweb_mail_controlpanel_test_subject()
+
+    timeout = socket.getdefaulttimeout()
+    try:
+        socket.setdefaulttimeout(3)
+        try:
+            mailhost.send(
+                message,
+                mto=fromaddr,
+                mfrom=fromaddr,
+                subject=subject,
+                charset=email_charset,
+                immediate=True,
+            )
+
+        except (OSError, MailHostError, smtplib.SMTPException):
+            log.exception("Unable to send test e-mail.")
+            value = sys.exc_info()[1]
+            msg = _(
+                "Unable to send test e-mail ${error}.",
+                mapping={"error": str(value)},
+            )
+            IStatusMessage(form.request).addStatusMessage(msg, type="error")
+        else:
+            IStatusMessage(form.request).addStatusMessage(
+                _("Success! Check your mailbox for the test message."), type="info"
+            )
+    finally:
+        socket.setdefaulttimeout(timeout)
+
+
+def patch_mail_controlpanel_test_handler(event):
+    """Enllaça handler.func del botó test (Products.CMFPlone...mail.handle_test_action).
+
+    No val un monkeypatch a MailControlPanelForm.handle_test_action: z3c.form
+    decora amb buttonAndHandler i el callable real queda a Handler.func.
+    """
+    import logging
+
+    logger = logging.getLogger("genweb6.core.patches")
+    try:
+        from Products.CMFPlone.controlpanel.browser.mail import MailControlPanelForm
+    except Exception as err:
+        logger.warning("MailControlPanelForm no disponible: %s", err)
+        return
+    handlers = getattr(MailControlPanelForm, "handlers", None)
+    if handlers is None:
+        logger.warning("MailControlPanelForm sense atribut handlers")
+        return
+    for button, handler in handlers._handlers:
+        if getattr(button, "__name__", None) == "test":
+            handler.func = _genweb_mail_controlpanel_test_impl
+            logger.info(
+                "Correu de prova @@mail-controlpanel: handler del botó test substituït"
+            )
+            return
+    logger.warning(
+        "Correu de prova @@mail-controlpanel: no s'ha trobat el botó 'test'"
+    )
 
 
 title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')

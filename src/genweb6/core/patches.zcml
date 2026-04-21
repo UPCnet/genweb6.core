@@ -295,4 +295,10 @@
         for="zope.processlifetime.IProcessStarting"
         />
 
+    <!-- @@mail-controlpanel: substituir Handler.func del botó test (z3c.form) -->
+    <subscriber
+        handler=".patches.patch_mail_controlpanel_test_handler"
+        for="zope.processlifetime.IProcessStarting"
+        />
+
 </configure>
