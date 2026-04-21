@@ -1,11 +1,17 @@
 Changelog
 =========
 
-1.95 (unreleased)
+1.95 (2026-04-21)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] Registrar iconos que se usan en los tipos de contenido creados [Iago López]
+* [UPD] Mejora resources css [Iago López]
+* [UPD] genweb_stats tener en cuenta los ficheros js o css [Iago López]
+* [UPD] Retirar cambio de filtrar como el Tiny contenido existentes [Iago López]
+* FIX last date update on instances [Rubén Padilla Mateu]
+* [UPD] Sin CAS activo no hacemos login automatico [Iago López]
+* ADD custom_css and custom_js to genweb_stats view [Rubén Padilla Mateu]
+* [UPD] literal servei metadades [Clàudia Andreu]
 
 1.94 (2026-04-07)
 -----------------
