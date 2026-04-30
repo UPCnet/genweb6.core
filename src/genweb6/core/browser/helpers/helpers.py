@@ -728,17 +728,16 @@ class genwebStats(BrowserView):
             has_custom_js = bool(getattr(resources_settings, 'text_js', None))
 
         # Last data update
-        storage = self.context._p_jar.db().storage
-        tid = storage.lastTransaction()
-        if tid and tid != b'\x00' * 8:
-            from ZODB.TimeStamp import TimeStamp
-            import datetime
-            ts = TimeStamp(tid)
-            last_tx = datetime.datetime.utcfromtimestamp(ts.timeTime())
-            last_tx = last_tx.isoformat()
+        pc = api.portal.get_tool(name='portal_catalog')
+        last_modified_item = pc.searchResults(
+            sort_on='modified',
+            sort_order='descending',
+            limit=1
+        )
+        if last_modified_item:
+            last_data_update = last_modified_item[0].modified().ISO8601()
         else:
-            last_tx = None
-            
+            last_data_update = None
 
         stats = {
             'contact_email': contact_email,
@@ -751,7 +750,7 @@ class genwebStats(BrowserView):
             'url_is_in_cache_domains': url_is_in_cache_domains,
             'has_custom_css': has_custom_css,
             'has_custom_js': has_custom_js,
-            'last_data_update': last_tx
+            'last_data_update': last_data_update
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 
