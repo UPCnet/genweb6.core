@@ -732,10 +732,10 @@ class genwebStats(BrowserView):
         last_modified_item = pc.searchResults(
             sort_on='modified',
             sort_order='descending',
-            limit=1
+            sort_limit=1
         )
         if last_modified_item:
-            last_data_update = last_modified_item[0].modified().ISO8601()
+            last_data_update = last_modified_item[0].modified.ISO8601()
         else:
             last_data_update = None
 
@@ -750,7 +750,8 @@ class genwebStats(BrowserView):
             'url_is_in_cache_domains': url_is_in_cache_domains,
             'has_custom_css': has_custom_css,
             'has_custom_js': has_custom_js,
-            'last_data_update': last_data_update
+            'last_data_update': last_data_update,
+            'domains': domains,
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 
