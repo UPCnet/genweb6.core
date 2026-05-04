@@ -9,9 +9,9 @@
 
     <form id="searchGadget_form" action="@@search" role="search"
           class="d-flex ${python: view.livesearch and 'pat-livesearch'} ${python: view.show_images and 'show_images'} "
+          data-pat-livesearch="minimumInputLength:3;ajaxUrl:${navigation_root_url}/@@ajax-search"
           tal:attributes="id string:searchGadget_form${search_id};
-                          action string:${navigation_root_url}/@@search;
-                          data-pat-livesearch string:ajaxUrl:${navigation_root_url}/@@ajax-search;">
+                          action string:${navigation_root_url}/@@search">
 
         <label class="hiddenStructure" for="searchGadget"
                tal:attributes="for string:searchGadget${search_id}"
