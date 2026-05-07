@@ -201,6 +201,7 @@ def compile_css(source):
     if isinstance(source, bytes):
         source = source.decode('utf-8')
     try:
+        logging.getLogger("scss.ast").setLevel(logging.CRITICAL)
         return remove_quotes_from_var_scss(Scss().compile(source))
     except Exception:
         return remove_quotes_from_var_scss(source)
