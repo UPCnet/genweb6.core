@@ -30,9 +30,5 @@
      <records
         interface="genweb6.core.controlpanels.netejar_metadades.IMetadadesSettings"
         purge="False" />
-
-    <records
-        interface="genweb6.core.controlpanels.weglot.IWeglotSettings"
-        purge="False" />
-
+        
 </registry>
