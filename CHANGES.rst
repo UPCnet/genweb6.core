@@ -1,11 +1,17 @@
 Changelog
 =========
 
-1.97 (unreleased)
+1.97 (2026-05-12)
 -----------------
 
-- Nothing changed yet.
-
+* [UPD] netejar_metadades - Añadir nuevos grupos y gestionar mensaje de error [Iago López]
+* Revert f3bf98cb022fc01a091ae16f5d1356893ace03dd [ADD] weglot control panel [Iago López]
+* [UPD] No mostrar logs de scss.ast [Iago López]
+* [UPD] Livesearch a partir del tercer caracter [Iago López]
+* [FIX] Permisos workflows Webmaster [Iago López]
+* FIX: bug on last_data_update, and return domains [Rubén Padilla Mateu]
+* FIX: retrieve real last_data_update from genwebStats [Rubén Padilla Mateu]
+* [UPD] Añadir genweb6.rrhh a reinstall_all_genweb_products [Iago López]
 
 1.96 (2026-04-21)
 -----------------
