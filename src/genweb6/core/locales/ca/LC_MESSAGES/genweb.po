@@ -2062,6 +2062,11 @@ msgstr "Mostra més"
 msgid "neteja_metadades_description"
 msgstr "Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic. Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar."
 
+#. Default: "Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC."
+#: ../browser/views_templates/netejar_metadades.pt:59
+msgid "neteja_metadades_description_error"
+msgstr "Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC."
+
 #. Default: "<strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament."
 #: ../browser/views_templates/netejar_metadades.pt:51
 msgid "neteja_metadades_warning"

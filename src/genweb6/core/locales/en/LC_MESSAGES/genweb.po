@@ -2090,6 +2090,11 @@ msgstr "View more"
 msgid "neteja_metadades_description"
 msgstr "With this tool you can easily remove all metadata and hidden information from your PDF files before sharing them, ensuring greater privacy and security, all with a single click. Once you send your documents, the metadata-free file or files (in <strong>.zip</strong> format) will automatically download to your device, ready to use."
 
+#. Default: "Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC."
+#: ../browser/views_templates/netejar_metadades.pt:59
+msgid "neteja_metadades_description_error"
+msgstr "This service is reserved for PDI and PTGAS staff. If you believe you should have access, please contact ATIC."
+
 #. Default: "<strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament."
 #: ../browser/views_templates/netejar_metadades.pt:51
 msgid "neteja_metadades_warning"

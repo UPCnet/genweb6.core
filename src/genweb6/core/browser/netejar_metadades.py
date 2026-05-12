@@ -40,15 +40,12 @@ class NetejarMetadadesView(BrowserView):
         if 'Manager' in roles:
             return True
 
-        if not bool([group.id for group in api.group.get_groups(username=username) if group.id in ['PDI', 'PAS']]):
+        if not bool([group.id for group in api.group.get_groups(username=username) if group.id in ['PDI', 'PAS', 'UPCnet.plantilla', 'IThinkUPC.plantilla']]):
             return False
 
         return True
 
     def __call__(self):
-        if not self.canView():
-            return Unauthorized
-
         # Desactivar protección CSRF para esta vista
         alsoProvides(self.request, IDisableCSRFProtection)
 

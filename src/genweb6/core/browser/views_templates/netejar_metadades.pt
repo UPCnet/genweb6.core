@@ -16,43 +16,50 @@
         Neteja metadades documents
       </h1>
 
-      <form id="upc-form" class="upc-form" action="" method="post" enctype="multipart/form-data" target="download-iframe">
-        <div class="upc-form-group">
-          <label for="pdf_file" class="upc-label" i18n:translate="select_pdf">
-            Selecciona el PDF a netejar:
-          </label>
-          <input type="file"
-                 id="pdf_file"
-                 name="pdf_file"
-                 accept="application/pdf"
-                 required
-                 multiple
-                 class="upc-input upc-input--file"
-                 i18n:attributes="title select_file_button; placeholder no_file_selected" />
-        </div>
+      <tal:condition condition="view/canView">
+        <form id="upc-form" class="upc-form" action="" method="post" enctype="multipart/form-data" target="download-iframe">
+          <div class="upc-form-group">
+            <label for="pdf_file" class="upc-label" i18n:translate="select_pdf">
+              Selecciona el PDF a netejar:
+            </label>
+            <input type="file"
+                  id="pdf_file"
+                  name="pdf_file"
+                  accept="application/pdf"
+                  required
+                  multiple
+                  class="upc-input upc-input--file"
+                  i18n:attributes="title select_file_button; placeholder no_file_selected" />
+          </div>
 
-        <div class="upc-form-group upc-form-group--center">
-          <span style="white-space:nowrap;">
-            <button type="submit"
-                    id="netejar-btn"
-                    class="upc-button upc-button--primary"
-                    i18n:translate="send_to_anonymize">
-              Netejar
-            </button>
-            <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
-                 alt="Carregant..." style="display:none; width:64px; height:64px; margin-left:15px; vertical-align:middle;">
-          </span>
-        </div>
+          <div class="upc-form-group upc-form-group--center">
+            <span style="white-space:nowrap;">
+              <button type="submit"
+                      id="netejar-btn"
+                      class="upc-button upc-button--primary"
+                      i18n:translate="send_to_anonymize">
+                Netejar
+              </button>
+              <img id="spinner" src="++theme++genweb6.theme/img/spinner.gif"
+                  alt="Carregant..." style="display:none; width:64px; height:64px; margin-left:15px; vertical-align:middle;">
+            </span>
+          </div>
 
-        <p class="upc-text" i18n:translate="neteja_metadades_description">
-          Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic.
-          Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers  (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar.
+          <p class="upc-text" i18n:translate="neteja_metadades_description">
+            Amb aquesta eina pots eliminar fàcilment totes les metadades i la informació oculta dels teus arxius PDF abans de compartir-los, garantint més privacitat i seguretat, i tot amb un sol clic.
+            Un cop enviïs els teus documents, es descarregarà automàticament al teu dispositiu el fitxer o fitxers  (en format <strong>.zip</strong>) nets de metadades, llestos per utilitzar.
+          </p>
+          <p class="upc-text" style="color: #d9534f; font-weight: 500; margin-top: 15px;" i18n:translate="neteja_metadades_warning">
+            <strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament.
+          </p>
+        </form>
+        <iframe id="download-iframe" name="download-iframe" style="display:none;"></iframe>
+      </tal:condition>
+      <tal:condition condition="not:view/canView">
+        <p class="upc-text" i18n:translate="neteja_metadades_description_error">
+          Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC.
         </p>
-        <p class="upc-text" style="color: #d9534f; font-weight: 500; margin-top: 15px;" i18n:translate="neteja_metadades_warning">
-          <strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament.
-        </p>
-      </form>
-      <iframe id="download-iframe" name="download-iframe" style="display:none;"></iframe>
+      </tal:condition>
     </div>
     <script type="text/javascript"
             tal:attributes="src string:${context/absolute_url}/++theme++genweb6.theme/js/theme-concat.js"></script>

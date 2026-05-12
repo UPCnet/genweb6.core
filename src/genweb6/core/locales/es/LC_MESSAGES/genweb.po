@@ -2081,6 +2081,11 @@ msgstr "Ver más"
 msgid "neteja_metadades_description"
 msgstr "Con esta herramienta puedes eliminar fácilmente todos los metadatos e información oculta de tus archivos PDf antes de compartirlos, garantizando más privacidad y seguridad. Una vez enviados tus documentos, se descargará automáticamente en tu dispositivo un fichero o ficheros (en formato <strong>.zip </strong>) limpios de metadatos, listos para usar."
 
+#. Default: "Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC."
+#: ../browser/views_templates/netejar_metadades.pt:59
+msgid "neteja_metadades_description_error"
+msgstr "Este servicio está reservado al personal PDI y PTGAS. Si crees que deberías tener acceso, por favor, ponte en contacto con ATIC."
+
 #. Default: "<strong>Important:</strong> No pugis PDFs encriptats o protegits amb contrasenya, ja que el servei no podrà processar-los correctament."
 #: ../browser/views_templates/netejar_metadades.pt:51
 msgid "neteja_metadades_warning"
