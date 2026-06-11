@@ -4,7 +4,6 @@ Changelog
 1.99 (unreleased)
 -----------------
 
-- Nothing changed yet.
 
 
 1.98 (2026-06-11)
