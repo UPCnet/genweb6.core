@@ -4,8 +4,8 @@ Changelog
 1.98 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+* [ADD] images to RSS 2.0 feed [Clàudia Andreu]
+* [DEL] uninstall registry [Iago López]
 
 1.97 (2026-05-12)
 -----------------
