@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.98 (unreleased)
+1.98 (2026-06-11)
 -----------------
 
 * [ADD] images to RSS 2.0 feed [Clàudia Andreu]
