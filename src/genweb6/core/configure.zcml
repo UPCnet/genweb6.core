@@ -48,6 +48,7 @@
         for="plone.base.interfaces.syndication.ISyndicatable"
         class="Products.CMFPlone.browser.syndication.views.FeedView"
         template="templates/Products.CMFPlone.browser.syndication.templates.rss.xml.pt"
+        layer=".interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />
 
