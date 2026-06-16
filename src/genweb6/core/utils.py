@@ -466,6 +466,33 @@ class genwebUtils(BrowserView):
         return redirect_links and not can_edit and getattr(
             item, 'open_link_in_new_window', False)
 
+    def get_rss_image(self, context):
+        """Image metadata for RSS syndication (e.g. Xibo enclosure).
+
+        Supports standard Plone ``image`` and migrated GenWeb ``imatge``.
+        """
+        if context is None:
+            return None
+        for field_name in ('image', 'imatge'):
+            image = getattr(context, field_name, None)
+            if image is None:
+                continue
+            content_type = getattr(image, 'contentType', None) or 'image/jpeg'
+            size = 0
+            get_size = getattr(image, 'getSize', None)
+            if callable(get_size):
+                try:
+                    size = get_size() or 0
+                except Exception:
+                    size = 0
+            return {
+                'field': field_name,
+                'url_suffix': '/@@images/{0}'.format(field_name),
+                'content_type': content_type,
+                'size': size,
+            }
+        return None
+
     def localized_time(self, date):
         local_date = DateTime(date)
         return local_date.strftime('%Y-%m-%d %X')

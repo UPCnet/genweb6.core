@@ -41,44 +41,44 @@
       <tal:block tal:condition="python:item.context.portal_type == 'Event'">
         <eventstartdate tal:content="python:gwutils.localized_time(item.context.start)"/>
         <eventrecurrence tal:condition="python: getattr(item.context, 'recurrence', None)" tal:content="item/context/recurrence" />
-        <tal:image tal:define="image python: getattr(item.context, 'image', None);
-                               has_image python: image is not None"
+        <tal:image tal:define="rss_image python: gwutils.get_rss_image(item.context);
+                               has_image python: rss_image is not None"
                    tal:condition="has_image">
           <enclosure
-              tal:attributes="url python: item.link + '/@@images/image';
-                              length python: image.getSize() or 0;
-                              type python: image.contentType or 'image/jpeg';" />
+              tal:attributes="url python: item.link + rss_image['url_suffix'];
+                              length python: rss_image['size'];
+                              type python: rss_image['content_type'];" />
           <media:content
               medium="image"
-              tal:attributes="url python: item.link + '/@@images/image';
-                              type python: image.contentType or 'image/jpeg';">
+              tal:attributes="url python: item.link + rss_image['url_suffix'];
+                              type python: rss_image['content_type'];">
             <media:title tal:content="python: getattr(item.context, 'image_caption', '') or item.title" />
           </media:content>
           <image>
             <link tal:content="item/link"></link>
             <title tal:content="python: getattr(item.context, 'image_caption', '') or item.title">Image title</title>
-            <url tal:content="python: item.link + '/@@images/image'">https://www.google.com/</url>
+            <url tal:content="python: item.link + rss_image['url_suffix']">https://www.google.com/</url>
           </image>
         </tal:image>
       </tal:block>
       <tal:block tal:condition="python:item.context.portal_type in ['News Item', 'genweb.upc.documentimage']">
-        <tal:image tal:define="image python: getattr(item.context, 'image', None);
-                               has_image python: image is not None"
+        <tal:image tal:define="rss_image python: gwutils.get_rss_image(item.context);
+                               has_image python: rss_image is not None"
                    tal:condition="has_image">
           <enclosure
-              tal:attributes="url python: item.link + '/@@images/image';
-                              length python: image.getSize() or 0;
-                              type python: image.contentType or 'image/jpeg';" />
+              tal:attributes="url python: item.link + rss_image['url_suffix'];
+                              length python: rss_image['size'];
+                              type python: rss_image['content_type'];" />
           <media:content
               medium="image"
-              tal:attributes="url python: item.link + '/@@images/image';
-                              type python: image.contentType or 'image/jpeg';">
+              tal:attributes="url python: item.link + rss_image['url_suffix'];
+                              type python: rss_image['content_type'];">
             <media:title tal:content="python: getattr(item.context, 'image_caption', '') or item.title" />
           </media:content>
           <image>
             <link tal:content="item/link"></link>
             <title tal:content="python: getattr(item.context, 'image_caption', '') or item.title">Image title</title>
-            <url tal:content="python: item.link + '/@@images/image'">https://www.google.com/</url>
+            <url tal:content="python: item.link + rss_image['url_suffix']">https://www.google.com/</url>
           </image>
         </tal:image>
         <tal:docs repeat="related item/context/relatedItems">
