@@ -20,6 +20,7 @@ from genweb6.core.indicators.client import Client
 import io
 import logging
 import requests
+from urllib import parse
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +46,41 @@ class NetejarMetadadesView(BrowserView):
 
         return True
 
+    def is_anonymous(self):
+        return api.user.is_anonymous()
+
+    def _return_url_after_login(self):
+        portal = api.portal.get()
+        portal_url = portal.absolute_url()
+        parent_url = self.request.get('parent_url')
+        if parent_url and parent_url.startswith(portal_url):
+            return parent_url
+        referer = self.request.get('HTTP_REFERER', '')
+        if (
+            referer
+            and referer.startswith(portal_url)
+            and '@@netejar_metadades' not in referer
+        ):
+            return referer
+        return self.request.URL
+
+    def reload_parent_iframe(self):
+        if api.user.is_anonymous():
+            return False
+        if self.request.get('ticket'):
+            return True
+        referer = self.request.get('HTTP_REFERER', '')
+        return '/login' in referer
+
+    def login_url(self):
+        portal = api.portal.get()
+        return_url = self._return_url_after_login()
+        login_page = '{}/login'.format(portal.absolute_url())
+        return '{0}?came_from={1}'.format(
+            login_page,
+            parse.quote(return_url, safe=''),
+        )
+
     def __call__(self):
         # Desactivar protección CSRF para esta vista
         alsoProvides(self.request, IDisableCSRFProtection)
@@ -52,6 +88,8 @@ class NetejarMetadadesView(BrowserView):
         request = self.request
 
         if request.method == "POST" and 'pdf_file' in request.form:
+            if not self.canView():
+                return self.template()
             file_uploads = request.form.get('pdf_file')
             if not isinstance(file_uploads, list):
                 file_uploads = [file_uploads]

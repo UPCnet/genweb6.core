@@ -5,12 +5,59 @@
       metal:use-macro="here/@@blank_template/macros/master"
       i18n:domain="genweb"
       lang="en">
+<metal:block metal:fill-slot="style_slot">
+  <style type="text/css">
+    .netejar-metadades .upc-heading--large {
+      color: var(--bs-primary, #007BC1);
+    }
+
+    .netejar-metadades .upc-button,
+    .netejar-metadades-login__button {
+      background-color: var(--bs-primary, #007BC1);
+    }
+
+    .netejar-metadades .upc-button:hover,
+    .netejar-metadades-login__button:hover,
+    .netejar-metadades-login__button:focus {
+      background-color: var(--bs-primary-hover, #005a8e);
+    }
+
+    .netejar-metadades-login {
+      width: 100%;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .netejar-metadades-login__button {
+      display: inline-block;
+      min-width: 12rem;
+      padding: 0 1.5rem;
+      height: 36px;
+      line-height: 36px;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .netejar-metadades-login__button:hover,
+    .netejar-metadades-login__button:focus {
+      color: #fff;
+      text-decoration: none;
+    }
+  </style>
+</metal:block>
 <body>
 <metal:main metal:fill-slot="content">
   <a href="https://www.upc.edu" class="upc-logo">
     <img src="++theme++genweb6.theme/img/logo.png" alt="UPC" class="upc-logo-img" />
   </a>
-  <section class="upc-container">
+  <section class="upc-container netejar-metadades">
     <div class="upc-card upc-card--centered upc-card--padding">
       <h1 class="upc-heading--large" i18n:translate="heading_metadades">
         Neteja metadades documents
@@ -55,7 +102,27 @@
         </form>
         <iframe id="download-iframe" name="download-iframe" style="display:none;"></iframe>
       </tal:condition>
-      <tal:condition condition="not:view/canView">
+      <tal:condition condition="python: view.is_anonymous()">
+        <p class="upc-text" i18n:translate="neteja_metadades_login_required">
+          Per utilitzar el servei de neteja de metadades cal que iniciïs sessió amb el teu usuari UPC. Un cop identificat/da, podràs pujar i netejar els teus fitxers PDF.
+        </p>
+        <div class="netejar-metadades-login">
+          <a tal:attributes="href python:view.login_url()"
+             class="netejar-metadades-login__button"
+             target="_top"
+             i18n:translate="label_start_session">
+            Inicia sessió
+          </a>
+        </div>
+      </tal:condition>
+      <tal:condition condition="python: view.reload_parent_iframe()">
+        <script type="text/javascript">
+          if (window.self !== window.top) {
+            window.top.location.reload();
+          }
+        </script>
+      </tal:condition>
+      <tal:condition condition="python: not view.canView() and not view.is_anonymous()">
         <p class="upc-text" i18n:translate="neteja_metadades_description_error">
           Aquest servei està reservat al personal PDI i PTGAS. Si creus que hauries de tenir-hi accés, si us plau, posa't en contacte amb l'ATIC.
         </p>
@@ -80,7 +147,6 @@
           submitBtn.style.cursor = 'pointer';
           fileInput.style.pointerEvents = 'auto';
           fileInput.style.opacity = '1';
-          // Limpiar el input file
           fileInput.value = '';
           alertShown = false;
         }
@@ -92,20 +158,17 @@
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.6';
             submitBtn.style.cursor = 'not-allowed';
-            // NO deshabilitar el input file, solo hacerlo visualmente disabled
             fileInput.style.pointerEvents = 'none';
             fileInput.style.opacity = '0.6';
             alertShown = false;
-            
-            // Mostrar alerta después de 3 segundos
+
             setTimeout(function() {
               if (!alertShown) {
                 alert('El PDF sense metadades es descarregarà en breu. Pot tardar uns minuts.');
                 alertShown = true;
               }
             }, 3000);
-            
-            // Resetear formulario después de 15 segundos (dar tiempo a la descarga)
+
             setTimeout(function() {
               resetForm();
             }, 30000);
