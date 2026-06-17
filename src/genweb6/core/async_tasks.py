@@ -46,6 +46,19 @@ except ImportError:
     huey_taskqueue = DummyTaskQueue()
 
 
+def register_huey_tasks(event):
+    """Registra las tareas Huey de este paquete al arrancar el proceso Zope.
+
+    El consumer de ``collective.taskqueue2`` solo importa sus propias tareas
+    (``huey_tasks``). Sin este handler, el worker no conoce
+    ``export_download_files_async`` y falla al deserializar la cola.
+    """
+    if TASKQUEUE_AVAILABLE:
+        logger.info(
+            "Tareas Huey de genweb6.core registradas en el TaskRegistry"
+        )
+
+
 @contextmanager
 def _adopt_export_user(site, user_id):
     """Ejecuta el bloque como ``user_id`` (o como Manager si no se conoce).
