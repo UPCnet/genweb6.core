@@ -174,16 +174,28 @@ def _send_export_notification(site, to_email, subject, body):
     try:
         from email.mime.text import MIMEText
         from email.mime.multipart import MIMEMultipart
+        from html import escape
+
+        from Acquisition import aq_inner
         from plone import api
         from Products.CMFCore.utils import getToolByName
+        from Products.CMFPlone.utils import safe_unicode
 
+        site = aq_inner(site)
         mailhost = getToolByName(site, 'MailHost')
         try:
-            from_address = api.portal.get_registry_record(
+            sender_email = api.portal.get_registry_record(
                 'plone.email_from_address')
         except Exception:
-            from_address = None
-        from_address = from_address or 'plone.team@upcnet.es'
+            sender_email = None
+        sender_email = sender_email or 'plone.team@upcnet.es'
+        try:
+            sender_name = api.portal.get_registry_record(
+                'plone.email_from_name')
+        except Exception:
+            sender_name = None
+        sender_name = sender_name or ''
+        from_msg = sender_name + ' ' + '<' + sender_email + '>'
         try:
             charset = api.portal.get_registry_record('plone.email_charset')
         except Exception:
@@ -191,16 +203,16 @@ def _send_export_notification(site, to_email, subject, body):
         charset = charset or 'utf-8'
 
         msg = MIMEMultipart()
-        msg['From'] = from_address
+        msg['From'] = from_msg
         msg['To'] = to_email
-        msg['Subject'] = subject
+        msg['Subject'] = escape(safe_unicode(subject))
         msg['charset'] = charset
         msg.attach(MIMEText(body, 'plain', charset))
 
         logger.info(
             "[ASYNC EXPORT MAIL] Enviant correu a {0}: {1}".format(
                 to_email, subject))
-        # Mismo patrón que subscribers.py (compatible con PrintingMailHost).
+        # Mismo patrón que genweb6.tfemarket.utils.sendMessage.
         mailhost.send(msg)
         logger.info(
             "[ASYNC EXPORT MAIL] Notificación enviada a {0}".format(to_email))
