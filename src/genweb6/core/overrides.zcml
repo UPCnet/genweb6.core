@@ -1,0 +1,31 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb">
+
+    <plone:portlet
+        name="plone.portlet.static.Static"
+        interface=".portlets.static.static.IGwStaticPortlet"
+        assignment=".portlets.static.static.Assignment"
+        renderer=".portlets.static.static.Renderer"
+        addview=".portlets.static.static.AddForm"
+        editview=".portlets.static.static.EditForm"
+        view_permission="zope2.View"
+        edit_permission="plone.portlet.static.AddStaticPortlet"
+        />
+
+    <!-- Portlets antics: l'edit es resol per IStaticPortlet, no IGwStaticPortlet. -->
+    <browser:page
+        for="plone.portlet.static.static.IStaticPortlet"
+        name="edit"
+        class=".portlets.static.static.EditForm"
+        permission="plone.portlet.static.AddStaticPortlet"
+        />
+
+    <!-- z3c.form adapta el context al schema (IGwStaticPortlet). -->
+    <class class="plone.portlet.static.static.Assignment">
+        <implements interface=".portlets.static.static.IGwStaticPortlet"/>
+    </class>
+
+</configure>
