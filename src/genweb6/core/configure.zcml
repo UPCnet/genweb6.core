@@ -46,8 +46,17 @@
     <browser:page
         name="rss.xml"
         for="plone.base.interfaces.syndication.ISyndicatable"
-        class="Products.CMFPlone.browser.syndication.views.FeedView"
+        class=".browser.syndication.views.TrackedFeedView"
         template="templates/Products.CMFPlone.browser.syndication.templates.rss.xml.pt"
+        layer=".interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        name="RSS"
+        for="plone.base.interfaces.syndication.ISyndicatable"
+        class=".browser.syndication.views.TrackedFeedView"
+        template="templates/Products.CMFPlone.browser.syndication.templates.RSS.pt"
         layer=".interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         />

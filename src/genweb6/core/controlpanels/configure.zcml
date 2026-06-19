@@ -110,4 +110,11 @@
         permission="genweb.webmaster"
         />
 
+    <browser:page
+        name="analytics-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".analytics.AnalyticsSettingsControlPanel"
+        permission="genweb.webmaster"
+        />
+
 </configure>

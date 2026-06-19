@@ -92,4 +92,17 @@
         <permission>Genweb: Webmaster Users</permission>
     </configlet>
 
+    <configlet
+        title="Analytics RSS (GA4)"
+        action_id="genweb6.core.analytics"
+        appId="genweb6.core.analytics"
+        category="genweb-connection"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@analytics-controlpanel"
+        icon_expr="string:graph-up"
+        visible="True">
+
+        <permission>Genweb: Webmaster Users</permission>
+    </configlet>
+
 </object>
