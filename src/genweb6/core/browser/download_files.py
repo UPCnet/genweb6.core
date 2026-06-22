@@ -222,7 +222,6 @@ def build_export_zip(context, portal_types, ac_cookie=None, base_url=None):
                         "[DOWNLOAD FILES] No se pudo generar el PDF de %s: %s",
                         url, e)
                 finally:
-                    import ipdb; ipdb.set_trace()
                     if os.path.isfile(tmp_pdf):
                         try:
                             os.remove(tmp_pdf)
