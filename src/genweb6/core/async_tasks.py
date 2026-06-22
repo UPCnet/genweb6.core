@@ -149,8 +149,6 @@ def _get_ldap_email(site, user_id):
 def _portal_relative_path(physical_path, site_physical_path):
     """Devuelve la ruta relativa al portal, sin punto de montaje ni id de
     instancia ni host.
-
-    Ejemplo: '/2/genwebupc/ca/demana-un-genweb' -> '/ca/demana-un-genweb'.
     """
     if not physical_path:
         return physical_path
@@ -353,7 +351,9 @@ def export_download_files_async(context_uid, context_path, site_path,
             "Exportació de fitxers: finalitzada",
             "L'exportació ha finalitzat correctament.\n\n"
             "Carpeta exportada:\n{0}\n\n"
-            "El fitxer .zip està disponible a:\n{1}".format(
+            "El fitxer .zip està disponible a:\n{1}\n\n"
+            "Un cop descarregat, recorda esborrar el fitxer generat "
+            "per alliberar espai i millorar el rendiment.".format(
                 context_rel_path, zip_rel_path)
         )
         return {

@@ -29,6 +29,13 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+def _export_temp_dir():
+    """Directorio temporal para la exportación (``TMPDIR`` o ``/tmp``)."""
+    tmpdir = os.environ.get('TMPDIR') or '/tmp'
+    os.makedirs(tmpdir, exist_ok=True)
+    return tmpdir
+
+
 def _running_on_localhost(base_url):
     """Devuelve True si la exportación se está generando contra localhost.
 
@@ -64,7 +71,7 @@ def get_system_fonts_css(target_dir=None):
     Se escribe en ``target_dir`` (si se indica) para evitar colisiones entre
     ejecuciones concurrentes; por defecto usa el directorio temporal del SO.
     """
-    target_dir = target_dir or tempfile.gettempdir()
+    target_dir = target_dir or _export_temp_dir()
     css_file = os.path.join(target_dir, 'system_fonts_pdf.css')
     # CSS que fuerza fuentes del sistema estándar y maximiza el ancho del contenido
     css_content = """
@@ -119,10 +126,11 @@ def build_export_zip(context, portal_types, ac_cookie=None, base_url=None):
             "[DOWNLOAD FILES DEBUG] Generando exportación contra localhost: "
             "base_url=%s, tipos=%s", context_base_url, portal_types)
 
-    # Directorio de trabajo temporal único (seguro ante concurrencia y sin
+    # Directorio de trabajo temporal único (seguFro ante concurrencia y sin
     # depender del working directory del proceso, que en el worker async puede
     # ser distinto al de la instancia).
-    work_dir = tempfile.mkdtemp(prefix='gw6-download-files-')
+    work_dir = tempfile.mkdtemp(
+        prefix='gw6-download-files-', dir=_export_temp_dir())
     try:
         export_root = os.path.join(work_dir, exp_path)
         os.makedirs(export_root)
@@ -214,6 +222,7 @@ def build_export_zip(context, portal_types, ac_cookie=None, base_url=None):
                         "[DOWNLOAD FILES] No se pudo generar el PDF de %s: %s",
                         url, e)
                 finally:
+                    import ipdb; ipdb.set_trace()
                     if os.path.isfile(tmp_pdf):
                         try:
                             os.remove(tmp_pdf)
