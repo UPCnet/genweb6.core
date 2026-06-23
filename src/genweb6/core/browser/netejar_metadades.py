@@ -15,6 +15,7 @@ from zope.publisher.browser import BrowserView
 
 from genweb6.core.browser.clean_pdfs import is_signed_pdf
 from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
+from genweb6.core.controlpanels.netejar_metadades import log_metadades_cleanup
 from genweb6.core.indicators.client import Client
 
 import io
@@ -27,6 +28,9 @@ logger = logging.getLogger(__name__)
 
 class NetejarMetadadesView(BrowserView):
     template = ViewPageTemplateFile("views_templates/netejar_metadades.pt")
+
+    def _log_cleanup(self, title, success, status=''):
+        log_metadades_cleanup(title, success, status=status)
 
     def canView(self):
         if api.user.is_anonymous():
@@ -125,6 +129,7 @@ class NetejarMetadadesView(BrowserView):
                         continue
 
                     if is_signed_pdf(content):
+                        self._log_cleanup(filename, False, status='signed')
                         processed_files.append({
                             'type': 'error',
                             'filename': f"{filename}_SIGNAT.txt",
@@ -138,6 +143,7 @@ class NetejarMetadadesView(BrowserView):
                     if response.status_code == 200:
                         name_part, ext_part = filename.rsplit('.', 1)
                         anon_name = f"{name_part}_sense_metadades.{ext_part}"
+                        self._log_cleanup(filename, True, status='success')
                         processed_files.append({
                             'type': 'success',
                             'filename': anon_name,
@@ -146,6 +152,7 @@ class NetejarMetadadesView(BrowserView):
                     else:
                         error_msg = f"{filename} - Error {response.status_code}: {response.text}"
                         logger.error(error_msg)
+                        self._log_cleanup(filename, False, status='error')
                         processed_files.append({
                             'type': 'error',
                             'filename': f"{filename}_ERROR.txt",
