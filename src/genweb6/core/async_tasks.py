@@ -210,8 +210,10 @@ def _send_export_notification(site, to_email, subject, body):
         logger.info(
             "[ASYNC EXPORT MAIL] Enviant correu a {0}: {1}".format(
                 to_email, subject))
-        # Mismo patrón que genweb6.tfemarket.utils.sendMessage.
-        mailhost.send(msg)
+        # immediate=True: en el worker Huey no hay commit de transacción tras
+        # el send; sin esto zope.sendmail deja el correo pendiente y se pierde
+        # al cerrar la conexión ZODB en el finally.
+        mailhost.send(msg, immediate=True)
         logger.info(
             "[ASYNC EXPORT MAIL] Notificación enviada a {0}".format(to_email))
     except Exception as e:
@@ -304,7 +306,8 @@ def export_download_files_async(context_uid, context_path, site_path,
                 user_email,
                 "Exportació de fitxers: error",
                 "No s'ha pogut generar l'exportació de la carpeta.\n\n"
-                "Ruta: {0}".format(
+                "URL: {0}".format(
+                    (base_url or '').rstrip('/') or
                     _portal_relative_path(context_path, site_path))
             )
             return {'status': 'error', 'message': error_msg}
@@ -328,19 +331,18 @@ def export_download_files_async(context_uid, context_path, site_path,
             msg = "No se encontraron ficheros para exportar: {0}".format(
                 final_path)
             logger.info("[ASYNC EXPORT EMPTY] {0}".format(msg))
+            context_url = (base_url or context.absolute_url()).rstrip('/')
             _send_export_notification(
                 site,
                 user_email,
                 "Exportació de fitxers: sense resultats",
                 "L'exportació ha finalitzat, però no s'han trobat fitxers "
-                "per exportar a:\n{0}".format(
-                    _portal_relative_path(final_path, site_path))
+                "per exportar a:\n{0}".format(context_url)
             )
             return {'status': 'empty', 'message': msg}
 
-        zip_path = '/'.join(zip_file.getPhysicalPath())
-        context_rel_path = _portal_relative_path(final_path, site_path)
-        zip_rel_path = _portal_relative_path(zip_path, site_path)
+        context_url = (base_url or context.absolute_url()).rstrip('/')
+        zip_url = '{0}/{1}/view'.format(context_url, zip_file.getId())
         logger.info(
             "[ASYNC EXPORT SUCCESS] Exportación generada: {0}".format(
                 final_path)
@@ -354,7 +356,7 @@ def export_download_files_async(context_uid, context_path, site_path,
             "El fitxer .zip està disponible a:\n{1}\n\n"
             "Un cop descarregat, recorda esborrar el fitxer generat "
             "per alliberar espai i millorar el rendiment.".format(
-                context_rel_path, zip_rel_path)
+                context_url, zip_url)
         )
         return {
             'status': 'success',
@@ -372,7 +374,8 @@ def export_download_files_async(context_uid, context_path, site_path,
             user_email,
             "Exportació de fitxers: error",
             "S'ha produït un error en generar l'exportació.\n\n"
-            "Ruta: {0}".format(
+            "URL: {0}".format(
+                (base_url or '').rstrip('/') or
                 _portal_relative_path(context_path, site_path))
         )
         return {'status': 'error', 'message': error_msg}
