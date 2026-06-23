@@ -44,4 +44,9 @@
         handler=".subscribers.clean_pdf_on_upload_file"
     />
 
+    <subscriber
+        for="zope.processlifetime.IProcessStarting"
+        handler=".async_tasks.register_huey_tasks"
+        />
+
 </configure>
