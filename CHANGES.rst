@@ -1,11 +1,13 @@
 Changelog
 =========
 
-1.100 (unreleased)
+1.100 (2026-06-23)
 ------------------
 
-- Nothing changed yet.
-
+* Merge remote-tracking branch 'origin/develop' [Iago López]
+* [ADD] extended log to neteja-metadades [Clàudia Andreu]
+* [ADD] download_files async [Iago López]
+* [ADD] Sobrescribir portlet static para añadir nuevo campo para esconder titulo [Iago López]
 
 1.99 (2026-06-16)
 -----------------
