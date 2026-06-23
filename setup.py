@@ -80,6 +80,7 @@ setup(
         'xmltodict',
         'PyPDF2',
         'pikepdf',
+        # collective.taskqueue2 se instala desde sources.cfg (GitHub)
     ],
 
     extras_require={
