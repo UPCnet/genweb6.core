@@ -10,46 +10,7 @@ from plone.dexterity.interfaces import IDexteritySchema
 
 from genweb6.core import _
 from genweb6.core.purge import purge_varnish_paths
-from plone import api
-import logging
 import re
-from datetime import datetime
-
-logger = logging.getLogger(__name__)
-
-
-def get_metadades_current_username():
-    user = api.user.get_current()
-    if user is None:
-        return 'system'
-    username = user.getId()
-    if username in ('Anonymous User', 'anonymous'):
-        return 'system'
-    return username
-
-
-def log_metadades_cleanup(title, success, status='', url=None, username=None):
-    username = username or get_metadades_current_username()
-    date = datetime.now().isoformat(timespec='seconds')
-    if url:
-        logger.info(
-            "[METADADES] date=%s user=%s title=%s success=%s status=%s url=%s",
-            date,
-            username,
-            title,
-            success,
-            status,
-            url,
-        )
-    else:
-        logger.info(
-            "[METADADES] date=%s user=%s title=%s success=%s status=%s",
-            date,
-            username,
-            title,
-            success,
-            status,
-        )
 
 
 def isURL(value):

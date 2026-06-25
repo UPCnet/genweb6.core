@@ -11,12 +11,13 @@ from Products.statusmessages.interfaces import IStatusMessage
 from plone.namedfile.file import NamedBlobFile
 
 from genweb6.core.utils import genwebMetadadesConfig
-from genweb6.core.controlpanels.netejar_metadades import log_metadades_cleanup
 
 import logging
 import requests
 from io import BytesIO
 from PyPDF2 import PdfReader
+import time
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -144,12 +145,25 @@ def clean_pdf_on_upload(obj, field_name='file'):
 
     file_data = file_field.data
     title = obj.Title() or file_field.filename
+    user = api.user.get_current()
+    username = user.getId() if user else 'system'
+    date = datetime.now().isoformat(timespec='seconds')
 
+    start_time_check_signed = time.time()
     if is_signed_pdf(file_data):
-        log_metadades_cleanup(
-            title, False, status='signed', url=obj.absolute_url()
+        logger.info(
+            f"[METADADES SKIPPED] date={date} user={username} title={title} "
+            f"{obj.absolute_url()} - PDF signat"
         )
         return
+
+    end_time_check_signed = time.time()
+    time_check_signed = end_time_check_signed - start_time_check_signed
+    logger.error(
+        f"[METADADES CHECK SIGNED] date={date} user={username} title={title} "
+        f"{obj.absolute_url()} - Tiempo de verificación de firma: "
+        f"{time_check_signed} segundos"
+    )
 
     try:
         headers = {
@@ -162,7 +176,17 @@ def clean_pdf_on_upload(obj, field_name='file'):
             'fitxerPerNetejarMetadades': (filename, file_data, 'application/pdf')
         }
 
+        start_time_clean_pdf = time.time()
+
         response = requests.post(api_url, headers=headers, files=files)
+
+        end_time_clean_pdf = time.time()
+        time_clean_pdf = end_time_clean_pdf - start_time_clean_pdf
+        logger.error(
+            f"[METADADES CLEAN PDF] date={date} user={username} title={title} "
+            f"{obj.absolute_url()} - Tiempo de limpieza de PDF: "
+            f"{time_clean_pdf} segundos"
+        )
 
         if response.status_code == 200:
             cleaned_data = response.content
@@ -174,16 +198,18 @@ def clean_pdf_on_upload(obj, field_name='file'):
             ))
 
             obj.reindexObject()
-            log_metadades_cleanup(
-                title, True, status='success', url=obj.absolute_url()
+            logger.info(
+                f"[METADADES OK] date={date} user={username} title={title} "
+                f"{obj.absolute_url()} - PDF sense metadades"
             )
         else:
-            log_metadades_cleanup(
-                title, False, status='error', url=obj.absolute_url()
+            logger.warning(
+                f"[METADADES FAIL] date={date} user={username} title={title} "
+                f"{obj.absolute_url()} - {response.status_code} - {response.text}"
             )
 
     except Exception as e:
-        log_metadades_cleanup(
-            title, False, status='error', url=obj.absolute_url()
+        logger.exception(
+            f"[METADADES ERROR] date={date} user={username} title={title} "
+            f"{obj.absolute_url()} - {e}"
         )
-        logger.exception("[METADADES] Error inesperat al netejar PDF: %s", e)
