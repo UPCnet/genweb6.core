@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.103 (unreleased)
+1.103 (2026-06-25)
 ------------------
 
-- Nothing changed yet.
-
+* [UPD] Mejora traduccion download_files [Iago López]
 
 1.102 (2026-06-25)
 ------------------
