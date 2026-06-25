@@ -4,8 +4,7 @@ Changelog
 1.102 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+* [FIX] metadades log [Clàudia Andreu]
 
 1.101 (2026-06-25)
 ------------------
