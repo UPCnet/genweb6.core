@@ -2305,5 +2305,5 @@ msgid "Amaga el títol?"
 msgstr "Hide title?"
 
 #: ../portlets/static/static.py:20
-msgid "Marqueu aquesta casella si voleu que s'amagui el títol del portlet"
-msgstr "Check this box if you want to hide the portlet title"
+msgid "Marqueu aquesta casella per amagar el títol del portlet quan es mostra amb contorn."
+msgstr "Check this box to hide the portlet title when it is displayed with a border."

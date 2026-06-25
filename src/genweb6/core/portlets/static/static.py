@@ -18,8 +18,8 @@ class IGwStaticPortlet(IStaticPortlet):
     hide_title = schema.Bool(
         title=_(u"Amaga el títol?"),
         description=_(
-            u"Marqueu aquesta casella si voleu que s'amagui el títol del "
-            u"portlet"
+            u"Marqueu aquesta casella per amagar el títol del portlet quan "
+            u"es mostra amb contorn."
         ),
         required=False,
         default=False,
