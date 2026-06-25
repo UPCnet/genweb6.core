@@ -20,6 +20,7 @@ import time
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def preventDeletionOnProtectedContent(content, event):
@@ -141,6 +142,11 @@ def clean_pdf_on_upload(obj, field_name='file'):
     api_key = settings.api_key
 
     if not api_url or not api_key:
+        logger.warning(
+            "[METADADES] Neteja automàtica omesa: api_url o api_key no configurats "
+            "per %s",
+            obj.absolute_url(),
+        )
         return
 
     file_data = file_field.data

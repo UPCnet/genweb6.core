@@ -23,6 +23,7 @@ import requests
 from urllib import parse
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 class NetejarMetadadesView(BrowserView):
@@ -88,7 +89,16 @@ class NetejarMetadadesView(BrowserView):
         request = self.request
 
         if request.method == "POST" and 'pdf_file' in request.form:
+            logger.info(
+                "[METADADES] POST @@netejar_metadades url=%s user=%s",
+                request.URL,
+                api.user.get_current().getId() if not api.user.is_anonymous() else 'anonymous',
+            )
             if not self.canView():
+                logger.warning(
+                    "[METADADES] POST rebutjat: usuari sense permisos url=%s",
+                    request.URL,
+                )
                 return self.template()
             file_uploads = request.form.get('pdf_file')
             if not isinstance(file_uploads, list):
