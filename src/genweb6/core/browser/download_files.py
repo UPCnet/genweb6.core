@@ -7,7 +7,7 @@ from Products.statusmessages.interfaces import IStatusMessage
 from datetime import datetime
 from plone import api
 from plone.namedfile import NamedBlobFile
-from zope.i18nmessageid import MessageFactory
+from zope.i18n import translate
 
 from genweb6.core import _
 from genweb6.core.utils import set_pdf_metadata
@@ -21,9 +21,16 @@ import uuid
 import pdfkit
 import transaction
 
-_PMF = MessageFactory('plone')
-
 logger = logging.getLogger(__name__)
+
+_DOWNLOAD_TYPE_IDS = (
+    'File',
+    'Image',
+    'News Item',
+    'Document',
+    'genweb.upc.documentimage',
+    'Event',
+)
 # Asegurar INFO también cuando la exportación corre en el consumer de Huey,
 # que deja el root logger en WARNING.
 logger.setLevel(logging.INFO)
@@ -273,12 +280,14 @@ class DownloadFiles(BrowserView):
         self.request = request
 
     def options(self):
-        return {'File': _PMF('File'),
-                'Image': _PMF('Image'),
-                'News Item': _PMF('News Item'),
-                'Document': _PMF('Document'),
-                'genweb.upc.documentimage': _('Document Image'),
-                'Event': _PMF('Event')}
+        portal_types = api.portal.get().portal_types
+        return {
+            type_id: translate(
+                portal_types[type_id].Title(),
+                context=self.request,
+            )
+            for type_id in _DOWNLOAD_TYPE_IDS
+        }
 
     def __call__(self):
         form = self.request.form
