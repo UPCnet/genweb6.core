@@ -2307,3 +2307,11 @@ msgstr "Hide title?"
 #: ../portlets/static/static.py:20
 msgid "Marqueu aquesta casella per amagar el títol del portlet quan es mostra amb contorn."
 msgstr "Check this box to hide the portlet title when it is displayed with a border."
+
+#: ../browser/download_files.py:322
+msgid "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi. Rebràs un correu electrònic quan finalitzi el procés a ${email}."
+msgstr "The export is being generated in the background. You will find the .zip file in this folder when it is finished. You will receive an email when the process is complete at ${email}."
+
+#: ../browser/download_files.py:328
+msgid "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi el procés."
+msgstr "The export is being generated in the background. You will find the .zip file in this folder when the process is complete."

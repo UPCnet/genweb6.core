@@ -2274,3 +2274,11 @@ msgstr "Amaga el títol?"
 #: ../portlets/static/static.py:20
 msgid "Marqueu aquesta casella per amagar el títol del portlet quan es mostra amb contorn."
 msgstr "Marqueu aquesta casella per amagar el títol del portlet quan es mostra amb contorn."
+
+#: ../browser/download_files.py:322
+msgid "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi. Rebràs un correu electrònic quan finalitzi el procés a ${email}."
+msgstr "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi. Rebràs un correu electrònic quan finalitzi el procés a ${email}."
+
+#: ../browser/download_files.py:328
+msgid "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi el procés."
+msgstr "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi el procés."

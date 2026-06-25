@@ -322,12 +322,14 @@ class DownloadFiles(BrowserView):
                 message = _(
                     u"L'exportació s'està generant en segon pla. Trobaràs el "
                     u"fitxer .zip en aquesta carpeta quan finalitzi. "
-                    u"T'enviarem un correu a ${email} amb el resultat.",
+                    u"Rebràs un correu electrònic quan finalitzi el procés a "
+                    u"${email}.",
                     mapping={u'email': user_email})
             else:
                 message = _(
                     u"L'exportació s'està generant en segon pla. Trobaràs el "
-                    u"fitxer .zip en aquesta carpeta quan finalitzi.")
+                    u"fitxer .zip en aquesta carpeta quan finalitzi el "
+                    u"procés.")
             IStatusMessage(self.request).addStatusMessage(message, "info")
             return self.template()
 
