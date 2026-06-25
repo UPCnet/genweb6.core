@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.102 (unreleased)
+1.102 (2026-06-25)
 ------------------
 
 * [FIX] metadades log [Clàudia Andreu]
