@@ -12,6 +12,7 @@ from zope.i18n import translate
 from genweb6.core import _
 from genweb6.core.utils import set_pdf_metadata
 
+import hashlib
 import logging
 import os
 import shutil
@@ -53,6 +54,12 @@ def _running_on_localhost(base_url):
         return False
     base_url = base_url.lower()
     return 'localhost' in base_url
+
+
+def export_portal_types_hash(portal_types):
+    """Hash corto (5 chars) derivado de los tipos de contenido exportados."""
+    key = ','.join(sorted(set(portal_types or [])))
+    return hashlib.md5(key.encode('utf-8')).hexdigest()[:5]
 
 
 def query_items_under_root(root, portal_types):
@@ -116,8 +123,9 @@ def build_export_zip(context, portal_types, ac_cookie=None, base_url=None):
         return None
 
     today = datetime.today().strftime("%Y-%m-%d")
-    plone_id = 'export-{0}'.format(context.id)
-    exp_path = 'export-{0}-{1}'.format(context.id, today)
+    types_hash = export_portal_types_hash(portal_types)
+    plone_id = 'export-{0}-{1}'.format(context.id, types_hash)
+    exp_path = 'export-{0}-{1}-{2}'.format(context.id, today, types_hash)
 
     if plone_id in context:
         # manage_delObjects no requiere REQUEST (api.content.delete sí, por
@@ -312,9 +320,20 @@ class DownloadFiles(BrowserView):
         ac_cookie = self.request.cookies.get('__ac')
 
         from genweb6.core.async_tasks import schedule_download_files_export
-        queued, user_email = schedule_download_files_export(
+        queued, user_email, block_reason = schedule_download_files_export(
             self.context, query['portal_type'], ac_cookie
         )
+
+        if block_reason == 'duplicate':
+            queue_url = '{0}/@@export_files_queue'.format(
+                api.portal.get().absolute_url())
+            message = _(
+                u"Ja hi ha una exportació en curs per a aquesta carpeta amb "
+                u"els mateixos tipus de fitxer. Espereu que finalitzi o "
+                u"cancel·leu-la des de la gestió de la cua: ${queue_url}",
+                mapping={u'queue_url': queue_url})
+            IStatusMessage(self.request).addStatusMessage(message, "warning")
+            return self.template()
 
         if queued:
             # Modo asíncrono: la tarea se ha encolado, respondemos al instante.

@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb">
+
+<body>
+<metal:block fill-slot="top_slot"
+             tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+                         disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+
+    <metal:content-core fill-slot="content-core">
+
+        <h1 i18n:translate="">Gestió de la cua d'exportacions</h1>
+
+        <p i18n:translate="">
+            Consulteu les exportacions asíncrones en curs o pendents i
+            cancel·leu les que encara no s'han processat.
+        </p>
+
+        <dl class="export-queue-stats"
+            tal:define="stats view/stats">
+            <dt i18n:translate="">Exportacions actives</dt>
+            <dd tal:content="stats/active_exports">0</dd>
+            <dt i18n:translate="">Tasques pendents a Huey</dt>
+            <dd tal:content="stats/huey_pending">0</dd>
+            <dt i18n:translate="">Tasques programades a Huey</dt>
+            <dd tal:content="stats/huey_scheduled">0</dd>
+        </dl>
+
+        <table class="listing" summary=""
+               tal:define="jobs view/jobs">
+            <thead>
+                <tr>
+                    <th i18n:translate="">Estat</th>
+                    <th i18n:translate="">Carpeta</th>
+                    <th i18n:translate="">Tipus de fitxer</th>
+                    <th i18n:translate="">Usuari</th>
+                    <th i18n:translate="">Inici</th>
+                    <th i18n:translate="">Fi</th>
+                    <th i18n:translate="">Accions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr tal:repeat="job jobs">
+                    <td tal:content="python:view.status_label(job.get('status'))">Pendent</td>
+                    <td>
+                        <a tal:attributes="href python:view.folder_url(job)"
+                           tal:content="python:job.get('context_path') or '-'">/Plone/folder</a>
+                    </td>
+                    <td tal:content="python:view.portal_types_label(job)">Document</td>
+                    <td tal:content="python:job.get('user_id') or '-'">admin</td>
+                    <td tal:content="python:job.get('started_at') or '-'">2026-01-01</td>
+                    <td tal:content="python:job.get('finished_at') or '-'">-</td>
+                    <td>
+                        <form method="post"
+                              tal:condition="python:view.can_cancel(job)"
+                              tal:attributes="action string:${context/absolute_url}/@@export_files_queue">
+                            <input type="hidden" name="job_id"
+                                   tal:attributes="value job/job_id" />
+                            <button type="submit" name="cancel_job:boolean" value="1"
+                                    i18n:translate="">Cancel·lar</button>
+                        </form>
+                        <span tal:condition="python:not view.can_cancel(job)"
+                              i18n:translate="">—</span>
+                    </td>
+                </tr>
+                <tr tal:condition="not:jobs">
+                    <td colspan="7" i18n:translate="">No hi ha exportacions registrades.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </metal:content-core>
+
+</body>
+</html>

@@ -393,6 +393,15 @@ def export_download_files_async(context_uid, context_path, site_path,
         setSite(site)
 
         if job_id:
+            job = export_job_registry.get_job(job_id)
+            if job and job.get('status') == export_job_registry.STATUS_CANCELLED:
+                logger.info(
+                    "[ASYNC EXPORT] Exportación cancelada antes de ejecutar: "
+                    "{0}".format(job_id))
+                return {
+                    'status': 'cancelled',
+                    'message': 'Exportación cancelada: {0}'.format(job_id),
+                }
             export_job_registry.mark_running(job_id)
 
         # Estrategia 1: obtener por UID (robusto frente a renames).
@@ -510,11 +519,63 @@ def export_download_files_async(context_uid, context_path, site_path,
 
     finally:
         if job_id and final_status:
-            export_job_registry.mark_finished(job_id, final_status)
+            current = export_job_registry.get_job(job_id)
+            if not current or current.get('status') != (
+                    export_job_registry.STATUS_CANCELLED):
+                export_job_registry.mark_finished(job_id, final_status)
         setSite(None)
         setRequest(None)
         if zope_app is not None:
             zope_app._p_jar.close()
+
+
+def cancel_scheduled_export(job_id):
+    """Cancela una exportación encolada (pendiente de ejecutar).
+
+    Returns:
+        tuple: (success, error_code). ``error_code`` puede ser
+        ``not_found`` o ``not_cancellable``.
+    """
+    job = export_job_registry.get_job(job_id)
+    if job is None:
+        return (False, 'not_found')
+    if job.get('status') != export_job_registry.STATUS_QUEUED:
+        return (False, 'not_cancellable')
+
+    huey_task_id = job.get('huey_task_id')
+    if huey_task_id and TASKQUEUE_AVAILABLE:
+        try:
+            huey_taskqueue.revoke_by_id(huey_task_id)
+        except Exception as e:
+            logger.warning(
+                "[ASYNC EXPORT] No se pudo revocar tarea Huey {0}: {1}".format(
+                    huey_task_id, e))
+
+    export_job_registry.mark_cancelled(job_id)
+    logger.info(
+        "[ASYNC EXPORT] Exportación cancelada manualmente: {0}".format(job_id))
+    return (True, None)
+
+
+def get_export_queue_stats():
+    """Estadísticas combinadas del registro local y la cola Huey."""
+    active_jobs = [
+        job for job in export_job_registry.list_jobs()
+        if job.get('status') in export_job_registry.ACTIVE_STATUSES
+    ]
+    stats = {
+        'active_exports': len(active_jobs),
+        'huey_pending': 0,
+        'huey_scheduled': 0,
+    }
+    if TASKQUEUE_AVAILABLE:
+        try:
+            stats['huey_pending'] = len(huey_taskqueue.pending())
+            stats['huey_scheduled'] = len(huey_taskqueue.scheduled())
+        except Exception as e:
+            logger.warning(
+                "[ASYNC EXPORT] No se pudieron leer stats Huey: {0}".format(e))
+    return stats
 
 
 def schedule_download_files_export(context, portal_types, ac_cookie=None):
@@ -527,21 +588,30 @@ def schedule_download_files_export(context, portal_types, ac_cookie=None):
         ac_cookie (str): Cookie ``__ac`` para generar los PDFs autenticados.
 
     Returns:
-        tuple: ``(queued, message)``. ``queued`` es ``True`` cuando la tarea se
-            ha encolado para ejecución asíncrona; ``False`` indica que el
-            llamante debe ejecutar la exportación de forma síncrona.
+        tuple: ``(queued, user_email, block_reason)``. ``queued`` es ``True``
+            cuando la tarea se ha encolado. ``block_reason`` puede ser
+            ``duplicate`` si ya hay una exportación activa equivalente.
     """
     if not is_async_download_enabled():
         logger.info(
             "[SYNC MODE] Exportación de ficheros en modo síncrono: {0}".format(
                 context.absolute_url())
         )
-        return (False, None)
+        return (False, None, None)
 
     from plone import api
 
     context_uid = context.UID()
     context_path = '/'.join(context.getPhysicalPath())
+    portal_types = list(portal_types)
+
+    if export_job_registry.find_active_job(context_path, portal_types):
+        logger.info(
+            "[ASYNC MODE] Exportación duplicada bloqueada: {0} ({1})".format(
+                context_path,
+                export_job_registry.portal_types_signature(portal_types))
+        )
+        return (False, None, 'duplicate')
     # Capturar la URL real desde el request actual: en el worker no hay request
     # y absolute_url() no devolvería un host alcanzable por wkhtmltopdf.
     base_url = context.absolute_url()
@@ -563,6 +633,7 @@ def schedule_download_files_export(context, portal_types, ac_cookie=None):
         base_url=base_url,
         user_id=user_id,
         user_email=user_email,
+        portal_types=portal_types,
     )
 
     logger.info(
@@ -571,8 +642,10 @@ def schedule_download_files_export(context, portal_types, ac_cookie=None):
             base_url, context_uid, user_id or 'sistema',
             user_email or 'sin email', job_id)
     )
-    export_download_files_async(
-        context_uid, context_path, site_path, list(portal_types), ac_cookie,
+    task_result = export_download_files_async(
+        context_uid, context_path, site_path, portal_types, ac_cookie,
         base_url, user_id, user_email, job_id,
     )
-    return (True, user_email)
+    if getattr(task_result, 'id', None):
+        export_job_registry.set_huey_task_id(job_id, task_result.id)
+    return (True, user_email, None)

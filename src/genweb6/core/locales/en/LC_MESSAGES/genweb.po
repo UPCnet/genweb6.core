@@ -2315,3 +2315,95 @@ msgstr "The export is being generated in the background. You will find the .zip 
 #: ../browser/download_files.py:328
 msgid "L'exportació s'està generant en segon pla. Trobaràs el fitxer .zip en aquesta carpeta quan finalitzi el procés."
 msgstr "The export is being generated in the background. You will find the .zip file in this folder when the process is complete."
+
+#: ../browser/download_files.py:333
+msgid "Ja hi ha una exportació en curs per a aquesta carpeta amb els mateixos tipus de fitxer. Espereu que finalitzi o cancel·leu-la des de la gestió de la cua: ${queue_url}"
+msgstr "An export is already running for this folder with the same file types. Wait for it to finish or cancel it from the queue management page: ${queue_url}"
+
+#: ../browser/views_templates/download_files.pt:23
+msgid "Gestió de la cua d'exportacions"
+msgstr "Export queue management"
+
+#: ../browser/views_templates/export_files_queue.pt:15
+msgid "Consulteu les exportacions asíncrones en curs o pendents i cancel·leu les que encara no s'han processat."
+msgstr "View running or pending async exports and cancel those that have not started yet."
+
+#: ../browser/export_files_queue.py:16
+msgid "Pendent"
+msgstr "Pending"
+
+#: ../browser/export_files_queue.py:17
+msgid "En execució"
+msgstr "Running"
+
+#: ../browser/export_files_queue.py:18
+msgid "Finalitzada"
+msgstr "Completed"
+
+#: ../browser/export_files_queue.py:19
+msgid "Sense fitxers"
+msgstr "No files"
+
+#: ../browser/export_files_queue.py:20
+msgid "Error"
+msgstr "Error"
+
+#: ../browser/export_files_queue.py:21
+msgid "Interrompuda"
+msgstr "Interrupted"
+
+#: ../browser/export_files_queue.py:22
+msgid "Cancel·lada"
+msgstr "Cancelled"
+
+#: ../browser/export_files_queue.py:79
+msgid "L'exportació s'ha cancel·lat correctament."
+msgstr "The export was cancelled successfully."
+
+#: ../browser/export_files_queue.py:82
+msgid "No s'ha trobat l'exportació indicada."
+msgstr "The specified export was not found."
+
+#: ../browser/export_files_queue.py:85
+msgid "No es pot cancel·lar aquesta exportació (només es poden cancel·lar les pendents)."
+msgstr "This export cannot be cancelled (only pending exports can be cancelled)."
+
+#: ../browser/views_templates/export_files_queue.pt:23
+msgid "Exportacions actives"
+msgstr "Active exports"
+
+#: ../browser/views_templates/export_files_queue.pt:25
+msgid "Tasques pendents a Huey"
+msgstr "Pending Huey tasks"
+
+#: ../browser/views_templates/export_files_queue.pt:27
+msgid "Tasques programades a Huey"
+msgstr "Scheduled Huey tasks"
+
+#: ../browser/views_templates/export_files_queue.pt:35
+msgid "Estat"
+msgstr "Status"
+
+#: ../browser/views_templates/export_files_queue.pt:37
+msgid "Tipus de fitxer"
+msgstr "File types"
+
+#: ../browser/views_templates/export_files_queue.pt:39
+msgid "Inici"
+msgstr "Started"
+
+#: ../browser/views_templates/export_files_queue.pt:40
+msgid "Fi"
+msgstr "Finished"
+
+#: ../browser/views_templates/export_files_queue.pt:41
+msgid "Accions"
+msgstr "Actions"
+
+#: ../browser/views_templates/export_files_queue.pt:62
+msgid "Cancel·lar"
+msgstr "Cancel"
+
+#: ../browser/views_templates/export_files_queue.pt:68
+msgid "No hi ha exportacions registrades."
+msgstr "No exports are registered."

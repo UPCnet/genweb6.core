@@ -238,6 +238,14 @@
         />
 
     <browser:page
+        name="export_files_queue"
+        for="zope.interface.Interface"
+        permission="cmf.ManagePortal"
+        class=".export_files_queue.ExportFilesQueueView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <browser:page
         name="grid_events_view"
         for="plone.app.contenttypes.interfaces.IFolder"
         class=".events.GridEventsView"

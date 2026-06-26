@@ -19,6 +19,11 @@
             <a href="${context/absolute_url}/folder_contents" i18n:translate="">folder contents</a>.
         </p>
 
+        <p>
+            <a href="${context/portal_url}/@@export_files_queue"
+               i18n:translate="">Gestió de la cua d'exportacions</a>
+        </p>
+
         <form action="" tal:define="options view/options">
 
             <label for="file_type" i18n:translate="">File Types</label>
