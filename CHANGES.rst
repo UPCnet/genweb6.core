@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.104 (unreleased)
+1.104 (2026-06-26)
 ------------------
 
-- Nothing changed yet.
-
+* [UPD] Cambiar literal portlet static [Iago López]
 
 1.103 (2026-06-25)
 ------------------
