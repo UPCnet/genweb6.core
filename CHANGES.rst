@@ -1,11 +1,15 @@
 Changelog
 =========
 
-1.105 (unreleased)
+1.105 (2026-06-30)
 ------------------
 
-- Nothing changed yet.
-
+* [FIX] Corregir envío del correo de exportación async en el worker Huey. [Iago López]
+*  [Iago López]
+* Delegar en MailHost.send() para serializar con CRLF y evitar el error SMTP [Iago López]
+* "Bare linefeed (LF) not allowed" en servidores estrictos. [Iago López]
+*  [Iago López]
+* Co-authored-by: Cursor <cursoragent@cursor.com> [Iago López]
 
 1.104 (2026-06-26)
 ------------------
