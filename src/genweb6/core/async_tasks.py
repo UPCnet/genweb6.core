@@ -170,9 +170,7 @@ def _send_export_notification(site, to_email, subject, body):
             "[ASYNC EXPORT MAIL] Sin email o sitio, no se notifica.")
         return
     try:
-        from email.mime.text import MIMEText
-        from email.mime.multipart import MIMEMultipart
-        from html import escape
+        from email.utils import formataddr
 
         from Acquisition import aq_inner
         from plone import api
@@ -192,28 +190,33 @@ def _send_export_notification(site, to_email, subject, body):
                 'plone.email_from_name')
         except Exception:
             sender_name = None
-        sender_name = sender_name or ''
-        from_msg = sender_name + ' ' + '<' + sender_email + '>'
+        sender_name = safe_unicode(sender_name or '')
+        mfrom = (
+            formataddr((sender_name, sender_email))
+            if sender_name else sender_email)
         try:
             charset = api.portal.get_registry_record('plone.email_charset')
         except Exception:
             charset = 'utf-8'
         charset = charset or 'utf-8'
 
-        msg = MIMEMultipart()
-        msg['From'] = from_msg
-        msg['To'] = to_email
-        msg['Subject'] = escape(safe_unicode(subject))
-        msg['charset'] = charset
-        msg.attach(MIMEText(body, 'plain', charset))
-
         logger.info(
             "[ASYNC EXPORT MAIL] Enviant correu a {0}: {1}".format(
                 to_email, subject))
+        # Pasar solo el cuerpo y dejar que MailHost monte los headers con
+        # policy SMTP (CRLF). Un MIMEMultipart manual provoca "Bare linefeed
+        # (LF) not allowed" en servidores estrictos como el de la UPC.
         # immediate=True: en el worker Huey no hay commit de transacción tras
         # el send; sin esto zope.sendmail deja el correo pendiente y se pierde
         # al cerrar la conexión ZODB en el finally.
-        mailhost.send(msg, immediate=True)
+        mailhost.send(
+            body,
+            mto=to_email,
+            mfrom=mfrom,
+            subject=safe_unicode(subject),
+            charset=charset,
+            immediate=True,
+        )
         logger.info(
             "[ASYNC EXPORT MAIL] Notificación enviada a {0}".format(to_email))
     except Exception as e:
