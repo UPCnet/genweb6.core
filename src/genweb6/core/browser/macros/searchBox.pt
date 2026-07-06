@@ -64,6 +64,11 @@
 
     </form>
 
+    <ul class="livesearch-results list-group d-none"
+        tal:attributes="id string:livesearch-results${search_id}">
+        <li class="list-group-item hiddenStructure" aria-hidden="true"></li>
+    </ul>
+
 </metal:block>
 
 </html>
