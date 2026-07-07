@@ -29,33 +29,33 @@ class IMetadadesSettings(model.Schema, IDexteritySchema):
     api_url = schema.URI(
         title=u"URL del servei d'anonimització",
         constraint=isURL,
-        required=True
+        required=False
     )
 
     api_key = schema.TextLine(
         title=u"Clau API",
-        required=True,
+        required=False,
     )
 
     indicadors_api_url = schema.URI(
         title=u"URL base del servei d'indicadors",
         constraint=isURL,
-        required=True
+        required=False
     )
 
     indicadors_api_key = schema.TextLine(
         title=u"Clau API del servei d'indicadors",
-        required=True,
+        required=False,
     )
 
     indicadors_servei_id = schema.TextLine(
         title=u"ID del servei per Indicadors",
-        required=True,
+        required=False,
     )
 
     indicadors_categoria_id = schema.TextLine(
         title=u"ID de l'indicador a actualitzar",
-        required=True,
+        required=False,
     )
 
 
