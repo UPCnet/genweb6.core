@@ -2293,3 +2293,7 @@ msgstr "¿Ocultar el título?"
 #: ../portlets/static/static.py:20
 msgid "Marqueu aquesta casella per amagar el títol del portlet quan es mostra amb contorn."
 msgstr "Marque esta casilla para ocultar el título del portlet cuando se muestra con contorno."
+
+#: ../browser/viewlets.py
+msgid "open_submenu_label"
+msgstr "Abrir submenú de ${title}"

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from html import unescape
 import logging
 
 from plone import api
@@ -24,6 +25,7 @@ from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
 from zope.component import getUtility
 from zope.component import queryAdapter
+from zope.i18n import translate
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -163,17 +165,36 @@ class headerViewlet(
 
     _opener_markup_template = (
         '<input id="{nav_item_id}" type="checkbox" class="opener" />'
-        '<label for="{nav_item_id}" role="button" aria-label="{title}"></label>'
+        '<label id="{nav_label_id}" for="{nav_item_id}" role="button" '
+        'aria-label="{opener_aria_label}"></label>'
     )
 
-    def render_globalnav(self):
-        self._nav_scope = getattr(self, '_nav_scope', 0) + 1
+    def has_globalnav(self):
+        return bool(self.navtree.get(self.navtree_path, []))
+
+    def render_globalnav_desktop(self):
+        self._nav_scope = 'desktop'
         return GWGlobalSectionsViewlet.render_globalnav(self)
 
+    def render_globalnav_mobile(self):
+        self._nav_scope = 'mobile'
+        return GWGlobalSectionsViewlet.render_globalnav(self)
+
+    def _opener_aria_label(self, title):
+        plain_title = unescape(title)
+        return translate(
+            _('open_submenu_label', default='Open submenu for ${title}'),
+            mapping={'title': plain_title},
+            context=self.request,
+        )
+
     def render_item(self, item, path):
-        scope = getattr(self, '_nav_scope', 1)
+        scope = getattr(self, '_nav_scope', 'desktop')
         item = dict(item)
-        item['nav_item_id'] = f'navitem-{scope}-{item["uid"]}'
+        base_id = f'navitem-{scope}-{item["uid"]}'
+        item['nav_item_id'] = base_id
+        item['nav_label_id'] = f'{base_id}-label'
+        item['opener_aria_label'] = self._opener_aria_label(item['title'])
         return GWGlobalSectionsViewlet.render_item(self, item, path)
 
     @memoize

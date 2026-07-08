@@ -1,7 +1,9 @@
 <tal:content tal:define="navigation_root_url view/navigation_root_url;
                          header_config context/@@genweb.utils/genwebHeaderConfig;
                          languages view/languages;
-                         render_globalnav view/render_globalnav">
+                         has_globalnav view/has_globalnav;
+                         render_globalnav_desktop view/render_globalnav_desktop;
+                         render_globalnav_mobile view/render_globalnav_mobile">
 
     <div id="header" tal:attributes="class view/getClass">
 
@@ -68,7 +70,7 @@
                 </li>
 
                 <navtree tal:condition="not:header_config/treu_menu_horitzontal"
-                        tal:replace="structure render_globalnav" />
+                        tal:replace="structure render_globalnav_desktop" />
 
                 <tal:block tal:condition="python:view.user_actions and view.anonymous">
 
@@ -164,11 +166,11 @@
 
                                 </li>
 
-                                <tal:block tal:condition="render_globalnav">
+                                <tal:block tal:condition="has_globalnav">
 
                                     <li class="ps-3"><hr class="mt-1 mb-1"></li>
 
-                                    <navtree tal:replace="structure render_globalnav" />
+                                    <navtree tal:replace="structure render_globalnav_mobile" />
 
                                 </tal:block>
 
