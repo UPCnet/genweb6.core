@@ -162,9 +162,19 @@ class headerViewlet(
         viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, PersonalBarViewlet):
 
     _opener_markup_template = (
-        '<input type="checkbox" class="opener" />'
-        '<label for="navitem-{uid}" role="button" aria-label="{title}"></label>'
+        '<input id="{nav_item_id}" type="checkbox" class="opener" />'
+        '<label for="{nav_item_id}" role="button" aria-label="{title}"></label>'
     )
+
+    def render_globalnav(self):
+        self._nav_scope = getattr(self, '_nav_scope', 0) + 1
+        return GWGlobalSectionsViewlet.render_globalnav(self)
+
+    def render_item(self, item, path):
+        scope = getattr(self, '_nav_scope', 1)
+        item = dict(item)
+        item['nav_item_id'] = f'navitem-{scope}-{item["uid"]}'
+        return GWGlobalSectionsViewlet.render_item(self, item, path)
 
     @memoize
     def getClass(self):
