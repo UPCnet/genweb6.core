@@ -38,18 +38,22 @@
                tal:attributes="title string:${context/title}, ${context/@@genweb.utils/lit_open_in_new_window};
                                href context/remoteUrl">
 
+                <span class="visually-hidden" tal:content="context/title">Title</span>
+
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline')">
+                                  scale='preview').tag(css_class='image-inline', alt='')" />
             </a>
 
             <a tal:condition="not:context/open_link_in_new_window"
                tal:attributes="title context/title;
                                href context/remoteUrl">
 
+                <span class="visually-hidden" tal:content="context/title">Title</span>
+
                 <img tal:define="scale context/@@images"
                      tal:replace="structure python: scale.scale('image',
-                                  scale='preview').tag(css_class='image-inline')">
+                                  scale='preview').tag(css_class='image-inline', alt='')" />
             </a>
 
         </tal:block>

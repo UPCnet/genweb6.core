@@ -15,12 +15,14 @@
 
                 <a tal:condition="logos/logo_url"
                 tal:attributes="href logos/logo_url;
-                                target logos/logo_target;">
+                                target logos/logo_target;
+                                title logos/logo_alt;">
 
-                    <img alt="" title="" class="img-desktop"
+                    <span class="visually-hidden" tal:content="logos/logo_alt"></span>
+
+                    <img class="img-desktop" aria-hidden="true"
                         tal:attributes="src logos/logo;
-                                        alt logos/logo_alt;
-                                        title logos/logo_alt;">
+                                        alt string:;">
 
                 </a>
 
@@ -39,12 +41,14 @@
 
                 <a tal:condition="logos/secondary_logo_url"
                 tal:attributes="href logos/secondary_logo_url;
-                                target logos/secondary_logo_target;">
+                                target logos/secondary_logo_target;
+                                title logos/secondary_logo_alt;">
 
-                    <img alt="" title="" class="img-desktop"
+                    <span class="visually-hidden" tal:content="logos/secondary_logo_alt"></span>
+
+                    <img class="img-desktop" aria-hidden="true"
                         tal:attributes="src logos/secondary_logo;
-                                        alt logos/secondary_logo_alt;
-                                        title logos/secondary_logo_alt;">
+                                        alt string:;">
 
                 </a>
 
@@ -77,12 +81,14 @@
                     <li class="nav-item nav-action" tal:repeat="action view/user_actions">
 
                         <a href=""
-                        tal:attributes="action">
+                        tal:attributes="action;
+                                        title action/title;">
+
+                        <span class="visually-hidden" tal:content="action/title"></span>
 
                         <i tal:condition="action/icon"
-                           tal:attributes="class string:bi bi-${action/icon};
-                                           title action/title;
-                                           alt action/title"></i>
+                           tal:attributes="class string:bi bi-${action/icon};"
+                           aria-hidden="true"></i>
                         </a>
 
                     </li>
@@ -93,10 +99,13 @@
 
                     <li class="has_subtree nav-item nav-lang">
 
-                        <a href="#" class="nav-link" aria-haspopup="true">
-                            <i class="bi bi-globe" i18n:domain="plone"
-                            i18n:attributes="alt label_languages;
-                                                title label_languages;"></i>
+                        <a href="#" class="nav-link" aria-haspopup="true" aria-expanded="false"
+                           i18n:domain="plone"
+                           i18n:attributes="title label_languages;">
+
+                            <span class="visually-hidden" i18n:translate="label_languages">Idiomes</span>
+
+                            <i class="bi bi-globe" aria-hidden="true"></i>
                         </a>
 
                         <ul class="has_subtree dropdown" tal:define="langs languages/others">

@@ -23,10 +23,11 @@
                 <a href="#" tal:attributes="href item/url" target="_blank"
                    tal:condition="item/image">
 
-                    <img loading="lazy"
+                    <span class="visually-hidden" tal:content="item/title">Title</span>
+
+                    <img loading="lazy" aria-hidden="true"
                          tal:attributes="src item/image;
-                                         title item/title;
-                                         alt item/title" />
+                                         alt string:;" />
                 </a>
 
             </div>

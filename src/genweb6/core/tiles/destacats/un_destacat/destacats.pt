@@ -12,8 +12,11 @@
 
       <div tal:define="heroTextPosition view/heroTextPosition">
 
-        <a tal:attributes="href item/url; target item/open_link_in_new_window;"
+        <a tal:attributes="href item/url;
+                           target item/open_link_in_new_window;
+                           title item/title"
            class="wrapper-img-link" aria-hidden="true">
+          <span class="visually-hidden" tal:content="item/title">Titol</span>
         </a>
 
         <section

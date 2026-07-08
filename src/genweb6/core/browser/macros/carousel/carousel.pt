@@ -82,7 +82,8 @@
         <a href="#" class="title d-block text-decoration-none"
             tal:attributes="href obj/url;
                             title obj/title;">
-                <h5 class="text-truncate" tal:content="obj/title">Title</h5>
+                <span class="visually-hidden" tal:content="obj/title">Title</span>
+                <h5 class="text-truncate mb-0" aria-hidden="true" tal:content="obj/title">Title</h5>
         </a>
 
         <time tal:condition="view/show_time" class="time smaller"
@@ -151,14 +152,16 @@
                 tal:attributes="href obj/url;
                                 title obj/title;">
 
-                    <img tal:condition="obj/image_src" class="d-block w-100" loading="lazy"
+                    <span class="visually-hidden" tal:content="obj/title">Title</span>
+
+                    <img tal:condition="obj/image_src" class="d-block w-100" loading="lazy" aria-hidden="true"
                         tal:attributes="src obj/image_src;
-                                        alt obj/image_caption;
+                                        alt string:;
                                         title obj/title">
 
-                    <img tal:condition="not:obj/image_src" class="d-block w-100" loading="lazy"
+                    <img tal:condition="not:obj/image_src" class="d-block w-100" loading="lazy" aria-hidden="true"
                         src="++theme++genweb6.theme/img/sample/default_image_sm.webp"
-                        tal:attributes="alt obj/title;
+                        tal:attributes="alt string:;
                                         title obj/title">
                 </a>
 
@@ -170,7 +173,8 @@
                     tal:attributes="href obj/url;
                                     title obj/title">
 
-                <h6 tal:content="obj/title">Title</h6>
+                <span class="visually-hidden" tal:content="obj/title">Title</span>
+                <h6 class="mb-0" aria-hidden="true" tal:content="obj/title">Title</h6>
             </a>
 
             <p tal:condition="obj/description" class="description text-truncate-4 mb-1"

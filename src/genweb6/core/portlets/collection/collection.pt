@@ -93,11 +93,12 @@
                                tal:attributes="href obj/getURL;
                                                title obj/title">
 
+                                <span class="visually-hidden" tal:content="obj/title">Title</span>
+
                                 <img tal:condition="obj/image | nothing"
-                                     loading="lazy"
+                                     loading="lazy" aria-hidden="true"
                                      tal:attributes="src string:${obj/getURL}/@@images/image/preview;
-                                                     title obj/title | nothing;
-                                                     alt obj/title | string: ;"/>
+                                                     alt string:;"/>
 
                             </a>
 

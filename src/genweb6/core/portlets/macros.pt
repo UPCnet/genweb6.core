@@ -42,10 +42,11 @@
        tal:attributes="href obj/url;
                        title obj/title">
 
-        <img loading="lazy"
+        <span class="visually-hidden" tal:content="obj/title">Title</span>
+
+        <img loading="lazy" aria-hidden="true"
              tal:attributes="src obj/image_src;
-                             title obj/title | nothing;
-                             alt obj/title | string: ;"/>
+                             alt string:;"/>
 
     </a>
 

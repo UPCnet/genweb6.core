@@ -58,16 +58,18 @@
 
           <div class="col-3" tal:condition="item_has_image">
 
-            <a tal:attributes="href item_link">
+            <a tal:attributes="href item_link;
+                               title item_title">
+
+              <span class="visually-hidden" tal:content="item_title">Title</span>
 
               <tal:comment replace="nothing">
                 Cambiar tamaño de la imagen a preview, se cargaba con thumb y daba errores a parte
               </tal:comment>
 
-              <img class="image-responsive"
+              <img class="image-responsive" aria-hidden="true"
                    tal:attributes="src string:${item_url}/@@images/image/preview;
-                                   title item_title;
-                                   alt item_title;" />
+                                   alt string:;" />
 
             </a>
 

@@ -7,21 +7,18 @@
     <li tal:repeat="logo logos" role="listitem">
 
       <a rel="tooltip" data-placement="top"
-         tal:define="target python:logo.open_link_in_new_window and '_blank' or None"
+         tal:define="target python:logo.open_link_in_new_window and '_blank' or None;
+                     logo_title python:view.getAltAndTitle(logo.Title) if logo.open_link_in_new_window else logo.Title"
          tal:attributes="href logo/getRemoteUrl| nothing;
-                         data-original-title logo/Title;
+                         data-original-title logo_title;
+                         title logo_title;
                          target target | nothing">
 
-        <img tal:condition="logo/open_link_in_new_window"
-             tal:define="title python:view.getAltAndTitle(logo.Title)"
-             tal:attributes="src string:${logo/getURL}/@@images/image;
-                             title title;
-                             alt title">
+        <span class="visually-hidden" tal:content="logo_title">Logo</span>
 
-        <img tal:condition="not: logo/open_link_in_new_window"
+        <img aria-hidden="true"
              tal:attributes="src string:${logo/getURL}/@@images/image;
-                             title logo/Title;
-                             alt logo/Title">
+                             alt string:;">
       </a>
     </li>
   </ul>

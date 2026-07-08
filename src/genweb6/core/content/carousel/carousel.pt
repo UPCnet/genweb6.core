@@ -111,7 +111,8 @@
                                    tal:attributes="href content/url;
                                                    title content/title;
                                                    target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
-                                    <h5 class="text-truncate"
+                                    <span class="visually-hidden" tal:content="content/title">Title</span>
+                                    <h5 class="text-truncate mb-0" aria-hidden="true"
                                         tal:content="content/title">Title</h5>
                                 </a>
                             </div>
@@ -142,16 +143,18 @@
                                                            title content/title;
                                                            target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
 
-                                            <img class="d-block w-100" loading="lazy"
+                                            <span class="visually-hidden" tal:content="content/title">Title</span>
+
+                                            <img class="d-block w-100" loading="lazy" aria-hidden="true"
                                                 tal:condition="context/carousel_enable_auto_proportions"
                                                 tal:attributes="src content/image;
-                                                                alt content/title;
+                                                                alt string:;
                                                                 title content/title">
 
-                                            <img class="d-block w-100 disable-auto-proportions" loading="lazy"
+                                            <img class="d-block w-100 disable-auto-proportions" loading="lazy" aria-hidden="true"
                                                 tal:condition="not:context/carousel_enable_auto_proportions"
                                                 tal:attributes="src content/image;
-                                                                alt content/title;
+                                                                alt string:;
                                                                 title content/title">
 
                                         </a>
@@ -165,7 +168,8 @@
                                                            title content/title;
                                                            target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
 
-                                            <h6 tal:content="content/title">Title</h6>
+                                            <span class="visually-hidden" tal:content="content/title">Title</span>
+                                            <h6 class="mb-0" aria-hidden="true" tal:content="content/title">Title</h6>
                                         </a>
 
                                         <p tal:condition="context/carousel_show_description"
