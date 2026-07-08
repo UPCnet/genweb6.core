@@ -8,7 +8,8 @@
 
     <h2 class="portlet-title" tal:content="view/title">Tags</h2>
 
-    <ul class="list-group list-group-flush mb-2">
+    <ul class="list-group list-group-flush mb-2"
+        tal:condition="view/items">
 
       <tal:rss tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
                tal:repeat="item view/items">

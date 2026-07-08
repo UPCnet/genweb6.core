@@ -16,7 +16,8 @@
             <h2 class="portlet-title" tal:condition="view/data/header"
                 tal:content="view/data/header">Colleccio</h2>
 
-            <ul class="list-group list-group-flush mb-2">
+            <ul class="list-group list-group-flush mb-2"
+                tal:condition="view/results">
 
                 <tal:item tal:repeat="obj view/results">
 
@@ -76,7 +77,8 @@
             <h2 class="portlet-title" tal:condition="view/data/header"
                 tal:content="view/data/header">Colleccio</h2>
 
-            <ul class="ps-0 mb-2 row">
+            <ul class="ps-0 mb-2 row"
+                tal:condition="view/results">
 
                 <tal:item tal:repeat="obj view/results">
 
