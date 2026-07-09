@@ -11,7 +11,9 @@
 
   <div class="container">
     <dl class="alert alert-warning alert-dismissible fade show">
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"
+              i18n:domain="genweb"
+              i18n:attributes="aria-label btn_close"></button>
       <dt i18n:translate="label_locked">Locked</dt>
       <dd>
         <tal:author-page

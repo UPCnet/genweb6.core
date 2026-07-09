@@ -46,7 +46,7 @@
                 tal:attributes="data-bs-target string:#${id_carousel};">
 
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="visually-hidden" i18n:domain="genweb" i18n:translate="carousel_previous">Previous</span>
 
         </button>
 
@@ -54,7 +54,7 @@
                 tal:attributes="data-bs-target string:#${id_carousel};">
 
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            <span class="visually-hidden" i18n:domain="genweb" i18n:translate="carousel_next">Next</span>
 
         </button>
 
@@ -123,7 +123,7 @@
                 tal:attributes="data-bs-target string:#${id_carousel};">
 
                 <i class="bi bi-arrow-left-short"></i>
-                <span class="visually-hidden">Previous</span>
+                <span class="visually-hidden" i18n:domain="genweb" i18n:translate="carousel_previous">Previous</span>
 
             </a>
 
@@ -131,7 +131,7 @@
                 tal:attributes="data-bs-target string:#${id_carousel};">
 
                 <i class="bi bi-arrow-right-short"></i>
-                <span class="visually-hidden">Next</span>
+                <span class="visually-hidden" i18n:domain="genweb" i18n:translate="carousel_next">Next</span>
 
             </a>
 

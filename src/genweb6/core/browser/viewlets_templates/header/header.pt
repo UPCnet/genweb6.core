@@ -111,7 +111,8 @@
                         <ul class="has_subtree dropdown" tal:define="langs languages/others">
                             <li tal:repeat="lang langs" class="nav-item">
                                 <a class="nav-link" tal:attributes="href lang/url">
-                                    <span tal:content="lang/native"></span>
+                                    <span tal:content="lang/native"
+                                          tal:attributes="lang lang/code"></span>
                                 </a>
                             </li>
                         </ul>
@@ -134,7 +135,8 @@
                 <div class="container-fluid">
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                            aria-label="Close"
+                            i18n:domain="genweb"
+                            i18n:attributes="aria-label btn_close"
                             data-bs-target="#gwMobileNavbar" aria-controls="gwMobileNavbar">
 
                     <span class="navbar-toggler-icon"></span>
@@ -147,7 +149,9 @@
                         <div class="offcanvas-header">
 
                             <p class="h5" i18n:translate="">Menú</p>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                    i18n:domain="genweb"
+                                    i18n:attributes="aria-label btn_close"></button>
 
                         </div>
 
@@ -220,7 +224,8 @@
 
                                             <a class="nav-link" tal:attributes="href lang/url">
 
-                                                <span tal:content="lang/native"></span>
+                                                <span tal:content="lang/native"
+                                                      tal:attributes="lang lang/code"></span>
 
                                             </a>
 

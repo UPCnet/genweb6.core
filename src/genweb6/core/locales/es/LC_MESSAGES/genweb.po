@@ -412,6 +412,40 @@ msgstr "Copiar enlace"
 msgid "Copiat"
 msgstr "Copiado!"
 
+#. Default: "Previous"
+#: ../browser/macros/carousel/carousel.pt:49
+#: ../browser/macros/carousel/carousel.pt:126
+#: ../content/carousel/carousel.pt:72
+#: ../content/carousel/carousel.pt:188
+msgid "carousel_previous"
+msgstr "Anterior"
+
+#. Default: "Next"
+#: ../browser/macros/carousel/carousel.pt:57
+#: ../browser/macros/carousel/carousel.pt:134
+#: ../content/carousel/carousel.pt:80
+#: ../content/carousel/carousel.pt:193
+msgid "carousel_next"
+msgstr "Siguiente"
+
+#. Default: "Stop automatic slide show"
+#: ../content/carousel/carousel.pt:64
+msgid "carousel_stop_autoplay"
+msgstr "Detener la reproducción automática del carrusel"
+
+#. Default: "Close"
+#: ../browser/viewlets_templates/content/important.pt:22
+#: ../browser/viewlets_templates/header/header.pt:137
+#: ../browser/viewlets_templates/header/header.pt:150
+#: ../templates/plone.locking.browser.info.pt:14
+msgid "btn_close"
+msgstr "Cerrar"
+
+#. Default: "Complementary footer navigation"
+#: ../browser/viewlets_templates/footer/footer.pt:12
+msgid "footer_complementary_nav"
+msgstr "Navegación complementaria del pie de página"
+
 #: ../browser/viewlets.py:656
 msgid "Copiat!"
 msgstr "Copiado!"
