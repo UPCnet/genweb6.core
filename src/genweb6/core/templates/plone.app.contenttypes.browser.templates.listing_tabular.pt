@@ -30,9 +30,13 @@
 
           <thead>
             <tr>
-              <th class="text-nowrap"></th>
-              <th class="text-nowrap" i18n:translate="" tal:repeat="field tabular_fields" tal:content="python:view.tabular_field_label(field)">Field name</th>
-              <th class="text-nowrap" i18n:domain="genweb" i18n:translate="image" tal:condition="python:thumb_scale_table">Image</th>
+              <th class="listing-tabular-icon"></th>
+              <th tal:repeat="field tabular_fields"
+                  tal:attributes="class string:listing-tabular-field listing-tabular-field--${field};
+                                  data-label python:view.tabular_field_label(field)"
+                  i18n:translate=""
+                  tal:content="python:view.tabular_field_label(field)">Field name</th>
+              <th class="listing-tabular-image" i18n:domain="genweb" i18n:translate="image" tal:condition="python:thumb_scale_table">Image</th>
             </tr>
           </thead>
 
@@ -55,7 +59,7 @@
 
                 <tr metal:define-macro="listitem">
 
-                  <td>
+                  <td class="listing-tabular-icon">
 
                     <tal:comment replace="nothing">
                       Iconos de contenidos personalizados a través de la función b_icon_expr
@@ -75,21 +79,25 @@
 
                   <tal:block tal:repeat="field python:tabular_fields">
 
-                  <td class="text-nowrap" tal:condition="python:field not in ['Title', 'Creator', 'getIcon']" tal:define="field_data python:view.tabular_fielddata(item, field)">
+                  <td tal:condition="python:field not in ['Title', 'Creator', 'getIcon']"
+                      tal:attributes="class string:listing-tabular-field listing-tabular-field--${field};
+                                      data-label python:view.tabular_field_label(field)"
+                      tal:define="field_data python:view.tabular_fielddata(item, field)">
                     <tal:block tal:replace="python: field_data.get('value')" />
                   </td>
 
-                  <tal:comment replace="nothing">
-                    Si es el Title quitamos la class text-nowrap y añadimos la class min-vw-50
-                  </tal:comment>
-
-                  <td class="min-vw-50" tal:condition="python:field == 'Title'">
+                  <td class="listing-tabular-field listing-tabular-field--Title"
+                      tal:condition="python:field == 'Title'"
+                      tal:attributes="data-label python:view.tabular_field_label('Title')">
                     <a tal:attributes="href python:item_link; class string:$item_type_class $item_wf_state_class url; title python:item_type" tal:content="python: item_title">
                       Item Title
                     </a>
                   </td>
 
-                  <td class="text-nowrap" tal:condition="python:field == 'Creator'" tal:define="author python:view.pas_member.info(item_creator); name python:author['fullname'] or author['username']">
+                  <td class="listing-tabular-field listing-tabular-field--Creator text-nowrap"
+                      tal:condition="python:field == 'Creator'"
+                      tal:attributes="data-label python:view.tabular_field_label('Creator')"
+                      tal:define="author python:view.pas_member.info(item_creator); name python:author['fullname'] or author['username']">
                     <a tal:condition="python: author" href="${view/navigation_root_url}/author/${item_creator}">
                       ${name}
                     </a>
@@ -97,7 +105,7 @@
 
                   </tal:block>
 
-                  <td>
+                  <td class="listing-tabular-image">
                     <a tal:condition="python:item_has_image and thumb_scale_table">
                       <img tal:attributes="href python: item_link" tal:replace="structure python:image_scale.tag(item, 'image', scale=thumb_scale_table, css_class=img_class, loading='lazy')" />
                     </a>
