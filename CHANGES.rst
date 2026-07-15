@@ -1,11 +1,34 @@
 Changelog
 =========
 
-1.106 (unreleased)
+1.106 (2026-07-15)
 ------------------
 
-- Nothing changed yet.
-
+* [UPD] Improve tabular listing markup for responsive column styling. [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Replace text-nowrap with semantic listing-tabular field classes so title and description columns can wrap and scale correctly. [Clàudia Andreu]
+* [FIX] Identify language changes in UI fragments for WCAG 3.1.2 [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Add lang attributes to language selector labels and the genweb UPC brand, [Clàudia Andreu]
+* and translate hardcoded English UI strings (carousel controls, close buttons, [Clàudia Andreu]
+* footer navigation) so screen readers use the correct language. [Clàudia Andreu]
+* [FIX] Add accessible names to image-only and empty links (WCAG 1.12) [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Ensure links in header, hero, carousels, portlets and listings expose [Clàudia Andreu]
+* descriptive text via visually-hidden spans instead of relying on empty [Clàudia Andreu]
+* anchors or icon-only controls. [Clàudia Andreu]
+* [FIX] Use unique desktop/mobile IDs for nav submenu opener labels [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Fix WCAG 1.9 explicit label association by scoping opener ids per nav render and avoiding duplicate for/id pairs across header instances. [Clàudia Andreu]
+* [FIX] Associate nav submenu opener checkboxes with their labels [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Fix WCAG 1.9 by adding matching id/for on opener inputs and unique IDs per desktop/mobile nav render. [Clàudia Andreu]
+* [FIX] Omit empty portlet lists when there are no items [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Hide ul.list-group-flush markup unless collection or RSS portlets [Clàudia Andreu]
+* have items, per accessibility audit requirement 1.3. [Clàudia Andreu]
+* [UPD] Quitar campos obligatorios controlpanel metadades [Iago López]
+* [FIX] Add li children to livesearch results ul in searchBox [Clàudia Andreu]
 
 1.105 (2026-06-30)
 ------------------
