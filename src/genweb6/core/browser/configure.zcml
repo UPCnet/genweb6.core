@@ -345,4 +345,13 @@
         permission="cmf.ManagePortal"
         />
 
+    <!-- Show Plone 404 page for broken resolveuid links -->
+    <browser:page
+        name="resolveuid"
+        for="*"
+        class=".resolveuid.GenwebResolveUIDView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
+        />
+
 </configure>
