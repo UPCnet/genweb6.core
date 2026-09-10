@@ -57,7 +57,7 @@
     <browser:page
         name="genweb.get.dxdocument.text.complete.style"
         for="plone.app.contenttypes.interfaces.IDocument"
-        class=".views.GetDXDocumentTextStyle"
+        class=".views.GetDXDocumentTextCompleteStyle"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
@@ -66,7 +66,7 @@
     <browser:page
         name="genweb.get.dxdocument.text.complete.style"
         for="plone.app.contenttypes.interfaces.IEvent"
-        class=".views.GetDXDocumentTextStyle"
+        class=".views.GetDXDocumentTextCompleteStyle"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
@@ -75,7 +75,7 @@
     <browser:page
         name="genweb.get.dxdocument.text.complete.style"
         for="plone.app.contenttypes.interfaces.INewsItem"
-        class=".views.GetDXDocumentTextStyle"
+        class=".views.GetDXDocumentTextCompleteStyle"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
@@ -84,7 +84,7 @@
     <browser:page
         name="genweb.get.dxdocument.text.complete.style"
         for="genweb6.core.content.document_image.document_image.IDocumentImage"
-        class=".views.GetDXDocumentTextStyle"
+        class=".views.GetDXDocumentTextCompleteStyle"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
@@ -232,7 +232,7 @@
     <browser:page
         name="download_files"
         for="plone.app.contenttypes.interfaces.IFolder"
-        permission="cmf.ManagePortal"
+        permission="genweb.webmaster"
         class=".download_files.DownloadFiles"
         template="views_templates/download_files.pt"
         />
@@ -343,6 +343,15 @@
         class=".export_group_permissions.ExportGroupPermissionsView"
         layer="..interfaces.IGenweb6CoreLayer"
         permission="cmf.ManagePortal"
+        />
+
+    <!-- Show Plone 404 page for broken resolveuid links -->
+    <browser:page
+        name="resolveuid"
+        for="*"
+        class=".resolveuid.GenwebResolveUIDView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
         />
 
 </configure>

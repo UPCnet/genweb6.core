@@ -52,6 +52,25 @@ import logging
 LOGGER = logging.getLogger("genweb6.core")
 
 
+def _flatten_picture_elements_for_pdf(html):
+    """Replace ``<picture>`` tags with their inner ``<img>`` for wkhtmltopdf.
+
+    wkhtmltopdf uses an old WebKit that does not render responsive
+    ``<picture>``/``srcset`` markup reliably, even when the fallback ``<img>``
+    has a valid absolute ``src``.
+    """
+    if not html or '<picture' not in html:
+        return html
+    soup = BeautifulSoup(html, 'html.parser')
+    for picture in soup.find_all('picture'):
+        img = picture.find('img')
+        if img is None:
+            continue
+        img.attrs.pop('loading', None)
+        picture.replace_with(img)
+    return str(soup)
+
+
 class GetDXDocumentText(BrowserView):
 
     def __call__(self):
@@ -76,6 +95,13 @@ class GetDXDocumentTextStyle(BrowserView):
         if self.context.portal_type != 'Event' or not getattr(self.context, 'start', None):
             return None
         return spell_date(self.context.start, self.context)
+
+
+class GetDXDocumentTextCompleteStyle(GetDXDocumentTextStyle):
+    """Vista per a exportació PDF (wkhtmltopdf via download_files)."""
+
+    def textOutput(self):
+        return _flatten_picture_elements_for_pdf(self.context.text.output)
 
 
 class GetDXDocumentTextTinyMCE(BrowserView):
