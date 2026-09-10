@@ -1,11 +1,13 @@
 Changelog
 =========
 
-1.107 (unreleased)
+1.107 (2026-09-10)
 ------------------
 
-- Nothing changed yet.
-
+* Merge remote-tracking branch 'origin/develop' [Iago López]
+* [UPD] download_file - que puedan usarlo los webmasters [Iago López]
+* [ADD] Sobrescribir pagina resolveuid para que en vez de dar error si el resolveuid no existe reedirija a 404 [Iago López]
+* [FIX] download_files PDF export for TinyMCE picture-variant images [Clàudia Andreu]
 
 1.106 (2026-07-15)
 ------------------
