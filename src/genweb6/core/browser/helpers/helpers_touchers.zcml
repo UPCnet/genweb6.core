@@ -342,5 +342,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="setup_new_cas_url"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.setup_new_cas_url"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
 
 </configure>

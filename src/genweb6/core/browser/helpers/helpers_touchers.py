@@ -1177,3 +1177,29 @@ Força seo_robots a "noindex, nofollow" en el contingut del path (context) i en 
         if count:
             transaction.commit()
         return 'OK: %d objectes actualitzats a noindex, nofollow.' % count
+
+
+class setup_new_cas_url(BrowserView):
+    """
+Configura la URL de la CAS a la nova URL de la CAS
+
+Paràmetres:
+- new_url: URL de la CAS
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        new_url = ''
+        if 'new_url' in self.request.form:
+            new_url = self.request.form['new_url']
+        else:
+            return 'Error parameter new_url, not defined'
+
+        registry = queryUtility(IRegistry)
+        cas_settings = registry.forInterface(ICASSettings)
+        if cas_settings.url:
+            cas_settings.url = new_url
+            addPluginCAS(cas_settings.url)
+            transaction.commit()
+
+        return 'OK'
