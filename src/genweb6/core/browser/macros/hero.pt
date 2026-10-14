@@ -39,7 +39,9 @@
                    tal:attributes="href python:getattr(header_config, 'full_hero_image_url_' + pref_lang, '');
                                    title python:getattr(header_config, 'full_hero_image_text_' + pref_lang, '')"
                    target="_blank" href="#"
-                   class="wrapper-img-link" aria-hidden="true">
+                   class="wrapper-img-link">
+                  <span class="visually-hidden"
+                        tal:content="python:getattr(header_config, 'full_hero_image_text_' + pref_lang, '')"></span>
                 </a>
 
                 <img alt=""
@@ -70,7 +72,9 @@
                    tal:attributes="href python:getattr(header_config, 'full_hero_image_url_' + pref_lang, '');
                                    title img_hero_alt|nothing"
                    target="_blank" href="#"
-                   class="wrapper-img-link" aria-hidden="true">
+                   class="wrapper-img-link">
+                  <span class="visually-hidden"
+                        tal:content="python:img_hero_alt if img_hero_alt else ''"></span>
                 </a>
 
                 <img alt=""

@@ -19,7 +19,8 @@
          i18n:translate="">Desmarca com a important</a>
     </tal:block>
 
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+            i18n:attributes="aria-label btn_close"></button>
   </div>
 
 </tal:block>

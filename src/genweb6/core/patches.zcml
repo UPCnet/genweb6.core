@@ -48,12 +48,13 @@
         replacement=".patches.changeMemberPortrait"
         />
 
-    <monkey:patch
+    <!-- Se comenta porque en genweb6 no se pone imagen por defecto esto es para comunitats -->
+    <!-- <monkey:patch
         description="Patch to extend the features of the deletePersonalPortrait"
         class="Products.PlonePAS.tools.membership.MembershipTool"
         original="deletePersonalPortrait"
         replacement=".patches.deletePersonalPortrait"
-        />
+        /> -->
 
     <!-- LDAP and user objects related patches -->
     <monkey:patch
@@ -293,6 +294,18 @@
         class="Products.PluginIndexes.unindex.UnIndex"
         original="query_index"
         replacement=".patches.query_index"
+        />
+
+    <!-- Performance optimization: Cache navtree via subscriber at startup -->
+    <subscriber
+        handler=".patches.patch_globalsections_navtree"
+        for="zope.processlifetime.IProcessStarting"
+        />
+
+    <!-- @@mail-controlpanel: substituir Handler.func del botó test (z3c.form) -->
+    <subscriber
+        handler=".patches.patch_mail_controlpanel_test_handler"
+        for="zope.processlifetime.IProcessStarting"
         />
 
 </configure>

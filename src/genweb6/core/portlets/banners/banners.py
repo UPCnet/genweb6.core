@@ -78,9 +78,12 @@ class Renderer(base.Renderer):
         catalog = api.portal.get_tool(name='portal_catalog')
         limit = self.data.count
         lang = utils.pref_lang()
+        root_path = '/'.join(api.portal.get().getPhysicalPath())
+        path = f'{root_path}/{lang}/banners-{lang}'
+
         return catalog.searchResults(portal_type='Banner',
                                      review_state=['published', 'intranet'],
-                                     Language=lang,
+                                     path=path,
                                      sort_on='getObjPositionInParent',
                                      sort_limit=limit)[:limit]
 

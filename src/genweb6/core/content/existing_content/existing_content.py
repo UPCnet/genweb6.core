@@ -30,6 +30,7 @@ import requests
 
 logger = logging.getLogger("genweb6.core")
 
+
 class IExistingContent(model.Schema):
 
     content_or_url = schema.Choice(
@@ -144,7 +145,7 @@ class ExistingContentView(BrowserView):
             elif self.context.content_or_url == 'EXTERN':
                 link_extern = self.context.external_url
                 headers = {'Accept-Language': self.context.language}
-                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=2)
+                raw_html = requests.get(link_extern, headers=headers, verify=False, timeout=5)
 
                 clean_html = re.sub(r'[\n\r]?', r'', raw_html.text)
                 doc = pq(clean_html)

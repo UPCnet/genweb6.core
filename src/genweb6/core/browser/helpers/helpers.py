@@ -17,6 +17,8 @@ from zope.interface import alsoProvides
 from genweb6.core import HAS_PAM
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.interfaces import IProtectedContent
+from plone.cachepurging.interfaces import ICachePurgingSettings
+from genweb6.core.controlpanels.resources import IResourcesSettings
 
 import json
 import logging
@@ -25,8 +27,8 @@ import pkg_resources
 import requests
 import time
 
-
 logger = logging.getLogger(__name__)
+
 
 PROPERTIES_MAP = {'titolespai_ca': 'html_title_ca',
                   'titolespai_es': 'html_title_es',
@@ -705,6 +707,38 @@ class genwebStats(BrowserView):
         days = int(minutes/60/24)
         unitat = api.portal.get_registry_record(
             'genweb6.upc.controlpanels.upc.IUPCSettings.contacte_id')
+
+        # Recupera número total de continguts del cataleg
+        pc = api.portal.get_tool(name='portal_catalog')
+        total_contents = len(pc)
+
+        # Check if caché URL is correct
+        cache_purging_settings = registry.forInterface(ICachePurgingSettings)
+        domains = cache_purging_settings.domains
+        site_url = api.portal.get().absolute_url()
+        url_is_in_cache_domains = site_url in ''.join(domains)
+
+        # Get Resources Settings
+        resources_settings = registry.forInterface(IResourcesSettings)
+        if getattr(resources_settings, 'upload_files', False):
+            has_custom_css = bool(getattr(resources_settings, 'file_css', None))
+            has_custom_js = bool(getattr(resources_settings, 'file_js', None))
+        else:
+            has_custom_css = bool(getattr(resources_settings, 'text_css', None))
+            has_custom_js = bool(getattr(resources_settings, 'text_js', None))
+
+        # Last data update
+        pc = api.portal.get_tool(name='portal_catalog')
+        last_modified_item = pc.searchResults(
+            sort_on='modified',
+            sort_order='descending',
+            sort_limit=1
+        )
+        if last_modified_item:
+            last_data_update = last_modified_item[0].modified.ISO8601()
+        else:
+            last_data_update = None
+
         stats = {
             'contact_email': contact_email,
             'inactivity_days': days,
@@ -712,6 +746,12 @@ class genwebStats(BrowserView):
             'titulo': header_config.html_title_es,
             'title': header_config.html_title_en,
             'unitat': unitat,
+            'total_contents': total_contents,
+            'url_is_in_cache_domains': url_is_in_cache_domains,
+            'has_custom_css': has_custom_css,
+            'has_custom_js': has_custom_js,
+            'last_data_update': last_data_update,
+            'domains': domains,
         }
         return json.dumps(stats, indent=4, ensure_ascii=False)
 

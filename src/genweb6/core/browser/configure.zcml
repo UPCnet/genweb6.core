@@ -9,6 +9,17 @@
 
     <include file="viewlets.zcml" />
 
+    <!-- Importar validador de portrait para interceptar antes de guardar -->
+    <include package=".portrait_validator" />
+
+    <!-- Registrar widget personalizado para el campo portrait -->
+    <adapter
+        factory=".portrait_validator.ValidatedPortraitFieldWidget"
+        for="plone.namedfile.interfaces.INamedBlobImageField
+             z3c.form.interfaces.IFormLayer"
+        provides="z3c.form.interfaces.IFieldWidget"
+        />
+
     <exclude package="plone.app.multilingual" file="viewlets.xml"  />
 
     <browser:page
@@ -41,6 +52,42 @@
         layer="..interfaces.IGenweb6CoreLayer"
         permission="zope2.View"
         template="views_templates/genweb_get_dxdocument_text_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.IDocument"
+        class=".views.GetDXDocumentTextCompleteStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.IEvent"
+        class=".views.GetDXDocumentTextCompleteStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="plone.app.contenttypes.interfaces.INewsItem"
+        class=".views.GetDXDocumentTextCompleteStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
+        />
+
+    <browser:page
+        name="genweb.get.dxdocument.text.complete.style"
+        for="genweb6.core.content.document_image.document_image.IDocumentImage"
+        class=".views.GetDXDocumentTextCompleteStyle"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/genweb_get_dxdocument_text_complete_style.pt"
         />
 
     <browser:page
@@ -120,6 +167,15 @@
         />
 
     <browser:page
+        name="filtered_contents_search_album_view"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchAlbumView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_album.pt"
+        />
+
+    <browser:page
         name="filtered_contents_search_complete_pretty_view"
         for="zope.interface.Interface"
         class=".views.FilteredContentsSearchCompleteView"
@@ -147,6 +203,15 @@
         />
 
     <browser:page
+        name="search_album_filtered_content_pretty"
+        for="zope.interface.Interface"
+        class=".views.FilteredContentsSearchAlbumView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="views_templates/filtered_contents_search/filtered_contents_search_album_ajax.pt"
+        />
+
+    <browser:page
         name="folder_index_view"
         for="Products.CMFCore.interfaces.IFolderish"
         class=".views.FolderIndexView"
@@ -167,7 +232,7 @@
     <browser:page
         name="download_files"
         for="plone.app.contenttypes.interfaces.IFolder"
-        permission="zope2.ViewManagementScreens"
+        permission="genweb.webmaster"
         class=".download_files.DownloadFiles"
         template="views_templates/download_files.pt"
         />
@@ -224,6 +289,22 @@
         template="views_templates/JSON_template.pt"
         />
 
+    <browser:page
+        name="netejar_metadades"
+        for="zope.interface.Interface"
+        permission="zope.Public"
+        class=".netejar_metadades.NetejarMetadadesView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
+    <browser:page
+        name="clean_pdfs"
+        for="zope.interface.Interface"
+        permission="cmf.ManagePortal"
+        class=".clean_pdfs.CleanPDFsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        />
+
     <configure package="Products.CMFPlone.browser">
 
         <browser:page
@@ -235,5 +316,42 @@
             />
 
     </configure>
+
+    <!-- Vista segura de password reset con rate-limiting y CAPTCHA -->
+    <browser:page
+        name="mail_password"
+        for="*"
+        class=".password_reset.SecurePasswordResetView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
+        />
+
+    <!-- Vista del formulario con CAPTCHA -->
+    <browser:page
+        name="mail_password_form"
+        for="*"
+        class=".password_reset.SecurePasswordResetFormView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        template="views_templates/password_reset.pt"
+        permission="zope.Public"
+        />
+
+    <!-- Exporta en JSON los grupos con permisos asignados en contenidos y globalmente -->
+    <browser:page
+        name="export-group-permissions"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".export_group_permissions.ExportGroupPermissionsView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
+    <!-- Show Plone 404 page for broken resolveuid links -->
+    <browser:page
+        name="resolveuid"
+        for="*"
+        class=".resolveuid.GenwebResolveUIDView"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope.Public"
+        />
 
 </configure>

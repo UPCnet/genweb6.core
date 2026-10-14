@@ -199,7 +199,11 @@ class Renderer(base.Renderer):
 
     @property
     def available(self):
-        return len(self.results())
+        """
+        Ocultar el portlet si no hay resultados para mostrar
+        """
+        results = self.results()
+        return len(results) > 0
 
     @property
     def token(self):
@@ -349,15 +353,19 @@ class Renderer(base.Renderer):
             results = collection.queryCatalog(sort_on=None)
             if results is None:
                 return []
-            limit = self.data.limit and min(len(results), self.data.limit) or 1
 
             if exclude_context:
                 results = [
                     brain for brain in results
                     if brain.getPath() != context_path]
-            if len(results) < limit:
-                limit = len(results)
-            results = random.sample(results, limit)
+
+            limit = self.data.limit
+            if limit and limit > 0:
+                if len(results) < limit:
+                    limit = len(results)
+                results = random.sample(results, limit)
+            else:
+                results = random.sample(results, len(results))
 
         return results
 

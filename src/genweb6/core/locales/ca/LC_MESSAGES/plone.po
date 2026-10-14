@@ -563,3 +563,6 @@ msgstr "Etiquetes"
 
 msgid "event_listing"
 msgstr "Llista d'esdeveniments"
+
+msgid "filtered_contents_search_album_view"
+msgstr "Vista d'àlbum amb filtres"

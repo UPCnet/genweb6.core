@@ -440,5 +440,8 @@ msgstr "Vista evento"
 msgid "Subjects"
 msgstr "Etiquetas"
 
-msgid "filtered_contents_search_pretty_view"
+msgid "event_listing"
 msgstr "Lista de eventos"
+
+msgid "filtered_contents_search_album_view"
+msgstr "Vista de álbum con filtros"

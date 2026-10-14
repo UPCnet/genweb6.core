@@ -2,9 +2,11 @@
 from AccessControl import getSecurityManager
 from DateTime.DateTime import DateTime
 from Products.Five.browser import BrowserView
+from Products.PortalTransforms.transforms.safe_html import SafeHTML
 
 from bs4 import BeautifulSoup
 from plone import api
+from plone.base.interfaces import IFilterSchema
 from plone.memoize import ram
 from plone.memoize.instance import memoize
 from plone.registry.interfaces import IRegistry
@@ -12,8 +14,10 @@ from repoze.catalog.catalog import Catalog
 from repoze.catalog.indexes.field import CatalogFieldIndex
 from souper.interfaces import ICatalogFactory
 from souper.soup import NodeAttributeIndexer
+from scss import Scss
 from time import time
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.component import provideUtility
 from zope.component import queryUtility
 from zope.component.hooks import getSite
@@ -30,6 +34,7 @@ from genweb6.core.controlpanels.cintillo import ICintilloSettings
 from genweb6.core.controlpanels.footer import IFooterSettings
 from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
+from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
 
 import json
@@ -188,7 +193,25 @@ def remove_html_tags(text):
     return None
 
 
+def compile_css(source):
+    """Compila con pyScss; si falla (p. ej. CSS con !important), devuelve el
+    texto tal cual para no romper CSS válido que pyScss no soporta bien.
+    """
+    if isinstance(source, bytes):
+        source = source.decode('utf-8')
+    try:
+        logging.getLogger("scss.ast").setLevel(logging.CRITICAL)
+        return remove_quotes_from_var_scss(Scss().compile(source))
+    except Exception:
+        return remove_quotes_from_var_scss(source)
+
+
 def remove_quotes_from_var_scss(text):
+    """Normalitza ``var(\"...\")`` a ``var(...)``. Accepta ``str`` o ``bytes``."""
+    if text is None:
+        return None
+    if isinstance(text, bytes):
+        text = text.decode('utf-8')
     return re.sub(r'var\("([^"]*)"\)', lambda m: 'var(' + m.group(1) + ')', text)
 
 
@@ -228,6 +251,11 @@ def genwebResourcesConfig():
     return registry.forInterface(IResourcesSettings)
 
 
+def genwebMetadadesConfig():
+    registry = queryUtility(IRegistry)
+    return registry.forInterface(IMetadadesSettings)
+
+
 class LoginUtils():
 
     def cas_settings(self):
@@ -244,7 +272,15 @@ class LoginUtils():
                 self.context.absolute_url() + '/insufficient-privileges')
 
         url = self.context.absolute_url()
-        if any(x in url for x in ['localhost', 'fepre.upc.edu', '.pre.upc.edu']):
+        patterns = [
+            'localhost',
+            'pre.upc.edu',
+            'redhood[123].upc.edu',
+            r'fe([1-9]|1[0-9]|20).upc.edu',
+        ]
+        # Sin CAS activo o entornos de prova: URL plana (p. ex. login_form), no redirección HTTP.
+        if not self.cas_settings().enabled or any(
+                re.search(pattern, url) for pattern in patterns):
             return login_url
         return self.request.response.redirect(login_url)
 
@@ -430,6 +466,33 @@ class genwebUtils(BrowserView):
         return redirect_links and not can_edit and getattr(
             item, 'open_link_in_new_window', False)
 
+    def get_rss_image(self, context):
+        """Image metadata for RSS syndication (e.g. Xibo enclosure).
+
+        Supports standard Plone ``image`` and migrated GenWeb ``imatge``.
+        """
+        if context is None:
+            return None
+        for field_name in ('image', 'imatge'):
+            image = getattr(context, field_name, None)
+            if image is None:
+                continue
+            content_type = getattr(image, 'contentType', None) or 'image/jpeg'
+            size = 0
+            get_size = getattr(image, 'getSize', None)
+            if callable(get_size):
+                try:
+                    size = get_size() or 0
+                except Exception:
+                    size = 0
+            return {
+                'field': field_name,
+                'url_suffix': '/@@images/{0}'.format(field_name),
+                'content_type': content_type,
+                'size': size,
+            }
+        return None
+
     def localized_time(self, date):
         local_date = DateTime(date)
         return local_date.strftime('%Y-%m-%d %X')
@@ -453,3 +516,167 @@ class UserPropertiesSoupCatalogFactory(object):
 
 
 provideUtility(UserPropertiesSoupCatalogFactory(), name='uuid_preserver')
+
+
+# Rate limiting utilities for password reset
+_rate_limit_cache = {}
+
+
+def get_client_ip(request):
+    """Obtiene la IP del cliente desde el request."""
+    # Intentar obtener IP real si está detrás de proxy
+    forwarded_for = request.get('HTTP_X_FORWARDED_FOR', '')
+    if forwarded_for:
+        return forwarded_for.split(',')[0].strip()
+    return request.get('REMOTE_ADDR', 'unknown')
+
+
+def check_rate_limit(ip_address, max_attempts=5, window_minutes=10):
+    """Verifica si una IP ha excedido el límite de intentos.
+
+    Args:
+        ip_address: Dirección IP del cliente
+        max_attempts: Número máximo de intentos permitidos (default: 5)
+        window_minutes: Ventana de tiempo en minutos (default: 10)
+
+    Returns:
+        tuple: (is_allowed, remaining_attempts, reset_time)
+    """
+    import time
+    current_time = time.time()
+    window_seconds = window_minutes * 60
+
+    # Limpiar entradas expiradas
+    expired_keys = [
+        key for key, (attempts, timestamp) in _rate_limit_cache.items()
+        if current_time - timestamp > window_seconds
+    ]
+    for key in expired_keys:
+        del _rate_limit_cache[key]
+
+    # Obtener o crear entrada para esta IP
+    if ip_address in _rate_limit_cache:
+        attempts, timestamp = _rate_limit_cache[ip_address]
+        elapsed = current_time - timestamp
+
+        if elapsed > window_seconds:
+            # Ventana expirada, resetear
+            _rate_limit_cache[ip_address] = (1, current_time)
+            return True, max_attempts - 1, window_seconds
+        else:
+            # Dentro de la ventana
+            if attempts >= max_attempts:
+                remaining_time = int(window_seconds - elapsed)
+                return False, 0, remaining_time
+            else:
+                _rate_limit_cache[ip_address] = (attempts + 1, timestamp)
+                return True, max_attempts - attempts - 1, int(window_seconds - elapsed)
+    else:
+        # Primera vez para esta IP
+        _rate_limit_cache[ip_address] = (1, current_time)
+        return True, max_attempts - 1, window_seconds
+
+
+def reset_rate_limit(ip_address):
+    """Resetea el rate limit para una IP específica."""
+    if ip_address in _rate_limit_cache:
+        del _rate_limit_cache[ip_address]
+
+
+class _GenwebSafeHTML(SafeHTML):
+    """SafeHTML con ``Cleaner.links=False``.
+
+    Por defecto ``lxml_html_clean.Cleaner`` usa ``links=True`` y elimina *todas*
+    las etiquetas ``<link>`` antes de aplicar ``allow_tags``/``valid_tags`` del
+    panel de filtro. Así las ``<link>`` permitidas en IFilterSchema nunca
+    llegaban a conservarse.
+    """
+
+    def cleaner_options(self):
+        options = super().cleaner_options()
+        options['links'] = False
+        return options
+
+
+def safe_html_transform(content, context=None):
+    """
+    Sanitiza HTML usando una subclase de SafeHTML.scrub_html() de
+    Products.PortalTransforms, que respeta valid_tags, nasty_tags y
+    custom_attributes del panel de Plone (@@filter-controlpanel /
+    plone.registry IFilterSchema). Se desactiva Cleaner.links para que las
+    etiquetas ``<link>`` puedan gobernarse por valid_tags (no se eliminan todas
+    por defecto del cleaner).
+
+    Si en el panel está marcado «Deshabilitar filtrado HTML»
+    (IFilterSchema.disable_filtering), se devuelve el contenido sin modificar,
+    igual que el transform safe_html estándar.
+
+    Cuando el filtrado sí se aplica, los atributos on* (onmouseout, onclick,
+    etc.) se eliminan porque safe_attrs_only=True usa lxml.html.defs.safe_attrs,
+    que no los incluye.
+
+    Devuelve el HTML filtrado. Si falla, loguea el error y devuelve el
+    contenido original sin modificar.
+    """
+    import logging as _logging
+    _logger = _logging.getLogger('genweb6.core')
+    try:
+        registry = getUtility(IRegistry)
+        settings = registry.forInterface(IFilterSchema, prefix='plone')
+        if settings.disable_filtering:
+            return content
+    except Exception:
+        pass
+    try:
+        transformer = _GenwebSafeHTML()
+        return transformer.scrub_html(content)
+    except Exception as exc:
+        path = ''
+        if context is not None:
+            try:
+                path = context.virtual_url_path()
+            except Exception:
+                pass
+        _logger.error('Error aplicando safe_html [%s]: %s', path, exc)
+    return content
+
+
+def set_pdf_metadata(pdf_path, title, language):
+    """Metadatos de accesibilidad: idioma, título y bandera de etiquetado.
+
+    «Etiquetado para accesibilidad» en visores PDF corresponde al diccionario
+    MarkInfo (/Marked) en el catálogo. wkhtmltopdf no genera un árbol de
+    estructura real (StructTreeRoot); solo marcamos metadatos coherentes con
+    Lang y título. Un PDF plenamente PDF/UA suele requerir motor con salida
+    etiquetada o post-procesado (p. ej. Acrobat «Reconocer texto» / etiquetar).
+    """
+    try:
+        import pikepdf
+        from Products.CMFPlone.utils import safe_unicode
+    except ImportError as exc:
+        logger.warning('set_pdf_metadata: pikepdf no disponible: %s', exc)
+        return
+    title = safe_unicode(title) if title is not None else u''
+    language = safe_unicode(language) if language is not None else u'ca'
+    if not language.strip():
+        language = u'ca'
+    try:
+        with pikepdf.open(pdf_path, allow_overwriting_input=True) as pdf:
+            with pdf.open_metadata() as meta:
+                meta['dc:title'] = title
+                meta['dc:language'] = language
+            pdf.Root['/Lang'] = pikepdf.String(language)
+            pdf.Root['/MarkInfo'] = pikepdf.Dictionary(
+                Marked=True,
+                Suspects=False,
+            )
+            pdf.Root['/ViewerPreferences'] = pikepdf.Dictionary(
+                DisplayDocTitle=True,
+            )
+            pdf.save(pdf_path)
+    except Exception as exc:
+        logger.exception(
+            'set_pdf_metadata: error escribiendo metadatos en %s: %s',
+            pdf_path,
+            exc,
+        )

@@ -49,13 +49,24 @@
     <tal:block tal:condition="python:item.context.portal_type == 'Event'">
       <eventstartdate tal:content="python:gwutils.localized_time(item.context.start)"/>
       <eventrecurrence tal:condition="python: getattr(item.context, 'recurrence', None)" tal:content="item/context/recurrence" />
+      <tal:image tal:define="has_image python: getattr(item.context, 'image', None) is not None"
+                 tal:condition="has_image">
+        <image>
+          <link tal:content="item/link"></link>
+          <title tal:content="python: getattr(item.context, 'image_caption', '') or item.title">Image title</title>
+          <url tal:content="python: item.link + '/@@images/image'">https://www.google.com/</url>
+        </image>
+      </tal:image>
     </tal:block>
     <tal:block tal:condition="python:item.context.portal_type in ['News Item', 'genweb.upc.documentimage']">
-      <image tal:condition="item/context/image">
+      <tal:image tal:define="has_image python: getattr(item.context, 'image', None) is not None"
+                 tal:condition="has_image">
+        <image>
           <link tal:content="item/link"></link>
-          <title tal:content="item/context/image_caption">Google</title>
+          <title tal:content="python: getattr(item.context, 'image_caption', '') or item.title">Image title</title>
           <url tal:content="python: item.link + '/@@images/image'">https://www.google.com/</url>
-      </image>
+        </image>
+      </tal:image>
       <tal:docs repeat="related item/context/relatedItems">
         <docs tal:content="string:${context/portal_url}${related/to_path}"></docs>
       </tal:docs>

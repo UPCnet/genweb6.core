@@ -66,7 +66,6 @@
         <permission>Genweb: Manager Users</permission>
     </configlet>
 
-
     <configlet
         title="Resources"
         action_id="genweb6.core.resources"
@@ -75,6 +74,19 @@
         condition_expr=""
         url_expr="string:${portal_url}/@@resources-controlpanel"
         icon_expr="string:file"
+        visible="True">
+
+        <permission>Genweb: Webmaster Users</permission>
+    </configlet>
+
+    <configlet
+        title="API Metadades"
+        action_id="genweb6.core.netejar_metadades"
+        appId="genweb6.core.netejar_metadades"
+        category="genweb-connection"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@metadades-settings"
+        icon_expr="string:gear"
         visible="True">
 
         <permission>Genweb: Webmaster Users</permission>

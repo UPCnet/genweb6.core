@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from AccessControl import Unauthorized
 from Products.CMFPlone.utils import get_installer
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -20,11 +21,16 @@ from souper.soup import Record
 from souper.soup import get_soup
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryAdapter
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 
 from genweb6.core import _
+from genweb6.core.behaviors.seo import ISeo
 from genweb6.core.interfaces import IHomePage
+from genweb6.core.utils import genwebMetadadesConfig
+from genweb6.core.cas.controlpanel import addPluginCAS
+from genweb6.core.cas.controlpanel import ICASSettings
 
 import logging
 import os
@@ -103,7 +109,8 @@ Actualitza les vistes per al tipus de carpeta
         output = []
         portal.portal_types['Folder'].view_methods = (
             'listing_view', 'album_view', 'summary_view', 'tabular_view',
-            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view')
+            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view', 
+            'filtered_contents_search_album_view')
         import transaction
         transaction.commit()
         output.append('{}: Successfully reinstalled'.format(portal.id))
@@ -259,6 +266,34 @@ Paràmetre:
             return '\n'.join(output)
 
         return 'Error parameter product_name, not defined'
+
+
+class reinstall_all_genweb_products(BrowserView):
+    """
+Reinstal·la tots els paquets de genweb instal·lats
+    """
+
+
+    def __call__(self, portal=None):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        if not portal:
+            portal = api.portal.get()
+
+        LIST_PRODUCTS = ['genweb6.upc', 'genweb6.ens', 'genweb6.esports', 'genweb6.gpaq', 
+                         'genweb6.patents', 'genweb6.scholarship', 'genweb6.tfemarket',
+                         'genweb6.serveistic', 'genweb6.organs', 'genweb6.rrhh']
+
+        qi = get_installer(self.context)
+        output = []
+        for product_name in LIST_PRODUCTS:
+
+            if qi.is_product_installed(product_name):
+                qi.upgrade_product(product_name)
+                output.append('{}: Successfully reinstalled {}'.format(
+                    portal.id, product_name))
+
+        return '\n'.join(output)
+
 
 class uninstall_product(BrowserView):
     """
@@ -796,7 +831,7 @@ Configura el robots.txt
 
     def __call__(self):
         registry = getUtility(IRegistry)
-        registry["plone.robots_txt"] = 'Sitemap: {portal_url}/sitemap.xml.gz\r\n\r\n# Define access-restrictions for robots/spiders\r\n# http://www.robotstxt.org/wc/norobots.html\r\n\r\n\r\n\r\n# By default we allow robots to access all areas of our site\r\n# already accessible to anonymous users\r\n\r\nUser-agent: *\r\nDisallow: */noindex-upc/*\r\nDisallow: /*sendto_form$\r\nDisallow: /*folder_factories$\r\nDisallow: */ca/shared/*\r\nDisallow: */es/shared/*\r\nDisallow: */en/shared/*\r\nDisallow: */plantilles/*\r\nDisallow: */ca/banners-ca/*\r\nDisallow: */es/banners-es/*\r\nDisallow: */en/banners-en/*\r\nDisallow: */ca/logosfooter-ca/*\r\nDisallow: */es/logosfooter-es/*\r\nDisallow: */en/logosfooter-en/*\r\n\r\n\r\n\r\n# Add Googlebot-specific syntax extension to exclude forms\r\n# that are repeated for each piece of content in the site\r\n# the wildcard is only supported by Googlebot\r\n# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx=sibling\r\n\r\nUser-Agent: Googlebot\r\nDisallow: /*?\r\nDisallow: /*atct_album_view$\r\nDisallow: /*folder_factories$\r\nDisallow: /*folder_summary_view$\r\nDisallow: /*login_form$\r\nDisallow: /*mail_password_form$\r\nDisallow: /@@search\r\nDisallow: /*search_rss$\r\nDisallow: /*sendto_form$\r\nDisallow: /*summary_view$\r\nDisallow: /*thumbnail_view$\r\nDisallow: /*view$'
+        registry["plone.robots_txt"] = 'Sitemap: {portal_url}/sitemap.xml.gz\r\n\r\n# Define access-restrictions for robots/spiders\r\n# http://www.robotstxt.org/wc/norobots.html\r\n\r\n\r\n\r\n# By default we allow robots to access all areas of our site\r\n# already accessible to anonymous users\r\n\r\nUser-agent: *\r\nDisallow: */noindex-upc/*\r\nDisallow: /*sendto_form$\r\nDisallow: /*folder_factories$\r\nDisallow: */ca/shared/*\r\nDisallow: */es/shared/*\r\nDisallow: */en/shared/*\r\nDisallow: */ca/media/*\r\nDisallow: */es/media/*\r\nDisallow: */en/media/*\r\nDisallow: */plantilles/*\r\nDisallow: */ca/banners-ca/*\r\nDisallow: */es/banners-es/*\r\nDisallow: */en/banners-en/*\r\nDisallow: */ca/logosfooter-ca/*\r\nDisallow: */es/logosfooter-es/*\r\nDisallow: */en/logosfooter-en/*\r\n\r\n\r\n\r\n# Add Googlebot-specific syntax extension to exclude forms\r\n# that are repeated for each piece of content in the site\r\n# the wildcard is only supported by Googlebot\r\n# http://www.google.com/support/webmasters/bin/answer.py?answer=40367&ctx=sibling\r\n\r\nUser-Agent: Googlebot\r\nDisallow: /*?\r\nDisallow: /*atct_album_view$\r\nDisallow: /*folder_factories$\r\nDisallow: /*folder_summary_view$\r\nDisallow: /*login_form$\r\nDisallow: /*mail_password_form$\r\nDisallow: /@@search\r\nDisallow: /*search_rss$\r\nDisallow: /*sendto_form$\r\nDisallow: /*summary_view$\r\nDisallow: /*thumbnail_view$\r\nDisallow: /*view$'
         transaction.commit()
         return 'OK'
 
@@ -1064,3 +1099,81 @@ Elimina el camp icon del continguts de tipus Banner en cas de que estigui mal mi
 
         transaction.commit()
         return 'OK'
+
+
+class setup_netejar_metadades(BrowserView):
+    """
+Definir el camps per el controlpanel de neteja de metadades
+
+Paràmetres:
+- api_url: URL del servei d'anonimització
+- api_key: Clau API
+- indicadors_api_url: URL base del servei d'indicadors
+- indicadors_api_key: Clau API del servei d'indicadors
+- indicadors_servei_id: ID del servei per Indicadors
+- indicadors_categoria_id: ID de l'indicador a actualitzar
+    """
+
+    def __call__(self):
+        mc = genwebMetadadesConfig()
+        if 'api_url' in self.request.form:
+            mc.api_url = self.request.form['api_url']
+
+        if 'api_key' in self.request.form:
+            mc.api_key = self.request.form['api_key']
+
+        if 'indicadors_api_url' in self.request.form:            
+            mc.indicadors_api_url = self.request.form['indicadors_api_url']
+
+        if 'indicadors_api_key' in self.request.form:            
+            mc.indicadors_api_key = self.request.form['indicadors_api_key']
+
+        if 'indicadors_servei_id' in self.request.form:            
+            mc.indicadors_servei_id = self.request.form['indicadors_servei_id']
+
+        if 'indicadors_categoria_id' in self.request.form:            
+            mc.indicadors_categoria_id = self.request.form['indicadors_categoria_id']
+
+        transaction.commit()
+        return 'OK'
+
+
+class fix_cas_controlpanel(BrowserView):
+    """
+Agafem la configuració del controlpanel del CAS i configurem la URL en acl_users/CASGW/manage_config
+    """
+
+    def __call__(self):
+        registry = queryUtility(IRegistry)
+        cas_settings = registry.forInterface(ICASSettings)
+        if cas_settings.url:
+            addPluginCAS(cas_settings.url)
+            transaction.commit()
+        return 'OK'
+
+
+class force_seo_noindexnofollow(BrowserView):
+    """
+Força seo_robots a "noindex, nofollow" en el contingut del path (context) i en tots els fills.
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        context = aq_inner(self.context)
+        path = '/'.join(context.getPhysicalPath())
+        catalog = api.portal.get_tool('portal_catalog')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth': -1})
+        count = 0
+        for brain in brains:
+            try:
+                obj = brain._unrestrictedGetObject()
+            except Exception:
+                continue
+            seo = queryAdapter(obj, ISeo)
+            if seo and hasattr(obj, 'seo_robots'):
+                seo.seo_robots = 'noindex, nofollow'
+                obj.reindexObject()
+                count += 1
+        if count:
+            transaction.commit()
+        return 'OK: %d objectes actualitzats a noindex, nofollow.' % count

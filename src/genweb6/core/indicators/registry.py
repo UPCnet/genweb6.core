@@ -55,7 +55,7 @@ class Registry(object):
 
     def _load_from_file_path(self, path):
         with open(path) as source_file:
-            for document in yaml.load_all(source_file):
+            for document in yaml.load_all(source_file, Loader=yaml.FullLoader):
                 self._add_indicator_from_dict(document)
 
     def __getitem__(self, item):

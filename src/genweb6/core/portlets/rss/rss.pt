@@ -8,7 +8,8 @@
 
     <h2 class="portlet-title" tal:content="view/title">Tags</h2>
 
-    <ul class="list-group list-group-flush mb-2">
+    <ul class="list-group list-group-flush mb-2"
+        tal:condition="view/items">
 
       <tal:rss tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime"
                tal:repeat="item view/items">
@@ -17,22 +18,23 @@
 
           <tal:block tal:condition="view/data/display_image">
 
-            <div class="img mb-2">
+            <div class="content-img mb-2">
 
                 <a href="#" tal:attributes="href item/url" target="_blank"
                    tal:condition="item/image">
 
-                    <img loading="lazy"
+                    <span class="visually-hidden" tal:content="item/title">Title</span>
+
+                    <img loading="lazy" aria-hidden="true"
                          tal:attributes="src item/image;
-                                         title item/title;
-                                         alt item/title" />
+                                         alt string:;" />
                 </a>
 
             </div>
 
           </tal:block>
 
-          <div class="txt">
+          <div class="content-txt">
 
             <a href="#" tal:attributes="href item/url" target="_blank"
                class="title d-block text-decoration-none mb-1">

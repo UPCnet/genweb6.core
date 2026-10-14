@@ -9,6 +9,7 @@
             tal:content="view/title">RSS</h2>
 
         <ul class="list-group list-group-flush mb-2"
+            tal:condition="view/items"
             tal:define="toLocalizedTime nocall:context/@@plone/toLocalizedTime">
 
             <tal:item tal:repeat="item view/items">

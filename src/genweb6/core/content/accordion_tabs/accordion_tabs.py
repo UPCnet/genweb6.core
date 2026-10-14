@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from AccessControl import getSecurityManager
 from Products.Five.browser import BrowserView
 
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
@@ -89,13 +90,24 @@ class IAccordionTabs(model.Schema, IDexteritySchema):
     )
 
     accordion_open_multiple = schema.Bool(
-        title=_(u'Habilitar l\'opció de poder obrir múltiples panells de l’acordió'),
+        title=_(u"Permetre obrir múltiples panells de l'acordió simultàniament"),
+        description=_(u"Si està activat, es podran tenir diversos panells oberts al mateix temps. Si no, només es podrà tenir un panell obert a la vegada."),
         required=False,
+        default=False,
     )
 
     accordion_open_first = schema.Bool(
         title=_(u'Obrir el primer panell de l’acordió per defecte'),
+        description=_(u"Si està activat, el primer panell de l'acordió s'obrirà per defecte."),
         required=False,
+        default=False,
+    )
+
+    accordion_items_expanded = schema.Bool(
+        title=_(u"Desplegar tots els items de l'acordió per defecte"),
+        description=_(u"Si està activat, tots els items de l'acordió sortiran desplegats per defecte."),
+        required=False,
+        default=False,
     )
 
     show_copy = schema.Bool(
@@ -134,22 +146,26 @@ class AccordionTabs(Container):
         first = True
         index = 0
 
+        sm = getSecurityManager()
         if self.content == 'collection':
             collection = self.collection.to_object
             for elem in collection.results():
-                contents.append(self.elem_to_dict(index, first, elem.getObject()))
+                obj = elem.getObject()
+                if sm.checkPermission('View', obj):
+                    contents.append(self.elem_to_dict(index, first, obj))
 
-                index += 1
-                if first:
-                    first = False
+                    index += 1
+                    if first:
+                        first = False
         else:
             for elem in self:
                 elem = self[elem]
-                contents.append(self.elem_to_dict(index, first, elem))
+                if sm.checkPermission('View', elem):
+                    contents.append(self.elem_to_dict(index, first, elem))
 
-                index += 1
-                if first:
-                    first = False
+                    index += 1
+                    if first:
+                        first = False
 
         return contents
 

@@ -39,12 +39,14 @@
 
           <div class="col-4 text-end" tal:condition="data/news_image_filename|nothing">
 
-            <a tal:attributes="href data/getURL">
+            <a tal:attributes="href data/getURL;
+                               title new_title">
 
-              <img class="image-responsive"
+              <span class="visually-hidden" tal:content="new_title">Title</span>
+
+              <img class="image-responsive" aria-hidden="true"
                    tal:attributes="src string:${data/getURL}/@@images/image/preview;
-                                   title new_title;
-                                   alt new_title;">
+                                   alt string:;">
 
             </a>
 

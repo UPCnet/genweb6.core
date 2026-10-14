@@ -9,7 +9,8 @@
         </div>
 
         <div class="col-md-8">
-            <nav id="complimentary-footer-nav" aria-label="Complimenatary-footer">
+            <nav id="complimentary-footer-nav"
+                 i18n:attributes="aria-label footer_complementary_nav">
                 <ul id="footer-menu-complementari" class="footer-container"
                     tal:define="links view/getLinksPeu">
 
@@ -22,7 +23,7 @@
                         </span>
                         <a tal:attributes="href link/url;
                                            target link/target">
-                            <img title="genweb UPC" alt="genweb UPC" class="logoGenwebUPC" loading="lazy"
+                            <img title="genweb UPC" alt="genweb UPC" lang="en" class="logoGenwebUPC" loading="lazy"
                                  tal:attributes="src string:${view/root_url}/++theme++genweb6.theme/img/genwebUPC.webp" />
                         </a>
                     </li>

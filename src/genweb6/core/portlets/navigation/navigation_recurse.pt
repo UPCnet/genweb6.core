@@ -44,7 +44,7 @@
                       tal:replace="structure python:icons.tag(f'mimetype-{item.mime_type}')" />
 
             <img tal:condition="python:has_thumb and thumb_scale"
-                 tal:replace="structure python:image_scale.tag(item, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale)">
+                 tal:replace="structure python:image_scale.tag(item, 'image', scale=thumb_scale, css_class='float-end thumb-'+thumb_scale, loading='lazy')">
 
             <span tal:replace="node/Title">Selected Item Title</span>
         </a>

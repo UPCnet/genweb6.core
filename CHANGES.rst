@@ -1,12 +1,405 @@
 Changelog
 =========
 
-
-1.72 (unreleased)
------------------
+1.108 (unreleased)
+------------------
 
 - Nothing changed yet.
 
+
+1.107 (2026-09-10)
+------------------
+
+* Merge remote-tracking branch 'origin/develop' [Iago López]
+* [UPD] download_file - que puedan usarlo los webmasters [Iago López]
+* [ADD] Sobrescribir pagina resolveuid para que en vez de dar error si el resolveuid no existe reedirija a 404 [Iago López]
+* [FIX] download_files PDF export for TinyMCE picture-variant images [Clàudia Andreu]
+
+1.106 (2026-07-15)
+------------------
+
+* [UPD] Improve tabular listing markup for responsive column styling. [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Replace text-nowrap with semantic listing-tabular field classes so title and description columns can wrap and scale correctly. [Clàudia Andreu]
+* [FIX] Identify language changes in UI fragments for WCAG 3.1.2 [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Add lang attributes to language selector labels and the genweb UPC brand, [Clàudia Andreu]
+* and translate hardcoded English UI strings (carousel controls, close buttons, [Clàudia Andreu]
+* footer navigation) so screen readers use the correct language. [Clàudia Andreu]
+* [FIX] Add accessible names to image-only and empty links (WCAG 1.12) [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Ensure links in header, hero, carousels, portlets and listings expose [Clàudia Andreu]
+* descriptive text via visually-hidden spans instead of relying on empty [Clàudia Andreu]
+* anchors or icon-only controls. [Clàudia Andreu]
+* [FIX] Use unique desktop/mobile IDs for nav submenu opener labels [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Fix WCAG 1.9 explicit label association by scoping opener ids per nav render and avoiding duplicate for/id pairs across header instances. [Clàudia Andreu]
+* [FIX] Associate nav submenu opener checkboxes with their labels [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Fix WCAG 1.9 by adding matching id/for on opener inputs and unique IDs per desktop/mobile nav render. [Clàudia Andreu]
+* [FIX] Omit empty portlet lists when there are no items [Clàudia Andreu]
+*  [Clàudia Andreu]
+* Hide ul.list-group-flush markup unless collection or RSS portlets [Clàudia Andreu]
+* have items, per accessibility audit requirement 1.3. [Clàudia Andreu]
+* [UPD] Quitar campos obligatorios controlpanel metadades [Iago López]
+* [FIX] Add li children to livesearch results ul in searchBox [Clàudia Andreu]
+
+1.105 (2026-06-30)
+------------------
+
+* [FIX] Corregir envío del correo de exportación async en el worker Huey. [Iago López]
+*  [Iago López]
+* Delegar en MailHost.send() para serializar con CRLF y evitar el error SMTP [Iago López]
+* "Bare linefeed (LF) not allowed" en servidores estrictos. [Iago López]
+*  [Iago López]
+* Co-authored-by: Cursor <cursoragent@cursor.com> [Iago López]
+
+1.104 (2026-06-26)
+------------------
+
+* [UPD] Cambiar literal portlet static [Iago López]
+
+1.103 (2026-06-25)
+------------------
+
+* [UPD] Mejora traduccion download_files [Iago López]
+
+1.102 (2026-06-25)
+------------------
+
+* [FIX] metadades log [Clàudia Andreu]
+
+1.101 (2026-06-25)
+------------------
+
+* [UPD] metadades log [Clàudia Andreu]
+
+1.100 (2026-06-23)
+------------------
+
+* Merge remote-tracking branch 'origin/develop' [Iago López]
+* [ADD] extended log to neteja-metadades [Clàudia Andreu]
+* [ADD] download_files async [Iago López]
+* [ADD] Sobrescribir portlet static para añadir nuevo campo para esconder titulo [Iago López]
+
+1.99 (2026-06-16)
+-----------------
+
+
+
+1.98 (2026-06-11)
+-----------------
+
+* [ADD] images to RSS 2.0 feed [Clàudia Andreu]
+* [DEL] uninstall registry [Iago López]
+
+1.97 (2026-05-12)
+-----------------
+
+* [UPD] netejar_metadades - Añadir nuevos grupos y gestionar mensaje de error [Iago López]
+* Revert f3bf98cb022fc01a091ae16f5d1356893ace03dd [ADD] weglot control panel [Iago López]
+* [UPD] No mostrar logs de scss.ast [Iago López]
+* [UPD] Livesearch a partir del tercer caracter [Iago López]
+* [FIX] Permisos workflows Webmaster [Iago López]
+* FIX: bug on last_data_update, and return domains [Rubén Padilla Mateu]
+* FIX: retrieve real last_data_update from genwebStats [Rubén Padilla Mateu]
+* [UPD] Añadir genweb6.rrhh a reinstall_all_genweb_products [Iago López]
+
+1.96 (2026-04-21)
+-----------------
+
+* [UPD] Personalizar mensaje de test @@site-controlpanel [Iago López]
+
+1.95 (2026-04-21)
+-----------------
+
+* [UPD] Registrar iconos que se usan en los tipos de contenido creados [Iago López]
+* [UPD] Mejora resources css [Iago López]
+* [UPD] genweb_stats tener en cuenta los ficheros js o css [Iago López]
+* [UPD] Retirar cambio de filtrar como el Tiny contenido existentes [Iago López]
+* FIX last date update on instances [Rubén Padilla Mateu]
+* [UPD] Sin CAS activo no hacemos login automatico [Iago López]
+* ADD custom_css and custom_js to genweb_stats view [Rubén Padilla Mateu]
+* [UPD] literal servei metadades [Clàudia Andreu]
+
+1.94 (2026-04-07)
+-----------------
+
+* [UPD] Añadir logs al clean_pdfs [Iago López]
+* [UPD] Mejorar accesibilidad de los pdf generados [Iago López]
+* [UPD] Cambiar logo al de la UPC en los meta og:image y similares cuando no hay imagen [Iago López]
+* UPD genweb_stats view with info about url being in [Rubén Padilla Mateu]
+* cache domains and site having custom css [Rubén Padilla Mateu]
+* [UPD] Porlet multicollection, en random no fijar el limit a 1 si no se pone valor [Iago López]
+* [UPD] Contenidos existentes añadir filtro de safe_html_transform, ahora se tiene en cuenta la configuracion de filter-controlpanel [Iago López]
+* [ADD] Añadir vista export-group-permissions para exportar grupos con permisos asignados en un JSON [Iago López]
+* Merge remote-tracking branch 'origin/master' into develop [Rubén Padilla Mateu]
+* UPD genwebStats view [Rubén Padilla Mateu]
+* [UPD] Mejoras download_files [Iago López]
+* [ADD] weglot control panel [Clàudia Andreu]
+
+1.93 (2026-03-02)
+-----------------
+
+* [ADD] Añadir vista force_seo_noindexnofollow [Iago López]
+* [UPD] SEO noindex, nofollow solo es añadido en el momento de creacion de un contenido dentro de shared o media, el usuario puede modificar el valor durante este proceso [Iago López]
+* [UPD] seo behavior for shared and media folders [Clàudia Andreu]
+* [UPD] SEO behavior for shared and media folders [Clàudia Andreu]
+* [FIX] SEO settings for shared folders [Clàudia Andreu]
+* [ADD] checkbox to SEO settings to inherit SEO [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] SEO noindex inheritance from parent folders [Clàudia Andreu]
+* class txt por content-txt [Iago López]
+* [FIX] Solucionar error modificar fixStart por fixEnd [pmarinas]
+* perf(navtree): cache por request y path en GlobalSectionsViewlet [RENDIMIENTO] Sustituir @memoize por cache a nivel de request keyed por navtree_path: varias instancias del viewlet (header, footer, etc.) comparten un solo cálculo por path en lugar de una por instancia; reduce 5+ navtree a 1-2por request y evita 15k+ cargas ZODB repetidas. [pmarinas]
+
+1.92 (2026-02-12)
+-----------------
+
+* [ADD] Añadir vista force_seo_noindexnofollow [Iago López]
+* [UPD] SEO noindex, nofollow solo es añadido en el momento de creacion de un contenido dentro de shared o media, el usuario puede modificar el valor durante este proceso [Iago López]
+* [UPD] seo behavior for shared and media folders [Clàudia Andreu]
+* [UPD] SEO behavior for shared and media folders [Clàudia Andreu]
+* [FIX] SEO settings for shared folders [Clàudia Andreu]
+* [ADD] checkbox to SEO settings to inherit SEO [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] SEO noindex inheritance from parent folders [Clàudia Andreu]
+* class txt por content-txt [Iago López]
+* [FIX] Solucionar error modificar fixStart por fixEnd [pmarinas]
+* perf(navtree): cache por request y path en GlobalSectionsViewlet [RENDIMIENTO] Sustituir @memoize por cache a nivel de request keyed por navtree_path: varias instancias del viewlet (header, footer, etc.) comparten un solo cálculo por path en lugar de una por instancia; reduce 5+ navtree a 1-2por request y evita 15k+ cargas ZODB repetidas. [pmarinas]
+
+1.91 (2026-02-11)
+-----------------
+
+* Merge remote-tracking branch 'origin/develop' [pmarinas]
+* [RENDIMIENTO] Añadir lazy loading en las imagenes [pmarinas]
+* [RENDIMIENTO] Optimización del menú de navegación [pmarinas]
+* [RENDIMIENTO] Optimización del selector de idiomas [pmarinas]
+* [UPD] Mejora viewlet resources [Iago López]
+* [ADD] images to RSS [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+
+1.90 (2026-02-05)
+-----------------
+
+* Merge branch 'develop' [Clàudia Andreu]
+* [ADD] skip to content button [Clàudia Andreu]
+* [UPD] Comentar cache getCASSettings [Iago López]
+* [UPD] Que no pete el viewlet de resources si los css estan mal [Iago López]
+
+1.89 (2026-01-29)
+-----------------
+
+* [UPD] filtered collection view [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [ADD] filtered search view [Clàudia Andreu]
+* [UPD] Poder tener varios tabs en una misma pantalla [Iago López]
+* [UPD] unify event and news behavior [Clàudia Andreu]
+
+1.88 (2026-01-27)
+-----------------
+
+* [FIX] Cambiar classes de portlets (img, txt) para evitar conflictos [Iago López]
+
+1.87 (2026-01-26)
+-----------------
+
+* [FIX] metadades service [Clàudia Andreu]
+
+1.86 (2026-01-26)
+-----------------
+
+* [UPD] multiviewcollection portlet behavior [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [UPD] multiviewcollection events portlet behavior [Clàudia Andreu]
+* [UPD] Mejora vista album [Iago López]
+* [ADD] encrypted pdfs warning [Clàudia Andreu]
+* [ADD] encrypted pdfs warnings [Clàudia Andreu]
+* Merge branch 'develop' of github.com:UPCnet/genweb6.core into develop [Clàudia Andreu]
+* [ADD] checkbox to disable news image [Clàudia Andreu]
+* [UPD] Nuevo campo accordion [Iago López]
+
+1.85 (2026-01-21)
+-----------------
+
+* [UPD] neteja metadades form behavior [Clàudia Andreu]
+* [UPD] spinner style [Clàudia Andreu]
+* [ADD] alert to neteja metadades + [UPD] spinner behavior [Clàudia Andreu]
+* [ADD] alert to neteja metadades [Clàudia Andreu]
+* [UPD] spinner mesures [Clàudia Andreu]
+* [ADD] checkbox to disable event image [Clàudia Andreu]
+* [ADD] accordion items expanded checkbox [Clàudia Andreu]
+* [FIX] Limpiar URLs de vistas de archivos binarios (@@display-file, @@download) para que funcione el SSO [pilar.marinas]
+* Update login URL patterns for redhood subdomains [Iago López Fernández]
+* Update URL pattern [Iago López Fernández]
+* [RENDIMIENTO] Mejorar cache de grupos [Pilar Marinas]
+
+1.84 (2025-12-09)
+-----------------
+
+* feat(ldap-cache): implementar cache híbrido para LDAP [Pilar Marinas]
+*  [Pilar Marinas]
+* - getUserByAttr: Cache por request (seguro para CSRF) [Pilar Marinas]
+* - Se limpia automáticamente al finalizar el request [Pilar Marinas]
+* - Evita 2000+ queries LDAP por request [Pilar Marinas]
+* - Cada usuario tiene su propio cache aislado [Pilar Marinas]
+*  [Pilar Marinas]
+* - getGroups: Cache global 60s (seguro porque no afecta CSRF) [Pilar Marinas]
+* - Grupos cambian poco y no identifican usuarios [Pilar Marinas]
+* - Mejora significativa en queries LDAP repetidas [Pilar Marinas]
+* - Thread-safe con lock para multi-Zope [Pilar Marinas]
+*  [Pilar Marinas]
+* Beneficios: [Pilar Marinas]
+* - Performance: reduce queries LDAP drásticamente [Pilar Marinas]
+* - Seguridad: no causa problemas de CSRF Token [Pilar Marinas]
+* - Multi-Zope: funciona correctamente en zc1-zc4 [Pilar Marinas]
+
+1.83 (2025-12-01)
+-----------------
+
+* [RENDIMIENTO]cache ldap instance.memoize por request [Pilar Marinas]
+* [UPD] download_files view permissions [Clàudia Andreu]
+
+1.82 (2025-11-18)
+-----------------
+
+* [FIX] Traduccion Imatge [Iago López]
+
+1.81 (2025-11-14)
+-----------------
+
+* [UPD] URLs que pueden hacer login [Iago López]
+
+1.80 (2025-11-14)
+-----------------
+
+* [FIX] Add .DS_Store a gitignore [Pilar Marinas]
+* [PENTEST] Solucionar vulnerabilidades password reset [Pilar Marinas]
+* [PENTEST] Que no puedan subir codigo malicioso en el portrait del usuario solo permitir jpg, png y webp [Pilar Marinas]
+* refactor: mover imports de validación junto a changeMemberPortrait [Pilar Marinas]
+*  [Pilar Marinas]
+* - Imports específicos movidos justo antes de la función [Pilar Marinas]
+* - Facilita eliminación futura si se remueve la función [Pilar Marinas]
+* - Mantiene convención de patches.py [Pilar Marinas]
+* feat: añadir prints informativos a tests de portrait validation [Pilar Marinas]
+*  [Pilar Marinas]
+* - Prints con emojis para mejor visibilidad [Pilar Marinas]
+* - Estructura jerárquica descriptiva en cada test [Pilar Marinas]
+* - Test resumen (test_zzz_summary) con estadísticas completas [Pilar Marinas]
+* - 18 tests totales con seguimiento visual del progreso [Pilar Marinas]
+* - Conforme a las convenciones de plone6-testing.mdc [Pilar Marinas]
+* test(security): añade tests unitarios e integración para portrait validation [Pilar Marinas]
+*  [Pilar Marinas]
+* - 14 tests unitarios de validación por magic bytes [Pilar Marinas]
+* - 3 tests de integración con el sistema completo [Pilar Marinas]
+* - Tests de escenarios de seguridad reales [Pilar Marinas]
+* - Verifica rechazo de PHP, shell scripts y otros maliciosos [Pilar Marinas]
+* - Verifica aceptación solo de JPG, PNG, WEBP [Pilar Marinas]
+*  [Pilar Marinas]
+* Todos los tests pasaron: 17/17 [Pilar Marinas]
+* fix(security): validación robusta de portrait upload por contenido real [Pilar Marinas]
+*  [Pilar Marinas]
+* Implementa validación de seguridad para prevenir subida de archivos maliciosos [Pilar Marinas]
+* en el campo portrait del perfil de usuario. [Pilar Marinas]
+*  [Pilar Marinas]
+* Cambios: [Pilar Marinas]
+* - Añade validación por magic bytes en validations.py [Pilar Marinas]
+* - Actualiza PortraitUploadAdapter para validar antes de procesar [Pilar Marinas]
+* - Mejora manejo de errores en changeMemberPortrait patch [Pilar Marinas]
+* - Añade mensajes de error traducidos (ca, es, en) [Pilar Marinas]
+* - Implementa whitelist estricta: solo JPG, PNG, WEBP [Pilar Marinas]
+*  [Pilar Marinas]
+* Seguridad: [Pilar Marinas]
+* - Valida contenido real del archivo (magic bytes), no extensión [Pilar Marinas]
+* - Rechaza archivos antes de guardarlos [Pilar Marinas]
+* - Añade logs de auditoría para intentos maliciosos [Pilar Marinas]
+* - Previene upload de PHP, scripts y otros archivos peligrosos [Pilar Marinas]
+*  [Pilar Marinas]
+* Closes: Vulnerabilidad de upload de shell.php en portrait [Pilar Marinas]
+* [UPD] purge_varnish_paths - Comprobar que esta marcado purgingEnabled [Iago López]
+* [FIX] Que se vea siempre la descripción del campo en edición aunque lo tengas en readonly [Pilar Marinas]
+* [UPD] purge_varnish_paths - obtener request de otra forma si no lo tiene [Iago López]
+* [FIX] footer translation [Iago López]
+
+1.80 (unreleased)
+-----------------
+
+* [MERGE] develop [Iago López]
+* [RENDIMIENTO]cache ldap instance.memoize por request [Pilar Marinas]
+* feat(performance): añadir @ram.cache 60s a getUserByAttr y getGroups [Pilar Marinas]
+*  [Pilar Marinas]
+* - Implementación con plone.memoize.ram para cache compartida entre ZEO clients [Pilar Marinas]
+* - Cache key basada en time() // 60 para expiración automática cada 60s [Pilar Marinas]
+* - getUserByAttr: cachea por (name, value, has_pwd) [Pilar Marinas]
+* - getGroups: cachea por (dn, attr, has_pwd) [Pilar Marinas]
+* - Ventaja vs cache local: compartida entre todos los workers/ZEO clients [Pilar Marinas]
+* - Compatible con multi-ZEO (no requiere invalidación manual) [Pilar Marinas]
+* - Para testing en PRE antes de decidir vs cache local conservadora [Pilar Marinas]
+* [UPD] download_files view permissions [Clàudia Andreu]
+
+1.79 (2025-10-14)
+-----------------
+
+* [FIX] *.po [Iago López]
+
+1.78 (2025-10-14)
+-----------------
+
+* [FIX] translations [Clàudia Andreu]
+* [UPD] Mejorar visualizacion vista album con filtros [Iago López]
+
+1.77 (2025-09-23)
+-----------------
+
+* [UPD] Metadades API variable name [Clàudia Andreu]
+* [UPD] Mejorar vista filtered_contents_search_album [Iago López]
+* [ADD] helper reinstall_all_genweb_products [Iago López]
+* [ADD] helper fix_cas_controlpanel [Iago López]
+* [FIX] CAS setup [Iago López]
+
+1.76 (2025-09-15)
+-----------------
+
+* [DEL] ipdb [Iago López]
+
+1.75 (2025-09-15)
+-----------------
+
+* [UPD] Mover controlpanel de metadades + [ADD] Toucher para cargar datos al controlpanel de metadades [Iago López]
+* [UPD] control panel description [Clàudia Andreu]
+* Merge branch 'api-test' into develop [Clàudia Andreu]
+* [ADD] indicadors to Portal Neteja de Metadades [Clàudia Andreu]
+
+1.74 (2025-09-10)
+-----------------
+
+* [FIX] Solve merge [Iago López]
+* [UPD] Portal Metadades description [Clàudia Andreu]
+* Merge branch 'api-test' of github.com:UPCnet/genweb6.core into api-test [Clàudia Andreu]
+* [UPD] Portal Metadades view [Clàudia Andreu]
+* [UPD] Add governpre.upc.edu normal login [Iago López]
+* Merge branch 'api-test' of github.com:UPCnet/genweb6.core into api-test [Clàudia Andreu]
+* [UPD] netejar metadades [Clàudia Andreu]
+* [ADD] PyPDF2 package required [Iago López]
+* [UPD] metadades xmls [Clàudia Andreu]
+* [UPD] metadades control panel [Clàudia Andreu]
+* [ADD] first version of Neteja de Metadades [Clàudia Andreu]
+* [UPD] Nueva vista: filtered_contents_search_album_view [Iago López]
+* [ADD] Nueva vista: filtered_contents_search_album_view [Iago López]
+
+1.73 (2025-07-01)
+-----------------
+
+* [FIX] socialtoolsViewlet - eventos recurrentes [«Iago]
+* [UPD] No cambiar valores de CAS si ya estan configurados [«Iago]
+* [UPD] Modificar portlet banners para que pille solo los portlets de la carpeta banners-ca/es/en [«Iago]
+* [FIX] Modificar version artifact para que no de error ci [Pilar Marinas]
+* [FIX] Modificar versions paquete para que no de error ci [Pilar Marinas]
+
+1.72 (2025-06-18)
+-----------------
+
+* [UPD] Subir timeout de 2 a 5 en los contenidos existentes [«Iago]
 
 1.71 (2025-06-03)
 -----------------

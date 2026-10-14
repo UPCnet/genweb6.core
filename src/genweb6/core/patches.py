@@ -1,4 +1,50 @@
 # -*- coding: utf-8 -*-
+from socket import IP_DROP_MEMBERSHIP
+from plone.app.layout.navigation.root import getNavigationRoot
+from plone.app.event.base import spell_date
+from collective.easyform.api import is_file_data
+from zope.schema import getFieldsInOrder
+from plone.app.contenttypes.interfaces import IFolder
+from genweb6.core.content.document_image.document_image import IDocumentImage
+from zope.interface import Interface
+from plone.app.contenttypes.behaviors.leadimage import ILeadImage
+from plone.app.contenttypes.interfaces import IImage
+from plone.app.querystring import queryparser
+from plone.event.interfaces import IEventAccessor
+from plone.app.event.base import start_end_query
+from plone.app.event.base import RET_MODE_OBJECTS
+from plone.app.event.base import localized_today
+from plone.app.event.base import get_events
+from plone.app.event.base import expand_events
+from plone.app.event.base import construct_calendar
+from plone.app.event.base import _prepare_range
+from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
+from datetime import datetime
+from plone.memoize import ram
+from plone.memoize.view import memoize_contextless
+import time
+import threading
+import collections
+from collections import OrderedDict
+from plone.app.multilingual.interfaces import ITranslationManager
+from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
+from plone.app.textfield.value import RichTextValue
+from collective.easyform.api import lnbr
+from collective.easyform.api import filter_widgets
+from collective.easyform.api import filter_fields
+from collective.easyform.api import dollar_replacer
+from collective.easyform.api import OrderedDict
+from collective.easyform.actions import DummyFormView
+from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
+from six import BytesIO
+from DateTime import DateTime
+from csv import writer as csvwriter
+from zope.contenttype import guess_content_type
+from xml.etree import ElementTree as ET
+from collective.easyform.serializer import convertAfterDeserialize
+from collective.easyform.interfaces import ISaveData
+from collective.easyform.api import get_schema
+from collective.easyform.api import get_actions
 from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
@@ -25,7 +71,6 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from Products.CMFPlone.interfaces import ISocialMediaSchema
 from Products.CMFPlone.interfaces.syndication import IFeedItem
 from Products.CMFPlone.patterns.tinymce import TinyMCESettingsGenerator
-from Products.CMFPlone.utils import getSiteLogo
 from Products.CMFPlone.utils import get_portal
 from Products.CMFPlone.utils import normalizeString
 from Products.LDAPUserFolder.LDAPUser import LDAPUser
@@ -60,10 +105,11 @@ from plone.app.users.browser.interfaces import IUserIdGenerator
 from plone.app.users.browser.register import RENAME_AFTER_CREATION_ATTEMPTS
 from plone.app.users.utils import uuid_userid_generator
 from plone.app.uuid.utils import uuidToObject
-from plone.app.widgets.utils import get_relateditems_options
+from plone.app.z3cform.widgets.relateditems import get_relateditems_options
 from plone.app.z3cform.utils import call_callables
 from plone.base.interfaces import IPloneSiteRoot
 from plone.base.interfaces.controlpanel import IMailSchema
+from plone.base.interfaces.controlpanel import ISiteSchema
 from plone.base.utils import pretty_title_or_id
 from plone.i18n.normalizer.interfaces import IURLNormalizer
 from plone.i18n.normalizer.interfaces import IUserPreferredURLNormalizer
@@ -86,6 +132,8 @@ from genweb6.core import _
 from genweb6.core.adapters.portrait import IPortraitUploadAdapter
 from genweb6.core.utils import portal_url
 from genweb6.core.utils import pref_lang
+from genweb6.core.validations import InvalidImageFile, UnsafeImageType
+from plone.memoize import instance
 
 import json
 import logging
@@ -108,6 +156,84 @@ except ImportError:
 
 logger = logging.getLogger('event.LDAPUserFolder')
 genweb_log = logging.getLogger('genweb6.core')
+logger_ldap_cache = logging.getLogger('genweb6.core.ldap_cache')
+
+# =============================================================================
+# LDAP CACHE HÍBRIDO
+# - getGroups: Cache global 60s (grupos no afectan CSRF, cambian poco)
+# - getUserByAttr: Cache por request (usuarios afectan CSRF, seguro)
+# =============================================================================
+
+# Cache global para getGroups (seguro: grupos no afectan CSRF)
+_LDAP_GROUPS_CACHE = collections.OrderedDict()
+_LDAP_GROUPS_CACHE_LOCK = threading.Lock()
+LDAP_GROUPS_CACHE_TIMEOUT = 60  # segundos
+LDAP_GROUPS_CACHE_MAX_SIZE = 1000
+
+
+def _groups_cache_key(dn, attr, pwd):
+    """Crear clave de cache única para getGroups."""
+    return f"getGroups:{dn}:{attr}:{sha1((pwd or '').encode()).hexdigest()}"
+
+
+def _groups_cache_get(cache_key):
+    """Obtener de cache si válido (Thread-safe, sin lock)."""
+    # .get() es atómico en CPython y OrderedDict es thread-safe para lecturas
+    entry = _LDAP_GROUPS_CACHE.get(cache_key)
+
+    if entry is None:
+        return None
+
+    result, timestamp = entry
+    now = time.time()
+
+    if now - timestamp < LDAP_GROUPS_CACHE_TIMEOUT:
+        return result
+
+    # Expirado: retornamos None pero no bloqueamos para borrar.
+    # La limpieza se hará perezosamente en _groups_cache_set
+    return None
+
+
+def _groups_cache_set(cache_key, result):
+    """Guardar en cache con lock optimizado."""
+    now = time.time()
+
+    with _LDAP_GROUPS_CACHE_LOCK:
+        # Si ya existe, movemos al final (más reciente)
+        if cache_key in _LDAP_GROUPS_CACHE:
+            _LDAP_GROUPS_CACHE.move_to_end(cache_key)
+
+        # Limitar tamaño si es necesario
+        elif len(_LDAP_GROUPS_CACHE) >= LDAP_GROUPS_CACHE_MAX_SIZE:
+            # Eliminar 10% más antiguas (FIFO / Oldest)
+            # popitem(last=False) es O(1) vs sorted() que es O(N log N)
+            to_remove = int(LDAP_GROUPS_CACHE_MAX_SIZE * 0.1)
+            for _ in range(to_remove):
+                if _LDAP_GROUPS_CACHE:
+                    _LDAP_GROUPS_CACHE.popitem(last=False)
+
+        _LDAP_GROUPS_CACHE[cache_key] = (result, now)
+
+
+def clear_ldap_groups_cache():
+    """API pública: limpiar cache de grupos."""
+    with _LDAP_GROUPS_CACHE_LOCK:
+        size = len(_LDAP_GROUPS_CACHE)
+        _LDAP_GROUPS_CACHE.clear()
+        logger_ldap_cache.info(f'Cache LDAP grupos limpiada ({size} entradas)')
+
+
+def get_ldap_groups_cache_stats():
+    """API pública: estadísticas de cache de grupos."""
+    return {
+        'size': len(_LDAP_GROUPS_CACHE),
+        'max_size': LDAP_GROUPS_CACHE_MAX_SIZE,
+        'timeout': LDAP_GROUPS_CACHE_TIMEOUT,
+    }
+
+
+# =============================================================================
 
 
 # Dejo la funcion que teniamos ya que ha cambiado mucho
@@ -356,9 +482,31 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     """ Get a user based on a name/value pair representing an
         LDAP attribute provided to the user.  If cache is True,
         try to cache the result using 'value' as the key
+
+    PATCH: Request-level cache para evitar 2000+ llamadas LDAP.
+    Seguro para multi-Zope: se limpia al finalizar el request.
     """
     if not value:
         return None
+
+    # PATCH: Request-level cache para performance (evita 2000+ llamadas LDAP)
+    # Seguro: no persiste entre requests, no causa CSRF
+    from zope.globalrequest import getRequest
+    request = getRequest()
+    if request is not None:
+        request_cache_key = '_ldap_getUserByAttr_cache'
+        if not hasattr(request, request_cache_key):
+            setattr(request, request_cache_key, {})
+        request_cache = getattr(request, request_cache_key)
+
+        # Key única: incluye name, value y hash del password
+        cache_key = (name, value, sha1((pwd or '').encode()).hexdigest())
+        if cache_key in request_cache:
+            return request_cache[cache_key]
+    else:
+        request_cache = None
+        cache_key = None
+    # END PATCH: Request-level cache
 
     cache_type = pwd and 'authenticated' or 'anonymous'
     negative_cache_key = '%s:%s:%s' % (
@@ -381,6 +529,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
     if user_dn is None:
         logger.debug('getUserByAttr: "%s=%s" not found' % (name, value))
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if user_attrs is None:
@@ -388,6 +538,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             name, value)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if user_roles is None or user_roles == self._roles:
@@ -416,6 +568,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             user_dn, self._login_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     if self._uid_attr != 'dn' and len(uid) > 0:
@@ -425,6 +579,8 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
             user_dn, self._uid_attr)
         logger.debug(msg)
         self._cache('negative').set(negative_cache_key, NonexistingUser())
+        if request_cache is not None:
+            request_cache[cache_key] = None
         return None
 
     # BEGIN PATCH
@@ -440,6 +596,10 @@ def getUserByAttr(self, name, value, pwd=None, cache=0):
 
     if cache:
         self._cache(cache_type).set(value, user_obj)
+
+    # PATCH: Guardar en request cache
+    if request_cache is not None:
+        request_cache[cache_key] = user_obj
 
     return user_obj
 
@@ -687,30 +847,41 @@ def changeMemberPortrait(self, portrait, id=None):
             raise Unauthorized
 
     # The plugable actions for how to handle the portrait.
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(portrait, safe_id)
+    # La validación de seguridad se realiza dentro del adaptador
+    try:
+        adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+        adapter(portrait, safe_id)
+    except (InvalidImageFile, UnsafeImageType) as e:
+        # Propagar la excepción con un mensaje traducible
+        from plone import api as plone_api
+        plone_api.portal.show_message(
+            message=str(e.__doc__),
+            request=self.REQUEST,
+            type='error'
+        )
+        # Re-lanzar para evitar que se guarde nada
+        raise
 
 
-def deletePersonalPortrait(self, id=None):
-    """deletes the Portait of a member.
-    """
-    authenticated_id = self.getAuthenticatedMember().getId()
-    if not id:
-        id = authenticated_id
-    safe_id = self._getSafeMemberId(id)
-    if id != authenticated_id and not _checkPermission(
-            ManageUsers, self):
-        raise Unauthorized
-
-    # The plugable actions for how to handle the portrait.
-    portrait_url = portal_url() + '/defaultUser.png'
-    imgData = requests.get(portrait_url).content
-    image = StringIO(imgData)
-    image.filename = 'defaultUser'
-    adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
-    adapter(image, safe_id)
-    # membertool = getToolByName(self, 'portal_memberdata')
-    # return membertool._deletePortrait(safe_id)
+# def deletePersonalPortrait(self, id=None):
+#     """deletes the Portait of a member.
+#     """
+#     authenticated_id = self.getAuthenticatedMember().getId()
+#     if not id:
+#         id = authenticated_id
+#     safe_id = self._getSafeMemberId(id)
+#     if id != authenticated_id and not _checkPermission(
+#             ManageUsers, self):
+#         raise Unauthorized
+#     # The plugable actions for how to handle the portrait.
+#     portrait_url = portal_url() + '/defaultUser.png'
+#     imgData = requests.get(portrait_url).content
+#     image = StringIO(imgData)
+#     image.filename = 'defaultUser'
+#     adapter = getMultiAdapter((self, self.REQUEST), IPortraitUploadAdapter)
+#     adapter(image, safe_id)
+#     # membertool = getToolByName(self, 'portal_memberdata')
+#     # return membertool._deletePortrait(safe_id)
 
 
 @memoize
@@ -812,7 +983,7 @@ def _get_tags(self):
             )
 
     if not found_image:
-        url = getSiteLogo()
+        url = site.absolute_url() + "/++theme++genweb6.theme/img/logo.png"
         tags.extend(
             [
                 dict(property="og:image", content=url),
@@ -860,17 +1031,127 @@ def mailhost_warning(self):
     return True
 
 
+def _genweb_mail_controlpanel_test_subject():
+    """Assumpte del correu de prova (@@mail-controlpanel)."""
+    registry = getUtility(IRegistry)
+    site_settings = registry.forInterface(ISiteSchema, prefix="plone", check=False)
+    site_title = site_settings.site_title
+    if site_title:
+        return "Correu de prova des del teu Genweb - {}".format(site_title)
+    else:
+        return "Correu de prova des del teu Genweb"
+
+
+def _genweb_mail_controlpanel_test_body():
+    """Cos del correu de prova (substitueix el text per defecte de Plone)."""
+    return (
+        "Has rebut aquest correu perquè s'ha configurat la teva adreça "
+        "electrònica com a adreça per defecte dels formularis de contacte "
+        "del Genweb. Si voleu canviar l'adreça ens ho podeu demanar "
+        "fent-nos un tiquet "
+        "https://eatic.upc.edu/plugins/servlet/desk/portal/1/create/24 "
+        "indicant-nos el genweb i la nova adreça.\n\n"
+        "Salutacions"
+    )
+
+
+def _genweb_mail_controlpanel_test_impl(form, action):
+    """Reemplaça el handler del botó test: z3c.form invoca handler.func(form, action)."""
+    from logging import getLogger
+
+    from plone.base import PloneMessageFactory as _
+    from plone.base.interfaces.controlpanel import IMailSchema
+    from plone.registry.interfaces import IRegistry
+    from Products.CMFCore.utils import getToolByName
+    from Products.MailHost.MailHost import MailHostError
+    from Products.statusmessages.interfaces import IStatusMessage
+    from zope.component import getUtility
+
+    import smtplib
+    import socket
+    import sys
+
+    log = getLogger("Plone")
+
+    if not form.save():
+        return
+    mailhost = getToolByName(form.context, "MailHost")
+
+    registry = getUtility(IRegistry)
+    mail_settings = registry.forInterface(IMailSchema, prefix="plone")
+    fromaddr = mail_settings.email_from_address
+
+    message = _genweb_mail_controlpanel_test_body()
+    email_charset = mail_settings.email_charset
+    subject = _genweb_mail_controlpanel_test_subject()
+
+    timeout = socket.getdefaulttimeout()
+    try:
+        socket.setdefaulttimeout(3)
+        try:
+            mailhost.send(
+                message,
+                mto=fromaddr,
+                mfrom=fromaddr,
+                subject=subject,
+                charset=email_charset,
+                immediate=True,
+            )
+
+        except (OSError, MailHostError, smtplib.SMTPException):
+            log.exception("Unable to send test e-mail.")
+            value = sys.exc_info()[1]
+            msg = _(
+                "Unable to send test e-mail ${error}.",
+                mapping={"error": str(value)},
+            )
+            IStatusMessage(form.request).addStatusMessage(msg, type="error")
+        else:
+            IStatusMessage(form.request).addStatusMessage(
+                _("Success! Check your mailbox for the test message."), type="info"
+            )
+    finally:
+        socket.setdefaulttimeout(timeout)
+
+
+def patch_mail_controlpanel_test_handler(event):
+    """Enllaça handler.func del botó test (Products.CMFPlone...mail.handle_test_action).
+
+    No val un monkeypatch a MailControlPanelForm.handle_test_action: z3c.form
+    decora amb buttonAndHandler i el callable real queda a Handler.func.
+    """
+    import logging
+
+    logger = logging.getLogger("genweb6.core.patches")
+    try:
+        from Products.CMFPlone.controlpanel.browser.mail import MailControlPanelForm
+    except Exception as err:
+        logger.warning("MailControlPanelForm no disponible: %s", err)
+        return
+    handlers = getattr(MailControlPanelForm, "handlers", None)
+    if handlers is None:
+        logger.warning("MailControlPanelForm sense atribut handlers")
+        return
+    for button, handler in handlers._handlers:
+        if getattr(button, "__name__", None) == "test":
+            handler.func = _genweb_mail_controlpanel_test_impl
+            logger.info(
+                "Correu de prova @@mail-controlpanel: handler del botó test substituït"
+            )
+            return
+    logger.warning(
+        "Correu de prova @@mail-controlpanel: no s'ha trobat el botó 'test'"
+    )
+
+
 title_displaysubmenuitem = _(u'label_choose_template', default=u'Display')
 
 
 title_factoriessubmenuitem = _(u'label_add_new_item', default=u'Add new\u2026')
 
 
-def getGroups(self, dn='*', attr=None, pwd=''):
-    """ returns a list of possible groups from the ldap tree
-        (Used e.g. in showgroups.dtml) or, if a DN is passed
-        in, all groups for that particular DN.
-    """
+def _getGroups_original(self, dn='*', attr=None, pwd=''):
+    """Función original de getGroups sin cache."""
     group_list = []
     no_show = ('Anonymous', 'Authenticated', 'Shared')
 
@@ -961,6 +1242,39 @@ def getGroups_memberdata_patch(self):
     except AttributeError:
         if self._user.getId() == 'admin':
             return []
+        return []
+
+
+def getGroups(self, dn='*', attr=None, pwd=''):
+    """PATCH: Cache global 60s para getGroups.
+
+    Seguro para multi-Zope: grupos no afectan CSRF y cambian poco.
+    Mejora performance significativamente en queries LDAP repetidas.
+    """
+    # Crear key de cache
+    cache_key = _groups_cache_key(dn, attr, pwd)
+
+    # Buscar en cache global
+    cached = _groups_cache_get(cache_key)
+    if cached is not None:
+        logger_ldap_cache.debug(f'getGroups cache HIT: {dn}')
+        # Marcador especial para listas vacías
+        if cached == '_EMPTY_GROUPS_':
+            return []
+        return cached
+
+    # Cache MISS → llamar función original
+    logger_ldap_cache.debug(f'getGroups cache MISS: {dn}')
+    result = _getGroups_original(self, dn, attr, pwd)
+
+    # Guardar en cache (incluir listas vacías con marcador)
+    if result:
+        _groups_cache_set(cache_key, result)
+    else:
+        _groups_cache_set(cache_key, '_EMPTY_GROUPS_')
+
+    return result
+
 
 def getProperty(self, id, default=_marker):
     """PAS-specific method to fetch a user's properties. Looks
@@ -1025,7 +1339,8 @@ def import_relations(self, data):
     ]
     all_fixed_relations = []
     for rel in data:
-        if "relationship" in rel and rel["relationship"] in ignore:  # Añadido a la condición la comprobación de que exista el atributo relationship
+        # Añadido a la condición la comprobación de que exista el atributo relationship
+        if "relationship" in rel and rel["relationship"] in ignore:
             continue
         rel["from_attribute"] = self.get_from_attribute(rel)
         all_fixed_relations.append(rel)
@@ -1097,7 +1412,8 @@ def addable_portlets(self):
 
     portlets = [
         {
-            "title": self.context.translate(p.title, domain="plone"),  # Aplicamos la traducción
+            # Aplicamos la traducción
+            "title": self.context.translate(p.title, domain="plone"),
             "description": p.description,
             "addview": f"{addviewbase}/+/{p.addview}",
         }
@@ -1141,12 +1457,12 @@ def tinymce(self):
 
     portal = get_portal()
     portal_url = portal.absolute_url()
-    current_path = folder.absolute_url()[len(portal_url) :]
+    current_path = folder.absolute_url()[len(portal_url):]
 
     image_types = settings.image_objects or []
 
     server_url = self.request.get("SERVER_URL", "")
-    site_path = portal_url[len(server_url) :]
+    site_path = portal_url[len(server_url):]
 
     related_items_config = get_relateditems_options(
         context=self.context,
@@ -1187,11 +1503,6 @@ def tinymce(self):
     }
     return {"data-pat-tinymce": json.dumps(configuration)}
 
-from zope.schema import getFieldsInOrder
-from collective.easyform.api import get_actions
-from collective.easyform.api import get_schema
-from collective.easyform.interfaces import ISaveData
-from collective.easyform.serializer import convertAfterDeserialize
 
 def deserializeSavedData(self, data):
     if "savedDataStorage" in data:
@@ -1216,12 +1527,6 @@ def deserializeSavedData(self, data):
                             value[name] = name
                     action.setDataRow(int(key), value)
 
-from collective.easyform.api import is_file_data
-from xml.etree import ElementTree as ET
-from zope.contenttype import guess_content_type
-from csv import writer as csvwriter
-from DateTime import DateTime
-from six import BytesIO
 
 def get_attachments(self, fields, request):
     """Return all attachments uploaded in form."""
@@ -1302,7 +1607,6 @@ def get_attachments(self, fields, request):
         attachments.append((filename, "application/xml", "utf-8", xmlstr))
     return attachments
 
-from plone.app.event.base import spell_date
 
 @property
 def header_string(self):
@@ -1409,6 +1713,7 @@ def header_string(self):
         "sub": trans(sub_msgid) if sub_msgid else "",
     }
 
+
 def resultsFolder(self, **kwargs):
     """Return a content listing based result set with contents of the
     folder.
@@ -1437,6 +1742,7 @@ def resultsFolder(self, **kwargs):
     results = listing(**kwargs)
     return results
 
+
 def _validate(self, value):
     # Pass all validations during initialization
     if self._init_field:
@@ -1446,7 +1752,8 @@ def _validate(self, value):
 
     if value not in vocabulary:
         try:
-            vocabulary.query['path']['query'] = '/'.join(api.portal.get().getPhysicalPath())
+            vocabulary.query['path']['query'] = '/'.join(
+                api.portal.get().getPhysicalPath())
         except:
             raise ConstraintNotSatisfied(
                 value, self.__name__
@@ -1469,7 +1776,8 @@ def display_link(self):
             title = obj.Title()
             # Generar correctamente el enlace para tener en cuenta los mountpoints
             # meta ="/".join(obj.getPhysicalPath()[2:])
-            meta = "/".join(obj.getPhysicalPath()[len(api.portal.get().getPhysicalPath()):])
+            meta = "/".join(obj.getPhysicalPath()
+                            [len(api.portal.get().getPhysicalPath()):])
             if not meta.startswith("/"):
                 meta = "/" + meta
             return {
@@ -1488,6 +1796,7 @@ def display_link(self):
         "title": url,
         "meta": "",
     }
+
 
 def absolute_target_url(self):
     """Compute the absolute target URL."""
@@ -1518,17 +1827,6 @@ def absolute_target_url(self):
             url = self.request["SERVER_URL"] + url
 
     return url
-
-
-from Products.PageTemplates.ZopePageTemplate import ZopePageTemplate
-
-from collective.easyform.actions import DummyFormView
-from collective.easyform.api import OrderedDict
-from collective.easyform.api import dollar_replacer
-from collective.easyform.api import filter_fields
-from collective.easyform.api import filter_widgets
-from collective.easyform.api import lnbr
-from plone.app.textfield.value import RichTextValue
 
 
 def get_mail_body(self, unsorted_data, request, context):
@@ -1587,11 +1885,6 @@ def render_ALV(self):
     return self.index()
 
 
-from plone.app.multilingual.browser.viewlets import _cache_until_catalog_change
-from plone.app.multilingual.interfaces import ITranslationManager
-from plone.memoize import ram
-
-
 @ram.cache(_cache_until_catalog_change)
 def get_alternate_languages(self):
     """Cache relative urls only. If we have multilingual sites
@@ -1627,7 +1920,6 @@ def get_alternate_languages(self):
 
     return alternates
 
-from plone.app.layout.navigation.root import getNavigationRoot
 
 def get_base_path(self, context):
     path = getNavigationRoot(context)
@@ -1636,18 +1928,6 @@ def get_base_path(self, context):
     else:
         return path
 
-
-from datetime import datetime
-from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
-from plone.app.event.base import _prepare_range
-from plone.app.event.base import construct_calendar
-from plone.app.event.base import expand_events
-from plone.app.event.base import get_events
-from plone.app.event.base import localized_today
-from plone.app.event.base import RET_MODE_OBJECTS
-from plone.app.event.base import start_end_query
-from plone.event.interfaces import IEventAccessor
-from plone.app.querystring import queryparser
 
 @property
 def cal_data(self):
@@ -1684,7 +1964,9 @@ def cal_data(self):
                 start = query["start"]
         except:
             if "start" in query:
-                fixStart = datetime.strptime(query["start"]['query'].Date(), '%Y/%m/%d').date()
+                fixStart = datetime.strptime(
+                    query["start"]['query'].Date(),
+                    '%Y/%m/%d').date()
                 start = fixStart if fixStart > start else start
 
         try:
@@ -1692,8 +1974,10 @@ def cal_data(self):
                 end = query["end"]
         except:
             if "end" in query:
-                fixEnd = datetime.strptime(query["end"]['query'].Date(), '%Y/%m/%d').date()
-                end = fixStart if fixEnd < end else end
+                fixEnd = datetime.strptime(
+                    query["end"]['query'].Date(),
+                    '%Y/%m/%d').date()
+                end = fixEnd if fixEnd < end else end
 
         start, end = _prepare_range(self.search_base, start, end)
         query.update(start_end_query(start, end))
@@ -1766,15 +2050,6 @@ def cal_data(self):
     return caldata
 
 
-from plone.app.contenttypes.browser.folder import FolderView
-from plone.app.contenttypes.interfaces import IImage
-from plone.app.contenttypes.behaviors.leadimage import ILeadImage
-from Products.CMFCore.utils import getToolByName
-from plone.memoize.view import memoize
-from zope.interface import Interface
-from genweb6.core.content.document_image.document_image import IDocumentImage
-
-
 @property
 @memoize
 def album_images_folder(self):
@@ -1784,11 +2059,10 @@ def album_images_folder(self):
         ILeadImage.__identifier__,
         IDocumentImage.__identifier__,
     ]
-    images = [obj for obj in self.results(batch=False, object_provides=provides) if getattr(obj, 'image', None)]
+    images = [
+        obj for obj in self.results(batch=False, object_provides=provides)
+        if getattr(obj, 'image', None)]
     return images
-
-
-from plone.app.contenttypes.interfaces import IFolder
 
 
 @memoize
@@ -2083,3 +2357,53 @@ def query_index(self, record, resultset=None):
         exclude = self._apply_not(not_parm, resultset)
         r = difference(r, exclude)
     return r
+
+
+# ============================================================================
+# PATCH: Cache GlobalSectionsViewlet.navtree to improve performance
+# ============================================================================
+# Problem: navtree property loads 15k+ ZODB objects and makes multiple catalog
+# queries on every call. Without caching, navigation rendering can take 10+ seconds.
+# Solution: Shared request-level cache keyed by navtree_path.
+# Impact: Reduces 5+ navtree calculations per request to 1-2 (depending on paths).
+# Safety: Cache only lives during single request, keyed by path to avoid conflicts.
+# Original: Uses @memoize (heavier, per-instance cache)
+# Patched: Uses request cache (shared across viewlet instances with same path)
+# ============================================================================
+
+def patch_globalsections_navtree(event):
+    """Patch GlobalSectionsViewlet.navtree at Zope startup.
+    
+    Subscriber for IProcessStarting event that replaces navtree property
+    with a cached version using request-level cache KEYED BY navtree_path,
+    so all viewlets that need the same path (header, footer, etc.) share one
+    computation instead of N (one per viewlet instance).
+    """
+    from plone.app.layout.viewlets.common import GlobalSectionsViewlet
+    import logging
+
+    logger = logging.getLogger('genweb6.core.patches')
+
+    # Get original property
+    original_property = GlobalSectionsViewlet.navtree
+    original_fget = original_property.fget
+
+    _cache_key = '_genweb_navtree_cache'
+
+    def cached_navtree_getter(self):
+        request = getattr(self, 'request', None)
+        if request is None:
+            return original_fget(self)
+        cache = getattr(request, _cache_key, None)
+        if cache is None:
+            setattr(request, _cache_key, {})
+            cache = getattr(request, _cache_key)
+        path = self.navtree_path
+        if path not in cache:
+            cache[path] = original_fget(self)
+        return cache[path]
+
+    # Replace property with cached version (shared by path, not per-instance)
+    GlobalSectionsViewlet.navtree = property(cached_navtree_getter)
+
+    logger.info("GlobalSectionsViewlet.navtree patched with shared request cache (keyed by path)")

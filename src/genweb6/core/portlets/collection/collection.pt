@@ -16,7 +16,8 @@
             <h2 class="portlet-title" tal:condition="view/data/header"
                 tal:content="view/data/header">Colleccio</h2>
 
-            <ul class="list-group list-group-flush mb-2">
+            <ul class="list-group list-group-flush mb-2"
+                tal:condition="view/results">
 
                 <tal:item tal:repeat="obj view/results">
 
@@ -76,7 +77,8 @@
             <h2 class="portlet-title" tal:condition="view/data/header"
                 tal:content="view/data/header">Colleccio</h2>
 
-            <ul class="ps-0 mb-2 row">
+            <ul class="ps-0 mb-2 row"
+                tal:condition="view/results">
 
                 <tal:item tal:repeat="obj view/results">
 
@@ -85,23 +87,24 @@
                                     useView python:item_type in viewActions;
                                     itemUrl python:useView and obj.getURL() + '/view' or obj.getURL();">
 
-                        <div class="img col-md-5">
+                        <div class="content-img col-md-5">
 
                             <a href="#"
                                tal:attributes="href obj/getURL;
                                                title obj/title">
 
+                                <span class="visually-hidden" tal:content="obj/title">Title</span>
+
                                 <img tal:condition="obj/image | nothing"
-                                     loading="lazy"
+                                     loading="lazy" aria-hidden="true"
                                      tal:attributes="src string:${obj/getURL}/@@images/image/preview;
-                                                     title obj/title | nothing;
-                                                     alt obj/title | string: ;"/>
+                                                     alt string:;"/>
 
                             </a>
 
                         </div>
 
-                        <div class="txt col-md-7">
+                        <div class="content-txt col-md-7">
 
                             <p tal:condition="obj/description" class="description mb-1 text-truncate-3"
                                tal:content="obj/description">Description summary</p>

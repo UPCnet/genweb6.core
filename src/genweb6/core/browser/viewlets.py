@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from Acquisition import aq_inner
+from html import unescape
+import logging
 
 from plone import api
 from plone.app.contenttypes.interfaces import IFile
@@ -15,14 +17,15 @@ from plone.app.multilingual.interfaces import ITG
 from plone.app.multilingual.interfaces import NOTG
 from plone.base.interfaces import ISiteSchema
 from plone.formwidget.namedfile.converter import b64decode_file
+from plone.event.interfaces import IOccurrence
 from plone.memoize.view import memoize
 from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
-from scss import Scss
 from zope.component import getUtility
 from zope.component import queryAdapter
+from zope.i18n import translate
 
 from genweb6.core import _
 from genweb6.core import utils
@@ -161,9 +164,38 @@ class headerViewlet(
         viewletBase, SearchBoxViewlet, GWGlobalSectionsViewlet, PersonalBarViewlet):
 
     _opener_markup_template = (
-        '<input type="checkbox" class="opener" />'
-        '<label for="navitem-{uid}" role="button" aria-label="{title}"></label>'
+        '<input id="{nav_item_id}" type="checkbox" class="opener" />'
+        '<label id="{nav_label_id}" for="{nav_item_id}" role="button" '
+        'aria-label="{opener_aria_label}"></label>'
     )
+
+    def has_globalnav(self):
+        return bool(self.navtree.get(self.navtree_path, []))
+
+    def render_globalnav_desktop(self):
+        self._nav_scope = 'desktop'
+        return GWGlobalSectionsViewlet.render_globalnav(self)
+
+    def render_globalnav_mobile(self):
+        self._nav_scope = 'mobile'
+        return GWGlobalSectionsViewlet.render_globalnav(self)
+
+    def _opener_aria_label(self, title):
+        plain_title = unescape(title)
+        return translate(
+            _('open_submenu_label', default='Open submenu for ${title}'),
+            mapping={'title': plain_title},
+            context=self.request,
+        )
+
+    def render_item(self, item, path):
+        scope = getattr(self, '_nav_scope', 'desktop')
+        item = dict(item)
+        base_id = f'navitem-{scope}-{item["uid"]}'
+        item['nav_item_id'] = base_id
+        item['nav_label_id'] = f'{base_id}-label'
+        item['opener_aria_label'] = self._opener_aria_label(item['title'])
+        return GWGlobalSectionsViewlet.render_item(self, item, path)
 
     @memoize
     def getClass(self):
@@ -232,7 +264,7 @@ class headerViewlet(
                 "secondary_logo_url": secondary_logo_url,
                 "secondary_logo_target": "_blank" if header_config.secondary_logo_external_url else "_self"}
 
-    @memoize
+    @memoize_contextless
     def languages(self):
         lt = api.portal.get_tool(name='portal_languages')
         if lt is None:
@@ -548,15 +580,21 @@ class resourcesViewletCSS(viewletBase):
         if getattr(resources_config, 'file_css', False):
             filename, data = b64decode_file(resources_config.file_css)
             data = NamedFile(data=data, filename=filename)
-            css = Scss()
-            return utils.remove_quotes_from_var_scss(css.compile(data._data._data))
+            return utils.compile_css(data._data._data)
 
     @memoize
     def getTextCSS(self):
         resources_config = genwebResourcesConfig()
-        if resources_config.text_css:
-            css = Scss()
-            return "<style>" + utils.remove_quotes_from_var_scss(css.compile(resources_config.text_css)) + "</style>"
+        if not resources_config.text_css:
+            return ''
+        try:
+            compiled = utils.compile_css(resources_config.text_css)
+            return "<style>" + (compiled or '') + "</style>"
+        except Exception as e:
+            logging.getLogger(__name__).warning(
+                'getTextCSS: compile_css failed, using raw CSS: %s', e
+            )
+            return "<style>" + (resources_config.text_css or '') + "</style>"
 
     @property
     def webstats_js(self):
@@ -585,22 +623,22 @@ class socialtoolsViewlet(viewletBase):
         return ""
 
     def data(self):
-        real_context = getattr(self.context, '__parent__', self.context)
+        context =  self.context.aq_parent if IOccurrence.providedBy(self.context) else self.context
+        title = context.title
 
-        title = getattr(real_context, 'title', '') or getattr(real_context, 'Title', '')
         if not title:
-            if IFile.providedBy(real_context) or IImage.providedBy(real_context):
+            if IFile.providedBy(context) or IImage.providedBy(context):
                 try:
-                    title = real_context.file.filename
-                except AttributeError:
-                    pass
-            if not title:
-                title = getattr(real_context, 'id', 'Contingut')
+                    title = context.file.filename
+                except:
+                   return []
+            else:
+                return []
         try:
-            uid = IUUID(real_context)
+            uid = IUUID(context)
             url = self.root_url() + '/resolveuid/' + uid
-        except Exception:
-            url = real_context.absolute_url()
+        except:
+            url = context.absolute_url()
 
         return [
                {

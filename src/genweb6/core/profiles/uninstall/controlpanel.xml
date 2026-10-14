@@ -43,4 +43,18 @@
 
     </configlet>
 
+    <configlet
+        action_id="genweb6.core.netejar_metadades"
+        appId="genweb6.core.netejar_metadades"
+        remove="True">
+
+    </configlet>
+
+    <configlet
+        action_id="genweb6.core.weglot"
+        appId="genweb6.core.weglot"
+        remove="True">
+
+    </configlet>
+
 </object>

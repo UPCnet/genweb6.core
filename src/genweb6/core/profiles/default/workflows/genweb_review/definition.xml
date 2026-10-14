@@ -269,7 +269,7 @@
             <guard-role>Reviewer</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Owner</guard-role>
-            <permission-role>WebMaster</permission-role>
+            <guard-role>WebMaster</guard-role>
         </guard>
     </transition>
 
@@ -313,7 +313,7 @@
         <guard>
             <guard-role>Editor</guard-role>
             <guard-role>Manager</guard-role>
-            <permission-role>WebMaster</permission-role>
+            <guard-role>WebMaster</guard-role>
         </guard>
     </transition>
 
@@ -325,7 +325,7 @@
         <guard>
             <guard-role>Editor</guard-role>
             <guard-role>Manager</guard-role>
-            <permission-role>WebMaster</permission-role>
+            <guard-role>WebMaster</guard-role>
         </guard>
     </transition>
 
@@ -336,7 +336,7 @@
         <guard>
             <guard-role>Editor</guard-role>
             <guard-role>Manager</guard-role>
-            <permission-role>WebMaster</permission-role>
+            <guard-role>WebMaster</guard-role>
         </guard>
     </transition>
 
@@ -360,7 +360,7 @@
             <guard-role>Editor</guard-role>
             <guard-role>Manager</guard-role>
             <guard-role>Owner</guard-role>
-            <permission-role>WebMaster</permission-role>
+            <guard-role>WebMaster</guard-role>
         </guard>
     </transition>
 
