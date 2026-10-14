@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="genweb6.core">
+
+  <!-- QR Scanner Final -->
+  <browser:page
+      name="qr_scanner_final"
+      for="*"
+      class=".qr_scanner_final.QRScannerFinalView"
+      permission="zope2.View"
+      />
+
+  <!-- Formulari d'Inscripció Simple -->
+  <browser:page
+      name="formulari_inscripcio"
+      for="*"
+      class=".formulari_inscripcio_simple.FormulariInscripcioSimpleView"
+      permission="zope2.View"
+      />
+
+  <!-- Vista d'Activitat personalitzada -->
+  <browser:page
+      name="view"
+      for="genweb6.core.content.activitat.IActivitat"
+      class=".activitat_view.ActivitatView"
+      template="activitat_view.pt"
+      permission="zope2.View"
+      />
+
+  <!-- Vista d'Inscripció amb QR -->
+  <browser:page
+      name="view"
+      for="genweb6.core.content.inscripcio.IInscripcio"
+      class=".inscripcio_view.InscripcioView"
+      permission="zope2.View"
+      />
+
+  <!-- Imatge QR -->
+  <browser:page
+      name="qr_image"
+      for="genweb6.core.content.inscripcio.IInscripcio"
+      class=".qr_image_view.QRImageView"
+      permission="zope2.View"
+      />
+
+  <!-- QR Mòbil -->
+  <browser:page
+      name="qr_mobile"
+      for="genweb6.core.content.inscripcio.IInscripcio"
+      class=".qr_image_view.QRMobileView"
+      permission="zope2.View"
+      />
+
+  <!-- Llistat d'Assistència -->
+  <browser:page
+      name="assistencia_llistat"
+      for="*"
+      class=".assistencia_llistat.AssistenciaLlistatView"
+      permission="zope2.View"
+      />
+
+  <!-- Crear Inscripció Test -->
+  <browser:page
+      name="crear_inscripcio_test"
+      for="*"
+      class=".crear_inscripcio_test.CrearInscripcioTestView"
+      permission="zope2.View"
+      />
+
+  <!-- QR Validation API -->
+  <browser:page
+      name="qr_validation"
+      for="*"
+      class="..api.qr_validation.QRValidationService"
+      permission="zope2.View"
+      />
+
+  <!-- QR Stats API -->
+  <browser:page
+      name="qr_stats"
+      for="*"
+      class="..api.qr_validation.QRStatsService"
+      permission="zope2.View"
+      />
+
+</configure>

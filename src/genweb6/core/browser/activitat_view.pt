@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb6.core">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="disable_column_two python:request.set('disable_plone.rightcolumn',1);" />
+</head>
+
+<body>
+
+  <metal:content-core fill-slot="content-core">
+
+  <div class="col-md-12">
+
+    <!-- Informació de l'activitat -->
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <strong>📅 Data i Hora:</strong><br>
+                <span tal:content="view/get_data_formatted"></span>
+              </div>
+              <div class="col-md-3">
+                <strong>📍 Lloc:</strong><br>
+                <span tal:content="python:getattr(context, 'lloc', 'Per determinar')"></span>
+              </div>
+              <div class="col-md-3">
+                <strong>👤 Responsable:</strong><br>
+                <span tal:content="python:getattr(context, 'responsable', 'UPCArts')"></span>
+              </div>
+              <div class="col-md-3">
+                <strong>💰 Preu:</strong><br>
+                <span tal:content="view/get_preu_formatted"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text de l'activitat -->
+    <div class="row mb-4" tal:condition="python:hasattr(context, 'text') and context.text">
+      <div class="col-md-12">
+        <div id="parent-fieldname-text">
+          <div tal:replace="structure context/text/output" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadístiques -->
+    <div class="row mb-4" tal:define="inscripcions python:view.get_inscripcions();
+                                      total_inscripcions python:len(inscripcions);
+                                      assistents python:[i for i in inscripcions if getattr(i, 'ha_assistit', False)];
+                                      total_assistents python:len(assistents)">
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="text-primary" tal:content="total_inscripcions">0</h3>
+            <p class="card-text">Inscripcions</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="text-success" tal:content="total_assistents">0</h3>
+            <p class="card-text">Assistents</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h3 class="text-info" tal:content="python:view.get_percentatge_assistencia(total_assistents, total_inscripcions)">0%</h3>
+            <p class="card-text">Assistència</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accions principals -->
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5>🚀 Accions Disponibles</h5>
+          </div>
+          <div class="card-body text-center">
+            
+            <!-- Botó d'inscripció -->
+            <a tal:condition="python:getattr(context, 'permet_inscripcions', True)"
+               tal:attributes="href string:${context/absolute_url}/@@formulari_inscripcio"
+               class="btn btn-success btn-lg me-2 mb-2">
+              📝 Inscriure's a l'Activitat
+            </a>
+            
+            <!-- Escàner QR -->
+            <a tal:attributes="href string:${context/absolute_url}/@@qr_scanner_final"
+               class="btn btn-primary me-2 mb-2">
+              📷 Escàner QR
+            </a>
+            
+            <!-- Llistat d'assistència -->
+            <a tal:attributes="href string:${context/absolute_url}/@@assistencia_llistat"
+               class="btn btn-info me-2 mb-2">
+              📊 Llistat d'Assistència
+            </a>
+            
+            <!-- Crear inscripció test -->
+            <a tal:attributes="href string:${context/absolute_url}/@@crear_inscripcio_test"
+               class="btn btn-outline-secondary me-2 mb-2">
+              🧪 Crear Inscripció Test
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Llistat d'inscripcions -->
+    <div class="row" tal:define="inscripcions python:view.get_inscripcions()" tal:condition="inscripcions">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 tal:content="python:f'👥 Inscripcions ({len(inscripcions)})'">Inscripcions</h5>
+          </div>
+          <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+            <div class="row">
+              <div tal:repeat="inscripcio inscripcions" class="col-md-6 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div>
+                        <h6 class="card-title">
+                          <span tal:content="python:'✅' if getattr(inscripcio, 'ha_assistit', False) else '⏳'"></span>
+                          <span tal:content="inscripcio/get_nom_complet"></span>
+                        </h6>
+                        <p class="card-text small">
+                          📧 <span tal:content="inscripcio/email"></span><br>
+                          👥 <span tal:content="inscripcio/get_collectiu_display"></span>
+                        </p>
+                      </div>
+                      <a tal:attributes="href inscripcio/absolute_url" 
+                         class="btn btn-outline-primary btn-sm">
+                        🎫 QR
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</metal:content-core>
+
+</body>
+</html>

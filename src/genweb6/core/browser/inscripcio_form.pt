@@ -1,0 +1,188 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="genweb6.core">
+
+<head>
+    <metal:block fill-slot="style_slot">
+        <style>
+            .inscripcio-form-container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            .activitat-info {
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 30px;
+                border-left: 4px solid #007bff;
+            }
+            
+            .activitat-info h2 {
+                margin-top: 0;
+                color: #007bff;
+            }
+            
+            .activitat-details {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 15px;
+                margin-top: 15px;
+            }
+            
+            .detail-item {
+                display: flex;
+                align-items: center;
+            }
+            
+            .detail-item strong {
+                margin-right: 10px;
+                min-width: 80px;
+            }
+            
+            .form-container {
+                background-color: white;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            .form-container h3 {
+                margin-top: 0;
+                color: #333;
+                border-bottom: 2px solid #007bff;
+                padding-bottom: 10px;
+            }
+            
+            .field {
+                margin-bottom: 20px;
+            }
+            
+            .field label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+                color: #333;
+            }
+            
+            .field input, .field select, .field textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+                box-sizing: border-box;
+            }
+            
+            .field input:focus, .field select:focus, .field textarea:focus {
+                outline: none;
+                border-color: #007bff;
+                box-shadow: 0 0 5px rgba(0,123,255,0.3);
+            }
+            
+            .field .help-text {
+                font-size: 12px;
+                color: #666;
+                margin-top: 5px;
+            }
+            
+            .required {
+                color: #dc3545;
+            }
+            
+            .form-actions {
+                text-align: center;
+                margin-top: 30px;
+            }
+            
+            .btn-submit {
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            
+            .btn-submit:hover {
+                background-color: #0056b3;
+            }
+            
+            .passaport-info {
+                background-color: #fff3cd;
+                border: 1px solid #ffeaa7;
+                padding: 15px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            
+            .passaport-info h4 {
+                margin-top: 0;
+                color: #856404;
+            }
+        </style>
+    </metal:block>
+</head>
+
+<body>
+    <metal:main fill-slot="main">
+        <div class="inscripcio-form-container">
+            
+            <!-- Informació de l'activitat -->
+            <div class="activitat-info">
+                <h2 tal:content="context/title">Títol de l'activitat</h2>
+                
+                <div tal:condition="context/description" class="description">
+                    <p tal:content="context/description">Descripció de l'activitat</p>
+                </div>
+                
+                <div class="activitat-details">
+                    <div class="detail-item" tal:condition="context/data_inici">
+                        <strong>📅 Data:</strong>
+                        <span tal:content="python: context.data_inici.strftime('%d/%m/%Y %H:%M') if context.data_inici else 'Per determinar'"></span>
+                    </div>
+                    
+                    <div class="detail-item" tal:condition="context/lloc">
+                        <strong>📍 Lloc:</strong>
+                        <span tal:content="context/lloc"></span>
+                    </div>
+                    
+                    <div class="detail-item" tal:condition="context/preu">
+                        <strong>💰 Preu:</strong>
+                        <span tal:content="python: f'{context.preu}€' if context.preu > 0 else 'Gratuït'"></span>
+                    </div>
+                    
+                    <div class="detail-item" tal:condition="context/responsable">
+                        <strong>👤 Responsable:</strong>
+                        <span tal:content="context/responsable"></span>
+                    </div>
+                </div>
+                
+                <!-- Informació del Passaport Cultural -->
+                <div class="passaport-info" tal:condition="context/passaport_cultural">
+                    <h4>🎓 Passaport Cultural</h4>
+                    <p>Aquesta activitat forma part del Passaport Cultural i atorga 
+                       <strong tal:content="context/hores_passaport">0</strong> hores de crèdit als estudiants.</p>
+                </div>
+            </div>
+            
+            <!-- Formulari d'inscripció -->
+            <div class="form-container">
+                <h3>Formulari d'Inscripció</h3>
+                
+                <div tal:replace="structure view/form/render">
+                    Formulari d'inscripció
+                </div>
+            </div>
+            
+        </div>
+    </metal:main>
+</body>
+</html>

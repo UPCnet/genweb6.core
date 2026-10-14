@@ -1,0 +1,10 @@
+# Dependències per al sistema QR d'UPCArts
+
+# Generació de codis QR
+qrcode[pil]==7.4.2
+
+# Processament d'imatges (ja inclòs amb qrcode[pil])
+Pillow>=10.0.0
+
+# JSON i base64 (ja inclòs amb Python standard library)
+# datetime (ja inclòs amb Python standard library)
