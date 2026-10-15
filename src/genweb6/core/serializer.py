@@ -10,8 +10,10 @@ from zope.component import adapter
 @adapter(IPloneSiteRoot, IGenweb6CoreLayer)
 class CustomSerializeSiteRootToJson(SerializeSiteRootToJson):
 
-    def __call__(self, version=None):
-        result = super(CustomSerializeSiteRootToJson, self).__call__()
+    def __call__(self, *args, **kwargs):
+        # plone.restapi >= 9 llama con include_items / include_expansion:
+        # se reenvian todos los argumentos al serializador original
+        result = super(CustomSerializeSiteRootToJson, self).__call__(*args, **kwargs)
         # Eliminar el atributo "creators" de SiteRoot serializado
         result.pop('creators', None)
 
@@ -21,8 +23,8 @@ class CustomSerializeSiteRootToJson(SerializeSiteRootToJson):
 @adapter(IDexterityContainer, IGenweb6CoreLayer)
 class CustomSerializeFolderToJson(SerializeToJson):
 
-    def __call__(self, version=None, include_items=True):
-        result = super(CustomSerializeFolderToJson, self).__call__()
+    def __call__(self, *args, **kwargs):
+        result = super(CustomSerializeFolderToJson, self).__call__(*args, **kwargs)
         # Eliminar el atributo "creators" de las folders serializadas
         result.pop('creators', None)
 
@@ -32,8 +34,8 @@ class CustomSerializeFolderToJson(SerializeToJson):
 @adapter(IDexterityContent, IGenweb6CoreLayer)
 class CustomSerializeToJson(SerializeToJson):
 
-    def __call__(self, version=None, include_items=True):
-        result = super(CustomSerializeToJson, self).__call__()
+    def __call__(self, *args, **kwargs):
+        result = super(CustomSerializeToJson, self).__call__(*args, **kwargs)
         # Eliminar el atributo "creators" de las document, news,
         # events, links, etc. serializadas
         result.pop('creators', None)

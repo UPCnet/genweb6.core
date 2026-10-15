@@ -50,7 +50,7 @@
 
             </tal:block>
 
-            <time class="time smaller" tal:condition="view/data/display_date">
+            <time class="time smaller" tal:condition="python:view.data.display_date and 'updated' in item">
 
               <span tal:replace="python:toLocalizedTime(item['updated'])">19.02.2007</span>
 
