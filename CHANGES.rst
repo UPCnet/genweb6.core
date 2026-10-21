@@ -1,11 +1,10 @@
 Changelog
 =========
 
-1.108 (unreleased)
+1.108 (2026-10-21)
 ------------------
 
-- Nothing changed yet.
-
+* [ADD] helper setup_new_cas_url [Iago López]
 
 1.107 (2026-09-10)
 ------------------
