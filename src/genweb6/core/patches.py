@@ -19,7 +19,6 @@ from plone.app.event.base import expand_events
 from plone.app.event.base import construct_calendar
 from plone.app.event.base import _prepare_range
 from plone.app.contenttypes.behaviors.collection import ISyndicatableCollection
-from datetime import datetime
 from plone.memoize import ram
 from plone.memoize.view import memoize_contextless
 import time
@@ -1230,6 +1229,21 @@ def _getGroups_original(self, dn='*', attr=None, pwd=''):
     return group_list
 
 
+def getGroups_memberdata_patch(self):
+    """
+    Patched to avoid AttributeError: 'RequestContainer' object has no attribute 'getGroups'
+    The user object self._user seems to not have getGroups method in some contexts after
+    upgrading to Plone 6.0.15 with genweb6.core.
+    This patch handles both local users (like admin) and LDAP users.
+    """
+    try:
+        return self._user.getGroups()
+    except AttributeError:
+        if self._user.getId() == 'admin':
+            return []
+        return []
+
+
 def getGroups(self, dn='*', attr=None, pwd=''):
     """PATCH: Cache global 60s para getGroups.
 
@@ -1943,27 +1957,10 @@ def cal_data(self):
             sort_order=None,
         )
 
-        # restrict start/end with those from query, if given.
-        try:
-            if "start" in query and query["start"] > start:
-                start = query["start"]
-        except:
-            if "start" in query:
-                fixStart = datetime.strptime(
-                    query["start"]['query'].Date(),
-                    '%Y/%m/%d').date()
-                start = fixStart if fixStart > start else start
-
-        try:
-            if "end" in query and query["end"] < end:
-                end = query["end"]
-        except:
-            if "end" in query:
-                fixEnd = datetime.strptime(
-                    query["end"]['query'].Date(),
-                    '%Y/%m/%d').date()
-                end = fixEnd if fixEnd < end else end
-
+        # Como plone.app.event >= 5.2.2: con una coleccion como contexto se usa
+        # la query configurada, salvo start y end, que se toman del mes que
+        # muestra el calendario. (Antes se intentaba acotar con los start/end de
+        # la query, lo que fallaba si venian como dict y requeria un try/except.)
         start, end = _prepare_range(self.search_base, start, end)
         query.update(start_end_query(start, end))
         events = self.search_base.results(

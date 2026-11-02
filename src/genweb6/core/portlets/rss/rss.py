@@ -4,13 +4,20 @@ from DateTime.interfaces import DateTimeError
 from Products.Five.browser.pagetemplatefile import ZopeTwoPageTemplateFile
 
 from bs4 import BeautifulSoup
+from io import BytesIO
 from logging import getLogger
 from plone import api
 from plone.app.portlets import PloneMessageFactory as _PMF
 from plone.app.portlets.portlets import base
+# Validadores y descarga con limites de plone.app.portlets (>= 5.0.8): evitan
+# file://, hosts internos, descargas enormes o lentas y enlaces javascript:
+from plone.app.portlets.portlets.rss import _download_feed_and_response
+from plone.app.portlets.portlets.rss import _normal_url_validator
+from plone.app.portlets.portlets.rss import _rss_feed_url_validator
 from plone.portlets.interfaces import IPortletDataProvider
 from zope import schema
 from zope.interface import implementer
+from zope.interface import Invalid
 
 from genweb6.core import _
 
@@ -96,12 +103,23 @@ class RSSFeed(object):
 
     def _buildItemDict(self, item):
         link = item.links[0]['href']
+        try:
+            _normal_url_validator(link)
+        except Invalid:
+            # No se aceptan enlaces javascript:, data:, etc. que vengan del feed
+            logger.warning('Refusing to use link from RSS item %r', link)
+            link = '#'
         description = self.html_escape(item.get('description', ''))
         image = item.get('media_content', None)
         if image:
             image = image[0]['url']
         else:
             image = item.get('href', None) or self.getFirstImageDescription(description)
+        if image:
+            try:
+                _normal_url_validator(image)
+            except Invalid:
+                image = None
 
         itemdict = {
             'title': item.title,
@@ -128,7 +146,27 @@ class RSSFeed(object):
         if url != '':
             self._last_update_time_in_minutes = time.time() / 60
             self._last_update_time = DateTime()
-            noticies = feedparser.parse(url)
+            try:
+                _rss_feed_url_validator(url)
+            except Invalid:
+                logger.warning('Refusing to load stored RSS url %r', url)
+                self._loaded = True
+                self._failed = True
+                return False
+            # Descarga con timeout, sin redirecciones y con limite de tamano
+            # (1 MB por defecto, MAXIMUM_RSS_FEED_SIZE_BYTES) y despues se parsea
+            # el contenido, en lugar de dejar que feedparser abra la URL.
+            try:
+                contents, response = _download_feed_and_response(url)
+            except Exception as exc:
+                logger.info('failed to download RSS feed %s: %s', url, exc)
+                self._loaded = True
+                self._failed = True
+                return False
+            response_headers = {
+                k.lower(): v for k, v in response.headers.items()}
+            noticies = feedparser.parse(
+                BytesIO(contents), response_headers=response_headers)
             if getattr(noticies, 'bozo', 0) == 1 and not isinstance(noticies.get('bozo_exception'), ACCEPTED_FEEDPARSER_EXCEPTIONS):
                 self._loaded = True     # we tried at least but have a failed load
                 self._failed = True
@@ -268,7 +306,8 @@ class IRSSPortlet(IPortletDataProvider):
         title=_PMF(u'URL of RSS feed'),
         description=_PMF(u'Link of the RSS feed to display.'),
         required=True,
-        default=u''
+        default=u'',
+        constraint=_rss_feed_url_validator,
     )
 
     timeout = schema.Int(

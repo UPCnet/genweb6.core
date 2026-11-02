@@ -52,6 +52,7 @@ setup(
         'setuptools',
         # -*- Extra requirements: -*-
         'z3c.jbot',
+        'plone.app.portlets>=5.0.8',
         'plone.api',
         'plone.restapi',
         'plone.app.dexterity',

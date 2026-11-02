@@ -9,10 +9,19 @@
 
 <metal:content-core fill-slot="content-core">
 <metal:block define-macro="content-core"
-             tal:define="content_type python: context.file.contentType;
-                         filename python: context.file.filename;
-                         mimetype_icon python: 'mimetype-' + content_type;
-                         download_url python: '{}/@@download/file/{}'.format(context.absolute_url(), filename)">
+             tal:define="file python:context.file"
+             tal:on-error="nothing">
+
+<tal:comment replace="nothing">
+  Alineado con plone.app.contenttypes 3.0.12: si no hay fichero no se rompe la vista
+  (la parte de Genweb es la previsualizacion de PDF y el grupo file-description).
+</tal:comment>
+
+<tal:has_file condition="python:file">
+<tal:block tal:define="content_type context/file/contentType;
+                       filename python: file.filename;
+                       mimetype_icon python: 'mimetype-' + content_type;
+                       download_url python: '{}/@@download/file/{}'.format(context.absolute_url(), filename)">
 
   <section class="section section-main">
 
@@ -71,6 +80,15 @@
   <section class="section section-actions">
     <a class="btn btn-primary download" href="${python:download_url}" i18n:translate="">Download</a>
   </section>
+
+</tal:block>
+</tal:has_file>
+
+<tal:has_file condition="python:not file">
+  <p i18n:translate="">
+    There is no file uploaded.
+  </p>
+</tal:has_file>
 
 </metal:block>
 </metal:content-core>
