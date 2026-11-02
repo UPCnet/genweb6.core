@@ -2,6 +2,7 @@
 from AccessControl import getSecurityManager
 from Products.Five.browser import BrowserView
 
+from plone.app.contenttypes.utils import replace_link_variables_by_paths
 from plone.app.z3cform.widget import RelatedItemsFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Container
@@ -146,13 +147,20 @@ class Carousel(Container):
         return 't' + secrets.token_hex(16)
 
     def elem_to_dict(self, index, first, elem):
+        remote_url = getattr(elem, 'remoteUrl', None)
+        if remote_url:
+            url = replace_link_variables_by_paths(elem, remote_url)
+        else:
+            url = elem.absolute_url() + '/view'
+
         result = {
             'index': index,
             'first': first,
             'id': elem.id.replace('.', '-'),
             'title': elem.title,
             'description': elem.description,
-            'url': elem.absolute_url() + '/view',
+            'url': url,
+            'is_link': bool(remote_url),
             'open_link_in_new_window': getattr(elem, 'open_link_in_new_window', False)}
 
         if self.carousel_type == 'complex':

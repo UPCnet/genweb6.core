@@ -88,17 +88,24 @@
                         <div tal:attributes="class python:'carousel-item active' if content['first'] else 'carousel-item';
                                              data-bs-interval python:carousel_interval if carousel_enable_auto_start else None;">
 
-                            <img class="d-block w-100" loading="lazy"
-                                 tal:condition="context/carousel_enable_auto_proportions"
-                                 tal:attributes="src content/image;
-                                                 title content/title;
-                                                 alt content/title;">
+                            <a class="d-block"
+                               tal:omit-tag="not:content/is_link"
+                               tal:attributes="href content/url;
+                                               title content/title;
+                                               target python:'_blank' if content.get('open_link_in_new_window', False) else '_self';">
 
-                            <img class="d-block w-100 disable-auto-proportions" loading="lazy"
-                                 tal:condition="not:context/carousel_enable_auto_proportions"
-                                 tal:attributes="src content/image;
-                                                 title content/title;
-                                                 alt content/title;">
+                                <img class="d-block w-100" loading="lazy"
+                                     tal:condition="context/carousel_enable_auto_proportions"
+                                     tal:attributes="src content/image;
+                                                     title content/title;
+                                                     alt content/title;">
+
+                                <img class="d-block w-100 disable-auto-proportions" loading="lazy"
+                                     tal:condition="not:context/carousel_enable_auto_proportions"
+                                     tal:attributes="src content/image;
+                                                     title content/title;
+                                                     alt content/title;">
+                            </a>
 
                             <div class="carousel-caption"
                                  tal:condition="python:context.carousel_show_title or context.carousel_show_description">
