@@ -2,9 +2,13 @@
 # (el KGS 6.0.15 fija zc.buildout 4.1.4: con otra version buildout intenta
 # autoinstalarla y falla)
 packaging==24.2
-pip==25.0.1
-setuptools==75.8.2
-wheel==0.45.1
+# pip, setuptools y wheel subidos por las alertas de Dependabot (mantener
+# alineado con versions.cfg). setuptools no puede pasar de 79.x: desde la 80.x
+# zc.buildout 4.1.4 ya no encuentra setuptools.package_index y desde la 82
+# desaparece pkg_resources (lo usan Plone 6.0.15 y genweb6.core).
+pip==26.2.2
+setuptools==79.0.1
+wheel==0.48.0
 zc.buildout==4.1.4
 
 #
