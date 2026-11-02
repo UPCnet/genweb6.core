@@ -1,11 +1,13 @@
 Changelog
 =========
 
-1.110 (unreleased)
+1.110 (2026-11-02)
 ------------------
 
-- Nothing changed yet.
-
+* [FIX] Dependabot: subir pip 26.2.2, setuptools 79.0.1 y wheel 0.48.0 [Iago López]
+*  [Iago López]
+* setuptools se queda en 79.x: desde la 80.x zc.buildout 4.1.4 no encuentra [Iago López]
+* setuptools.package_index y desde la 82 desaparece pkg_resources (Plone 6.0.15). [Iago López]
 
 1.109 (2026-11-02)
 ------------------
