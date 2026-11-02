@@ -1,11 +1,12 @@
 Changelog
 =========
 
-1.109 (unreleased)
+1.109 (2026-11-02)
 ------------------
 
-- Nothing changed yet.
-
+* Merge remote-tracking branch 'origin/plone_6_0_15' [pmarinas]
+* Merge remote-tracking branch 'origin/develop' [pmarinas]
+* [FIX] carousel: make image clickable and use target URL for Link items [Clàudia Andreu]
 
 1.108 (2026-10-21)
 ------------------
