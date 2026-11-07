@@ -276,7 +276,7 @@ class LoginUtils():
             'localhost',
             'pre.upc.edu',
             'redhood[123].upc.edu',
-            r'fe([1-9]|1[0-9]|20).upc.edu',
+            r'fe([1-9]|1[0-9]|24).upc.edu',
         ]
         # Sin CAS activo o entornos de prova: URL plana (p. ex. login_form), no redirección HTTP.
         if not self.cas_settings().enabled or any(
