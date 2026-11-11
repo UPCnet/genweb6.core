@@ -589,30 +589,43 @@ Paràmetres:
 
                 valid_user = True
                 if user is None:
-                    user = self.membership.getMemberById(new_creator)
-                    if user is None:
+                    member = self.membership.getMemberById(new_creator)
+                    if member is None:
                         valid_user = False
                         self.status.append('WARNING: Could not find '
                                            'user %s !' % new_creator)
+                    else:
+                        # changeOwnership necessita l'usuari, no el MemberData
+                        user = member.getUser()
 
                 header_index = len(self.status)
                 self.status.append('')
                 abspath = self.context.absolute_url_path()
+                touched_paths = []
                 for brain in self.catalog(path=abspath):
                     obj = brain.getObject()
                     creators = list(obj.listCreators())
-                    if old_creator in creators:
+                    old_is_owner = 'Owner' in obj.get_local_roles_for_userid(
+                        old_creator)
+                    if old_creator in creators or old_is_owner:
                         if valid_user:
+                            # changeOwnership només canvia _owner: cal treure
+                            # el rol local Owner a l'antic creador (si no,
+                            # continua podent editar) i donar-lo al nou.
                             obj.changeOwnership(user)
-                        if new_creator in creators:
-                            index1 = creators.index(old_creator)
-                            index2 = creators.index(new_creator)
-                            creators[min(index1, index2)] = new_creator
-                            del creators[max(index1, index2)]
-                        else:
-                            creators[creators.index(old_creator)] = new_creator
-
-                        obj.setCreators(creators)
+                            self._fix_owner_role(
+                                obj, old_creator, user.getId())
+                            touched_paths.append(brain.getPath())
+                        if old_creator in creators:
+                            if new_creator in creators:
+                                index1 = creators.index(old_creator)
+                                index2 = creators.index(new_creator)
+                                creators[min(index1, index2)] = new_creator
+                                del creators[max(index1, index2)]
+                            else:
+                                creators[creators.index(old_creator)] = \
+                                    new_creator
+                            obj.setCreators(creators)
                         if change_modification_date:
                             obj.reindexObject()
                         else:
@@ -624,9 +637,41 @@ Paràmetres:
                         self.status.append(brain.getPath())
                         count += 1
 
+                # Els rols locals s'hereten: reindexar la seguretat de tot
+                # el subarbre (allowedRolesAndUsers) un cop canviats tots
+                # els objectes, independentment de l'ordre del catàleg.
+                for obj_path in self._top_level_paths(touched_paths):
+                    obj = self.context.unrestrictedTraverse(obj_path, None)
+                    if obj is not None:
+                        obj.reindexObjectSecurity()
+
                 self.status[header_index] = self.STATUS_updated % count
 
         return self.render()
+
+    @staticmethod
+    def _fix_owner_role(obj, old_userid, new_userid):
+        """Treu el rol local Owner a old_userid i l'assigna a new_userid."""
+        roles = [r for r in obj.get_local_roles_for_userid(old_userid)
+                 if r != 'Owner']
+        if roles:
+            obj.manage_setLocalRoles(old_userid, roles)
+        elif obj.get_local_roles_for_userid(old_userid):
+            obj.manage_delLocalRoles([old_userid])
+
+        roles = list(obj.get_local_roles_for_userid(new_userid))
+        if 'Owner' not in roles:
+            roles.append('Owner')
+            obj.manage_setLocalRoles(new_userid, roles)
+
+    @staticmethod
+    def _top_level_paths(paths):
+        """Retorna només els paths que no pengen d'un altre path de la llista."""
+        result = []
+        for path in sorted(set(paths)):
+            if not any(path.startswith(p + '/') for p in result):
+                result.append(path)
+        return result
 
 
 class add_permissions_plantilles(BrowserView):
