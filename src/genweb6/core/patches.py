@@ -1013,6 +1013,14 @@ gw_group = dict(
 )
 
 
+def plone_maintenance_warning(self):
+    # Plone 6.0.15+ muestra siempre en el overview-controlpanel el aviso
+    # "You are using a Plone version that is out of maintenance support",
+    # que confunde a los usuarios. Se oculta; el aviso de seguridad
+    # (plone_security_warning) se mantiene.
+    return False
+
+
 def mailhost_warning(self):
     # Añadir el control para ver si puede acceder al controlpanel de Correo
     # Los permisos corresponden a plone.app.controlpanel.Mail

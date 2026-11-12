@@ -114,6 +114,14 @@
         />
 
     <monkey:patch
+        description="Ocultar el aviso de Plone sin soporte de mantenimiento (confunde a los usuarios)"
+        class="Products.CMFPlone.controlpanel.browser.overview.OverviewControlPanel"
+        original="plone_maintenance_warning"
+        replacement=".patches.plone_maintenance_warning"
+        ignoreOriginal="true"
+        />
+
+    <monkey:patch
         description="Cambiar literal title"
         class="plone.app.contentmenu.menu.DisplaySubMenuItem"
         original="title"
