@@ -1196,6 +1196,7 @@
       <element>zope.schema._field.Datetime</element>
       <element>collective.easyform.fields.Label</element>
       <element>collective.easyform.fields.RichLabel</element>
+      <element>collective.easyform.fields.Likert</element>
       <element>plone.namedfile.field.NamedBlobImage</element>
       <element>zope.schema._field.Float</element>
       <element>zope.schema._bootstrapfields.Int</element>
