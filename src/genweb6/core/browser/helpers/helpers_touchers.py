@@ -552,10 +552,20 @@ Paràmetres:
         return sorted(ret_list, key=lambda a: str(a['id']).lower())
 
     def list_creators(self):
+        # A més dels creators, inclou els usuaris amb rol local Owner o que
+        # són _owner: si una execució anterior ja va canviar els creators,
+        # l'antic usuari ha de continuar sent seleccionable per acabar la feina.
         creator_list = []
         for brain in self.catalog(path=self.context.absolute_url_path()):
-            creators = brain.getObject().listCreators()
-            for creator in creators:
+            obj = brain.getObject()
+            candidates = list(obj.listCreators())
+            candidates.extend(
+                userid for userid, roles in obj.get_local_roles()
+                if 'Owner' in roles)
+            owner_id = obj.getOwnerTuple() and obj.getOwnerTuple()[1]
+            if owner_id:
+                candidates.append(owner_id)
+            for creator in candidates:
                 if creator not in creator_list:
                     creator_list.append(creator)
         return self.get_sorted_list(
@@ -606,8 +616,10 @@ Paràmetres:
                 for brain in self.catalog(path=abspath):
                     obj = brain.getObject()
                     creators = list(obj.listCreators())
-                    old_is_owner = 'Owner' in obj.get_local_roles_for_userid(
-                        old_creator)
+                    owner_tuple = obj.getOwnerTuple()
+                    old_is_owner = (
+                        'Owner' in obj.get_local_roles_for_userid(old_creator)
+                        or bool(owner_tuple and owner_tuple[1] == old_creator))
                     if old_creator in creators or old_is_owner:
                         if valid_user:
                             # changeOwnership només canvia _owner: cal treure
