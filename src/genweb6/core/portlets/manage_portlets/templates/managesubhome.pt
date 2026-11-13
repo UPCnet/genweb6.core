@@ -99,6 +99,7 @@
 
                   <input class="editable" type="text" placeholder="0" style="width: 30px;"
                          tal:attributes="data-context-id context/id;
+                                         data-context-url context/absolute_url;
                                          data-manager manager_name;
                                          value python:view.getValue(manager_name)">
               </div>
@@ -122,6 +123,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
@@ -145,6 +147,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
@@ -168,6 +171,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
@@ -195,6 +199,7 @@
 
                   <input class="editable" type="text" placeholder="0" style="width: 30px;"
                          tal:attributes="data-context-id context/id;
+                                         data-context-url context/absolute_url;
                                          data-manager manager_name;
                                          value python:view.getValue(manager_name)">
               </div>
@@ -218,6 +223,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
@@ -241,6 +247,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
@@ -264,6 +271,7 @@
 
                 <input class="editable" type="text" placeholder="0" style="width: 30px;"
                        tal:attributes="data-context-id context/id;
+                                       data-context-url context/absolute_url;
                                        data-manager manager_name;
                                        value python:view.getValue(manager_name)">
               </div>
