@@ -2345,3 +2345,47 @@ msgstr "Check this box to hide the portlet title when it is displayed with a bor
 #: ../browser/viewlets.py
 msgid "open_submenu_label"
 msgstr "Open submenu for ${title}"
+
+#: ../controlpanels/coloqia.py
+msgid "Activar Coloq.ia"
+msgstr "Enable Coloq.ia"
+
+#: ../controlpanels/coloqia.py
+msgid "Marca per mostrar Coloq.ia a les vistes de visualització del web"
+msgstr "Check to show Coloq.ia on the site's view pages"
+
+#: ../controlpanels/coloqia.py
+msgid "Mode de funcionament"
+msgstr "Operating mode"
+
+#: ../controlpanels/coloqia.py
+msgid "Script"
+msgstr "Script"
+
+#: ../controlpanels/coloqia.py
+msgid "Obrir en una pestanya nova"
+msgstr "Open in a new tab"
+
+#: ../controlpanels/coloqia.py
+msgid "Script de Coloq.ia"
+msgstr "Coloq.ia script"
+
+#: ../controlpanels/coloqia.py
+msgid "Codi que s'insereix al body, fora del footer i per sota d'aquest."
+msgstr "Code inserted in the body, outside and below the footer."
+
+#: ../controlpanels/coloqia.py
+msgid "URL de Coloq.ia"
+msgstr "Coloq.ia URL"
+
+#: ../controlpanels/coloqia.py
+msgid "Enllaç que s'obre en una pestanya nova en clicar la icona flotant de Coloq.ia."
+msgstr "Link opened in a new tab when clicking the Coloq.ia floating icon."
+
+#: ../controlpanels/coloqia.py
+msgid "Coloq.ia Settings"
+msgstr "Coloq.ia Settings"
+
+#: ../browser/viewlets_templates/footer/coloqia.pt
+msgid "Obre Coloq.ia en una pestanya nova"
+msgstr "Open Coloq.ia in a new tab"

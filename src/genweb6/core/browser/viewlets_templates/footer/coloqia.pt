@@ -1,0 +1,23 @@
+<tal:block tal:condition="view/is_visible"
+           i18n:domain="genweb">
+
+    <div id="gw-coloqia"
+         tal:condition="python:view.mode() != 'url'"
+         tal:content="structure view/getScript"></div>
+
+    <div id="gw-coloqia"
+         tal:condition="python:view.mode() == 'url'">
+        <a id="gw-coloqia-link"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Obre Coloq.ia en una pestanya nova"
+           i18n:attributes="title"
+           tal:attributes="href view/getURL">
+            <img alt="Coloq.ia"
+                 width="80"
+                 height="80"
+                 tal:attributes="src string:${view/root_url}/++theme++genweb6.theme/img/coloqia.png" />
+        </a>
+    </div>
+
+</tal:block>

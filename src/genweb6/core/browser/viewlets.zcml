@@ -91,6 +91,15 @@
         template="viewlets_templates/footer/resources.pt"
         />
 
+    <browser:viewlet
+        name="genweb.coloqia"
+        manager="plone.app.layout.viewlets.interfaces.IPortalFooter"
+        class=".viewlets.coloqiaViewlet"
+        layer="..interfaces.IGenweb6CoreLayer"
+        permission="zope2.View"
+        template="viewlets_templates/footer/coloqia.pt"
+        />
+
     <!-- CONTENT -->
 
     <browser:viewlet

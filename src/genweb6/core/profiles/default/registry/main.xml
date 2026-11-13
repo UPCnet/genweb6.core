@@ -26,6 +26,10 @@
     <records
         interface="genweb6.core.controlpanels.resources.IResourcesSettings"
         purge="False" />
+
+    <records
+        interface="genweb6.core.controlpanels.coloqia.IColoqiaSettings"
+        purge="False" />
     
      <records
         interface="genweb6.core.controlpanels.netejar_metadades.IMetadadesSettings"

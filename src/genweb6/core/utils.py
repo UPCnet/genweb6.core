@@ -36,6 +36,7 @@ from genweb6.core.controlpanels.header import IHeaderSettings
 from genweb6.core.controlpanels.login import ILoginSettings
 from genweb6.core.controlpanels.netejar_metadades import IMetadadesSettings
 from genweb6.core.controlpanels.resources import IResourcesSettings
+from genweb6.core.controlpanels.coloqia import IColoqiaSettings
 
 import json
 import logging
@@ -249,6 +250,13 @@ def genwebLoginConfig():
 def genwebResourcesConfig():
     registry = queryUtility(IRegistry)
     return registry.forInterface(IResourcesSettings)
+
+
+def genwebColoqiaConfig():
+    registry = queryUtility(IRegistry)
+    # check=False: en llocs on encara no s'han registrat els camps,
+    # els valors absents retornen None (Coloq.ia desactivat) en lloc de petar.
+    return registry.forInterface(IColoqiaSettings, check=False)
 
 
 def genwebMetadadesConfig():

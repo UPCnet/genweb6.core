@@ -23,6 +23,7 @@ from plone.memoize.view import memoize_contextless
 from plone.namedfile.file import NamedFile
 from plone.registry.interfaces import IRegistry
 from plone.uuid.interfaces import IUUID
+from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryAdapter
 from zope.i18n import translate
@@ -33,6 +34,7 @@ from genweb6.core.adapters.important import IImportant
 from genweb6.core.interfaces import IHomePage
 from genweb6.core.interfaces import ISeoMarker
 from genweb6.core.utils import genwebCintilloConfig
+from genweb6.core.utils import genwebColoqiaConfig
 from genweb6.core.utils import genwebFooterConfig
 from genweb6.core.utils import genwebHeaderConfig
 from genweb6.core.utils import genwebResourcesConfig
@@ -612,6 +614,44 @@ class resourcesViewletJS(viewletBase):
     def getTextJS(self):
         resources_config = genwebResourcesConfig()
         return "<script type='text/javascript'>" + resources_config.text_js + "</script>"
+
+
+class coloqiaViewlet(viewletBase):
+    """Coloq.ia, inserted in the body, outside and below the footer.
+
+    Only rendered when it is enabled in the Coloq.ia controlpanel and the
+    content is shown in view mode: not in edit, add, sharing, controlpanels
+    or any other non-view template.
+    """
+
+    def is_view_mode(self):
+        context_state = getMultiAdapter(
+            (self.context, self.request), name='plone_context_state')
+        return context_state.is_view_template()
+
+    @memoize
+    def coloqia_config(self):
+        return genwebColoqiaConfig()
+
+    @memoize
+    def is_visible(self):
+        config = self.coloqia_config()
+        if not getattr(config, 'coloqia_enabled', False):
+            return False
+        if not self.is_view_mode():
+            return False
+        if self.mode() == 'url':
+            return bool(self.getURL())
+        return bool(self.getScript())
+
+    def mode(self):
+        return getattr(self.coloqia_config(), 'coloqia_mode', None) or 'script'
+
+    def getScript(self):
+        return getattr(self.coloqia_config(), 'coloqia_script', '') or ''
+
+    def getURL(self):
+        return getattr(self.coloqia_config(), 'coloqia_url', '') or ''
 
 
 class socialtoolsViewlet(viewletBase):

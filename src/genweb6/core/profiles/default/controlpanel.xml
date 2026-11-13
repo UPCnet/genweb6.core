@@ -15,6 +15,19 @@
     </configlet>
 
     <configlet
+        title="Coloq.ia"
+        action_id="genweb6.core.coloqia"
+        appId="genweb6.core.coloqia"
+        category="genweb-connection"
+        condition_expr=""
+        url_expr="string:${portal_url}/@@coloqia-controlpanel"
+        icon_expr="string:chat-dots"
+        visible="True">
+
+        <permission>Genweb: Manager Users</permission>
+    </configlet>
+
+    <configlet
         title="Cintillo"
         action_id="genweb6.core.cintillo"
         appId="genweb6.core.cintillo"

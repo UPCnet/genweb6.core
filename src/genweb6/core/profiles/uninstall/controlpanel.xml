@@ -9,6 +9,13 @@
     </configlet>
 
     <configlet
+        action_id="genweb6.core.coloqia"
+        appId="genweb6.core.coloqia"
+        remove="True">
+
+    </configlet>
+
+    <configlet
         action_id="genweb6.core.cookies"
         appId="genweb6.core.cookies"
         remove="True">

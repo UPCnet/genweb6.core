@@ -97,6 +97,27 @@
         />
 
     <browser:page
+        name="coloqia-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".coloqia.ColoqiaSettingsControlPanel"
+        permission="genweb.manager"
+        />
+
+    <class class=".coloqia.ColoqiaControlpanelJSWidget">
+        <require
+            permission="zope.Public"
+            interface=".coloqia.IColoqiaControlpanelJSWidget"
+            />
+    </class>
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".coloqia.IColoqiaControlpanelJSWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="widgets/coloqia_js.pt"
+        />
+
+    <browser:page
         for="*"
         name="gw-js"
         class=".resources.GWJS"

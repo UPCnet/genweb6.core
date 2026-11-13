@@ -31,6 +31,7 @@ from genweb6.core.interfaces import IHomePage
 from genweb6.core.utils import genwebMetadadesConfig
 from genweb6.core.cas.controlpanel import addPluginCAS
 from genweb6.core.cas.controlpanel import ICASSettings
+from genweb6.core.controlpanels.coloqia import IColoqiaSettings
 
 import logging
 import os
@@ -109,7 +110,7 @@ Actualitza les vistes per al tipus de carpeta
         output = []
         portal.portal_types['Folder'].view_methods = (
             'listing_view', 'album_view', 'summary_view', 'tabular_view',
-            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view', 
+            'full_view', 'folder_index_view', 'filtered_contents_search_pretty_view',
             'filtered_contents_search_album_view')
         import transaction
         transaction.commit()
@@ -279,7 +280,7 @@ Reinstal·la tots els paquets de genweb instal·lats
         if not portal:
             portal = api.portal.get()
 
-        LIST_PRODUCTS = ['genweb6.upc', 'genweb6.ens', 'genweb6.esports', 'genweb6.gpaq', 
+        LIST_PRODUCTS = ['genweb6.upc', 'genweb6.ens', 'genweb6.esports', 'genweb6.gpaq',
                          'genweb6.patents', 'genweb6.scholarship', 'genweb6.tfemarket',
                          'genweb6.serveistic', 'genweb6.organs', 'genweb6.rrhh', 'genweb6.guni']
 
@@ -1167,16 +1168,16 @@ Paràmetres:
         if 'api_key' in self.request.form:
             mc.api_key = self.request.form['api_key']
 
-        if 'indicadors_api_url' in self.request.form:            
+        if 'indicadors_api_url' in self.request.form:
             mc.indicadors_api_url = self.request.form['indicadors_api_url']
 
-        if 'indicadors_api_key' in self.request.form:            
+        if 'indicadors_api_key' in self.request.form:
             mc.indicadors_api_key = self.request.form['indicadors_api_key']
 
-        if 'indicadors_servei_id' in self.request.form:            
+        if 'indicadors_servei_id' in self.request.form:
             mc.indicadors_servei_id = self.request.form['indicadors_servei_id']
 
-        if 'indicadors_categoria_id' in self.request.form:            
+        if 'indicadors_categoria_id' in self.request.form:
             mc.indicadors_categoria_id = self.request.form['indicadors_categoria_id']
 
         transaction.commit()
@@ -1248,3 +1249,49 @@ Paràmetres:
             transaction.commit()
 
         return 'OK'
+
+
+class setup_coloqia(BrowserView):
+    """
+Registra el panell de control de Coloq.ia (camps del registry i configlet a Connexions, només Managers) en llocs creats abans que existís.
+Només crea el que falta, no toca els valors existents. Es pot executar més d'un cop.
+    """
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        output = []
+
+        registry = getUtility(IRegistry)
+        prefix = IColoqiaSettings.__identifier__ + '.'
+        missing = [name for name in IColoqiaSettings.names()
+                   if prefix + name not in registry.records]
+        if missing:
+            registry.registerInterface(IColoqiaSettings)
+            output.append('Registry: registered ' + ', '.join(missing))
+        else:
+            output.append('Registry: nothing to do')
+
+        permission = 'Genweb: Manager Users'
+        controlpanel = api.portal.get_tool(name='portal_controlpanel')
+        configlet = [a for a in controlpanel.listActions()
+                     if a.getId() == 'genweb6.core.coloqia']
+        if not configlet:
+            controlpanel.registerConfiglet(
+                id='genweb6.core.coloqia',
+                name='Coloq.ia',
+                action='string:${portal_url}/@@coloqia-controlpanel',
+                permission=permission,
+                category='genweb-connection',
+                appId='genweb6.core.coloqia',
+                icon_expr='string:chat-dots',
+            )
+            output.append('Controlpanel: configlet added')
+        elif tuple(configlet[0].permissions) != (permission,):
+            # Configlet creat amb un permís anterior: només Managers
+            configlet[0].permissions = (permission,)
+            controlpanel._p_changed = True
+            output.append('Controlpanel: configlet permission set to ' + permission)
+        else:
+            output.append('Controlpanel: nothing to do')
+
+        return '\n'.join(output)
