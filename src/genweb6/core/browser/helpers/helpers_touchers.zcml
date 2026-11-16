@@ -358,4 +358,12 @@
         permission="cmf.ManagePortal"
         />
 
+    <browser:page
+        name="move_webstats_js_to_head"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".helpers_touchers.move_webstats_js_to_head"
+        layer="genweb6.core.interfaces.IGenweb6CoreLayer"
+        permission="cmf.ManagePortal"
+        />
+
 </configure>

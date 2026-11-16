@@ -1307,3 +1307,76 @@ Només crea el que falta, no toca els valors existents. Es pot executar més d'u
             output.append('Controlpanel: nothing to do')
 
         return '\n'.join(output)
+
+
+class move_webstats_js_to_head(BrowserView):
+    """
+Mou el codi d'estadístiques (gtag, etc.) del camp webstats_js (peu de pàgina) al camp webstats_head_js (capçalera), afegit a Plone 6.0.11.
+Si webstats_head_js ja té contingut, s'hi afegeix al final (si no hi és ja). Després es buida webstats_js.
+També mostra els viewlets plone.analytics (peu) i plone.analytics.head (capçalera) si estaven ocults.
+Es pot executar més d'un cop.
+
+Paràmetres:
+- dry_run=1: només mostra què faria, sense desar canvis
+    """
+
+    VIEWLETS = (
+        ('plone.portalfooter', 'plone.analytics'),
+        ('plone.htmlhead', 'plone.analytics.head'),
+    )
+
+    def __call__(self):
+        alsoProvides(self.request, IDisableCSRFProtection)
+        dry_run = self.request.form.get('dry_run') in ('1', 'true', 'True')
+        output = []
+
+        registry = getUtility(IRegistry)
+        footer_key = 'plone.webstats_js'
+        head_key = 'plone.webstats_head_js'
+
+        if head_key not in registry.records:
+            return ('Error: no existeix el registre {}. '
+                    'Executa primer els upgrade steps de Plone (@@plone-upgrade).').format(head_key)
+
+        # 1. Moure webstats_js -> webstats_head_js
+        footer_js = (registry.get(footer_key) or '').strip()
+        head_js = (registry.get(head_key) or '').strip()
+
+        if not footer_js:
+            output.append('Registry: webstats_js és buit, res a moure')
+        else:
+            if footer_js in head_js:
+                new_head_js = head_js
+                output.append('Registry: webstats_js ja era a webstats_head_js, només es buida webstats_js')
+            elif head_js:
+                new_head_js = head_js + '\n' + footer_js
+                output.append('Registry: webstats_js afegit al final de webstats_head_js')
+            else:
+                new_head_js = footer_js
+                output.append('Registry: webstats_js mogut a webstats_head_js')
+
+            if dry_run:
+                output.append('webstats_head_js quedaria:\n' + new_head_js)
+            else:
+                registry[head_key] = new_head_js
+                registry[footer_key] = ''
+
+        # 2. Mostrar els viewlets d'analytics de Plone
+        storage = getUtility(IViewletSettingsStorage)
+        for manager, viewletname in self.VIEWLETS:
+            hidden = list(storage.getHidden(manager, 'Plone Default'))
+            if viewletname in hidden:
+                if not dry_run:
+                    hidden.remove(viewletname)
+                    storage.setHidden(manager, 'Plone Default', hidden)
+                output.append('Viewlet: {} visible a {}'.format(viewletname, manager))
+            else:
+                output.append('Viewlet: {} ja era visible'.format(viewletname))
+
+        if dry_run:
+            output.insert(0, 'DRY RUN (no es desa res)')
+        else:
+            transaction.commit()
+            logger.info('move_webstats_js_to_head: %s', ' | '.join(output))
+
+        return '\n'.join(output)
