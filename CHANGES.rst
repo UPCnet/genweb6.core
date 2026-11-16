@@ -1,11 +1,31 @@
 Changelog
 =========
 
-1.111 (unreleased)
+1.111 (2026-11-16)
 ------------------
 
-- Nothing changed yet.
-
+* [FIX] bulk_change_creator: permitir relanzarlo cuando ya no es creator [Iago López]
+  - list_creators incluye también usuarios con rol local Owner o que son _owner,
+  para poder seleccionar al antiguo usuario aunque ya no figure en creators.
+  - Procesar también objetos donde el antiguo usuario sigue siendo _owner.
+* [FIX] Gestión de portlets: guardar col-md con la URL absoluta del contexto [Iago López]
+  El JS de @@manage-homeportlets / @@manage-subhome llamaba a @@set-portlethomemanager-span con una URL relativa construida con el id del objeto. Desde .../objeto/@@manage-homeportlets resolvía a .../objeto/objeto/@@set-portlethomemanager-span, que antes funcionaba por adquisición y con Plone 6.0.15 (CMFCore 3.7, explicitacquisition) da 404. Las plantillas pasan data-context-url y el JS usa esa URL absoluta.
+* [ADD] Panel de control Coloq.ia en Connexions [Iago López]
+  Nuevo controlpanel @@coloqia-controlpanel (solo Managers) con activar/desactivar, modo script o pestaña nueva, coloqia_script y coloqia_url. Viewlet solo en vistas de visualización y con Coloq.ia activo. Helper @@setup_coloqia para registrar campos y configlet en sitios existentes. Traducciones ca/es/en.
+* [UPD] EasyForm: activar el campo Likert en allowedFields [Iago López]
+* [UPD] Ocultar el aviso de Plone sin soporte de mantenimiento en overview-controlpanel [Iago López]
+  Plone 6.0.15 muestra siempre el aviso 'out of maintenance support', que confunde a los usuarios. Se parchea plone_maintenance_warning para devolver False; el aviso de soporte de seguridad se mantiene.
+* [FIX] bulk_change_creator: quitar el rol local Owner al antiguo creador [Iago López]
+  changeOwnership solo cambiaba _owner; el usuario antiguo conservaba el rol
+  local Owner (y user:<antiguo> en allowedRolesAndUsers), por lo que seguía
+  pudiendo editar el contenido aunque perdiera sus permisos globales.
+  - Quitar Owner al antiguo creador y asignarlo al nuevo (como changeOwnershipOf).
+  - Procesar también objetos donde el antiguo tiene Owner sin figurar en creators.
+  - reindexObjectSecurity del subárbol al final (roles locales heredados).
+  - Pasar el usuario y no el MemberData a changeOwnership.
+* Update regex pattern for login URL validation [Iago López Fernández]
+* Update regex pattern for URL matching [Iago López Fernández]
+* Add 'genweb6.guni' to LIST_PRODUCTS [Iago López Fernández]
 
 1.110 (2026-11-02)
 ------------------
