@@ -1,11 +1,19 @@
 Changelog
 =========
 
-1.112 (unreleased)
+1.112 (2026-11-16)
 ------------------
 
-- Nothing changed yet.
-
+* [UPD] Analytics: webstats_js al footer y nuevo tocador move_webstats_js_to_head [Iago López]
+  Plone 6.0.11 añadió el campo webstats_head_js (cabecera); webstats_js
+  queda para el footer. Los sites tenían el gtag en webstats_js, que genweb
+  pintaba en el head (commit 5610650).
+  - Nuevo tocador @@move_webstats_js_to_head: mueve webstats_js a
+  webstats_head_js, vacía webstats_js y muestra los viewlets plone.analytics
+  y plone.analytics.head. Acepta dry_run=1 y se puede relanzar.
+  - Se deshace 5610650: resources.pt ya no pinta webstats_js en el head y
+  plone.analytics vuelve a ser visible en el footer (viewlets.xml).
+  Hay que lanzar el tocador en cada site después de desplegar.
 
 1.111 (2026-11-16)
 ------------------
