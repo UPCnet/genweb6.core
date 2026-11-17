@@ -103,6 +103,18 @@
         permission="genweb.manager"
         />
 
+    <utility
+        component=".coloqia.ColoqiaGroupsVocabulary"
+        name="genweb6.core.ColoqiaGroups"
+        />
+
+    <browser:page
+        name="coloqia-update-registry"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".coloqia.ColoqiaRegistryUpdate"
+        permission="cmf.ManagePortal"
+        />
+
     <class class=".coloqia.ColoqiaControlpanelJSWidget">
         <require
             permission="zope.Public"

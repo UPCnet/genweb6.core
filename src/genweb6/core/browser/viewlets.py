@@ -628,9 +628,22 @@ class coloqiaViewlet(viewletBase):
             return False
         if not self.is_view_mode():
             return False
+        if not self.user_in_allowed_groups():
+            return False
         if self.mode() == 'url':
             return bool(self.getURL())
         return bool(self.getScript())
+
+    def user_in_allowed_groups(self):
+        """Sense grups configurats es mostra a tothom; si n'hi ha, només
+        als usuaris autenticats que pertanyin a algun d'ells."""
+        groups = getattr(self.coloqia_config(), 'coloqia_groups', None) or []
+        if not groups:
+            return True
+        if api.user.is_anonymous():
+            return False
+        user_groups = api.user.get_current().getGroups() or []
+        return bool(set(groups) & set(user_groups))
 
     def mode(self):
         return getattr(self.coloqia_config(), 'coloqia_mode', None) or 'script'

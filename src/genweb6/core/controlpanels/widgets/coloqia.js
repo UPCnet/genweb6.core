@@ -6,10 +6,12 @@ function showColoqiaOptions() {
       $('#formfield-form-widgets-coloqia_mode').hide();
       $('#formfield-form-widgets-coloqia_script').hide();
       $('#formfield-form-widgets-coloqia_url').hide();
+      $('#formfield-form-widgets-coloqia_groups').hide();
       return;
     }
 
     $('#formfield-form-widgets-coloqia_mode').show();
+    $('#formfield-form-widgets-coloqia_groups').show();
 
     if (mode == 'url') {
       $('#formfield-form-widgets-coloqia_script').hide();
