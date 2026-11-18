@@ -1,11 +1,19 @@
 Changelog
 =========
 
-1.113 (unreleased)
+1.113 (2026-11-18)
 ------------------
 
-- Nothing changed yet.
-
+* [ADD] Coloq.ia: restringir el widget a grupos (LDAP y locales) [Iago López]
+  - Nuevo campo coloqia_groups en el panel de control: si tiene grupos, el
+  widget (script o enlace) solo se muestra a los usuarios que pertenecen a
+  alguno; vacío, se muestra a todo el mundo como hasta ahora.
+  - Vocabulario genweb6.core.ColoqiaGroups: busca en LDAP por cn=*texto* (sin
+  la caché por id exacto del plugin) y en los grupos locales por id y título.
+  Mínimo 3 caracteres, ordena exacto/empieza por/contiene y devuelve 10.
+  - Solo se pueden guardar grupos existentes (Choice validado contra acl_users).
+  - Nueva vista @@coloqia-update-registry para registrar/actualizar los campos
+  del registry sin reinstalar el paquete.
 
 1.112 (2026-11-16)
 ------------------
