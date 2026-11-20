@@ -19,10 +19,15 @@ class FileSizeValidator(object):
 
         if not mb_max_size:
             return
-        
-        mb_value_size = round(self.value.size / (1024 * 1024), 2)
-        
-        if self.value.size > (mb_max_size * 1024 * 1024):
+
+        # Camp de fitxer opcional sense fitxer pujat: res a validar
+        size = getattr(self.value, 'size', None)
+        if size is None:
+            return
+
+        mb_value_size = round(size / (1024 * 1024), 2)
+
+        if size > (mb_max_size * 1024 * 1024):
             self.field.context.plone_utils.addPortalMessage(
                 f"La mida màxima permesa per arxiu és {mb_max_size} MB, mida de l'arxiu pujat: {mb_value_size} MB", type='error')
             raise InvalidFileSizeError()
