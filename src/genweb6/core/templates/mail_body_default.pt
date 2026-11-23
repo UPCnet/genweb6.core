@@ -8,7 +8,7 @@
       }
 
       .section-title {
-        background-color: #007BC1;
+        background-color: #0076CF;
         color: white;
         padding: 8px;
         font-weight: bold;

@@ -8,12 +8,12 @@
 <metal:block metal:fill-slot="style_slot">
   <style type="text/css">
     .netejar-metadades .upc-heading--large {
-      color: var(--bs-primary, #007BC1);
+      color: var(--bs-primary, #0076CF);
     }
 
     .netejar-metadades .upc-button,
     .netejar-metadades-login__button {
-      background-color: var(--bs-primary, #007BC1);
+      background-color: var(--bs-primary, #0076CF);
     }
 
     .netejar-metadades .upc-button:hover,
