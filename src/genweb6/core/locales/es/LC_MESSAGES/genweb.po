@@ -2231,7 +2231,7 @@ msgstr "Selecciona un archivo PDF:"
 #. Default: "Netejar"
 #: ../browser/views_templates/netejar_metadades.pt:36
 msgid "send_to_anonymize"
-msgstr "Enviar para anonimizar"
+msgstr "Limpiar"
 
 #. Default: "Signatura [CA]"
 #: ../controlpanels/footer.py:143

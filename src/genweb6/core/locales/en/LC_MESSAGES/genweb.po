@@ -2240,7 +2240,7 @@ msgstr "Select PDF file:"
 #. Default: "Netejar"
 #: ../browser/views_templates/netejar_metadades.pt:36
 msgid "send_to_anonymize"
-msgstr "Send to anonymize"
+msgstr "Clean"
 
 #########
 #. "Signatura de la unitat [CA]"
