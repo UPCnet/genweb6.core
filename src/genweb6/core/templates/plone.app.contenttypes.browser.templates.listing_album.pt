@@ -34,7 +34,7 @@
 
         <div class="card">
 
-          <div tal:define="scale python:image_scale.tag(image, 'image', scale='preview', loading='lazy')"
+          <div tal:define="scale python:image_scale.tag(image, 'image', scale='preview', loading='lazy', alt='', title=None)"
                tal:condition="scale" class="card-image-top text-center" >
 
             <img tal:replace="structure scale" />
@@ -43,14 +43,15 @@
 
           <div class="card-body">
 
-            <h5 class="card-title" tal:content="image/Title">Image title</h5>
+            <h2 class="card-title h5" tal:content="image/Title">Image title</h2>
 
             <p class="card-text" tal:content="image/Description"
                tal:condition="image/Description">Description</p>
 
             <a class="btn btn-primary stretched-link"
-               tal:attributes="href string:${image/getURL}/view; title image/Description"
-               i18n:translate="label_view">View</a>
+               tal:attributes="href string:${image/getURL}/view; title image/Description"><span
+               i18n:translate="label_view">View</span> <span class="visually-hidden"
+               tal:content="image/Title">Image title</span></a>
 
           </div>
 
@@ -66,7 +67,7 @@
 
         <div class="card album">
 
-          <div tal:define="scale python:image_scale.tag(album, 'image', scale='preview', loading='lazy') if getattr(album, 'image', None) else None"
+          <div tal:define="scale python:image_scale.tag(album, 'image', scale='preview', loading='lazy', alt='', title=None) if getattr(album, 'image', None) else None"
                tal:condition="scale" class="card-image-top text-center">
 
             <img tal:replace="structure scale" />
@@ -75,15 +76,16 @@
 
           <div class="card-body">
 
-            <h5 class="card-title" tal:content="album/Title">Image title</h5>
+            <h2 class="card-title h5" tal:content="album/Title">Image title</h2>
 
             <p class="card-text" tal:content="album/Description"
                tal:condition="album/Description">Description</p>
 
             <a class="btn btn-primary stretched-link"
-               tal:attributes="href string:${album/getURL}/view; 
-                               title album/Description"
-               i18n:translate="label_view">View</a>
+               tal:attributes="href string:${album/getURL}/view;
+                               title album/Description"><span
+               i18n:translate="label_view">View</span> <span class="visually-hidden"
+               tal:content="album/Title">Image title</span></a>
 
           </div>
 

@@ -11,19 +11,20 @@
           <div class="card-image-top text-center" >
             <img tal:define="scales item_obj/@@images;
                               scale python:scales.scale('image', 'preview')"
-                  tal:replace="structure python:scale and scale.tag(css_class='tileImage rounded-top', loading='lazy') or None" />
+                  tal:replace="structure python:scale and scale.tag(css_class='tileImage rounded-top', loading='lazy', alt='', title=None) or None" />
           </div>
           <div class="card-body d-flex flex-column justify-content-between">
             <div class="mb-3">
-                <h5 class="card-title" tal:content="contingut/Title">Image title</h5>
+                <h3 class="card-title h5" tal:content="contingut/Title">Image title</h3>
                 <p class="card-text" tal:content="contingut/Description"
                    tal:condition="contingut/Description">Description</p>
             </div>
             <a class="btn btn-primary stretched-link w-100"
-               tal:attributes="href string:${contingut/getURL}/view; 
+               tal:attributes="href string:${contingut/getURL}/view;
                                title contingut/Description"
-               i18n:domain="plone"
-               i18n:translate="label_view">View</a>
+               i18n:domain="plone"><span
+               i18n:translate="label_view">View</span> <span class="visually-hidden"
+               tal:content="contingut/Title">Image title</span></a>
           </div>
         </div>
       </div>
