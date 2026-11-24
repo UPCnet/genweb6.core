@@ -316,4 +316,21 @@
         for="zope.processlifetime.IProcessStarting"
         />
 
+    <!-- Portlet RSS de Plone: misma descarga que el nuestro (5 s de timeout,
+         1 MB y redirecciones validadas) y, si falla una actualización, sigue
+         mostrando los últimos elementos en lugar de quedarse en blanco. -->
+    <monkey:patch
+        description="Portlet RSS de Plone: descarga con 5 s de timeout y redirecciones validadas"
+        module="plone.app.portlets.portlets.rss"
+        original="_download_feed_and_response"
+        replacement=".portlets.rss.download.download_feed_and_response"
+        />
+
+    <monkey:patch
+        description="Portlet RSS de Plone: mostrar los últimos elementos si falla la actualización"
+        class="plone.app.portlets.portlets.rss.Renderer"
+        original="enabled"
+        replacement=".portlets.rss.download.renderer_enabled"
+        />
+
 </configure>

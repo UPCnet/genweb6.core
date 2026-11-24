@@ -9,9 +9,9 @@ from logging import getLogger
 from plone import api
 from plone.app.portlets import PloneMessageFactory as _PMF
 from plone.app.portlets.portlets import base
-# Validadores y descarga con limites de plone.app.portlets (>= 5.0.8): evitan
-# file://, hosts internos, descargas enormes o lentas y enlaces javascript:
-from plone.app.portlets.portlets.rss import _download_feed_and_response
+# Validadores de plone.app.portlets (>= 5.0.8): evitan file://, hosts internos
+# y enlaces javascript:. La descarga es la nuestra (download.py): 5 s de
+# timeout, 1 MB como máximo y redirecciones validadas.
 from plone.app.portlets.portlets.rss import _normal_url_validator
 from plone.app.portlets.portlets.rss import _rss_feed_url_validator
 from plone.portlets.interfaces import IPortletDataProvider
@@ -20,6 +20,8 @@ from zope.interface import implementer
 from zope.interface import Invalid
 
 from genweb6.core import _
+from genweb6.core.portlets.rss.download import download_feed_and_response
+from genweb6.core.portlets.rss.download import feed_renderer_enabled
 
 import feedparser
 import time
@@ -153,13 +155,14 @@ class RSSFeed(object):
                 self._loaded = True
                 self._failed = True
                 return False
-            # Descarga con timeout, sin redirecciones y con limite de tamano
-            # (1 MB por defecto, MAXIMUM_RSS_FEED_SIZE_BYTES) y despues se parsea
-            # el contenido, en lugar de dejar que feedparser abra la URL.
+            # Descarga con timeout, límite de tamaño y redirecciones validadas
+            # (download.py) y después se parsea el contenido, en lugar de dejar
+            # que feedparser abra la URL. Si falla, se conservan los elementos
+            # de la última descarga buena (el portlet los sigue mostrando).
             try:
-                contents, response = _download_feed_and_response(url)
+                contents, response = download_feed_and_response(url)
             except Exception as exc:
-                logger.info('failed to download RSS feed %s: %s', url, exc)
+                logger.warning('failed to download RSS feed %s: %r', url, exc)
                 self._loaded = True
                 self._failed = True
                 return False
@@ -168,6 +171,8 @@ class RSSFeed(object):
             noticies = feedparser.parse(
                 BytesIO(contents), response_headers=response_headers)
             if getattr(noticies, 'bozo', 0) == 1 and not isinstance(noticies.get('bozo_exception'), ACCEPTED_FEEDPARSER_EXCEPTIONS):
+                logger.warning('failed to parse RSS feed %s (malformed): %r',
+                               url, noticies.get('bozo_exception'))
                 self._loaded = True     # we tried at least but have a failed load
                 self._failed = True
                 return False
@@ -446,9 +451,8 @@ class Renderer(base.DeferredRenderer):
     def items(self):
         return self._getFeed().items[:self.data.count]
 
-    @property
-    def enabled(self):
-        return self._getFeed().ok
+    # Si falla una actualización, se siguen mostrando los últimos elementos.
+    enabled = property(feed_renderer_enabled)
 
     @property
     def displayDate(self):

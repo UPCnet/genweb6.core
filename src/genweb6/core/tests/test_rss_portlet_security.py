@@ -15,7 +15,7 @@ FEED = b"""<?xml version="1.0" encoding="utf-8"?>
 <description>texto</description></item>
 </channel></rss>"""
 
-DOWNLOAD = 'genweb6.core.portlets.rss.rss._download_feed_and_response'
+DOWNLOAD = 'genweb6.core.portlets.rss.rss.download_feed_and_response'
 
 
 class FakeResponse(object):
